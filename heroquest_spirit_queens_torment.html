@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Spirit Queen's Torment - Supernatural Horror and Ethereal Combat</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b69 20%, #4a148c 40%, #6a1b9a 60%, #8e24aa 80%, #9c27b0 100%);
+            color: #e1bee7;
+        }
+        .container {
+            background: rgba(26, 0, 51, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.6);
+            border: 2px solid #ce93d8;
+        }
+        h1 {
+            color: #ce93d8;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(206, 147, 216, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #e1bee7;
+            border-bottom: 2px solid #e1bee7;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .ethereal-principle {
+            background: linear-gradient(135deg, #1a0033 0%, #4a148c 100%);
+            border: 2px solid #ce93d8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #e1bee7;
+        }
+        .spectral-card {
+            background: linear-gradient(135deg, #4a148c 0%, #1a0033 100%);
+            border: 2px solid #9c27b0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 320px;
+            vertical-align: top;
+        }
+        .torment-box {
+            background: rgba(206, 147, 216, 0.1);
+            border: 2px solid #ce93d8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .horror-analysis {
+            background: rgba(225, 190, 231, 0.1);
+            border: 2px solid #e1bee7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #ce93d8;
+            border-radius: 10px;
+            background: #0a0015;
+            display: block;
+            margin: 20px auto;
+        }
+        .sanity-meter {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336, #9c27b0);
+            border: 2px solid #ce93d8;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .sanity-indicator {
+            position: absolute;
+            top: -3px;
+            width: 6px;
+            height: 36px;
+            background: #fff;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+        .spirit-realm {
+            position: relative;
+            overflow: hidden;
+        }
+        .ethereal-wisp {
+            position: absolute;
+            color: #ce93d8;
+            font-size: 16px;
+            animation: ethereal-drift 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+        @keyframes ethereal-drift {
+            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-20px) translateX(10px) rotate(90deg); opacity: 0.8; }
+            50% { transform: translateY(-10px) translateX(-15px) rotate(180deg); opacity: 0.5; }
+            75% { transform: translateY(-30px) translateX(20px) rotate(270deg); opacity: 0.9; }
+        }
+        .spirit-queen-portrait {
+            width: 250px;
+            height: 300px;
+            background: radial-gradient(ellipse, #9c27b0, #4a148c, #1a0033);
+            border: 3px solid #ce93d8;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            animation: spectral-presence 4s ease-in-out infinite;
+            position: relative;
+        }
+        @keyframes spectral-presence {
+            0%, 100% { 
+                box-shadow: 0 0 30px rgba(206, 147, 216, 0.6);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 50px rgba(156, 39, 176, 1);
+                transform: scale(1.02);
+            }
+        }
+        .ethereal-creatures {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .creature-manifestation {
+            background: rgba(74, 20, 140, 0.2);
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+        .torment-tracker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(206, 147, 216, 0.1);
+            border-radius: 10px;
+        }
+        .torment-stage {
+            background: linear-gradient(135deg, #9c27b0, #ce93d8);
+            border: 2px solid #e1bee7;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #1a0033;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+        }
+        .phase-connector {
+            font-size: 24px;
+            color: #ce93d8;
+        }
+        .ethereal-battlefield {
+            display: grid;
+            grid-template-columns: repeat(8, 35px);
+            grid-template-rows: repeat(6, 35px);
+            gap: 2px;
+            margin: 20px auto;
+            border: 3px solid #ce93d8;
+            background: #0a0015;
+            padding: 10px;
+            width: fit-content;
+        }
+        .ethereal-cell {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #9c27b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .spirit-realm-tile { background-color: #4a148c; }
+        .material-realm-tile { background-color: #1a0033; }
+        .ethereal-barrier { background-color: #6a1b9a; }
+        .spectral-hero { background-color: #00bcd4; }
+        .spirit-enemy { background-color: #e91e63; }
+        .veil-tear { background-color: #ffeb3b; }
+        .sanity-levels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(206, 147, 216, 0.1);
+            border-radius: 10px;
+        }
+        .sanity-state {
+            background: linear-gradient(135deg, #9c27b0, #ce93d8);
+            border: 2px solid #e1bee7;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            color: #1a0033;
+            min-width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container spirit-realm">
+        <h1>👻 Spirit Queen's Torment: Supernatural Horror & Ethereal Combat 🌙</h1>
+        
+        <div class="ethereal-principle">
+            <h2>🌫️ The Veil Between Worlds: When Reality Becomes Fluid</h2>
+            <p><strong>Spirit Queen's Torment wasn't just an expansion - it was a descent into psychological horror that made the boundary between life and death itself a battlefield!</strong> Like Silent Hill or The Ring, this expansion proved that the most terrifying enemies aren't always physical monsters, but the eternal suffering of tormented souls seeking release. It transformed HeroQuest from medieval adventure into supernatural horror.</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of this expansion like going from a action movie to a psychological thriller. The original game was about fighting enemies you could see and touch; Spirit Queen's Torment is about confronting manifestations of grief, guilt, and eternal torment that exist between the world of the living and the dead. It's the difference between fighting a dragon and exorcising a haunted house!</p>
+        </div>
+
+        <div class="spirit-queen-portrait">
+            👻
+            <div style="font-size: 16px; margin-top: 10px;">The Spirit Queen</div>
+            <div style="font-size: 12px; opacity: 0.8;">Eternal Torment Incarnate</div>
+        </div>
+
+        <div class="sanity-meter">
+            <div class="sanity-indicator" id="sanity_indicator" style="left: 25%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Sanity Level: <span id="sanity_level">PSYCHOLOGICAL STRAIN</span></em></p>
+
+        <h2>🌙 The Three Realms: Reality's Fractured Layers</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Reality Layers] --> B[Material Realm]
+                A --> C[Spirit Realm]
+                A --> D[The Veil Between]
+                
+                B --> B1[Physical Laws Apply]
+                B --> B2[Solid Matter]
+                B --> B3[Normal Combat]
+                
+                C --> C1[Ethereal Beings]
+                C --> C2[Emotion Made Manifest]
+                C --> C3[Memory Echoes]
+                
+                D --> D1[Unstable Physics]
+                D --> D2[Reality Tears]
+                D --> D3[Dimensional Bleeding]
+                
+                style A fill:#ce93d8,stroke:#333,stroke-width:3px
+                style B fill:#e1bee7,stroke:#333,stroke-width:2px
+                style C fill:#e1bee7,stroke:#333,stroke-width:2px
+                style D fill:#e1bee7,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>💀 The Torment Progression: Stages of Spiritual Anguish</h2>
+        
+        <div class="torment-tracker">
+            <div class="torment-stage">
+                <div style="font-size: 20px;">😔</div>
+                <div>Sorrow</div>
+                <div>Initial</div>
+            </div>
+            <div class="phase-connector">→</div>
+            <div class="torment-stage">
+                <div style="font-size: 20px;">😡</div>
+                <div>Anger</div>
+                <div>Growing</div>
+            </div>
+            <div class="phase-connector">→</div>
+            <div class="torment-stage">
+                <div style="font-size: 20px;">😰</div>
+                <div>Despair</div>
+                <div>Deepening</div>
+            </div>
+            <div class="phase-connector">→</div>
+            <div class="torment-stage">
+                <div style="font-size: 20px;">👹</div>
+                <div>Rage</div>
+                <div>Manifest</div>
+            </div>
+            <div class="phase-connector">→</div>
+            <div class="torment-stage">
+                <div style="font-size: 20px;">🌟</div>
+                <div>Release</div>
+                <div>Peace</div>
+            </div>
+        </div>
+
+        <h2>👻 Ethereal Combat: Fighting the Incorporeal</h2>
+        
+        <canvas id="ethereal_combat_canvas" width="600" height="300"></canvas>
+        
+        <div class="torment-box">
+            <h3>⚔️ New Rules for Supernatural Warfare</h3>
+            <p><strong>Fighting spirits requires completely different tactics than physical combat:</strong></p>
+            
+            <p><strong>🌫️ Incorporeal Movement:</strong></p>
+            <ul>
+                <li>Spirits can phase through solid walls and barriers</li>
+                <li>Traditional positioning becomes meaningless</li>
+                <li>Heroes must think three-dimensionally</li>
+                <li>Chokepoints and defensive positions fail</li>
+            </ul>
+            
+            <p><strong>⚡ Supernatural Immunities:</strong></p>
+            <ul>
+                <li>Physical weapons pass harmlessly through spirits</li>
+                <li>Only blessed, magical, or silver weapons affect them</li>
+                <li>Environmental hazards may not apply</li>
+                <li>Traditional healing methods are less effective</li>
+            </ul>
+            
+            <p><strong>🧠 Psychological Attacks:</strong></p>
+            <ul>
+                <li>Spirits attack sanity as well as body</li>
+                <li>Fear effects can paralyze heroes completely</li>
+                <li>Memory manipulation and illusions</li>
+                <li>Emotional trauma becomes a weapon</li>
+            </ul>
+        </div>
+
+        <h2>🎭 Sanity as a Resource: The Mind as Battlefield</h2>
+        
+        <canvas id="sanity_mechanics_canvas" width="600" height="350"></canvas>
+        
+        <div class="sanity-levels">
+            <div class="sanity-state">
+                <div style="font-size: 20px;">😊</div>
+                <div>Stable</div>
+                <div>80-100%</div>
+            </div>
+            <div class="sanity-state">
+                <div style="font-size: 20px;">😟</div>
+                <div>Shaken</div>
+                <div>60-79%</div>
+            </div>
+            <div class="sanity-state">
+                <div style="font-size: 20px;">😰</div>
+                <div>Disturbed</div>
+                <div>40-59%</div>
+            </div>
+            <div class="sanity-state">
+                <div style="font-size: 20px;">😵</div>
+                <div>Unhinged</div>
+                <div>20-39%</div>
+            </div>
+            <div class="sanity-state">
+                <div style="font-size: 20px;">🤯</div>
+                <div>Broken</div>
+                <div>0-19%</div>
+            </div>
+        </div>
+
+        <div class="horror-analysis">
+            <h3>🧠 The Psychology of Terror</h3>
+            <p><strong>Sanity becomes as important as health, creating a dual-resource management system:</strong></p>
+            
+            <p><strong>😱 Sanity Loss Triggers:</strong></p>
+            <ul>
+                <li>Witnessing supernatural manifestations</li>
+                <li>Experiencing psychic attacks from spirits</li>
+                <li>Discovering horrific truths about the Spirit Queen's past</li>
+                <li>Failing to save innocent souls from torment</li>
+                <li>Being exposed to raw spiritual anguish</li>
+            </ul>
+            
+            <p><strong>🌟 Sanity Recovery Methods:</strong></p>
+            <ul>
+                <li>Successfully helping tormented spirits find peace</li>
+                <li>Performing acts of compassion and mercy</li>
+                <li>Using blessed items and protective rituals</li>
+                <li>Teamwork and mutual support between heroes</li>
+                <li>Discovering hope in seemingly hopeless situations</li>
+            </ul>
+        </div>
+
+        <h2>👻 The Ethereal Bestiary: Manifestations of Torment</h2>
+        
+        <div class="ethereal-creatures">
+            <div class="creature-manifestation">
+                <h4>💔 Sorrow Wraiths</h4>
+                <p><strong>The Weeping Remnants</strong></p>
+                <p><strong>Origin:</strong> Souls who died in overwhelming grief</p>
+                <p><strong>Attack:</strong> Emotional overwhelm, despair projection</p>
+                <p><strong>Weakness:</strong> Compassion and understanding</p>
+                <p><em>"Their tears freeze the living heart"</em></p>
+            </div>
+            
+            <div class="creature-manifestation">
+                <h4>😡 Rage Phantoms</h4>
+                <p><strong>The Vengeful Spirits</strong></p>
+                <p><strong>Origin:</strong> Souls consumed by unresolved anger</p>
+                <p><strong>Attack:</strong> Fury manifestation, berserker possession</p>
+                <p><strong>Weakness:</strong> Justice and closure</p>
+                <p><em>"Anger given supernatural form"</em></p>
+            </div>
+            
+            <div class="creature-manifestation">
+                <h4>👤 Memory Echoes</h4>
+                <p><strong>The Living Regrets</strong></p>
+                <p><strong>Origin:</strong> Traumatic events replaying eternally</p>
+                <p><strong>Attack:</strong> Forced reliving of worst memories</p>
+                <p><strong>Weakness:</strong> Acceptance and forgiveness</p>
+                <p><em>"The past refuses to stay buried"</em></p>
+            </div>
+            
+            <div class="creature-manifestation">
+                <h4>🌫️ Guilt Shades</h4>
+                <p><strong>The Self-Tormentors</strong></p>
+                <p><strong>Origin:</strong> Souls punishing themselves for perceived sins</p>
+                <p><strong>Attack:</strong> Shame projection, self-doubt amplification</p>
+                <p><strong>Weakness:</strong> Redemption and absolution</p>
+                <p><em>"They make heroes question everything"</em></p>
+            </div>
+        </div>
+
+        <h2>🌙 Interactive Ethereal Battlefield</h2>
+        
+        <div class="torment-box">
+            <p><strong>Navigate between realms!</strong> Click battlefield cells to shift between material and spirit realms and see how ethereal combat unfolds.</p>
+            
+            <div class="ethereal-battlefield" id="ethereal_battlefield">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+            
+            <p><strong>Realm Legend:</strong> 🌫️ Spirit Realm | 🌑 Material Realm | ⚡ Barrier | 👻 Heroes | 💀 Spirits | ✨ Veil Tears</p>
+            
+            <div id="realm_analysis" style="margin-top: 20px; padding: 15px; background: rgba(206, 147, 216, 0.1); border-radius: 10px;">
+                <strong>Ethereal Status:</strong> Navigate between realms to analyze supernatural conditions!
+            </div>
+        </div>
+
+        <h2>🕯️ Sacred Artifacts: Tools Against the Supernatural</h2>
+        
+        <canvas id="sacred_artifacts_canvas" width="600" height="300"></canvas>
+        
+        <div class="spectral-card">
+            <h3>⚡ Holy Water</h3>
+            <p><strong>The Purifying Agent</strong></p>
+            <p><strong>Effect:</strong> Damages spirits, creates safe zones</p>
+            <p><strong>Uses:</strong> Limited supply, precious resource</p>
+            <p><strong>Strategy:</strong> Save for most dangerous encounters</p>
+            <p><strong>Lore:</strong> "Blessed by priests who gave their lives to consecrate it"</p>
+        </div>
+
+        <div class="spectral-card">
+            <h3>🗡️ Silver Weapons</h3>
+            <p><strong>The Spirit Slayers</strong></p>
+            <p><strong>Effect:</strong> Can harm incorporeal beings</p>
+            <p><strong>Limitation:</strong> Less effective against physical enemies</p>
+            <p><strong>Strategy:</strong> Specialized tools for supernatural threats</p>
+            <p><strong>Lore:</strong> "Forged in moonlight and quenched in tears"</p>
+        </div>
+
+        <div class="spectral-card">
+            <h3>📿 Protection Amulets</h3>
+            <p><strong>The Spiritual Shields</strong></p>
+            <p><strong>Effect:</strong> Reduces sanity loss, wards off possession</p>
+            <p><strong>Duration:</strong> Permanent but can be overwhelmed</p>
+            <p><strong>Strategy:</strong> Essential for survival in spirit realm</p>
+            <p><strong>Lore:</strong> "Each carved with prayers of the desperate"</p>
+        </div>
+
+        <h2>🌟 The Spirit Queen's Tragic Backstory</h2>
+        
+        <canvas id="queen_backstory_canvas" width="600" height="350"></canvas>
+        
+        <div class="ethereal-principle">
+            <h3>💔 Understanding the Torment</h3>
+            <p><strong>The Spirit Queen wasn't born evil - she was created by tragedy and unresolved anguish:</strong></p>
+            
+            <p><strong>👑 The Mortal Queen:</strong></p>
+            <ul>
+                <li>Once ruled a prosperous kingdom with wisdom and compassion</li>
+                <li>Beloved by her people, devoted to justice and peace</li>
+                <li>Had everything to live for - family, purpose, legacy</li>
+                <li>Believed in the goodness of the world and people</li>
+            </ul>
+            
+            <p><strong>⚔️ The Great Betrayal:</strong></p>
+            <ul>
+                <li>Trusted advisors conspired against her for power</li>
+                <li>Those she loved most orchestrated her downfall</li>
+                <li>Witnessed the destruction of everything she built</li>
+                <li>Died not in glorious battle, but in helpless despair</li>
+            </ul>
+            
+            <p><strong>👻 The Eternal Torment:</strong></p>
+            <ul>
+                <li>Her anguish was so great it tore holes in reality</li>
+                <li>Became trapped between life and death, unable to find peace</li>
+                <li>Her pain manifests as supernatural horrors</li>
+                <li>Seeks to share her torment with the living</li>
+            </ul>
+        </div>
+
+        <h2>🕊️ Redemption vs. Destruction: The Moral Choice</h2>
+        
+        <div class="horror-analysis">
+            <h3>⚖️ The Ultimate Ethical Dilemma</h3>
+            <p><strong>The expansion presents a profound choice that challenges traditional heroic narratives:</strong></p>
+            
+            <p><strong>⚔️ The Warrior's Path (Destroy):</strong></p>
+            <ul>
+                <li>End the Spirit Queen's torment through final death</li>
+                <li>Protect the living from supernatural threat</li>
+                <li>Traditional heroic solution - defeat the monster</li>
+                <li>Risk: Perpetuating cycle of violence and unresolved pain</li>
+            </ul>
+            
+            <p><strong>🕊️ The Healer's Path (Redeem):</strong></p>
+            <ul>
+                <li>Help the Spirit Queen find peace and release</li>
+                <li>Address root causes of torment and trauma</li>
+                <li>Transform enemy into ally through understanding</li>
+                <li>Risk: Greater danger but possibility of true resolution</li>
+            </ul>
+            
+            <p><strong>⚖️ The Judge's Path (Balance):</strong></p>
+            <ul>
+                <li>Seek justice for both the Queen and her victims</li>
+                <li>Create conditions for natural spiritual resolution</li>
+                <li>Address systemic issues that created the tragedy</li>
+                <li>Risk: Complex solution requiring perfect execution</li>
+            </ul>
+        </div>
+
+        <h2>🎭 Emotional Combat: Fighting Feelings</h2>
+        
+        <canvas id="emotional_combat_canvas" width="600" height="300"></canvas>
+        
+        <div class="torment-box">
+            <h3>💭 The Battlefield of the Heart</h3>
+            <p><strong>Combat becomes as much about emotional intelligence as tactical skill:</strong></p>
+            
+            <p><strong>😔 Sorrow Attacks:</strong></p>
+            <ul>
+                <li>Heroes experience overwhelming sadness</li>
+                <li>Actions become sluggish, motivation decreases</li>
+                <li>Counter: Acts of hope and joy, sharing positive memories</li>
+                <li>Team support becomes crucial for recovery</li>
+            </ul>
+            
+            <p><strong>😡 Rage Possession:</strong></p>
+            <ul>
+                <li>Heroes lose control, attack randomly</li>
+                <li>Strength increases but strategy disappears</li>
+                <li>Counter: Calming influences, meditation, patience</li>
+                <li>Other heroes must restrain without causing harm</li>
+            </ul>
+            
+            <p><strong>😰 Fear Paralysis:</strong></p>
+            <ul>
+                <li>Heroes become unable to act due to terror</li>
+                <li>Worst fears manifest as hallucinations</li>
+                <li>Counter: Courage from teammates, facing fears directly</li>
+                <li>Sometimes retreat is the wise choice</li>
+            </ul>
+        </div>
+
+        <h2>🌙 Advanced Supernatural Strategies</h2>
+        
+        <div class="ethereal-principle">
+            <h3>🎯 Mastering the Ethereal Arts</h3>
+            
+            <p><strong>🕯️ The Exorcist Approach:</strong></p>
+            <ul>
+                <li>Focus on banishing and purification</li>
+                <li>Use sacred artifacts and rituals</li>
+                <li>Protect teammates from spiritual corruption</li>
+                <li>Create sanctified safe zones</li>
+            </ul>
+            
+            <p><strong>👻 The Medium Approach:</strong></p>
+            <ul>
+                <li>Communicate directly with spirits</li>
+                <li>Understand their needs and motivations</li>
+                <li>Negotiate peaceful resolutions</li>
+                <li>Risk personal sanity for greater good</li>
+            </ul>
+            
+            <p><strong>⚖️ The Judge Approach:</strong></p>
+            <ul>
+                <li>Investigate the truth behind hauntings</li>
+                <li>Deliver justice for past wrongs</li>
+                <li>Create conditions for natural resolution</li>
+                <li>Balance mercy with accountability</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Legacy and Influence</h2>
+        
+        <div class="horror-analysis">
+            <h3>🌟 How Spirit Queen's Torment Changed Horror Gaming</h3>
+            <p><strong>This expansion pioneered psychological horror mechanics that became industry standards:</strong></p>
+            
+            <p><strong>🎮 Video Game Influence:</strong> Sanity mechanics, moral choice systems, psychological horror</p>
+            <p><strong>🎲 Tabletop Evolution:</strong> Emotional combat, redemption narratives, trauma-informed storytelling</p>
+            <p><strong>🎬 Media Impact:</strong> Sympathetic antagonists, grief-driven horror, therapeutic narratives</p>
+            <p><strong>🎪 Modern Gaming:</strong> Mental health awareness, empathy mechanics, ethical complexity</p>
+        </div>
+
+        <h2>🎯 Mastery Challenges: Supernatural Trials</h2>
+        
+        <div class="torment-box">
+            <h3>👻 Elite Ethereal Tests</h3>
+            <p><strong>Prove your mastery of supernatural survival:</strong></p>
+            
+            <p><strong>🕊️ The Compassionate Exorcist:</strong> Complete all encounters without destroying any spirits</p>
+            <p><strong>🧠 The Unbreakable Mind:</strong> Maintain full sanity throughout entire adventure</p>
+            <p><strong>💔 The Empathetic Hero:</strong> Understand and address each spirit's specific trauma</p>
+            <p><strong>⚖️ The Just Arbiter:</strong> Achieve perfect balance between mercy and justice</p>
+            <p><strong>🌟 The Soul Healer:</strong> Transform the Spirit Queen from enemy to ally</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Wizards of Morcar"</strong> - the ultimate magical expansion that took spellcasting to reality-bending extremes! We'll dive into arcane duels between magical masters, reality manipulation spells, and encounters that make heroes feel like they're commanding the fundamental forces of creation itself.</p>
+        
+        <div class="ethereal-principle">
+            <p><strong>Remember:</strong> Spirit Queen's Torment taught us that the most powerful enemies aren't always those with the sharpest claws or strongest magic - they're those whose pain resonates with our own. Sometimes the greatest heroism isn't in defeating monsters, but in healing the wounds that created them. True victory comes not from destroying our enemies, but from understanding them deeply enough to transform pain into peace!</p>
+        </div>
+    </div>
+
+    <script>
+        // Add ethereal wisps for atmospheric effect
+        function createEtherealWisps() {
+            for (let i = 0; i < 12; i++) {
+                const wisp = document.createElement('div');
+                wisp.className = 'ethereal-wisp';
+                wisp.textContent = '✨';
+                wisp.style.left = Math.random() * 100 + '%';
+                wisp.style.top = Math.random() * 100 + '%';
+                wisp.style.animationDelay = Math.random() * 6 + 's';
+                wisp.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                document.querySelector('.spirit-realm').appendChild(wisp);
+            }
+        }
+        
+        createEtherealWisps();
+        
+        // Sanity level animation
+        let currentSanity = 25;
+        function updateSanityLevel() {
+            const indicator = document.getElementById('sanity_indicator');
+            const levelText = document.getElementById('sanity_level');
+            
+            setInterval(() => {
+                currentSanity += (Math.random() - 0.4) * 8;
+                currentSanity = Math.max(5, Math.min(95, currentSanity));
+                
+                indicator.style.left = currentSanity + '%';
+                
+                if (currentSanity >= 80) levelText.textContent = 'STABLE MIND';
+                else if (currentSanity >= 60) levelText.textContent = 'SHAKEN';
+                else if (currentSanity >= 40) levelText.textContent = 'DISTURBED';
+                else if (currentSanity >= 20) levelText.textContent = 'UNHINGED';
+                else levelText.textContent = 'BREAKING POINT';
+            }, 3000);
+        }
+        
+        updateSanityLevel();
+        
+        // Ethereal Combat Visualization
+        const etherealCanvas = document.getElementById('ethereal_combat_canvas');
+        const etherealCtx = etherealCanvas.getContext('2d');
+        
+        function drawEtherealCombat() {
+            etherealCtx.clearRect(0, 0, etherealCanvas.width, etherealCanvas.height);
+            
+            // Background
+            etherealCtx.fillStyle = '#0a0015';
+            etherealCtx.fillRect(0, 0, etherealCanvas.width, etherealCanvas.height);
+            
+            // Draw phasing demonstration
+            const phases = [
+                {x: 150, y: 150, opacity: 1.0, label: 'Material Form'},
+                {x: 300, y: 150, opacity: 0.6, label: 'Phasing'},
+                {x: 450, y: 150, opacity: 0.3, label: 'Ethereal Form'}
+            ];
+            
+            phases.forEach((phase, index) => {
+                // Spirit manifestation
+                etherealCtx.fillStyle = `rgba(206, 147, 216, ${phase.opacity})`;
+                etherealCtx.beginPath();
+                etherealCtx.arc(phase.x, phase.y, 40, 0, Math.PI * 2);
+                etherealCtx.fill();
+                
+                etherealCtx.strokeStyle = `rgba(156, 39, 176, ${phase.opacity})`;
+                etherealCtx.lineWidth = 3;
+                etherealCtx.stroke();
+                
+                // Spirit symbol
+                etherealCtx.fillStyle = `rgba(255, 255, 255, ${phase.opacity})`;
+                etherealCtx.font = '24px Arial';
+                etherealCtx.textAlign = 'center';
+                etherealCtx.fillText('👻', phase.x, phase.y + 8);
+                
+                // Phase label
+                etherealCtx.fillStyle = '#e1bee7';
+                etherealCtx.font = '12px Arial';
+                etherealCtx.fillText(phase.label, phase.x, phase.y + 60);
+                
+                // Phase transition arrows
+                if (index < phases.length - 1) {
+                    etherealCtx.strokeStyle = '#ce93d8';
+                    etherealCtx.lineWidth = 2;
+                    etherealCtx.beginPath();
+                    etherealCtx.moveTo(phase.x + 50, phase.y);
+                    etherealCtx.lineTo(phases[index + 1].x - 50, phases[index + 1].y);
+                    etherealCtx.stroke();
+                    
+                    // Arrow head
+                    etherealCtx.beginPath();
+                    etherealCtx.moveTo(phases[index + 1].x - 55, phases[index + 1].y - 5);
+                    etherealCtx.lineTo(phases[index + 1].x - 50, phases[index + 1].y);
+                    etherealCtx.lineTo(phases[index + 1].x - 55, phases[index + 1].y + 5);
+                    etherealCtx.stroke();
+                }
+            });
+            
+            // Draw hero attempting to attack
+            etherealCtx.fillStyle = '#00bcd4';
+            etherealCtx.fillRect(100, 200, 30, 30);
+            etherealCtx.fillStyle = '#fff';
+            etherealCtx.font = '16px Arial';
+            etherealCtx.fillText('🗡️', 115, 220);
+            
+            // Draw ineffective attack
+            etherealCtx.strokeStyle = '#f44336';
+            etherealCtx.lineWidth = 3;
+            etherealCtx.setLineDash([5, 5]);
+            etherealCtx.beginPath();
+            etherealCtx.moveTo(130, 215);
+            etherealCtx.lineTo(270, 150);
+            etherealCtx.stroke();
+            etherealCtx.setLineDash([]);
+            
+            // "No Effect" text
+            etherealCtx.fillStyle = '#f44336';
+            etherealCtx.font = '14px Arial';
+            etherealCtx.fillText('No Effect!', 200, 180);
+            
+            etherealCtx.fillStyle = '#ce93d8';
+            etherealCtx.font = '16px Arial';
+            etherealCtx.textAlign = 'center';
+            etherealCtx.fillText('Ethereal Phasing: Physical Attacks Pass Through Spirits', 300, 30);
+            etherealCtx.textAlign = 'left';
+        }
+        
+        drawEtherealCombat();
+        
+        // Sanity Mechanics Visualization
+        const sanityCanvas = document.getElementById('sanity_mechanics_canvas');
+        const sanityCtx = sanityCanvas.getContext('2d');
+        
+        function drawSanityMechanics() {
+            sanityCtx.clearRect(0, 0, sanityCanvas.width, sanityCanvas.height);
+            
+            // Background
+            sanityCtx.fillStyle = '#0a0015';
+            sanityCtx.fillRect(0, 0, sanityCanvas.width, sanityCanvas.height);
+            
+            // Draw mind visualization
+            const mindX = 300;
+            const mindY = 150;
+            
+            // Brain outline
+            sanityCtx.strokeStyle = '#ce93d8';
+            sanityCtx.lineWidth = 3;
+            sanityCtx.beginPath();
+            sanityCtx.arc(mindX, mindY, 80, 0, Math.PI * 2);
+            sanityCtx.stroke();
+            
+            // Sanity zones
+            const zones = [
+                {angle: 0, size: 60, color: '#4caf50', label: 'Stable'},
+                {angle: 90, size: 45, color: '#ffeb3b', label: 'Stressed'},
+                {angle: 180, size: 30, color: '#ff9800', label: 'Disturbed'},
+                {angle: 270, size: 15, color: '#f44336', label: 'Breaking'}
+            ];
+            
+            zones.forEach(zone => {
+                const startAngle = (zone.angle - 45) * (Math.PI / 180);
+                const endAngle = (zone.angle + 45) * (Math.PI / 180);
+                
+                sanityCtx.fillStyle = zone.color + '60';
+                sanityCtx.beginPath();
+                sanityCtx.moveTo(mindX, mindY);
+                sanityCtx.arc(mindX, mindY, zone.size, startAngle, endAngle);
+                sanityCtx.closePath();
+                sanityCtx.fill();
+                
+                // Zone labels
+                const labelAngle = zone.angle * (Math.PI / 180);
+                const labelX = mindX + Math.cos(labelAngle) * (zone.size + 20);
+                const labelY = mindY + Math.sin(labelAngle) * (zone.size + 20);
+                
+                sanityCtx.fillStyle = '#e1bee7';
+                sanityCtx.font = '10px Arial';
+                sanityCtx.textAlign = 'center';
+                sanityCtx.fillText(zone.label, labelX, labelY);
+            });
+            
+            // Attack vectors
+            const attacks = [
+                {x: 150, y: 80, type: 'Fear', symbol: '😱'},
+                {x: 450, y: 80, type: 'Sorrow', symbol: '😢'},
+                {x: 150, y: 220, type: 'Guilt', symbol: '😔'},
+                {x: 450, y: 220, type: 'Rage', symbol: '😡'}
+            ];
+            
+            attacks.forEach(attack => {
+                // Attack source
+                sanityCtx.fillStyle = '#9c27b0';
+                sanityCtx.beginPath();
+                sanityCtx.arc(attack.x, attack.y, 20, 0, Math.PI * 2);
+                sanityCtx.fill();
+                
+                sanityCtx.fillStyle = '#fff';
+                sanityCtx.font = '16px Arial';
+                sanityCtx.textAlign = 'center';
+                sanityCtx.fillText(attack.symbol, attack.x, attack.y + 5);
+                
+                // Attack line
+                sanityCtx.strokeStyle = '#ce93d8';
+                sanityCtx.lineWidth = 2;
+                sanityCtx.setLineDash([3, 3]);
+                sanityCtx.beginPath();
+                sanityCtx.moveTo(attack.x, attack.y);
+                sanityCtx.lineTo(mindX, mindY);
+                sanityCtx.stroke();
+                sanityCtx.setLineDash([]);
+                
+                // Attack label
+                sanityCtx.fillStyle = '#e1bee7';
+                sanityCtx.font = '10px Arial';
+                sanityCtx.fillText(attack.type, attack.x, attack.y + 35);
+            });
+            
+            sanityCtx.fillStyle = '#ce93d8';
+            sanityCtx.font = '16px Arial';
+            sanityCtx.textAlign = 'center';
+            sanityCtx.fillText('Sanity Under Assault: Psychological Combat Mechanics', 300, 30);
+            sanityCtx.textAlign = 'left';
+        }
+        
+        drawSanityMechanics();
+        
+        // Interactive Ethereal Battlefield
+        const battlefieldGrid = document.getElementById('ethereal_battlefield');
+        const realmAnalysis = document.getElementById('realm_analysis');
+        let battlefieldState = [];
+        
+        // Initialize battlefield grid
+        for (let i = 0; i < 48; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'ethereal-cell';
+            
+            // Create layered reality
+            if (Math.random() < 0.4) {
+                cell.className += ' spirit-realm-tile';
+                cell.textContent = '🌫️';
+                battlefieldState.push('spirit-realm');
+            } else {
+                cell.className += ' material-realm-tile';
+                cell.textContent = '🌑';
+                battlefieldState.push('material-realm');
+            }
+            
+            cell.addEventListener('click', () => toggleRealm(i));
+            battlefieldGrid.appendChild(cell);
+        }
+        
+        // Add some entities
+        battlefieldGrid.children[10].className = 'ethereal-cell spectral-hero';
+        battlefieldGrid.children[10].textContent = '👻';
+        battlefieldState[10] = 'hero';
+        
+        battlefieldGrid.children[35].className = 'ethereal-cell spirit-enemy';
+        battlefieldGrid.children[35].textContent = '💀';
+        battlefieldState[35] = 'spirit';
+        
+        function toggleRealm(index) {
+            const cell = battlefieldGrid.children[index];
+            const currentState = battlefieldState[index];
+            
+            if (currentState === 'spirit-realm') {
+                cell.className = 'ethereal-cell material-realm-tile';
+                cell.textContent = '🌑';
+                battlefieldState[index] = 'material-realm';
+            } else if (currentState === 'material-realm') {
+                cell.className = 'ethereal-cell veil-tear';
+                cell.textContent = '✨';
+                battlefieldState[index] = 'veil-tear';
+            } else if (currentState === 'veil-tear') {
+                cell.className = 'ethereal-cell spirit-realm-tile';
+                cell.textContent = '🌫️';
+                battlefieldState[index] = 'spirit-realm';
+            }
+            
+            analyzeRealm();
+        }
+        
+        function analyzeRealm() {
+            const spiritTiles = battlefieldState.filter(state => state === 'spirit-realm').length;
+            const materialTiles = battlefieldState.filter(state => state === 'material-realm').length;
+            const veilTears = battlefieldState.filter(state => state === 'veil-tear').length;
+            
+            let analysis = `Reality Status: ${spiritTiles} Spirit Realm, ${materialTiles} Material Realm, ${veilTears} Veil Tears. `;
+            
+            if (veilTears > 5) {
+                analysis += "Reality is severely unstable! High risk of dimensional collapse.";
+            } else if (spiritTiles > materialTiles * 2) {
+                analysis += "Spirit realm dominance. Ethereal beings gain power here.";
+            } else if (materialTiles > spiritTiles * 2) {
+                analysis += "Material realm stability. Physical laws apply normally.";
+            } else {
+                analysis += "Balanced dimensional presence. Expect unpredictable interactions.";
+            }
+            
+            realmAnalysis.innerHTML = `<strong>Ethereal Status:</strong> ${analysis}`;
+        }
+        
+        // Sacred Artifacts Visualization
+        const artifactsCanvas = document.getElementById('sacred_artifacts_canvas');
+        const artifactsCtx = artifactsCanvas.getContext('2d');
+        
+        function drawSacredArtifacts() {
+            artifactsCtx.clearRect(0, 0, artifactsCanvas.width, artifactsCanvas.height);
+            
+            // Background
+            artifactsCtx.fillStyle = '#0a0015';
+            artifactsCtx.fillRect(0, 0, artifactsCanvas.width, artifactsCanvas.height);
+            
+            // Draw artifacts with protective auras
+            const artifacts = [
+                {x: 150, y: 150, name: 'Holy Water', symbol: '💧', aura: '#87ceeb'},
+                {x: 300, y: 150, name: 'Silver Sword', symbol: '🗡️', aura: '#c0c0c0'},
+                {x: 450, y: 150, name: 'Protection Amulet', symbol: '📿', aura: '#ffd700'}
+            ];
+            
+            artifacts.forEach(artifact => {
+                // Protective aura
+                const gradient = artifactsCtx.createRadialGradient(artifact.x, artifact.y, 0, artifact.x, artifact.y, 60);
+                gradient.addColorStop(0, artifact.aura + '80');
+                gradient.addColorStop(0.5, artifact.aura + '40');
+                gradient.addColorStop(1, artifact.aura + '10');
+                
+                artifactsCtx.fillStyle = gradient;
+                artifactsCtx.beginPath();
+                artifactsCtx.arc(artifact.x, artifact.y, 60, 0, Math.PI * 2);
+                artifactsCtx.fill();
+                
+                // Artifact core
+                artifactsCtx.fillStyle = artifact.aura;
+                artifactsCtx.beginPath();
+                artifactsCtx.arc(artifact.x, artifact.y, 25, 0, Math.PI * 2);
+                artifactsCtx.fill();
+                
+                // Artifact symbol
+                artifactsCtx.fillStyle = '#1a0033';
+                artifactsCtx.font = '20px Arial';
+                artifactsCtx.textAlign = 'center';
+                artifactsCtx.fillText(artifact.symbol, artifact.x, artifact.y + 7);
+                
+                // Artifact name
+                artifactsCtx.fillStyle = '#e1bee7';
+                artifactsCtx.font = '12px Arial';
+                artifactsCtx.fillText(artifact.name, artifact.x, artifact.y + 50);
+            });
+            
+            // Draw spirit being repelled
+            artifactsCtx.fillStyle = 'rgba(156, 39, 176, 0.5)';
+            artifactsCtx.beginPath();
+            artifactsCtx.arc(300, 80, 30, 0, Math.PI * 2);
+            artifactsCtx.fill();
+            
+            artifactsCtx.fillStyle = '#e1bee7';
+            artifactsCtx.font = '24px Arial';
+            artifactsCtx.fillText('👻', 300, 88);
+            
+            // Repulsion lines
+            artifactsCtx.strokeStyle = '#f44336';
+            artifactsCtx.lineWidth = 2;
+            artifactsCtx.setLineDash([5, 5]);
+            artifacts.forEach(artifact => {
+                artifactsCtx.beginPath();
+                artifactsCtx.moveTo(artifact.x, artifact.y - 25);
+                artifactsCtx.lineTo(300, 110);
+                artifactsCtx.stroke();
+            });
+            artifactsCtx.setLineDash([]);
+            
+            artifactsCtx.fillStyle = '#ce93d8';
+            artifactsCtx.font = '16px Arial';
+            artifactsCtx.textAlign = 'center';
+            artifactsCtx.fillText('Sacred Artifacts: Spiritual Protection and Offense', 300, 30);
+            artifactsCtx.textAlign = 'left';
+        }
+        
+        drawSacredArtifacts();
+        
+        // Queen's Backstory Visualization
+        const backstoryCanvas = document.getElementById('queen_backstory_canvas');
+        const backstoryCtx = backstoryCanvas.getContext('2d');
+        
+        function drawQueenBackstory() {
+            backstoryCtx.clearRect(0, 0, backstoryCanvas.width, backstoryCanvas.height);
+            
+            // Background
+            backstoryCtx.fillStyle = '#0a0015';
+            backstoryCtx.fillRect(0, 0, backstoryCanvas.width, backstoryCanvas.height);
+            
+            // Draw transformation timeline
+            const stages = [
+                {x: 120, y: 200, stage: 'Mortal Queen', symbol: '👑', color: '#ffd700'},
+                {x: 240, y: 170, stage: 'Betrayal', symbol: '💔', color: '#ff5722'},
+                {x: 360, y: 140, stage: 'Death', symbol: '💀', color: '#9e9e9e'},
+                {x: 480, y: 110, stage: 'Spirit Queen', symbol: '👻', color: '#9c27b0'}
+            ];
+            
+            // Draw transformation path
+            backstoryCtx.strokeStyle = '#ce93d8';
+            backstoryCtx.lineWidth = 4;
+            backstoryCtx.beginPath();
+            stages.forEach((stage, index) => {
+                if (index === 0) backstoryCtx.moveTo(stage.x, stage.y);
+                else backstoryCtx.lineTo(stage.x, stage.y);
+            });
+            backstoryCtx.stroke();
+            
+            // Draw stages
+            stages.forEach((stage, index) => {
+                // Stage aura
+                const intensity = (index + 1) / stages.length;
+                backstoryCtx.fillStyle = stage.color + '40';
+                backstoryCtx.beginPath();
+                backstoryCtx.arc(stage.x, stage.y, 30 + index * 5, 0, Math.PI * 2);
+                backstoryCtx.fill();
+                
+                // Stage core
+                backstoryCtx.fillStyle = stage.color;
+                backstoryCtx.beginPath();
+                backstoryCtx.arc(stage.x, stage.y, 25, 0, Math.PI * 2);
+                backstoryCtx.fill();
+                
+                // Stage symbol
+                backstoryCtx.fillStyle = index < 2 ? '#000' : '#fff';
+                backstoryCtx.font = '20px Arial';
+                backstoryCtx.textAlign = 'center';
+                backstoryCtx.fillText(stage.symbol, stage.x, stage.y + 7);
+                
+                // Stage name
+                backstoryCtx.fillStyle = '#e1bee7';
+                backstoryCtx.font = '12px Arial';
+                backstoryCtx.fillText(stage.stage, stage.x, stage.y + 50);
+                
+                // Transformation arrows
+                if (index < stages.length - 1) {
+                    const nextStage = stages[index + 1];
+                    const midX = (stage.x + nextStage.x) / 2;
+                    const midY = (stage.y + nextStage.y) / 2;
+                    
+                    backstoryCtx.fillStyle = '#ce93d8';
+                    backstoryCtx.font = '16px Arial';
+                    backstoryCtx.fillText('→', midX, midY);
+                }
+            });
+            
+            // Draw corruption spreading
+            backstoryCtx.strokeStyle = '#9c27b0';
+            backstoryCtx.lineWidth = 2;
+            for (let i = 0; i < 6; i++) {
+                const angle = (i * 60) * (Math.PI / 180);
+                const startX = 480 + Math.cos(angle) * 35;
+                const startY = 110 + Math.sin(angle) * 35;
+                const endX = 480 + Math.cos(angle) * 70;
+                const endY = 110 + Math.sin(angle) * 70;
+                
+                backstoryCtx.beginPath();
+                backstoryCtx.moveTo(startX, startY);
+                backstoryCtx.lineTo(endX, endY);
+                backstoryCtx.stroke();
+            }
+            
+            backstoryCtx.fillStyle = '#ce93d8';
+            backstoryCtx.font = '16px Arial';
+            backstoryCtx.textAlign = 'center';
+            backstoryCtx.fillText('The Queen\'s Tragic Transformation: From Light to Torment', 300, 30);
+            backstoryCtx.textAlign = 'left';
+        }
+        
+        drawQueenBackstory();
+        
+        // Emotional Combat Visualization
+        const emotionalCanvas = document.getElementById('emotional_combat_canvas');
+        const emotionalCtx = emotionalCanvas.getContext('2d');
+        
+        function drawEmotionalCombat() {
+            emotionalCtx.clearRect(0, 0, emotionalCanvas.width, emotionalCanvas.height);
+            
+            // Background
+            emotionalCtx.fillStyle = '#0a0015';
+            emotionalCtx.fillRect(0, 0, emotionalCanvas.width, emotionalCanvas.height);
+            
+            // Draw emotional battlefield
+            const hero = {x: 150, y: 150};
+            const emotions = [
+                {x: 350, y: 100, type: 'Sorrow', symbol: '😢', color: '#2196f3'},
+                {x: 450, y: 150, type: 'Rage', symbol: '😡', color: '#f44336'},
+                {x: 400, y: 200, type: 'Fear', symbol: '😱', color: '#9c27b0'},
+                {x: 300, y: 220, type: 'Guilt', symbol: '😔', color: '#795548'}
+            ];
+            
+            // Draw hero
+            emotionalCtx.fillStyle = '#00bcd4';
+            emotionalCtx.beginPath();
+            emotionalCtx.arc(hero.x, hero.y, 25, 0, Math.PI * 2);
+            emotionalCtx.fill();
+            
+            emotionalCtx.fillStyle = '#fff';
+            emotionalCtx.font = '20px Arial';
+            emotionalCtx.textAlign = 'center';
+            emotionalCtx.fillText('🛡️', hero.x, hero.y + 7);
+            
+            // Draw emotional attacks
+            emotions.forEach(emotion => {
+                // Emotion source
+                emotionalCtx.fillStyle = emotion.color;
+                emotionalCtx.beginPath();
+                emotionalCtx.arc(emotion.x, emotion.y, 20, 0, Math.PI * 2);
+                emotionalCtx.fill();
+                
+                emotionalCtx.fillStyle = '#fff';
+                emotionalCtx.font = '16px Arial';
+                emotionalCtx.fillText(emotion.symbol, emotion.x, emotion.y + 5);
+                
+                // Attack wave
+                emotionalCtx.strokeStyle = emotion.color;
+                emotionalCtx.lineWidth = 3;
+                emotionalCtx.setLineDash([10, 5]);
+                emotionalCtx.beginPath();
+                emotionalCtx.moveTo(emotion.x, emotion.y);
+                emotionalCtx.lineTo(hero.x, hero.y);
+                emotionalCtx.stroke();
+                emotionalCtx.setLineDash([]);
+                
+                // Emotion label
+                emotionalCtx.fillStyle = '#e1bee7';
+                emotionalCtx.font = '10px Arial';
+                emotionalCtx.fillText(emotion.type, emotion.x, emotion.y + 35);
+            });
+            
+            // Draw defensive measures
+            const defenses = [
+                {x: 100, y: 100, name: 'Hope', symbol: '🌟'},
+                {x: 200, y: 100, name: 'Courage', symbol: '💪'},
+                {x: 100, y: 200, name: 'Love', symbol: '❤️'},
+                {x: 200, y: 200, name: 'Faith', symbol: '🕊️'}
+            ];
+            
+            defenses.forEach(defense => {
+                emotionalCtx.fillStyle = '#4caf50';
+                emotionalCtx.beginPath();
+                emotionalCtx.arc(defense.x, defense.y, 15, 0, Math.PI * 2);
+                emotionalCtx.fill();
+                
+                emotionalCtx.fillStyle = '#fff';
+                emotionalCtx.font = '12px Arial';
+                emotionalCtx.textAlign = 'center';
+                emotionalCtx.fillText(defense.symbol, defense.x, defense.y + 4);
+                
+                emotionalCtx.fillStyle = '#e1bee7';
+                emotionalCtx.font = '8px Arial';
+                emotionalCtx.fillText(defense.name, defense.x, defense.y + 25);
+            });
+            
+            emotionalCtx.fillStyle = '#ce93d8';
+            emotionalCtx.font = '16px Arial';
+            emotionalCtx.textAlign = 'center';
+            emotionalCtx.fillText('Emotional Combat: Fighting Feelings with Heart', 300, 30);
+            emotionalCtx.textAlign = 'left';
+        }
+        
+        drawEmotionalCombat();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Digital Toolkit - Dice Roller & Essential Game Tools</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 20%, #0f3460 40%, #533483 60%, #7209b7 80%, #a663cc 100%);
+            color: #e8eaf6;
+        }
+        .container {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(166, 99, 204, 0.4);
+            border: 3px solid #a663cc;
+        }
+        h1 {
+            color: #a663cc;
+            text-align: center;
+            font-size: 2.8em;
+            text-shadow: 3px 3px 12px rgba(166, 99, 204, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #9c88ff;
+            border-bottom: 3px solid #7209b7;
+            padding-bottom: 15px;
+            margin-top: 40px;
+            font-size: 1.8em;
+        }
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .tool-panel {
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            border: 2px solid #7209b7;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            min-height: 300px;
+        }
+        .tool-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(166,99,204,0.1) 50%, transparent 55%);
+            animation: panel-shine 8s ease-in-out infinite;
+            border-radius: 13px;
+        }
+        @keyframes panel-shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+        .tool-title {
+            color: #a663cc;
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .dice-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        .die {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #7209b7, #a663cc);
+            border: 3px solid #c5cae9;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .die:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(166, 99, 204, 0.6);
+        }
+        .die.rolling {
+            animation: dice-roll 1s ease-in-out;
+        }
+        @keyframes dice-roll {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(90deg) scale(1.2); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            75% { transform: rotate(270deg) scale(1.2); }
+        }
+        .die.combat-die {
+            background: linear-gradient(135deg, #d32f2f, #f44336);
+        }
+        .die.defense-die {
+            background: linear-gradient(135deg, #1976d2, #2196f3);
+        }
+        .die.movement-die {
+            background: linear-gradient(135deg, #388e3c, #4caf50);
+        }
+        .die.magic-die {
+            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+        }
+        .roll-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        .roll-btn {
+            background: linear-gradient(135deg, #533483, #7209b7);
+            border: 2px solid #a663cc;
+            border-radius: 10px;
+            color: #fff;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+        .roll-btn:hover {
+            background: linear-gradient(135deg, #7209b7, #a663cc);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(166, 99, 204, 0.4);
+        }
+        .roll-results {
+            background: rgba(83, 52, 131, 0.3);
+            border: 2px solid #9c88ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .result-total {
+            font-size: 2em;
+            font-weight: bold;
+            color: #a663cc;
+            margin-bottom: 10px;
+        }
+        .result-breakdown {
+            color: #c5cae9;
+            font-size: 1.1em;
+        }
+        .character-sheet {
+            background: rgba(15, 52, 96, 0.4);
+            border: 2px solid #7209b7;
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(83, 52, 131, 0.2);
+            border-radius: 8px;
+        }
+        .stat-label {
+            color: #9c88ff;
+            font-weight: bold;
+            flex: 1;
+        }
+        .stat-value {
+            background: linear-gradient(135deg, #533483, #7209b7);
+            border: 1px solid #a663cc;
+            border-radius: 5px;
+            color: #fff;
+            padding: 5px 15px;
+            text-align: center;
+            min-width: 50px;
+            font-weight: bold;
+        }
+        .stat-modifier {
+            display: flex;
+            gap: 5px;
+            margin-left: 10px;
+        }
+        .mod-btn {
+            background: #7209b7;
+            border: 1px solid #a663cc;
+            border-radius: 3px;
+            color: #fff;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+        .mod-btn:hover {
+            background: #a663cc;
+            transform: scale(1.1);
+        }
+        .health-tracker {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        .health-bar {
+            background: rgba(83, 52, 131, 0.3);
+            border: 2px solid #9c88ff;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .health-character {
+            color: #a663cc;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .health-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .health-hearts {
+            display: flex;
+            gap: 3px;
+            flex: 1;
+        }
+        .heart {
+            width: 20px;
+            height: 20px;
+            background: #d32f2f;
+            clip-path: polygon(50% 15%, 15% 45%, 50% 85%, 85% 45%);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .heart.empty {
+            background: #424242;
+        }
+        .heart:hover {
+            transform: scale(1.2);
+        }
+        .quest-tracker {
+            background: rgba(15, 52, 96, 0.4);
+            border: 2px solid #7209b7;
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .quest-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(83, 52, 131, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .quest-item:hover {
+            background: rgba(114, 9, 183, 0.3);
+            transform: translateX(5px);
+        }
+        .quest-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #a663cc;
+            border-radius: 4px;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a663cc;
+            font-weight: bold;
+        }
+        .quest-checkbox.completed {
+            background: #a663cc;
+            color: #1a1a2e;
+        }
+        .quest-text {
+            color: #c5cae9;
+            flex: 1;
+        }
+        .treasure-generator {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .treasure-display {
+            background: linear-gradient(135deg, #ff8f00, #ffc107);
+            border: 3px solid #ffecb3;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #1a1a2e;
+            font-weight: bold;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+        .treasure-btn {
+            background: linear-gradient(135deg, #e65100, #ff8f00);
+            border: 2px solid #ffcc02;
+            border-radius: 10px;
+            color: #fff;
+            padding: 15px 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .treasure-btn:hover {
+            background: linear-gradient(135deg, #ff8f00, #ffc107);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 143, 0, 0.4);
+        }
+        .spell-calculator {
+            position: relative;
+            z-index: 1;
+        }
+        .spell-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .spell-card {
+            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
+            border: 2px solid #ce93d8;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #fff;
+        }
+        .spell-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
+        }
+        .spell-card.selected {
+            background: linear-gradient(135deg, #ffc107, #ff8f00);
+            color: #1a1a2e;
+        }
+        .spell-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .spell-cost {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        .mana-tracker {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .mana-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #7b1fa2;
+            border: 2px solid #ce93d8;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .mana-circle.spent {
+            background: #424242;
+        }
+        .mana-circle:hover {
+            transform: scale(1.2);
+        }
+        .combat-calculator {
+            position: relative;
+            z-index: 1;
+        }
+        .combat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .combatant {
+            background: rgba(83, 52, 131, 0.3);
+            border: 2px solid #9c88ff;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .combatant.hero {
+            border-color: #4caf50;
+        }
+        .combatant.monster {
+            border-color: #f44336;
+        }
+        .combatant-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #a663cc;
+        }
+        .combat-stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 15px 0;
+        }
+        .combat-stat {
+            text-align: center;
+        }
+        .combat-stat-label {
+            font-size: 0.8em;
+            color: #9c88ff;
+        }
+        .combat-stat-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #c5cae9;
+        }
+        .settings-panel {
+            background: rgba(83, 52, 131, 0.2);
+            border: 2px solid #7209b7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(26, 26, 46, 0.3);
+            border-radius: 8px;
+        }
+        .setting-label {
+            color: #9c88ff;
+            font-weight: bold;
+        }
+        .setting-toggle {
+            width: 50px;
+            height: 25px;
+            background: #424242;
+            border-radius: 25px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .setting-toggle.active {
+            background: #a663cc;
+        }
+        .setting-toggle::before {
+            content: '';
+            width: 21px;
+            height: 21px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s ease;
+        }
+        .setting-toggle.active::before {
+            transform: translateX(25px);
+        }
+        .toolkit-realm {
+            position: relative;
+            overflow: hidden;
+        }
+        .floating-dice {
+            position: absolute;
+            color: #533483;
+            font-size: 16px;
+            animation: float-drift 12s linear infinite;
+            opacity: 0.3;
+        }
+        @keyframes float-drift {
+            0% { 
+                transform: translateX(-100vw) translateY(0) rotate(0deg); 
+                opacity: 0; 
+            }
+            25% { 
+                opacity: 0.3; 
+                transform: translateX(-50vw) translateY(-20px) rotate(90deg); 
+            }
+            50% { 
+                opacity: 0.5; 
+                transform: translateX(0) translateY(-10px) rotate(180deg); 
+            }
+            75% { 
+                opacity: 0.3; 
+                transform: translateX(50vw) translateY(-20px) rotate(270deg); 
+            }
+            100% { 
+                transform: translateX(100vw) translateY(0) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #4caf50, #66bb6a);
+            border: 2px solid #81c784;
+            border-radius: 10px;
+            padding: 15px 20px;
+            color: #fff;
+            font-weight: bold;
+            z-index: 1000;
+            transform: translateX(400px);
+            transition: all 0.3s ease;
+        }
+        .notification.show {
+            transform: translateX(0);
+        }
+        .quick-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .quick-btn {
+            background: linear-gradient(135deg, #533483, #7209b7);
+            border: 2px solid #a663cc;
+            border-radius: 25px;
+            color: #fff;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+        .quick-btn:hover {
+            background: linear-gradient(135deg, #7209b7, #a663cc);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(166, 99, 204, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="container toolkit-realm">
+        <h1>🎲 HeroQuest Digital Toolkit 🛠️</h1>
+        
+        <div class="hero-banner" style="text-align: center; font-size: 1.1em; color: #c5cae9; margin-bottom: 30px; padding: 20px; background: rgba(83, 52, 131, 0.3); border-radius: 15px; border: 2px solid #7209b7;">
+            <strong>Your Complete Digital Companion for Epic Adventures!</strong><br>
+            Advanced dice rolling, character tracking, combat calculator, and quest management tools.<br>
+            <em>Everything you need to enhance your HeroQuest experience in one powerful toolkit.</em>
+        </div>
+
+        <div class="quick-actions">
+            <button class="quick-btn" onclick="quickRoll('combat')">⚔️ Combat Roll</button>
+            <button class="quick-btn" onclick="quickRoll('defense')">🛡️ Defense Roll</button>
+            <button class="quick-btn" onclick="quickRoll('movement')">🦶 Movement Roll</button>
+            <button class="quick-btn" onclick="quickRoll('magic')">🔮 Magic Roll</button>
+            <button class="quick-btn" onclick="restoreAll()">💚 Full Heal</button>
+            <button class="quick-btn" onclick="generateTreasure()">💰 Treasure!</button>
+        </div>
+
+        <h2>🎲 Advanced Dice Roller</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Digital Toolkit] --> B[Dice Roller]
+                A --> C[Character Tracker]
+                A --> D[Combat Calculator]
+                A --> E[Quest Manager]
+                
+                B --> B1[Combat Dice]
+                B --> B2[Defense Dice]
+                B --> B3[Movement Dice]
+                B --> B4[Custom Rolls]
+                
+                C --> C1[Health Tracking]
+                C --> C2[Stats Management]
+                C --> C3[Equipment Lists]
+                C --> C4[Spell Tracking]
+                
+                D --> D1[Damage Calculator]
+                D --> D2[Hit Probability]
+                D --> D3[Armor Effects]
+                D --> D4[Critical Hits]
+                
+                E --> E1[Quest Progress]
+                E --> E2[Objective Tracking]
+                E --> E3[Treasure Generator]
+                E --> E4[Notes System]
+                
+                style A fill:#a663cc,stroke:#333,stroke-width:3px
+                style B fill:#7209b7,stroke:#333,stroke-width:2px
+                style C fill:#533483,stroke:#333,stroke-width:2px
+                style D fill:#9c88ff,stroke:#333,stroke-width:2px
+                style E fill:#c5cae9,stroke:#333,stroke-width:2px
+        </div>
+
+        <div class="toolkit-grid">
+            <div class="tool-panel">
+                <h3 class="tool-title">🎲 Dice Roller</h3>
+                
+                <div class="dice-container">
+                    <div class="die combat-die" id="combat_die_1" onclick="rollSingleDie(this, 'combat')">⚔️</div>
+                    <div class="die combat-die" id="combat_die_2" onclick="rollSingleDie(this, 'combat')">⚔️</div>
+                    <div class="die defense-die" id="defense_die_1" onclick="rollSingleDie(this, 'defense')">🛡️</div>
+                    <div class="die defense-die" id="defense_die_2" onclick="rollSingleDie(this, 'defense')">🛡️</div>
+                    <div class="die movement-die" id="movement_die" onclick="rollSingleDie(this, 'movement')">🦶</div>
+                    <div class="die magic-die" id="magic_die" onclick="rollSingleDie(this, 'magic')">🔮</div>
+                </div>
+                
+                <div class="roll-controls">
+                    <button class="roll-btn" onclick="rollDice('combat', 2)">Combat Roll</button>
+                    <button class="roll-btn" onclick="rollDice('defense', 2)">Defense Roll</button>
+                    <button class="roll-btn" onclick="rollDice('movement', 1)">Move Roll</button>
+                    <button class="roll-btn" onclick="rollDice('magic', 1)">Magic Roll</button>
+                </div>
+                
+                <div class="roll-results" id="dice_results">
+                    <div class="result-total">Ready to Roll!</div>
+                    <div class="result-breakdown">Select dice type or click individual dice to roll</div>
+                </div>
+            </div>
+
+            <div class="tool-panel">
+                <h3 class="tool-title">👤 Character Sheet</h3>
+                
+                <div class="character-sheet">
+                    <div class="stat-row">
+                        <div class="stat-label">⚔️ Attack Power</div>
+                        <div class="stat-modifier">
+                            <button class="mod-btn" onclick="modifyStat('attack', -1)">-</button>
+                            <button class="mod-btn" onclick="modifyStat('attack', 1)">+</button>
+                        </div>
+                        <div class="stat-value" id="attack_stat">2</div>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <div class="stat-label">🛡️ Defense Power</div>
+                        <div class="stat-modifier">
+                            <button class="mod-btn" onclick="modifyStat('defense', -1)">-</button>
+                            <button class="mod-btn" onclick="modifyStat('defense', 1)">+</button>
+                        </div>
+                        <div class="stat-value" id="defense_stat">2</div>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <div class="stat-label">🦶 Movement Speed</div>
+                        <div class="stat-modifier">
+                            <button class="mod-btn" onclick="modifyStat('movement', -1)">-</button>
+                            <button class="mod-btn" onclick="modifyStat('movement', 1)">+</button>
+                        </div>
+                        <div class="stat-value" id="movement_stat">2</div>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <div class="stat-label">🔮 Magic Power</div>
+                        <div class="stat-modifier">
+                            <button class="mod-btn" onclick="modifyStat('magic', -1)">-</button>
+                            <button class="mod-btn" onclick="modifyStat('magic', 1)">+</button>
+                        </div>
+                        <div class="stat-value" id="magic_stat">2</div>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <div class="stat-label">💰 Gold Coins</div>
+                        <div class="stat-modifier">
+                            <button class="mod-btn" onclick="modifyStat('gold', -10)">-</button>
+                            <button class="mod-btn" onclick="modifyStat('gold', 10)">+</button>
+                        </div>
+                        <div class="stat-value" id="gold_stat">50</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-panel">
+                <h3 class="tool-title">❤️ Health Tracker</h3>
+                
+                <div class="health-tracker">
+                    <div class="health-bar">
+                        <div class="health-character">🧙 Wizard</div>
+                        <div class="health-display">
+                            <div class="health-hearts" id="wizard_health">
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                            </div>
+                            <button class="mod-btn" onclick="restoreHealth('wizard_health')">💚</button>
+                        </div>
+                    </div>
+                    
+                    <div class="health-bar">
+                        <div class="health-character">⚔️ Barbarian</div>
+                        <div class="health-display">
+                            <div class="health-hearts" id="barbarian_health">
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                            </div>
+                            <button class="mod-btn" onclick="restoreHealth('barbarian_health')">💚</button>
+                        </div>
+                    </div>
+                    
+                    <div class="health-bar">
+                        <div class="health-character">🏹 Elf</div>
+                        <div class="health-display">
+                            <div class="health-hearts" id="elf_health">
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                            </div>
+                            <button class="mod-btn" onclick="restoreHealth('elf_health')">💚</button>
+                        </div>
+                    </div>
+                    
+                    <div class="health-bar">
+                        <div class="health-character">🛡️ Dwarf</div>
+                        <div class="health-display">
+                            <div class="health-hearts" id="dwarf_health">
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                            </div>
+                            <button class="mod-btn" onclick="restoreHealth('dwarf_health')">💚</button>
+                        </div>
+                    </div>
+                    
+                    <div class="health-bar">
+                        <div class="health-character">🔥 Expansion Hero</div>
+                        <div class="health-display">
+                            <div class="health-hearts" id="expansion_health">
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                                <div class="heart" onclick="toggleHeart(this)"></div>
+                            </div>
+                            <button class="mod-btn" onclick="restoreHealth('expansion_health')">💚</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-panel">
+                <h3 class="tool-title">📜 Quest Tracker</h3>
+                
+                <div class="quest-tracker">
+                    <div class="quest-item" onclick="toggleQuest(this)">
+                        <div class="quest-checkbox"></div>
+                        <div class="quest-text">Find the entrance to the underground labyrinth</div>
+                    </div>
+                    
+                    <div class="quest-item" onclick="toggleQuest(this)">
+                        <div class="quest-checkbox"></div>
+                        <div class="quest-text">Defeat the Orc guards in the first chamber</div>
+                    </div>
+                    
+                    <div class="quest-item" onclick="toggleQuest(this)">
+                        <div class="quest-checkbox"></div>
+                        <div class="quest-text">Locate the Wizard's lost spellbook</div>
+                    </div>
+                    
+                    <div class="quest-item" onclick="toggleQuest(this)">
+                        <div class="quest-checkbox"></div>
+                        <div class="quest-text">Discover the secret door behind the throne</div>
+                    </div>
+                    
+                    <div class="quest-item" onclick="toggleQuest(this)">
+                        <div class="quest-checkbox"></div>
+                        <div class="quest-text">Confront the evil Warlock in his lair</div>
+                    </div>
+                    
+                    <div class="quest-item" onclick="toggleQuest(this)">
+                        <div class="quest-checkbox"></div>
+                        <div class="quest-text">Escape with the ancient artifact intact</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-panel">
+                <h3 class="tool-title">💰 Treasure Generator</h3>
+                
+                <div class="treasure-generator">
+                    <div class="treasure-display" id="treasure_display">
+                        Click below to generate random treasure!<br>
+                        💎 Discover what awaits in the depths! 💎
+                    </div>
+                    
+                    <button class="treasure-btn" onclick="generateTreasure()">
+                        🎲 Generate Treasure
+                    </button>
+                </div>
+            </div>
+
+            <div class="tool-panel">
+                <h3 class="tool-title">🔮 Spell Calculator</h3>
+                
+                <div class="spell-calculator">
+                    <div class="mana-tracker" id="mana_tracker">
+                        <div class="mana-circle" onclick="toggleMana(this)"></div>
+                        <div class="mana-circle" onclick="toggleMana(this)"></div>
+                        <div class="mana-circle" onclick="toggleMana(this)"></div>
+                        <div class="mana-circle" onclick="toggleMana(this)"></div>
+                        <div class="mana-circle" onclick="toggleMana(this)"></div>
+                        <div class="mana-circle" onclick="toggleMana(this)"></div>
+                        <button class="mod-btn" onclick="restoreMana()" style="margin-left: 10px;">🔮</button>
+                    </div>
+                    
+                    <div class="spell-grid">
+                        <div class="spell-card" onclick="castSpell(this, 1)" data-cost="1">
+                            <div class="spell-name">Heal Body</div>
+                            <div class="spell-cost">1 Mana</div>
+                        </div>
+                        
+                        <div class="spell-card" onclick="castSpell(this, 2)" data-cost="2">
+                            <div class="spell-name">Fire Ball</div>
+                            <div class="spell-cost">2 Mana</div>
+                        </div>
+                        
+                        <div class="spell-card" onclick="castSpell(this, 1)" data-cost="1">
+                            <div class="spell-name">Pass Through Rock</div>
+                            <div class="spell-cost">1 Mana</div>
+                        </div>
+                        
+                        <div class="spell-card" onclick="castSpell(this, 3)" data-cost="3">
+                            <div class="spell-name">Tempest</div>
+                            <div class="spell-cost">3 Mana</div>
+                        </div>
+                        
+                        <div class="spell-card" onclick="castSpell(this, 2)" data-cost="2">
+                            <div class="spell-name">Lightning Bolt</div>
+                            <div class="spell-cost">2 Mana</div>
+                        </div>
+                        
+                        <div class="spell-card" onclick="castSpell(this, 1)" data-cost="1">
+                            <div class="spell-name">Courage</div>
+                            <div class="spell-cost">1 Mana</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-panel">
+                <h3 class="tool-title">⚔️ Combat Calculator</h3>
+                
+                <div class="combat-calculator">
+                    <div class="combat-grid">
+                        <div class="combatant hero">
+                            <div class="combatant-name">🦸 Hero</div>
+                            <div class="combat-stats">
+                                <div class="combat-stat">
+                                    <div class="combat-stat-label">Attack</div>
+                                    <div class="combat-stat-value" id="hero_attack">2</div>
+                                </div>
+                                <div class="combat-stat">
+                                    <div class="combat-stat-label">Defense</div>
+                                    <div class="combat-stat-value" id="hero_defense">2</div>
+                                </div>
+                                <div class="combat-stat">
+                                    <div class="combat-stat-label">Health</div>
+                                    <div class="combat-stat-value" id="hero_health">4</div>
+                                </div>
+                            </div>
+                            <button class="roll-btn" onclick="calculateCombat('hero')">Roll Attack</button>
+                        </div>
+                        
+                        <div class="combatant monster">
+                            <div class="combatant-name">👹 Monster</div>
+                            <div class="combat-stats">
+                                <div class="combat-stat">
+                                    <div class="combat-stat-label">Attack</div>
+                                    <div class="combat-stat-value" id="monster_attack">2</div>
+                                </div>
+                                <div class="combat-stat">
+                                    <div class="combat-stat-label">Defense</div>
+                                    <div class="combat-stat-value" id="monster_defense">1</div>
+                                </div>
+                                <div class="combat-stat">
+                                    <div class="combat-stat-label">Health</div>
+                                    <div class="combat-stat-value" id="monster_health">3</div>
+                                </div>
+                            </div>
+                            <button class="roll-btn" onclick="calculateCombat('monster')">Roll Attack</button>
+                        </div>
+                    </div>
+                    
+                    <div class="roll-results" id="combat_results">
+                        <div class="result-total">Combat Ready!</div>
+                        <div class="result-breakdown">Click Roll Attack to begin combat</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-panel">
+                <h3 class="tool-title">⚙️ Toolkit Settings</h3>
+                
+                <div class="settings-panel">
+                    <div class="setting-row">
+                        <div class="setting-label">🔊 Sound Effects</div>
+                        <div class="setting-toggle active" id="sound_toggle" onclick="toggleSetting(this, 'sound')"></div>
+                    </div>
+                    
+                    <div class="setting-row">
+                        <div class="setting-label">📳 Vibration Feedback</div>
+                        <div class="setting-toggle" id="vibration_toggle" onclick="toggleSetting(this, 'vibration')"></div>
+                    </div>
+                    
+                    <div class="setting-row">
+                        <div class="setting-label">🎭 Advanced Mode</div>
+                        <div class="setting-toggle" id="advanced_toggle" onclick="toggleSetting(this, 'advanced')"></div>
+                    </div>
+                    
+                    <div class="setting-row">
+                        <div class="setting-label">💾 Auto-Save Progress</div>
+                        <div class="setting-toggle active" id="autosave_toggle" onclick="toggleSetting(this, 'autosave')"></div>
+                    </div>
+                    
+                    <div class="setting-row">
+                        <div class="setting-label">🎨 Dark Theme</div>
+                        <div class="setting-toggle active" id="theme_toggle" onclick="toggleSetting(this, 'theme')"></div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="treasure-btn" onclick="saveProgress()" style="margin-right: 10px;">💾 Save Game</button>
+                    <button class="roll-btn" onclick="loadProgress()">📁 Load Game</button>
+                </div>
+            </div>
+        </div>
+
+        <h2>📊 Game Statistics & Analytics</h2>
+        
+        <div class="toolkit-grid">
+            <div class="tool-panel">
+                <h3 class="tool-title">📈 Session Statistics</h3>
+                
+                <div class="character-sheet">
+                    <div class="stat-row">
+                        <div class="stat-label">🎲 Total Rolls</div>
+                        <div class="stat-value" id="total_rolls">0</div>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <div class="stat-label">⚔️ Combat Encounters</div>
+                        <div class="stat-value" id="combat_encounters">0</div>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <div class="stat-label">🔮 Spells Cast</div>
+                        <div class="stat-value" id="spells_cast">0</div>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <div class="stat-label">💰 Treasure Found</div>
+                        <div class="stat-value" id="treasure_found">0</div>
+                    </div>
+                    
+                    <div class="stat-row">
+                        <div class="stat-label">✅ Quests Completed</div>
+                        <div class="stat-value" id="quests_completed">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-panel">
+                <h3 class="tool-title">🏆 Achievements</h3>
+                
+                <div class="quest-tracker">
+                    <div class="quest-item">
+                        <div class="quest-checkbox" id="achievement_roller">🏆</div>
+                        <div class="quest-text">Dice Master: Roll 100 times</div>
+                    </div>
+                    
+                    <div class="quest-item">
+                        <div class="quest-checkbox" id="achievement_warrior">🏆</div>
+                        <div class="quest-text">Warrior: Win 25 combat encounters</div>
+                    </div>
+                    
+                    <div class="quest-item">
+                        <div class="quest-checkbox" id="achievement_mage">🏆</div>
+                        <div class="quest-text">Archmage: Cast 50 spells</div>
+                    </div>
+                    
+                    <div class="quest-item">
+                        <div class="quest-checkbox" id="achievement_treasure">🏆</div>
+                        <div class="quest-text">Treasure Hunter: Find 20 treasures</div>
+                    </div>
+                    
+                    <div class="quest-item">
+                        <div class="quest-checkbox" id="achievement_quest">🏆</div>
+                        <div class="quest-text">Quest Master: Complete 10 objectives</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h2>🎯 Pro Tips & Advanced Features</h2>
+        
+        <div class="course-section">
+            <h3 style="color: #a663cc; margin-bottom: 20px;">🧙 Master Your Digital Adventure</h3>
+            
+            <p style="color: #c5cae9; margin-bottom: 20px;"><strong>Maximize your HeroQuest experience with these advanced toolkit features:</strong></p>
+            
+            <div class="course-grid">
+                <div style="background: rgba(83, 52, 131, 0.3); border: 2px solid #9c88ff; border-radius: 10px; padding: 20px;">
+                    <h4 style="color: #9c88ff; margin-bottom: 15px;">🎲 Enhanced Dice Rolling</h4>
+                    <ul style="color: #c5cae9; padding-left: 20px;">
+                        <li><strong>Combat:</strong> Base hit + Attack Power bonus damage</li>
+                        <li><strong>Defense:</strong> Base block + Defense Power bonus protection</li>
+                        <li><strong>Movement:</strong> Base roll + Movement Speed total distance</li>
+                        <li><strong>Magic:</strong> Success rate increases with Magic Power</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(83, 52, 131, 0.3); border: 2px solid #9c88ff; border-radius: 10px; padding: 20px;">
+                    <h4 style="color: #9c88ff; margin-bottom: 15px;">💚 Health Management</h4>
+                    <ul style="color: #c5cae9; padding-left: 20px;">
+                        <li>Click hearts to toggle damage/healing</li>
+                        <li>Use the heal button for full restoration</li>
+                        <li>Different characters have different max health</li>
+                        <li>Track up to 5 party members including expansion heroes</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(83, 52, 131, 0.3); border: 2px solid #9c88ff; border-radius: 10px; padding: 20px;">
+                    <h4 style="color: #9c88ff; margin-bottom: 15px;">🔮 Enhanced Spell Casting</h4>
+                    <ul style="color: #c5cae9; padding-left: 20px;">
+                        <li>Higher Magic Power = better spell success rates</li>
+                        <li>Magic Power enhances spell effects and duration</li>
+                        <li>Empowered spells with 3+ Magic Power</li>
+                        <li>Mana management with visual feedback</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(83, 52, 131, 0.3); border: 2px solid #9c88ff; border-radius: 10px; padding: 20px;">
+                    <h4 style="color: #9c88ff; margin-bottom: 15px;">⚔️ Dynamic Combat</h4>
+                    <ul style="color: #c5cae9; padding-left: 20px;">
+                        <li>Character stats automatically update combat calculations</li>
+                        <li>Attack Power adds to damage rolls</li>
+                        <li>Defense Power improves damage resistance</li>
+                        <li>Real-time stat integration with combat results</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification" id="notification">
+            🎉 Action completed successfully!
+        </div>
+    </div>
+
+    <script>
+        // Initialize floating dice effects
+        function createFloatingDice() {
+            const diceSymbols = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅', '🎲'];
+            for (let i = 0; i < 6; i++) {
+                const dice = document.createElement('div');
+                dice.className = 'floating-dice';
+                dice.textContent = diceSymbols[Math.floor(Math.random() * diceSymbols.length)];
+                dice.style.top = Math.random() * 100 + '%';
+                dice.style.animationDelay = Math.random() * 12 + 's';
+                dice.style.animationDuration = (Math.random() * 4 + 10) + 's';
+                document.querySelector('.toolkit-realm').appendChild(dice);
+            }
+        }
+        
+        createFloatingDice();
+        
+        // Game state
+        let gameStats = {
+            totalRolls: 0,
+            combatEncounters: 0,
+            spellsCast: 0,
+            treasureFound: 0,
+            questsCompleted: 0
+        };
+        
+        let settings = {
+            sound: true,
+            vibration: false,
+            advanced: false,
+            autosave: true,
+            theme: true
+        };
+        
+        // Dice rolling functions with stat integration
+        function rollSingleDie(element, type) {
+            element.classList.add('rolling');
+            
+            setTimeout(() => {
+                let baseResult;
+                let statBonus = 0;
+                let finalResult;
+                
+                switch(type) {
+                    case 'combat':
+                        baseResult = Math.random() < 0.5 ? 'Hit' : 'Miss';
+                        statBonus = parseInt(document.getElementById('attack_stat').textContent);
+                        if (baseResult === 'Hit') {
+                            finalResult = `💀 Hit (+${statBonus})`;
+                        } else {
+                            finalResult = `❌ Miss`;
+                        }
+                        break;
+                    case 'defense':
+                        baseResult = Math.random() < 0.33 ? 'Block' : 'Hit';
+                        statBonus = parseInt(document.getElementById('defense_stat').textContent);
+                        if (baseResult === 'Block') {
+                            finalResult = `🛡️ Block (+${statBonus})`;
+                        } else {
+                            finalResult = `💥 Hit`;
+                        }
+                        break;
+                    case 'movement':
+                        baseResult = Math.floor(Math.random() * 6) + 1;
+                        statBonus = parseInt(document.getElementById('movement_stat').textContent);
+                        finalResult = baseResult + statBonus;
+                        break;
+                    case 'magic':
+                        const magicPower = parseInt(document.getElementById('magic_stat').textContent);
+                        const successChance = Math.min(0.9, 0.3 + (magicPower * 0.1)); // Better magic = higher success
+                        baseResult = Math.random() < successChance ? 'Success' : 'Failure';
+                        finalResult = baseResult === 'Success' ? `⭐ Success (${magicPower} power)` : `🌟 Failure`;
+                        break;
+                }
+                
+                element.textContent = type === 'movement' ? finalResult : (finalResult.includes('Hit') || finalResult.includes('Block') || finalResult.includes('Success')) ? '✓' : '✗';
+                element.classList.remove('rolling');
+                
+                updateStats('totalRolls', 1);
+                
+                if (type === 'movement') {
+                    showNotification(`Movement: ${baseResult} + ${statBonus} = ${finalResult} spaces`);
+                } else {
+                    showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)}: ${finalResult}`);
+                }
+                
+                if (settings.sound) {
+                    playSound('dice');
+                }
+            }, 1000);
+        }
+        
+        function rollDice(type, count) {
+            const resultsDiv = document.getElementById('dice_results');
+            resultsDiv.innerHTML = '<div class="result-total">Rolling...</div>';
+            
+            let results = [];
+            let successes = 0;
+            let totalValue = 0;
+            
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    let baseResult;
+                    let statBonus = 0;
+                    let modifiedResult;
+                    
+                    switch(type) {
+                        case 'combat':
+                            baseResult = Math.random() < 0.5 ? 'Hit' : 'Miss';
+                            statBonus = parseInt(document.getElementById('attack_stat').textContent);
+                            modifiedResult = baseResult;
+                            if (baseResult === 'Hit') {
+                                successes++;
+                                totalValue += (1 + statBonus);
+                            }
+                            results.push(`${baseResult}${baseResult === 'Hit' ? ` (+${statBonus})` : ''}`);
+                            break;
+                        case 'defense':
+                            baseResult = Math.random() < 0.33 ? 'Block' : 'Hit';
+                            statBonus = parseInt(document.getElementById('defense_stat').textContent);
+                            modifiedResult = baseResult;
+                            if (baseResult === 'Block') {
+                                successes++;
+                                totalValue += (1 + statBonus);
+                            }
+                            results.push(`${baseResult}${baseResult === 'Block' ? ` (+${statBonus})` : ''}`);
+                            break;
+                        case 'movement':
+                            baseResult = Math.floor(Math.random() * 6) + 1;
+                            statBonus = parseInt(document.getElementById('movement_stat').textContent);
+                            modifiedResult = baseResult + statBonus;
+                            totalValue += modifiedResult;
+                            results.push(`${baseResult}+${statBonus}=${modifiedResult}`);
+                            break;
+                        case 'magic':
+                            const magicPower = parseInt(document.getElementById('magic_stat').textContent);
+                            const successChance = Math.min(0.9, 0.3 + (magicPower * 0.1));
+                            baseResult = Math.random() < successChance ? 'Success' : 'Failure';
+                            if (baseResult === 'Success') {
+                                successes++;
+                                totalValue += magicPower;
+                            }
+                            results.push(`${baseResult} (${magicPower} power)`);
+                            break;
+                    }
+                    
+                    if (results.length === count) {
+                        let totalText;
+                        let breakdownText;
+                        
+                        if (type === 'movement') {
+                            totalText = `${totalValue} Total Spaces`;
+                            breakdownText = `Rolls: ${results.join(', ')}`;
+                        } else if (type === 'combat') {
+                            totalText = `${successes}/${count} Hits (${totalValue} Total Damage)`;
+                            breakdownText = `Results: ${results.join(', ')}`;
+                        } else if (type === 'defense') {
+                            totalText = `${successes}/${count} Blocks (${totalValue} Total Defense)`;
+                            breakdownText = `Results: ${results.join(', ')}`;
+                        } else {
+                            totalText = `${successes}/${count} Successes (${totalValue} Total Power)`;
+                            breakdownText = `Results: ${results.join(', ')}`;
+                        }
+                        
+                        resultsDiv.innerHTML = `
+                            <div class="result-total">${totalText}</div>
+                            <div class="result-breakdown">${breakdownText}</div>
+                        `;
+                        
+                        updateStats('totalRolls', count);
+                        showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} roll complete!`);
+                    }
+                }, i * 200 + 500);
+            }
+        }
+        
+        function quickRoll(type) {
+            switch(type) {
+                case 'combat':
+                    rollDice('combat', 2);
+                    break;
+                case 'defense':
+                    rollDice('defense', 2);
+                    break;
+                case 'movement':
+                    rollDice('movement', 1);
+                    break;
+                case 'magic':
+                    rollDice('magic', 1);
+                    break;
+            }
+        }
+        
+        // Character sheet functions with feedback
+        function modifyStat(stat, change) {
+            const element = document.getElementById(stat + '_stat');
+            let currentValue = parseInt(element.textContent);
+            let newValue = Math.max(0, currentValue + change);
+            
+            if (stat === 'gold') {
+                newValue = Math.max(0, currentValue + change);
+            }
+            
+            element.textContent = newValue;
+            
+            // Visual feedback
+            element.style.transform = 'scale(1.2)';
+            element.style.color = change > 0 ? '#4caf50' : '#f44336';
+            setTimeout(() => {
+                element.style.transform = 'scale(1)';
+                element.style.color = '#fff';
+            }, 300);
+            
+            // Update combat stats display if relevant
+            if (stat === 'attack') {
+                const heroAttackDisplay = document.getElementById('hero_attack');
+                if (heroAttackDisplay) heroAttackDisplay.textContent = newValue;
+            } else if (stat === 'defense') {
+                const heroDefenseDisplay = document.getElementById('hero_defense');
+                if (heroDefenseDisplay) heroDefenseDisplay.textContent = newValue;
+            }
+            
+            showNotification(`${stat.charAt(0).toUpperCase() + stat.slice(1)} ${change > 0 ? 'increased' : 'decreased'} to ${newValue}${getStatBonus(stat, newValue)}`);
+        }
+        
+        // Helper function to show stat bonuses
+        function getStatBonus(stat, value) {
+            switch(stat) {
+                case 'attack':
+                    return ` (Combat bonus: +${value})`;
+                case 'defense':
+                    return ` (Defense bonus: +${value})`;
+                case 'movement':
+                    return ` (Movement bonus: +${value})`;
+                case 'magic':
+                    return ` (Spell power: ${Math.min(90, 30 + (value * 10))}% success)`;
+                case 'gold':
+                    return ` coins`;
+                default:
+                    return '';
+            }
+        }
+        
+        // Health tracking functions
+        function toggleHeart(heart) {
+            heart.classList.toggle('empty');
+            
+            if (settings.sound) {
+                playSound(heart.classList.contains('empty') ? 'damage' : 'heal');
+            }
+        }
+        
+        function restoreHealth(characterId) {
+            const hearts = document.querySelectorAll(`#${characterId} .heart`);
+            hearts.forEach(heart => heart.classList.remove('empty'));
+            showNotification('Health fully restored!');
+        }
+        
+        function restoreAll() {
+            const allHearts = document.querySelectorAll('.heart');
+            allHearts.forEach(heart => heart.classList.remove('empty'));
+            showNotification('All party members fully healed!');
+        }
+        
+        // Quest tracking functions
+        function toggleQuest(questItem) {
+            const checkbox = questItem.querySelector('.quest-checkbox');
+            checkbox.classList.toggle('completed');
+            
+            if (checkbox.classList.contains('completed')) {
+                checkbox.textContent = '✓';
+                updateStats('questsCompleted', 1);
+                showNotification('Quest objective completed!');
+            } else {
+                checkbox.textContent = '';
+                updateStats('questsCompleted', -1);
+            }
+        }
+        
+        // Treasure generation
+        const treasures = [
+            '💰 50 Gold Coins',
+            '⚔️ Magic Sword (+1 Attack)',
+            '🛡️ Shield of Protection (+1 Defense)',
+            '🏺 Healing Potion (Restore 2 Health)',
+            '🔮 Mana Crystal (+2 Magic Power)',
+            '👑 Crown of Wisdom (+1 to all stats)',
+            '💎 Precious Gem (100 Gold)',
+            '📜 Ancient Scroll (Learn new spell)',
+            '🗝️ Master Key (Opens any door)',
+            '⚡ Lightning Ring (Cast Lightning Bolt)',
+            '🧪 Elixir of Strength (+2 Attack)',
+            '🌟 Star of Fortune (Re-roll any die)',
+            '🏹 Elven Bow (+1 Range Attack)',
+            '🦶 Boots of Speed (+1 Movement)',
+            '🧙 Wizard\'s Staff (+2 Magic Power)',
+            '💍 Ring of Protection (+1 Defense)',
+            '🍖 Hero\'s Feast (Full party heal)',
+            '🎲 Lucky Dice (Advantage on next roll)'
+        ];
+        
+        function generateTreasure() {
+            const display = document.getElementById('treasure_display');
+            display.textContent = 'Searching for treasure...';
+            
+            setTimeout(() => {
+                const treasure = treasures[Math.floor(Math.random() * treasures.length)];
+                display.innerHTML = `<strong>🎉 Treasure Found! 🎉</strong><br>${treasure}`;
+                updateStats('treasureFound', 1);
+                showNotification('New treasure discovered!');
+                
+                if (settings.sound) {
+                    playSound('treasure');
+                }
+            }, 1500);
+        }
+        
+        // Spell casting functions
+        function toggleMana(manaCircle) {
+            manaCircle.classList.toggle('spent');
+        }
+        
+        function restoreMana() {
+            const manaCircles = document.querySelectorAll('.mana-circle');
+            manaCircles.forEach(circle => circle.classList.remove('spent'));
+            showNotification('All mana restored!');
+        }
+        
+        function castSpell(spellCard, cost) {
+            const manaCircles = document.querySelectorAll('.mana-circle:not(.spent)');
+            
+            if (manaCircles.length >= cost) {
+                // Spend mana
+                for (let i = 0; i < cost; i++) {
+                    manaCircles[i].classList.add('spent');
+                }
+                
+                // Visual feedback
+                spellCard.classList.add('selected');
+                setTimeout(() => {
+                    spellCard.classList.remove('selected');
+                }, 1000);
+                
+                updateStats('spellsCast', 1);
+                showNotification(`${spellCard.querySelector('.spell-name').textContent} cast successfully!`);
+                
+                if (settings.sound) {
+                    playSound('spell');
+                }
+            } else {
+                showNotification('Not enough mana to cast this spell!');
+            }
+        }
+        
+        // Combat calculator with dynamic stat integration
+        function calculateCombat(attacker) {
+            const resultsDiv = document.getElementById('combat_results');
+            resultsDiv.innerHTML = '<div class="result-total">Calculating...</div>';
+            
+            setTimeout(() => {
+                const attackRoll = Math.floor(Math.random() * 6) + 1;
+                const defenseRoll = Math.floor(Math.random() * 6) + 1;
+                
+                // Get current character stats dynamically
+                const attackPower = parseInt(document.getElementById('attack_stat').textContent);
+                const defensePower = parseInt(document.getElementById('defense_stat').textContent);
+                
+                let totalAttack, totalDefense;
+                
+                if (attacker === 'hero') {
+                    totalAttack = attackRoll + attackPower;
+                    totalDefense = defenseRoll + parseInt(document.getElementById('monster_defense').textContent);
+                } else {
+                    totalAttack = attackRoll + parseInt(document.getElementById('monster_attack').textContent);
+                    totalDefense = defenseRoll + defensePower;
+                }
+                
+                const hit = totalAttack > totalDefense;
+                const damage = hit ? Math.max(1, totalAttack - totalDefense) : 0;
+                
+                // Update combat display with character stats
+                document.getElementById('hero_attack').textContent = attackPower;
+                document.getElementById('hero_defense').textContent = defensePower;
+                
+                resultsDiv.innerHTML = `
+                    <div class="result-total">${hit ? `${damage} Damage!` : 'Miss!'}</div>
+                    <div class="result-breakdown">
+                        ${attacker === 'hero' ? 'Hero' : 'Monster'} Attack: ${attackRoll} + ${attacker === 'hero' ? attackPower : document.getElementById('monster_attack').textContent} = ${totalAttack}<br>
+                        ${attacker === 'hero' ? 'Monster' : 'Hero'} Defense: ${defenseRoll} + ${attacker === 'hero' ? document.getElementById('monster_defense').textContent : defensePower} = ${totalDefense}
+                    </div>
+                `;
+                
+                if (hit) {
+                    const defenderType = attacker === 'hero' ? 'monster' : 'hero';
+                    const healthElement = document.getElementById(`${defenderType}_health`);
+                    const currentHealth = parseInt(healthElement.textContent);
+                    healthElement.textContent = Math.max(0, currentHealth - damage);
+                    
+                    updateStats('combatEncounters', 1);
+                }
+                
+                showNotification(`Combat complete: ${hit ? `${damage} damage dealt!` : 'Attack missed!'}!`);
+            }, 1000);
+        }
+        
+        // Settings functions
+        function toggleSetting(toggle, setting) {
+            toggle.classList.toggle('active');
+            settings[setting] = toggle.classList.contains('active');
+            
+            showNotification(`${setting.charAt(0).toUpperCase() + setting.slice(1)} ${settings[setting] ? 'enabled' : 'disabled'}`);
+        }
+        
+        // Statistics functions
+        function updateStats(stat, change) {
+            gameStats[stat] += change;
+            gameStats[stat] = Math.max(0, gameStats[stat]);
+            
+            const element = document.getElementById(stat);
+            if (element) {
+                element.textContent = gameStats[stat];
+                
+                // Visual feedback
+                element.style.transform = 'scale(1.1)';
+                element.style.color = '#ffc107';
+                setTimeout(() => {
+                    element.style.transform = 'scale(1)';
+                    element.style.color = '#c5cae9';
+                }, 300);
+            }
+            
+            checkAchievements();
+        }
+        
+        function checkAchievements() {
+            // Check for achievement unlocks
+            if (gameStats.totalRolls >= 100) {
+                unlockAchievement('achievement_roller');
+            }
+            if (gameStats.combatEncounters >= 25) {
+                unlockAchievement('achievement_warrior');
+            }
+            if (gameStats.spellsCast >= 50) {
+                unlockAchievement('achievement_mage');
+            }
+            if (gameStats.treasureFound >= 20) {
+                unlockAchievement('achievement_treasure');
+            }
+            if (gameStats.questsCompleted >= 10) {
+                unlockAchievement('achievement_quest');
+            }
+        }
+        
+        function unlockAchievement(achievementId) {
+            const achievement = document.getElementById(achievementId);
+            if (achievement && !achievement.classList.contains('completed')) {
+                achievement.classList.add('completed');
+                showNotification('🏆 Achievement Unlocked!');
+                
+                if (settings.sound) {
+                    playSound('achievement');
+                }
+            }
+        }
+        
+        // Utility functions
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+        
+        function playSound(type) {
+            if (!settings.sound) return;
+            
+            try {
+                // Create audio context for sound effects
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                // Different sounds for different actions
+                switch(type) {
+                    case 'dice':
+                        oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                        oscillator.frequency.setValueAtTime(400, audioContext.currentTime + 0.1);
+                        break;
+                    case 'spell':
+                        oscillator.frequency.setValueAtTime(600, audioContext.currentTime);
+                        oscillator.frequency.setValueAtTime(900, audioContext.currentTime + 0.2);
+                        break;
+                    case 'treasure':
+                        oscillator.frequency.setValueAtTime(500, audioContext.currentTime);
+                        oscillator.frequency.setValueAtTime(800, audioContext.currentTime + 0.1);
+                        oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.2);
+                        break;
+                    case 'achievement':
+                        oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
+                        oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.1);
+                        oscillator.frequency.setValueAtTime(800, audioContext.currentTime + 0.2);
+                        oscillator.frequency.setValueAtTime(1000, audioContext.currentTime + 0.3);
+                        break;
+                    case 'heal':
+                        oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+                        oscillator.frequency.setValueAtTime(600, audioContext.currentTime + 0.15);
+                        break;
+                    case 'damage':
+                        oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+                        oscillator.frequency.setValueAtTime(100, audioContext.currentTime + 0.2);
+                        break;
+                }
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.setValueAtTime(0, audioContext.currentTime + 0.3);
+                
+                oscillator.start();
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch (error) {
+                console.log('Audio not supported');
+            }
+        }
+        
+        function saveProgress() {
+            try {
+                const gameData = {
+                    stats: gameStats,
+                    settings: settings,
+                    characterStats: {
+                        attack: document.getElementById('attack_stat').textContent,
+                        defense: document.getElementById('defense_stat').textContent,
+                        movement: document.getElementById('movement_stat').textContent,
+                        magic: document.getElementById('magic_stat').textContent,
+                        gold: document.getElementById('gold_stat').textContent
+                    },
+                    questProgress: Array.from(document.querySelectorAll('.quest-checkbox')).map(cb => cb.classList.contains('completed')),
+                    achievements: Array.from(document.querySelectorAll('[id^="achievement_"]')).map(ach => ach.classList.contains('completed'))
+                };
+                
+                // In a real implementation, this would save to a database or file
+                localStorage.setItem('heroquest_save', JSON.stringify(gameData));
+                showNotification('Game progress saved successfully!');
+                
+                if (settings.sound) {
+                    playSound('achievement');
+                }
+            } catch (error) {
+                showNotification('Save failed - storage not available');
+            }
+        }
+        
+        function loadProgress() {
+            try {
+                const savedData = localStorage.getItem('heroquest_save');
+                if (savedData) {
+                    const gameData = JSON.parse(savedData);
+                    gameStats = gameData.stats;
+                    settings = gameData.settings;
+                    
+                    // Restore character stats
+                    if (gameData.characterStats) {
+                        document.getElementById('attack_stat').textContent = gameData.characterStats.attack;
+                        document.getElementById('defense_stat').textContent = gameData.characterStats.defense;
+                        document.getElementById('movement_stat').textContent = gameData.characterStats.movement;
+                        document.getElementById('magic_stat').textContent = gameData.characterStats.magic;
+                        document.getElementById('gold_stat').textContent = gameData.characterStats.gold;
+                    }
+                    
+                    // Update statistics display
+                    Object.keys(gameStats).forEach(stat => {
+                        const element = document.getElementById(stat);
+                        if (element) {
+                            element.textContent = gameStats[stat];
+                        }
+                    });
+                    
+                    showNotification('Game progress loaded successfully!');
+                } else {
+                    showNotification('No saved game found. Starting fresh adventure!');
+                }
+            } catch (error) {
+                showNotification('Load failed - starting fresh adventure!');
+            }
+        }
+        
+        // Initialize the toolkit
+        function initializeToolkit() {
+            // Set up initial game state
+            updateStats('totalRolls', 0);
+            updateStats('combatEncounters', 0);
+            updateStats('spellsCast', 0);
+            updateStats('treasureFound', 0);
+            updateStats('questsCompleted', 0);
+            
+            // Show welcome message
+            setTimeout(() => {
+                showNotification('🎲 HeroQuest Digital Toolkit Ready! 🛠️');
+            }, 1000);
+        }
+        
+        // Auto-save functionality
+        function autoSave() {
+            if (settings.autosave) {
+                saveProgress();
+            }
+        }
+        
+        // Save progress every 5 minutes if auto-save is enabled
+        setInterval(autoSave, 300000);
+        
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(event) {
+            if (event.ctrlKey || event.metaKey) {
+                switch(event.key) {
+                    case 's':
+                        event.preventDefault();
+                        saveProgress();
+                        break;
+                    case 'r':
+                        event.preventDefault();
+                        quickRoll('combat');
+                        break;
+                    case 'd':
+                        event.preventDefault();
+                        quickRoll('defense');
+                        break;
+                    case 'm':
+                        event.preventDefault();
+                        quickRoll('movement');
+                        break;
+                    case 'g':
+                        event.preventDefault();
+                        quickRoll('magic');
+                        break;
+                    case 't':
+                        event.preventDefault();
+                        generateTreasure();
+                        break;
+                    case 'h':
+                        event.preventDefault();
+                        restoreAll();
+                        break;
+                }
+            }
+        });
+        
+        // Touch/mobile support
+        if ('ontouchstart' in window) {
+            // Add mobile-specific enhancements
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.die, .roll-btn, .treasure-btn').forEach(element => {
+                    element.addEventListener('touchstart', function() {
+                        this.style.transform = 'scale(0.95)';
+                    });
+                    
+                    element.addEventListener('touchend', function() {
+                        this.style.transform = '';
+                    });
+                });
+            });
+        }
+        
+        // Vibration support for mobile devices
+        function vibrate(pattern) {
+            if (pattern === undefined) pattern = [100];
+            if (settings.vibration && 'vibrate' in navigator) {
+                navigator.vibrate(pattern);
+            }
+        }
+        
+        // Add vibration to key interactions
+        function addVibrationToAction(element, pattern) {
+            if (pattern === undefined) pattern = [50];
+            element.addEventListener('click', () => {
+                vibrate(pattern);
+            });
+        }
+        
+        // Advanced features for power users
+        function enableAdvancedMode() {
+            if (settings.advanced) {
+                // Add advanced statistics tracking
+                // Add custom dice configurations
+                // Add macro recording capabilities
+                // Add scripting support for complex actions
+                showNotification('Advanced mode activated! Additional features unlocked.');
+            }
+        }
+        
+        // Performance optimization for animations
+        function optimizePerformance() {
+            // Reduce animations on lower-end devices
+            if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
+                document.documentElement.style.setProperty('--animation-duration', '0.2s');
+            }
+        }
+        
+        // Error handling and recovery
+        window.addEventListener('error', function(event) {
+            console.error('Toolkit error:', event.error);
+            showNotification('⚠️ An error occurred. Toolkit functionality may be limited.');
+        });
+        
+        // Offline support detection
+        function checkOnlineStatus() {
+            if (!navigator.onLine) {
+                showNotification('📱 Offline mode: All features still available!');
+            }
+        }
+        
+        window.addEventListener('online', () => {
+            showNotification('🌐 Back online! All features restored.');
+        });
+        
+        window.addEventListener('offline', checkOnlineStatus);
+        
+        // Initialize everything when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeToolkit();
+            optimizePerformance();
+            checkOnlineStatus();
+            
+            // Initialize vibration for interactive elements
+            document.querySelectorAll('.die, .roll-btn, .treasure-btn, .spell-card').forEach(element => {
+                addVibrationToAction(element);
+            });
+            
+            // Watch for advanced mode toggle
+            const advancedToggle = document.getElementById('advanced_toggle');
+            if (advancedToggle) {
+                advancedToggle.addEventListener('click', () => {
+                    setTimeout(enableAdvancedMode, 100);
+                });
+            }
+        });
+        
+        // Prevent context menu on right-click for better mobile experience
+        document.addEventListener('contextmenu', function(event) {
+            if (event.target.classList.contains('die') || 
+                event.target.classList.contains('roll-btn') ||
+                event.target.classList.contains('treasure-btn')) {
+                event.preventDefault();
+            }
+        });
+        
+        // Add fullscreen support for immersive gaming
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    showNotification('Fullscreen not supported on this device.');
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+        
+        // Double-tap to go fullscreen on mobile
+        let lastTap = 0;
+        document.addEventListener('touchend', function(event) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 500 && tapLength > 0) {
+                toggleFullscreen();
+            }
+            lastTap = currentTime;
+        });
+        
+        // Export functionality for sharing game state
+        function exportGameState() {
+            try {
+                const gameData = {
+                    stats: gameStats,
+                    timestamp: new Date().toISOString(),
+                    version: '1.0'
+                };
+                
+                const dataStr = JSON.stringify(gameData, null, 2);
+                const dataBlob = new Blob([dataStr], {type: 'application/json'});
+                
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(dataBlob);
+                link.download = 'heroquest_save.json';
+                link.click();
+                
+                showNotification('Game state exported successfully!');
+            } catch (error) {
+                showNotification('Export failed - feature not supported');
+            }
+        }
+        
+        // Add export button functionality
+        function addExportButton() {
+            const settingsPanel = document.querySelector('.settings-panel');
+            if (settingsPanel) {
+                const exportBtn = document.createElement('button');
+                exportBtn.className = 'roll-btn';
+                exportBtn.textContent = '📤 Export Data';
+                exportBtn.onclick = exportGameState;
+                exportBtn.style.marginTop = '10px';
+                exportBtn.style.width = '100%';
+                settingsPanel.appendChild(exportBtn);
+            }
+        }
+        
+        // Call this after DOM is loaded
+        setTimeout(addExportButton, 1000);
+    </script>
+</body>
+</html>

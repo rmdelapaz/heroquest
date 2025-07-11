@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Advanced Combat Tactics and Strategy</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #8b0000 0%, #2f1b14 100%);
+            color: #ffebcd;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+        h1 {
+            color: #ff4500;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #ffa500;
+            border-bottom: 2px solid #ffa500;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .tactics-box {
+            background: linear-gradient(135deg, #2f1b14 0%, #8b4513 100%);
+            border: 2px solid #ff4500;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #ffa500;
+        }
+        .formation-demo {
+            background: rgba(255, 69, 0, 0.1);
+            border: 2px solid #ff4500;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .combat-principle {
+            background: rgba(255, 165, 0, 0.1);
+            border: 2px solid #ffa500;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .hero-role {
+            background: linear-gradient(135deg, #1a0a0a 0%, #3d2914 100%);
+            border: 2px solid #8b4513;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 220px;
+            vertical-align: top;
+        }
+        canvas {
+            border: 2px solid #ff4500;
+            border-radius: 10px;
+            background: #000;
+            display: block;
+            margin: 20px auto;
+        }
+        .battlefield-grid {
+            display: grid;
+            grid-template-columns: repeat(8, 40px);
+            grid-template-rows: repeat(6, 40px);
+            gap: 2px;
+            margin: 20px auto;
+            border: 3px solid #ff4500;
+            background: #000;
+            padding: 10px;
+            width: fit-content;
+        }
+        .grid-cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #444;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .hero { background-color: #4a90e2; }
+        .monster { background-color: #ff4500; }
+        .wall { background-color: #8b4513; }
+        .door { background-color: #654321; }
+        .empty { background-color: #222; }
+        .highlight { background-color: #ffd700 !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚔️ Advanced Combat Tactics & Strategy 🛡️</h1>
+        
+        <div class="combat-principle">
+            <h2>🎯 The Art of War: HeroQuest Edition</h2>
+            <p><strong>Combat in HeroQuest is like chess meets action movies!</strong> Every move matters, positioning is everything, and teamwork transforms ordinary heroes into legendary warriors. Think of it as directing your own Lord of the Rings battle sequence - every character has a role, every position tells a story.</p>
+            
+            <p><strong>Real-world analogy:</strong> It's like being a football coach calling plays. You have different player types (quarterback, running back, linebacker), you need to read the opposing team's formation, and you adapt your strategy based on the field conditions and score.</p>
+        </div>
+
+        <h2>🏛️ The Four Pillars of Combat Mastery</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Combat Mastery] --> B[Positioning]
+                A --> C[Timing]
+                A --> D[Resource Management]
+                A --> E[Teamwork]
+                
+                B --> B1[Control Space]
+                B --> B2[Use Terrain]
+                B --> B3[Flanking]
+                
+                C --> C1[Initiative Order]
+                C --> C2[Action Economy]
+                C --> C3[Spell Timing]
+                
+                D --> D1[Health Potions]
+                D --> D2[Spell Management]
+                D --> D3[Equipment Use]
+                
+                E --> E1[Formation Fighting]
+                E --> E2[Target Priority]
+                E --> E3[Mutual Support]
+                
+                style A fill:#ff4500,stroke:#333,stroke-width:3px
+                style B fill:#ffa500,stroke:#333,stroke-width:2px
+                style C fill:#ffa500,stroke:#333,stroke-width:2px
+                style D fill:#ffa500,stroke:#333,stroke-width:2px
+                style E fill:#ffa500,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🎪 Hero Roles: Your Combat Orchestra</h2>
+        
+        <div class="combat-principle">
+            <p><strong>Like a symphony orchestra, each hero plays a different instrument, but they must harmonize to create beautiful music (or in this case, epic victories)!</strong></p>
+        </div>
+
+        <div class="hero-role">
+            <h3>🛡️ The Barbarian: The Tank</h3>
+            <p><strong>Football Position:</strong> Linebacker</p>
+            <p><strong>Movie Role:</strong> The action hero who charges first</p>
+            <p><strong>Combat Role:</strong> Absorb damage, control frontlines</p>
+            <p><strong>Key Tactics:</strong></p>
+            <ul>
+                <li>Block doorways to protect teammates</li>
+                <li>Engage multiple weak enemies</li>
+                <li>Draw enemy attacks away from fragile allies</li>
+                <li>Use high Body Points to scout dangerous areas</li>
+            </ul>
+        </div>
+
+        <div class="hero-role">
+            <h3>🏹 The Elf: The Versatile Fighter</h3>
+            <p><strong>Football Position:</strong> Safety (can do everything)</p>
+            <p><strong>Movie Role:</strong> The skilled warrior-mage</p>
+            <p><strong>Combat Role:</strong> Flexible damage dealer and support</p>
+            <p><strong>Key Tactics:</strong></p>
+            <ul>
+                <li>Support wherever needed most</li>
+                <li>Use spells for crowd control</li>
+                <li>Flank enemies for surprise attacks</li>
+                <li>Bridge the gap between front and back lines</li>
+            </ul>
+        </div>
+
+        <div class="hero-role">
+            <h3>🔮 The Wizard: The Artillery</h3>
+            <p><strong>Football Position:</strong> Quarterback</p>
+            <p><strong>Movie Role:</strong> The master strategist with big moments</p>
+            <p><strong>Combat Role:</strong> High-impact spells and healing</p>
+            <p><strong>Key Tactics:</strong></p>
+            <ul>
+                <li>Stay behind frontline fighters</li>
+                <li>Save powerful spells for crucial moments</li>
+                <li>Focus on area-effect damage</li>
+                <li>Keep healing spells ready for emergencies</li>
+            </ul>
+        </div>
+
+        <div class="hero-role">
+            <h3>🗡️ The Dwarf: The Specialist</h3>
+            <p><strong>Football Position:</strong> Special Teams</p>
+            <p><strong>Movie Role:</strong> The expert who solves unique problems</p>
+            <p><strong>Combat Role:</strong> Utility fighter and problem solver</p>
+            <p><strong>Key Tactics:</strong></p>
+            <ul>
+                <li>Handle traps and special mechanics</li>
+                <li>Solid mid-range combat support</li>
+                <li>Use defensive abilities to protect others</li>
+                <li>Scout and handle technical challenges</li>
+            </ul>
+        </div>
+
+        <h2>🗺️ Battlefield Positioning: The Chess Game</h2>
+        
+        <canvas id="positioning_tactics_canvas" width="600" height="400"></canvas>
+        
+        <div class="tactics-box">
+            <h3>🎯 The Golden Rules of Positioning</h3>
+            
+            <p><strong>🏰 Control the Doorways</strong></p>
+            <p>Doorways are like medieval castle gates - whoever controls them controls the flow of battle. Use your toughest hero to block doorways, forcing enemies to fight you one at a time instead of swarming.</p>
+            
+            <p><strong>🎭 The Theater Rule: "Don't Turn Your Back"</strong></p>
+            <p>Like actors on stage, always face your audience (the enemies). Getting surrounded is like being mobbed by fans - overwhelming and dangerous!</p>
+            
+            <p><strong>⚡ The Lightning Strike Principle</strong></p>
+            <p>Hit hard, hit fast, hit together. Like a lightning bolt, focus all your power on one target rather than spreading damage around.</p>
+        </div>
+
+        <h2>🎮 Interactive Formation Trainer</h2>
+        
+        <div class="formation-demo">
+            <p><strong>Click the grid below to practice formations!</strong> Try different setups and see how positioning affects your tactical options.</p>
+            
+            <div class="battlefield-grid" id="formation_grid">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+            
+            <p><strong>Legend:</strong> 🛡️ Barbarian | 🏹 Elf | 🔮 Wizard | 🗡️ Dwarf | 👹 Monster | ⬛ Wall | 🚪 Door</p>
+            
+            <div id="formation_analysis" style="margin-top: 20px; padding: 15px; background: rgba(255, 165, 0, 0.1); border-radius: 10px;">
+                <strong>Formation Analysis:</strong> Position your heroes and monsters to see tactical analysis!
+            </div>
+        </div>
+
+        <h2>⚔️ Advanced Combat Techniques</h2>
+        
+        <div class="tactics-box">
+            <h3>🎪 The Pincer Movement (Like Jaws Closing)</h3>
+            <p><strong>Concept:</strong> Attack enemies from multiple directions simultaneously</p>
+            <p><strong>Execution:</strong> Send fast heroes (Elf/Dwarf) around to flank while tank heroes engage frontally</p>
+            <p><strong>Why it works:</strong> Enemies can't defend all directions at once - like trying to watch multiple tennis balls</p>
+            
+            <h3>🔄 The Rotation Defense (Like Basketball Switching)</h3>
+            <p><strong>Concept:</strong> Continuously move heroes to support whoever is under pressure</p>
+            <p><strong>Execution:</strong> When one hero takes damage, others shift to provide support and relief</p>
+            <p><strong>Why it works:</strong> Prevents any single hero from being overwhelmed - like rotating fresh players in sports</p>
+            
+            <h3>⚡ The Alpha Strike (Like Military Shock and Awe)</h3>
+            <p><strong>Concept:</strong> Concentrate all firepower on the biggest threat first</p>
+            <p><strong>Execution:</strong> All heroes focus attacks on the most dangerous enemy</p>
+            <p><strong>Why it works:</strong> Dead enemies can't fight back - eliminate threats completely rather than weakening many</p>
+        </div>
+
+        <h2>🧠 Combat Psychology: Reading the Battlefield</h2>
+        
+        <canvas id="battlefield_analysis_canvas" width="600" height="350"></canvas>
+        
+        <div class="combat-principle">
+            <h3>🔍 The Sherlock Holmes Approach</h3>
+            <p><strong>Every battlefield tells a story - learn to read it like a detective:</strong></p>
+            
+            <p><strong>🏃 Enemy Movement Patterns:</strong> Where are they trying to go? What are they protecting?</p>
+            <p><strong>💀 Threat Assessment:</strong> Which enemy can hurt you most? Which is easiest to eliminate?</p>
+            <p><strong>🏰 Environmental Clues:</strong> Can you use furniture, walls, or traps to your advantage?</p>
+            <p><strong>⏰ Time Pressure:</strong> Are reinforcements coming? Do you have time for a long fight?</p>
+        </div>
+
+        <h2>🎯 Target Priority: The Triage System</h2>
+        
+        <div class="formation-demo">
+            <h3>🚨 Emergency Room Principle</h3>
+            <p><strong>Like doctors in an ER, you must quickly decide who needs attention first:</strong></p>
+            
+            <p><strong>🔴 Priority 1 - Immediate Threat:</strong> High damage enemies that can kill heroes quickly</p>
+            <p><strong>🟡 Priority 2 - Force Multipliers:</strong> Enemies that make other monsters stronger or summon reinforcements</p>
+            <p><strong>🟢 Priority 3 - Nuisance Enemies:</strong> Low threat monsters that are mostly distractions</p>
+            
+            <p><strong>Real Example:</strong> In a room with 1 Chaos Warrior and 3 Goblins, always kill the Chaos Warrior first - it can kill a hero in one hit, while Goblins are just annoying!</p>
+        </div>
+
+        <h2>🌟 Environmental Combat: Use Everything!</h2>
+        
+        <div class="tactics-box">
+            <h3>🎬 Action Movie Physics</h3>
+            <p><strong>Think like Jackie Chan - everything in the room is a potential weapon or tool!</strong></p>
+            
+            <p><strong>🪑 Furniture as Barriers:</strong> Tables and chairs block movement and create cover</p>
+            <p><strong>🕳️ Pits and Traps:</strong> Lure enemies into dangerous terrain</p>
+            <p><strong>🔥 Fire and Hazards:</strong> Environmental damage affects everyone - use wisely!</p>
+            <p><strong>🚪 Doors as Weapons:</strong> Open/close doors to control enemy movement</p>
+            <p><strong>💡 Light Sources:</strong> Darkness affects vision - control the lighting!</p>
+        </div>
+
+        <h2>⚗️ Advanced Spell Tactics</h2>
+        
+        <canvas id="spell_tactics_canvas" width="600" height="300"></canvas>
+        
+        <div class="combat-principle">
+            <h3>🧙‍♂️ The Spell Weaver's Art</h3>
+            <p><strong>Spells are like special moves in fighting games - timing and positioning are everything!</strong></p>
+            
+            <p><strong>⚡ Offensive Spells:</strong> Use when enemies are grouped together for maximum effect</p>
+            <p><strong>🛡️ Defensive Spells:</strong> Cast BEFORE you need them, not after damage is done</p>
+            <p><strong>🔄 Utility Spells:</strong> Think creatively - healing can be used mid-combat, not just after</p>
+            <p><strong>🎯 Spell Combinations:</strong> Some spells work better together - coordinate with your team!</p>
+        </div>
+
+        <h2>🎮 Combat Scenarios for Practice</h2>
+        
+        <div class="formation-demo">
+            <h3>🎭 Training Scenarios</h3>
+            
+            <p><strong>📚 Scenario 1: The Narrow Corridor</strong></p>
+            <p><em>4 heroes vs 3 Orcs in a 1-square-wide hallway</em></p>
+            <p><strong>Challenge:</strong> How do you use your ranged heroes when melee fighters block the corridor?</p>
+            
+            <p><strong>🏰 Scenario 2: The Throne Room</strong></p>
+            <p><em>Open room with a powerful boss and weak minions</em></p>
+            <p><strong>Challenge:</strong> Do you clear minions first or focus fire on the boss?</p>
+            
+            <p><strong>🕳️ Scenario 3: The Trap Room</strong></p>
+            <p><em>Combat while avoiding environmental hazards</em></p>
+            <p><strong>Challenge:</strong> How do you fight when movement is restricted?</p>
+        </div>
+
+        <h2>📊 Combat Mathematics: The Numbers Game</h2>
+        
+        <div class="tactics-box">
+            <h3>🧮 The Probability Detective</h3>
+            <p><strong>Understanding dice odds makes you a better tactician:</strong></p>
+            
+            <p><strong>⚔️ Attack Success Rates:</strong></p>
+            <ul>
+                <li>1 die: ~33% chance of success (1 skull out of 3 faces)</li>
+                <li>2 dice: ~56% chance of at least 1 skull</li>
+                <li>3 dice: ~70% chance of at least 1 skull</li>
+            </ul>
+            
+            <p><strong>🛡️ Defense Success Rates:</strong></p>
+            <ul>
+                <li>Fighting defensively often better than going all-out attack</li>
+                <li>Blocking 1 damage is like gaining 1 Body Point</li>
+                <li>Sometimes retreat and heal is better than fighting to the death</li>
+            </ul>
+        </div>
+
+        <h2>🚀 Advanced Team Coordination</h2>
+        
+        <div class="combat-principle">
+            <h3>🎵 The Orchestra Conductor Approach</h3>
+            <p><strong>Great teams communicate like musicians in an orchestra - everyone knows their part and when to play it!</strong></p>
+            
+            <p><strong>🗣️ Combat Communication:</strong></p>
+            <ul>
+                <li>"Focus fire on the Chaos Warrior!"</li>
+                <li>"I'm low on health, need healing!"</li>
+                <li>"Moving to flank, cover me!"</li>
+                <li>"Save your spells, bigger fight coming!"</li>
+            </ul>
+            
+            <p><strong>🎯 Synchronized Actions:</strong></p>
+            <ul>
+                <li>Coordinate spell timing for maximum impact</li>
+                <li>Plan movement so everyone gets optimal positioning</li>
+                <li>Share resources (potions, equipment) strategically</li>
+                <li>Take turns absorbing damage so no one dies</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Mastery Challenges</h2>
+        
+        <div class="formation-demo">
+            <h3>🎯 Test Your Skills</h3>
+            <p><strong>Can you solve these tactical puzzles?</strong></p>
+            
+            <p><strong>🧩 Puzzle 1:</strong> You have 4 heroes at 1 Body Point each facing 1 enemy at 4 Body Points. How do you win without losing anyone?</p>
+            
+            <p><strong>🧩 Puzzle 2:</strong> Your Wizard is surrounded by 3 Goblins. What's the best spell to cast and why?</p>
+            
+            <p><strong>🧩 Puzzle 3:</strong> You find a room with treasure but it's obviously trapped. How do you get the treasure safely?</p>
+            
+            <p><em>Answers require creative thinking and rule knowledge - discuss with your group!</em></p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Spells, Magic, and Mystical Arts"</strong> - diving deep into the magical system, spell combinations, and how to weave magic into your adventures like a true wizard. We'll cover spell timing, magical item management, and creating dramatic magical moments!</p>
+        
+        <div class="combat-principle">
+            <p><strong>Remember:</strong> Great combat isn't about rolling perfect dice - it's about making smart decisions, working as a team, and creating epic moments that become legendary stories. Every battle is a chance to prove your heroes' worth and create memories that last forever!</p>
+        </div>
+    </div>
+
+    <script>
+        // Positioning Tactics Canvas
+        const posCanvas = document.getElementById('positioning_tactics_canvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        function drawPositioningTactics() {
+            posCtx.clearRect(0, 0, posCanvas.width, posCanvas.height);
+            
+            // Background
+            posCtx.fillStyle = '#2f1b14';
+            posCtx.fillRect(0, 0, posCanvas.width, posCanvas.height);
+            
+            // Draw room layout
+            posCtx.strokeStyle = '#8b4513';
+            posCtx.lineWidth = 4;
+            posCtx.strokeRect(50, 50, 500, 300);
+            
+            // Draw doorway
+            posCtx.fillStyle = '#654321';
+            posCtx.fillRect(270, 50, 60, 20);
+            
+            // Draw heroes in formation
+            const heroes = [
+                {x: 150, y: 150, color: '#4a90e2', label: '🛡️'},
+                {x: 200, y: 200, color: '#32cd32', label: '🏹'},
+                {x: 100, y: 200, color: '#9370db', label: '🔮'},
+                {x: 150, y: 250, color: '#cd853f', label: '🗡️'}
+            ];
+            
+            heroes.forEach(hero => {
+                posCtx.fillStyle = hero.color;
+                posCtx.fillRect(hero.x - 15, hero.y - 15, 30, 30);
+                posCtx.fillStyle = '#fff';
+                posCtx.font = '16px Arial';
+                posCtx.textAlign = 'center';
+                posCtx.fillText(hero.label, hero.x, hero.y + 5);
+            });
+            
+            // Draw enemies
+            const enemies = [
+                {x: 450, y: 150, label: '👹'},
+                {x: 400, y: 200, label: '👹'},
+                {x: 500, y: 200, label: '👹'}
+            ];
+            
+            enemies.forEach(enemy => {
+                posCtx.fillStyle = '#ff4500';
+                posCtx.fillRect(enemy.x - 15, enemy.y - 15, 30, 30);
+                posCtx.fillStyle = '#fff';
+                posCtx.fillText(enemy.label, enemy.x, enemy.y + 5);
+            });
+            
+            // Draw tactical lines
+            posCtx.strokeStyle = '#ffd700';
+            posCtx.lineWidth = 2;
+            posCtx.setLineDash([5, 5]);
+            
+            // Frontline
+            posCtx.beginPath();
+            posCtx.moveTo(170, 130);
+            posCtx.lineTo(170, 270);
+            posCtx.stroke();
+            
+            // Attack vectors
+            posCtx.strokeStyle = '#ff6347';
+            posCtx.setLineDash([]);
+            heroes.forEach(hero => {
+                enemies.forEach(enemy => {
+                    posCtx.beginPath();
+                    posCtx.moveTo(hero.x, hero.y);
+                    posCtx.lineTo(enemy.x, enemy.y);
+                    posCtx.stroke();
+                });
+            });
+            
+            posCtx.fillStyle = '#ffebcd';
+            posCtx.font = '16px Arial';
+            posCtx.textAlign = 'center';
+            posCtx.fillText('Classic Formation: Tank Front, Support Back', 300, 30);
+            posCtx.textAlign = 'left';
+        }
+        
+        drawPositioningTactics();
+        
+        // Interactive Formation Grid
+        const gridContainer = document.getElementById('formation_grid');
+        const analysisDiv = document.getElementById('formation_analysis');
+        let gridState = [];
+        
+        // Initialize grid
+        for (let i = 0; i < 48; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'grid-cell empty';
+            cell.textContent = '';
+            cell.addEventListener('click', () => toggleCell(i));
+            gridContainer.appendChild(cell);
+            gridState.push('empty');
+        }
+        
+        // Add some walls and doors
+        const walls = [0, 1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 41, 42, 43, 44, 45, 46, 47];
+        walls.forEach(index => {
+            if (index !== 3 && index !== 4) { // Leave door spaces
+                gridContainer.children[index].className = 'grid-cell wall';
+                gridContainer.children[index].textContent = '⬛';
+                gridState[index] = 'wall';
+            }
+        });
+        
+        // Add doors
+        gridContainer.children[3].className = 'grid-cell door';
+        gridContainer.children[3].textContent = '🚪';
+        gridState[3] = 'door';
+        gridContainer.children[4].className = 'grid-cell door';
+        gridContainer.children[4].textContent = '🚪';
+        gridState[4] = 'door';
+        
+        const cellTypes = ['empty', 'hero-barbarian', 'hero-elf', 'hero-wizard', 'hero-dwarf', 'monster'];
+        const cellSymbols = ['', '🛡️', '🏹', '🔮', '🗡️', '👹'];
+        let currentType = 0;
+        
+        function toggleCell(index) {
+            if (gridState[index] === 'wall' || gridState[index] === 'door') return;
+            
+            currentType = (currentType + 1) % cellTypes.length;
+            const cell = gridContainer.children[index];
+            
+            gridState[index] = cellTypes[currentType];
+            cell.textContent = cellSymbols[currentType];
+            
+            if (cellTypes[currentType].includes('hero')) {
+                cell.className = 'grid-cell hero';
+            } else if (cellTypes[currentType] === 'monster') {
+                cell.className = 'grid-cell monster';
+            } else {
+                cell.className = 'grid-cell empty';
+            }
+            
+            analyzeFormation();
+        }
+        
+        function analyzeFormation() {
+            const heroes = gridState.filter(cell => cell.includes('hero')).length;
+            const monsters = gridState.filter(cell => cell === 'monster').length;
+            
+            let analysis = `Heroes: ${heroes}, Monsters: ${monsters}. `;
+            
+            if (heroes > 0 && monsters > 0) {
+                analysis += "Good tactical setup! ";
+                
+                // Check for formation principles
+                const heroPositions = [];
+                const monsterPositions = [];
+                
+                gridState.forEach((cell, index) => {
+                    if (cell.includes('hero')) heroPositions.push(index);
+                    if (cell === 'monster') monsterPositions.push(index);
+                });
+                
+                // Check if heroes are grouped
+                const heroesGrouped = heroPositions.some(pos1 => 
+                    heroPositions.some(pos2 => Math.abs(pos1 - pos2) <= 1 || Math.abs(pos1 - pos2) === 8)
+                );
+                
+                if (heroesGrouped) {
+                    analysis += "Heroes are supporting each other! ";
+                } else {
+                    analysis += "Consider grouping heroes for mutual support. ";
+                }
+                
+                // Check door control
+                const doorControl = heroPositions.some(pos => pos === 11 || pos === 12);
+                if (doorControl) {
+                    analysis += "Good door control! ";
+                }
+            } else if (heroes === 0) {
+                analysis += "Add some heroes to see tactical analysis!";
+            } else if (monsters === 0) {
+                analysis += "Add some monsters to create a combat scenario!";
+            }
+            
+            analysisDiv.innerHTML = `<strong>Formation Analysis:</strong> ${analysis}`;
+        }
+        
+        // Battlefield Analysis Canvas
+        const battleCanvas = document.getElementById('battlefield_analysis_canvas');
+        const battleCtx = battleCanvas.getContext('2d');
+        
+        function drawBattlefieldAnalysis() {
+            battleCtx.clearRect(0, 0, battleCanvas.width, battleCanvas.height);
+            
+            // Background
+            battleCtx.fillStyle = '#2f1b14';
+            battleCtx.fillRect(0, 0, battleCanvas.width, battleCanvas.height);
+            
+            // Draw threat assessment visualization
+            const threats = [
+                {x: 100, y: 100, level: 3, name: 'Chaos Warrior'},
+                {x: 300, y: 150, level: 1, name: 'Goblin'},
+                {x: 500, y: 120, level: 2, name: 'Orc'},
+                {x: 200, y: 250, level: 1, name: 'Goblin'}
+            ];
+            
+            threats.forEach(threat => {
+                // Draw threat level circle
+                const colors = ['#32cd32', '#ffa500', '#ff4500'];
+                battleCtx.fillStyle = colors[threat.level - 1];
+                battleCtx.beginPath();
+                battleCtx.arc(threat.x, threat.y, 20 + threat.level * 10, 0, Math.PI * 2);
+                battleCtx.fill();
+                
+                // Draw enemy
+                battleCtx.fillStyle = '#000';
+                battleCtx.font = '20px Arial';
+                battleCtx.textAlign = 'center';
+                battleCtx.fillText('👹', threat.x, threat.y + 7);
+                
+                // Draw threat level
+                battleCtx.fillStyle = '#fff';
+                battleCtx.font = '12px Arial';
+                battleCtx.fillText(threat.level.toString(), threat.x + 25, threat.y - 25);
+                
+                // Draw name
+                battleCtx.fillStyle = '#ffebcd';
+                battleCtx.font = '10px Arial';
+                battleCtx.fillText(threat.name, threat.x, threat.y + 50);
+            });
+            
+            battleCtx.fillStyle = '#ffebcd';
+            battleCtx.font = '16px Arial';
+            battleCtx.textAlign = 'center';
+            battleCtx.fillText('Threat Assessment: Size = Danger Level', 300, 30);
+            battleCtx.fillText('Green = Low, Orange = Medium, Red = High', 300, 320);
+            battleCtx.textAlign = 'left';
+        }
+        
+        drawBattlefieldAnalysis();
+        
+        // Spell Tactics Canvas
+        const spellCanvas = document.getElementById('spell_tactics_canvas');
+        const spellCtx = spellCanvas.getContext('2d');
+        
+        function drawSpellTactics() {
+            spellCtx.clearRect(0, 0, spellCanvas.width, spellCanvas.height);
+            
+            // Background
+            spellCtx.fillStyle = '#2f1b14';
+            spellCtx.fillRect(0, 0, spellCanvas.width, spellCanvas.height);
+            
+            // Draw spell areas of effect
+            const spells = [
+                {x: 150, y: 150, radius: 40, color: '#ff4500', name: 'Fireball'},
+                {x: 350, y: 150, radius: 60, color: '#4169e1', name: 'Lightning'},
+                {x: 500, y: 150, radius: 30, color: '#32cd32', name: 'Heal'}
+            ];
+            
+            spells.forEach(spell => {
+                // Draw spell effect
+                spellCtx.fillStyle = spell.color + '40';
+                spellCtx.beginPath();
+                spellCtx.arc(spell.x, spell.y, spell.radius, 0, Math.PI * 2);
+                spellCtx.fill();
+                
+                spellCtx.strokeStyle = spell.color;
+                spellCtx.lineWidth = 3;
+                spellCtx.stroke();
+                
+                // Draw caster
+                spellCtx.fillStyle = '#9370db';
+                spellCtx.fillRect(spell.x - 15, spell.y - 15, 30, 30);
+                spellCtx.fillStyle = '#fff';
+                spellCtx.font = '16px Arial';
+                spellCtx.textAlign = 'center';
+                spellCtx.fillText('🔮', spell.x, spell.y + 5);
+                
+                // Draw spell name
+                spellCtx.fillStyle = '#ffebcd';
+                spellCtx.font = '12px Arial';
+                spellCtx.fillText(spell.name, spell.x, spell.y + 80);
+            });
+            
+            spellCtx.fillStyle = '#ffebcd';
+            spellCtx.font = '16px Arial';
+            spellCtx.textAlign = 'center';
+            spellCtx.fillText('Spell Area Effects and Positioning', 300, 30);
+            spellCtx.textAlign = 'left';
+        }
+        
+        drawSpellTactics();
+    </script>
+</body>
+</html>

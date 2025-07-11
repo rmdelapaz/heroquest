@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Rise of the Dread Moon - Lycanthropic Transformation and Lunar Cycles</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 20%, #16213e 40%, #e94560 60%, #f39800 80%, #ffd700 100%);
+            color: #f5f5dc;
+        }
+        .container {
+            background: rgba(15, 15, 35, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.6);
+            border: 2px solid #ff6b6b;
+        }
+        h1 {
+            color: #ff6b6b;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(255, 107, 107, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #ffa726;
+            border-bottom: 2px solid #ffa726;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .lunar-principle {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #ffa726;
+        }
+        .lycanthrope-card {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+            border: 2px solid #e94560;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 320px;
+            vertical-align: top;
+        }
+        .transformation-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .moon-analysis {
+            background: rgba(255, 167, 38, 0.1);
+            border: 2px solid #ffa726;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            background: #000011;
+            display: block;
+            margin: 20px auto;
+        }
+        .moon-phase-meter {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to right, #000000, #333333, #666666, #cccccc, #ffffff, #cccccc, #666666, #333333);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .moon-indicator {
+            position: absolute;
+            top: -3px;
+            width: 6px;
+            height: 36px;
+            background: #ffd700;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+        .dread-moon-portal {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, #ff6b6b, #e94560, #0f0f23);
+            border: 3px solid #ffa726;
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            animation: lunar-pulse 4s ease-in-out infinite;
+            position: relative;
+        }
+        @keyframes lunar-pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(255, 107, 107, 0.6); }
+            50% { box-shadow: 0 0 60px rgba(233, 69, 96, 1); }
+        }
+        .beast-forms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .beast-showcase {
+            background: rgba(233, 69, 96, 0.2);
+            border: 2px solid #e94560;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+        .transformation-tracker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+        }
+        .transform-stage {
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            border: 2px solid #ffa726;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0f0f23;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            font-size: 12px;
+        }
+        .lunar-battlefield {
+            display: grid;
+            grid-template-columns: repeat(10, 30px);
+            grid-template-rows: repeat(8, 30px);
+            gap: 1px;
+            margin: 20px auto;
+            border: 3px solid #ff6b6b;
+            background: #000011;
+            padding: 10px;
+            width: fit-content;
+        }
+        .lunar-cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #e94560;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .moonlight { background-color: #ffd700; }
+        .shadow { background-color: #333333; }
+        .cursed-ground { background-color: #800080; }
+        .normal-terrain { background-color: #654321; }
+        .lycanthrope { background-color: #ff4500; }
+        .human-form { background-color: #4169e1; }
+        .beast-form { background-color: #dc143c; }
+        .moon-cycles {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+        }
+        .moon-phase {
+            background: linear-gradient(135deg, #333333, #cccccc);
+            border: 2px solid #ffa726;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .moon-phase:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 167, 38, 0.8);
+        }
+        .moon-phase.active {
+            background: linear-gradient(135deg, #ffd700, #ff6b6b);
+            color: #000;
+        }
+        .night-sky {
+            position: relative;
+            overflow: hidden;
+        }
+        .star {
+            position: absolute;
+            color: #ffd700;
+            font-size: 8px;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        .curse-meter {
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336, #8e24aa);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .curse-indicator {
+            position: absolute;
+            top: -2px;
+            width: 6px;
+            height: 29px;
+            background: #fff;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container night-sky">
+        <h1>🌙 Rise of the Dread Moon: Lycanthropic Transformation & Lunar Cycles 🐺</h1>
+        
+        <div class="lunar-principle">
+            <h2>🌕 The Crimson Curse: When Heroes Become the Monsters</h2>
+            <p><strong>Rise of the Dread Moon wasn't just an expansion - it was a terrifying exploration of the monster within that every hero fears becoming!</strong> Like The Wolf Man or An American Werewolf in London, this expansion proved that sometimes the greatest enemy isn't some distant evil, but the beast that lies dormant in our own souls, waiting for the right trigger to emerge. It transformed HeroQuest from external adventure into internal horror.</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of this expansion like going from fighting external enemies to battling your own worst impulses. The original game was about heroes vs. monsters; Rise of the Dread Moon is about heroes discovering they ARE the monsters. It's the difference between fighting a werewolf and becoming one - knowing that every full moon, you'll lose control and hurt the people you've sworn to protect!</p>
+        </div>
+
+        <div class="dread-moon-portal">
+            🌕
+        </div>
+
+        <div class="moon-phase-meter">
+            <div class="moon-indicator" id="moon_indicator" style="left: 75%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Moon Phase: <span id="moon_phase">FULL MOON RISING</span></em></p>
+
+        <div class="curse-meter">
+            <div class="curse-indicator" id="curse_indicator" style="left: 60%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Curse Severity: <span id="curse_level">LYCANTHROPIC SURGE</span></em></p>
+
+        <h2>🐺 The Lycanthropic Trinity: Transformation Mechanics</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Lycanthropic System] --> B[Moon Phase Tracking]
+                A --> C[Transformation Triggers]
+                A --> D[Dual Nature Mechanics]
+                A --> E[Curse Management]
+                
+                B --> B1[New Moon - Calm]
+                B --> B2[Waxing - Growing Power]
+                B --> B3[Full Moon - Beast Dominance]
+                B --> B4[Waning - Returning Control]
+                
+                C --> C1[Emotional Stress]
+                C --> C2[Physical Damage]
+                C --> C3[Lunar Proximity]
+                C --> C4[Voluntary Change]
+                
+                D --> D1[Human Form Abilities]
+                D --> D2[Beast Form Powers]
+                D --> D3[Hybrid Advantages]
+                D --> D4[Identity Conflicts]
+                
+                E --> E1[Curse Progression]
+                E --> E2[Control Methods]
+                E --> E3[Cure Seeking]
+                E --> E4[Acceptance Path]
+                
+                style A fill:#ff6b6b,stroke:#333,stroke-width:3px
+                style B fill:#ffa726,stroke:#333,stroke-width:2px
+                style C fill:#ffa726,stroke:#333,stroke-width:2px
+                style D fill:#ffa726,stroke:#333,stroke-width:2px
+                style E fill:#ffa726,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🌙 Interactive Moon Phase Tracker</h2>
+        
+        <div class="moon-cycles">
+            <div class="moon-phase" onclick="setMoonPhase(0, 'new')" title="New Moon">
+                🌑
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(1, 'waxing')" title="Waxing Crescent">
+                🌒
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(2, 'quarter')" title="First Quarter">
+                🌓
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(3, 'waxing-gibbous')" title="Waxing Gibbous">
+                🌔
+            </div>
+            <div class="moon-phase active" onclick="setMoonPhase(4, 'full')" title="Full Moon">
+                🌕
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(5, 'waning-gibbous')" title="Waning Gibbous">
+                🌖
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(6, 'last-quarter')" title="Last Quarter">
+                🌗
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(7, 'waning')" title="Waning Crescent">
+                🌘
+            </div>
+        </div>
+
+        <div id="moon_effects" style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 10px;">
+            <strong>Lunar Effects:</strong> Full Moon - Maximum lycanthropic power! Transformation is inevitable and beast form dominates.
+        </div>
+
+        <h2>🔄 The Transformation Cycle: Beast Within</h2>
+        
+        <div class="transformation-tracker">
+            <div class="transform-stage">
+                <div style="font-size: 20px;">😌</div>
+                <div>Human</div>
+                <div>Control</div>
+            </div>
+            <div style="font-size: 24px; color: #ffa726;">→</div>
+            <div class="transform-stage">
+                <div style="font-size: 20px;">😰</div>
+                <div>Struggle</div>
+                <div>Tension</div>
+            </div>
+            <div style="font-size: 24px; color: #ffa726;">→</div>
+            <div class="transform-stage">
+                <div style="font-size: 20px;">😤</div>
+                <div>Change</div>
+                <div>Beginning</div>
+            </div>
+            <div style="font-size: 24px; color: #ffa726;">→</div>
+            <div class="transform-stage">
+                <div style="font-size: 20px;">🐺</div>
+                <div>Beast</div>
+                <div>Dominant</div>
+            </div>
+            <div style="font-size: 24px; color: #ffa726;">→</div>
+            <div class="transform-stage">
+                <div style="font-size: 20px;">😱</div>
+                <div>Return</div>
+                <div>Horror</div>
+            </div>
+        </div>
+
+        <h2>🐺 Lycanthropic Combat: Dual Nature Warfare</h2>
+        
+        <canvas id="lycanthrope_combat_canvas" width="600" height="300"></canvas>
+        
+        <div class="transformation-box">
+            <h3>⚔️ Fighting with Two Souls</h3>
+            <p><strong>Lycanthropic heroes must balance human strategy with beast instincts:</strong></p>
+            
+            <p><strong>😇 Human Form Advantages:</strong></p>
+            <ul>
+                <li>Full strategic thinking and spell use</li>
+                <li>Equipment and weapon mastery</li>
+                <li>Social interaction and communication</li>
+                <li>Moral compass and ethical decision making</li>
+            </ul>
+            
+            <p><strong>🐺 Beast Form Powers:</strong></p>
+            <ul>
+                <li>Enhanced strength, speed, and senses</li>
+                <li>Natural weapons (claws, fangs, bite)</li>
+                <li>Damage resistance and healing factor</li>
+                <li>Intimidation and fear effects</li>
+            </ul>
+            
+            <p><strong>⚖️ The Internal Conflict:</strong></p>
+            <ul>
+                <li>Human mind vs. beast instincts in decision making</li>
+                <li>Risk of harming allies during transformation</li>
+                <li>Equipment restrictions in beast form</li>
+                <li>Moral guilt over actions taken as beast</li>
+            </ul>
+        </div>
+
+        <h2>🌙 Interactive Lycanthrope Battlefield</h2>
+        
+        <div class="moon-analysis">
+            <p><strong>Navigate the cursed landscape!</strong> Click terrain to see how different environments affect lycanthropic abilities and transformations.</p>
+            
+            <div class="lunar-battlefield" id="lunar_battlefield">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+            
+            <p><strong>Terrain Legend:</strong> 🌙 Moonlight | 🌑 Shadow | 💜 Cursed Ground | 🌍 Normal | 🔥 Lycanthrope | 👤 Human | 🐺 Beast</p>
+            
+            <div id="terrain_effects" style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 10px;">
+                <strong>Environmental Effects:</strong> Click terrain tiles to analyze lycanthropic interactions with the environment!
+            </div>
+        </div>
+
+        <h2>🐺 The Lycanthrope Bestiary: Pack Mentality</h2>
+        
+        <div class="beast-forms">
+            <div class="beast-showcase">
+                <h4>🐺 Alpha Werewolf</h4>
+                <p><strong>The Pack Leader</strong></p>
+                <p><strong>Origin:</strong> Ancient curse bloodline, born lycanthrope</p>
+                <p><strong>Powers:</strong> Command pack, forced transformation of others</p>
+                <p><strong>Weakness:</strong> Silver weapons, wolfsbane, lunar eclipse</p>
+                <p><em>"The first among the cursed"</em></p>
+            </div>
+            
+            <div class="beast-showcase">
+                <h4>🌙 Cursed Heroes</h4>
+                <p><strong>The Reluctant Beasts</strong></p>
+                <p><strong>Origin:</strong> Heroes infected during adventures</p>
+                <p><strong>Powers:</strong> Retain some human intelligence</p>
+                <p><strong>Weakness:</strong> Internal conflict, moral restraints</p>
+                <p><em>"Heroes fighting their own nature"</em></p>
+            </div>
+            
+            <div class="beast-showcase">
+                <h4>🦇 Were-Creatures</h4>
+                <p><strong>The Varied Cursed</strong></p>
+                <p><strong>Origin:</strong> Different animal spirits, various curses</p>
+                <p><strong>Powers:</strong> Unique abilities per animal type</p>
+                <p><strong>Weakness:</strong> Specific to creature type</p>
+                <p><em>"The curse takes many forms"</em></p>
+            </div>
+            
+            <div class="beast-showcase">
+                <h4>🌕 Moon Cultists</h4>
+                <p><strong>The Willing Transformed</strong></p>
+                <p><strong>Origin:</strong> Humans who embrace the curse</p>
+                <p><strong>Powers:</strong> Voluntary transformation, ritual magic</p>
+                <p><strong>Weakness:</strong> Dependence on lunar cycles</p>
+                <p><em>"They welcome the beast within"</em></p>
+            </div>
+        </div>
+
+        <h2>🧬 The Science of Lycanthropy</h2>
+        
+        <canvas id="lycanthropy_mechanics_canvas" width="600" height="350"></canvas>
+        
+        <div class="lunar-principle">
+            <h3>🔬 Understanding the Curse</h3>
+            <p><strong>The expansion treated lycanthropy as both magical curse and biological condition:</strong></p>
+            
+            <p><strong>🌙 Lunar Sensitivity:</strong></p>
+            <ul>
+                <li>Moon phases directly affect transformation likelihood</li>
+                <li>Full moon makes transformation almost inevitable</li>
+                <li>New moon provides maximum control and stability</li>
+                <li>Eclipses can temporarily break or strengthen curses</li>
+            </ul>
+            
+            <p><strong>🧬 Biological Changes:</strong></p>
+            <ul>
+                <li>Enhanced metabolism requires more food consumption</li>
+                <li>Accelerated healing during and after transformation</li>
+                <li>Heightened senses even in human form</li>
+                <li>Physical markers: increased body hair, fangs, eye color</li>
+            </ul>
+            
+            <p><strong>🧠 Psychological Impact:</strong></p>
+            <ul>
+                <li>Memory gaps during beast form episodes</li>
+                <li>Increased aggression and territorial behavior</li>
+                <li>Pack bonding instincts with other lycanthropes</li>
+                <li>Guilt and trauma from actions while transformed</li>
+            </ul>
+        </div>
+
+        <h2>💉 Curse Transmission and Prevention</h2>
+        
+        <canvas id="curse_transmission_canvas" width="600" height="300"></canvas>
+        
+        <div class="transformation-box">
+            <h3>🦠 The Spreading Darkness</h3>
+            <p><strong>Lycanthropy spreads through multiple vectors, creating epidemic potential:</strong></p>
+            
+            <p><strong>🩸 Direct Transmission:</strong></p>
+            <ul>
+                <li>Bite wounds from lycanthropes during transformation</li>
+                <li>Blood contact through open wounds</li>
+                <li>Scratch wounds from claws (lower transmission rate)</li>
+                <li>Sharing of cursed objects or artifacts</li>
+            </ul>
+            
+            <p><strong>🛡️ Prevention Methods:</strong></p>
+            <ul>
+                <li>Silver items worn as protection</li>
+                <li>Wolfsbane herb carried or consumed</li>
+                <li>Holy symbols and blessed weapons</li>
+                <li>Quarantine procedures during suspected infection</li>
+            </ul>
+            
+            <p><strong>⚗️ Treatment Options:</strong></p>
+            <ul>
+                <li>Immediate silver nitrate application to wounds</li>
+                <li>Ritual purification within 24 hours of infection</li>
+                <li>Quest for legendary cure ingredients</li>
+                <li>Acceptance and learning to control the curse</li>
+            </ul>
+        </div>
+
+        <h2>🎭 The Psychology of Dual Identity</h2>
+        
+        <div class="moon-analysis">
+            <h3>🧠 Living with Two Selves</h3>
+            <p><strong>Lycanthropic heroes face unprecedented psychological challenges:</strong></p>
+            
+            <p><strong>😰 Identity Crisis:</strong></p>
+            <ul>
+                <li>Which self is the "real" one - human or beast?</li>
+                <li>Responsibility for actions taken while transformed</li>
+                <li>Fear of hurting loved ones during episodes</li>
+                <li>Social isolation due to dangerous condition</li>
+            </ul>
+            
+            <p><strong>🤝 Support Systems:</strong></p>
+            <ul>
+                <li>Fellow lycanthropes who understand the struggle</li>
+                <li>Trusted friends who help maintain humanity</li>
+                <li>Mentors who teach control techniques</li>
+                <li>Professional help from clerics and healers</li>
+            </ul>
+            
+            <p><strong>🌟 Path to Acceptance:</strong></p>
+            <ul>
+                <li>Learning to see both sides as part of whole self</li>
+                <li>Using beast abilities for heroic purposes</li>
+                <li>Teaching others about lycanthropic reality</li>
+                <li>Finding balance between human and beast needs</li>
+            </ul>
+        </div>
+
+        <h2>🌕 Advanced Lycanthrope Strategies</h2>
+        
+        <canvas id="lycanthrope_strategies_canvas" width="600" height="350"></canvas>
+        
+        <div class="lunar-principle">
+            <h3>🎯 Mastering the Beast Within</h3>
+            
+            <p><strong>🧘 The Control Path:</strong></p>
+            <ul>
+                <li>Meditation and mental discipline techniques</li>
+                <li>Gradual exposure to transformation triggers</li>
+                <li>Learning to retain consciousness during change</li>
+                <li>Building mental barriers against beast instincts</li>
+            </ul>
+            
+            <p><strong>🐺 The Acceptance Path:</strong></p>
+            <ul>
+                <li>Embracing both human and beast as valid selves</li>
+                <li>Using transformation tactically in combat</li>
+                <li>Communicating with pack members effectively</li>
+                <li>Channeling beast instincts for heroic purposes</li>
+            </ul>
+            
+            <p><strong>⚗️ The Cure Path:</strong></p>
+            <ul>
+                <li>Seeking magical or divine intervention</li>
+                <li>Completing quests to lift the curse</li>
+                <li>Making sacrifices to break lycanthropic bonds</li>
+                <li>Accepting risks of cure attempts</li>
+            </ul>
+        </div>
+
+        <h2>🌙 Lunar Calendar and Adventure Planning</h2>
+        
+        <div class="transformation-box">
+            <h3>📅 Strategic Moon Phase Management</h3>
+            <p><strong>Smart adventuring parties plan around lunar cycles:</strong></p>
+            
+            <p><strong>🌑 New Moon Adventures (Safe Period):</strong></p>
+            <ul>
+                <li>Social interactions and diplomacy missions</li>
+                <li>Delicate operations requiring precise control</li>
+                <li>Shopping, equipment maintenance, and planning</li>
+                <li>Training and skill development sessions</li>
+            </ul>
+            
+            <p><strong>🌓 Quarter Moon Adventures (Moderate Risk):</strong></p>
+            <ul>
+                <li>Standard dungeon exploration and combat</li>
+                <li>Investigations and puzzle-solving quests</li>
+                <li>Balanced risk-reward scenarios</li>
+                <li>Team coordination building exercises</li>
+            </ul>
+            
+            <p><strong>🌕 Full Moon Adventures (High Intensity):</strong></p>
+            <ul>
+                <li>Maximum combat effectiveness missions</li>
+                <li>Assault operations against major threats</li>
+                <li>Emergency response situations</li>
+                <li>Embracing the beast for greater good</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Legacy and Influence</h2>
+        
+        <div class="moon-analysis">
+            <h3>🌟 How Rise of the Dread Moon Changed Gaming</h3>
+            <p><strong>This expansion pioneered transformation mechanics that became gaming staples:</strong></p>
+            
+            <p><strong>🎮 Video Game Influence:</strong> Transformation systems, dual character mechanics, cycle-based gameplay</p>
+            <p><strong>🎲 Tabletop Evolution:</strong> Identity crisis mechanics, lycanthrope player characters, curse management</p>
+            <p><strong>🎬 Media Impact:</strong> Sympathetic monster narratives, internal conflict themes, acceptance vs. cure debates</p>
+            <p><strong>🎪 Modern Gaming:</strong> Shapeshifting mechanics, psychological horror, identity exploration</p>
+        </div>
+
+        <h2>🎯 Mastery Challenges: Lycanthropic Trials</h2>
+        
+        <div class="transformation-box">
+            <h3>🐺 Elite Beast Master Tests</h3>
+            <p><strong>Prove your mastery of lycanthropic survival:</strong></p>
+            
+            <p><strong>🧘 The Controller:</strong> Complete adventure without involuntary transformations</p>
+            <p><strong>🤝 The Protector:</strong> Keep all allies safe during full moon episodes</p>
+            <p><strong>⚖️ The Balanced:</strong> Use both human and beast forms strategically</p>
+            <p><strong>🌟 The Teacher:</strong> Help another lycanthrope achieve control</p>
+            <p><strong>💊 The Seeker:</strong> Find and achieve a permanent cure for the curse</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Wizards of Morcar"</strong> - the ultimate magical expansion that took spellcasting to reality-bending extremes! We'll dive into arcane duels between magical masters, reality manipulation spells, and encounters that make heroes feel like they're commanding the fundamental forces of creation itself.</p>
+        
+        <div class="lunar-principle">
+            <p><strong>Remember:</strong> Rise of the Dread Moon taught us that heroism isn't about being perfect - it's about maintaining your humanity even when you're literally becoming a monster. The greatest battles aren't always against external enemies, but against the darkness within ourselves. Sometimes the most heroic act is learning to live with aspects of yourself that you fear, and finding ways to use even your darkest traits in service of the light!</p>
+        </div>
+    </div>
+
+    <script>
+        // Add twinkling stars for night sky effect
+        function createStars() {
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.textContent = '✦';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                document.querySelector('.night-sky').appendChild(star);
+            }
+        }
+        
+        createStars();
+        
+        // Interactive Moon Phase System
+        const moonPhases = [
+            { name: 'New Moon', symbol: '🌑', power: 10, control: 90, effects: 'Maximum control, minimal beast influence. Safe for social interactions.' },
+            { name: 'Waxing Crescent', symbol: '🌒', power: 25, control: 75, effects: 'Growing power, good control. Ideal for training and practice.' },
+            { name: 'First Quarter', symbol: '🌓', power: 40, control: 60, effects: 'Balanced power and control. Standard adventuring conditions.' },
+            { name: 'Waxing Gibbous', symbol: '🌔', power: 65, control: 35, effects: 'Strong power, weakening control. Increased aggression likely.' },
+            { name: 'Full Moon', symbol: '🌕', power: 100, control: 10, effects: 'Maximum lycanthropic power! Transformation is inevitable and beast form dominates.' },
+            { name: 'Waning Gibbous', symbol: '🌖', power: 75, control: 40, effects: 'High power, returning control. Mixed human-beast state possible.' },
+            { name: 'Last Quarter', symbol: '🌗', power: 50, control: 70, effects: 'Moderate power, good control returning. Exhaustion common.' },
+            { name: 'Waning Crescent', symbol: '🌘', power: 20, control: 85, effects: 'Low power, high control. Recovery period from full moon.' }
+        ];
+        
+        let currentMoonPhase = 4; // Start at full moon
+        
+        function setMoonPhase(phaseIndex, phaseName) {
+            currentMoonPhase = phaseIndex;
+            
+            // Update active moon phase
+            document.querySelectorAll('.moon-phase').forEach(phase => phase.classList.remove('active'));
+            document.querySelectorAll('.moon-phase')[phaseIndex].classList.add('active');
+            
+            // Update moon indicator
+            const indicator = document.getElementById('moon_indicator');
+            const phaseLevel = document.getElementById('moon_phase');
+            
+            indicator.style.left = (phaseIndex * 12.5) + '%';
+            phaseLevel.textContent = moonPhases[phaseIndex].name.toUpperCase();
+            
+            // Update effects display
+            const effectsDiv = document.getElementById('moon_effects');
+            const phase = moonPhases[phaseIndex];
+            effectsDiv.innerHTML = `
+                <strong>Lunar Effects:</strong> ${phase.name} - ${phase.effects}<br>
+                <strong>Beast Power:</strong> ${phase.power}% | <strong>Human Control:</strong> ${phase.control}%
+            `;
+            
+            // Update curse indicator based on moon phase
+            const curseIndicator = document.getElementById('curse_indicator');
+            const curseLevel = document.getElementById('curse_level');
+            
+            curseIndicator.style.left = phase.power + '%';
+            
+            if (phase.power >= 80) curseLevel.textContent = 'BEAST DOMINANCE';
+            else if (phase.power >= 60) curseLevel.textContent = 'LYCANTHROPIC SURGE';
+            else if (phase.power >= 40) curseLevel.textContent = 'GROWING INFLUENCE';
+            else if (phase.power >= 20) curseLevel.textContent = 'MINOR EFFECTS';
+            else curseLevel.textContent = 'DORMANT CURSE';
+        }
+        
+        // Lycanthrope Combat Visualization
+        const combatCanvas = document.getElementById('lycanthrope_combat_canvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        function drawLycanthropeCombat() {
+            combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Background
+            combatCtx.fillStyle = '#000011';
+            combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Draw transformation sequence
+            const forms = [
+                {x: 150, y: 150, form: 'Human', symbol: '🧍', color: '#4169e1', abilities: ['Strategy', 'Equipment', 'Spells']},
+                {x: 300, y: 150, form: 'Hybrid', symbol: '🐺', color: '#ff8c00', abilities: ['Enhanced', 'Senses', 'Claws']},
+                {x: 450, y: 150, form: 'Beast', symbol: '🐺', color: '#dc143c', abilities: ['Maximum', 'Strength', 'Ferocity']}
+            ];
+            
+            forms.forEach((form, index) => {
+                // Form representation
+                combatCtx.fillStyle = form.color;
+                combatCtx.beginPath();
+                combatCtx.arc(form.x, form.y, 35, 0, Math.PI * 2);
+                combatCtx.fill();
+                
+                combatCtx.strokeStyle = '#ffa726';
+                combatCtx.lineWidth = 3;
+                combatCtx.stroke();
+                
+                // Form symbol
+                combatCtx.fillStyle = '#fff';
+                combatCtx.font = '24px Arial';
+                combatCtx.textAlign = 'center';
+                combatCtx.fillText(form.symbol, form.x, form.y + 8);
+                
+                // Form name
+                combatCtx.fillStyle = '#f5f5dc';
+                combatCtx.font = '14px Arial';
+                combatCtx.fillText(form.form, form.x, form.y + 55);
+                
+                // Abilities
+                combatCtx.font = '10px Arial';
+                form.abilities.forEach((ability, abilityIndex) => {
+                    combatCtx.fillText(ability, form.x, form.y + 75 + (abilityIndex * 12));
+                });
+                
+                // Transformation arrows
+                if (index < forms.length - 1) {
+                    combatCtx.strokeStyle = '#ff6b6b';
+                    combatCtx.lineWidth = 3;
+                    combatCtx.beginPath();
+                    combatCtx.moveTo(form.x + 40, form.y);
+                    combatCtx.lineTo(forms[index + 1].x - 40, forms[index + 1].y);
+                    combatCtx.stroke();
+                    
+                    // Arrow head
+                    combatCtx.beginPath();
+                    combatCtx.moveTo(forms[index + 1].x - 45, forms[index + 1].y - 5);
+                    combatCtx.lineTo(forms[index + 1].x - 40, forms[index + 1].y);
+                    combatCtx.lineTo(forms[index + 1].x - 45, forms[index + 1].y + 5);
+                    combatCtx.stroke();
+                }
+            });
+            
+            combatCtx.fillStyle = '#ff6b6b';
+            combatCtx.font = '16px Arial';
+            combatCtx.textAlign = 'center';
+            combatCtx.fillText('Lycanthropic Transformation: Three Combat Forms', 300, 30);
+            combatCtx.textAlign = 'left';
+        }
+        
+        drawLycanthropeCombat();
+        
+        // Interactive Lunar Battlefield
+        const battlefieldGrid = document.getElementById('lunar_battlefield');
+        const terrainEffects = document.getElementById('terrain_effects');
+        let battlefieldState = [];
+        
+        // Initialize battlefield
+        for (let i = 0; i < 80; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'lunar-cell';
+            
+            // Generate terrain
+            const terrainType = Math.random();
+            if (terrainType < 0.2) {
+                cell.className += ' moonlight';
+                cell.textContent = '🌙';
+                battlefieldState.push('moonlight');
+            } else if (terrainType < 0.4) {
+                cell.className += ' shadow';
+                cell.textContent = '🌑';
+                battlefieldState.push('shadow');
+            } else if (terrainType < 0.6) {
+                cell.className += ' cursed-ground';
+                cell.textContent = '💜';
+                battlefieldState.push('cursed');
+            } else {
+                cell.className += ' normal-terrain';
+                cell.textContent = '🌍';
+                battlefieldState.push('normal');
+            }
+            
+            cell.addEventListener('click', () => analyzeTerrainEffect(i));
+            battlefieldGrid.appendChild(cell);
+        }
+        
+        // Add lycanthropes
+        battlefieldGrid.children[25].className = 'lunar-cell human-form';
+        battlefieldGrid.children[25].textContent = '👤';
+        battlefieldState[25] = 'human';
+        
+        battlefieldGrid.children[55].className = 'lunar-cell beast-form';
+        battlefieldGrid.children[55].textContent = '🐺';
+        battlefieldState[55] = 'beast';
+        
+        function analyzeTerrainEffect(index) {
+            const terrain = battlefieldState[index];
+            let analysis = '';
+            
+            switch(terrain) {
+                case 'moonlight':
+                    analysis = 'Direct moonlight exposure. Triggers involuntary transformation. +50% beast power, -50% human control.';
+                    break;
+                case 'shadow':
+                    analysis = 'Shadowed area. Provides some protection from lunar influence. Normal transformation rules apply.';
+                    break;
+                case 'cursed':
+                    analysis = 'Cursed ground. Ancient lycanthropic energy. Permanent transformation risk, enhanced beast abilities.';
+                    break;
+                case 'normal':
+                    analysis = 'Normal terrain. Standard environmental conditions. Moon phase determines effects.';
+                    break;
+                case 'human':
+                    analysis = 'Lycanthrope in human form. Retains intelligence and equipment use. Vulnerable to forced transformation.';
+                    break;
+                case 'beast':
+                    analysis = 'Lycanthrope in beast form. Maximum physical power but reduced strategic thinking. Pack instincts active.';
+                    break;
+                default:
+                    analysis = 'Unknown terrain type.';
+            }
+            
+            terrainEffects.innerHTML = `<strong>Environmental Effects:</strong> ${analysis}`;
+        }
+        
+        // Lycanthropy Mechanics Visualization
+        const mechanicsCanvas = document.getElementById('lycanthropy_mechanics_canvas');
+        const mechanicsCtx = mechanicsCanvas.getContext('2d');
+        
+        function drawLycanthropyMechanics() {
+            mechanicsCtx.clearRect(0, 0, mechanicsCanvas.width, mechanicsCanvas.height);
+            
+            // Background
+            mechanicsCtx.fillStyle = '#000011';
+            mechanicsCtx.fillRect(0, 0, mechanicsCanvas.width, mechanicsCanvas.height);
+            
+            // Draw human vs beast brain
+            const brainX = 300;
+            const brainY = 150;
+            
+            // Left brain (human)
+            mechanicsCtx.fillStyle = '#4169e1';
+            mechanicsCtx.beginPath();
+            mechanicsCtx.arc(brainX - 50, brainY, 40, 0, Math.PI * 2);
+            mechanicsCtx.fill();
+            
+            mechanicsCtx.fillStyle = '#fff';
+            mechanicsCtx.font = '12px Arial';
+            mechanicsCtx.textAlign = 'center';
+            mechanicsCtx.fillText('Human Mind', brainX - 50, brainY - 60);
+            mechanicsCtx.fillText('Logic', brainX - 50, brainY - 10);
+            mechanicsCtx.fillText('Strategy', brainX - 50, brainY + 5);
+            mechanicsCtx.fillText('Morality', brainX - 50, brainY + 20);
+            
+            // Right brain (beast)
+            mechanicsCtx.fillStyle = '#dc143c';
+            mechanicsCtx.beginPath();
+            mechanicsCtx.arc(brainX + 50, brainY, 40, 0, Math.PI * 2);
+            mechanicsCtx.fill();
+            
+            mechanicsCtx.fillStyle = '#fff';
+            mechanicsCtx.fillText('Beast Mind', brainX + 50, brainY - 60);
+            mechanicsCtx.fillText('Instinct', brainX + 50, brainY - 10);
+            mechanicsCtx.fillText('Aggression', brainX + 50, brainY + 5);
+            mechanicsCtx.fillText('Survival', brainX + 50, brainY + 20);
+            
+            // Conflict zone
+            mechanicsCtx.fillStyle = '#ff8c00';
+            mechanicsCtx.fillRect(brainX - 25, brainY - 15, 50, 30);
+            mechanicsCtx.fillStyle = '#000';
+            mechanicsCtx.fillText('CONFLICT', brainX, brainY);
+            mechanicsCtx.fillText('ZONE', brainX, brainY + 15);
+            
+            // Moon influence
+            mechanicsCtx.fillStyle = '#ffd700';
+            mechanicsCtx.beginPath();
+            mechanicsCtx.arc(brainX, brainY - 100, 30, 0, Math.PI * 2);
+            mechanicsCtx.fill();
+            
+            mechanicsCtx.fillStyle = '#000';
+            mechanicsCtx.font = '20px Arial';
+            mechanicsCtx.fillText('🌕', brainX, brainY - 90);
+            
+            // Lunar influence rays
+            mechanicsCtx.strokeStyle = '#ffd700';
+            mechanicsCtx.lineWidth = 2;
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * 45) * (Math.PI / 180);
+                const startX = brainX + Math.cos(angle) * 35;
+                const startY = (brainY - 100) + Math.sin(angle) * 35;
+                const endX = brainX + Math.cos(angle) * 60;
+                const endY = (brainY - 100) + Math.sin(angle) * 60;
+                
+                mechanicsCtx.beginPath();
+                mechanicsCtx.moveTo(startX, startY);
+                mechanicsCtx.lineTo(endX, endY);
+                mechanicsCtx.stroke();
+            }
+            
+            // Transformation factors
+            const factors = [
+                {x: 100, y: 80, factor: 'Stress', effect: '+Transform'},
+                {x: 500, y: 80, factor: 'Silver', effect: '-Transform'},
+                {x: 100, y: 220, factor: 'Damage', effect: '+Transform'},
+                {x: 500, y: 220, factor: 'Wolfsbane', effect: '-Transform'}
+            ];
+            
+            factors.forEach(factor => {
+                mechanicsCtx.fillStyle = factor.effect.includes('+') ? '#ff6b6b' : '#4caf50';
+                mechanicsCtx.fillRect(factor.x - 20, factor.y - 10, 40, 20);
+                
+                mechanicsCtx.fillStyle = '#fff';
+                mechanicsCtx.font = '10px Arial';
+                mechanicsCtx.textAlign = 'center';
+                mechanicsCtx.fillText(factor.factor, factor.x, factor.y);
+                mechanicsCtx.fillText(factor.effect, factor.x, factor.y + 25);
+            });
+            
+            mechanicsCtx.fillStyle = '#ff6b6b';
+            mechanicsCtx.font = '16px Arial';
+            mechanicsCtx.fillText('Lycanthropic Psychology: The Battle for Control', 200, 30);
+            mechanicsCtx.textAlign = 'left';
+        }
+        
+        drawLycanthropyMechanics();
+        
+        // Curse Transmission Visualization
+        const transmissionCanvas = document.getElementById('curse_transmission_canvas');
+        const transmissionCtx = transmissionCanvas.getContext('2d');
+        
+        function drawCurseTransmission() {
+            transmissionCtx.clearRect(0, 0, transmissionCanvas.width, transmissionCanvas.height);
+            
+            // Background
+            transmissionCtx.fillStyle = '#000011';
+            transmissionCtx.fillRect(0, 0, transmissionCanvas.width, transmissionCanvas.height);
+            
+            // Draw infection spread
+            const center = {x: 300, y: 150};
+            const infected = [
+                {x: 300, y: 150, stage: 'Alpha', size: 40, color: '#dc143c'},
+                {x: 200, y: 100, stage: 'Beta', size: 30, color: '#ff6b6b'},
+                {x: 400, y: 100, stage: 'Beta', size: 30, color: '#ff6b6b'},
+                {x: 150, y: 200, stage: 'Gamma', size: 20, color: '#ffa726'},
+                {x: 300, y: 220, stage: 'Gamma', size: 20, color: '#ffa726'},
+                {x: 450, y: 200, stage: 'Gamma', size: 20, color: '#ffa726'}
+            ];
+            
+            // Draw infection connections
+            transmissionCtx.strokeStyle = '#e94560';
+            transmissionCtx.lineWidth = 2;
+            transmissionCtx.setLineDash([5, 5]);
+            
+            // Connect alpha to betas
+            transmissionCtx.beginPath();
+            transmissionCtx.moveTo(center.x, center.y);
+            transmissionCtx.lineTo(200, 100);
+            transmissionCtx.stroke();
+            
+            transmissionCtx.beginPath();
+            transmissionCtx.moveTo(center.x, center.y);
+            transmissionCtx.lineTo(400, 100);
+            transmissionCtx.stroke();
+            
+            // Connect betas to gammas
+            transmissionCtx.beginPath();
+            transmissionCtx.moveTo(200, 100);
+            transmissionCtx.lineTo(150, 200);
+            transmissionCtx.stroke();
+            
+            transmissionCtx.beginPath();
+            transmissionCtx.moveTo(400, 100);
+            transmissionCtx.lineTo(450, 200);
+            transmissionCtx.stroke();
+            
+            transmissionCtx.setLineDash([]);
+            
+            // Draw infected individuals
+            infected.forEach(person => {
+                transmissionCtx.fillStyle = person.color;
+                transmissionCtx.beginPath();
+                transmissionCtx.arc(person.x, person.y, person.size, 0, Math.PI * 2);
+                transmissionCtx.fill();
+                
+                transmissionCtx.strokeStyle = '#f5f5dc';
+                transmissionCtx.lineWidth = 2;
+                transmissionCtx.stroke();
+                
+                transmissionCtx.fillStyle = '#fff';
+                transmissionCtx.font = '16px Arial';
+                transmissionCtx.textAlign = 'center';
+                transmissionCtx.fillText('🐺', person.x, person.y + 5);
+                
+                transmissionCtx.fillStyle = '#f5f5dc';
+                transmissionCtx.font = '10px Arial';
+                transmissionCtx.fillText(person.stage, person.x, person.y + person.size + 15);
+            });
+            
+            // Draw prevention methods
+            const preventions = [
+                {x: 100, y: 50, method: 'Silver', symbol: '🥈'},
+                {x: 500, y: 50, method: 'Wolfsbane', symbol: '🌿'},
+                {x: 100, y: 250, method: 'Holy Symbol', symbol: '✝️'},
+                {x: 500, y: 250, method: 'Quarantine', symbol: '🚧'}
+            ];
+            
+            preventions.forEach(prevention => {
+                transmissionCtx.fillStyle = '#4caf50';
+                transmissionCtx.beginPath();
+                transmissionCtx.arc(prevention.x, prevention.y, 25, 0, Math.PI * 2);
+                transmissionCtx.fill();
+                
+                transmissionCtx.fillStyle = '#fff';
+                transmissionCtx.font = '16px Arial';
+                transmissionCtx.fillText(prevention.symbol, prevention.x, prevention.y + 5);
+                
+                transmissionCtx.fillStyle = '#f5f5dc';
+                transmissionCtx.font = '10px Arial';
+                transmissionCtx.fillText(prevention.method, prevention.x, prevention.y + 40);
+            });
+            
+            transmissionCtx.fillStyle = '#ff6b6b';
+            transmissionCtx.font = '16px Arial';
+            transmissionCtx.textAlign = 'center';
+            transmissionCtx.fillText('Lycanthropic Transmission: Curse Spreading and Prevention', 300, 30);
+            transmissionCtx.textAlign = 'left';
+        }
+        
+        drawCurseTransmission();
+        
+        // Lycanthrope Strategies Visualization
+        const strategiesCanvas = document.getElementById('lycanthrope_strategies_canvas');
+        const strategiesCtx = strategiesCanvas.getContext('2d');
+        
+        function drawLycanthropeStrategies() {
+            strategiesCtx.clearRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
+            
+            // Background
+            strategiesCtx.fillStyle = '#000011';
+            strategiesCtx.fillRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
+            
+            // Draw strategy paths
+            const paths = [
+                {x: 150, y: 150, name: 'Control Path', symbol: '🧘', color: '#4169e1', description: 'Master the Beast'},
+                {x: 300, y: 100, name: 'Acceptance Path', symbol: '⚖️', color: '#ff8c00', description: 'Embrace Duality'},
+                {x: 450, y: 150, name: 'Cure Path', symbol: '⚗️', color: '#9370db', description: 'Seek Redemption'}
+            ];
+            
+            paths.forEach(path => {
+                // Path area
+                strategiesCtx.fillStyle = path.color + '40';
+                strategiesCtx.beginPath();
+                strategiesCtx.arc(path.x, path.y, 60, 0, Math.PI * 2);
+                strategiesCtx.fill();
+                
+                strategiesCtx.strokeStyle = path.color;
+                strategiesCtx.lineWidth = 3;
+                strategiesCtx.stroke();
+                
+                // Path core
+                strategiesCtx.fillStyle = path.color;
+                strategiesCtx.beginPath();
+                strategiesCtx.arc(path.x, path.y, 25, 0, Math.PI * 2);
+                strategiesCtx.fill();
+                
+                // Path symbol
+                strategiesCtx.fillStyle = '#fff';
+                strategiesCtx.font = '20px Arial';
+                strategiesCtx.textAlign = 'center';
+                strategiesCtx.fillText(path.symbol, path.x, path.y + 7);
+                
+                // Path labels
+                strategiesCtx.fillStyle = '#f5f5dc';
+                strategiesCtx.font = '12px Arial';
+                strategiesCtx.fillText(path.name, path.x, path.y + 80);
+                strategiesCtx.font = '10px Arial';
+                strategiesCtx.fillText(path.description, path.x, path.y + 95);
+            });
+            
+            // Draw choice connections
+            strategiesCtx.strokeStyle = '#ffa726';
+            strategiesCtx.lineWidth = 2;
+            strategiesCtx.setLineDash([5, 5]);
+            
+            // Connect paths to show they're choices
+            strategiesCtx.beginPath();
+            strategiesCtx.moveTo(150, 90);
+            strategiesCtx.lineTo(300, 40);
+            strategiesCtx.stroke();
+            
+            strategiesCtx.beginPath();
+            strategiesCtx.moveTo(300, 40);
+            strategiesCtx.lineTo(450, 90);
+            strategiesCtx.stroke();
+            
+            strategiesCtx.setLineDash([]);
+            
+            // Central choice point
+            strategiesCtx.fillStyle = '#ffd700';
+            strategiesCtx.beginPath();
+            strategiesCtx.arc(300, 40, 15, 0, Math.PI * 2);
+            strategiesCtx.fill();
+            
+            strategiesCtx.fillStyle = '#000';
+            strategiesCtx.font = '12px Arial';
+            strategiesCtx.textAlign = 'center';
+            strategiesCtx.fillText('?', 300, 45);
+            
+            // Add outcome indicators
+            const outcomes = [
+                {x: 150, y: 250, result: 'Mental Discipline', icon: '🧠'},
+                {x: 300, y: 250, result: 'Balanced Power', icon: '⚖️'},
+                {x: 450, y: 250, result: 'Lost Humanity', icon: '💔'}
+            ];
+            
+            outcomes.forEach((outcome, index) => {
+                strategiesCtx.fillStyle = paths[index].color;
+                strategiesCtx.fillRect(outcome.x - 20, outcome.y - 10, 40, 20);
+                
+                strategiesCtx.fillStyle = '#fff';
+                strategiesCtx.font = '16px Arial';
+                strategiesCtx.fillText(outcome.icon, outcome.x, outcome.y + 5);
+                
+                strategiesCtx.fillStyle = '#f5f5dc';
+                strategiesCtx.font = '10px Arial';
+                strategiesCtx.fillText(outcome.result, outcome.x, outcome.y + 25);
+                
+                // Connect to path
+                strategiesCtx.strokeStyle = paths[index].color;
+                strategiesCtx.lineWidth = 2;
+                strategiesCtx.beginPath();
+                strategiesCtx.moveTo(paths[index].x, paths[index].y + 60);
+                strategiesCtx.lineTo(outcome.x, outcome.y - 10);
+                strategiesCtx.stroke();
+            });
+            
+            strategiesCtx.fillStyle = '#ff6b6b';
+            strategiesCtx.font = '16px Arial';
+            strategiesCtx.textAlign = 'center';
+            strategiesCtx.fillText('Lycanthropic Strategy Paths: Choosing Your Destiny', 300, 20);
+            strategiesCtx.textAlign = 'left';
+        }
+        
+        drawLycanthropeStrategies();
+    </script>
+</body>
+</html>

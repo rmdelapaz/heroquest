@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest The Original Quest Book Adventures</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e6f2ff;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(15, 52, 96, 0.4);
+        }
+        h1 {
+            color: #4fc3f7;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(79, 195, 247, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #29b6f6;
+            border-bottom: 2px solid #29b6f6;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .quest-principle {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #4fc3f7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #29b6f6;
+        }
+        .quest-card {
+            background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
+            border: 2px solid #03a9f4;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 320px;
+            vertical-align: top;
+        }
+        .strategy-box {
+            background: rgba(79, 195, 247, 0.1);
+            border: 2px solid #4fc3f7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .design-analysis {
+            background: rgba(41, 182, 246, 0.1);
+            border: 2px solid #29b6f6;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #4fc3f7;
+            border-radius: 10px;
+            background: #000;
+            display: block;
+            margin: 20px auto;
+        }
+        .dungeon-map {
+            display: grid;
+            grid-template-columns: repeat(12, 30px);
+            grid-template-rows: repeat(9, 30px);
+            gap: 1px;
+            margin: 20px auto;
+            border: 3px solid #4fc3f7;
+            background: #000;
+            padding: 10px;
+            width: fit-content;
+        }
+        .map-cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .wall { background-color: #666; }
+        .door { background-color: #8b4513; }
+        .room { background-color: #1a1a2e; }
+        .stairs { background-color: #4fc3f7; }
+        .trap { background-color: #ff5722; }
+        .treasure { background-color: #ffd700; }
+        .monster { background-color: #f44336; }
+        .start { background-color: #4caf50; }
+        .secret { background-color: #9c27b0; }
+        .quest-selector {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .quest-button {
+            background: linear-gradient(135deg, #03a9f4, #0288d1);
+            border: 2px solid #4fc3f7;
+            border-radius: 8px;
+            padding: 12px 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        .quest-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(79, 195, 247, 0.8);
+        }
+        .quest-button.active {
+            background: linear-gradient(135deg, #ffd700, #ff8f00);
+            border-color: #ffeb3b;
+        }
+        .difficulty-meter {
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336);
+            border: 2px solid #4fc3f7;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .difficulty-indicator {
+            position: absolute;
+            top: -3px;
+            width: 6px;
+            height: 31px;
+            background: #fff;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 The Original Quest Book Adventures 🏰</h1>
+        
+        <div class="quest-principle">
+            <h2>🎯 The Foundation of Adventure: Why These Quests Matter</h2>
+            <p><strong>The original HeroQuest adventures are like the Beatles' first album - they defined everything that came after!</strong> These 14 quests aren't just tutorials; they're masterclasses in adventure design that teach players how to think, cooperate, and grow as heroes. Each quest builds upon the last, creating a perfect learning curve from "What's a trap?" to "How do we defeat an army of chaos?"</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of these quests like medical school - each "rotation" teaches different skills. The Trial starts with basic diagnosis, while The Witch Lord is like performing brain surgery. By the end, you're not just playing HeroQuest - you're living it!</p>
+        </div>
+
+        <h2>🎪 The Learning Progression: From Novice to Hero</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[The Trial] --> B[The Maze]
+                B --> C[The Barbarian's Quest]
+                C --> D[The Elf's Quest]
+                D --> E[The Wizard's Quest]
+                E --> F[The Dwarf's Quest]
+                F --> G[Prince Magnus's Gold]
+                G --> H[The Ogre Horde]
+                H --> I[The Legacy of Sorasil]
+                I --> J[The Cavern of Perpetual Darkness]
+                J --> K[The Crypt of Perpetual Darkness]
+                K --> L[The Castle of Mystery]
+                L --> M[The Rescue of Sir Ragnar]
+                M --> N[The Witch Lord]
+                
+                style A fill:#4caf50,stroke:#333,stroke-width:2px
+                style B fill:#8bc34a,stroke:#333,stroke-width:2px
+                style G fill:#ffeb3b,stroke:#333,stroke-width:2px
+                style N fill:#f44336,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🎮 Interactive Quest Explorer</h2>
+        
+        <div class="strategy-box">
+            <p><strong>Select a quest to explore its secrets!</strong> Click the buttons below to analyze each adventure's design, strategies, and hidden elements.</p>
+            
+            <div class="quest-selector">
+                <div class="quest-button active" onclick="selectQuest(0)">The Trial</div>
+                <div class="quest-button" onclick="selectQuest(1)">The Maze</div>
+                <div class="quest-button" onclick="selectQuest(2)">Barbarian's Quest</div>
+                <div class="quest-button" onclick="selectQuest(3)">Elf's Quest</div>
+                <div class="quest-button" onclick="selectQuest(4)">Wizard's Quest</div>
+                <div class="quest-button" onclick="selectQuest(5)">Prince Magnus</div>
+                <div class="quest-button" onclick="selectQuest(6)">Witch Lord</div>
+            </div>
+            
+            <div class="difficulty-meter">
+                <div class="difficulty-indicator" id="difficulty_indicator" style="left: 5%;"></div>
+            </div>
+            <p style="text-align: center;"><em>Quest Difficulty: <span id="difficulty_level">Beginner</span></em></p>
+            
+            <div id="quest_analysis" style="margin-top: 20px; padding: 20px; background: rgba(79, 195, 247, 0.1); border-radius: 10px;">
+                <h3>🎯 The Trial - Your First Adventure</h3>
+                <p><strong>Design Purpose:</strong> Introduction to core mechanics</p>
+                <p><strong>Key Lessons:</strong> Movement, combat, searching, basic tactics</p>
+                <p><strong>Hidden Secrets:</strong> The secret door teaches observation skills</p>
+                <p><strong>Pro Strategy:</strong> Send the Barbarian first, keep the Wizard protected</p>
+            </div>
+        </div>
+
+        <h2>📐 Quest Design Mastery: The Hidden Architecture</h2>
+        
+        <canvas id="quest_design_canvas" width="600" height="350"></canvas>
+        
+        <div class="design-analysis">
+            <h3>🏗️ The Blueprint of Great Adventures</h3>
+            <p><strong>Every great quest follows the same hidden structure, like a perfectly designed house:</strong></p>
+            
+            <p><strong>🚪 The Welcome Mat (Opening):</strong> Easy encounters that build confidence</p>
+            <p><strong>🏠 The Living Room (Exploration):</strong> Safe areas to learn and practice</p>
+            <p><strong>🔍 The Study (Puzzle Solving):</strong> Challenges that require thinking</p>
+            <p><strong>⚔️ The Basement (Combat Tests):</strong> Escalating fights that prove your worth</p>
+            <p><strong>👑 The Master Bedroom (Boss Fight):</strong> The ultimate test of everything learned</p>
+        </div>
+
+        <h2>🗺️ The Classic Quests: Detailed Analysis</h2>
+        
+        <div class="quest-card">
+            <h3>🎯 Quest 1: The Trial</h3>
+            <p><strong>The Perfect Tutorial</strong></p>
+            <p><strong>What it teaches:</strong> Basic movement, simple combat, searching mechanics</p>
+            <p><strong>Design genius:</strong> Every room introduces exactly one new concept</p>
+            <p><strong>Hidden lesson:</strong> Teamwork beats individual heroics</p>
+            <p><strong>Victory condition:</strong> Find Verag's treasure chamber</p>
+            <p><strong>Pro tip:</strong> The secret door in the southwest teaches you to search everything!</p>
+        </div>
+
+        <div class="quest-card">
+            <h3>🌀 Quest 2: The Maze</h3>
+            <p><strong>The Navigation Challenge</strong></p>
+            <p><strong>What it teaches:</strong> Spatial awareness, resource management</p>
+            <p><strong>Design genius:</strong> Multiple paths create meaningful choices</p>
+            <p><strong>Hidden lesson:</strong> Sometimes the longest route is safest</p>
+            <p><strong>Victory condition:</strong> Escape the maze with Sir Ragnar</p>
+            <p><strong>Pro tip:</strong> Map everything - knowledge is your greatest weapon here!</p>
+        </div>
+
+        <div class="quest-card">
+            <h3>⚔️ Quest 3: The Barbarian's Quest</h3>
+            <p><strong>The Warrior's Proving Ground</strong></p>
+            <p><strong>What it teaches:</strong> Aggressive tactics, risk assessment</p>
+            <p><strong>Design genius:</strong> Rewards bold play while punishing recklessness</p>
+            <p><strong>Hidden lesson:</strong> Strength without wisdom leads to defeat</p>
+            <p><strong>Victory condition:</strong> Claim Ulag's Spirit Blade</p>
+            <p><strong>Pro tip:</strong> The trapped hallway punishes rushing - even barbarians need patience!</p>
+        </div>
+
+        <div class="quest-card">
+            <h3>🏹 Quest 4: The Elf's Quest</h3>
+            <p><strong>The Precision Test</strong></p>
+            <p><strong>What it teaches:</strong> Ranged tactics, spell usage, positioning</p>
+            <p><strong>Design genius:</strong> Long corridors favor ranged attacks</p>
+            <p><strong>Hidden lesson:</strong> Versatility trumps specialization</p>
+            <p><strong>Victory condition:</strong> Recover the Moon of Lornalim</p>
+            <p><strong>Pro tip:</strong> Use the architecture - those long hallways are perfect for archery!</p>
+        </div>
+
+        <div class="quest-card">
+            <h3>🔮 Quest 5: The Wizard's Quest</h3>
+            <p><strong>The Intellect Trial</strong></p>
+            <p><strong>What it teaches:</strong> Spell conservation, magical tactics</p>
+            <p><strong>Design genius:</strong> Rewards thinking over fighting</p>
+            <p><strong>Hidden lesson:</strong> Knowledge opens more doors than keys</p>
+            <p><strong>Victory condition:</strong> Claim the Fire of Wrath</p>
+            <p><strong>Pro tip:</strong> Save your best spells for the spirit - brute force won't work here!</p>
+        </div>
+
+        <div class="quest-card">
+            <h3>🗡️ Quest 6: The Dwarf's Quest</h3>
+            <p><strong>The Specialist's Challenge</strong></p>
+            <p><strong>What it teaches:</strong> Trap detection, careful exploration</p>
+            <p><strong>Design genius:</strong> Hidden dangers teach caution</p>
+            <p><strong>Hidden lesson:</strong> Technical skills save the day</p>
+            <p><strong>Victory condition:</strong> Find the Hammer of Elden</p>
+            <p><strong>Pro tip:</strong> Every step matters - this quest punishes hasty heroes!</p>
+        </div>
+
+        <h2>🎭 Advanced Quest Strategies</h2>
+        
+        <canvas id="strategy_patterns_canvas" width="600" height="300"></canvas>
+        
+        <div class="strategy-box">
+            <h3>🧠 The Master Tactician's Playbook</h3>
+            <p><strong>These patterns work across all quests, like universal laws of adventure:</strong></p>
+            
+            <p><strong>🔍 The Scout Pattern:</strong> Always send your toughest hero into new rooms first</p>
+            <p><strong>🛡️ The Anchor Pattern:</strong> Keep one hero near the entrance as a fallback position</p>
+            <p><strong>💡 The Light Pattern:</strong> Control light sources to control enemy spawns</p>
+            <p><strong>🗝️ The Key Pattern:</strong> Information is more valuable than treasure</p>
+            <p><strong>⚖️ The Balance Pattern:</strong> Aggressive exploration balanced with cautious retreat</p>
+        </div>
+
+        <h2>🕵️ Hidden Secrets and Easter Eggs</h2>
+        
+        <div class="design-analysis">
+            <h3>🎁 The Treasure Hunter's Guide to Hidden Content</h3>
+            <p><strong>Like a Dan Brown novel, these quests hide secrets within secrets:</strong></p>
+            
+            <p><strong>🚪 Secret Doors:</strong> Always check corners and dead ends - walls lie!</p>
+            <p><strong>💰 Hidden Treasures:</strong> Search every bookshelf, table, and cupboard</p>
+            <p><strong>🎭 NPC Secrets:</strong> Some characters know more than they initially reveal</p>
+            <p><strong>🗝️ Alternative Solutions:</strong> Most quests have multiple victory paths</p>
+            <p><strong>📚 Lore Connections:</strong> Each quest adds to the larger HeroQuest mythology</p>
+        </div>
+
+        <h2>⚡ Quest Difficulty Progression</h2>
+        
+        <canvas id="difficulty_progression_canvas" width="600" height="250"></canvas>
+        
+        <div class="quest-principle">
+            <h3>📈 The Learning Curve Science</h3>
+            <p><strong>The quests follow perfect educational psychology - like a video game that never feels unfair:</strong></p>
+            
+            <p><strong>🎯 Gradual Introduction:</strong> Each quest adds exactly one new major concept</p>
+            <p><strong>🔄 Skill Reinforcement:</strong> Later quests combine earlier lessons</p>
+            <p><strong>⚡ Confidence Building:</strong> Success in easier quests prepares for harder ones</p>
+            <p><strong>🏆 Mastery Testing:</strong> Final quests require all learned skills</p>
+        </div>
+
+        <h2>🎪 The Climactic Trilogy: Advanced Adventures</h2>
+        
+        <div class="quest-card">
+            <h3>🏰 The Castle of Mystery</h3>
+            <p><strong>The Puzzle Master's Domain</strong></p>
+            <p><strong>Challenge:</strong> Complex multi-room puzzles</p>
+            <p><strong>Key Innovation:</strong> Environmental storytelling</p>
+            <p><strong>Master Strategy:</strong> Think like a detective, not a warrior</p>
+            <p><strong>Why it's special:</strong> Proves HeroQuest can be more than hack-and-slash</p>
+        </div>
+
+        <div class="quest-card">
+            <h3>⚔️ The Rescue of Sir Ragnar</h3>
+            <p><strong>The Ultimate Team Challenge</strong></p>
+            <p><strong>Challenge:</strong> Coordinated assault tactics</p>
+            <p><strong>Key Innovation:</strong> Time pressure and multiple objectives</p>
+            <p><strong>Master Strategy:</strong> Perfect teamwork or certain failure</p>
+            <p><strong>Why it's special:</strong> Teaches advanced group dynamics</p>
+        </div>
+
+        <div class="quest-card">
+            <h3>👑 The Witch Lord</h3>
+            <p><strong>The Final Examination</strong></p>
+            <p><strong>Challenge:</strong> Everything you've learned, all at once</p>
+            <p><strong>Key Innovation:</strong> Boss with multiple phases and strategies</p>
+            <p><strong>Master Strategy:</strong> Adaptability and resource management</p>
+            <p><strong>Why it's special:</strong> The ultimate graduation test for heroes</p>
+        </div>
+
+        <h2>🎯 Optimal Party Strategies by Quest Type</h2>
+        
+        <div class="strategy-box">
+            <h3>🎭 Role-Based Quest Approaches</h3>
+            
+            <p><strong>🏃 Exploration Quests (Trial, Maze):</strong></p>
+            <ul>
+                <li>Lead with Barbarian for durability</li>
+                <li>Elf provides versatile backup</li>
+                <li>Wizard saves spells for emergencies</li>
+                <li>Dwarf handles traps and secrets</li>
+            </ul>
+            
+            <p><strong>⚔️ Combat Quests (Barbarian's Quest, Ogre Horde):</strong></p>
+            <ul>
+                <li>Barbarian takes point and absorbs damage</li>
+                <li>Elf provides ranged support</li>
+                <li>Wizard focuses on offensive spells</li>
+                <li>Dwarf protects the spellcasters</li>
+            </ul>
+            
+            <p><strong>🧩 Puzzle Quests (Wizard's Quest, Castle of Mystery):</strong></p>
+            <ul>
+                <li>Wizard leads investigation</li>
+                <li>Elf provides magical backup</li>
+                <li>Dwarf handles technical challenges</li>
+                <li>Barbarian guards the problem-solvers</li>
+            </ul>
+        </div>
+
+        <h2>📚 Learning from Failure: Common Quest Mistakes</h2>
+        
+        <div class="design-analysis">
+            <h3>⚠️ The Hall of Shame: How Heroes Fall</h3>
+            
+            <p><strong>💀 The Rambo Mistake:</strong> Charging ahead without the party</p>
+            <p><em>Solution:</em> Move together, fight together, survive together</p>
+            
+            <p><strong>🎰 The Gambler's Mistake:</strong> Using all resources in the first room</p>
+            <p><em>Solution:</em> Save your best stuff for the worst moments</p>
+            
+            <p><strong>🚗 The Tourist Mistake:</strong> Rushing through without searching</p>
+            <p><em>Solution:</em> Every room has secrets - find them all</p>
+            
+            <p><strong>🎯 The Specialist Mistake:</strong> Only using your character's obvious strengths</p>
+            <p><em>Solution:</em> Every hero can contribute in unexpected ways</p>
+        </div>
+
+        <h2>🏆 Mastery Challenges: Quest Variants</h2>
+        
+        <div class="quest-principle">
+            <h3>🎪 Advanced Difficulty Modes</h3>
+            <p><strong>Once you've mastered the basics, try these expert challenges:</strong></p>
+            
+            <p><strong>⏰ Speed Runs:</strong> Complete quests in minimum turns</p>
+            <p><strong>🛡️ Pacifist Runs:</strong> Win without killing any monsters (where possible)</p>
+            <p><strong>💰 Treasure Hunter:</strong> Find every secret and treasure</p>
+            <p><strong>🔮 Single Character:</strong> Complete with only one hero type</p>
+            <p><strong>🎲 Random Equipment:</strong> Use only randomly assigned gear</p>
+        </div>
+
+        <h2>🌟 Creating Your Own Classic-Style Quests</h2>
+        
+        <div class="strategy-box">
+            <h3>🎨 The Quest Designer's Toolkit</h3>
+            <p><strong>Want to create adventures that feel like the originals? Follow these principles:</strong></p>
+            
+            <p><strong>📚 The Teaching Principle:</strong> Each quest should teach one new skill</p>
+            <p><strong>🎭 The Story Principle:</strong> Every room should advance the narrative</p>
+            <p><strong>⚖️ The Balance Principle:</strong> Challenge without frustration</p>
+            <p><strong>🎁 The Reward Principle:</strong> Meaningful treasures for meaningful risks</p>
+            <p><strong>🔄 The Replayability Principle:</strong> Multiple solutions to every problem</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Expansion Packs and Advanced Adventures"</strong> - diving into Kellar's Keep, Return of the Witch Lord, Against the Ogre Horde, and Wizards of Morcar! We'll analyze how these expansions build upon the original formula while introducing revolutionary new mechanics and challenges.</p>
+        
+        <div class="quest-principle">
+            <p><strong>Remember:</strong> The original quests aren't just games - they're masterclasses in adventure design that have influenced decades of gaming. Every room placement, every monster encounter, every treasure location was carefully crafted to create the perfect learning experience. Study them like a film student studies Citizen Kane - there's always something new to discover!</p>
+        </div>
+    </div>
+
+    <script>
+        // Quest data for interactive exploration
+        const quests = [
+            {
+                name: "The Trial",
+                difficulty: 5,
+                difficultyLabel: "Beginner",
+                purpose: "Introduction to core mechanics",
+                lessons: "Movement, combat, searching, basic tactics",
+                secrets: "The secret door teaches observation skills",
+                strategy: "Send the Barbarian first, keep the Wizard protected",
+                innovation: "Perfect tutorial that never feels like a tutorial"
+            },
+            {
+                name: "The Maze",
+                difficulty: 15,
+                difficultyLabel: "Easy",
+                purpose: "Navigation and mapping skills",
+                lessons: "Spatial awareness, resource management, pathfinding",
+                secrets: "Multiple routes create strategic choices",
+                strategy: "Map everything systematically, avoid backtracking",
+                innovation: "First quest to emphasize exploration over combat"
+            },
+            {
+                name: "Barbarian's Quest",
+                difficulty: 25,
+                difficultyLabel: "Easy-Medium",
+                purpose: "Aggressive combat tactics",
+                lessons: "Risk assessment, melee specialization",
+                secrets: "Hidden armory rewards thorough searching",
+                strategy: "Balance aggression with caution in trapped areas",
+                innovation: "Character-specific challenges and rewards"
+            },
+            {
+                name: "Elf's Quest",
+                difficulty: 35,
+                difficultyLabel: "Medium",
+                purpose: "Ranged combat and magic",
+                lessons: "Positioning, spell usage, versatility",
+                secrets: "Long corridors favor ranged attacks",
+                strategy: "Use architecture to maximize archery advantages",
+                innovation: "Environmental design supports character strengths"
+            },
+            {
+                name: "Wizard's Quest",
+                difficulty: 50,
+                difficultyLabel: "Medium",
+                purpose: "Magical problem solving",
+                lessons: "Spell conservation, puzzle solving",
+                secrets: "Some enemies can only be defeated with magic",
+                strategy: "Think before fighting, magic over muscle",
+                innovation: "First quest where brute force fails"
+            },
+            {
+                name: "Prince Magnus's Gold",
+                difficulty: 70,
+                difficultyLabel: "Medium-Hard",
+                purpose: "Advanced team coordination",
+                lessons: "Complex objectives, time management",
+                secrets: "Multiple treasure locations require splitting up",
+                strategy: "Coordinate team movements, divide and conquer",
+                innovation: "Multi-objective quest structure"
+            },
+            {
+                name: "The Witch Lord",
+                difficulty: 95,
+                difficultyLabel: "Master",
+                purpose: "Ultimate graduation test",
+                lessons: "Everything combined, adaptability under pressure",
+                secrets: "Boss has multiple phases requiring different tactics",
+                strategy: "Perfect execution of all learned skills",
+                innovation: "Dynamic boss fight that changes strategy mid-combat"
+            }
+        ];
+        
+        let currentQuest = 0;
+        
+        function selectQuest(index) {
+            currentQuest = index;
+            
+            // Update button styles
+            const buttons = document.querySelectorAll('.quest-button');
+            buttons.forEach((button, i) => {
+                button.classList.toggle('active', i === index);
+            });
+            
+            // Update difficulty indicator
+            const quest = quests[index];
+            const indicator = document.getElementById('difficulty_indicator');
+            const difficultyLevel = document.getElementById('difficulty_level');
+            
+            indicator.style.left = quest.difficulty + '%';
+            difficultyLevel.textContent = quest.difficultyLabel;
+            
+            // Update quest analysis
+            const analysisDiv = document.getElementById('quest_analysis');
+            analysisDiv.innerHTML = `
+                <h3>🎯 ${quest.name}</h3>
+                <p><strong>Design Purpose:</strong> ${quest.purpose}</p>
+                <p><strong>Key Lessons:</strong> ${quest.lessons}</p>
+                <p><strong>Hidden Secrets:</strong> ${quest.secrets}</p>
+                <p><strong>Pro Strategy:</strong> ${quest.strategy}</p>
+                <p><strong>Design Innovation:</strong> ${quest.innovation}</p>
+            `;
+        }
+        
+        // Quest Design Architecture Visualization
+        const designCanvas = document.getElementById('quest_design_canvas');
+        const designCtx = designCanvas.getContext('2d');
+        
+        function drawQuestDesign() {
+            designCtx.clearRect(0, 0, designCanvas.width, designCanvas.height);
+            
+            // Background
+            designCtx.fillStyle = '#0f3460';
+            designCtx.fillRect(0, 0, designCanvas.width, designCanvas.height);
+            
+            // Draw quest structure pyramid
+            const levels = [
+                {y: 300, width: 400, label: 'Tutorial Elements', color: '#4caf50'},
+                {y: 250, width: 320, label: 'Exploration Challenges', color: '#ffeb3b'},
+                {y: 200, width: 240, label: 'Combat Encounters', color: '#ff9800'},
+                {y: 150, width: 160, label: 'Puzzle Elements', color: '#9c27b0'},
+                {y: 100, width: 80, label: 'Boss Challenge', color: '#f44336'}
+            ];
+            
+            levels.forEach(level => {
+                const x = (designCanvas.width - level.width) / 2;
+                
+                designCtx.fillStyle = level.color;
+                designCtx.fillRect(x, level.y, level.width, 40);
+                
+                designCtx.fillStyle = '#000';
+                designCtx.font = '14px Arial';
+                designCtx.textAlign = 'center';
+                designCtx.fillText(level.label, designCanvas.width / 2, level.y + 25);
+            });
+            
+            // Draw connecting lines
+            designCtx.strokeStyle = '#4fc3f7';
+            designCtx.lineWidth = 2;
+            for (let i = 0; i < levels.length - 1; i++) {
+                const current = levels[i];
+                const next = levels[i + 1];
+                
+                designCtx.beginPath();
+                designCtx.moveTo((designCanvas.width - current.width) / 2, current.y);
+                designCtx.lineTo((designCanvas.width - next.width) / 2, next.y + 40);
+                designCtx.stroke();
+                
+                designCtx.beginPath();
+                designCtx.moveTo((designCanvas.width + current.width) / 2, current.y);
+                designCtx.lineTo((designCanvas.width + next.width) / 2, next.y + 40);
+                designCtx.stroke();
+            }
+            
+            designCtx.fillStyle = '#4fc3f7';
+            designCtx.font = '18px Arial';
+            designCtx.fillText('Classic Quest Architecture', designCanvas.width / 2, 30);
+            designCtx.textAlign = 'left';
+        }
+        
+        drawQuestDesign();
+        
+        // Strategy Patterns Visualization
+        const strategyCanvas = document.getElementById('strategy_patterns_canvas');
+        const strategyCtx = strategyCanvas.getContext('2d');
+        
+        function drawStrategyPatterns() {
+            strategyCtx.clearRect(0, 0, strategyCanvas.width, strategyCanvas.height);
+            
+            // Background
+            strategyCtx.fillStyle = '#0f3460';
+            strategyCtx.fillRect(0, 0, strategyCanvas.width, strategyCanvas.height);
+            
+            // Draw tactical formations
+            const formations = [
+                {x: 120, y: 150, name: 'Diamond Formation', heroes: [{x: 0, y: -30}, {x: -20, y: 0}, {x: 20, y: 0}, {x: 0, y: 30}]},
+                {x: 300, y: 150, name: 'Line Formation', heroes: [{x: -30, y: 0}, {x: -10, y: 0}, {x: 10, y: 0}, {x: 30, y: 0}]},
+                {x: 480, y: 150, name: 'Wedge Formation', heroes: [{x: 0, y: -20}, {x: -15, y: 10}, {x: 15, y: 10}, {x: 0, y: 30}]}
+            ];
+            
+            formations.forEach(formation => {
+                // Draw formation background
+                strategyCtx.fillStyle = '#1a1a2e';
+                strategyCtx.beginPath();
+                strategyCtx.arc(formation.x, formation.y, 50, 0, Math.PI * 2);
+                strategyCtx.fill();
+                
+                strategyCtx.strokeStyle = '#4fc3f7';
+                strategyCtx.lineWidth = 2;
+                strategyCtx.stroke();
+                
+                // Draw heroes
+                formation.heroes.forEach((hero, index) => {
+                    const colors = ['#4a90e2', '#32cd32', '#9370db', '#cd853f'];
+                    const symbols = ['🛡️', '🏹', '🔮', '🗡️'];
+                    
+                    strategyCtx.fillStyle = colors[index];
+                    strategyCtx.fillRect(formation.x + hero.x - 8, formation.y + hero.y - 8, 16, 16);
+                    
+                    strategyCtx.fillStyle = '#fff';
+                    strategyCtx.font = '12px Arial';
+                    strategyCtx.textAlign = 'center';
+                    strategyCtx.fillText(symbols[index], formation.x + hero.x, formation.y + hero.y + 4);
+                });
+                
+                // Draw formation name
+                strategyCtx.fillStyle = '#e6f2ff';
+                strategyCtx.font = '12px Arial';
+                strategyCtx.fillText(formation.name, formation.x, formation.y + 80);
+            });
+            
+            strategyCtx.fillStyle = '#4fc3f7';
+            strategyCtx.font = '16px Arial';
+            strategyCtx.textAlign = 'center';
+            strategyCtx.fillText('Universal Tactical Formations', 300, 30);
+            strategyCtx.textAlign = 'left';
+        }
+        
+        drawStrategyPatterns();
+        
+        // Difficulty Progression Chart
+        const difficultyCanvas = document.getElementById('difficulty_progression_canvas');
+        const difficultyCtx = difficultyCanvas.getContext('2d');
+        
+        function drawDifficultyProgression() {
+            difficultyCtx.clearRect(0, 0, difficultyCanvas.width, difficultyCanvas.height);
+            
+            // Background
+            difficultyCtx.fillStyle = '#0f3460';
+            difficultyCtx.fillRect(0, 0, difficultyCanvas.width, difficultyCanvas.height);
+            
+            // Draw progression curve
+            difficultyCtx.strokeStyle = '#4fc3f7';
+            difficultyCtx.lineWidth = 3;
+            difficultyCtx.beginPath();
+            
+            const questDifficulties = [5, 15, 25, 35, 50, 60, 70, 80, 85, 90, 95];
+            const questNames = ['Trial', 'Maze', 'Barbarian', 'Elf', 'Wizard', 'Dwarf', 'Magnus', 'Ogre', 'Legacy', 'Cavern', 'Witch Lord'];
+            
+            questDifficulties.forEach((difficulty, index) => {
+                const x = 50 + (index * (difficultyCanvas.width - 100) / (questDifficulties.length - 1));
+                const y = difficultyCanvas.height - 50 - (difficulty * (difficultyCanvas.height - 100) / 100);
+                
+                if (index === 0) difficultyCtx.moveTo(x, y);
+                else difficultyCtx.lineTo(x, y);
+                
+                // Draw quest points
+                difficultyCtx.fillStyle = '#ffd700';
+                difficultyCtx.beginPath();
+                difficultyCtx.arc(x, y, 4, 0, Math.PI * 2);
+                difficultyCtx.fill();
+                
+                // Draw quest names
+                difficultyCtx.fillStyle = '#e6f2ff';
+                difficultyCtx.font = '10px Arial';
+                difficultyCtx.textAlign = 'center';
+                difficultyCtx.save();
+                difficultyCtx.translate(x, y - 15);
+                difficultyCtx.rotate(-Math.PI / 4);
+                difficultyCtx.fillText(questNames[index], 0, 0);
+                difficultyCtx.restore();
+            });
+            
+            difficultyCtx.stroke();
+            
+            difficultyCtx.fillStyle = '#4fc3f7';
+            difficultyCtx.font = '16px Arial';
+            difficultyCtx.textAlign = 'center';
+            difficultyCtx.fillText('Quest Difficulty Progression', 300, 25);
+            
+            // Draw axes labels
+            difficultyCtx.fillStyle = '#e6f2ff';
+            difficultyCtx.font = '12px Arial';
+            difficultyCtx.fillText('Quest Sequence', 300, difficultyCanvas.height - 10);
+            
+            difficultyCtx.save();
+            difficultyCtx.translate(15, difficultyCanvas.height / 2);
+            difficultyCtx.rotate(-Math.PI / 2);
+            difficultyCtx.fillText('Difficulty Level', 0, 0);
+            difficultyCtx.restore();
+            difficultyCtx.textAlign = 'left';
+        }
+        
+        drawDifficultyProgression();
+    </script>
+</body>
+</html>

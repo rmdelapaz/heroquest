@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Complete Learning Series - Master Index</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 20%, #0f3460 40%, #533483 60%, #7209b7 80%, #a663cc 100%);
+            color: #e8eaf6;
+        }
+        .container {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(166, 99, 204, 0.4);
+            border: 3px solid #a663cc;
+        }
+        h1 {
+            color: #a663cc;
+            text-align: center;
+            font-size: 3em;
+            text-shadow: 3px 3px 12px rgba(166, 99, 204, 0.8);
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #a663cc, #7209b7, #533483);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-banner {
+            text-align: center;
+            font-size: 1.2em;
+            color: #c5cae9;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(83, 52, 131, 0.3);
+            border-radius: 15px;
+            border: 2px solid #7209b7;
+        }
+        h2 {
+            color: #9c88ff;
+            border-bottom: 3px solid #7209b7;
+            padding-bottom: 15px;
+            margin-top: 50px;
+            font-size: 2em;
+        }
+        .course-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border: 2px solid #533483;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border-left: 6px solid #a663cc;
+        }
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .course-card {
+            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+            border: 2px solid #7209b7;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(166,99,204,0.1) 50%, transparent 55%);
+            animation: card-shine 6s ease-in-out infinite;
+        }
+        @keyframes card-shine {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+        .course-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(166, 99, 204, 0.6);
+            border-color: #a663cc;
+        }
+        .course-link {
+            color: #a663cc;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        .course-link:hover {
+            color: #c5cae9;
+            text-shadow: 0 0 10px rgba(166, 99, 204, 0.8);
+        }
+        .course-description {
+            color: #c5cae9;
+            font-size: 1em;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        .course-features {
+            color: #9c88ff;
+            font-size: 0.9em;
+            font-style: italic;
+        }
+        .expansion-card {
+            background: linear-gradient(135deg, #0f3460 0%, #533483 100%);
+            border: 2px solid #9c88ff;
+            border-radius: 15px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .expansion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(156, 136, 255, 0.5);
+        }
+        .expansion-title {
+            color: #a663cc;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .expansion-description {
+            color: #c5cae9;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+        .expansion-status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .status-available {
+            background: rgba(76, 175, 80, 0.3);
+            border: 1px solid #4caf50;
+            color: #81c784;
+        }
+        .status-coming-soon {
+            background: rgba(255, 193, 7, 0.3);
+            border: 1px solid #ffc107;
+            color: #ffb74d;
+        }
+        .learning-path {
+            background: rgba(166, 99, 204, 0.1);
+            border: 2px solid #a663cc;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .path-step {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(83, 52, 131, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid #7209b7;
+        }
+        .step-number {
+            background: linear-gradient(135deg, #7209b7, #a663cc);
+            color: #fff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+        .step-content {
+            flex: 1;
+        }
+        .step-title {
+            color: #a663cc;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .step-description {
+            color: #c5cae9;
+            font-size: 0.9em;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #533483, #7209b7);
+            border: 2px solid #a663cc;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+        .stat-label {
+            color: #c5cae9;
+            font-size: 1em;
+            margin-top: 10px;
+        }
+        .progress-meter {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to right, #1a1a2e, #16213e, #0f3460, #533483, #7209b7, #a663cc);
+            border: 2px solid #a663cc;
+            border-radius: 15px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .progress-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 13px;
+            transition: width 0.5s ease;
+            animation: progress-glow 3s ease-in-out infinite;
+        }
+        @keyframes progress-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(166, 99, 204, 0.5); }
+            50% { box-shadow: 0 0 20px rgba(166, 99, 204, 0.8); }
+        }
+        .navigation-help {
+            background: rgba(83, 52, 131, 0.3);
+            border: 2px solid #7209b7;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        .help-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .help-item {
+            padding: 15px;
+            background: rgba(26, 26, 46, 0.5);
+            border-radius: 10px;
+            border: 1px solid #533483;
+        }
+        .help-icon {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .help-title {
+            color: #9c88ff;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .help-text {
+            color: #c5cae9;
+            font-size: 0.9em;
+        }
+        .master-quest {
+            background: linear-gradient(135deg, #7209b7, #a663cc);
+            border: 3px solid #c5cae9;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .master-quest::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: master-shine 4s linear infinite;
+        }
+        @keyframes master-shine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .master-title {
+            color: #fff;
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .master-description {
+            color: #f3e5f5;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚔️ HeroQuest Complete Learning Series 🏰</h1>
+        
+        <div class="hero-banner">
+            <strong>Welcome to the Ultimate HeroQuest Mastery Course!</strong><br>
+            From novice adventurer to legendary dungeon master - your epic journey begins here!<br>
+            <em>Interactive tutorials, real-world examples, and hands-on practice for every skill level</em>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">16</div>
+                <div class="stat-label">Complete Tutorials</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Expansion Packs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">1</div>
+                <div class="stat-label">Digital Toolkit</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Adventure Possibilities</div>
+            </div>
+        </div>
+
+        <div class="progress-meter">
+            <div class="progress-indicator" style="width: 100%;"></div>
+        </div>
+        <p style="text-align: center; color: #9c88ff;"><em>Your HeroQuest Mastery Progress: Course Complete!</em></p>
+
+        <h2>🎓 Core Learning Path</h2>
+        
+        <div class="learning-path">
+            <h3 style="color: #a663cc; text-align: center; margin-bottom: 25px;">📚 Recommended Learning Sequence</h3>
+            
+            <div class="path-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">Foundation Building</div>
+                    <div class="step-description">Master the core mechanics, combat systems, and basic dungeon exploration</div>
+                </div>
+            </div>
+            
+            <div class="path-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">Advanced Techniques</div>
+                    <div class="step-description">Learn sophisticated combat tactics, magic systems, and character progression</div>
+                </div>
+            </div>
+            
+            <div class="path-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">Dungeon Mastery</div>
+                    <div class="step-description">Develop storytelling skills and learn to create memorable adventures</div>
+                </div>
+            </div>
+            
+            <div class="path-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">Expansion Exploration</div>
+                    <div class="step-description">Discover unique mechanics and challenges in each expansion pack</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-section">
+            <h2>📖 Foundation Courses</h2>
+            <p style="color: #c5cae9; margin-bottom: 25px;">Start your journey with these essential tutorials that cover the core HeroQuest experience.</p>
+            
+            <div class="course-grid">
+                <div class="course-card">
+                    <a href="heroquest_basics.html" class="course-link">🎯 HeroQuest Basics</a>
+                    <div class="course-description">
+                        Master the fundamental rules, character creation, and basic gameplay mechanics. Perfect starting point for new players.
+                    </div>
+                    <div class="course-features">
+                        ✨ Interactive character creator • 🎲 Dice rolling simulator • 📊 Statistics tracker
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <a href="heroquest_dungeon_mastering.html" class="course-link">🎭 Dungeon Mastering</a>
+                    <div class="course-description">
+                        Learn the art of storytelling, managing player expectations, and creating memorable adventures that keep players coming back.
+                    </div>
+                    <div class="course-features">
+                        🎨 Story generator • 🗺️ Map designer • 🎪 Encounter builder
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <a href="heroquest_advanced_combat.html" class="course-link">⚔️ Advanced Combat</a>
+                    <div class="course-description">
+                        Master tactical combat, positioning strategies, and advanced maneuvers that separate heroes from legends.
+                    </div>
+                    <div class="course-features">
+                        🛡️ Combat simulator • 📈 Damage calculator • 🎯 Tactical analyzer
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <a href="heroquest_magic_spells.html" class="course-link">🔮 Magic & Spells</a>
+                    <div class="course-description">
+                        Unlock the mysteries of arcane magic, spell combinations, and magical item creation for ultimate mystical mastery.
+                    </div>
+                    <div class="course-features">
+                        ✨ Spell laboratory • 🧙 Magic simulator • 📜 Spellbook creator
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <a href="heroquest_treasure_progression.html" class="course-link">💰 Treasure & Progression</a>
+                    <div class="course-description">
+                        Understand loot distribution, character advancement, and long-term campaign progression for sustained engagement.
+                    </div>
+                    <div class="course-features">
+                        💎 Treasure generator • 📊 Progress tracker • ⚖️ Balance analyzer
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <a href="heroquest_original_quests.html" class="course-link">🗡️ Original Quest Mastery</a>
+                    <div class="course-description">
+                        Deep dive into the classic adventures with advanced strategies, hidden secrets, and optimization techniques.
+                    </div>
+                    <div class="course-features">
+                        🗺️ Quest navigator • 🔍 Secret finder • 📝 Strategy guide
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-section">
+            <h2>🎲 Digital Tools</h2>
+            <p style="color: #c5cae9; margin-bottom: 25px;">Enhance your gameplay experience with our comprehensive digital companion tools.</p>
+            
+            <div class="course-grid">
+                <div class="course-card" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto;">
+                    <a href="heroquest_digital_toolkit.html" class="course-link">🛠️ HeroQuest Digital Toolkit</a>
+                    <div class="course-description">
+                        Your complete digital companion for epic adventures! Advanced dice rolling, character tracking, combat calculator, quest management, and treasure generation - everything you need to enhance your HeroQuest experience in one powerful toolkit.
+                    </div>
+                    <div class="course-features">
+                        🎲 Advanced dice roller • 👤 Character sheet manager • ❤️ Health tracker • 📜 Quest progress system • 💰 Treasure generator • 🔮 Spell calculator • ⚔️ Combat calculator • 📊 Statistics tracking • 🏆 Achievement system • ⚙️ Customizable settings
+                    </div>
+                    <div style="text-align: center; margin-top: 15px; padding: 15px; background: rgba(139, 195, 74, 0.2); border-radius: 10px; border: 2px solid #8bc34a;">
+                        <strong style="color: #8bc34a;">🌟 FEATURED TOOL</strong><br>
+                        <span style="color: #c5cae9; font-size: 0.9em;">Perfect for both tabletop and digital play sessions!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mermaid">
+            graph TD
+                A[HeroQuest Mastery] --> B[Foundation Skills]
+                A --> C[Advanced Techniques]
+                A --> D[Expansion Mastery]
+                
+                B --> B1[Basic Rules]
+                B --> B2[Combat Basics]
+                B --> B3[Simple Magic]
+                B --> B4[Dungeon Basics]
+                
+                C --> C1[Advanced Combat]
+                C --> C2[Complex Magic]
+                C --> C3[Treasure Systems]
+                C --> C4[Quest Design]
+                
+                D --> D1[Classic Expansions]
+                D --> D2[Modern Additions]
+                D --> D3[Specialty Mechanics]
+                D --> D4[Master Campaigns]
+                
+                style A fill:#a663cc,stroke:#333,stroke-width:3px
+                style B fill:#7209b7,stroke:#333,stroke-width:2px
+                style C fill:#533483,stroke:#333,stroke-width:2px
+                style D fill:#9c88ff,stroke:#333,stroke-width:2px
+        </div>
+
+        <div class="course-section">
+            <h2>🏰 Expansion Adventures</h2>
+            <p style="color: #c5cae9; margin-bottom: 25px;">Explore the rich world of HeroQuest expansions, each offering unique mechanics and unforgettable adventures.</p>
+            
+            <div class="course-grid">
+                <div class="expansion-card">
+                    <a href="heroquest_kellars_keep.html" class="course-link">🏰 Kellar's Keep</a>
+                    <div class="expansion-description">
+                        Introduces fortress sieges, new quests, and challenging monsters. Master defensive strategies and siege warfare.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+
+                <div class="expansion-card">
+                    <a href="heroquest_return_witch_lord.html" class="course-link">👑 Return of the Witch Lord</a>
+                    <div class="expansion-description">
+                        Epic storyline featuring the Witch Lord's return. Advanced quest design and narrative techniques.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+
+                <div class="expansion-card">
+                    <a href="heroquest_prophecy_telor.html" class="course-link">🔮 Prophecy of Telor</a>
+                    <div class="expansion-description">
+                        Decipher ancient secrets and master the amulet of wisdom. Puzzle-solving and mystical challenges.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+
+                <div class="expansion-card">
+                    <a href="heroquest_spirit_queens_torment.html" class="course-link">⚔️ Spirit Queen's Torment</a>
+                    <div class="expansion-description">
+                        Wield Fortune's Longsword and face supernatural challenges. Ghost combat and ethereal mechanics.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+
+                <div class="expansion-card">
+                    <a href="heroquest_against_ogre_horde.html" class="course-link">🛡️ Against the Ogre Horde</a>
+                    <div class="expansion-description">
+                        Mass combat system and arena-style gameplay. Tactical warfare and resource management.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+
+                <div class="expansion-card">
+                    <a href="heroquest_frozen_horror.html" class="course-link">❄️ The Frozen Horror</a>
+                    <div class="expansion-description">
+                        Arctic survival and ice-themed monsters. Environmental hazards and extreme weather mechanics.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+
+                <div class="expansion-card">
+                    <a href="heroquest_mage_of_mirror.html" class="course-link">🪞 The Mage of the Mirror</a>
+                    <div class="expansion-description">
+                        Reality manipulation and mirror world mechanics. Advanced magical theory and dimensional combat.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+
+                <div class="expansion-card">
+                    <a href="heroquest_rise_dread_moon.html" class="course-link">🌙 Rise of the Dread Moon</a>
+                    <div class="expansion-description">
+                        Alchemy systems, reputation mechanics, and deep roleplaying elements. Character development focus.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+
+                <div class="expansion-card">
+                    <a href="heroquest_jungles_delthrak.html" class="course-link">🌿 Jungles of Delthrak</a>
+                    <div class="expansion-description">
+                        Wilderness survival and environmental combat. Master nature's challenges and predator encounters.
+                    </div>
+                    <div class="expansion-status status-available">Available Now</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-help">
+            <h3 style="color: #a663cc; margin-bottom: 20px;">🧭 How to Navigate This Course</h3>
+            
+            <div class="help-grid">
+                <div class="help-item">
+                    <div class="help-icon">🎯</div>
+                    <div class="help-title">For Beginners</div>
+                    <div class="help-text">Start with HeroQuest Basics, then move through Foundation Courses before exploring expansions.</div>
+                </div>
+                
+                <div class="help-item">
+                    <div class="help-icon">⚔️</div>
+                    <div class="help-title">For Veterans</div>
+                    <div class="help-text">Jump directly to Advanced Combat or specific expansion tutorials to enhance your existing knowledge.</div>
+                </div>
+                
+                <div class="help-item">
+                    <div class="help-icon">🎭</div>
+                    <div class="help-title">For Dungeon Masters</div>
+                    <div class="help-text">Focus on Dungeon Mastering, Quest Design, and expansion-specific storytelling techniques.</div>
+                </div>
+                
+                <div class="help-item">
+                    <div class="help-icon">🔮</div>
+                    <div class="help-title">For Magic Users</div>
+                    <div class="help-text">Dive deep into Magic & Spells, then explore magical expansions like Mage of the Mirror.</div>
+                </div>
+                
+                <div class="help-item">
+                    <div class="help-icon">🌿</div>
+                    <div class="help-title">For Survivalists</div>
+                    <div class="help-text">Master environmental challenges with Jungles of Delthrak and Frozen Horror tutorials.</div>
+                </div>
+                
+                <div class="help-item">
+                    <div class="help-icon">🎲</div>
+                    <div class="help-title">Digital Tools</div>
+                    <div class="help-text">Use the Digital Toolkit for enhanced gameplay with dice rolling, character tracking, and quest management.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="master-quest">
+            <div class="master-title">🏆 The Ultimate Challenge</div>
+            <div class="master-description">
+                Complete all foundation courses, explore the expansion tutorials, and master the digital toolkit to unlock the legendary<br>
+                <strong>"Master of the Eternal Quest"</strong> achievement and gain access to exclusive advanced content!
+            </div>
+        </div>
+
+        <div class="course-section">
+            <h3 style="color: #a663cc; text-align: center;">🌟 Your HeroQuest Journey Awaits</h3>
+            <p style="text-align: center; color: #c5cae9; font-size: 1.1em; margin: 25px 0;">
+                Whether you're a complete newcomer or a seasoned veteran, this comprehensive course series will transform your HeroQuest experience. 
+                Each tutorial combines interactive learning with practical examples, ensuring you not only understand the theory but can apply it in real gameplay.
+            </p>
+            <p style="text-align: center; color: #9c88ff; font-style: italic;">
+                <strong>Ready to begin your epic adventure? Choose your starting point above and let the quest begin!</strong>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Progress tracking and visual enhancements
+        function updateProgress() {
+            const availableCourses = 16; // All courses now available including digital toolkit
+            const totalCourses = 16; // Total planned courses
+            const progressPercentage = 100; // Complete!
+            
+            const progressIndicator = document.querySelector('.progress-indicator');
+            progressIndicator.style.width = progressPercentage + '%';
+        }
+        
+        // Add hover effects to course cards
+        document.querySelectorAll('.course-card, .expansion-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+        
+        // Animate stats on load
+        function animateStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach((stat, index) => {
+                const finalValue = stat.textContent;
+                stat.textContent = '0';
+                
+                setTimeout(() => {
+                    let current = 0;
+                    const target = finalValue === '∞' ? '∞' : parseInt(finalValue);
+                    
+                    if (target === '∞') {
+                        stat.textContent = '∞';
+                        return;
+                    }
+                    
+                    const increment = target / 20;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            stat.textContent = target + (finalValue.includes('+') ? '+' : '');
+                            clearInterval(timer);
+                        } else {
+                            stat.textContent = Math.floor(current);
+                        }
+                    }, 50);
+                }, index * 200);
+            });
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            updateProgress();
+            animateStats();
+        });
+        
+        // Add sparkle effect to master quest
+        function createSparkles() {
+            const masterQuest = document.querySelector('.master-quest');
+            
+            setInterval(() => {
+                const sparkle = document.createElement('div');
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.width = '4px';
+                sparkle.style.height = '4px';
+                sparkle.style.background = '#fff';
+                sparkle.style.borderRadius = '50%';
+                sparkle.style.animation = 'sparkle 2s ease-out forwards';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '10';
+                
+                masterQuest.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 2000);
+            }, 300);
+        }
+        
+        // Add sparkle animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle {
+                0% { 
+                    opacity: 0; 
+                    transform: scale(0) rotate(0deg); 
+                }
+                50% { 
+                    opacity: 1; 
+                    transform: scale(1) rotate(180deg); 
+                }
+                100% { 
+                    opacity: 0; 
+                    transform: scale(0) rotate(360deg); 
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        createSparkles();
+    </script>
+</body>
+</html>

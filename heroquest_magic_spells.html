@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Spells, Magic, and Mystical Arts</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #2e1065 0%, #1a0d4d 50%, #0d1b2a 100%);
+            color: #e6f3ff;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(72, 61, 139, 0.4);
+        }
+        h1 {
+            color: #dda0dd;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(138, 43, 226, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #9370db;
+            border-bottom: 2px solid #9370db;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .magic-principle {
+            background: linear-gradient(135deg, #483d8b 0%, #2e1065 100%);
+            border: 2px solid #dda0dd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #9370db;
+        }
+        .spell-card {
+            background: linear-gradient(135deg, #1a0d4d 0%, #4b0082 100%);
+            border: 2px solid #8a2be2;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 280px;
+            vertical-align: top;
+        }
+        .mystical-box {
+            background: rgba(138, 43, 226, 0.1);
+            border: 2px solid #8a2be2;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .grimoire-entry {
+            background: rgba(147, 112, 219, 0.1);
+            border: 2px solid #9370db;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #dda0dd;
+            border-radius: 10px;
+            background: #000;
+            display: block;
+            margin: 20px auto;
+        }
+        .mana-bar {
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(to right, #4b0082, #8a2be2, #dda0dd);
+            border: 2px solid #9370db;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .mana-indicator {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: linear-gradient(to right, #ffd700, #ffff00);
+            border-radius: 13px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+        }
+        .spell-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(75, 0, 130, 0.2);
+            border-radius: 10px;
+        }
+        .spell-rune {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #dda0dd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: radial-gradient(circle, #1a0d4d, #4b0082);
+        }
+        .spell-rune:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
+        }
+        .spell-rune.active {
+            background: radial-gradient(circle, #ffd700, #ffff00);
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔮 Spells, Magic, and Mystical Arts ✨</h1>
+        
+        <div class="magic-principle">
+            <h2>🌟 The Essence of Magic: Power and Responsibility</h2>
+            <p><strong>Magic in HeroQuest is like being a symphony conductor with a finite orchestra!</strong> Each spell is a powerful instrument that can change the course of battle, but you only get to use each musician a limited number of times. The art lies not just in knowing what each spell does, but in knowing WHEN to use it for maximum dramatic impact.</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of spells like a master chef's secret ingredients. A pinch of rare saffron can transform a dish, but you don't waste it on everyday cooking. Save your best spells for moments that matter most - the dramatic boss fights, the desperate last stands, the heroic rescues!</p>
+        </div>
+
+        <h2>🎭 The Three Schools of Magical Thinking</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Mystical Arts] --> B[Offensive Magic]
+                A --> C[Defensive Magic]
+                A --> D[Utility Magic]
+                
+                B --> B1[Direct Damage]
+                B --> B2[Area Effects]
+                B --> B3[Elemental Forces]
+                
+                C --> C1[Healing Arts]
+                C --> C2[Protection Wards]
+                C --> C3[Defensive Barriers]
+                
+                D --> D1[Movement Enhancement]
+                D --> D2[Perception Spells]
+                D --> D3[Environmental Control]
+                
+                style A fill:#dda0dd,stroke:#333,stroke-width:3px
+                style B fill:#ff4500,stroke:#333,stroke-width:2px
+                style C fill:#32cd32,stroke:#333,stroke-width:2px
+                style D fill:#4169e1,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>📚 The Wizard's Grimoire: Spell Compendium</h2>
+        
+        <div class="spell-card">
+            <h3>⚡ Ball of Flame</h3>
+            <p><strong>Type:</strong> Offensive Ranged</p>
+            <p><strong>Effect:</strong> 3 combat dice damage</p>
+            <p><strong>Best Used:</strong> Against clustered weak enemies</p>
+            <p><strong>Theatrical Moment:</strong> "You gather crackling energy in your palms, and with a dramatic gesture, unleash a roaring sphere of fire that illuminates the entire chamber!"</p>
+        </div>
+
+        <div class="spell-card">
+            <h3>💨 Wind of Magic</h3>
+            <p><strong>Type:</strong> Utility Movement</p>
+            <p><strong>Effect:</strong> Move without triggering wandering monsters</p>
+            <p><strong>Best Used:</strong> Strategic repositioning</p>
+            <p><strong>Theatrical Moment:</strong> "Mystical winds swirl around you, lifting you silently through the shadows like a ghost through the night!"</p>
+        </div>
+
+        <div class="spell-card">
+            <h3>💎 Rock Skin</h3>
+            <p><strong>Type:</strong> Defensive Enhancement</p>
+            <p><strong>Effect:</strong> +1 defend dice for duration</p>
+            <p><strong>Best Used:</strong> Before entering dangerous areas</p>
+            <p><strong>Theatrical Moment:</strong> "Your skin takes on the appearance of living granite, each muscle becoming as hard as mountain stone!"</p>
+        </div>
+
+        <div class="spell-card">
+            <h3>🌟 Healing</h3>
+            <p><strong>Type:</strong> Restorative Magic</p>
+            <p><strong>Effect:</strong> Restore 1d6 Body Points</p>
+            <p><strong>Best Used:</strong> Emergency situations</p>
+            <p><strong>Theatrical Moment:</strong> "Golden light flows from your hands, mending wounds and restoring vitality as life force surges through damaged flesh!"</p>
+        </div>
+
+        <h2>🧙‍♂️ Interactive Spell Laboratory</h2>
+        
+        <div class="mystical-box">
+            <p><strong>Practice your magical timing!</strong> Click the runes to cast spells and watch your mana levels.</p>
+            
+            <div class="mana-bar">
+                <div class="mana-indicator" id="mana_indicator" style="width: 100%;"></div>
+            </div>
+            <p style="text-align: center;"><em>Mystical Energy: <span id="mana_level">100</span>%</em></p>
+            
+            <div class="spell-matrix" id="spell_matrix">
+                <!-- Spell runes will be populated by JavaScript -->
+            </div>
+            
+            <div id="spell_result" style="margin-top: 20px; padding: 15px; background: rgba(138, 43, 226, 0.1); border-radius: 10px; min-height: 60px;">
+                <strong>Magical Resonance:</strong> Select spells to see their mystical effects!
+            </div>
+        </div>
+
+        <h2>🎪 The Art of Spell Timing</h2>
+        
+        <canvas id="spell_timing_canvas" width="600" height="300"></canvas>
+        
+        <div class="magic-principle">
+            <h3>⏰ The Theater Director's Approach</h3>
+            <p><strong>Great spellcasting is like directing a blockbuster movie - it's all about timing and dramatic impact!</strong></p>
+            
+            <p><strong>🎬 Act I - Setup Spells:</strong> Cast protective and enhancement spells before danger</p>
+            <p><strong>🎬 Act II - Combat Spells:</strong> Use offensive magic when it creates maximum drama</p>
+            <p><strong>🎬 Act III - Resolution Spells:</strong> Save healing and escape spells for climactic moments</p>
+            
+            <p><strong>The "Movie Magic" Rule:</strong> Ask yourself - "If this were a movie scene, when would the spell have the biggest WOW factor?" That's when you cast it!</p>
+        </div>
+
+        <h2>🔥 Advanced Spellcasting Techniques</h2>
+        
+        <div class="grimoire-entry">
+            <h3>🎯 The Precision Strike Method</h3>
+            <p><strong>Like a sniper choosing the perfect shot:</strong></p>
+            <ul>
+                <li>Wait for enemies to cluster before using area spells</li>
+                <li>Target the most dangerous enemy with single-target spells</li>
+                <li>Use positioning to maximize spell effectiveness</li>
+                <li>Coordinate with teammates for combination attacks</li>
+            </ul>
+            
+            <h3>🛡️ The Insurance Policy Approach</h3>
+            <p><strong>Like a wise investor diversifying their portfolio:</strong></p>
+            <ul>
+                <li>Always keep one healing spell in reserve</li>
+                <li>Cast defensive spells BEFORE you need them</li>
+                <li>Save escape spells for true emergencies</li>
+                <li>Don't use all spells in the first encounter</li>
+            </ul>
+        </div>
+
+        <h2>⚗️ Spell Synergy and Combinations</h2>
+        
+        <canvas id="spell_synergy_canvas" width="600" height="350"></canvas>
+        
+        <div class="mystical-box">
+            <h3>🔗 Magical Harmony Principles</h3>
+            <p><strong>Some spells work together like ingredients in a master chef's recipe:</strong></p>
+            
+            <p><strong>🔥 + 💨 Fire + Wind:</strong> Cast Ball of Flame after Wind of Magic for surprise positioning</p>
+            <p><strong>💎 + ⚔️ Rock Skin + Combat:</strong> Enhanced defense makes aggressive tactics safer</p>
+            <p><strong>🌟 + 🛡️ Healing + Protection:</strong> Heal first, then protect to prevent re-damage</p>
+            <p><strong>⚡ + 🎯 Area Damage + Positioning:</strong> Use movement to line up multiple targets</p>
+        </div>
+
+        <h2>🎭 Roleplaying Your Magic</h2>
+        
+        <div class="spell-card">
+            <h3>🎨 The Method Actor Approach</h3>
+            <p><strong>Each spell should feel different - like playing different characters in a play:</strong></p>
+            
+            <p><strong>🔥 Fire Magic:</strong> Speak with passion, gesture dramatically, invoke heat and flame</p>
+            <p><strong>💨 Wind Magic:</strong> Use flowing movements, speak of air and freedom</p>
+            <p><strong>💎 Earth Magic:</strong> Ground yourself, speak of strength and endurance</p>
+            <p><strong>🌟 Divine Magic:</strong> Look upward, speak reverently of light and healing</p>
+        </div>
+
+        <div class="spell-card">
+            <h3>🗣️ Incantation Examples</h3>
+            <p><strong>Transform simple spell names into magical moments:</strong></p>
+            
+            <p><strong>❌ Boring:</strong> "I cast Ball of Flame"</p>
+            <p><strong>✅ Epic:</strong> "By the ancient fires of the dragon lords, I summon forth the burning sphere of destruction!"</p>
+            
+            <p><strong>❌ Boring:</strong> "I cast Healing"</p>
+            <p><strong>✅ Epic:</strong> "Sacred light of restoration, flow through my hands and mend what has been broken!"</p>
+        </div>
+
+        <h2>🏰 Environmental Magic Mastery</h2>
+        
+        <div class="grimoire-entry">
+            <h3>🌍 Reading the Magical Landscape</h3>
+            <p><strong>Every room tells a story about what magic will work best:</strong></p>
+            
+            <p><strong>🏃 Narrow Corridors:</strong> Perfect for area-effect spells that hit multiple enemies in a line</p>
+            <p><strong>🏛️ Large Chambers:</strong> Ideal for movement spells and tactical repositioning</p>
+            <p><strong>🕳️ Trapped Areas:</strong> Use utility spells to bypass dangers safely</p>
+            <p><strong>🚪 Doorway Chokes:</strong> Cast defensive spells before entering unknown areas</p>
+            <p><strong>💰 Treasure Rooms:</strong> Save offensive spells - treasure is often guarded!</p>
+        </div>
+
+        <h2>🎲 The Mathematics of Magic</h2>
+        
+        <canvas id="magic_probability_canvas" width="600" height="250"></canvas>
+        
+        <div class="magic-principle">
+            <h3>📊 The Statistician Wizard</h3>
+            <p><strong>Understanding spell mathematics makes you a more effective caster:</strong></p>
+            
+            <p><strong>⚔️ Damage Spell Efficiency:</strong></p>
+            <ul>
+                <li>3 dice spells: Average 1-2 damage, Maximum 3 damage</li>
+                <li>Best against enemies with 1-2 Body Points</li>
+                <li>Less efficient against heavily armored foes</li>
+            </ul>
+            
+            <p><strong>🌟 Healing Spell Value:</strong></p>
+            <ul>
+                <li>1d6 healing: Average 3.5 Body Points restored</li>
+                <li>Most valuable when hero is at 1-2 Body Points</li>
+                <li>Consider the cost vs. drinking a healing potion</li>
+            </ul>
+        </div>
+
+        <h2>🧝‍♀️ The Elf's Magical Arsenal</h2>
+        
+        <div class="mystical-box">
+            <h3>🎯 Elven Spellcasting Strategy</h3>
+            <p><strong>The Elf is like a Swiss Army knife wizard - versatile but limited:</strong></p>
+            
+            <p><strong>🎪 Early Game Strategy:</strong> Use spells to gain tactical advantages</p>
+            <p><strong>⚔️ Mid Game Strategy:</strong> Balance spellcasting with physical combat</p>
+            <p><strong>🏆 End Game Strategy:</strong> Save best spells for the final boss encounter</p>
+            
+            <p><strong>The "Ace in the Hole" Principle:</strong> Always keep one powerful spell unused until you absolutely need it - like keeping a trump card in your hand!</p>
+        </div>
+
+        <h2>🎪 Magical Item Integration</h2>
+        
+        <div class="grimoire-entry">
+            <h3>⚡ Artifacts and Enchanted Equipment</h3>
+            <p><strong>Magical items are like having extra spell slots - use them wisely!</strong></p>
+            
+            <p><strong>🗡️ Weapon Enchantments:</strong> Complement your spells with magical weapons</p>
+            <p><strong>🛡️ Protective Talismans:</strong> Stack with defensive spells for ultimate protection</p>
+            <p><strong>💍 Utility Rings:</strong> Provide ongoing benefits that free up spell choices</p>
+            <p><strong>📜 Scrolls and Potions:</strong> Emergency backup magic when spells are exhausted</p>
+        </div>
+
+        <h2>🚨 Crisis Magic: Emergency Spellcasting</h2>
+        
+        <div class="magic-principle">
+            <h3>🚑 The Emergency Room Approach</h3>
+            <p><strong>Sometimes you need magical triage - quick decisions about who to save and how:</strong></p>
+            
+            <p><strong>🩺 Priority 1 - Life or Death:</strong> Use healing spells to prevent character death</p>
+            <p><strong>⚔️ Priority 2 - Combat Critical:</strong> Use offensive spells to eliminate immediate threats</p>
+            <p><strong>🏃 Priority 3 - Tactical Escape:</strong> Use utility spells to reposition or retreat</p>
+            
+            <p><strong>The "Hail Mary" Rule:</strong> When everything goes wrong, sometimes a desperate magical gamble is better than certain defeat!</p>
+        </div>
+
+        <h2>🎯 Advanced Magical Scenarios</h2>
+        
+        <div class="mystical-box">
+            <h3>🧩 Spellcaster's Dilemmas</h3>
+            
+            <p><strong>🔥 Scenario 1: The Overwhelming Horde</strong></p>
+            <p><em>6 Goblins surround your party, but you only have 2 spells left</em></p>
+            <p><strong>Question:</strong> Do you use Ball of Flame for area damage, or save spells for the boss ahead?</p>
+            
+            <p><strong>💔 Scenario 2: The Fallen Hero</strong></p>
+            <p><em>Your Barbarian is at 1 Body Point, but the Wizard is unconscious</em></p>
+            <p><strong>Question:</strong> Who do you heal first, and why?</p>
+            
+            <p><strong>🏰 Scenario 3: The Unknown Door</strong></p>
+            <p><em>You hear boss music beyond a door, but you've used half your spells</em></p>
+            <p><strong>Question:</strong> Do you rest and risk reinforcements, or charge in with limited magic?</p>
+        </div>
+
+        <h2>🌟 Creating Magical Moments</h2>
+        
+        <div class="grimoire-entry">
+            <h3>🎬 The Cinematic Spellcaster</h3>
+            <p><strong>Every spell should feel like a movie's special effects scene:</strong></p>
+            
+            <p><strong>📸 Pre-Spell Setup:</strong> Describe gathering magical energy</p>
+            <p><strong>⚡ The Casting:</strong> Make gestures, speak incantations, build tension</p>
+            <p><strong>💥 The Effect:</strong> Describe the visual and audio spectacle</p>
+            <p><strong>🎭 The Aftermath:</strong> Show the impact on enemies and environment</p>
+            
+            <p><strong>Remember:</strong> You're not just rolling dice - you're creating magic that would make Disney jealous!</p>
+        </div>
+
+        <h2>🎯 Practice Challenges</h2>
+        
+        <div class="mystical-box">
+            <h3>🏆 Magical Mastery Tests</h3>
+            
+            <p><strong>📚 Challenge 1: Spell Conservation</strong></p>
+            <p>Complete a quest using only 3 spells total. Which spells do you choose and when?</p>
+            
+            <p><strong>⚔️ Challenge 2: Combat Wizard</strong></p>
+            <p>Play an Elf who only uses offensive spells. How do you handle healing and defense?</p>
+            
+            <p><strong>🛡️ Challenge 3: Support Caster</strong></p>
+            <p>Play an Elf who never uses direct damage spells. How do you contribute to combat?</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Treasure, Equipment, and Character Progression"</strong> - diving into the reward systems that keep heroes motivated, equipment strategies, and how to create satisfying character growth that makes every adventure feel like progress toward legendary status!</p>
+        
+        <div class="magic-principle">
+            <p><strong>Remember:</strong> Magic in HeroQuest isn't just about mechanical effects - it's about creating moments of wonder, turning the tide of battle, and making players feel like true masters of mystical arts. Every spell is an opportunity to create a story that will be retold for years to come!</p>
+        </div>
+    </div>
+
+    <script>
+        // Spell Laboratory Interactive System
+        const spells = [
+            {symbol: '⚡', name: 'Lightning', cost: 30, effect: 'Strikes enemies with electrical fury!'},
+            {symbol: '🔥', name: 'Fireball', cost: 25, effect: 'Engulfs foes in burning flames!'},
+            {symbol: '🌟', name: 'Heal', cost: 20, effect: 'Restores life force and vitality!'},
+            {symbol: '💨', name: 'Wind', cost: 15, effect: 'Swift movement through mystical air!'},
+            {symbol: '💎', name: 'Stone Skin', cost: 35, effect: 'Hardens flesh like living rock!'},
+            {symbol: '❄️', name: 'Frost', cost: 22, effect: 'Freezes enemies in icy bonds!'},
+            {symbol: '✨', name: 'Magic Weapon', cost: 18, effect: 'Enchants blade with arcane power!'},
+            {symbol: '🛡️', name: 'Protect', cost: 28, effect: 'Creates mystical barriers!'}
+        ];
+        
+        let currentMana = 100;
+        const spellMatrix = document.getElementById('spell_matrix');
+        const manaIndicator = document.getElementById('mana_indicator');
+        const manaLevel = document.getElementById('mana_level');
+        const spellResult = document.getElementById('spell_result');
+        
+        // Initialize spell matrix
+        spells.forEach((spell, index) => {
+            const rune = document.createElement('div');
+            rune.className = 'spell-rune';
+            rune.textContent = spell.symbol;
+            rune.title = `${spell.name} (${spell.cost} mana)`;
+            rune.addEventListener('click', () => castSpell(index));
+            spellMatrix.appendChild(rune);
+        });
+        
+        function castSpell(index) {
+            const spell = spells[index];
+            
+            if (currentMana >= spell.cost) {
+                currentMana -= spell.cost;
+                updateManaDisplay();
+                
+                // Visual feedback
+                const rune = spellMatrix.children[index];
+                rune.classList.add('active');
+                setTimeout(() => rune.classList.remove('active'), 500);
+                
+                // Display spell effect
+                spellResult.innerHTML = `
+                    <strong>🌟 ${spell.name} Cast Successfully!</strong><br>
+                    ${spell.effect}<br>
+                    <em>Mana consumed: ${spell.cost} points</em>
+                `;
+                
+                // Regenerate mana slowly
+                setTimeout(() => {
+                    if (currentMana < 100) {
+                        currentMana = Math.min(100, currentMana + 5);
+                        updateManaDisplay();
+                    }
+                }, 2000);
+            } else {
+                spellResult.innerHTML = `
+                    <strong>⚠️ Insufficient Mystical Energy!</strong><br>
+                    ${spell.name} requires ${spell.cost} mana, but you only have ${currentMana} mana.<br>
+                    <em>Wait for your magical energy to regenerate...</em>
+                `;
+            }
+        }
+        
+        function updateManaDisplay() {
+            manaIndicator.style.width = currentMana + '%';
+            manaLevel.textContent = currentMana;
+            
+            if (currentMana < 30) {
+                manaIndicator.style.background = 'linear-gradient(to right, #ff4500, #ff6347)';
+            } else if (currentMana < 60) {
+                manaIndicator.style.background = 'linear-gradient(to right, #ffa500, #ffd700)';
+            } else {
+                manaIndicator.style.background = 'linear-gradient(to right, #ffd700, #ffff00)';
+            }
+        }
+        
+        // Spell Timing Visualization
+        const timingCanvas = document.getElementById('spell_timing_canvas');
+        const timingCtx = timingCanvas.getContext('2d');
+        
+        function drawSpellTiming() {
+            timingCtx.clearRect(0, 0, timingCanvas.width, timingCanvas.height);
+            
+            // Background
+            timingCtx.fillStyle = '#1a0d4d';
+            timingCtx.fillRect(0, 0, timingCanvas.width, timingCanvas.height);
+            
+            // Draw timeline
+            timingCtx.strokeStyle = '#9370db';
+            timingCtx.lineWidth = 3;
+            timingCtx.beginPath();
+            timingCtx.moveTo(50, 150);
+            timingCtx.lineTo(550, 150);
+            timingCtx.stroke();
+            
+            // Draw spell timing points
+            const spellMoments = [
+                {x: 100, y: 150, label: 'Pre-Combat\nBuffs', color: '#32cd32'},
+                {x: 250, y: 100, label: 'Opening\nStrike', color: '#ff4500'},
+                {x: 350, y: 120, label: 'Mid-Combat\nControl', color: '#ffa500'},
+                {x: 450, y: 80, label: 'Emergency\nHealing', color: '#dda0dd'},
+                {x: 500, y: 60, label: 'Finishing\nMove', color: '#ff6347'}
+            ];
+            
+            spellMoments.forEach(moment => {
+                // Draw connection line
+                timingCtx.strokeStyle = moment.color;
+                timingCtx.lineWidth = 2;
+                timingCtx.beginPath();
+                timingCtx.moveTo(moment.x, 150);
+                timingCtx.lineTo(moment.x, moment.y);
+                timingCtx.stroke();
+                
+                // Draw spell burst
+                timingCtx.fillStyle = moment.color;
+                timingCtx.beginPath();
+                timingCtx.arc(moment.x, moment.y, 8, 0, Math.PI * 2);
+                timingCtx.fill();
+                
+                // Draw label
+                timingCtx.fillStyle = '#e6f3ff';
+                timingCtx.font = '10px Arial';
+                timingCtx.textAlign = 'center';
+                const lines = moment.label.split('\n');
+                lines.forEach((line, index) => {
+                    timingCtx.fillText(line, moment.x, moment.y - 20 + (index * 12));
+                });
+            });
+            
+            // Title
+            timingCtx.fillStyle = '#dda0dd';
+            timingCtx.font = '16px Arial';
+            timingCtx.textAlign = 'center';
+            timingCtx.fillText('Optimal Spell Timing Throughout Combat', 300, 30);
+            
+            // Timeline labels
+            timingCtx.fillStyle = '#e6f3ff';
+            timingCtx.font = '12px Arial';
+            timingCtx.fillText('Combat Start', 100, 170);
+            timingCtx.fillText('Combat End', 500, 170);
+            
+            timingCtx.textAlign = 'left';
+        }
+        
+        drawSpellTiming();
+        
+        // Spell Synergy Visualization
+        const synergyCanvas = document.getElementById('spell_synergy_canvas');
+        const synergyCtx = synergyCanvas.getContext('2d');
+        
+        function drawSpellSynergy() {
+            synergyCtx.clearRect(0, 0, synergyCanvas.width, synergyCanvas.height);
+            
+            // Background
+            synergyCtx.fillStyle = '#1a0d4d';
+            synergyCtx.fillRect(0, 0, synergyCanvas.width, synergyCanvas.height);
+            
+            // Draw central wizard
+            synergyCtx.fillStyle = '#9370db';
+            synergyCtx.fillRect(275, 150, 50, 50);
+            synergyCtx.fillStyle = '#fff';
+            synergyCtx.font = '20px Arial';
+            synergyCtx.textAlign = 'center';
+            synergyCtx.fillText('🧙‍♂️', 300, 180);
+            
+            // Draw spell combinations
+            const combos = [
+                {x: 150, y: 100, spells: ['🔥', '💨'], effect: 'Flame Storm'},
+                {x: 450, y: 100, spells: ['💎', '⚔️'], effect: 'Armored Assault'},
+                {x: 150, y: 250, spells: ['🌟', '🛡️'], effect: 'Divine Protection'},
+                {x: 450, y: 250, spells: ['⚡', '❄️'], effect: 'Elemental Fury'}
+            ];
+            
+            combos.forEach(combo => {
+                // Draw combination circle
+                synergyCtx.fillStyle = '#4b0082';
+                synergyCtx.beginPath();
+                synergyCtx.arc(combo.x, combo.y, 40, 0, Math.PI * 2);
+                synergyCtx.fill();
+                
+                synergyCtx.strokeStyle = '#dda0dd';
+                synergyCtx.lineWidth = 2;
+                synergyCtx.stroke();
+                
+                // Draw spell symbols
+                synergyCtx.fillStyle = '#fff';
+                synergyCtx.font = '16px Arial';
+                synergyCtx.fillText(combo.spells[0], combo.x - 10, combo.y);
+                synergyCtx.fillText(combo.spells[1], combo.x + 10, combo.y);
+                
+                // Draw effect label
+                synergyCtx.fillStyle = '#dda0dd';
+                synergyCtx.font = '10px Arial';
+                synergyCtx.fillText(combo.effect, combo.x, combo.y + 55);
+                
+                // Draw connection to wizard
+                synergyCtx.strokeStyle = '#8a2be2';
+                synergyCtx.lineWidth = 2;
+                synergyCtx.setLineDash([5, 5]);
+                synergyCtx.beginPath();
+                synergyCtx.moveTo(combo.x, combo.y);
+                synergyCtx.lineTo(300, 175);
+                synergyCtx.stroke();
+                synergyCtx.setLineDash([]);
+            });
+            
+            synergyCtx.fillStyle = '#dda0dd';
+            synergyCtx.font = '16px Arial';
+            synergyCtx.textAlign = 'center';
+            synergyCtx.fillText('Spell Synergy Combinations', 300, 30);
+            synergyCtx.textAlign = 'left';
+        }
+        
+        drawSpellSynergy();
+        
+        // Magic Probability Visualization
+        const probCanvas = document.getElementById('magic_probability_canvas');
+        const probCtx = probCanvas.getContext('2d');
+        
+        function drawMagicProbability() {
+            probCtx.clearRect(0, 0, probCanvas.width, probCanvas.height);
+            
+            // Background
+            probCtx.fillStyle = '#1a0d4d';
+            probCtx.fillRect(0, 0, probCanvas.width, probCanvas.height);
+            
+            // Draw probability bars
+            const probabilities = [
+                {label: 'Healing (1d6)', min: 1, max: 6, avg: 3.5, x: 100},
+                {label: 'Fireball (3 dice)', min: 0, max: 3, avg: 1.5, x: 300},
+                {label: 'Lightning (3 dice)', min: 0, max: 3, avg: 1.5, x: 500}
+            ];
+            
+            probabilities.forEach(prob => {
+                // Draw bar background
+                probCtx.fillStyle = '#4b0082';
+                probCtx.fillRect(prob.x - 40, 100, 80, 100);
+                
+                // Draw average indicator
+                const avgHeight = (prob.avg / prob.max) * 100;
+                probCtx.fillStyle = '#dda0dd';
+                probCtx.fillRect(prob.x - 40, 200 - avgHeight, 80, avgHeight);
+                
+                // Draw labels
+                probCtx.fillStyle = '#e6f3ff';
+                probCtx.font = '10px Arial';
+                probCtx.textAlign = 'center';
+                probCtx.fillText(prob.label, prob.x, 220);
+                probCtx.fillText(`Avg: ${prob.avg}`, prob.x, 235);
+                probCtx.fillText(`Range: ${prob.min}-${prob.max}`, prob.x, 250);
+            });
+            
+            probCtx.fillStyle = '#dda0dd';
+            probCtx.font = '16px Arial';
+            probCtx.fillText('Spell Effect Probabilities', 200, 30);
+            probCtx.textAlign = 'left';
+        }
+        
+        drawMagicProbability();
+    </script>
+</body>
+</html>

@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Return of the Witch Lord - The Ultimate Villain Showdown</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #4a148c 0%, #1a0033 50%, #000000 100%);
+            color: #e1bee7;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(74, 20, 140, 0.5);
+        }
+        h1 {
+            color: #ab47bc;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(171, 71, 188, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #ba68c8;
+            border-bottom: 2px solid #ba68c8;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .villain-principle {
+            background: linear-gradient(135deg, #4a148c 0%, #1a0033 100%);
+            border: 2px solid #ab47bc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #ba68c8;
+        }
+        .magic-card {
+            background: linear-gradient(135deg, #1a0033 0%, #4a148c 100%);
+            border: 2px solid #9c27b0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 320px;
+            vertical-align: top;
+        }
+        .epic-box {
+            background: rgba(171, 71, 188, 0.1);
+            border: 2px solid #ab47bc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .dramatic-analysis {
+            background: rgba(186, 104, 200, 0.1);
+            border: 2px solid #ba68c8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #ab47bc;
+            border-radius: 10px;
+            background: #000;
+            display: block;
+            margin: 20px auto;
+        }
+        .power-meter {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336, #9c27b0);
+            border: 2px solid #ab47bc;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .power-indicator {
+            position: absolute;
+            top: -3px;
+            width: 6px;
+            height: 36px;
+            background: #fff;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+        .witch-lord-portrait {
+            width: 200px;
+            height: 250px;
+            background: linear-gradient(135deg, #000000, #4a148c, #9c27b0);
+            border: 3px solid #ab47bc;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        .spell-arsenal {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .spell-showcase {
+            background: rgba(74, 20, 140, 0.3);
+            border: 2px solid #9c27b0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+        .boss-phases {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(171, 71, 188, 0.1);
+            border-radius: 10px;
+        }
+        .phase-node {
+            background: linear-gradient(135deg, #9c27b0, #ab47bc);
+            border: 2px solid #ba68c8;
+            border-radius: 50%;
+            width: 90px;
+            height: 90px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            font-size: 12px;
+        }
+        .phase-arrow {
+            font-size: 24px;
+            color: #ab47bc;
+        }
+        .legendary-encounters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .encounter-card {
+            background: linear-gradient(135deg, #1a0033, #4a148c);
+            border: 2px solid #ab47bc;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👑 Return of the Witch Lord: The Ultimate Villain Showdown 🔮</h1>
+        
+        <div class="villain-principle">
+            <h2>⚡ The Empire Strikes Back: Why This Expansion Changed Everything</h2>
+            <p><strong>Return of the Witch Lord wasn't just a sequel - it was a masterclass in escalation storytelling!</strong> Like The Dark Knight following Batman Begins, this expansion took everything players loved about the original villain and asked "What if he came back smarter, more powerful, and absolutely furious?" It created the template for every great villain return in gaming history.</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of this expansion like Marvel's Infinity War - it's the culmination of everything that came before. All your training, all your victories, all your character growth has been preparing you for this ultimate confrontation. The Witch Lord isn't just a boss fight; he's the final exam for everything you've learned about being a hero.</p>
+        </div>
+
+        <div class="witch-lord-portrait">
+            👑
+            <div style="font-size: 16px; margin-top: 10px;">The Witch Lord</div>
+            <div style="font-size: 12px; opacity: 0.8;">Morcar's Greatest Champion</div>
+        </div>
+
+        <h2>🎭 The Villain's Evolution: From Threat to Legend</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Original Witch Lord] --> B[Defeat & Banishment]
+                B --> C[Time in the Void]
+                C --> D[Return Enhanced]
+                D --> E[New Powers]
+                D --> F[Greater Intelligence]
+                D --> G[Personal Vendetta]
+                
+                E --> E1[Advanced Magic]
+                E --> E2[Summoning Abilities]
+                E --> E3[Reality Manipulation]
+                
+                F --> F1[Strategic Thinking]
+                F --> F2[Tactical Adaptation]
+                F --> F3[Psychological Warfare]
+                
+                G --> G1[Knows the Heroes]
+                G --> G2[Prepared Countermeasures]
+                G --> G3[Personal Stakes]
+                
+                style A fill:#9c27b0,stroke:#333,stroke-width:2px
+                style D fill:#ab47bc,stroke:#333,stroke-width:3px
+                style E fill:#ba68c8,stroke:#333,stroke-width:2px
+                style F fill:#ba68c8,stroke:#333,stroke-width:2px
+                style G fill:#ba68c8,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>⚔️ The Power Scale: Measuring Ultimate Threat</h2>
+        
+        <div class="power-meter">
+            <div class="power-indicator" id="power_indicator" style="left: 90%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Witch Lord Threat Level: <span id="threat_level">LEGENDARY</span></em></p>
+        
+        <canvas id="power_comparison_canvas" width="600" height="300"></canvas>
+        
+        <div class="epic-box">
+            <h3>📊 By the Numbers: What Makes Him Legendary</h3>
+            <p><strong>The Witch Lord represents the absolute pinnacle of HeroQuest antagonists:</strong></p>
+            
+            <p><strong>💪 Combat Statistics:</strong> Attack 4, Defense 3, Body Points 8 (Godlike by HeroQuest standards)</p>
+            <p><strong>🧠 Intelligence Rating:</strong> Strategic planning, adaptive tactics, memory of past defeats</p>
+            <p><strong>🔮 Magical Arsenal:</strong> Access to spells that can reshape entire encounters</p>
+            <p><strong>👥 Command Authority:</strong> Controls armies of monsters, not just individual units</p>
+            <p><strong>🎭 Narrative Weight:</strong> Personal investment in the heroes' destruction</p>
+        </div>
+
+        <h2>🌟 The Spell Arsenal: Magic as Storytelling</h2>
+        
+        <div class="spell-arsenal">
+            <div class="spell-showcase">
+                <h4>⚡ Lightning Bolt</h4>
+                <p><strong>The Signature Move</strong></p>
+                <p>Devastating ranged attack that can eliminate heroes instantly</p>
+                <p><em>"Like Thor's hammer, but wielded by the villain"</em></p>
+            </div>
+            
+            <div class="spell-showcase">
+                <h4>💀 Summon Skeletons</h4>
+                <p><strong>The Army Builder</strong></p>
+                <p>Creates undead reinforcements mid-combat</p>
+                <p><em>"Turns victory into desperate survival"</em></p>
+            </div>
+            
+            <div class="spell-showcase">
+                <h4>🌫️ Chaos Spell</h4>
+                <p><strong>The Reality Bender</strong></p>
+                <p>Unpredictable effects that change everything</p>
+                <p><em>"Magic wild card that keeps heroes guessing"</em></p>
+            </div>
+            
+            <div class="spell-showcase">
+                <h4>🛡️ Magical Defense</h4>
+                <p><strong>The Fortress</strong></p>
+                <p>Enhanced protection against hero attacks</p>
+                <p><em>"Makes every hit feel earned"</em></p>
+            </div>
+        </div>
+
+        <h2>🎪 The Multi-Phase Boss Fight Revolution</h2>
+        
+        <div class="boss-phases">
+            <div class="phase-node">
+                <div style="font-size: 20px;">👑</div>
+                <div>Phase 1</div>
+                <div>Arrogant</div>
+            </div>
+            <div class="phase-arrow">→</div>
+            <div class="phase-node">
+                <div style="font-size: 20px;">⚡</div>
+                <div>Phase 2</div>
+                <div>Aggressive</div>
+            </div>
+            <div class="phase-arrow">→</div>
+            <div class="phase-node">
+                <div style="font-size: 20px;">💀</div>
+                <div>Phase 3</div>
+                <div>Desperate</div>
+            </div>
+            <div class="phase-arrow">→</div>
+            <div class="phase-node">
+                <div style="font-size: 20px;">🌟</div>
+                <div>Phase 4</div>
+                <div>Legendary</div>
+            </div>
+        </div>
+
+        <canvas id="boss_fight_dynamics_canvas" width="600" height="350"></canvas>
+        
+        <div class="dramatic-analysis">
+            <h3>🎬 The Three-Act Boss Fight Structure</h3>
+            <p><strong>Like a perfectly scripted movie climax, the Witch Lord fight follows dramatic principles:</strong></p>
+            
+            <p><strong>🎭 Act I - The Confident Villain:</strong> "You fools! You think you can defeat me again?"</p>
+            <ul>
+                <li>Uses standard attacks to test the heroes</li>
+                <li>Taunts and psychological warfare</li>
+                <li>Relatively predictable patterns</li>
+            </ul>
+            
+            <p><strong>⚔️ Act II - The Escalation:</strong> "Enough games! Feel my true power!"</p>
+            <ul>
+                <li>Unleashes devastating spell combinations</li>
+                <li>Summons powerful reinforcements</li>
+                <li>Forces heroes to adapt their strategy</li>
+            </ul>
+            
+            <p><strong>💥 Act III - The Desperate Gambit:</strong> "If I cannot rule, then all shall perish!"</p>
+            <ul>
+                <li>All-out assault with every remaining resource</li>
+                <li>Environmental effects and area damage</li>
+                <li>Heroes must use everything they've learned</li>
+            </ul>
+        </div>
+
+        <h2>🧠 Advanced Tactical Analysis</h2>
+        
+        <canvas id="tactical_analysis_canvas" width="600" height="300"></canvas>
+        
+        <div class="epic-box">
+            <h3>🎯 Master-Level Strategies</h3>
+            <p><strong>Defeating the Witch Lord requires tactics that would make Sun Tzu proud:</strong></p>
+            
+            <p><strong>⚡ The Lightning Priority Doctrine:</strong></p>
+            <ul>
+                <li>Spread out to minimize Lightning Bolt damage</li>
+                <li>Never cluster your heroes together</li>
+                <li>Use corners and walls for cover</li>
+            </ul>
+            
+            <p><strong>💀 The Summoning Suppression Strategy:</strong></p>
+            <ul>
+                <li>Interrupt skeleton summoning with ranged attacks</li>
+                <li>Control battlefield positioning to limit spawn points</li>
+                <li>Prioritize eliminating fresh summons immediately</li>
+            </ul>
+            
+            <p><strong>🔮 The Magic Conservation Principle:</strong></p>
+            <ul>
+                <li>Save your best spells for the final phases</li>
+                <li>Use healing magic strategically, not desperately</li>
+                <li>Coordinate spell usage for maximum synergy</li>
+            </ul>
+        </div>
+
+        <h2>🏆 The Legendary Encounters: Beyond the Main Fight</h2>
+        
+        <div class="legendary-encounters">
+            <div class="encounter-card">
+                <h4>🏰 The Fortress Assault</h4>
+                <p><strong>The Siege Epic</strong></p>
+                <p>Storm the Witch Lord's stronghold through multiple defensive layers</p>
+                <p><em>Innovation: Multi-room connected combat</em></p>
+            </div>
+            
+            <div class="encounter-card">
+                <h4>👻 The Spirit Guardians</h4>
+                <p><strong>The Puzzle Fight</strong></p>
+                <p>Defeat ethereal enemies that require special tactics</p>
+                <p><em>Innovation: Enemies immune to physical attacks</em></p>
+            </div>
+            
+            <div class="encounter-card">
+                <h4>⚔️ The Champion's Duel</h4>
+                <p><strong>The Honor Battle</strong></p>
+                <p>One-on-one combat with the Witch Lord's greatest warrior</p>
+                <p><em>Innovation: Single hero spotlight moments</em></p>
+            </div>
+            
+            <div class="encounter-card">
+                <h4>🌀 The Dimensional Rift</h4>
+                <p><strong>The Reality Break</strong></p>
+                <p>Fight while reality itself becomes unstable</p>
+                <p><em>Innovation: Environment as active participant</em></p>
+            </div>
+        </div>
+
+        <h2>🎨 Cinematic Storytelling Techniques</h2>
+        
+        <div class="villain-principle">
+            <h3>🎬 Creating Movie-Quality Moments</h3>
+            <p><strong>Return of the Witch Lord pioneered techniques that made tabletop gaming feel cinematic:</strong></p>
+            
+            <p><strong>💭 Pre-Battle Monologue:</strong> "So, the 'heroes' return. How delightfully predictable."</p>
+            <p><strong>⚡ Signature Move Reveals:</strong> First Lightning Bolt should be shocking and devastating</p>
+            <p><strong>🎭 Mid-Fight Dialogue:</strong> Taunt heroes based on their past adventures</p>
+            <p><strong>🌟 Transformation Moments:</strong> Each phase change should feel like a movie reveal</p>
+            <p><strong>💥 Climactic Finale:</strong> Final defeat should be earned and emotionally satisfying</p>
+        </div>
+
+        <h2>🧙‍♂️ Playing the Witch Lord: The Master Class</h2>
+        
+        <canvas id="villain_psychology_canvas" width="600" height="250"></canvas>
+        
+        <div class="dramatic-analysis">
+            <h3>🎭 The Actor's Approach to Ultimate Evil</h3>
+            <p><strong>Playing the Witch Lord is like being the lead villain in a blockbuster movie:</strong></p>
+            
+            <p><strong>🎪 Voice and Mannerisms:</strong></p>
+            <ul>
+                <li>Deep, commanding voice with theatrical delivery</li>
+                <li>Dramatic gestures that emphasize magical power</li>
+                <li>Confident posture that shows his superiority complex</li>
+            </ul>
+            
+            <p><strong>🧠 Psychology and Motivation:</strong></p>
+            <ul>
+                <li>Wounded pride from previous defeat</li>
+                <li>Intellectual arrogance about his magical superiority</li>
+                <li>Personal vendetta against the specific heroes who beat him</li>
+            </ul>
+            
+            <p><strong>⚔️ Combat Personality:</strong></p>
+            <ul>
+                <li>Starts overconfident, becomes increasingly desperate</li>
+                <li>Uses taunts and psychological warfare</li>
+                <li>Reveals information about past adventures</li>
+            </ul>
+        </div>
+
+        <h2>⚖️ Balancing Ultimate Power</h2>
+        
+        <div class="epic-box">
+            <h3>🎯 The Goldilocks Boss: Not Too Easy, Not Impossible</h3>
+            <p><strong>Creating a legendary encounter that's challenging but fair requires perfect balance:</strong></p>
+            
+            <p><strong>💪 Power Level Calibration:</strong></p>
+            <ul>
+                <li>Strong enough to threaten experienced heroes</li>
+                <li>Weak enough that victory feels achievable</li>
+                <li>Dynamic enough to require tactical adaptation</li>
+            </ul>
+            
+            <p><strong>🎲 RNG Management:</strong></p>
+            <ul>
+                <li>Powerful attacks balanced by lower hit chances</li>
+                <li>Multiple tactical options for heroes</li>
+                <li>Comeback mechanics for both sides</li>
+            </ul>
+            
+            <p><strong>⏰ Pacing Control:</strong></p>
+            <ul>
+                <li>Build tension gradually through multiple phases</li>
+                <li>Create moments of hope and moments of despair</li>
+                <li>Ensure the fight feels epic but not endless</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Victory Strategies: How Heroes Can Win</h2>
+        
+        <div class="villain-principle">
+            <h3>🏆 The Champion's Playbook</h3>
+            <p><strong>These are the strategies used by legendary HeroQuest groups:</strong></p>
+            
+            <p><strong>🛡️ The Tank and Spank:</strong> Barbarian absorbs damage while others deal it</p>
+            <p><strong>🏹 The Kiting Strategy:</strong> Keep distance and use ranged attacks</p>
+            <p><strong>🔮 The Magic Burst:</strong> Coordinate all spells for massive damage</p>
+            <p><strong>⚔️ The Divide and Conquer:</strong> Split attention between Witch Lord and summons</p>
+            <p><strong>🌟 The All-or-Nothing:</strong> Gamble everything on one decisive moment</p>
+        </div>
+
+        <h2>📚 Learning from Defeat: The Teaching Boss</h2>
+        
+        <canvas id="learning_curve_canvas" width="600" height="300"></canvas>
+        
+        <div class="dramatic-analysis">
+            <h3>🎓 Why Losing Can Be Winning</h3>
+            <p><strong>The Witch Lord is designed to be a teaching boss - each defeat makes heroes stronger:</strong></p>
+            
+            <p><strong>📖 Lesson 1:</strong> Positioning matters more than raw damage</p>
+            <p><strong>📖 Lesson 2:</strong> Resource management across multiple phases</p>
+            <p><strong>📖 Lesson 3:</strong> Adaptation beats memorized strategies</p>
+            <p><strong>📖 Lesson 4:</strong> Teamwork multiplies individual strengths</p>
+            <p><strong>📖 Lesson 5:</strong> Sometimes retreating is the wisest choice</p>
+        </div>
+
+        <h2>🌟 Legacy and Influence</h2>
+        
+        <div class="epic-box">
+            <h3>🏛️ How the Witch Lord Changed Gaming Forever</h3>
+            <p><strong>The innovations in this expansion became the gold standard for boss design:</strong></p>
+            
+            <p><strong>🎮 Video Game Influence:</strong> Multi-phase bosses, adaptive AI, cinematic presentation</p>
+            <p><strong>🎲 Tabletop Evolution:</strong> Complex villains, narrative boss fights, emotional investment</p>
+            <p><strong>🎬 Media Impact:</strong> Recurring villains, character development through conflict</p>
+            <p><strong>🎪 Modern Gaming:</strong> Epic encounters, scalable difficulty, memorable antagonists</p>
+        </div>
+
+        <h2>🎯 Essential Tips for Epic Encounters</h2>
+        
+        <div class="villain-principle">
+            <h3>🎭 The Director's Cut</h3>
+            <p><strong>Creating memorable villain encounters requires attention to every detail:</strong></p>
+            
+            <p><strong>🎪 Atmosphere Creation:</strong> Lighting, music, and dramatic descriptions</p>
+            <p><strong>⏰ Timing Management:</strong> Know when to escalate and when to let tension build</p>
+            <p><strong>🎭 Character Consistency:</strong> The villain should feel like the same character throughout</p>
+            <p><strong>📚 Narrative Payoff:</strong> Reference past adventures and character growth</p>
+            <p><strong>🏆 Victory Celebration:</strong> Make the win feel truly epic and well-earned</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Against the Ogre Horde"</strong> - the expansion that introduced mass combat and army-scale battles to HeroQuest! We'll dive into the revolutionary mechanics of fighting multiple enemies simultaneously, battlefield tactics, and how this expansion made heroes feel like generals commanding epic fantasy battles.</p>
+        
+        <div class="villain-principle">
+            <p><strong>Remember:</strong> Return of the Witch Lord wasn't just about fighting a powerful enemy - it was about creating a legendary experience that players would remember forever. Every spell cast, every tactical decision, every moment of desperation or triumph becomes part of the group's shared mythology. The best villains don't just challenge heroes' abilities - they challenge their character, their bonds, and their determination to be worthy of the title "hero."</p>
+        </div>
+    </div>
+
+    <script>
+        // Power Comparison Visualization
+        const powerCanvas = document.getElementById('power_comparison_canvas');
+        const powerCtx = powerCanvas.getContext('2d');
+        
+        function drawPowerComparison() {
+            powerCtx.clearRect(0, 0, powerCanvas.width, powerCanvas.height);
+            
+            // Background
+            powerCtx.fillStyle = '#1a0033';
+            powerCtx.fillRect(0, 0, powerCanvas.width, powerCanvas.height);
+            
+            // Draw power comparison bars
+            const entities = [
+                {name: 'Goblin', power: 20, x: 100, color: '#4caf50'},
+                {name: 'Orc', power: 35, x: 200, color: '#8bc34a'},
+                {name: 'Chaos Warrior', power: 60, x: 300, color: '#ffc107'},
+                {name: 'Original Witch Lord', power: 75, x: 400, color: '#ff9800'},
+                {name: 'WITCH LORD RETURNS', power: 95, x: 500, color: '#ab47bc'}
+            ];
+            
+            entities.forEach(entity => {
+                const barHeight = (entity.power / 100) * 200;
+                
+                // Draw bar
+                powerCtx.fillStyle = entity.color;
+                powerCtx.fillRect(entity.x - 30, 250 - barHeight, 60, barHeight);
+                
+                // Draw border
+                powerCtx.strokeStyle = '#e1bee7';
+                powerCtx.lineWidth = 2;
+                powerCtx.strokeRect(entity.x - 30, 250 - barHeight, 60, barHeight);
+                
+                // Draw power level
+                powerCtx.fillStyle = '#fff';
+                powerCtx.font = '12px Arial';
+                powerCtx.textAlign = 'center';
+                powerCtx.fillText(entity.power.toString(), entity.x, 240 - barHeight);
+                
+                // Draw name
+                powerCtx.fillStyle = '#e1bee7';
+                powerCtx.font = '10px Arial';
+                powerCtx.save();
+                powerCtx.translate(entity.x, 270);
+                powerCtx.rotate(-Math.PI / 4);
+                powerCtx.fillText(entity.name, 0, 0);
+                powerCtx.restore();
+            });
+            
+            powerCtx.fillStyle = '#ab47bc';
+            powerCtx.font = '16px Arial';
+            powerCtx.textAlign = 'center';
+            powerCtx.fillText('Power Level Comparison: The Ultimate Threat', 300, 30);
+            powerCtx.textAlign = 'left';
+        }
+        
+        drawPowerComparison();
+        
+        // Boss Fight Dynamics Visualization
+        const bossCanvas = document.getElementById('boss_fight_dynamics_canvas');
+        const bossCtx = bossCanvas.getContext('2d');
+        
+        function drawBossFightDynamics() {
+            bossCtx.clearRect(0, 0, bossCanvas.width, bossCanvas.height);
+            
+            // Background
+            bossCtx.fillStyle = '#1a0033';
+            bossCtx.fillRect(0, 0, bossCanvas.width, bossCanvas.height);
+            
+            // Draw tension curve for boss fight
+            bossCtx.strokeStyle = '#ab47bc';
+            bossCtx.lineWidth = 4;
+            bossCtx.beginPath();
+            
+            const phases = [
+                {x: 100, y: 200, label: 'Confident\nStart', tension: 30},
+                {x: 200, y: 150, label: 'First\nSpells', tension: 50},
+                {x: 300, y: 100, label: 'Summon\nArmy', tension: 80},
+                {x: 400, y: 80, label: 'Desperate\nFury', tension: 90},
+                {x: 500, y: 250, label: 'Victory\nRelief', tension: 10}
+            ];
+            
+            phases.forEach((phase, index) => {
+                if (index === 0) bossCtx.moveTo(phase.x, phase.y);
+                else bossCtx.lineTo(phase.x, phase.y);
+                
+                // Draw phase markers
+                bossCtx.fillStyle = '#ba68c8';
+                bossCtx.beginPath();
+                bossCtx.arc(phase.x, phase.y, 8, 0, Math.PI * 2);
+                bossCtx.fill();
+                
+                // Draw labels
+                bossCtx.fillStyle = '#e1bee7';
+                bossCtx.font = '10px Arial';
+                bossCtx.textAlign = 'center';
+                const lines = phase.label.split('\n');
+                lines.forEach((line, lineIndex) => {
+                    bossCtx.fillText(line, phase.x, phase.y - 25 + (lineIndex * 12));
+                });
+            });
+            
+            bossCtx.stroke();
+            
+            // Draw dramatic moments
+            const dramaticMoments = [
+                {x: 250, y: 120, event: '💥 "Enough games!"'},
+                {x: 350, y: 90, event: '💀 Skeleton army rises'},
+                {x: 450, y: 70, event: '⚡ Final lightning storm'}
+            ];
+            
+            dramaticMoments.forEach(moment => {
+                bossCtx.fillStyle = 'rgba(171, 71, 188, 0.3)';
+                bossCtx.fillRect(moment.x - 40, moment.y - 20, 80, 40);
+                bossCtx.fillStyle = '#e1bee7';
+                bossCtx.font = '8px Arial';
+                bossCtx.fillText(moment.event, moment.x, moment.y);
+            });
+            
+            bossCtx.fillStyle = '#ab47bc';
+            bossCtx.font = '16px Arial';
+            bossCtx.textAlign = 'center';
+            bossCtx.fillText('Boss Fight Tension Curve: The Emotional Journey', 300, 30);
+            
+            // Axes labels
+            bossCtx.fillStyle = '#e1bee7';
+            bossCtx.font = '12px Arial';
+            bossCtx.fillText('Fight Progression', 300, 330);
+            bossCtx.save();
+            bossCtx.translate(20, 200);
+            bossCtx.rotate(-Math.PI / 2);
+            bossCtx.fillText('Tension Level', 0, 0);
+            bossCtx.restore();
+            bossCtx.textAlign = 'left';
+        }
+        
+        drawBossFightDynamics();
+        
+        // Tactical Analysis Visualization
+        const tacticalCanvas = document.getElementById('tactical_analysis_canvas');
+        const tacticalCtx = tacticalCanvas.getContext('2d');
+        
+        function drawTacticalAnalysis() {
+            tacticalCtx.clearRect(0, 0, tacticalCanvas.width, tacticalCanvas.height);
+            
+            // Background
+            tacticalCtx.fillStyle = '#1a0033';
+            tacticalCtx.fillRect(0, 0, tacticalCanvas.width, tacticalCanvas.height);
+            
+            // Draw battlefield
+            tacticalCtx.strokeStyle = '#4a148c';
+            tacticalCtx.lineWidth = 1;
+            for (let i = 0; i <= 12; i++) {
+                tacticalCtx.beginPath();
+                tacticalCtx.moveTo(50 + i * 40, 50);
+                tacticalCtx.lineTo(50 + i * 40, 250);
+                tacticalCtx.stroke();
+            }
+            for (let i = 0; i <= 5; i++) {
+                tacticalCtx.beginPath();
+                tacticalCtx.moveTo(50, 50 + i * 40);
+                tacticalCtx.lineTo(530, 50 + i * 40);
+                tacticalCtx.stroke();
+            }
+            
+            // Draw Witch Lord
+            tacticalCtx.fillStyle = '#ab47bc';
+            tacticalCtx.fillRect(275, 125, 50, 50);
+            tacticalCtx.fillStyle = '#fff';
+            tacticalCtx.font = '20px Arial';
+            tacticalCtx.textAlign = 'center';
+            tacticalCtx.fillText('👑', 300, 155);
+            
+            // Draw Lightning Bolt area
+            tacticalCtx.strokeStyle = '#ffeb3b';
+            tacticalCtx.lineWidth = 3;
+            tacticalCtx.setLineDash([5, 5]);
+            tacticalCtx.beginPath();
+            tacticalCtx.moveTo(300, 150);
+            tacticalCtx.lineTo(150, 90);
+            tacticalCtx.stroke();
+            tacticalCtx.setLineDash([]);
+            
+            // Draw heroes in tactical positions
+            const heroes = [
+                {x: 130, y: 90, symbol: '🛡️', safe: false},
+                {x: 170, y: 130, symbol: '🏹', safe: true},
+                {x: 90, y: 170, symbol: '🔮', safe: true},
+                {x: 210, y: 210, symbol: '🗡️', safe: true}
+            ];
+            
+            heroes.forEach(hero => {
+                tacticalCtx.fillStyle = hero.safe ? '#4caf50' : '#f44336';
+                tacticalCtx.fillRect(hero.x - 15, hero.y - 15, 30, 30);
+                tacticalCtx.fillStyle = '#fff';
+                tacticalCtx.font = '16px Arial';
+                tacticalCtx.fillText(hero.symbol, hero.x, hero.y + 5);
+            });
+            
+            // Draw summon positions
+            const summons = [
+                {x: 450, y: 90, symbol: '💀'},
+                {x: 410, y: 170, symbol: '💀'},
+                {x: 370, y: 210, symbol: '💀'}
+            ];
+            
+            summons.forEach(summon => {
+                tacticalCtx.fillStyle = '#8b0000';
+                tacticalCtx.fillRect(summon.x - 15, summon.y - 15, 30, 30);
+                tacticalCtx.fillStyle = '#fff';
+                tacticalCtx.font = '16px Arial';
+                tacticalCtx.fillText(summon.symbol, summon.x, summon.y + 5);
+            });
+            
+            tacticalCtx.fillStyle = '#ab47bc';
+            tacticalCtx.font = '16px Arial';
+            tacticalCtx.textAlign = 'center';
+            tacticalCtx.fillText('Tactical Positioning: Avoiding the Lightning Bolt', 300, 30);
+            tacticalCtx.fillStyle = '#e1bee7';
+            tacticalCtx.font = '10px Arial';
+            tacticalCtx.fillText('Green = Safe Position, Red = Lightning Bolt Target', 300, 280);
+            tacticalCtx.textAlign = 'left';
+        }
+        
+        drawTacticalAnalysis();
+        
+        // Villain Psychology Visualization
+        const villainCanvas = document.getElementById('villain_psychology_canvas');
+        const villainCtx = villainCanvas.getContext('2d');
+        
+        function drawVillainPsychology() {
+            villainCtx.clearRect(0, 0, villainCanvas.width, villainCanvas.height);
+            
+            // Background
+            villainCtx.fillStyle = '#1a0033';
+            villainCtx.fillRect(0, 0, villainCanvas.width, villainCanvas.height);
+            
+            // Draw psychological profile
+            const traits = [
+                {x: 150, y: 100, trait: 'Arrogance', level: 90, color: '#ab47bc'},
+                {x: 300, y: 80, trait: 'Intelligence', level: 85, color: '#ba68c8'},
+                {x: 450, y: 120, trait: 'Vindictiveness', level: 95, color: '#9c27b0'},
+                {x: 150, y: 180, trait: 'Magical Power', level: 88, color: '#8e24aa'},
+                {x: 300, y: 200, trait: 'Strategic Mind', level: 80, color: '#7b1fa2'},
+                {x: 450, y: 160, trait: 'Desperation', level: 75, color: '#6a1b9a'}
+            ];
+            
+            traits.forEach(trait => {
+                // Draw trait circle
+                const radius = (trait.level / 100) * 30 + 10;
+                villainCtx.fillStyle = trait.color;
+                villainCtx.beginPath();
+                villainCtx.arc(trait.x, trait.y, radius, 0, Math.PI * 2);
+                villainCtx.fill();
+                
+                villainCtx.strokeStyle = '#e1bee7';
+                villainCtx.lineWidth = 2;
+                villainCtx.stroke();
+                
+                // Draw trait level
+                villainCtx.fillStyle = '#fff';
+                villainCtx.font = '12px Arial';
+                villainCtx.textAlign = 'center';
+                villainCtx.fillText(trait.level.toString(), trait.x, trait.y + 4);
+                
+                // Draw trait name
+                villainCtx.fillStyle = '#e1bee7';
+                villainCtx.font = '10px Arial';
+                villainCtx.fillText(trait.trait, trait.x, trait.y + 50);
+            });
+            
+            villainCtx.fillStyle = '#ab47bc';
+            villainCtx.font = '16px Arial';
+            villainCtx.fillText('Witch Lord Psychological Profile', 200, 30);
+            villainCtx.textAlign = 'left';
+        }
+        
+        drawVillainPsychology();
+        
+        // Learning Curve Visualization
+        const learningCanvas = document.getElementById('learning_curve_canvas');
+        const learningCtx = learningCanvas.getContext('2d');
+        
+        function drawLearningCurve() {
+            learningCtx.clearRect(0, 0, learningCanvas.width, learningCanvas.height);
+            
+            // Background
+            learningCtx.fillStyle = '#1a0033';
+            learningCtx.fillRect(0, 0, learningCanvas.width, learningCanvas.height);
+            
+            // Draw learning progression
+            learningCtx.strokeStyle = '#ab47bc';
+            learningCtx.lineWidth = 3;
+            learningCtx.beginPath();
+            
+            const attempts = [
+                {x: 100, y: 200, success: 10, attempt: 1},
+                {x: 200, y: 170, success: 25, attempt: 2},
+                {x: 300, y: 130, success: 45, attempt: 3},
+                {x: 400, y: 100, success: 70, attempt: 4},
+                {x: 500, y: 80, success: 90, attempt: 5}
+            ];
+            
+            attempts.forEach((attempt, index) => {
+                const y = 250 - (attempt.success * 1.5);
+                
+                if (index === 0) learningCtx.moveTo(attempt.x, y);
+                else learningCtx.lineTo(attempt.x, y);
+                
+                // Draw attempt markers
+                learningCtx.fillStyle = '#ba68c8';
+                learningCtx.beginPath();
+                learningCtx.arc(attempt.x, y, 6, 0, Math.PI * 2);
+                learningCtx.fill();
+                
+                // Draw success percentage
+                learningCtx.fillStyle = '#e1bee7';
+                learningCtx.font = '10px Arial';
+                learningCtx.textAlign = 'center';
+                learningCtx.fillText(attempt.success + '%', attempt.x, y - 15);
+                learningCtx.fillText('Attempt ' + attempt.attempt, attempt.x, 270);
+            });
+            
+            learningCtx.stroke();
+            
+            learningCtx.fillStyle = '#ab47bc';
+            learningCtx.font = '16px Arial';
+            learningCtx.textAlign = 'center';
+            learningCtx.fillText('Learning Curve: Growing Stronger Through Defeat', 300, 30);
+            
+            learningCtx.fillStyle = '#e1bee7';
+            learningCtx.font = '12px Arial';
+            learningCtx.fillText('Battle Attempts', 300, 290);
+            learningCtx.save();
+            learningCtx.translate(20, 150);
+            learningCtx.rotate(-Math.PI / 2);
+            learningCtx.fillText('Success Rate', 0, 0);
+            learningCtx.restore();
+            learningCtx.textAlign = 'left';
+        }
+        
+        drawLearningCurve();
+    </script>
+</body>
+</html>

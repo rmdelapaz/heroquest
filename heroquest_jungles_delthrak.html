@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Jungles of Delthrak - Wilderness Survival and Environmental Combat</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a4d0a 0%, #1a5a1a 20%, #2d4a2d 40%, #4a5a4a 60%, #5a6a3a 80%, #6a7a4a 100%);
+            color: #e8f5e8;
+        }
+        .container {
+            background: rgba(10, 77, 10, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(106, 122, 74, 0.6);
+            border: 2px solid #6a7a4a;
+        }
+        h1 {
+            color: #8bc34a;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(139, 195, 74, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #9ccc65;
+            border-bottom: 2px solid #9ccc65;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .jungle-principle {
+            background: linear-gradient(135deg, #0a4d0a 0%, #2d4a2d 100%);
+            border: 2px solid #8bc34a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #9ccc65;
+        }
+        .wilderness-card {
+            background: linear-gradient(135deg, #2d4a2d 0%, #0a4d0a 100%);
+            border: 2px solid #689f38;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 320px;
+            vertical-align: top;
+        }
+        .survival-box {
+            background: rgba(139, 195, 74, 0.1);
+            border: 2px solid #8bc34a;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .environment-analysis {
+            background: rgba(156, 204, 101, 0.1);
+            border: 2px solid #9ccc65;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #8bc34a;
+            border-radius: 10px;
+            background: #1a3a1a;
+            display: block;
+            margin: 20px auto;
+        }
+        .jungle-canopy {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to bottom, #2e7d32 0%, #388e3c 30%, #4caf50 60%, #66bb6a 100%);
+            border: 3px solid #8bc34a;
+            border-radius: 15px;
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+            animation: jungle-sway 8s ease-in-out infinite;
+        }
+        @keyframes jungle-sway {
+            0%, 100% { 
+                transform: scale(1) rotateZ(0deg);
+                box-shadow: 0 0 30px rgba(139, 195, 74, 0.4); 
+            }
+            25% { 
+                transform: scale(1.02) rotateZ(0.5deg);
+                box-shadow: 0 0 40px rgba(76, 175, 80, 0.6); 
+            }
+            50% { 
+                transform: scale(1.04) rotateZ(0deg);
+                box-shadow: 0 0 50px rgba(104, 159, 56, 0.8); 
+            }
+            75% { 
+                transform: scale(1.02) rotateZ(-0.5deg);
+                box-shadow: 0 0 40px rgba(76, 175, 80, 0.6); 
+            }
+        }
+        .jungle-canopy::before {
+            content: '🌿🌴🦋🐍🐅🦜';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            animation: wildlife-movement 6s ease-in-out infinite;
+        }
+        @keyframes wildlife-movement {
+            0%, 100% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        }
+        .survival-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .wilderness-skill {
+            background: rgba(45, 74, 45, 0.3);
+            border: 2px solid #689f38;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .wilderness-skill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(139,195,74,0.1) 50%, transparent 55%);
+            animation: leaf-shimmer 5s ease-in-out infinite;
+        }
+        @keyframes leaf-shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+        .jungle-map {
+            display: grid;
+            grid-template-columns: repeat(10, 30px);
+            grid-template-rows: repeat(8, 30px);
+            gap: 1px;
+            margin: 20px auto;
+            border: 3px solid #8bc34a;
+            background: #1a3a1a;
+            padding: 10px;
+            width: fit-content;
+            position: relative;
+        }
+        .jungle-cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #689f38;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .dense-jungle { background-color: #2e7d32; }
+        .river-water { background-color: #1976d2; }
+        .rocky-terrain { background-color: #5d4037; }
+        .swamp-marsh { background-color: #33691e; }
+        .ancient-ruins { background-color: #795548; }
+        .hero-position { background-color: #ff9800; }
+        .dangerous-predator { background-color: #d32f2f; }
+        .resource-cache { background-color: #fbc02d; }
+        .survival-meter {
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(to right, #d32f2f, #ff9800, #fbc02d, #689f38, #2e7d32);
+            border: 2px solid #8bc34a;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .survival-indicator {
+            position: absolute;
+            top: -2px;
+            width: 6px;
+            height: 29px;
+            background: #fff;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+        .environment-layers {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(139, 195, 74, 0.1);
+            border-radius: 10px;
+        }
+        .layer-node {
+            background: linear-gradient(135deg, #2e7d32, #8bc34a);
+            border: 2px solid #9ccc65;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .layer-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(139, 195, 74, 0.8);
+        }
+        .layer-node.active {
+            background: linear-gradient(135deg, #fbc02d, #ff9800);
+            color: #000;
+        }
+        .jungle-realm {
+            position: relative;
+            overflow: hidden;
+        }
+        .nature-element {
+            position: absolute;
+            color: #8bc34a;
+            font-size: 14px;
+            animation: jungle-drift 10s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes jungle-drift {
+            0% { 
+                transform: translateX(-100vw) translateY(0) rotate(0deg) scale(0.8); 
+                opacity: 0; 
+            }
+            25% { 
+                opacity: 0.9; 
+                transform: translateX(-50vw) translateY(-30px) rotate(90deg) scale(1); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: translateX(0) translateY(-15px) rotate(180deg) scale(1.2); 
+            }
+            75% { 
+                opacity: 0.7; 
+                transform: translateX(50vw) translateY(-20px) rotate(270deg) scale(1); 
+            }
+            100% { 
+                transform: translateX(100vw) translateY(0) rotate(360deg) scale(0.8); 
+                opacity: 0; 
+            }
+        }
+        .skill-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(45, 74, 45, 0.2);
+            border-radius: 10px;
+        }
+        .matrix-skill {
+            background: rgba(104, 159, 56, 0.3);
+            border: 2px solid #689f38;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .matrix-skill:hover {
+            background: rgba(139, 195, 74, 0.5);
+            transform: scale(1.05);
+        }
+        .matrix-skill.used {
+            background: rgba(251, 192, 45, 0.3);
+            border-color: #fbc02d;
+        }
+        .weather-system {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(139, 195, 74, 0.1);
+            border-radius: 10px;
+            border: 2px solid #8bc34a;
+        }
+        .weather-node {
+            background: linear-gradient(135deg, #2e7d32, #689f38);
+            border: 2px solid #9ccc65;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
+        .weather-node:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(139, 195, 74, 0.6);
+        }
+        .weather-node.active {
+            background: linear-gradient(135deg, #ff9800, #fbc02d);
+            color: #000;
+        }
+        .danger-level {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(211, 47, 47, 0.2);
+            border: 2px solid #d32f2f;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .danger-critical { background: rgba(211, 47, 47, 0.4); border-color: #d32f2f; }
+        .danger-high { background: rgba(255, 152, 0, 0.3); border-color: #ff9800; }
+        .danger-moderate { background: rgba(251, 192, 45, 0.2); border-color: #fbc02d; }
+        .danger-low { background: rgba(139, 195, 74, 0.2); border-color: #8bc34a; }
+    </style>
+</head>
+<body>
+    <div class="container jungle-realm">
+        <h1>🌿 Jungles of Delthrak: Wilderness Survival & Environmental Combat 🐅</h1>
+        
+        <div class="jungle-principle">
+            <h2>🌴 The Ultimate Survival Challenge: When Nature is Your Greatest Enemy</h2>
+            <p><strong>The Jungles of Delthrak transforms HeroQuest from dungeon crawling into a primal survival experience!</strong> Like Robinson Crusoe meets Predator, this expansion forces heroes to master not just combat, but the art of staying alive in a hostile environment where every breath could be your last. The jungle doesn't just contain monsters - it IS the monster!</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of this expansion like going from playing chess in a comfortable room to playing chess while skydiving in a thunderstorm. The basic rules still apply, but now you're dealing with oxygen deprivation, wind shear, equipment failure, and time pressure. It's not just about making the right move - it's about surviving long enough to make ANY move at all!</p>
+        </div>
+
+        <div class="jungle-canopy"></div>
+
+        <div class="survival-meter">
+            <div class="survival-indicator" id="survival_indicator" style="left: 60%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Survival Status: <span id="survival_level">ADAPTING TO ENVIRONMENT</span></em></p>
+
+        <h2>🌿 The Ecosystem Trinity: Layers of Jungle Warfare</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Jungle Survival] --> B[Environmental Hazards]
+                A --> C[Wildlife Encounters]
+                A --> D[Resource Management]
+                A --> E[Weather Systems]
+                
+                B --> B1[Poisonous Plants]
+                B --> B2[Quicksand Traps]
+                B --> B3[Unstable Terrain]
+                B --> B4[Disease Vectors]
+                
+                C --> C1[Apex Predators]
+                C --> C2[Venomous Creatures]
+                C --> C3[Territorial Animals]
+                C --> C4[Pack Hunters]
+                
+                D --> D1[Food Gathering]
+                D --> D2[Water Purification]
+                D --> D3[Shelter Construction]
+                D --> D4[Tool Crafting]
+                
+                E --> E1[Monsoon Rains]
+                E --> E2[Oppressive Heat]
+                E --> E3[Flash Floods]
+                E --> E4[Toxic Fog]
+                
+                style A fill:#8bc34a,stroke:#333,stroke-width:3px
+                style B fill:#9ccc65,stroke:#333,stroke-width:2px
+                style C fill:#9ccc65,stroke:#333,stroke-width:2px
+                style D fill:#9ccc65,stroke:#333,stroke-width:2px
+                style E fill:#9ccc65,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🌦️ Interactive Weather System</h2>
+        
+        <div class="weather-system">
+            <div class="weather-node active" onclick="setWeather(0, 'clear')" title="Clear Skies">
+                <div style="font-size: 24px;">☀️</div>
+                <div style="font-size: 12px;">Clear</div>
+                <div style="font-size: 10px;">Normal Visibility</div>
+            </div>
+            <div class="weather-node" onclick="setWeather(1, 'rain')" title="Monsoon Rain">
+                <div style="font-size: 24px;">🌧️</div>
+                <div style="font-size: 12px;">Monsoon</div>
+                <div style="font-size: 10px;">Reduced Movement</div>
+            </div>
+            <div class="weather-node" onclick="setWeather(2, 'fog')" title="Toxic Fog">
+                <div style="font-size: 24px;">🌫️</div>
+                <div style="font-size: 12px;">Toxic Fog</div>
+                <div style="font-size: 10px;">Health Drain</div>
+            </div>
+            <div class="weather-node" onclick="setWeather(3, 'storm')" title="Lightning Storm">
+                <div style="font-size: 24px;">⛈️</div>
+                <div style="font-size: 12px;">Storm</div>
+                <div style="font-size: 10px;">Metal Conductivity</div>
+            </div>
+        </div>
+
+        <div id="weather_effects" style="margin-top: 20px; padding: 15px; background: rgba(139, 195, 74, 0.1); border-radius: 10px;">
+            <strong>Environmental Effects:</strong> Clear Skies - Normal conditions. Full visibility and movement. Wildlife most active during daylight hours.
+        </div>
+
+        <h2>🗺️ The Wilderness Arsenal: Survival Skills</h2>
+        
+        <canvas id="survival_skills_canvas" width="600" height="300"></canvas>
+        
+        <div class="survival-grid">
+            <div class="wilderness-skill">
+                <h4>🏹 Hunting & Tracking</h4>
+                <p><strong>The Predator's Art</strong></p>
+                <p><strong>Effect:</strong> Locate game animals and fresh water sources</p>
+                <p><strong>Risk:</strong> May attract dangerous predators to your position</p>
+                <p><strong>Strategy:</strong> Essential for long-term survival</p>
+                <p><em>"Follow the tracks, but watch for what follows you"</em></p>
+            </div>
+            
+            <div class="wilderness-skill">
+                <h4>🌿 Herbalism & Medicine</h4>
+                <p><strong>Nature's Pharmacy</strong></p>
+                <p><strong>Effect:</strong> Identify medicinal plants and craft healing remedies</p>
+                <p><strong>Risk:</strong> Misidentification can cause poisoning</p>
+                <p><strong>Strategy:</strong> Critical for treating diseases and wounds</p>
+                <p><em>"In the jungle, knowledge is the difference between medicine and poison"</em></p>
+            </div>
+            
+            <div class="wilderness-skill">
+                <h4>🏠 Shelter Craft</h4>
+                <p><strong>Home in the Hostile</strong></p>
+                <p><strong>Effect:</strong> Build protective structures against elements</p>
+                <p><strong>Duration:</strong> Temporary shelters vs permanent camps</p>
+                <p><strong>Strategy:</strong> Protection from weather and nocturnal predators</p>
+                <p><em>"A good shelter is worth more than steel in the jungle"</em></p>
+            </div>
+            
+            <div class="wilderness-skill">
+                <h4>🔥 Fire Mastery</h4>
+                <p><strong>The Sacred Flame</strong></p>
+                <p><strong>Effect:</strong> Cook food, purify water, signal for help, ward off predators</p>
+                <p><strong>Risk:</strong> Smoke may reveal your position to enemies</p>
+                <p><strong>Strategy:</strong> Central to all other survival activities</p>
+                <p><em>"Fire is life, but smoke is death in the wrong hands"</em></p>
+            </div>
+        </div>
+
+        <h2>🌍 Environmental Combat: Fighting the Jungle Itself</h2>
+        
+        <canvas id="environment_combat_canvas" width="600" height="350"></canvas>
+        
+        <div class="survival-box">
+            <h3>⚔️ When the Battlefield Fights Back</h3>
+            <p><strong>In Delthrak, the environment is an active combatant that never rests:</strong></p>
+            
+            <p><strong>🌿 Poisonous Flora Combat:</strong></p>
+            <ul>
+                <li>Thornvines that constrict movement and drain health over time</li>
+                <li>Spore-releasing fungi that cause hallucinations and confusion</li>
+                <li>Acid-dripping plants that corrode armor and weapons</li>
+                <li>Camouflaged pitcher plants that can swallow heroes whole</li>
+            </ul>
+            
+            <p><strong>💧 Water Hazard Navigation:</strong></p>
+            <ul>
+                <li>Flash floods can sweep away entire parties in seconds</li>
+                <li>Quicksand disguised as solid ground</li>
+                <li>Piranha-infested rivers that punish careless crossings</li>
+                <li>Waterborne diseases from contaminated sources</li>
+            </ul>
+            
+            <p><strong>🌡️ Climate as Enemy:</strong></p>
+            <ul>
+                <li>Oppressive heat causes fatigue and dehydration</li>
+                <li>Humidity makes wounds fester and equipment rust</li>
+                <li>Sudden temperature drops during storms</li>
+                <li>Altitude sickness in jungle highlands</li>
+            </ul>
+        </div>
+
+        <h2>🗺️ Interactive Jungle Navigation</h2>
+        
+        <div class="environment-analysis">
+            <p><strong>Navigate the treacherous wilderness!</strong> Click terrain cells to analyze environmental hazards and survival opportunities.</p>
+            
+            <div class="jungle-map" id="jungle_map">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+            
+            <p><strong>Terrain Legend:</strong> 🌿 Dense Jungle | 💧 River | 🪨 Rocks | 🦎 Swamp | 🏛️ Ruins | 🦸 Heroes | 🐅 Predator | ⭐ Resources</p>
+            
+            <div id="terrain_analysis" style="margin-top: 20px; padding: 15px; background: rgba(139, 195, 74, 0.1); border-radius: 10px;">
+                <strong>Environmental Assessment:</strong> Click terrain cells to analyze survival challenges and opportunities!
+            </div>
+        </div>
+
+        <h2>🔬 The Science of Jungle Survival</h2>
+        
+        <canvas id="survival_science_canvas" width="600" height="350"></canvas>
+        
+        <div class="jungle-principle">
+            <h3>🧬 Understanding Ecosystem Dynamics</h3>
+            <p><strong>The Jungles of Delthrak apply real ecological principles to create authentic survival challenges:</strong></p>
+            
+            <p><strong>🌿 Biodiversity Principles:</strong></p>
+            <ul>
+                <li>Higher species density means more potential resources AND threats</li>
+                <li>Complex food webs create unpredictable chain reactions</li>
+                <li>Symbiotic relationships between species affect behavior</li>
+                <li>Seasonal migrations alter available resources</li>
+            </ul>
+            
+            <p><strong>💧 Hydrology and Geography:</strong></p>
+            <ul>
+                <li>Water flow patterns determine safe camping locations</li>
+                <li>Elevation changes create microclimates with different challenges</li>
+                <li>Soil composition affects plant growth and stability</li>
+                <li>Natural barriers channel both heroes and predators</li>
+            </ul>
+            
+            <p><strong>🌡️ Climate Science:</strong></p>
+            <ul>
+                <li>Temperature gradients create thermal layers with different dangers</li>
+                <li>Humidity affects disease transmission and equipment degradation</li>
+                <li>Barometric pressure changes predict weather patterns</li>
+                <li>Seasonal variations completely transform survival strategies</li>
+            </ul>
+        </div>
+
+        <h2>🐅 Apex Predators: The Jungle's Elite Guardians</h2>
+        
+        <canvas id="predator_canvas" width="600" height="300"></canvas>
+        
+        <div class="wilderness-card">
+            <h3>🐅 Delthrak Shadow Tiger</h3>
+            <p><strong>The Invisible Death</strong></p>
+            <p><strong>Abilities:</strong> Perfect camouflage, silent movement, ambush tactics</p>
+            <p><strong>Hunting Pattern:</strong> Stalks prey for hours before striking</p>
+            <p><strong>Weakness:</strong> Territorial - can be driven off with fire</p>
+            <p><strong>Lore:</strong> "You never see the Shadow Tiger. You only see what it leaves behind."</p>
+        </div>
+
+        <div class="wilderness-card">
+            <h3>🐍 Emerald Strangler</h3>
+            <p><strong>The Constrictor Nightmare</strong></p>
+            <p><strong>Abilities:</strong> Crushing coils, venomous bite, tree-top ambush</p>
+            <p><strong>Size:</strong> Can grow up to 30 feet in length</p>
+            <p><strong>Weakness:</strong> Vulnerable to cold, slow in open areas</p>
+            <p><strong>Lore:</strong> "When the trees start moving, it's already too late."</p>
+        </div>
+
+        <div class="wilderness-card">
+            <h3>🦅 Razorclaw Raptor</h3>
+            <p><strong>The Sky Assassin</strong></p>
+            <p><strong>Abilities:</strong> Aerial attacks, pack coordination, keen eyesight</p>
+            <p><strong>Tactics:</strong> Hunts in coordinated flocks</p>
+            <p><strong>Weakness:</strong> Cannot maneuver well in dense canopy</p>
+            <p><strong>Lore:</strong> "The last thing you hear is the whistle of wind through feathers."</p>
+        </div>
+
+        <h2>🔧 Advanced Survival Skill Matrix</h2>
+        
+        <div class="skill-matrix" id="skill_matrix">
+            <div class="matrix-skill" onclick="useSurvivalSkill(0, 'hunt')" data-skill="hunt">
+                <h4>🏹 Track Game</h4>
+                <p>Locate food sources</p>
+                <p><em>Energy: 2 points</em></p>
+            </div>
+            <div class="matrix-skill" onclick="useSurvivalSkill(1, 'water')" data-skill="water">
+                <h4>💧 Find Water</h4>
+                <p>Locate clean drinking water</p>
+                <p><em>Energy: 1 point</em></p>
+            </div>
+            <div class="matrix-skill" onclick="useSurvivalSkill(2, 'shelter')" data-skill="shelter">
+                <h4>🏠 Build Shelter</h4>
+                <p>Create protective structure</p>
+                <p><em>Energy: 3 points</em></p>
+            </div>
+            <div class="matrix-skill" onclick="useSurvivalSkill(3, 'fire')" data-skill="fire">
+                <h4>🔥 Make Fire</h4>
+                <p>Create warmth and light</p>
+                <p><em>Energy: 2 points</em></p>
+            </div>
+            <div class="matrix-skill" onclick="useSurvivalSkill(4, 'medicine')" data-skill="medicine">
+                <h4>🌿 Craft Medicine</h4>
+                <p>Create healing remedies</p>
+                <p><em>Energy: 2 points</em></p>
+            </div>
+            <div class="matrix-skill" onclick="useSurvivalSkill(5, 'trap')" data-skill="trap">
+                <h4>🪤 Set Traps</h4>
+                <p>Capture food or warn of danger</p>
+                <p><em>Energy: 3 points</em></p>
+            </div>
+            <div class="matrix-skill" onclick="useSurvivalSkill(6, 'camouflage')" data-skill="camouflage">
+                <h4>🌿 Camouflage</h4>
+                <p>Hide from predators</p>
+                <p><em>Energy: 1 point</em></p>
+            </div>
+            <div class="matrix-skill" onclick="useSurvivalSkill(7, 'navigate')" data-skill="navigate">
+                <h4>🧭 Navigate</h4>
+                <p>Find direction and landmarks</p>
+                <p><em>Energy: 1 point</em></p>
+            </div>
+        </div>
+
+        <div id="skill_result" style="margin-top: 20px; padding: 15px; background: rgba(139, 195, 74, 0.1); border-radius: 10px;">
+            <strong>Survival Status:</strong> Select wilderness skills to enhance your chances of survival! Manage your energy carefully - exhaustion in the jungle means death.
+        </div>
+
+        <h2>🧠 The Psychology of Wilderness Survival</h2>
+        
+        <div class="survival-box">
+            <h3>🧭 When Civilization is Just a Memory</h3>
+            <p><strong>Surviving Delthrak tests heroes' mental fortitude as much as physical endurance:</strong></p>
+            
+            <p><strong>😰 Isolation and Fear:</strong></p>
+            <ul>
+                <li>Constant danger creates chronic stress and exhaustion</li>
+                <li>Separation from civilization triggers primitive survival instincts</li>
+                <li>Unknown threats everywhere cause paranoia and hypervigilance</li>
+                <li>Sleep deprivation from nocturnal predator activity</li>
+            </ul>
+            
+            <p><strong>🤝 Group Dynamics Under Pressure:</strong></p>
+            <ul>
+                <li>Resource scarcity can turn allies against each other</li>
+                <li>Leadership disputes over survival priorities</li>
+                <li>Blame and guilt over mistakes that cost lives</li>
+                <li>Heroic sacrifices to save the group</li>
+            </ul>
+            
+            <p><strong>🌟 Adaptation and Growth:</strong></p>
+            <ul>
+                <li>Developing intuitive awareness of environmental dangers</li>
+                <li>Learning to read nature's subtle warning signs</li>
+                <li>Building confidence through successful survival challenges</li>
+                <li>Discovering inner strength in desperate situations</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Advanced Wilderness Strategies</h2>
+        
+        <canvas id="strategy_canvas" width="600" height="350"></canvas>
+        
+        <div class="jungle-principle">
+            <h3>🎭 Mastering Environmental Warfare</h3>
+            
+            <p><strong>🌿 The Adaptation Approach:</strong></p>
+            <ul>
+                <li>Study and mimic local wildlife behavior patterns</li>
+                <li>Use environment as ally rather than fighting against it</li>
+                <li>Establish sustainable resource management practices</li>
+                <li>Build reputation with neutral jungle inhabitants</li>
+            </ul>
+            
+            <p><strong>⚔️ The Aggressive Strategy:</strong></p>
+            <ul>
+                <li>Establish dominance through shows of force</li>
+                <li>Clear safe zones by eliminating threats</li>
+                <li>Use fire and noise to mark territory</li>
+                <li>Take calculated risks for maximum resource gain</li>
+            </ul>
+            
+            <p><strong>🥷 The Stealth Doctrine:</strong></p>
+            <ul>
+                <li>Move only during optimal concealment conditions</li>
+                <li>Leave no traces of passage or presence</li>
+                <li>Avoid confrontation through superior planning</li>
+                <li>Use misdirection to confuse predators and enemies</li>
+            </ul>
+        </div>
+
+        <div class="danger-level" id="danger_assessment">
+            <span style="margin-right: 10px;">🚨</span>
+            <span>CURRENT JUNGLE THREAT LEVEL: <span id="threat_level">MODERATE</span></span>
+            <span style="margin-left: 10px;">🌿</span>
+        </div>
+
+        <h2>🌿 Botanical Warfare: Plants as Weapons</h2>
+        
+        <div class="environment-analysis">
+            <h3>🌺 When Flora Becomes Arsenal</h3>
+            <p><strong>The jungle provides both tools and weapons for the resourceful survivor:</strong></p>
+            
+            <p><strong>🏹 Natural Projectiles:</strong></p>
+            <ul>
+                <li>Thorn-launching plants that can be triggered remotely</li>
+                <li>Exploding seed pods that shower areas with irritants</li>
+                <li>Vine-springs that can catapult rocks or spears</li>
+                <li>Poison dart flowers that provide ammunition</li>
+            </ul>
+            
+            <p><strong>🪤 Organic Traps:</strong></p>
+            <ul>
+                <li>Tripwire vines connected to branch catapults</li>
+                <li>Sap pits that trap and slow intruders</li>
+                <li>Toxic pollen clouds released by disturbed flowers</li>
+                <li>Carnivorous plants positioned at choke points</li>
+            </ul>
+            
+            <p><strong>🛡️ Living Barriers:</strong></p>
+            <ul>
+                <li>Cultivate thornwalls for camp perimeter defense</li>
+                <li>Guide growth of canopy coverage for concealment</li>
+                <li>Train climbing vines to create elevated pathways</li>
+                <li>Domesticate guardian plants that warn of intruders</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Ecosystem Mastery: Advanced Challenges</h2>
+        
+        <div class="survival-box">
+            <h3>🌟 Elite Wilderness Trials</h3>
+            <p><strong>Prove your mastery of jungle survival:</strong></p>
+            
+            <p><strong>🌿 The Naturalist:</strong> Complete expedition using only resources found in nature</p>
+            <p><strong>🐅 The Apex Predator:</strong> Survive 7 days while being actively hunted</p>
+            <p><strong>🌧️ The Storm Walker:</strong> Navigate during monsoon season without shelter</p>
+            <p><strong>🧠 The Jungle Sage:</strong> Establish permanent settlement that thrives for 30 days</p>
+            <p><strong>🌍 The Ecosystem Guardian:</strong> Complete quest while maintaining ecological balance</p>
+        </div>
+
+        <h2>🔄 Seasonal Variations and Long-term Survival</h2>
+        
+        <div class="environment-layers">
+            <div class="layer-node active" onclick="setSeason(0, 'dry')" title="Dry Season">
+                <div>☀️</div>
+                <div style="font-size: 10px;">Dry</div>
+            </div>
+            <div class="layer-node" onclick="setSeason(1, 'wet')" title="Wet Season">
+                <div>🌧️</div>
+                <div style="font-size: 10px;">Wet</div>
+            </div>
+            <div class="layer-node" onclick="setSeason(2, 'bloom')" title="Flowering Season">
+                <div>🌸</div>
+                <div style="font-size: 10px;">Bloom</div>
+            </div>
+            <div class="layer-node" onclick="setSeason(3, 'hunt')" title="Hunting Season">
+                <div>🦌</div>
+                <div style="font-size: 10px;">Hunt</div>
+            </div>
+        </div>
+
+        <div id="season_effects" style="margin-top: 20px; padding: 15px; background: rgba(139, 195, 74, 0.1); border-radius: 10px;">
+            <strong>Seasonal Effects:</strong> Dry Season - Water sources scarce but travel easier. Predators concentrate around remaining water holes. Fire danger extremely high.
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Wizards of Morcar"</strong> - where heroes who have mastered the primal wilderness must now face the ultimate magical challenges! We'll see how survival skills translate into magical mastery and how the raw power of nature can be channeled into arcane might.</p>
+        
+        <div class="jungle-principle">
+            <p><strong>Remember:</strong> The Jungles of Delthrak teaches us that true strength isn't about conquering nature - it's about understanding your place within it. The jungle doesn't care about your quest, your honor, or your destiny. It only cares about one thing: are you strong enough, smart enough, and adaptable enough to earn your place in the ecosystem? The greatest victory isn't defeating the jungle - it's becoming part of it while still remaining human!</p>
+        </div>
+    </div>
+
+    <script>
+        // Add nature elements for atmospheric effect
+        function createNatureElements() {
+            const elements = ['🌿', '🍃', '🦋', '🐛', '🌺', '💧', '🌸', '🦎'];
+            for (let i = 0; i < 10; i++) {
+                const element = document.createElement('div');
+                element.className = 'nature-element';
+                element.textContent = elements[Math.floor(Math.random() * elements.length)];
+                element.style.top = Math.random() * 100 + '%';
+                element.style.animationDelay = Math.random() * 10 + 's';
+                element.style.animationDuration = (Math.random() * 6 + 8) + 's';
+                document.querySelector('.jungle-realm').appendChild(element);
+            }
+        }
+        
+        createNatureElements();
+        
+        // Weather System
+        const weatherConditions = [
+            { 
+                name: 'Clear Skies', 
+                visibility: 100, 
+                effects: 'Normal conditions. Full visibility and movement. Wildlife most active during daylight hours.' 
+            },
+            { 
+                name: 'Monsoon Rain', 
+                visibility: 50, 
+                effects: 'Heavy rainfall reduces visibility and movement speed. Rivers may flood. Shelters essential.' 
+            },
+            { 
+                name: 'Toxic Fog', 
+                visibility: 25, 
+                effects: 'Poisonous mists drain health over time. Breathing protection required. Zero visibility.' 
+            },
+            { 
+                name: 'Lightning Storm', 
+                visibility: 40, 
+                effects: 'Metal equipment conducts lightning. Tall trees dangerous. Severe weather effects.' 
+            }
+        ];
+        
+        let currentWeather = 0;
+        
+        function setWeather(weatherIndex, weatherType) {
+            currentWeather = weatherIndex;
+            
+            // Update active weather
+            document.querySelectorAll('.weather-node').forEach(node => node.classList.remove('active'));
+            document.querySelectorAll('.weather-node')[weatherIndex].classList.add('active');
+            
+            // Update survival indicator
+            const indicator = document.getElementById('survival_indicator');
+            const levelText = document.getElementById('survival_level');
+            
+            const weather = weatherConditions[weatherIndex];
+            indicator.style.left = weather.visibility + '%';
+            
+            if (weather.visibility >= 80) levelText.textContent = 'THRIVING';
+            else if (weather.visibility >= 60) levelText.textContent = 'ADAPTING TO ENVIRONMENT';
+            else if (weather.visibility >= 40) levelText.textContent = 'STRUGGLING TO SURVIVE';
+            else if (weather.visibility >= 20) levelText.textContent = 'CRITICAL CONDITION';
+            else levelText.textContent = 'LIFE THREATENING';
+            
+            // Update effects display
+            const effectsDiv = document.getElementById('weather_effects');
+            effectsDiv.innerHTML = `<strong>Environmental Effects:</strong> ${weather.name} - ${weather.effects}`;
+            
+            // Update danger level
+            updateDangerLevel(weatherIndex);
+        }
+        
+        function updateDangerLevel(weatherIndex) {
+            const dangerDiv = document.getElementById('danger_assessment');
+            const threatSpan = document.getElementById('threat_level');
+            
+            const dangerLevels = ['LOW', 'MODERATE', 'HIGH', 'CRITICAL'];
+            const dangerClasses = ['danger-low', 'danger-moderate', 'danger-high', 'danger-critical'];
+            
+            // Remove all danger classes
+            dangerClasses.forEach(cls => dangerDiv.classList.remove(cls));
+            
+            // Add appropriate class
+            dangerDiv.classList.add(dangerClasses[weatherIndex]);
+            threatSpan.textContent = dangerLevels[weatherIndex];
+        }
+        
+        // Survival Skills System
+        let survivalEnergy = 8;
+        const skills = [
+            { name: 'Track Game', cost: 2, effect: 'Successfully located fresh deer tracks and potential hunting grounds!' },
+            { name: 'Find Water', cost: 1, effect: 'Discovered clean spring water source hidden behind rock formation!' },
+            { name: 'Build Shelter', cost: 3, effect: 'Constructed weatherproof lean-to shelter with drainage and ventilation!' },
+            { name: 'Make Fire', cost: 2, effect: 'Created sustainable fire using dry tinder and proper fuel management!' },
+            { name: 'Craft Medicine', cost: 2, effect: 'Prepared healing poultice from identified medicinal plants!' },
+            { name: 'Set Traps', cost: 3, effect: 'Established perimeter early warning system with natural alarms!' },
+            { name: 'Camouflage', cost: 1, effect: 'Applied natural camouflage techniques for predator avoidance!' },
+            { name: 'Navigate', cost: 1, effect: 'Determined location using sun position and natural landmarks!' }
+        ];
+        
+        function useSurvivalSkill(index, skillType) {
+            const skill = skills[index];
+            const skillElement = document.querySelectorAll('.matrix-skill')[index];
+            const resultDiv = document.getElementById('skill_result');
+            
+            if (survivalEnergy >= skill.cost) {
+                survivalEnergy -= skill.cost;
+                
+                // Visual feedback
+                skillElement.classList.add('used');
+                setTimeout(() => skillElement.classList.remove('used'), 2000);
+                
+                resultDiv.innerHTML = `
+                    <strong>🌟 ${skill.name} Successfully Applied!</strong><br>
+                    ${skill.effect}<br>
+                    <em>Energy consumed: ${skill.cost} points (${survivalEnergy} energy remaining)</em>
+                `;
+                
+                // Regenerate energy over time
+                setTimeout(() => {
+                    if (survivalEnergy < 8) {
+                        survivalEnergy = Math.min(8, survivalEnergy + 1);
+                    }
+                }, 4000);
+            } else {
+                resultDiv.innerHTML = `
+                    <strong>⚠️ Insufficient Energy!</strong><br>
+                    ${skill.name} requires ${skill.cost} energy, but you only have ${survivalEnergy} energy.<br>
+                    <em>Rest and recover before attempting strenuous activities...</em>
+                `;
+            }
+        }
+        
+        // Survival Skills Visualization
+        const skillsCanvas = document.getElementById('survival_skills_canvas');
+        const skillsCtx = skillsCanvas.getContext('2d');
+        
+        function drawSurvivalSkills() {
+            skillsCtx.clearRect(0, 0, skillsCanvas.width, skillsCanvas.height);
+            
+            // Background
+            skillsCtx.fillStyle = '#1a3a1a';
+            skillsCtx.fillRect(0, 0, skillsCanvas.width, skillsCanvas.height);
+            
+            // Draw survival skill wheel
+            const centerX = 300;
+            const centerY = 150;
+            const radius = 100;
+            
+            const skillCategories = [
+                {angle: 0, name: 'Hunting', symbol: '🏹', color: '#2e7d32'},
+                {angle: 45, name: 'Medicine', symbol: '🌿', color: '#388e3c'},
+                {angle: 90, name: 'Shelter', symbol: '🏠', color: '#4caf50'},
+                {angle: 135, name: 'Fire', symbol: '🔥', color: '#689f38'},
+                {angle: 180, name: 'Water', symbol: '💧', color: '#7cb342'},
+                {angle: 225, name: 'Navigation', symbol: '🧭', color: '#8bc34a'},
+                {angle: 270, name: 'Trapping', symbol: '🪤', color: '#9ccc65'},
+                {angle: 315, name: 'Stealth', symbol: '🥷', color: '#aed581'}
+            ];
+            
+            skillCategories.forEach((skill, index) => {
+                const angle = skill.angle * (Math.PI / 180);
+                const x = centerX + Math.cos(angle) * radius;
+                const y = centerY + Math.sin(angle) * radius;
+                
+                // Skill area
+                skillsCtx.fillStyle = skill.color;
+                skillsCtx.beginPath();
+                skillsCtx.arc(x, y, 25, 0, Math.PI * 2);
+                skillsCtx.fill();
+                
+                skillsCtx.strokeStyle = '#9ccc65';
+                skillsCtx.lineWidth = 2;
+                skillsCtx.stroke();
+                
+                // Skill symbol
+                skillsCtx.fillStyle = '#fff';
+                skillsCtx.font = '16px Arial';
+                skillsCtx.textAlign = 'center';
+                skillsCtx.fillText(skill.symbol, x, y + 5);
+                
+                // Skill name
+                skillsCtx.fillStyle = '#e8f5e8';
+                skillsCtx.font = '10px Arial';
+                skillsCtx.fillText(skill.name, x, y + 40);
+                
+                // Connection to center
+                skillsCtx.strokeStyle = skill.color + '80';
+                skillsCtx.lineWidth = 1;
+                skillsCtx.beginPath();
+                skillsCtx.moveTo(x, y);
+                skillsCtx.lineTo(centerX, centerY);
+                skillsCtx.stroke();
+            });
+            
+            // Center hub
+            skillsCtx.fillStyle = '#8bc34a';
+            skillsCtx.beginPath();
+            skillsCtx.arc(centerX, centerY, 30, 0, Math.PI * 2);
+            skillsCtx.fill();
+            
+            skillsCtx.fillStyle = '#000';
+            skillsCtx.font = '20px Arial';
+            skillsCtx.textAlign = 'center';
+            skillsCtx.fillText('🌿', centerX, centerY + 7);
+            
+            skillsCtx.fillStyle = '#8bc34a';
+            skillsCtx.font = '16px Arial';
+            skillsCtx.fillText('Wilderness Survival Skills', 300, 30);
+            skillsCtx.textAlign = 'left';
+        }
+        
+        drawSurvivalSkills();
+        
+        // Interactive Jungle Map
+        const jungleGrid = document.getElementById('jungle_map');
+        const terrainAnalysis = document.getElementById('terrain_analysis');
+        let jungleState = [];
+        
+        // Initialize jungle map
+        for (let i = 0; i < 80; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'jungle-cell';
+            
+            // Generate terrain types
+            const terrainType = Math.random();
+            if (terrainType < 0.4) {
+                cell.className += ' dense-jungle';
+                cell.textContent = '🌿';
+                jungleState.push('jungle');
+            } else if (terrainType < 0.55) {
+                cell.className += ' river-water';
+                cell.textContent = '💧';
+                jungleState.push('river');
+            } else if (terrainType < 0.7) {
+                cell.className += ' rocky-terrain';
+                cell.textContent = '🪨';
+                jungleState.push('rocks');
+            } else if (terrainType < 0.8) {
+                cell.className += ' swamp-marsh';
+                cell.textContent = '🦎';
+                jungleState.push('swamp');
+            } else if (terrainType < 0.9) {
+                cell.className += ' ancient-ruins';
+                cell.textContent = '🏛️';
+                jungleState.push('ruins');
+            } else {
+                cell.className += ' resource-cache';
+                cell.textContent = '⭐';
+                jungleState.push('resources');
+            }
+            
+            cell.addEventListener('click', () => analyzeTerrainEffect(i));
+            jungleGrid.appendChild(cell);
+        }
+        
+        // Add heroes and threats
+        jungleGrid.children[35].className = 'jungle-cell hero-position';
+        jungleGrid.children[35].textContent = '🦸';
+        jungleState[35] = 'hero';
+        
+        jungleGrid.children[55].className = 'jungle-cell dangerous-predator';
+        jungleGrid.children[55].textContent = '🐅';
+        jungleState[55] = 'predator';
+        
+        function analyzeTerrainEffect(index) {
+            const terrain = jungleState[index];
+            let analysis = '';
+            
+            switch(terrain) {
+                case 'jungle':
+                    analysis = 'Dense Jungle. Provides cover but limits visibility. Rich in plant resources but harbors dangerous creatures.';
+                    break;
+                case 'river':
+                    analysis = 'Fresh Water Source. Essential for survival but may contain parasites. Predators often gather here.';
+                    break;
+                case 'rocks':
+                    analysis = 'Rocky Terrain. Elevated position provides tactical advantage. Good for tool-making materials.';
+                    break;
+                case 'swamp':
+                    analysis = 'Swamp Marsh. Dangerous footing and disease vectors. Rich in amphibian life and medicinal plants.';
+                    break;
+                case 'ruins':
+                    analysis = 'Ancient Ruins. May contain treasures but often guarded or cursed. Shelter from weather.';
+                    break;
+                case 'resources':
+                    analysis = 'Resource Cache. Valuable survival supplies. May be defended by territorial animals.';
+                    break;
+                case 'hero':
+                    analysis = 'Hero Position. Current location of adventuring party. Assess surroundings for threats and opportunities.';
+                    break;
+                case 'predator':
+                    analysis = 'Apex Predator Territory. Extremely dangerous. Avoid direct confrontation unless fully prepared.';
+                    break;
+                default:
+                    analysis = 'Unknown terrain type.';
+            }
+            
+            terrainAnalysis.innerHTML = `<strong>Environmental Assessment:</strong> ${analysis}`;
+        }
+        
+        // Environment Combat Visualization
+        const envCombatCanvas = document.getElementById('environment_combat_canvas');
+        const envCombatCtx = envCombatCanvas.getContext('2d');
+        
+        function drawEnvironmentCombat() {
+            envCombatCtx.clearRect(0, 0, envCombatCanvas.width, envCombatCanvas.height);
+            
+            // Background
+            envCombatCtx.fillStyle = '#1a3a1a';
+            envCombatCtx.fillRect(0, 0, envCombatCanvas.width, envCombatCanvas.height);
+            
+            // Draw environmental hazards
+            const hazards = [
+                {x: 100, y: 150, type: 'Poisonous Vines', symbol: '🌿', color: '#4caf50'},
+                {x: 250, y: 100, type: 'Quicksand', symbol: '💧', color: '#795548'},
+                {x: 400, y: 180, type: 'Predator Stalking', symbol: '🐅', color: '#d32f2f'},
+                {x: 500, y: 120, type: 'Toxic Spores', symbol: '☁️', color: '#9c27b0'}
+            ];
+            
+            // Hero position
+            const heroX = 300;
+            const heroY = 200;
+            
+            hazards.forEach(hazard => {
+                // Hazard effect radius
+                envCombatCtx.fillStyle = hazard.color + '30';
+                envCombatCtx.beginPath();
+                envCombatCtx.arc(hazard.x, hazard.y, 40, 0, Math.PI * 2);
+                envCombatCtx.fill();
+                
+                envCombatCtx.strokeStyle = hazard.color;
+                envCombatCtx.lineWidth = 2;
+                envCombatCtx.stroke();
+                
+                // Hazard core
+                envCombatCtx.fillStyle = hazard.color;
+                envCombatCtx.beginPath();
+                envCombatCtx.arc(hazard.x, hazard.y, 15, 0, Math.PI * 2);
+                envCombatCtx.fill();
+                
+                // Hazard symbol
+                envCombatCtx.fillStyle = '#fff';
+                envCombatCtx.font = '12px Arial';
+                envCombatCtx.textAlign = 'center';
+                envCombatCtx.fillText(hazard.symbol, hazard.x, hazard.y + 4);
+                
+                // Hazard name
+                envCombatCtx.fillStyle = '#e8f5e8';
+                envCombatCtx.font = '10px Arial';
+                envCombatCtx.fillText(hazard.type, hazard.x, hazard.y + 60);
+                
+                // Threat lines to hero
+                envCombatCtx.strokeStyle = hazard.color + '60';
+                envCombatCtx.lineWidth = 1;
+                envCombatCtx.setLineDash([3, 3]);
+                envCombatCtx.beginPath();
+                envCombatCtx.moveTo(hazard.x, hazard.y);
+                envCombatCtx.lineTo(heroX, heroY);
+                envCombatCtx.stroke();
+                envCombatCtx.setLineDash([]);
+            });
+            
+            // Draw hero
+            envCombatCtx.fillStyle = '#ff9800';
+            envCombatCtx.beginPath();
+            envCombatCtx.arc(heroX, heroY, 20, 0, Math.PI * 2);
+            envCombatCtx.fill();
+            
+            envCombatCtx.strokeStyle = '#9ccc65';
+            envCombatCtx.lineWidth = 2;
+            envCombatCtx.stroke();
+            
+            envCombatCtx.fillStyle = '#fff';
+            envCombatCtx.font = '16px Arial';
+            envCombatCtx.textAlign = 'center';
+            envCombatCtx.fillText('🦸', heroX, heroY + 5);
+            
+            envCombatCtx.fillStyle = '#8bc34a';
+            envCombatCtx.font = '16px Arial';
+            envCombatCtx.fillText('Environmental Combat: Multiple Simultaneous Threats', 300, 30);
+            envCombatCtx.textAlign = 'left';
+        }
+        
+        drawEnvironmentCombat();
+        
+        // Survival Science Visualization
+        const scienceCanvas = document.getElementById('survival_science_canvas');
+        const scienceCtx = scienceCanvas.getContext('2d');
+        
+        function drawSurvivalScience() {
+            scienceCtx.clearRect(0, 0, scienceCanvas.width, scienceCanvas.height);
+            
+            // Background
+            scienceCtx.fillStyle = '#1a3a1a';
+            scienceCtx.fillRect(0, 0, scienceCanvas.width, scienceCanvas.height);
+            
+            // Draw ecosystem layers
+            const layers = [
+                {y: 80, height: 40, name: 'Canopy Layer', color: '#2e7d32', density: 0.9},
+                {y: 120, height: 50, name: 'Understory', color: '#388e3c', density: 0.7},
+                {y: 170, height: 60, name: 'Shrub Layer', color: '#4caf50', density: 0.5},
+                {y: 230, height: 80, name: 'Forest Floor', color: '#689f38', density: 0.3}
+            ];
+            
+            layers.forEach((layer, index) => {
+                // Layer background
+                scienceCtx.fillStyle = layer.color + '40';
+                scienceCtx.fillRect(50, layer.y, 500, layer.height);
+                
+                scienceCtx.strokeStyle = layer.color;
+                scienceCtx.lineWidth = 2;
+                scienceCtx.strokeRect(50, layer.y, 500, layer.height);
+                
+                // Layer vegetation density
+                const vegetationCount = Math.floor(layer.density * 20);
+                for (let i = 0; i < vegetationCount; i++) {
+                    const x = 60 + (i * 24);
+                    const y = layer.y + layer.height / 2;
+                    
+                    scienceCtx.fillStyle = layer.color;
+                    scienceCtx.beginPath();
+                    scienceCtx.arc(x, y, 3, 0, Math.PI * 2);
+                    scienceCtx.fill();
+                }
+                
+                // Layer label
+                scienceCtx.fillStyle = '#e8f5e8';
+                scienceCtx.font = '12px Arial';
+                scienceCtx.fillText(layer.name, 560, layer.y + layer.height / 2);
+                
+                // Biodiversity indicators
+                const symbols = ['🐒', '🦜', '🐛', '🐸'];
+                scienceCtx.font = '14px Arial';
+                scienceCtx.fillText(symbols[index], 570, layer.y + layer.height / 2 + 15);
+            });
+            
+            // Draw water table
+            scienceCtx.fillStyle = '#1976d2';
+            scienceCtx.fillRect(50, 310, 500, 20);
+            scienceCtx.fillStyle = '#e8f5e8';
+            scienceCtx.font = '12px Arial';
+            scienceCtx.fillText('Water Table', 560, 325);
+            
+            scienceCtx.fillStyle = '#8bc34a';
+            scienceCtx.font = '16px Arial';
+            scienceCtx.textAlign = 'center';
+            scienceCtx.fillText('Jungle Ecosystem Layers and Biodiversity', 300, 30);
+            scienceCtx.textAlign = 'left';
+        }
+        
+        drawSurvivalScience();
+        
+        // Predator Visualization
+        const predatorCanvas = document.getElementById('predator_canvas');
+        const predatorCtx = predatorCanvas.getContext('2d');
+        
+        function drawPredators() {
+            predatorCtx.clearRect(0, 0, predatorCanvas.width, predatorCanvas.height);
+            
+            // Background
+            predatorCtx.fillStyle = '#1a3a1a';
+            predatorCtx.fillRect(0, 0, predatorCanvas.width, predatorCanvas.height);
+            
+            // Draw predator territories
+            const predators = [
+                {x: 150, y: 150, name: 'Shadow Tiger', symbol: '🐅', color: '#d32f2f', territory: 80},
+                {x: 300, y: 100, name: 'Emerald Strangler', symbol: '🐍', color: '#388e3c', territory: 60},
+                {x: 450, y: 180, name: 'Razorclaw Raptor', symbol: '🦅', color: '#1976d2', territory: 70}
+            ];
+            
+            predators.forEach(predator => {
+                // Territory area
+                predatorCtx.fillStyle = predator.color + '20';
+                predatorCtx.beginPath();
+                predatorCtx.arc(predator.x, predator.y, predator.territory, 0, Math.PI * 2);
+                predatorCtx.fill();
+                
+                predatorCtx.strokeStyle = predator.color;
+                predatorCtx.lineWidth = 2;
+                predatorCtx.setLineDash([5, 5]);
+                predatorCtx.stroke();
+                predatorCtx.setLineDash([]);
+                
+                // Predator core
+                predatorCtx.fillStyle = predator.color;
+                predatorCtx.beginPath();
+                predatorCtx.arc(predator.x, predator.y, 25, 0, Math.PI * 2);
+                predatorCtx.fill();
+                
+                predatorCtx.strokeStyle = '#9ccc65';
+                predatorCtx.lineWidth = 2;
+                predatorCtx.stroke();
+                
+                // Predator symbol
+                predatorCtx.fillStyle = '#fff';
+                predatorCtx.font = '18px Arial';
+                predatorCtx.textAlign = 'center';
+                predatorCtx.fillText(predator.symbol, predator.x, predator.y + 6);
+                
+                // Predator name
+                predatorCtx.fillStyle = '#e8f5e8';
+                predatorCtx.font = '12px Arial';
+                predatorCtx.fillText(predator.name, predator.x, predator.y + 45);
+                
+                // Hunting pattern indicators
+                for (let i = 0; i < 6; i++) {
+                    const angle = (i * 60) * (Math.PI / 180);
+                    const startX = predator.x + Math.cos(angle) * 30;
+                    const startY = predator.y + Math.sin(angle) * 30;
+                    const endX = predator.x + Math.cos(angle) * 50;
+                    const endY = predator.y + Math.sin(angle) * 50;
+                    
+                    predatorCtx.strokeStyle = predator.color + '80';
+                    predatorCtx.lineWidth = 1;
+                    predatorCtx.beginPath();
+                    predatorCtx.moveTo(startX, startY);
+                    predatorCtx.lineTo(endX, endY);
+                    predatorCtx.stroke();
+                }
+            });
+            
+            predatorCtx.fillStyle = '#8bc34a';
+            predatorCtx.font = '16px Arial';
+            predatorCtx.textAlign = 'center';
+            predatorCtx.fillText('Apex Predator Territories and Hunting Patterns', 300, 30);
+            predatorCtx.textAlign = 'left';
+        }
+        
+        drawPredators();
+        
+        // Strategy Visualization
+        const strategyCanvas = document.getElementById('strategy_canvas');
+        const strategyCtx = strategyCanvas.getContext('2d');
+        
+        function drawStrategies() {
+            strategyCtx.clearRect(0, 0, strategyCanvas.width, strategyCanvas.height);
+            
+            // Background
+            strategyCtx.fillStyle = '#1a3a1a';
+            strategyCtx.fillRect(0, 0, strategyCanvas.width, strategyCanvas.height);
+            
+            // Draw strategic approaches
+            const strategies = [
+                {x: 120, y: 120, name: 'Adaptation\nApproach', symbol: '🌿', color: '#2e7d32'},
+                {x: 300, y: 80, name: 'Aggressive\nStrategy', symbol: '⚔️', color: '#d32f2f'},
+                {x: 480, y: 120, name: 'Stealth\nDoctrine', symbol: '🥷', color: '#1976d2'},
+                {x: 200, y: 220, name: 'Resource\nManagement', symbol: '📦', color: '#ff9800'},
+                {x: 400, y: 220, name: 'Territory\nControl', symbol: '🏰', color: '#9c27b0'}
+            ];
+            
+            strategies.forEach((strategy, index) => {
+                // Strategy influence area
+                strategyCtx.fillStyle = strategy.color + '30';
+                strategyCtx.beginPath();
+                strategyCtx.arc(strategy.x, strategy.y, 50, 0, Math.PI * 2);
+                strategyCtx.fill();
+                
+                strategyCtx.strokeStyle = strategy.color;
+                strategyCtx.lineWidth = 2;
+                strategyCtx.stroke();
+                
+                // Strategy core
+                strategyCtx.fillStyle = strategy.color;
+                strategyCtx.beginPath();
+                strategyCtx.arc(strategy.x, strategy.y, 20, 0, Math.PI * 2);
+                strategyCtx.fill();
+                
+                // Strategy symbol
+                strategyCtx.fillStyle = '#fff';
+                strategyCtx.font = '16px Arial';
+                strategyCtx.textAlign = 'center';
+                strategyCtx.fillText(strategy.symbol, strategy.x, strategy.y + 5);
+                
+                // Strategy name
+                strategyCtx.fillStyle = '#e8f5e8';
+                strategyCtx.font = '10px Arial';
+                const lines = strategy.name.split('\n');
+                lines.forEach((line, lineIndex) => {
+                    strategyCtx.fillText(line, strategy.x, strategy.y + 70 + (lineIndex * 12));
+                });
+                
+                // Strategy connections
+                if (index < strategies.length - 1) {
+                    const nextStrategy = strategies[index + 1];
+                    if (Math.abs(strategy.x - nextStrategy.x) < 200 && Math.abs(strategy.y - nextStrategy.y) < 200) {
+                        strategyCtx.strokeStyle = strategy.color + '40';
+                        strategyCtx.lineWidth = 1;
+                        strategyCtx.setLineDash([3, 3]);
+                        strategyCtx.beginPath();
+                        strategyCtx.moveTo(strategy.x, strategy.y);
+                        strategyCtx.lineTo(nextStrategy.x, nextStrategy.y);
+                        strategyCtx.stroke();
+                        strategyCtx.setLineDash([]);
+                    }
+                }
+            });
+            
+            strategyCtx.fillStyle = '#8bc34a';
+            strategyCtx.font = '16px Arial';
+            strategyCtx.textAlign = 'center';
+            strategyCtx.fillText('Advanced Wilderness Survival Strategies', 300, 30);
+            strategyCtx.textAlign = 'left';
+        }
+        
+        drawStrategies();
+        
+        // Seasonal System
+        const seasons = [
+            { 
+                name: 'Dry Season', 
+                waterAvailability: 30, 
+                effects: 'Water sources scarce but travel easier. Predators concentrate around remaining water holes. Fire danger extremely high.' 
+            },
+            { 
+                name: 'Wet Season', 
+                waterAvailability: 100, 
+                effects: 'Abundant water but dangerous flooding. Disease vectors multiply. Shelter construction critical.' 
+            },
+            { 
+                name: 'Flowering Season', 
+                waterAvailability: 70, 
+                effects: 'Rich food sources from fruits and nectar. Increased insect activity. Allergic reactions possible.' 
+            },
+            { 
+                name: 'Hunting Season', 
+                waterAvailability: 60, 
+                effects: 'Animal migrations provide hunting opportunities. Increased predator competition. Territorial conflicts.' 
+            }
+        ];
+        
+        let currentSeason = 0;
+        
+        function setSeason(seasonIndex, seasonType) {
+            currentSeason = seasonIndex;
+            
+            // Update active season
+            document.querySelectorAll('.environment-layers .layer-node').forEach(node => node.classList.remove('active'));
+            document.querySelectorAll('.environment-layers .layer-node')[seasonIndex].classList.add('active');
+            
+            // Update effects display
+            const season = seasons[seasonIndex];
+            const effectsDiv = document.getElementById('season_effects');
+            effectsDiv.innerHTML = `<strong>Seasonal Effects:</strong> ${season.name} - ${season.effects}`;
+            
+            // Update survival meter based on season
+            const indicator = document.getElementById('survival_indicator');
+            indicator.style.left = season.waterAvailability + '%';
+        }
+    </script>
+</body>
+</html>

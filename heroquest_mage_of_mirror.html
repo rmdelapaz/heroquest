@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest The Mage of the Mirror - Dimensional Magic and Reality Manipulation</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a0a23 0%, #1a1a3a 20%, #2d1b69 40%, #4a148c 60%, #7b1fa2 80%, #ad61d8 100%);
+            color: #e8eaf6;
+        }
+        .container {
+            background: rgba(10, 10, 35, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(123, 31, 162, 0.6);
+            border: 2px solid #ad61d8;
+        }
+        h1 {
+            color: #ad61d8;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(173, 97, 216, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #ce93d8;
+            border-bottom: 2px solid #ce93d8;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .mirror-principle {
+            background: linear-gradient(135deg, #0a0a23 0%, #2d1b69 100%);
+            border: 2px solid #ad61d8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #ce93d8;
+        }
+        .dimensional-card {
+            background: linear-gradient(135deg, #2d1b69 0%, #0a0a23 100%);
+            border: 2px solid #9c27b0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 320px;
+            vertical-align: top;
+        }
+        .reality-box {
+            background: rgba(173, 97, 216, 0.1);
+            border: 2px solid #ad61d8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .arcane-analysis {
+            background: rgba(206, 147, 216, 0.1);
+            border: 2px solid #ce93d8;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #ad61d8;
+            border-radius: 10px;
+            background: #000011;
+            display: block;
+            margin: 20px auto;
+        }
+        .mirror-portal {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(45deg, #000011 25%, #ad61d8 25%, #ad61d8 50%, #000011 50%, #000011 75%, #ad61d8 75%);
+            background-size: 20px 20px;
+            border: 5px solid #ce93d8;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+            animation: reality-shift 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        @keyframes reality-shift {
+            0%, 100% { 
+                transform: perspective(1000px) rotateY(0deg);
+                box-shadow: 0 0 30px rgba(173, 97, 216, 0.6); 
+            }
+            25% { 
+                transform: perspective(1000px) rotateY(10deg);
+                box-shadow: 0 0 50px rgba(206, 147, 216, 0.8); 
+            }
+            50% { 
+                transform: perspective(1000px) rotateY(0deg);
+                box-shadow: 0 0 70px rgba(156, 39, 176, 1); 
+            }
+            75% { 
+                transform: perspective(1000px) rotateY(-10deg);
+                box-shadow: 0 0 50px rgba(206, 147, 216, 0.8); 
+            }
+        }
+        .dimensional-magic {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .spell-reflection {
+            background: rgba(45, 27, 105, 0.3);
+            border: 2px solid #9c27b0;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .spell-reflection::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.1) 50%, transparent 55%);
+            animation: mirror-gleam 4s ease-in-out infinite;
+        }
+        @keyframes mirror-gleam {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+        .reality-tracker {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(173, 97, 216, 0.1);
+            border-radius: 10px;
+        }
+        .reality-layer {
+            background: linear-gradient(135deg, #9c27b0, #ad61d8);
+            border: 2px solid #ce93d8;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #0a0a23;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+            font-size: 11px;
+        }
+        .mirror-battlefield {
+            display: grid;
+            grid-template-columns: repeat(12, 25px);
+            grid-template-rows: repeat(8, 25px);
+            gap: 1px;
+            margin: 20px auto;
+            border: 3px solid #ad61d8;
+            background: #000011;
+            padding: 10px;
+            width: fit-content;
+            position: relative;
+        }
+        .mirror-cell {
+            width: 25px;
+            height: 25px;
+            border: 1px solid #9c27b0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .prime-reality { background-color: #1a1a3a; }
+        .mirror-reality { background-color: #4a148c; }
+        .dimensional-rift { background-color: #ad61d8; }
+        .stable-ground { background-color: #2d1b69; }
+        .mage-position { background-color: #ff6b9d; }
+        .hero-position { background-color: #00e676; }
+        .reflection-zone { background-color: #ffd700; }
+        .reality-meter {
+            width: 100%;
+            height: 25px;
+            background: linear-gradient(to right, #000011, #2d1b69, #4a148c, #9c27b0, #ad61d8, #ce93d8);
+            border: 2px solid #ad61d8;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .reality-indicator {
+            position: absolute;
+            top: -2px;
+            width: 6px;
+            height: 29px;
+            background: #fff;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+        .dimensional-layers {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(173, 97, 216, 0.1);
+            border-radius: 10px;
+        }
+        .layer-node {
+            background: linear-gradient(135deg, #4a148c, #ad61d8);
+            border: 2px solid #ce93d8;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .layer-node:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(173, 97, 216, 0.8);
+        }
+        .layer-node.active {
+            background: linear-gradient(135deg, #ffd700, #ff6b9d);
+            color: #000;
+        }
+        .mirror-realm {
+            position: relative;
+            overflow: hidden;
+        }
+        .reality-fragment {
+            position: absolute;
+            color: #ad61d8;
+            font-size: 12px;
+            animation: dimensional-drift 8s linear infinite;
+            opacity: 0.7;
+        }
+        @keyframes dimensional-drift {
+            0% { 
+                transform: translateX(-100vw) translateY(0) rotate(0deg) scale(0.5); 
+                opacity: 0; 
+            }
+            25% { 
+                opacity: 0.8; 
+                transform: translateX(-50vw) translateY(-20px) rotate(90deg) scale(1); 
+            }
+            50% { 
+                opacity: 1; 
+                transform: translateX(0) translateY(-10px) rotate(180deg) scale(1.2); 
+            }
+            75% { 
+                opacity: 0.6; 
+                transform: translateX(50vw) translateY(-30px) rotate(270deg) scale(1); 
+            }
+            100% { 
+                transform: translateX(100vw) translateY(0) rotate(360deg) scale(0.5); 
+                opacity: 0; 
+            }
+        }
+        .spell-matrix {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(45, 27, 105, 0.2);
+            border-radius: 10px;
+        }
+        .matrix-spell {
+            background: rgba(156, 39, 176, 0.3);
+            border: 2px solid #9c27b0;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .matrix-spell:hover {
+            background: rgba(173, 97, 216, 0.5);
+            transform: scale(1.05);
+        }
+        .matrix-spell.cast {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mirror-realm">
+        <h1>🪞 The Mage of the Mirror: Dimensional Magic & Reality Manipulation ✨</h1>
+        
+        <div class="mirror-principle">
+            <h2>🌀 The Reality Architect: When Magic Transcends Dimension</h2>
+            <p><strong>The Mage of the Mirror wasn't just an expansion - it was a mind-bending exploration of magic so powerful it could rewrite the fundamental laws of reality itself!</strong> Like Doctor Strange or Inception, this expansion proved that the ultimate magical power isn't destroying enemies, but reshaping the very fabric of existence. It transformed HeroQuest from spell-slinging into reality engineering.</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of this expansion like going from using tools to rewriting the laws of physics. The original game was about casting spells; The Mage of the Mirror is about becoming the architect of reality itself. It's the difference between painting a picture and stepping into the canvas to rearrange the pigments with your mind. You're not just fighting in a world - you're editing the world itself!</p>
+        </div>
+
+        <div class="mirror-portal">
+            🪞
+        </div>
+
+        <div class="reality-meter">
+            <div class="reality-indicator" id="reality_indicator" style="left: 70%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Reality Stability: <span id="reality_level">DIMENSIONAL FLUX</span></em></p>
+
+        <h2>🌌 The Dimensional Trinity: Layers of Existence</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Dimensional Magic] --> B[Reality Layers]
+                A --> C[Mirror Mechanics]
+                A --> D[Spacetime Manipulation]
+                A --> E[Reflection Powers]
+                
+                B --> B1[Prime Reality]
+                B --> B2[Mirror Dimension]
+                B --> B3[Fragmented Realms]
+                B --> B4[Dimensional Rifts]
+                
+                C --> C1[Perfect Reflection]
+                C --> C2[Distorted Mirrors]
+                C --> C3[Shattered Glass]
+                C --> C4[Living Reflections]
+                
+                D --> D1[Time Dilation]
+                D --> D2[Space Folding]
+                D --> D3[Gravity Manipulation]
+                D --> D4[Physics Alteration]
+                
+                E --> E1[Duplicate Creation]
+                E --> E2[Ability Mirroring]
+                E --> E3[Reverse Engineering]
+                E --> E4[Reality Inversion]
+                
+                style A fill:#ad61d8,stroke:#333,stroke-width:3px
+                style B fill:#ce93d8,stroke:#333,stroke-width:2px
+                style C fill:#ce93d8,stroke:#333,stroke-width:2px
+                style D fill:#ce93d8,stroke:#333,stroke-width:2px
+                style E fill:#ce93d8,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🪞 Interactive Dimensional Layer Navigator</h2>
+        
+        <div class="dimensional-layers">
+            <div class="layer-node active" onclick="setRealityLayer(0, 'prime')" title="Prime Reality">
+                <div>🌍</div>
+                <div style="font-size: 10px;">Prime</div>
+            </div>
+            <div class="layer-node" onclick="setRealityLayer(1, 'mirror')" title="Mirror Dimension">
+                <div>🪞</div>
+                <div style="font-size: 10px;">Mirror</div>
+            </div>
+            <div class="layer-node" onclick="setRealityLayer(2, 'fragment')" title="Fragmented Reality">
+                <div>💎</div>
+                <div style="font-size: 10px;">Fragment</div>
+            </div>
+            <div class="layer-node" onclick="setRealityLayer(3, 'flux')" title="Reality Flux">
+                <div>🌀</div>
+                <div style="font-size: 10px;">Flux</div>
+            </div>
+            <div class="layer-node" onclick="setRealityLayer(4, 'void')" title="Dimensional Void">
+                <div>⚫</div>
+                <div style="font-size: 10px;">Void</div>
+            </div>
+        </div>
+
+        <div id="layer_effects" style="margin-top: 20px; padding: 15px; background: rgba(173, 97, 216, 0.1); border-radius: 10px;">
+            <strong>Dimensional Effects:</strong> Prime Reality - Normal physics apply. Standard magic rules. Stable foundation for all other dimensions.
+        </div>
+
+        <h2>🔮 The Reality Manipulation Arsenal</h2>
+        
+        <canvas id="reality_magic_canvas" width="600" height="300"></canvas>
+        
+        <div class="dimensional-magic">
+            <div class="spell-reflection">
+                <h4>🪞 Mirror Image</h4>
+                <p><strong>The Perfect Duplicate</strong></p>
+                <p><strong>Effect:</strong> Creates identical copy that mirrors all actions</p>
+                <p><strong>Duration:</strong> Until mirror breaks or caster loses concentration</p>
+                <p><strong>Strategy:</strong> Double combat effectiveness, confuse enemies</p>
+                <p><em>"Two heroes where once was one"</em></p>
+            </div>
+            
+            <div class="spell-reflection">
+                <h4>🌀 Reality Rift</h4>
+                <p><strong>The Dimensional Door</strong></p>
+                <p><strong>Effect:</strong> Tears hole between dimensions for travel</p>
+                <p><strong>Risk:</strong> Unstable portals may collapse or lead elsewhere</p>
+                <p><strong>Strategy:</strong> Instant travel, escape routes, flanking</p>
+                <p><em>"Step through space itself"</em></p>
+            </div>
+            
+            <div class="spell-reflection">
+                <h4>⏰ Temporal Echo</h4>
+                <p><strong>The Time Shadow</strong></p>
+                <p><strong>Effect:</strong> Actions repeat automatically on next turn</p>
+                <p><strong>Limitation:</strong> Cannot control the echoed action</p>
+                <p><strong>Strategy:</strong> Double spells, repeated attacks</p>
+                <p><em>"The past reaches into the present"</em></p>
+            </div>
+            
+            <div class="spell-reflection">
+                <h4>🔄 Reflection Reversal</h4>
+                <p><strong>The Ultimate Counter</strong></p>
+                <p><strong>Effect:</strong> Turns enemy attacks back on attacker</p>
+                <p><strong>Timing:</strong> Must be cast at exact moment of attack</p>
+                <p><strong>Strategy:</strong> Defensive mastery, turning strength against foes</p>
+                <p><em>"Your power becomes your weakness"</em></p>
+            </div>
+        </div>
+
+        <h2>🌌 Dimensional Combat: Fighting Across Realities</h2>
+        
+        <canvas id="dimensional_combat_canvas" width="600" height="350"></canvas>
+        
+        <div class="reality-box">
+            <h3>⚔️ Multi-Dimensional Warfare</h3>
+            <p><strong>Combat becomes three-dimensional when reality itself is malleable:</strong></p>
+            
+            <p><strong>🪞 Mirror Dimension Combat:</strong></p>
+            <ul>
+                <li>Actions in prime reality affect mirror dimension and vice versa</li>
+                <li>Damage to reflection damages original and reflection</li>
+                <li>Breaking mirrors can trap enemies or allies in alternate dimensions</li>
+                <li>Mirror Mage can attack from multiple dimensions simultaneously</li>
+            </ul>
+            
+            <p><strong>🌀 Reality Flux Zones:</strong></p>
+            <ul>
+                <li>Physics change randomly - gravity might reverse</li>
+                <li>Spell effects become unpredictable and amplified</li>
+                <li>Movement rules alter - teleportation instead of walking</li>
+                <li>Time flows differently in each zone</li>
+            </ul>
+            
+            <p><strong>💎 Fragmented Reality:</strong></p>
+            <ul>
+                <li>Battlefield splits into multiple simultaneous instances</li>
+                <li>Heroes can exist in several fragments at once</li>
+                <li>Actions in one fragment echo through others</li>
+                <li>Victory requires conquering all fragments</li>
+            </ul>
+        </div>
+
+        <h2>🪞 Interactive Mirror Battlefield</h2>
+        
+        <div class="arcane-analysis">
+            <p><strong>Navigate the dimensional maze!</strong> Click cells to shift between reality layers and see how dimensional magic affects the battlefield.</p>
+            
+            <div class="mirror-battlefield" id="mirror_battlefield">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+            
+            <p><strong>Reality Legend:</strong> 🌍 Prime | 🪞 Mirror | 🌀 Rift | 💜 Stable | 👑 Mage | 🦸 Heroes | ✨ Reflection</p>
+            
+            <div id="dimensional_analysis" style="margin-top: 20px; padding: 15px; background: rgba(173, 97, 216, 0.1); border-radius: 10px;">
+                <strong>Dimensional Status:</strong> Click reality cells to analyze dimensional interactions and magical effects!
+            </div>
+        </div>
+
+        <h2>🔬 The Science of Reality Manipulation</h2>
+        
+        <canvas id="reality_science_canvas" width="600" height="350"></canvas>
+        
+        <div class="mirror-principle">
+            <h3>⚛️ Understanding Dimensional Physics</h3>
+            <p><strong>The Mage of the Mirror treats magic as applied dimensional science:</strong></p>
+            
+            <p><strong>🌌 Dimensional Theory:</strong></p>
+            <ul>
+                <li>Multiple realities exist in parallel layers</li>
+                <li>Mirrors act as windows and doorways between dimensions</li>
+                <li>Each dimension has slightly different physical laws</li>
+                <li>Energy can be borrowed from alternate realities</li>
+            </ul>
+            
+            <p><strong>🪞 Mirror Mechanics:</strong></p>
+            <ul>
+                <li>Perfect reflections create stable dimensional bridges</li>
+                <li>Broken mirrors fragment reality into unstable shards</li>
+                <li>Curved mirrors distort dimensional connections</li>
+                <li>Living reflections gain independence from originals</li>
+            </ul>
+            
+            <p><strong>⚡ Reality Stability:</strong></p>
+            <ul>
+                <li>Too many dimensional alterations cause reality collapse</li>
+                <li>Some changes are permanent, others temporary</li>
+                <li>Reality seeks to repair itself over time</li>
+                <li>Massive alterations require enormous magical energy</li>
+            </ul>
+        </div>
+
+        <h2>🎭 The Mage of the Mirror: Ultimate Antagonist</h2>
+        
+        <canvas id="mirror_mage_canvas" width="600" height="300"></canvas>
+        
+        <div class="dimensional-card">
+            <h3>👑 The Reality Architect</h3>
+            <p><strong>The Master of All Dimensions</strong></p>
+            <p><strong>Power Source:</strong> Controls fundamental forces of reality</p>
+            <p><strong>Abilities:</strong> Reshape battlefield, duplicate heroes, alter physics</p>
+            <p><strong>Weakness:</strong> Overconfidence in magical superiority</p>
+            <p><strong>Philosophy:</strong> "Reality is merely a canvas for my artistry"</p>
+        </div>
+
+        <div class="dimensional-card">
+            <h3>🪞 The Living Mirrors</h3>
+            <p><strong>Reflections with Souls</strong></p>
+            <p><strong>Origin:</strong> Created from heroes' own reflections</p>
+            <p><strong>Abilities:</strong> Mirror all hero abilities perfectly</p>
+            <p><strong>Weakness:</strong> Destruction of source mirror</p>
+            <p><strong>Tragedy:</strong> They know they're just copies</p>
+        </div>
+
+        <div class="dimensional-card">
+            <h3>🌀 Dimensional Guardians</h3>
+            <p><strong>Protectors of Reality</strong></p>
+            <p><strong>Purpose:</strong> Prevent dimensional collapse</p>
+            <p><strong>Abilities:</strong> Repair reality tears, banish intruders</p>
+            <p><strong>Conflict:</strong> Must stop heroes to save existence</p>
+            <p><strong>Irony:</strong> Heroes must fight protectors to save world</p>
+        </div>
+
+        <h2>🔮 Advanced Dimensional Spell Matrix</h2>
+        
+        <div class="spell-matrix" id="spell_matrix">
+            <div class="matrix-spell" onclick="castDimensionalSpell(0, 'mirror')" data-spell="mirror">
+                <h4>🪞 Mirror Self</h4>
+                <p>Create perfect duplicate</p>
+                <p><em>Cost: 3 MP</em></p>
+            </div>
+            <div class="matrix-spell" onclick="castDimensionalSpell(1, 'rift')" data-spell="rift">
+                <h4>🌀 Reality Rift</h4>
+                <p>Tear dimensional portal</p>
+                <p><em>Cost: 4 MP</em></p>
+            </div>
+            <div class="matrix-spell" onclick="castDimensionalSpell(2, 'reverse')" data-spell="reverse">
+                <h4>🔄 Reverse Flow</h4>
+                <p>Invert enemy actions</p>
+                <p><em>Cost: 5 MP</em></p>
+            </div>
+            <div class="matrix-spell" onclick="castDimensionalSpell(3, 'shatter')" data-spell="shatter">
+                <h4>💥 Shatter Reality</h4>
+                <p>Fragment battlefield</p>
+                <p><em>Cost: 6 MP</em></p>
+            </div>
+            <div class="matrix-spell" onclick="castDimensionalSpell(4, 'echo')" data-spell="echo">
+                <h4>⏰ Temporal Echo</h4>
+                <p>Repeat last action</p>
+                <p><em>Cost: 3 MP</em></p>
+            </div>
+            <div class="matrix-spell" onclick="castDimensionalSpell(5, 'phase')" data-spell="phase">
+                <h4>👻 Phase Shift</h4>
+                <p>Become incorporeal</p>
+                <p><em>Cost: 4 MP</em></p>
+            </div>
+            <div class="matrix-spell" onclick="castDimensionalSpell(6, 'multiply')" data-spell="multiply">
+                <h4>✨ Multiplication</h4>
+                <p>Create multiple copies</p>
+                <p><em>Cost: 7 MP</em></p>
+            </div>
+            <div class="matrix-spell" onclick="castDimensionalSpell(7, 'void')" data-spell="void">
+                <h4>⚫ Void Summon</h4>
+                <p>Open dimensional void</p>
+                <p><em>Cost: 8 MP</em></p>
+            </div>
+        </div>
+
+        <div id="spell_result" style="margin-top: 20px; padding: 15px; background: rgba(173, 97, 216, 0.1); border-radius: 10px;">
+            <strong>Magical Resonance:</strong> Select dimensional spells to reshape reality itself! Watch as the fundamental forces bend to your will.
+        </div>
+
+        <h2>🧠 The Psychology of Reality Manipulation</h2>
+        
+        <div class="reality-box">
+            <h3>🤯 When Heroes Question Everything</h3>
+            <p><strong>Fighting the Mage of the Mirror challenges heroes' understanding of reality itself:</strong></p>
+            
+            <p><strong>😵 Identity Crisis:</strong></p>
+            <ul>
+                <li>Which reflection is the "real" hero?</li>
+                <li>Are memories real or implanted by dimensional magic?</li>
+                <li>Do actions in mirror dimensions have moral weight?</li>
+                <li>Can you trust your own perceptions when reality shifts?</li>
+            </ul>
+            
+            <p><strong>🧩 Strategic Complexity:</strong></p>
+            <ul>
+                <li>Traditional tactics become meaningless</li>
+                <li>Must think in terms of multiple simultaneous realities</li>
+                <li>Every action has unforeseen dimensional consequences</li>
+                <li>Victory requires understanding, not just force</li>
+            </ul>
+            
+            <p><strong>🌟 Philosophical Growth:</strong></p>
+            <ul>
+                <li>What makes reality "real" vs. illusion?</li>
+                <li>Is there moral responsibility for copies' actions?</li>
+                <li>How do you maintain identity across dimensions?</li>
+                <li>What's the difference between power and wisdom?</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Advanced Mirror Magic Strategies</h2>
+        
+        <canvas id="mirror_strategies_canvas" width="600" height="350"></canvas>
+        
+        <div class="mirror-principle">
+            <h3>🎭 Mastering Dimensional Warfare</h3>
+            
+            <p><strong>🪞 The Reflection Gambit:</strong></p>
+            <ul>
+                <li>Use enemy reflections against themselves</li>
+                <li>Turn their greatest strengths into weaknesses</li>
+                <li>Force enemies to fight their own perfect copies</li>
+                <li>Create infinite recursive mirror loops</li>
+            </ul>
+            
+            <p><strong>🌀 The Reality Anchor Strategy:</strong></p>
+            <ul>
+                <li>Maintain connection to prime reality as stable reference</li>
+                <li>Use anchor points to prevent dimensional drift</li>
+                <li>Create safe zones immune to reality manipulation</li>
+                <li>Build escape routes through dimensional stability</li>
+            </ul>
+            
+            <p><strong>💎 The Fractal Approach:</strong></p>
+            <ul>
+                <li>Fragment yourself across multiple dimensions</li>
+                <li>Attack from several realities simultaneously</li>
+                <li>Use dimensional redundancy for immortality</li>
+                <li>Coordinate actions across parallel selves</li>
+            </ul>
+        </div>
+
+        <h2>🌌 Dimensional Puzzle Mechanics</h2>
+        
+        <div class="arcane-analysis">
+            <h3>🧩 Reality Riddles and Mirror Mazes</h3>
+            <p><strong>The expansion introduced puzzles that required dimensional thinking:</strong></p>
+            
+            <p><strong>🪞 Mirror Maze Navigation:</strong></p>
+            <ul>
+                <li>Some passages only exist in reflections</li>
+                <li>Breaking wrong mirror traps you in dead dimension</li>
+                <li>Must coordinate movement between reality layers</li>
+                <li>Exit exists only when all reflections align perfectly</li>
+            </ul>
+            
+            <p><strong>🔄 Causality Loops:</strong></p>
+            <ul>
+                <li>Actions in future affect the past</li>
+                <li>Must solve puzzles by creating temporal paradoxes</li>
+                <li>Effects can precede their causes</li>
+                <li>Solution exists outside normal time flow</li>
+            </ul>
+            
+            <p><strong>⚛️ Quantum Superposition:</strong></p>
+            <ul>
+                <li>Objects exist in multiple states simultaneously</li>
+                <li>Observation collapses possibilities into reality</li>
+                <li>Must manipulate probability rather than certainty</li>
+                <li>Success requires accepting contradictory truths</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Legacy and Influence</h2>
+        
+        <div class="reality-box">
+            <h3>🌟 How The Mage of the Mirror Changed Gaming</h3>
+            <p><strong>This expansion pioneered reality manipulation mechanics that influenced generations:</strong></p>
+            
+            <p><strong>🎮 Video Game Influence:</strong> Portal mechanics, reality shifting, dimensional travel systems</p>
+            <p><strong>🎲 Tabletop Evolution:</strong> Non-linear thinking puzzles, philosophical themes, identity questions</p>
+            <p><strong>🎬 Media Impact:</strong> Multiverse storytelling, reality questioning narratives, mirror symbolism</p>
+            <p><strong>🎪 Modern Gaming:</strong> Dimension-hopping mechanics, reality anchors, quantum uncertainty</p>
+        </div>
+
+        <h2>🎯 Mastery Challenges: Dimensional Trials</h2>
+        
+        <div class="dimensional-card">
+            <h3>🪞 Elite Reality Manipulation Tests</h3>
+            <p><strong>Prove your mastery of dimensional magic:</strong></p>
+            
+            <p><strong>🌀 The Reality Purist:</strong> Complete adventure without using dimensional magic</p>
+            <p><strong>🪞 The Mirror Master:</strong> Solve all puzzles using only reflection abilities</p>
+            <p><strong>👥 The Multiplicity:</strong> Maintain control of 5+ simultaneous copies</p>
+            <p><strong>🧠 The Philosopher:</strong> Prove which reality is "real" through logic alone</p>
+            <p><strong>⚛️ The Architect:</strong> Create new stable dimension that persists after quest</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Wizards of Morcar"</strong> - the ultimate magical expansion that brings together all magical knowledge into the most powerful spellcasting system ever created! We'll dive into arcane duels between magical masters, reality-bending spells, and encounters where heroes wield magic powerful enough to reshape creation itself.</p>
+        
+        <div class="mirror-principle">
+            <p><strong>Remember:</strong> The Mage of the Mirror taught us that the ultimate power isn't destroying your enemies or even controlling them - it's understanding reality so completely that you can rewrite the rules themselves. But with that power comes the responsibility to ask not just "can I change this?" but "should I?" Sometimes the greatest wisdom is knowing when NOT to use the ultimate power at your disposal!</p>
+        </div>
+    </div>
+
+    <script>
+        // Add dimensional fragments for reality-shifting effect
+        function createRealityFragments() {
+            for (let i = 0; i < 8; i++) {
+                const fragment = document.createElement('div');
+                fragment.className = 'reality-fragment';
+                fragment.textContent = ['🪞', '✨', '🌀', '💫', '🔮', '⚡', '💎', '🌌'][i];
+                fragment.style.top = Math.random() * 100 + '%';
+                fragment.style.animationDelay = Math.random() * 8 + 's';
+                fragment.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                document.querySelector('.mirror-realm').appendChild(fragment);
+            }
+        }
+        
+        createRealityFragments();
+        
+        // Interactive Dimensional Layer System
+        const realityLayers = [
+            { 
+                name: 'Prime Reality', 
+                stability: 100, 
+                effects: 'Normal physics apply. Standard magic rules. Stable foundation for all other dimensions.' 
+            },
+            { 
+                name: 'Mirror Dimension', 
+                stability: 75, 
+                effects: 'Everything is reversed. Left becomes right, healing becomes damage. Magic reflects back.' 
+            },
+            { 
+                name: 'Fragmented Reality', 
+                stability: 50, 
+                effects: 'Reality split into shards. Multiple simultaneous versions exist. Actions echo across fragments.' 
+            },
+            { 
+                name: 'Reality Flux', 
+                stability: 25, 
+                effects: 'Constant dimensional shifting. Physics change randomly. Time flows irregularly.' 
+            },
+            { 
+                name: 'Dimensional Void', 
+                stability: 5, 
+                effects: 'Absence of reality. Nothing exists here. Perfect void that consumes everything.' 
+            }
+        ];
+        
+        let currentLayer = 0;
+        
+        function setRealityLayer(layerIndex, layerType) {
+            currentLayer = layerIndex;
+            
+            // Update active layer
+            document.querySelectorAll('.layer-node').forEach(node => node.classList.remove('active'));
+            document.querySelectorAll('.layer-node')[layerIndex].classList.add('active');
+            
+            // Update reality indicator
+            const indicator = document.getElementById('reality_indicator');
+            const levelText = document.getElementById('reality_level');
+            
+            const layer = realityLayers[layerIndex];
+            indicator.style.left = layer.stability + '%';
+            
+            if (layer.stability >= 80) levelText.textContent = 'STABLE REALITY';
+            else if (layer.stability >= 60) levelText.textContent = 'MIRROR REFLECTION';
+            else if (layer.stability >= 40) levelText.textContent = 'DIMENSIONAL FLUX';
+            else if (layer.stability >= 20) levelText.textContent = 'REALITY STORM';
+            else levelText.textContent = 'VOID COLLAPSE';
+            
+            // Update effects display
+            const effectsDiv = document.getElementById('layer_effects');
+            effectsDiv.innerHTML = `<strong>Dimensional Effects:</strong> ${layer.name} - ${layer.effects}`;
+        }
+        
+        // Dimensional Spell System
+        let magicalPower = 10;
+        const spells = [
+            { name: 'Mirror Self', cost: 3, effect: 'Create a perfect duplicate that mirrors all your actions!' },
+            { name: 'Reality Rift', cost: 4, effect: 'Tear open dimensional portal for instant travel!' },
+            { name: 'Reverse Flow', cost: 5, effect: 'Invert enemy actions - their attacks heal you!' },
+            { name: 'Shatter Reality', cost: 6, effect: 'Fragment the battlefield into multiple dimensions!' },
+            { name: 'Temporal Echo', cost: 3, effect: 'Your last action automatically repeats!' },
+            { name: 'Phase Shift', cost: 4, effect: 'Become incorporeal and pass through solid matter!' },
+            { name: 'Multiplication', cost: 7, effect: 'Create multiple copies of yourself!' },
+            { name: 'Void Summon', cost: 8, effect: 'Open portal to dimensional void!' }
+        ];
+        
+        function castDimensionalSpell(index, spellType) {
+            const spell = spells[index];
+            const spellElement = document.querySelectorAll('.matrix-spell')[index];
+            const resultDiv = document.getElementById('spell_result');
+            
+            if (magicalPower >= spell.cost) {
+                magicalPower -= spell.cost;
+                
+                // Visual feedback
+                spellElement.classList.add('cast');
+                setTimeout(() => spellElement.classList.remove('cast'), 1000);
+                
+                resultDiv.innerHTML = `
+                    <strong>🌟 ${spell.name} Cast Successfully!</strong><br>
+                    ${spell.effect}<br>
+                    <em>Magical Power consumed: ${spell.cost} MP (${magicalPower} MP remaining)</em>
+                `;
+                
+                // Regenerate mana
+                setTimeout(() => {
+                    if (magicalPower < 10) {
+                        magicalPower = Math.min(10, magicalPower + 2);
+                    }
+                }, 3000);
+            } else {
+                resultDiv.innerHTML = `
+                    <strong>⚠️ Insufficient Magical Power!</strong><br>
+                    ${spell.name} requires ${spell.cost} MP, but you only have ${magicalPower} MP.<br>
+                    <em>Meditate to restore your dimensional magic...</em>
+                `;
+            }
+        }
+        
+        // Reality Magic Visualization
+        const realityCanvas = document.getElementById('reality_magic_canvas');
+        const realityCtx = realityCanvas.getContext('2d');
+        
+        function drawRealityMagic() {
+            realityCtx.clearRect(0, 0, realityCanvas.width, realityCanvas.height);
+            
+            // Background
+            realityCtx.fillStyle = '#000011';
+            realityCtx.fillRect(0, 0, realityCanvas.width, realityCanvas.height);
+            
+            // Draw dimensional layers
+            const layers = [
+                {x: 150, y: 150, radius: 80, name: 'Prime Reality', color: '#1a1a3a'},
+                {x: 300, y: 150, radius: 70, name: 'Mirror Dimension', color: '#4a148c'},
+                {x: 450, y: 150, radius: 60, name: 'Flux Zone', color: '#ad61d8'}
+            ];
+            
+            layers.forEach((layer, index) => {
+                // Layer representation
+                realityCtx.fillStyle = layer.color;
+                realityCtx.beginPath();
+                realityCtx.arc(layer.x, layer.y, layer.radius, 0, Math.PI * 2);
+                realityCtx.fill();
+                
+                realityCtx.strokeStyle = '#ce93d8';
+                realityCtx.lineWidth = 3;
+                realityCtx.stroke();
+                
+                // Layer symbol
+                const symbols = ['🌍', '🪞', '🌀'];
+                realityCtx.fillStyle = '#fff';
+                realityCtx.font = '24px Arial';
+                realityCtx.textAlign = 'center';
+                realityCtx.fillText(symbols[index], layer.x, layer.y + 8);
+                
+                // Layer name
+                realityCtx.fillStyle = '#e8eaf6';
+                realityCtx.font = '12px Arial';
+                realityCtx.fillText(layer.name, layer.x, layer.y + layer.radius + 20);
+                
+                // Dimensional bridges
+                if (index < layers.length - 1) {
+                    realityCtx.strokeStyle = '#ad61d8';
+                    realityCtx.lineWidth = 2;
+                    realityCtx.setLineDash([5, 5]);
+                    realityCtx.beginPath();
+                    realityCtx.moveTo(layer.x + layer.radius, layer.y);
+                    realityCtx.lineTo(layers[index + 1].x - layers[index + 1].radius, layers[index + 1].y);
+                    realityCtx.stroke();
+                    realityCtx.setLineDash([]);
+                }
+            });
+            
+            realityCtx.fillStyle = '#ad61d8';
+            realityCtx.font = '16px Arial';
+            realityCtx.textAlign = 'center';
+            realityCtx.fillText('Dimensional Magic: Bridging Reality Layers', 300, 30);
+            realityCtx.textAlign = 'left';
+        }
+        
+        drawRealityMagic();
+        
+        // Interactive Mirror Battlefield
+        const battlefieldGrid = document.getElementById('mirror_battlefield');
+        const dimensionalAnalysis = document.getElementById('dimensional_analysis');
+        let battlefieldState = [];
+        
+        // Initialize battlefield
+        for (let i = 0; i < 96; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'mirror-cell';
+            
+            // Generate dimensional terrain
+            const terrainType = Math.random();
+            if (terrainType < 0.3) {
+                cell.className += ' prime-reality';
+                cell.textContent = '🌍';
+                battlefieldState.push('prime');
+            } else if (terrainType < 0.6) {
+                cell.className += ' mirror-reality';
+                cell.textContent = '🪞';
+                battlefieldState.push('mirror');
+            } else if (terrainType < 0.8) {
+                cell.className += ' dimensional-rift';
+                cell.textContent = '🌀';
+                battlefieldState.push('rift');
+            } else {
+                cell.className += ' stable-ground';
+                cell.textContent = '💜';
+                battlefieldState.push('stable');
+            }
+            
+            cell.addEventListener('click', () => analyzeDimensionalEffect(i));
+            battlefieldGrid.appendChild(cell);
+        }
+        
+        // Add key entities
+        battlefieldGrid.children[45].className = 'mirror-cell mage-position';
+        battlefieldGrid.children[45].textContent = '👑';
+        battlefieldState[45] = 'mage';
+        
+        battlefieldGrid.children[20].className = 'mirror-cell hero-position';
+        battlefieldGrid.children[20].textContent = '🦸';
+        battlefieldState[20] = 'hero';
+        
+        function analyzeDimensionalEffect(index) {
+            const terrain = battlefieldState[index];
+            let analysis = '';
+            
+            switch(terrain) {
+                case 'prime':
+                    analysis = 'Prime Reality zone. Normal physics and magic rules apply. Stable foundation for dimensional manipulation.';
+                    break;
+                case 'mirror':
+                    analysis = 'Mirror Dimension. All actions are reversed. Healing becomes damage, left becomes right. Magic reflects back at caster.';
+                    break;
+                case 'rift':
+                    analysis = 'Dimensional Rift. Unstable portal between realities. High magic power but dangerous dimensional collapse risk.';
+                    break;
+                case 'stable':
+                    analysis = 'Stable Ground. Immune to dimensional manipulation. Safe zone that anchors reality but blocks mirror magic.';
+                    break;
+                case 'mage':
+                    analysis = 'Mage of the Mirror position. Reality bends around this master of dimensions. Source of all dimensional distortions.';
+                    break;
+                case 'hero':
+                    analysis = 'Hero position. Must navigate dimensional hazards while maintaining grip on reality and identity.';
+                    break;
+                default:
+                    analysis = 'Unknown dimensional state.';
+            }
+            
+            dimensionalAnalysis.innerHTML = `<strong>Dimensional Status:</strong> ${analysis}`;
+        }
+        
+        // Dimensional Combat Visualization
+        const combatCanvas = document.getElementById('dimensional_combat_canvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        function drawDimensionalCombat() {
+            combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Background
+            combatCtx.fillStyle = '#000011';
+            combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Draw multi-dimensional battle
+            const combatants = [
+                {x: 150, y: 150, type: 'Hero', symbol: '🦸', color: '#00e676'},
+                {x: 300, y: 150, type: 'Mirror Hero', symbol: '🦸', color: '#4a148c'},
+                {x: 450, y: 150, type: 'Mage', symbol: '👑', color: '#ff6b9d'}
+            ];
+            
+            // Draw dimensional mirrors
+            combatCtx.strokeStyle = '#ad61d8';
+            combatCtx.lineWidth = 3;
+            combatCtx.setLineDash([10, 5]);
+            
+            // Mirror line between hero and reflection
+            combatCtx.beginPath();
+            combatCtx.moveTo(225, 50);
+            combatCtx.lineTo(225, 250);
+            combatCtx.stroke();
+            
+            // Mirror line between reflection and mage
+            combatCtx.beginPath();
+            combatCtx.moveTo(375, 50);
+            combatCtx.lineTo(375, 250);
+            combatCtx.stroke();
+            
+            combatCtx.setLineDash([]);
+            
+            // Draw combatants
+            combatants.forEach(combatant => {
+                combatCtx.fillStyle = combatant.color;
+                combatCtx.beginPath();
+                combatCtx.arc(combatant.x, combatant.y, 30, 0, Math.PI * 2);
+                combatCtx.fill();
+                
+                combatCtx.strokeStyle = '#ce93d8';
+                combatCtx.lineWidth = 2;
+                combatCtx.stroke();
+                
+                combatCtx.fillStyle = '#fff';
+                combatCtx.font = '20px Arial';
+                combatCtx.textAlign = 'center';
+                combatCtx.fillText(combatant.symbol, combatant.x, combatant.y + 7);
+                
+                combatCtx.fillStyle = '#e8eaf6';
+                combatCtx.font = '12px Arial';
+                combatCtx.fillText(combatant.type, combatant.x, combatant.y + 50);
+            });
+            
+            // Draw attack reflections
+            combatCtx.strokeStyle = '#ff6b9d';
+            combatCtx.lineWidth = 3;
+            combatCtx.setLineDash([5, 5]);
+            
+            // Hero attacks reflection
+            combatCtx.beginPath();
+            combatCtx.moveTo(180, 150);
+            combatCtx.lineTo(270, 150);
+            combatCtx.stroke();
+            
+            // Reflection attacks mage
+            combatCtx.beginPath();
+            combatCtx.moveTo(330, 150);
+            combatCtx.lineTo(420, 150);
+            combatCtx.stroke();
+            
+            // Mage's reality manipulation
+            combatCtx.strokeStyle = '#ffd700';
+            combatCtx.lineWidth = 2;
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * 45) * (Math.PI / 180);
+                const startX = 450 + Math.cos(angle) * 35;
+                const startY = 150 + Math.sin(angle) * 35;
+                const endX = 450 + Math.cos(angle) * 60;
+                const endY = 150 + Math.sin(angle) * 60;
+                
+                combatCtx.beginPath();
+                combatCtx.moveTo(startX, startY);
+                combatCtx.lineTo(endX, endY);
+                combatCtx.stroke();
+            }
+            
+            combatCtx.setLineDash([]);
+            
+            combatCtx.fillStyle = '#ad61d8';
+            combatCtx.font = '16px Arial';
+            combatCtx.textAlign = 'center';
+            combatCtx.fillText('Multi-Dimensional Combat: Fighting Across Reality Layers', 300, 30);
+            combatCtx.textAlign = 'left';
+        }
+        
+        drawDimensionalCombat();
+        
+        // Reality Science Visualization
+        const scienceCanvas = document.getElementById('reality_science_canvas');
+        const scienceCtx = scienceCanvas.getContext('2d');
+        
+        function drawRealityScience() {
+            scienceCtx.clearRect(0, 0, scienceCanvas.width, scienceCanvas.height);
+            
+            // Background
+            scienceCtx.fillStyle = '#000011';
+            scienceCtx.fillRect(0, 0, scienceCanvas.width, scienceCanvas.height);
+            
+            // Draw dimensional fabric
+            const fabricPoints = [];
+            for (let x = 0; x <= 12; x++) {
+                for (let y = 0; y <= 7; y++) {
+                    fabricPoints.push({
+                        x: 50 + x * 42,
+                        y: 50 + y * 35,
+                        originalX: 50 + x * 42,
+                        originalY: 50 + y * 35
+                    });
+                }
+            }
+            
+            // Apply dimensional distortion
+            const centerX = 300;
+            const centerY = 150;
+            const distortionRadius = 80;
+            
+            fabricPoints.forEach(point => {
+                const dx = point.originalX - centerX;
+                const dy = point.originalY - centerY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < distortionRadius) {
+                    const distortionFactor = (distortionRadius - distance) / distortionRadius;
+                    const angle = Math.atan2(dy, dx);
+                    const warpStrength = distortionFactor * 30;
+                    
+                    point.x = point.originalX + Math.cos(angle + Math.PI/4) * warpStrength;
+                    point.y = point.originalY + Math.sin(angle + Math.PI/4) * warpStrength;
+                }
+            });
+            
+            // Draw grid lines
+            scienceCtx.strokeStyle = '#4a148c';
+            scienceCtx.lineWidth = 1;
+            
+            // Horizontal lines
+            for (let y = 0; y <= 7; y++) {
+                scienceCtx.beginPath();
+                for (let x = 0; x <= 12; x++) {
+                    const point = fabricPoints[y * 13 + x];
+                    if (x === 0) scienceCtx.moveTo(point.x, point.y);
+                    else scienceCtx.lineTo(point.x, point.y);
+                }
+                scienceCtx.stroke();
+            }
+            
+            // Vertical lines
+            for (let x = 0; x <= 12; x++) {
+                scienceCtx.beginPath();
+                for (let y = 0; y <= 7; y++) {
+                    const point = fabricPoints[y * 13 + x];
+                    if (y === 0) scienceCtx.moveTo(point.x, point.y);
+                    else scienceCtx.lineTo(point.x, point.y);
+                }
+                scienceCtx.stroke();
+            }
+            
+            // Draw distortion source
+            scienceCtx.fillStyle = '#ad61d8';
+            scienceCtx.beginPath();
+            scienceCtx.arc(centerX, centerY, 25, 0, Math.PI * 2);
+            scienceCtx.fill();
+            
+            scienceCtx.fillStyle = '#000';
+            scienceCtx.font = '20px Arial';
+            scienceCtx.textAlign = 'center';
+            scienceCtx.fillText('🪞', centerX, centerY + 7);
+            
+            // Draw distortion waves
+            scienceCtx.strokeStyle = '#ce93d8';
+            scienceCtx.lineWidth = 2;
+            for (let i = 1; i <= 3; i++) {
+                scienceCtx.beginPath();
+                scienceCtx.arc(centerX, centerY, 25 + i * 20, 0, Math.PI * 2);
+                scienceCtx.stroke();
+            }
+            
+            scienceCtx.fillStyle = '#ad61d8';
+            scienceCtx.font = '16px Arial';
+            scienceCtx.fillText('Dimensional Fabric Distortion by Mirror Magic', 300, 30);
+            scienceCtx.textAlign = 'left';
+        }
+        
+        drawRealityScience();
+        
+        // Mirror Mage Visualization
+        const mageCanvas = document.getElementById('mirror_mage_canvas');
+        const mageCtx = mageCanvas.getContext('2d');
+        
+        function drawMirrorMage() {
+            mageCtx.clearRect(0, 0, mageCanvas.width, mageCanvas.height);
+            
+            // Background
+            mageCtx.fillStyle = '#000011';
+            mageCtx.fillRect(0, 0, mageCanvas.width, mageCanvas.height);
+            
+            // Draw the Mage of the Mirror
+            const mageX = 300;
+            const mageY = 150;
+            
+            // Mage aura
+            const gradient = mageCtx.createRadialGradient(mageX, mageY, 0, mageX, mageY, 100);
+            gradient.addColorStop(0, 'rgba(173, 97, 216, 0.8)');
+            gradient.addColorStop(0.5, 'rgba(156, 39, 176, 0.4)');
+            gradient.addColorStop(1, 'rgba(45, 27, 105, 0.1)');
+            
+            mageCtx.fillStyle = gradient;
+            mageCtx.beginPath();
+            mageCtx.arc(mageX, mageY, 100, 0, Math.PI * 2);
+            mageCtx.fill();
+            
+            // Mage body
+            mageCtx.fillStyle = '#9c27b0';
+            mageCtx.beginPath();
+            mageCtx.arc(mageX, mageY, 40, 0, Math.PI * 2);
+            mageCtx.fill();
+            
+            mageCtx.strokeStyle = '#ce93d8';
+            mageCtx.lineWidth = 3;
+            mageCtx.stroke();
+            
+            // Mage symbol
+            mageCtx.fillStyle = '#fff';
+            mageCtx.font = '32px Arial';
+            mageCtx.textAlign = 'center';
+            mageCtx.fillText('👑', mageX, mageY + 10);
+            
+            // Floating mirrors
+            const mirrors = [
+                {x: mageX - 80, y: mageY - 60, angle: 45},
+                {x: mageX + 80, y: mageY - 60, angle: -45},
+                {x: mageX - 80, y: mageY + 60, angle: -45},
+                {x: mageX + 80, y: mageY + 60, angle: 45}
+            ];
+            
+            mirrors.forEach(mirror => {
+                mageCtx.save();
+                mageCtx.translate(mirror.x, mirror.y);
+                mageCtx.rotate(mirror.angle * Math.PI / 180);
+                
+                mageCtx.fillStyle = '#ad61d8';
+                mageCtx.fillRect(-15, -10, 30, 20);
+                mageCtx.strokeStyle = '#ce93d8';
+                mageCtx.lineWidth = 2;
+                mageCtx.strokeRect(-15, -10, 30, 20);
+                
+                mageCtx.fillStyle = '#fff';
+                mageCtx.font = '12px Arial';
+                mageCtx.textAlign = 'center';
+                mageCtx.fillText('🪞', 0, 5);
+                
+                mageCtx.restore();
+                
+                // Connection lines
+                mageCtx.strokeStyle = '#9c27b0';
+                mageCtx.lineWidth = 1;
+                mageCtx.beginPath();
+                mageCtx.moveTo(mirror.x, mirror.y);
+                mageCtx.lineTo(mageX, mageY);
+                mageCtx.stroke();
+            });
+            
+            mageCtx.fillStyle = '#ad61d8';
+            mageCtx.font = '16px Arial';
+            mageCtx.textAlign = 'center';
+            mageCtx.fillText('The Mage of the Mirror: Master of Reality', 300, 30);
+            mageCtx.textAlign = 'left';
+        }
+        
+        drawMirrorMage();
+        
+        // Mirror Strategies Visualization
+        const strategiesCanvas = document.getElementById('mirror_strategies_canvas');
+        const strategiesCtx = strategiesCanvas.getContext('2d');
+        
+        function drawMirrorStrategies() {
+            strategiesCtx.clearRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
+            
+            // Background
+            strategiesCtx.fillStyle = '#000011';
+            strategiesCtx.fillRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
+            
+            // Draw strategic approaches
+            const strategies = [
+                {x: 150, y: 150, name: 'Reflection\nGambit', symbol: '🪞', color: '#4a148c'},
+                {x: 300, y: 100, name: 'Reality\nAnchor', symbol: '⚓', color: '#9c27b0'},
+                {x: 450, y: 150, name: 'Fractal\nApproach', symbol: '💎', color: '#ad61d8'}
+            ];
+            
+            strategies.forEach(strategy => {
+                // Strategy area
+                strategiesCtx.fillStyle = strategy.color + '40';
+                strategiesCtx.beginPath();
+                strategiesCtx.arc(strategy.x, strategy.y, 60, 0, Math.PI * 2);
+                strategiesCtx.fill();
+                
+                strategiesCtx.strokeStyle = strategy.color;
+                strategiesCtx.lineWidth = 3;
+                strategiesCtx.stroke();
+                
+                // Strategy core
+                strategiesCtx.fillStyle = strategy.color;
+                strategiesCtx.beginPath();
+                strategiesCtx.arc(strategy.x, strategy.y, 25, 0, Math.PI * 2);
+                strategiesCtx.fill();
+                
+                // Strategy symbol
+                strategiesCtx.fillStyle = '#fff';
+                strategiesCtx.font = '20px Arial';
+                strategiesCtx.textAlign = 'center';
+                strategiesCtx.fillText(strategy.symbol, strategy.x, strategy.y + 7);
+                
+                // Strategy name
+                strategiesCtx.fillStyle = '#e8eaf6';
+                strategiesCtx.font = '12px Arial';
+                const lines = strategy.name.split('\n');
+                lines.forEach((line, index) => {
+                    strategiesCtx.fillText(line, strategy.x, strategy.y + 80 + (index * 15));
+                });
+                
+                // Strategy connections
+                if (strategy.x < 400) {
+                    strategiesCtx.strokeStyle = strategy.color + '60';
+                    strategiesCtx.lineWidth = 2;
+                    strategiesCtx.setLineDash([5, 5]);
+                    strategiesCtx.beginPath();
+                    strategiesCtx.moveTo(strategy.x + 60, strategy.y);
+                    strategiesCtx.lineTo(strategy.x + 120, strategy.y);
+                    strategiesCtx.stroke();
+                    strategiesCtx.setLineDash([]);
+                }
+            });
+            
+            strategiesCtx.fillStyle = '#ad61d8';
+            strategiesCtx.font = '16px Arial';
+            strategiesCtx.textAlign = 'center';
+            strategiesCtx.fillText('Advanced Mirror Magic Strategies', 300, 30);
+            strategiesCtx.textAlign = 'left';
+        }
+        
+        drawMirrorStrategies();
+    </script>
+</body>
+</html>

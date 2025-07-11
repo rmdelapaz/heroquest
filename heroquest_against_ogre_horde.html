@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Against the Ogre Horde - Mass Combat Revolution</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #8b4513 0%, #654321 50%, #3e2723 100%);
+            color: #fff8dc;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.5);
+        }
+        h1 {
+            color: #d4af37;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(212, 175, 55, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #daa520;
+            border-bottom: 2px solid #daa520;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .warfare-principle {
+            background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #daa520;
+        }
+        .army-card {
+            background: linear-gradient(135deg, #654321 0%, #8b4513 100%);
+            border: 2px solid #cd853f;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 320px;
+            vertical-align: top;
+        }
+        .tactical-box {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .strategy-analysis {
+            background: rgba(218, 165, 32, 0.1);
+            border: 2px solid #daa520;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            background: #000;
+            display: block;
+            margin: 20px auto;
+        }
+        .battle-formation {
+            display: grid;
+            grid-template-columns: repeat(8, 40px);
+            grid-template-rows: repeat(6, 40px);
+            gap: 2px;
+            margin: 20px auto;
+            border: 3px solid #d4af37;
+            background: #000;
+            padding: 10px;
+            width: fit-content;
+        }
+        .formation-cell {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #654321;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .hero-unit { background-color: #4a90e2; }
+        .ogre-unit { background-color: #8b4513; }
+        .goblin-unit { background-color: #228b22; }
+        .empty-field { background-color: #2f1b14; }
+        .battlefield { background-color: #654321; }
+        .fortification { background-color: #696969; }
+        .army-display {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .unit-showcase {
+            background: rgba(139, 69, 19, 0.3);
+            border: 2px solid #cd853f;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px;
+            min-width: 200px;
+            text-align: center;
+        }
+        .horde-counter {
+            font-size: 48px;
+            color: #d4af37;
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        .mass-combat-demo {
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid #d4af37;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .engagement-scale {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to right, #228b22, #ffd700, #ff8c00, #dc143c);
+            border: 2px solid #d4af37;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .scale-indicator {
+            position: absolute;
+            top: -3px;
+            width: 6px;
+            height: 36px;
+            background: #fff;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚔️ Against the Ogre Horde: Mass Combat Revolution 🏰</h1>
+        
+        <div class="warfare-principle">
+            <h2>🌍 The Paradigm Shift: From Skirmish to War</h2>
+            <p><strong>Against the Ogre Horde wasn't just an expansion - it was a declaration of war against the limitations of tabletop gaming!</strong> Like Total War revolutionizing strategy video games, this expansion asked "What if heroes didn't just fight monsters... what if they commanded armies against entire civilizations?" It transformed HeroQuest from personal adventure into epic warfare.</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of this expansion like going from playing chess to commanding D-Day. The original game was about four heroes in a dungeon; the Ogre Horde is about four generals leading the defense of civilization itself. It's the difference between a sword fight and the Battle of Helm's Deep!</p>
+        </div>
+
+        <div class="horde-counter" id="horde_counter">
+            🏗️ ASSEMBLING THE HORDE... 🏗️
+        </div>
+
+        <h2>📊 The Scale Revolution: Numbers That Matter</h2>
+        
+        <div class="engagement-scale">
+            <div class="scale-indicator" id="scale_indicator" style="left: 80%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Combat Scale: <span id="scale_level">EPIC WARFARE</span></em></p>
+        
+        <div class="mermaid">
+            graph TD
+                A[Mass Combat Innovation] --> B[Multiple Enemies]
+                A --> C[Army Mechanics]
+                A --> D[Siege Warfare]
+                A --> E[Strategic Thinking]
+                
+                B --> B1[Coordinated Attacks]
+                B --> B2[Overwhelming Numbers]
+                B --> B3[Formation Fighting]
+                
+                C --> C1[Unit Types]
+                C --> C2[Command Structure]
+                C --> C3[Supply Lines]
+                
+                D --> D1[Fortifications]
+                D --> D2[Siege Equipment]
+                D --> D3[Defensive Strategies]
+                
+                E --> E1[Battlefield Tactics]
+                E --> E2[Resource Management]
+                E --> E3[Long-term Planning]
+                
+                style A fill:#d4af37,stroke:#333,stroke-width:3px
+                style B fill:#daa520,stroke:#333,stroke-width:2px
+                style C fill:#daa520,stroke:#333,stroke-width:2px
+                style D fill:#daa520,stroke:#333,stroke-width:2px
+                style E fill:#daa520,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🏰 The Enemy Arsenal: Meet the Horde</h2>
+        
+        <canvas id="horde_composition_canvas" width="600" height="300"></canvas>
+        
+        <div class="army-display">
+            <div class="unit-showcase">
+                <h3>👹 Ogre Warriors</h3>
+                <p><strong>The Heavy Infantry</strong></p>
+                <p><strong>Role:</strong> Frontline assault troops</p>
+                <p><strong>Strength:</strong> High damage, tough armor</p>
+                <p><strong>Weakness:</strong> Slow movement, predictable</p>
+                <p><strong>Real-world analogy:</strong> Medieval knights in full plate</p>
+            </div>
+            
+            <div class="unit-showcase">
+                <h3>👺 Goblin Swarms</h3>
+                <p><strong>The Light Infantry</strong></p>
+                <p><strong>Role:</strong> Fast harassment, overwhelming numbers</p>
+                <p><strong>Strength:</strong> Speed, quantity, coordination</p>
+                <p><strong>Weakness:</strong> Low individual power</p>
+                <p><strong>Real-world analogy:</strong> Viking berserker raids</p>
+            </div>
+            
+            <div class="unit-showcase">
+                <h3>🏹 Orc Archers</h3>
+                <p><strong>The Ranged Support</strong></p>
+                <p><strong>Role:</strong> Long-range suppression</p>
+                <p><strong>Strength:</strong> Distance attacks, area denial</p>
+                <p><strong>Weakness:</strong> Vulnerable in melee</p>
+                <p><strong>Real-world analogy:</strong> English longbowmen</p>
+            </div>
+            
+            <div class="unit-showcase">
+                <h3>🧙‍♂️ Chaos Sorcerers</h3>
+                <p><strong>The Force Multipliers</strong></p>
+                <p><strong>Role:</strong> Magical support, buffs, debuffs</p>
+                <p><strong>Strength:</strong> Tactical flexibility, surprise</p>
+                <p><strong>Weakness:</strong> Fragile, limited uses</p>
+                <p><strong>Real-world analogy:</strong> Modern artillery commanders</p>
+            </div>
+        </div>
+
+        <h2>⚔️ Mass Combat Mechanics: The New Rules of War</h2>
+        
+        <canvas id="mass_combat_mechanics_canvas" width="600" height="350"></canvas>
+        
+        <div class="tactical-box">
+            <h3>🎯 Revolutionary Combat Concepts</h3>
+            <p><strong>The Ogre Horde introduced mechanics that felt impossible in the original game:</strong></p>
+            
+            <p><strong>🌊 Wave Attacks:</strong> Like ocean tides against a seawall</p>
+            <ul>
+                <li>Multiple enemies attack simultaneously</li>
+                <li>Heroes must prioritize targets intelligently</li>
+                <li>Overwhelming numbers create real pressure</li>
+                <li>Retreat becomes a viable tactical option</li>
+            </ul>
+            
+            <p><strong>🏰 Defensive Positioning:</strong> Like medieval castle siege warfare</p>
+            <ul>
+                <li>Terrain advantages become critical</li>
+                <li>Chokepoints multiply hero effectiveness</li>
+                <li>High ground provides combat bonuses</li>
+                <li>Cover mechanics protect from ranged attacks</li>
+            </ul>
+            
+            <p><strong>⚡ Area of Effect Combat:</strong> Like artillery bombardments</p>
+            <ul>
+                <li>Single attacks can affect multiple enemies</li>
+                <li>Positioning becomes three-dimensional thinking</li>
+                <li>Friendly fire becomes a real concern</li>
+                <li>Spell targeting requires careful calculation</li>
+            </ul>
+        </div>
+
+        <h2>🎮 Interactive Battle Formation Trainer</h2>
+        
+        <div class="mass-combat-demo">
+            <p><strong>Command your forces!</strong> Click the battlefield grid to practice mass combat formations and see tactical analysis.</p>
+            
+            <div class="battle-formation" id="battle_formation">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+            
+            <p><strong>Legend:</strong> 🛡️ Heroes | 👹 Ogres | 👺 Goblins | 🏹 Archers | ⬛ Fortifications</p>
+            
+            <div id="formation_analysis" style="margin-top: 20px; padding: 15px; background: rgba(212, 175, 55, 0.1); border-radius: 10px;">
+                <strong>Tactical Analysis:</strong> Position your forces to see strategic evaluation!
+            </div>
+        </div>
+
+        <h2>🧠 Strategic Thinking: From Tactics to Grand Strategy</h2>
+        
+        <canvas id="strategic_thinking_canvas" width="600" height="300"></canvas>
+        
+        <div class="strategy-analysis">
+            <h3>🎯 The General's Mindset</h3>
+            <p><strong>Mass combat requires thinking like Alexander the Great, not like individual warriors:</strong></p>
+            
+            <p><strong>📊 Resource Management:</strong></p>
+            <ul>
+                <li>Ammunition and spell slots become precious</li>
+                <li>Hero fatigue over multiple engagements</li>
+                <li>Equipment degradation and replacement</li>
+                <li>Time pressure from advancing hordes</li>
+            </ul>
+            
+            <p><strong>🎪 Force Multiplication:</strong></p>
+            <ul>
+                <li>One hero controlling multiple allied units</li>
+                <li>Environmental advantages (bridges, walls, towers)</li>
+                <li>Psychological warfare and morale effects</li>
+                <li>Information warfare and scouting</li>
+            </ul>
+            
+            <p><strong>⚖️ Risk vs. Reward Calculation:</strong></p>
+            <ul>
+                <li>When to commit reserves vs. hold back</li>
+                <li>Trading space for time in fighting retreats</li>
+                <li>Sacrificing pieces for strategic advantage</li>
+                <li>Knowing when victory is impossible</li>
+            </ul>
+        </div>
+
+        <h2>🏰 Siege Warfare: Defense of Civilization</h2>
+        
+        <div class="warfare-principle">
+            <h3>⚔️ The Castle Defense Philosophy</h3>
+            <p><strong>Against the Ogre Horde pioneered the concept of defensive gameplay that actually felt heroic:</strong></p>
+            
+            <p><strong>🏗️ Fortification Strategy:</strong> Like medieval castle architects</p>
+            <ul>
+                <li>Build killing fields for maximum damage</li>
+                <li>Create overlapping fields of fire</li>
+                <li>Design fallback positions for tactical retreat</li>
+                <li>Control access points and chokepoints</li>
+            </ul>
+            
+            <p><strong>⏰ Time Management:</strong> Like emergency room triage</p>
+            <ul>
+                <li>Prioritize immediate threats over distant ones</li>
+                <li>Allocate limited resources efficiently</li>
+                <li>Coordinate simultaneous defensive actions</li>
+                <li>Plan for worst-case scenario escalation</li>
+            </ul>
+        </div>
+
+        <h2>🎭 Heroic Roles in Mass Combat</h2>
+        
+        <canvas id="heroic_roles_canvas" width="600" height="350"></canvas>
+        
+        <div class="army-card">
+            <h3>🛡️ The Barbarian: Frontline Commander</h3>
+            <p><strong>From Individual Warrior to Battle Leader</strong></p>
+            <p><strong>Mass Combat Role:</strong> Holds the line, rallies troops</p>
+            <p><strong>New Abilities:</strong> Intimidation, battle cry, shield wall</p>
+            <p><strong>Strategic Value:</strong> Anchor point for defensive formations</p>
+            <p><strong>Leadership Style:</strong> "Follow me!" - leads from the front</p>
+        </div>
+
+        <div class="army-card">
+            <h3>🏹 The Elf: Master Tactician</h3>
+            <p><strong>From Versatile Fighter to Strategic Coordinator</strong></p>
+            <p><strong>Mass Combat Role:</strong> Coordinates ranged attacks, spotting</p>
+            <p><strong>New Abilities:</strong> Multi-target archery, battlefield awareness</p>
+            <p><strong>Strategic Value:</strong> Intelligence gathering and target priority</p>
+            <p><strong>Leadership Style:</strong> "Strike here!" - tactical precision</p>
+        </div>
+
+        <div class="army-card">
+            <h3>🔮 The Wizard: Force Multiplier</h3>
+            <p><strong>From Individual Spellcaster to Army Enhancer</strong></p>
+            <p><strong>Mass Combat Role:</strong> Area spells, battlefield control</p>
+            <p><strong>New Abilities:</strong> Mass buffs, environmental manipulation</p>
+            <p><strong>Strategic Value:</strong> Changes entire battlefield dynamics</p>
+            <p><strong>Leadership Style:</strong> "Let magic decide!" - overwhelming power</p>
+        </div>
+
+        <div class="army-card">
+            <h3>🗡️ The Dwarf: Siege Engineer</h3>
+            <p><strong>From Trap Specialist to Defensive Architect</strong></p>
+            <p><strong>Mass Combat Role:</strong> Fortification, siege equipment</p>
+            <p><strong>New Abilities:</strong> Battlefield engineering, equipment mastery</p>
+            <p><strong>Strategic Value:</strong> Creates tactical advantages</p>
+            <p><strong>Leadership Style:</strong> "Hold this position!" - defensive mastery</p>
+        </div>
+
+        <h2>🎪 Advanced Tactical Formations</h2>
+        
+        <div class="tactical-box">
+            <h3>⚔️ The Art of War: Formation Fighting</h3>
+            <p><strong>Mass combat requires formations that would make Napoleon proud:</strong></p>
+            
+            <p><strong>🛡️ The Phalanx:</strong> Spears forward, shields locked</p>
+            <ul>
+                <li>Barbarian and Dwarf form impenetrable front line</li>
+                <li>Elf and Wizard provide ranged support from behind</li>
+                <li>Perfect for narrow passages and chokepoints</li>
+                <li>Weakness: vulnerable to flanking and magic</li>
+            </ul>
+            
+            <p><strong>🏹 The Crescent:</strong> Enveloping wings of death</p>
+            <ul>
+                <li>Heroes spread wide to surround enemy forces</li>
+                <li>Ranged heroes on flanks, melee in center</li>
+                <li>Excellent for open battlefield combat</li>
+                <li>Weakness: requires superior numbers or positioning</li>
+            </ul>
+            
+            <p><strong>⚡ The Hammer and Anvil:</strong> Classical battlefield tactics</p>
+            <ul>
+                <li>Tank heroes hold enemy in place (anvil)</li>
+                <li>Fast heroes strike from behind (hammer)</li>
+                <li>Devastating when executed correctly</li>
+                <li>Weakness: requires perfect timing and coordination</li>
+            </ul>
+        </div>
+
+        <h2>🌟 Psychological Warfare: The Mental Game</h2>
+        
+        <canvas id="psychological_warfare_canvas" width="600" height="250"></canvas>
+        
+        <div class="strategy-analysis">
+            <h3>🧠 The Mind of the Horde</h3>
+            <p><strong>Against the Ogre Horde introduced the concept that enemies have psychology too:</strong></p>
+            
+            <p><strong>😨 Morale Mechanics:</strong></p>
+            <ul>
+                <li>Enemies flee when their leaders are defeated</li>
+                <li>Dramatic victories can cause mass routs</li>
+                <li>Heroes become legendary through repeated victories</li>
+                <li>Fear becomes a weapon as powerful as steel</li>
+            </ul>
+            
+            <p><strong>🎭 Intimidation Tactics:</strong></p>
+            <ul>
+                <li>Display of overwhelming force prevents conflicts</li>
+                <li>Reputation precedes heroes into battle</li>
+                <li>Psychological pressure forces tactical mistakes</li>
+                <li>Sometimes the threat of force is better than force itself</li>
+            </ul>
+        </div>
+
+        <h2>🏆 Victory Conditions: Beyond Simple Survival</h2>
+        
+        <div class="warfare-principle">
+            <h3>🎯 The Objectives of War</h3>
+            <p><strong>Mass combat introduced victory conditions that felt like real military campaigns:</strong></p>
+            
+            <p><strong>🏰 Defensive Victories:</strong></p>
+            <ul>
+                <li>Survive a set number of waves</li>
+                <li>Protect specific locations or NPCs</li>
+                <li>Hold strategic positions until reinforcements arrive</li>
+                <li>Minimize civilian casualties during evacuation</li>
+            </ul>
+            
+            <p><strong>⚔️ Offensive Victories:</strong></p>
+            <ul>
+                <li>Eliminate enemy leadership structure</li>
+                <li>Capture strategic objectives</li>
+                <li>Break enemy morale through decisive action</li>
+                <li>Destroy key enemy resources or equipment</li>
+            </ul>
+            
+            <p><strong>🎪 Strategic Victories:</strong></p>
+            <ul>
+                <li>Achieve objectives with minimal losses</li>
+                <li>Complete missions within time constraints</li>
+                <li>Maintain ally relationships and morale</li>
+                <li>Set up favorable conditions for future campaigns</li>
+            </ul>
+        </div>
+
+        <h2>📚 Lessons from Military History</h2>
+        
+        <div class="tactical-box">
+            <h3>🏛️ Learning from the Masters</h3>
+            <p><strong>The expansion drew inspiration from history's greatest military minds:</strong></p>
+            
+            <p><strong>🏰 Medieval Siege Warfare:</strong> Castle design and defensive tactics</p>
+            <p><strong>⚔️ Roman Legions:</strong> Disciplined formations and unit coordination</p>
+            <p><strong>🏹 English Longbowmen:</strong> Ranged superiority and positioning</p>
+            <p><strong>🌟 Napoleonic Tactics:</strong> Artillery, cavalry, and combined arms</p>
+            <p><strong>⚡ Modern Military:</strong> Command and control, intelligence, logistics</p>
+        </div>
+
+        <h2>🎯 Mastery Challenges: Advanced Scenarios</h2>
+        
+        <div class="strategy-analysis">
+            <h3>🏆 Elite Commander Training</h3>
+            <p><strong>Test your mastery with these advanced scenarios:</strong></p>
+            
+            <p><strong>⚡ The Lightning Campaign:</strong> Defeat the horde in minimum turns</p>
+            <p><strong>🛡️ The Perfect Defense:</strong> Win without losing any allied units</p>
+            <p><strong>🎯 The Precision Strike:</strong> Eliminate only enemy leaders, spare troops</p>
+            <p><strong>👥 The Outnumbered:</strong> Win against overwhelming numerical odds</p>
+            <p><strong>🔄 The Endurance Test:</strong> Survive multiple consecutive battles</p>
+        </div>
+
+        <h2>🌟 Legacy and Influence</h2>
+        
+        <div class="warfare-principle">
+            <h3>🏛️ How Mass Combat Changed Gaming Forever</h3>
+            <p><strong>Against the Ogre Horde innovations became the foundation of modern warfare games:</strong></p>
+            
+            <p><strong>🎮 Video Game Influence:</strong> RTS games, tactical RPGs, tower defense mechanics</p>
+            <p><strong>🎲 Tabletop Evolution:</strong> Miniature wargaming, army builders, mass combat systems</p>
+            <p><strong>🎬 Media Impact:</strong> Epic battle scenes, military strategy storytelling</p>
+            <p><strong>🎪 Modern Gaming:</strong> Command mechanics, unit management, strategic thinking</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Wizards of Morcar"</strong> - the expansion that took magic to its absolute limits! We'll dive into the advanced spellcasting systems, magical duels, reality-bending encounters, and how this expansion made every hero feel like they were wielding the fundamental forces of creation itself.</p>
+        
+        <div class="warfare-principle">
+            <p><strong>Remember:</strong> Against the Ogre Horde wasn't just about fighting more enemies - it was about thinking bigger, planning deeper, and feeling the weight of command. Every tactical decision echoes across the battlefield, every formation choice can mean victory or defeat, and every hero becomes a general responsible for the fate of entire armies. This is HeroQuest at its most epic scale!</p>
+        </div>
+    </div>
+
+    <script>
+        // Animated horde counter
+        let hordeCount = 0;
+        const maxHorde = 47; // Epic number for demonstration
+        
+        function updateHordeCounter() {
+            const counter = document.getElementById('horde_counter');
+            if (hordeCount < maxHorde) {
+                hordeCount++;
+                counter.textContent = `🏹 HORDE SIZE: ${hordeCount} UNITS 🏹`;
+                setTimeout(updateHordeCounter, 100);
+            } else {
+                counter.textContent = `⚔️ THE HORDE ADVANCES: ${hordeCount} STRONG! ⚔️`;
+            }
+        }
+        
+        updateHordeCounter();
+        
+        // Horde Composition Visualization
+        const hordeCanvas = document.getElementById('horde_composition_canvas');
+        const hordeCtx = hordeCanvas.getContext('2d');
+        
+        function drawHordeComposition() {
+            hordeCtx.clearRect(0, 0, hordeCanvas.width, hordeCanvas.height);
+            
+            // Background
+            hordeCtx.fillStyle = '#3e2723';
+            hordeCtx.fillRect(0, 0, hordeCanvas.width, hordeCanvas.height);
+            
+            // Draw army composition pie chart
+            const centerX = 300;
+            const centerY = 150;
+            const radius = 100;
+            
+            const units = [
+                {name: 'Ogres', count: 12, color: '#8b4513', angle: 0},
+                {name: 'Goblins', count: 20, color: '#228b22', angle: 0},
+                {name: 'Orcs', count: 10, color: '#cd853f', angle: 0},
+                {name: 'Sorcerers', count: 5, color: '#9370db', angle: 0}
+            ];
+            
+            const total = units.reduce((sum, unit) => sum + unit.count, 0);
+            let currentAngle = 0;
+            
+            units.forEach(unit => {
+                const sliceAngle = (unit.count / total) * 2 * Math.PI;
+                unit.angle = sliceAngle;
+                
+                // Draw pie slice
+                hordeCtx.fillStyle = unit.color;
+                hordeCtx.beginPath();
+                hordeCtx.moveTo(centerX, centerY);
+                hordeCtx.arc(centerX, centerY, radius, currentAngle, currentAngle + sliceAngle);
+                hordeCtx.closePath();
+                hordeCtx.fill();
+                
+                hordeCtx.strokeStyle = '#fff8dc';
+                hordeCtx.lineWidth = 2;
+                hordeCtx.stroke();
+                
+                // Draw labels
+                const labelAngle = currentAngle + sliceAngle / 2;
+                const labelX = centerX + Math.cos(labelAngle) * (radius + 30);
+                const labelY = centerY + Math.sin(labelAngle) * (radius + 30);
+                
+                hordeCtx.fillStyle = '#fff8dc';
+                hordeCtx.font = '12px Arial';
+                hordeCtx.textAlign = 'center';
+                hordeCtx.fillText(`${unit.name}`, labelX, labelY);
+                hordeCtx.fillText(`${unit.count}`, labelX, labelY + 15);
+                
+                currentAngle += sliceAngle;
+            });
+            
+            hordeCtx.fillStyle = '#d4af37';
+            hordeCtx.font = '16px Arial';
+            hordeCtx.textAlign = 'center';
+            hordeCtx.fillText('Horde Composition: Army Analysis', 300, 30);
+            hordeCtx.textAlign = 'left';
+        }
+        
+        drawHordeComposition();
+        
+        // Mass Combat Mechanics Visualization
+        const combatCanvas = document.getElementById('mass_combat_mechanics_canvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        function drawMassCombatMechanics() {
+            combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Background
+            combatCtx.fillStyle = '#3e2723';
+            combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Draw battlefield with multiple enemies
+            combatCtx.strokeStyle = '#654321';
+            combatCtx.lineWidth = 1;
+            for (let i = 0; i <= 15; i++) {
+                combatCtx.beginPath();
+                combatCtx.moveTo(50 + i * 30, 50);
+                combatCtx.lineTo(50 + i * 30, 300);
+                combatCtx.stroke();
+            }
+            for (let i = 0; i <= 8; i++) {
+                combatCtx.beginPath();
+                combatCtx.moveTo(50, 50 + i * 30);
+                combatCtx.lineTo(500, 50 + i * 30);
+                combatCtx.stroke();
+            }
+            
+            // Draw hero formation (defensive line)
+            const heroes = [
+                {x: 140, y: 200, symbol: '🛡️', color: '#4a90e2'},
+                {x: 170, y: 230, symbol: '🏹', color: '#32cd32'},
+                {x: 110, y: 230, symbol: '🔮', color: '#9370db'},
+                {x: 140, y: 260, symbol: '🗡️', color: '#cd853f'}
+            ];
+            
+            heroes.forEach(hero => {
+                combatCtx.fillStyle = hero.color;
+                combatCtx.fillRect(hero.x - 12, hero.y - 12, 24, 24);
+                combatCtx.fillStyle = '#fff';
+                combatCtx.font = '14px Arial';
+                combatCtx.textAlign = 'center';
+                combatCtx.fillText(hero.symbol, hero.x, hero.y + 4);
+            });
+            
+            // Draw enemy horde (wave formation)
+            const enemies = [
+                // Front wave
+                {x: 350, y: 170, symbol: '👹'},
+                {x: 380, y: 170, symbol: '👹'},
+                {x: 410, y: 170, symbol: '👹'},
+                {x: 350, y: 200, symbol: '👺'},
+                {x: 380, y: 200, symbol: '👺'},
+                {x: 410, y: 200, symbol: '👺'},
+                {x: 440, y: 200, symbol: '👺'},
+                {x: 350, y: 230, symbol: '👺'},
+                {x: 380, y: 230, symbol: '👺'},
+                {x: 410, y: 230, symbol: '👺'},
+                // Back wave
+                {x: 470, y: 140, symbol: '🏹'},
+                {x: 470, y: 170, symbol: '🏹'},
+                {x: 470, y: 200, symbol: '🏹'},
+                {x: 470, y: 230, symbol: '🏹'}
+            ];
+            
+            enemies.forEach(enemy => {
+                combatCtx.fillStyle = '#8b0000';
+                combatCtx.fillRect(enemy.x - 12, enemy.y - 12, 24, 24);
+                combatCtx.fillStyle = '#fff';
+                combatCtx.font = '14px Arial';
+                combatCtx.fillText(enemy.symbol, enemy.x, enemy.y + 4);
+            });
+            
+            // Draw area effect spell
+            combatCtx.strokeStyle = '#ff6b35';
+            combatCtx.lineWidth = 3;
+            combatCtx.setLineDash([5, 5]);
+            combatCtx.beginPath();
+            combatCtx.arc(380, 200, 50, 0, Math.PI * 2);
+            combatCtx.stroke();
+            combatCtx.setLineDash([]);
+            
+            combatCtx.fillStyle = 'rgba(255, 107, 53, 0.3)';
+            combatCtx.beginPath();
+            combatCtx.arc(380, 200, 50, 0, Math.PI * 2);
+            combatCtx.fill();
+            
+            combatCtx.fillStyle = '#d4af37';
+            combatCtx.font = '16px Arial';
+            combatCtx.textAlign = 'center';
+            combatCtx.fillText('Mass Combat: Heroes vs. The Horde', 300, 30);
+            combatCtx.fillStyle = '#fff8dc';
+            combatCtx.font = '12px Arial';
+            combatCtx.fillText('Area spells affect multiple enemies simultaneously', 300, 330);
+            combatCtx.textAlign = 'left';
+        }
+        
+        drawMassCombatMechanics();
+        
+        // Interactive Battle Formation
+        const formationGrid = document.getElementById('battle_formation');
+        const analysisDiv = document.getElementById('formation_analysis');
+        let gridState = [];
+        
+        // Initialize formation grid
+        for (let i = 0; i < 48; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'formation-cell empty-field';
+            cell.textContent = '';
+            cell.addEventListener('click', () => toggleFormationCell(i));
+            formationGrid.appendChild(cell);
+            gridState.push('empty');
+        }
+        
+        const cellTypes = ['empty', 'hero', 'ogre', 'goblin', 'archer', 'fortification'];
+        const cellSymbols = ['', '🛡️', '👹', '👺', '🏹', '⬛'];
+        const cellClasses = ['empty-field', 'hero-unit', 'ogre-unit', 'goblin-unit', 'goblin-unit', 'fortification'];
+        let currentCellType = 0;
+        
+        function toggleFormationCell(index) {
+            currentCellType = (currentCellType + 1) % cellTypes.length;
+            const cell = formationGrid.children[index];
+            
+            gridState[index] = cellTypes[currentCellType];
+            cell.textContent = cellSymbols[currentCellType];
+            cell.className = `formation-cell ${cellClasses[currentCellType]}`;
+            
+            analyzeFormation();
+        }
+        
+        function analyzeFormation() {
+            const heroes = gridState.filter(cell => cell === 'hero').length;
+            const enemies = gridState.filter(cell => cell.includes('ogre') || cell.includes('goblin') || cell.includes('archer')).length;
+            const fortifications = gridState.filter(cell => cell === 'fortification').length;
+            
+            let analysis = `Forces: ${heroes} Heroes, ${enemies} Enemies, ${fortifications} Fortifications. `;
+            
+            if (heroes > 0 && enemies > 0) {
+                const ratio = enemies / heroes;
+                if (ratio > 3) {
+                    analysis += "Overwhelming enemy numbers! Defensive tactics recommended. ";
+                } else if (ratio > 1.5) {
+                    analysis += "Outnumbered but manageable. Use terrain advantages. ";
+                } else {
+                    analysis += "Favorable odds. Consider aggressive tactics. ";
+                }
+                
+                if (fortifications > 0) {
+                    analysis += "Fortifications provide tactical advantages! ";
+                }
+            } else if (heroes === 0) {
+                analysis += "Deploy heroes to begin tactical analysis!";
+            } else if (enemies === 0) {
+                analysis += "Add enemy forces to create a battle scenario!";
+            }
+            
+            analysisDiv.innerHTML = `<strong>Tactical Analysis:</strong> ${analysis}`;
+        }
+        
+        // Strategic Thinking Visualization
+        const strategyCanvas = document.getElementById('strategic_thinking_canvas');
+        const strategyCtx = strategyCanvas.getContext('2d');
+        
+        function drawStrategicThinking() {
+            strategyCtx.clearRect(0, 0, strategyCanvas.width, strategyCanvas.height);
+            
+            // Background
+            strategyCtx.fillStyle = '#3e2723';
+            strategyCtx.fillRect(0, 0, strategyCanvas.width, strategyCanvas.height);
+            
+            // Draw strategic decision tree
+            const decisions = [
+                {x: 300, y: 50, text: 'Enemy Horde\nApproaches', color: '#8b0000'},
+                {x: 150, y: 120, text: 'Defend\nPosition', color: '#4a90e2'},
+                {x: 450, y: 120, text: 'Attack\nFirst', color: '#ff6b35'},
+                {x: 100, y: 200, text: 'Fortify\nChokepoint', color: '#32cd32'},
+                {x: 200, y: 200, text: 'Mobile\nDefense', color: '#ffd700'},
+                {x: 400, y: 200, text: 'Flanking\nManeuver', color: '#9370db'},
+                {x: 500, y: 200, text: 'Direct\nAssault', color: '#ff1744'}
+            ];
+            
+            decisions.forEach((decision, index) => {
+                // Draw decision node
+                strategyCtx.fillStyle = decision.color;
+                strategyCtx.beginPath();
+                strategyCtx.arc(decision.x, decision.y, 25, 0, Math.PI * 2);
+                strategyCtx.fill();
+                
+                strategyCtx.strokeStyle = '#fff8dc';
+                strategyCtx.lineWidth = 2;
+                strategyCtx.stroke();
+                
+                // Draw decision text
+                strategyCtx.fillStyle = '#fff8dc';
+                strategyCtx.font = '10px Arial';
+                strategyCtx.textAlign = 'center';
+                const lines = decision.text.split('\n');
+                lines.forEach((line, lineIndex) => {
+                    strategyCtx.fillText(line, decision.x, decision.y + 40 + (lineIndex * 12));
+                });
+            });
+            
+            // Draw connections
+            strategyCtx.strokeStyle = '#daa520';
+            strategyCtx.lineWidth = 2;
+            
+            // Root to main branches
+            strategyCtx.beginPath();
+            strategyCtx.moveTo(300, 75);
+            strategyCtx.lineTo(150, 95);
+            strategyCtx.stroke();
+            
+            strategyCtx.beginPath();
+            strategyCtx.moveTo(300, 75);
+            strategyCtx.lineTo(450, 95);
+            strategyCtx.stroke();
+            
+            // Main branches to tactics
+            strategyCtx.beginPath();
+            strategyCtx.moveTo(150, 145);
+            strategyCtx.lineTo(100, 175);
+            strategyCtx.stroke();
+            
+            strategyCtx.beginPath();
+            strategyCtx.moveTo(150, 145);
+            strategyCtx.lineTo(200, 175);
+            strategyCtx.stroke();
+            
+            strategyCtx.beginPath();
+            strategyCtx.moveTo(450, 145);
+            strategyCtx.lineTo(400, 175);
+            strategyCtx.stroke();
+            
+            strategyCtx.beginPath();
+            strategyCtx.moveTo(450, 145);
+            strategyCtx.lineTo(500, 175);
+            strategyCtx.stroke();
+            
+            strategyCtx.fillStyle = '#d4af37';
+            strategyCtx.font = '16px Arial';
+            strategyCtx.textAlign = 'center';
+            strategyCtx.fillText('Strategic Decision Tree: From Tactics to Victory', 300, 280);
+            strategyCtx.textAlign = 'left';
+        }
+        
+        drawStrategicThinking();
+        
+        // Heroic Roles Visualization
+        const rolesCanvas = document.getElementById('heroic_roles_canvas');
+        const rolesCtx = rolesCanvas.getContext('2d');
+        
+        function drawHeroicRoles() {
+            rolesCtx.clearRect(0, 0, rolesCanvas.width, rolesCanvas.height);
+            
+            // Background
+            rolesCtx.fillStyle = '#3e2723';
+            rolesCtx.fillRect(0, 0, rolesCanvas.width, rolesCanvas.height);
+            
+            // Draw command structure
+            const commander = {x: 300, y: 100, symbol: '👑', name: 'Field Commander'};
+            
+            const heroes = [
+                {x: 150, y: 200, symbol: '🛡️', name: 'Barbarian\nFrontline', color: '#4a90e2'},
+                {x: 250, y: 250, symbol: '🏹', name: 'Elf\nTactician', color: '#32cd32'},
+                {x: 350, y: 250, symbol: '🔮', name: 'Wizard\nSupport', color: '#9370db'},
+                {x: 450, y: 200, symbol: '🗡️', name: 'Dwarf\nEngineer', color: '#cd853f'}
+            ];
+            
+            // Draw command lines
+            heroes.forEach(hero => {
+                rolesCtx.strokeStyle = '#daa520';
+                rolesCtx.lineWidth = 2;
+                rolesCtx.beginPath();
+                rolesCtx.moveTo(commander.x, commander.y + 20);
+                rolesCtx.lineTo(hero.x, hero.y - 20);
+                rolesCtx.stroke();
+            });
+            
+            // Draw commander
+            rolesCtx.fillStyle = '#d4af37';
+            rolesCtx.beginPath();
+            rolesCtx.arc(commander.x, commander.y, 25, 0, Math.PI * 2);
+            rolesCtx.fill();
+            rolesCtx.fillStyle = '#000';
+            rolesCtx.font = '20px Arial';
+            rolesCtx.textAlign = 'center';
+            rolesCtx.fillText(commander.symbol, commander.x, commander.y + 7);
+            
+            // Draw heroes
+            heroes.forEach(hero => {
+                rolesCtx.fillStyle = hero.color;
+                rolesCtx.beginPath();
+                rolesCtx.arc(hero.x, hero.y, 25, 0, Math.PI * 2);
+                rolesCtx.fill();
+                
+                rolesCtx.fillStyle = '#fff';
+                rolesCtx.font = '20px Arial';
+                rolesCtx.fillText(hero.symbol, hero.x, hero.y + 7);
+                
+                rolesCtx.fillStyle = '#fff8dc';
+                rolesCtx.font = '10px Arial';
+                const lines = hero.name.split('\n');
+                lines.forEach((line, index) => {
+                    rolesCtx.fillText(line, hero.x, hero.y + 45 + (index * 12));
+                });
+            });
+            
+            rolesCtx.fillStyle = '#d4af37';
+            rolesCtx.font = '16px Arial';
+            rolesCtx.textAlign = 'center';
+            rolesCtx.fillText('Mass Combat Command Structure', 300, 30);
+            rolesCtx.textAlign = 'left';
+        }
+        
+        drawHeroicRoles();
+        
+        // Psychological Warfare Visualization
+        const psychCanvas = document.getElementById('psychological_warfare_canvas');
+        const psychCtx = psychCanvas.getContext('2d');
+        
+        function drawPsychologicalWarfare() {
+            psychCtx.clearRect(0, 0, psychCanvas.width, psychCanvas.height);
+            
+            // Background
+            psychCtx.fillStyle = '#3e2723';
+            psychCtx.fillRect(0, 0, psychCanvas.width, psychCanvas.height);
+            
+            // Draw morale meters for both sides
+            const heroes = {x: 150, morale: 85, color: '#4a90e2', name: 'Hero Forces'};
+            const enemies = {x: 450, morale: 45, color: '#8b0000', name: 'Ogre Horde'};
+            
+            [heroes, enemies].forEach(side => {
+                // Draw morale bar background
+                psychCtx.fillStyle = '#2f1b14';
+                psychCtx.fillRect(side.x - 50, 150, 100, 20);
+                
+                // Draw morale level
+                psychCtx.fillStyle = side.color;
+                psychCtx.fillRect(side.x - 50, 150, side.morale, 20);
+                
+                // Draw border
+                psychCtx.strokeStyle = '#fff8dc';
+                psychCtx.lineWidth = 2;
+                psychCtx.strokeRect(side.x - 50, 150, 100, 20);
+                
+                // Draw morale percentage
+                psychCtx.fillStyle = '#fff8dc';
+                psychCtx.font = '12px Arial';
+                psychCtx.textAlign = 'center';
+                psychCtx.fillText(side.morale + '%', side.x, 185);
+                psychCtx.fillText(side.name, side.x, 200);
+                
+                // Draw unit symbol
+                psychCtx.font = '24px Arial';
+                psychCtx.fillText(side === heroes ? '🛡️' : '👹', side.x, 130);
+            });
+            
+            // Draw psychological effects
+            const effects = [
+                {x: 300, y: 80, text: 'Intimidation', effect: '😨'},
+                {x: 300, y: 120, text: 'Reputation', effect: '⭐'},
+                {x: 300, y: 220, text: 'Leadership', effect: '👑'}
+            ];
+            
+            effects.forEach(effect => {
+                psychCtx.fillStyle = '#daa520';
+                psychCtx.font = '20px Arial';
+                psychCtx.textAlign = 'center';
+                psychCtx.fillText(effect.effect, effect.x, effect.y);
+                psychCtx.fillStyle = '#fff8dc';
+                psychCtx.font = '10px Arial';
+                psychCtx.fillText(effect.text, effect.x, effect.y + 20);
+            });
+            
+            psychCtx.fillStyle = '#d4af37';
+            psychCtx.font = '16px Arial';
+            psychCtx.fillText('Psychological Warfare: The Battle for Morale', 200, 30);
+            psychCtx.textAlign = 'left';
+        }
+        
+        drawPsychologicalWarfare();
+    </script>
+</body>
+</html>

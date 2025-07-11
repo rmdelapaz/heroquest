@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest The Frozen Horror - Winter Warfare and Environmental Survival</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #b3e5fc 0%, #81d4fa 20%, #4fc3f7 40%, #29b6f6 60%, #03a9f4 80%, #0277bd 100%);
+            color: #f0f8ff;
+        }
+        .container {
+            background: rgba(0, 50, 100, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(2, 119, 189, 0.6);
+            border: 2px solid #87ceeb;
+        }
+        h1 {
+            color: #87ceeb;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(135, 206, 235, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #b3e5fc;
+            border-bottom: 2px solid #b3e5fc;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .frost-principle {
+            background: linear-gradient(135deg, #003264 0%, #0277bd 100%);
+            border: 2px solid #87ceeb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #b3e5fc;
+        }
+        .arctic-card {
+            background: linear-gradient(135deg, #0277bd 0%, #003264 100%);
+            border: 2px solid #4fc3f7;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 320px;
+            vertical-align: top;
+        }
+        .survival-box {
+            background: rgba(135, 206, 235, 0.1);
+            border: 2px solid #87ceeb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .environmental-analysis {
+            background: rgba(179, 229, 252, 0.1);
+            border: 2px solid #b3e5fc;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #87ceeb;
+            border-radius: 10px;
+            background: #000033;
+            display: block;
+            margin: 20px auto;
+        }
+        .temperature-gauge {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(to right, #0d47a1, #1976d2, #42a5f5, #ffeb3b, #ff9800, #d32f2f);
+            border: 2px solid #87ceeb;
+            border-radius: 15px;
+            margin: 10px 0;
+            position: relative;
+        }
+        .temp-indicator {
+            position: absolute;
+            top: -3px;
+            width: 6px;
+            height: 36px;
+            background: #fff;
+            border-radius: 3px;
+            transition: left 0.5s ease;
+        }
+        .ice-creature-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .creature-portrait {
+            background: rgba(3, 169, 244, 0.2);
+            border: 2px solid #4fc3f7;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+        .survival-meter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(135, 206, 235, 0.1);
+            border-radius: 10px;
+        }
+        .survival-stat {
+            background: linear-gradient(135deg, #4fc3f7, #87ceeb);
+            border: 2px solid #b3e5fc;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #003264;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        .blizzard-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .snowflake {
+            position: absolute;
+            color: #fff;
+            font-size: 14px;
+            animation: snowfall 3s linear infinite;
+        }
+        @keyframes snowfall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.3; }
+        }
+        .frozen-terrain {
+            display: grid;
+            grid-template-columns: repeat(10, 30px);
+            grid-template-rows: repeat(8, 30px);
+            gap: 1px;
+            margin: 20px auto;
+            border: 3px solid #87ceeb;
+            background: #000033;
+            padding: 10px;
+            width: fit-content;
+        }
+        .terrain-cell {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #4fc3f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .ice { background-color: #b3e5fc; }
+        .snow { background-color: #e1f5fe; }
+        .water { background-color: #0277bd; }
+        .rock { background-color: #455a64; }
+        .fire { background-color: #ff5722; }
+        .hero-pos { background-color: #4caf50; }
+        .monster-pos { background-color: #f44336; }
+    </style>
+</head>
+<body>
+    <div class="container blizzard-effect">
+        <h1>❄️ The Frozen Horror: Winter Warfare & Environmental Survival 🧊</h1>
+        
+        <div class="frost-principle">
+            <h2>🌨️ The Elemental Challenge: When Nature Becomes the Enemy</h2>
+            <p><strong>The Frozen Horror wasn't just an expansion - it was a survival masterclass that made the environment itself a character!</strong> Like The Revenant or The Thing, this expansion proved that sometimes the greatest enemy isn't a monster with claws and teeth, but the merciless, indifferent force of nature itself. It transformed HeroQuest from dungeon crawling into arctic survival horror.</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of this expansion like going from a comfortable hotel room to climbing Mount Everest. The original game was about fighting monsters in controlled environments; The Frozen Horror is about fighting for your life against hypothermia, blizzards, and creatures that have evolved to kill in the world's most hostile environment. It's the difference between a sword fight and surviving the Donner Party expedition!</p>
+        </div>
+
+        <div class="temperature-gauge">
+            <div class="temp-indicator" id="temp_indicator" style="left: 15%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Environmental Threat Level: <span id="temp_level">DEADLY COLD</span></em></p>
+
+        <h2>🧊 The Arctic Trinity: Environmental Warfare Systems</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Environmental Warfare] --> B[Temperature Effects]
+                A --> C[Terrain Hazards]
+                A --> D[Weather Systems]
+                
+                B --> B1[Hypothermia Risk]
+                B --> B2[Frost Damage]
+                B --> B3[Equipment Failure]
+                
+                C --> C1[Ice Sheets]
+                C --> C2[Snow Drifts]
+                C --> C3[Frozen Water]
+                
+                D --> D1[Blizzards]
+                D --> D2[Ice Storms]
+                D --> D3[Visibility Loss]
+                
+                style A fill:#87ceeb,stroke:#333,stroke-width:3px
+                style B fill:#b3e5fc,stroke:#333,stroke-width:2px
+                style C fill:#b3e5fc,stroke:#333,stroke-width:2px
+                style D fill:#b3e5fc,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🌡️ Survival Mechanics: The Body as Battlefield</h2>
+        
+        <canvas id="survival_systems_canvas" width="600" height="300"></canvas>
+        
+        <div class="survival-meter">
+            <div class="survival-stat">
+                <div style="font-size: 24px;">🌡️</div>
+                <div>Body Heat</div>
+                <div id="body_heat">65%</div>
+            </div>
+            <div class="survival-stat">
+                <div style="font-size: 24px;">🥾</div>
+                <div>Stamina</div>
+                <div id="stamina">78%</div>
+            </div>
+            <div class="survival-stat">
+                <div style="font-size: 24px;">👁️</div>
+                <div>Visibility</div>
+                <div id="visibility">40%</div>
+            </div>
+            <div class="survival-stat">
+                <div style="font-size: 24px;">⚡</div>
+                <div>Equipment</div>
+                <div id="equipment">82%</div>
+            </div>
+        </div>
+
+        <div class="environmental-analysis">
+            <h3>🧬 The Science of Survival</h3>
+            <p><strong>The Frozen Horror introduced mechanics based on real survival science:</strong></p>
+            
+            <p><strong>🌡️ Hypothermia Staging:</strong></p>
+            <ul>
+                <li><strong>Mild (90-95°F):</strong> Shivering, loss of fine motor control</li>
+                <li><strong>Moderate (82-90°F):</strong> Violent shivering stops, muscle rigidity</li>
+                <li><strong>Severe (68-82°F):</strong> Unconsciousness, cardiac arrest risk</li>
+                <li><strong>Game Translation:</strong> Progressive stat penalties and ability loss</li>
+            </ul>
+            
+            <p><strong>❄️ Frostbite Mechanics:</strong></p>
+            <ul>
+                <li>Extremities freeze first (hands, feet, nose, ears)</li>
+                <li>Equipment becomes harder to use effectively</li>
+                <li>Movement speed decreases with cold exposure</li>
+                <li>Healing becomes less effective in extreme cold</li>
+            </ul>
+        </div>
+
+        <h2>🧊 The Frozen Bestiary: Creatures of the Ice</h2>
+        
+        <div class="ice-creature-gallery">
+            <div class="creature-portrait">
+                <h4>❄️ Ice Wraiths</h4>
+                <p><strong>The Ethereal Hunters</strong></p>
+                <p><strong>Special Ability:</strong> Phase through ice walls</p>
+                <p><strong>Weakness:</strong> Fire damage causes extra harm</p>
+                <p><strong>Tactics:</strong> Ambush from within frozen surfaces</p>
+                <p><em>"Death that comes with the wind"</em></p>
+            </div>
+            
+            <div class="creature-portrait">
+                <h4>🐻 Frost Bears</h4>
+                <p><strong>The Apex Predators</strong></p>
+                <p><strong>Special Ability:</strong> Immune to cold effects</p>
+                <p><strong>Weakness:</strong> Slow on non-ice terrain</p>
+                <p><strong>Tactics:</strong> Charge attacks on ice sheets</p>
+                <p><em>"Polar nightmares with claws"</em></p>
+            </div>
+            
+            <div class="creature-portrait">
+                <h4>⛄ Animated Snowmen</h4>
+                <p><strong>The Deceptive Guardians</strong></p>
+                <p><strong>Special Ability:</strong> Camouflage as terrain</p>
+                <p><strong>Weakness:</strong> Melt near heat sources</p>
+                <p><strong>Tactics:</strong> Surprise attacks from hiding</p>
+                <p><em>"When winter gets a sense of humor"</em></p>
+            </div>
+            
+            <div class="creature-portrait">
+                <h4>🧊 Ice Elementals</h4>
+                <p><strong>The Living Blizzards</strong></p>
+                <p><strong>Special Ability:</strong> Create ice terrain</p>
+                <p><strong>Weakness:</strong> Vulnerable to heat and salt</p>
+                <p><strong>Tactics:</strong> Environmental manipulation</p>
+                <p><em>"Winter given murderous form"</em></p>
+            </div>
+        </div>
+
+        <h2>🗺️ Interactive Frozen Terrain Navigator</h2>
+        
+        <div class="survival-box">
+            <p><strong>Navigate the frozen wasteland!</strong> Click terrain cells to move heroes and encounter environmental challenges.</p>
+            
+            <div class="frozen-terrain" id="frozen_terrain">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+            
+            <p><strong>Terrain Legend:</strong> ❄️ Ice | 🌨️ Snow | 🌊 Water | 🪨 Rock | 🔥 Fire | 🛡️ Heroes | 👹 Monsters</p>
+            
+            <div id="terrain_analysis" style="margin-top: 20px; padding: 15px; background: rgba(135, 206, 235, 0.1); border-radius: 10px;">
+                <strong>Environmental Status:</strong> Navigate the frozen terrain to analyze survival conditions!
+            </div>
+        </div>
+
+        <h2>🌨️ Weather as Warfare: Dynamic Environmental Systems</h2>
+        
+        <canvas id="weather_systems_canvas" width="600" height="350"></canvas>
+        
+        <div class="frost-principle">
+            <h3>⛈️ The Storm Calendar</h3>
+            <p><strong>Weather becomes a strategic element that changes everything:</strong></p>
+            
+            <p><strong>🌬️ Blizzard Conditions:</strong></p>
+            <ul>
+                <li>Visibility reduced to adjacent squares only</li>
+                <li>Movement costs doubled through heavy snow</li>
+                <li>Ranged attacks become nearly impossible</li>
+                <li>Heroes must find shelter or take cold damage</li>
+            </ul>
+            
+            <p><strong>🧊 Ice Storm Events:</strong></p>
+            <ul>
+                <li>All surfaces become slippery and dangerous</li>
+                <li>Equipment can freeze and become unusable</li>
+                <li>Flying creatures grounded by ice weight</li>
+                <li>Magical items may malfunction in extreme cold</li>
+            </ul>
+            
+            <p><strong>☀️ Brief Warming Periods:</strong></p>
+            <ul>
+                <li>Temporary respite from cold damage</li>
+                <li>Ice terrain may become treacherous water</li>
+                <li>Opportunity to repair equipment and recover</li>
+                <li>Some creatures become more/less active</li>
+            </ul>
+        </div>
+
+        <h2>🔥 Warmth as Currency: Resource Management Revolution</h2>
+        
+        <canvas id="warmth_economy_canvas" width="600" height="300"></canvas>
+        
+        <div class="arctic-card">
+            <h3>🏕️ Shelter and Fire Management</h3>
+            <p><strong>From Dungeon Delving to Survival Camping</strong></p>
+            <p><strong>Fire Sources:</strong> Torches, magical flames, braziers</p>
+            <p><strong>Fuel Conservation:</strong> Limited wood, oil, and tinder supplies</p>
+            <p><strong>Heat Zones:</strong> Safe areas around fire sources</p>
+            <p><strong>Risk vs. Warmth:</strong> Light attracts monsters but prevents death</p>
+        </div>
+
+        <div class="arctic-card">
+            <h3>🎒 Cold Weather Equipment</h3>
+            <p><strong>Gear Becomes Life-or-Death Critical</strong></p>
+            <p><strong>Insulation:</strong> Fur cloaks, winter boots, heated armor</p>
+            <p><strong>Navigation:</strong> Compasses, maps, emergency signals</p>
+            <p><strong>Emergency Supplies:</strong> Emergency rations, medical kits</p>
+            <p><strong>Degradation:</strong> Equipment wears out faster in harsh conditions</p>
+        </div>
+
+        <h2>⚔️ Combat in Extreme Conditions</h2>
+        
+        <div class="environmental-analysis">
+            <h3>🥶 Frozen Warfare Adaptations</h3>
+            <p><strong>Fighting becomes infinitely more complex when every breath steams:</strong></p>
+            
+            <p><strong>🗡️ Weapon Performance:</strong></p>
+            <ul>
+                <li>Metal weapons become brittle in extreme cold</li>
+                <li>Bowstrings snap, sword hilts become slippery</li>
+                <li>Magic weapons may provide warmth bonuses</li>
+                <li>Improvised weapons from ice and snow</li>
+            </ul>
+            
+            <p><strong>🏃 Movement Penalties:</strong></p>
+            <ul>
+                <li>Heavy clothing reduces agility and speed</li>
+                <li>Ice surfaces cause slipping and falling</li>
+                <li>Deep snow impedes movement significantly</li>
+                <li>Hypothermia causes progressive slowdown</li>
+            </ul>
+            
+            <p><strong>🎯 Tactical Adaptations:</strong></p>
+            <ul>
+                <li>Shorter combats to prevent exposure</li>
+                <li>Fighting near heat sources when possible</li>
+                <li>Using environment against cold-adapted enemies</li>
+                <li>Strategic retreats to warm shelter</li>
+            </ul>
+        </div>
+
+        <h2>🧊 Ice Magic and Frost Spells</h2>
+        
+        <canvas id="ice_magic_canvas" width="600" height="300"></canvas>
+        
+        <div class="survival-box">
+            <h3>❄️ The Frozen Spellbook</h3>
+            <p><strong>Magic adapted to the harsh environment creates new possibilities:</strong></p>
+            
+            <p><strong>🔥 Heat Spells (Life-Saving Magic):</strong></p>
+            <ul>
+                <li><strong>Warmth:</strong> Creates safe zones of heat around caster</li>
+                <li><strong>Melt:</strong> Removes ice obstacles and creates water</li>
+                <li><strong>Fire Shield:</strong> Protects against cold damage</li>
+                <li><strong>Heated Weapon:</strong> Prevents weapon freezing</li>
+            </ul>
+            
+            <p><strong>❄️ Ice Spells (Environmental Weapons):</strong></p>
+            <ul>
+                <li><strong>Ice Wall:</strong> Creates barriers and cover</li>
+                <li><strong>Freeze:</strong> Immobilizes enemies in ice</li>
+                <li><strong>Blizzard:</strong> Area spell that obscures vision</li>
+                <li><strong>Ice Spear:</strong> Projectile that uses environment</li>
+            </ul>
+        </div>
+
+        <h2>🎭 Psychological Aspects: The Mental Game of Survival</h2>
+        
+        <div class="frost-principle">
+            <h3>🧠 Cabin Fever and Isolation</h3>
+            <p><strong>The Frozen Horror introduced psychological survival mechanics:</strong></p>
+            
+            <p><strong>😰 Morale Degradation:</strong></p>
+            <ul>
+                <li>Extended cold exposure reduces mental stats</li>
+                <li>Isolation from civilization causes anxiety</li>
+                <li>Constant survival stress affects decision-making</li>
+                <li>Group dynamics become critical for mental health</li>
+            </ul>
+            
+            <p><strong>🤝 Team Dependence:</strong></p>
+            <ul>
+                <li>Heroes must share resources to survive</li>
+                <li>Buddy system prevents individual exposure death</li>
+                <li>Leadership becomes crucial in crisis moments</li>
+                <li>Trust and cooperation multiply survival chances</li>
+            </ul>
+        </div>
+
+        <h2>🏔️ Advanced Survival Scenarios</h2>
+        
+        <div class="arctic-card">
+            <h3>🚨 Crisis Management Challenges</h3>
+            <p><strong>The expansion created scenarios that tested every aspect of heroism:</strong></p>
+            
+            <p><strong>⛑️ The Avalanche Scenario:</strong></p>
+            <ul>
+                <li>Sudden terrain changes bury escape routes</li>
+                <li>Time pressure to dig out trapped allies</li>
+                <li>Limited air supply creates countdown tension</li>
+                <li>Resource allocation between rescue and survival</li>
+            </ul>
+            
+            <p><strong>🌉 The Thin Ice Scenario:</strong></p>
+            <ul>
+                <li>Weight distribution becomes critical</li>
+                <li>Risk assessment for every movement</li>
+                <li>Rope work and rescue techniques</li>
+                <li>Equipment loss through ice breaks</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Master Survival Strategies</h2>
+        
+        <canvas id="survival_strategies_canvas" width="600" height="350"></canvas>
+        
+        <div class="survival-box">
+            <h3>🎓 The Arctic Survival Manual</h3>
+            <p><strong>Lessons learned from the harshest environment in HeroQuest:</strong></p>
+            
+            <p><strong>🔥 Priority Management:</strong></p>
+            <ol>
+                <li><strong>Shelter:</strong> Protection from wind and precipitation</li>
+                <li><strong>Fire:</strong> Heat source for warmth and cooking</li>
+                <li><strong>Water:</strong> Melted ice/snow, purified when possible</li>
+                <li><strong>Food:</strong> High-calorie supplies for energy</li>
+                <li><strong>Signaling:</strong> Methods to call for rescue</li>
+            </ol>
+            
+            <p><strong>⚡ Energy Conservation:</strong></p>
+            <ul>
+                <li>Minimize unnecessary movement and exertion</li>
+                <li>Share body heat through group huddling</li>
+                <li>Insulate from ground cold with bedding</li>
+                <li>Stay dry - wet clothes accelerate heat loss</li>
+            </ul>
+        </div>
+
+        <h2>🌟 Design Innovation and Legacy</h2>
+        
+        <div class="environmental-analysis">
+            <h3>🏛️ How The Frozen Horror Changed Adventure Gaming</h3>
+            <p><strong>This expansion proved that environment could be as dangerous as any monster:</strong></p>
+            
+            <p><strong>🎮 Video Game Influence:</strong> Survival mechanics, resource management, environmental storytelling</p>
+            <p><strong>🎲 Tabletop Evolution:</strong> Weather systems, survival skills, environmental challenges</p>
+            <p><strong>🎬 Media Impact:</strong> Survival horror, man vs. nature themes, environmental awareness</p>
+            <p><strong>🎪 Modern Gaming:</strong> Crafting systems, temperature mechanics, seasonal gameplay</p>
+        </div>
+
+        <h2>🏆 Mastery Challenges: Arctic Trials</h2>
+        
+        <div class="frost-principle">
+            <h3>❄️ Elite Survival Tests</h3>
+            <p><strong>Prove your mastery of arctic survival:</strong></p>
+            
+            <p><strong>🧊 The Minimalist Challenge:</strong> Survive with only starting equipment</p>
+            <p><strong>⛈️ The Storm Rider:</strong> Complete quests during continuous blizzard</p>
+            <p><strong>🔥 The Fire Keeper:</strong> Maintain warmth source throughout entire adventure</p>
+            <p><strong>🤝 The Group Leader:</strong> Keep entire party alive through worst conditions</p>
+            <p><strong>⏰ The Speed Runner:</strong> Complete before hypothermia sets in</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Wizards of Morcar"</strong> - the expansion that took magic to its absolute limits! We'll dive into reality-bending spells, magical duels between wizards, advanced arcane systems, and encounters that make heroes feel like they're commanding the fundamental forces of creation itself.</p>
+        
+        <div class="frost-principle">
+            <p><strong>Remember:</strong> The Frozen Horror taught us that the greatest adventures aren't always about defeating monsters - sometimes they're about conquering our own limitations, working together against impossible odds, and finding the warmth of heroism even in the coldest, most hostile environments. It proved that survival itself can be the most heroic act of all!</p>
+        </div>
+    </div>
+
+    <script>
+        // Add snowflakes for atmospheric effect
+        function createSnowflakes() {
+            for (let i = 0; i < 20; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDelay = Math.random() * 3 + 's';
+                snowflake.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                document.querySelector('.blizzard-effect').appendChild(snowflake);
+            }
+        }
+        
+        createSnowflakes();
+        
+        // Survival systems animation
+        function updateSurvivalStats() {
+            const bodyHeat = document.getElementById('body_heat');
+            const stamina = document.getElementById('stamina');
+            const visibility = document.getElementById('visibility');
+            const equipment = document.getElementById('equipment');
+            
+            let heat = 65, stam = 78, vis = 40, equip = 82;
+            
+            setInterval(() => {
+                // Simulate changing conditions
+                heat = Math.max(20, Math.min(100, heat + (Math.random() - 0.6) * 5));
+                stam = Math.max(10, Math.min(100, stam + (Math.random() - 0.5) * 3));
+                vis = Math.max(10, Math.min(100, vis + (Math.random() - 0.4) * 8));
+                equip = Math.max(30, Math.min(100, equip + (Math.random() - 0.3) * 2));
+                
+                bodyHeat.textContent = Math.round(heat) + '%';
+                stamina.textContent = Math.round(stam) + '%';
+                visibility.textContent = Math.round(vis) + '%';
+                equipment.textContent = Math.round(equip) + '%';
+            }, 2000);
+        }
+        
+        updateSurvivalStats();
+        
+        // Survival Systems Visualization
+        const survivalCanvas = document.getElementById('survival_systems_canvas');
+        const survivalCtx = survivalCanvas.getContext('2d');
+        
+        function drawSurvivalSystems() {
+            survivalCtx.clearRect(0, 0, survivalCanvas.width, survivalCanvas.height);
+            
+            // Background
+            survivalCtx.fillStyle = '#000033';
+            survivalCtx.fillRect(0, 0, survivalCanvas.width, survivalCanvas.height);
+            
+            // Draw human body diagram
+            survivalCtx.fillStyle = '#4fc3f7';
+            survivalCtx.fillRect(275, 100, 50, 80); // torso
+            survivalCtx.fillRect(290, 80, 20, 30); // head
+            survivalCtx.fillRect(250, 120, 25, 40); // left arm
+            survivalCtx.fillRect(325, 120, 25, 40); // right arm
+            survivalCtx.fillRect(285, 180, 15, 50); // left leg
+            survivalCtx.fillRect(300, 180, 15, 50); // right leg
+            
+            // Draw heat loss indicators
+            const heatLoss = [
+                {x: 300, y: 95, loss: 40, label: 'Head\n40%'},
+                {x: 262, y: 140, loss: 15, label: 'Arms\n15%'},
+                {x: 338, y: 140, loss: 15, label: 'Arms\n15%'},
+                {x: 300, y: 140, loss: 20, label: 'Torso\n20%'},
+                {x: 292, y: 205, loss: 5, label: 'Legs\n5%'},
+                {x: 308, y: 205, loss: 5, label: 'Legs\n5%'}
+            ];
+            
+            heatLoss.forEach(area => {
+                // Heat loss visualization
+                const intensity = area.loss / 40;
+                survivalCtx.fillStyle = `rgba(255, ${255 - intensity * 200}, ${255 - intensity * 255}, 0.6)`;
+                survivalCtx.beginPath();
+                survivalCtx.arc(area.x, area.y, 15, 0, Math.PI * 2);
+                survivalCtx.fill();
+                
+                // Labels
+                survivalCtx.fillStyle = '#f0f8ff';
+                survivalCtx.font = '9px Arial';
+                survivalCtx.textAlign = 'center';
+                const lines = area.label.split('\n');
+                lines.forEach((line, index) => {
+                    survivalCtx.fillText(line, area.x + 30, area.y + (index * 10));
+                });
+            });
+            
+            survivalCtx.fillStyle = '#87ceeb';
+            survivalCtx.font = '16px Arial';
+            survivalCtx.textAlign = 'center';
+            survivalCtx.fillText('Body Heat Loss: Survival Priorities', 300, 30);
+            survivalCtx.fillStyle = '#f0f8ff';
+            survivalCtx.font = '10px Arial';
+            survivalCtx.fillText('Red areas lose heat fastest - protect these first!', 300, 280);
+            survivalCtx.textAlign = 'left';
+        }
+        
+        drawSurvivalSystems();
+        
+        // Interactive Frozen Terrain
+        const terrainGrid = document.getElementById('frozen_terrain');
+        const terrainAnalysis = document.getElementById('terrain_analysis');
+        let terrainState = [];
+        
+        // Initialize terrain grid
+        for (let i = 0; i < 80; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'terrain-cell';
+            
+            // Generate random terrain
+            const terrainType = Math.random();
+            if (terrainType < 0.3) {
+                cell.className += ' ice';
+                cell.textContent = '❄️';
+                terrainState.push('ice');
+            } else if (terrainType < 0.6) {
+                cell.className += ' snow';
+                cell.textContent = '🌨️';
+                terrainState.push('snow');
+            } else if (terrainType < 0.8) {
+                cell.className += ' water';
+                cell.textContent = '🌊';
+                terrainState.push('water');
+            } else {
+                cell.className += ' rock';
+                cell.textContent = '🪨';
+                terrainState.push('rock');
+            }
+            
+            cell.addEventListener('click', () => analyzeTerrainCell(i));
+            terrainGrid.appendChild(cell);
+        }
+        
+        // Add some heroes and monsters
+        terrainGrid.children[10].className = 'terrain-cell hero-pos';
+        terrainGrid.children[10].textContent = '🛡️';
+        terrainState[10] = 'hero';
+        
+        terrainGrid.children[65].className = 'terrain-cell monster-pos';
+        terrainGrid.children[65].textContent = '👹';
+        terrainState[65] = 'monster';
+        
+        function analyzeTerrainCell(index) {
+            const terrain = terrainState[index];
+            let analysis = '';
+            
+            switch(terrain) {
+                case 'ice':
+                    analysis = 'Slippery ice surface. Movement penalty, chance of falling. Provides no insulation.';
+                    break;
+                case 'snow':
+                    analysis = 'Deep snow. Slow movement, but provides some insulation for shelter building.';
+                    break;
+                case 'water':
+                    analysis = 'Freezing water. Instant hypothermia risk if entered. May contain fish.';
+                    break;
+                case 'rock':
+                    analysis = 'Solid rock. Good for shelter building, wind protection. No movement penalty.';
+                    break;
+                case 'hero':
+                    analysis = 'Hero position. Check for cold exposure, equipment status, and warmth needs.';
+                    break;
+                case 'monster':
+                    analysis = 'Monster detected! Cold-adapted creature likely. Approach with extreme caution.';
+                    break;
+                default:
+                    analysis = 'Unknown terrain type.';
+            }
+            
+            terrainAnalysis.innerHTML = `<strong>Terrain Analysis:</strong> ${analysis}`;
+        }
+        
+        // Weather Systems Visualization
+        const weatherCanvas = document.getElementById('weather_systems_canvas');
+        const weatherCtx = weatherCanvas.getContext('2d');
+        
+        function drawWeatherSystems() {
+            weatherCtx.clearRect(0, 0, weatherCanvas.width, weatherCanvas.height);
+            
+            // Background
+            weatherCtx.fillStyle = '#000033';
+            weatherCtx.fillRect(0, 0, weatherCanvas.width, weatherCanvas.height);
+            
+            // Draw weather progression
+            const weatherStages = [
+                {x: 100, y: 200, name: 'Clear', temp: -5, vis: 100, color: '#87ceeb'},
+                {x: 200, y: 180, name: 'Light Snow', temp: -10, vis: 80, color: '#b3e5fc'},
+                {x: 300, y: 150, name: 'Heavy Snow', temp: -15, vis: 50, color: '#81d4fa'},
+                {x: 400, y: 120, name: 'Blizzard', temp: -25, vis: 20, color: '#29b6f6'},
+                {x: 500, y: 100, name: 'Ice Storm', temp: -30, vis: 10, color: '#0277bd'}
+            ];
+            
+            // Draw progression line
+            weatherCtx.strokeStyle = '#87ceeb';
+            weatherCtx.lineWidth = 3;
+            weatherCtx.beginPath();
+            weatherStages.forEach((stage, index) => {
+                if (index === 0) weatherCtx.moveTo(stage.x, stage.y);
+                else weatherCtx.lineTo(stage.x, stage.y);
+            });
+            weatherCtx.stroke();
+            
+            // Draw weather stages
+            weatherStages.forEach(stage => {
+                // Weather circle
+                weatherCtx.fillStyle = stage.color;
+                weatherCtx.beginPath();
+                weatherCtx.arc(stage.x, stage.y, 20, 0, Math.PI * 2);
+                weatherCtx.fill();
+                
+                weatherCtx.strokeStyle = '#f0f8ff';
+                weatherCtx.lineWidth = 2;
+                weatherCtx.stroke();
+                
+                // Labels
+                weatherCtx.fillStyle = '#f0f8ff';
+                weatherCtx.font = '10px Arial';
+                weatherCtx.textAlign = 'center';
+                weatherCtx.fillText(stage.name, stage.x, stage.y + 35);
+                weatherCtx.fillText(`${stage.temp}°F`, stage.x, stage.y + 50);
+                weatherCtx.fillText(`${stage.vis}% vis`, stage.x, stage.y + 65);
+            });
+            
+            // Draw severity indicators
+            weatherStages.forEach((stage, index) => {
+                if (index > 0) {
+                    const severity = index;
+                    weatherCtx.fillStyle = '#ff6b35';
+                    for (let i = 0; i < severity; i++) {
+                        weatherCtx.fillRect(stage.x - 15 + (i * 8), stage.y - 35, 6, 6);
+                    }
+                }
+            });
+            
+            weatherCtx.fillStyle = '#87ceeb';
+            weatherCtx.font = '16px Arial';
+            weatherCtx.textAlign = 'center';
+            weatherCtx.fillText('Weather Severity Progression', 300, 30);
+            weatherCtx.fillStyle = '#f0f8ff';
+            weatherCtx.font = '10px Arial';
+            weatherCtx.fillText('🔴 = Danger Level Indicators', 300, 320);
+            weatherCtx.textAlign = 'left';
+        }
+        
+        drawWeatherSystems();
+        
+        // Warmth Economy Visualization
+        const warmthCanvas = document.getElementById('warmth_economy_canvas');
+        const warmthCtx = warmthCanvas.getContext('2d');
+        
+        function drawWarmthEconomy() {
+            warmthCtx.clearRect(0, 0, warmthCanvas.width, warmthCanvas.height);
+            
+            // Background
+            warmthCtx.fillStyle = '#000033';
+            warmthCtx.fillRect(0, 0, warmthCanvas.width, warmthCanvas.height);
+            
+            // Draw heat sources and zones
+            const heatSources = [
+                {x: 150, y: 150, radius: 60, type: 'Campfire', fuel: 'Wood'},
+                {x: 300, y: 150, radius: 40, type: 'Torch', fuel: 'Oil'},
+                {x: 450, y: 150, radius: 80, type: 'Magic Fire', fuel: 'Mana'}
+            ];
+            
+            heatSources.forEach(source => {
+                // Heat zone (gradient)
+                const gradient = warmthCtx.createRadialGradient(source.x, source.y, 0, source.x, source.y, source.radius);
+                gradient.addColorStop(0, 'rgba(255, 100, 0, 0.8)');
+                gradient.addColorStop(0.5, 'rgba(255, 150, 0, 0.4)');
+                gradient.addColorStop(1, 'rgba(255, 200, 0, 0.1)');
+                
+                warmthCtx.fillStyle = gradient;
+                warmthCtx.beginPath();
+                warmthCtx.arc(source.x, source.y, source.radius, 0, Math.PI * 2);
+                warmthCtx.fill();
+                
+                // Heat source
+                warmthCtx.fillStyle = '#ff6b35';
+                warmthCtx.beginPath();
+                warmthCtx.arc(source.x, source.y, 12, 0, Math.PI * 2);
+                warmthCtx.fill();
+                
+                warmthCtx.fillStyle = '#fff';
+                warmthCtx.font = '16px Arial';
+                warmthCtx.textAlign = 'center';
+                warmthCtx.fillText('🔥', source.x, source.y + 5);
+                
+                // Labels
+                warmthCtx.fillStyle = '#f0f8ff';
+                warmthCtx.font = '12px Arial';
+                warmthCtx.fillText(source.type, source.x, source.y + 30);
+                warmthCtx.font = '10px Arial';
+                warmthCtx.fillText(`Fuel: ${source.fuel}`, source.x, source.y + 45);
+            });
+            
+            // Draw heroes in safe zones
+            const heroes = [
+                {x: 140, y: 140, inZone: true},
+                {x: 320, y: 180, inZone: false},
+                {x: 440, y: 120, inZone: true}
+            ];
+            
+            heroes.forEach(hero => {
+                warmthCtx.fillStyle = hero.inZone ? '#4caf50' : '#f44336';
+                warmthCtx.fillRect(hero.x - 10, hero.y - 10, 20, 20);
+                warmthCtx.fillStyle = '#fff';
+                warmthCtx.font = '14px Arial';
+                warmthCtx.textAlign = 'center';
+                warmthCtx.fillText('🛡️', hero.x, hero.y + 4);
+            });
+            
+            warmthCtx.fillStyle = '#87ceeb';
+            warmthCtx.font = '16px Arial';
+            warmthCtx.textAlign = 'center';
+            warmthCtx.fillText('Heat Economy: Warmth Zones and Fuel Management', 300, 30);
+            warmthCtx.fillStyle = '#f0f8ff';
+            warmthCtx.font = '10px Arial';
+            warmthCtx.fillText('Green heroes = safe in heat zone, Red heroes = exposed to cold', 300, 280);
+            warmthCtx.textAlign = 'left';
+        }
+        
+        drawWarmthEconomy();
+        
+        // Ice Magic Visualization
+        const magicCanvas = document.getElementById('ice_magic_canvas');
+        const magicCtx = magicCanvas.getContext('2d');
+        
+        function drawIceMagic() {
+            magicCtx.clearRect(0, 0, magicCanvas.width, magicCanvas.height);
+            
+            // Background
+            magicCtx.fillStyle = '#000033';
+            magicCtx.fillRect(0, 0, magicCanvas.width, magicCanvas.height);
+            
+            // Draw spell effects
+            const spells = [
+                {x: 150, y: 150, name: 'Ice Wall', symbol: '🧊', color: '#81d4fa'},
+                {x: 300, y: 100, name: 'Warmth', symbol: '🔥', color: '#ff6b35'},
+                {x: 450, y: 150, name: 'Blizzard', symbol: '🌨️', color: '#b3e5fc'},
+                {x: 300, y: 200, name: 'Freeze', symbol: '❄️', color: '#4fc3f7'}
+            ];
+            
+            spells.forEach(spell => {
+                // Spell area
+                magicCtx.fillStyle = spell.color + '40';
+                magicCtx.beginPath();
+                magicCtx.arc(spell.x, spell.y, 40, 0, Math.PI * 2);
+                magicCtx.fill();
+                
+                magicCtx.strokeStyle = spell.color;
+                magicCtx.lineWidth = 3;
+                magicCtx.stroke();
+                
+                // Spell symbol
+                magicCtx.fillStyle = '#fff';
+                magicCtx.font = '24px Arial';
+                magicCtx.textAlign = 'center';
+                magicCtx.fillText(spell.symbol, spell.x, spell.y + 8);
+                
+                // Spell name
+                magicCtx.fillStyle = '#f0f8ff';
+                magicCtx.font = '12px Arial';
+                magicCtx.fillText(spell.name, spell.x, spell.y + 60);
+            });
+            
+            // Draw magical connections
+            magicCtx.strokeStyle = '#87ceeb';
+            magicCtx.lineWidth = 2;
+            magicCtx.setLineDash([5, 5]);
+            
+            // Connect spells showing interactions
+            magicCtx.beginPath();
+            magicCtx.moveTo(300, 120);
+            magicCtx.lineTo(150, 130);
+            magicCtx.stroke();
+            
+            magicCtx.beginPath();
+            magicCtx.moveTo(320, 120);
+            magicCtx.lineTo(450, 130);
+            magicCtx.stroke();
+            
+            magicCtx.setLineDash([]);
+            
+            magicCtx.fillStyle = '#87ceeb';
+            magicCtx.font = '16px Arial';
+            magicCtx.textAlign = 'center';
+            magicCtx.fillText('Elemental Magic: Ice and Fire Spells', 300, 30);
+            magicCtx.textAlign = 'left';
+        }
+        
+        drawIceMagic();
+        
+        // Survival Strategies Visualization
+        const strategiesCanvas = document.getElementById('survival_strategies_canvas');
+        const strategiesCtx = strategiesCanvas.getContext('2d');
+        
+        function drawSurvivalStrategies() {
+            strategiesCtx.clearRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
+            
+            // Background
+            strategiesCtx.fillStyle = '#000033';
+            strategiesCtx.fillRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
+            
+            // Draw survival priority pyramid
+            const priorities = [
+                {y: 280, width: 400, label: 'Shelter (Wind/Precipitation Protection)', color: '#0277bd'},
+                {y: 240, width: 320, label: 'Fire (Heat Source)', color: '#ff6b35'},
+                {y: 200, width: 240, label: 'Water (Melted Ice/Snow)', color: '#4fc3f7'},
+                {y: 160, width: 160, label: 'Food (High Calorie)', color: '#8bc34a'},
+                {y: 120, width: 80, label: 'Signaling (Rescue)', color: '#ffd700'}
+            ];
+            
+            priorities.forEach(priority => {
+                const x = (strategiesCanvas.width - priority.width) / 2;
+                
+                strategiesCtx.fillStyle = priority.color;
+                strategiesCtx.fillRect(x, priority.y, priority.width, 30);
+                
+                strategiesCtx.strokeStyle = '#f0f8ff';
+                strategiesCtx.lineWidth = 2;
+                strategiesCtx.strokeRect(x, priority.y, priority.width, 30);
+                
+                strategiesCtx.fillStyle = '#000';
+                strategiesCtx.font = '12px Arial';
+                strategiesCtx.textAlign = 'center';
+                strategiesCtx.fillText(priority.label, strategiesCanvas.width / 2, priority.y + 20);
+            });
+            
+            // Draw connecting lines
+            strategiesCtx.strokeStyle = '#87ceeb';
+            strategiesCtx.lineWidth = 2;
+            for (let i = 0; i < priorities.length - 1; i++) {
+                const current = priorities[i];
+                const next = priorities[i + 1];
+                
+                strategiesCtx.beginPath();
+                strategiesCtx.moveTo((strategiesCanvas.width - current.width) / 2, current.y);
+                strategiesCtx.lineTo((strategiesCanvas.width - next.width) / 2, next.y + 30);
+                strategiesCtx.stroke();
+                
+                strategiesCtx.beginPath();
+                strategiesCtx.moveTo((strategiesCanvas.width + current.width) / 2, current.y);
+                strategiesCtx.lineTo((strategiesCanvas.width + next.width) / 2, next.y + 30);
+                strategiesCtx.stroke();
+            }
+            
+            strategiesCtx.fillStyle = '#87ceeb';
+            strategiesCtx.font = '16px Arial';
+            strategiesCtx.textAlign = 'center';
+            strategiesCtx.fillText('Survival Priority Hierarchy', 300, 30);
+            strategiesCtx.fillStyle = '#f0f8ff';
+            strategiesCtx.font = '10px Arial';
+            strategiesCtx.fillText('Most critical needs at bottom - address in order for maximum survival chance', 300, 60);
+            strategiesCtx.textAlign = 'left';
+        }
+        
+        drawSurvivalStrategies();
+    </script>
+</body>
+</html>

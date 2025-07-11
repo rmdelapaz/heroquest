@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Treasure, Equipment, and Character Progression</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #8b4513 0%, #2f1b14 50%, #ffd700 100%);
+            color: #f4e4bc;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+        h1 {
+            color: #ffd700;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #daa520;
+            border-bottom: 2px solid #daa520;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .treasure-principle {
+            background: linear-gradient(135deg, #8b4513 0%, #daa520 100%);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #ffff00;
+        }
+        .equipment-card {
+            background: linear-gradient(135deg, #2f1b14 0%, #8b4513 100%);
+            border: 2px solid #cd853f;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 280px;
+            vertical-align: top;
+        }
+        .progression-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .reward-system {
+            background: rgba(218, 165, 32, 0.1);
+            border: 2px solid #daa520;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            background: #000;
+            display: block;
+            margin: 20px auto;
+        }
+        .treasure-chest {
+            width: 120px;
+            height: 80px;
+            background: linear-gradient(135deg, #8b4513, #cd853f);
+            border: 3px solid #ffd700;
+            border-radius: 10px;
+            margin: 10px;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .treasure-chest:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+        .treasure-chest::before {
+            content: '💰';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+        }
+        .treasure-chest.opened {
+            background: linear-gradient(135deg, #daa520, #ffd700);
+        }
+        .treasure-chest.opened::before {
+            content: '✨';
+        }
+        .character-sheet {
+            background: rgba(139, 69, 19, 0.3);
+            border: 2px solid #cd853f;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px;
+            min-width: 250px;
+            display: inline-block;
+        }
+        .stat-bar {
+            width: 100%;
+            height: 20px;
+            background: #2f1b14;
+            border: 1px solid #8b4513;
+            border-radius: 10px;
+            margin: 5px 0;
+            overflow: hidden;
+        }
+        .stat-fill {
+            height: 100%;
+            background: linear-gradient(to right, #cd853f, #ffd700);
+            border-radius: 9px;
+            transition: width 0.5s ease;
+        }
+        .equipment-slot {
+            width: 60px;
+            height: 60px;
+            border: 2px solid #8b4513;
+            border-radius: 8px;
+            display: inline-block;
+            margin: 5px;
+            background: #2f1b14;
+            text-align: center;
+            line-height: 56px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .equipment-slot:hover {
+            border-color: #ffd700;
+            background: #8b4513;
+        }
+        .equipment-slot.equipped {
+            background: linear-gradient(135deg, #daa520, #ffd700);
+            border-color: #ffff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>💰 Treasure, Equipment, and Character Progression 🏆</h1>
+        
+        <div class="treasure-principle">
+            <h2>🎯 The Psychology of Rewards: Why Treasure Matters</h2>
+            <p><strong>Treasure in HeroQuest is like the paycheck and promotion system in your career!</strong> It's not just about the gold coins - it's about the feeling of growth, accomplishment, and becoming more powerful. Every piece of equipment tells a story of triumph, every magical item represents a challenge overcome.</p>
+            
+            <p><strong>Real-world analogy:</strong> Think of character progression like leveling up in your favorite video game, combined with the satisfaction of collecting rare baseball cards, and the practical benefits of upgrading your tools at work. Each new piece of equipment should make you feel both more powerful and more invested in your character's story.</p>
+        </div>
+
+        <h2>🎪 The Three Pillars of Meaningful Progression</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Character Growth] --> B[Power Increase]
+                A --> C[Story Investment]
+                A --> D[Strategic Options]
+                
+                B --> B1[Better Combat Stats]
+                B --> B2[Enhanced Abilities]
+                B --> B3[Survival Tools]
+                
+                C --> C1[Personal Achievement]
+                C --> C2[Memorable Moments]
+                C --> C3[Character Identity]
+                
+                D --> D1[Tactical Flexibility]
+                D --> D2[Problem Solving]
+                D --> D3[Role Specialization]
+                
+                style A fill:#ffd700,stroke:#333,stroke-width:3px
+                style B fill:#daa520,stroke:#333,stroke-width:2px
+                style C fill:#daa520,stroke:#333,stroke-width:2px
+                style D fill:#daa520,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🏴‍☠️ Treasure Types: The Reward Ecosystem</h2>
+        
+        <div class="equipment-card">
+            <h3>💰 Gold Coins: The Universal Currency</h3>
+            <p><strong>Purpose:</strong> Freedom and flexibility</p>
+            <p><strong>Psychology:</strong> Immediate gratification and security</p>
+            <p><strong>Best Use:</strong> Equipment purchases and emergency supplies</p>
+            <p><strong>Design Philosophy:</strong> Like having cash in your wallet - always useful, provides options and peace of mind</p>
+        </div>
+
+        <div class="equipment-card">
+            <h3>⚔️ Weapons: Tools of Heroism</h3>
+            <p><strong>Purpose:</strong> Direct power increase</p>
+            <p><strong>Psychology:</strong> Feeling of strength and capability</p>
+            <p><strong>Best Use:</strong> Enhancing combat effectiveness</p>
+            <p><strong>Design Philosophy:</strong> Like upgrading from a bicycle to a motorcycle - same function, much more powerful</p>
+        </div>
+
+        <div class="equipment-card">
+            <h3>🛡️ Armor: Protection and Confidence</h3>
+            <p><strong>Purpose:</strong> Survival and risk mitigation</p>
+            <p><strong>Psychology:</strong> Security and boldness</p>
+            <p><strong>Best Use:</strong> Allowing aggressive tactics</p>
+            <p><strong>Design Philosophy:</strong> Like having good insurance - lets you take calculated risks</p>
+        </div>
+
+        <div class="equipment-card">
+            <h3>🧪 Potions: Emergency Insurance</h3>
+            <p><strong>Purpose:</strong> Crisis management</p>
+            <p><strong>Psychology:</strong> Safety net and emergency power</p>
+            <p><strong>Best Use:</strong> Crucial moments and tight situations</p>
+            <p><strong>Design Philosophy:</strong> Like a first aid kit - hope you don't need it, glad you have it</p>
+        </div>
+
+        <h2>🎮 Interactive Character Progression Simulator</h2>
+        
+        <div class="progression-box">
+            <p><strong>Watch your hero grow!</strong> Click treasure chests to gain equipment and see how it affects your character's capabilities.</p>
+            
+            <div style="text-align: center; margin: 20px 0;">
+                <div class="treasure-chest" onclick="openTreasure(0)"></div>
+                <div class="treasure-chest" onclick="openTreasure(1)"></div>
+                <div class="treasure-chest" onclick="openTreasure(2)"></div>
+                <div class="treasure-chest" onclick="openTreasure(3)"></div>
+                <div class="treasure-chest" onclick="openTreasure(4)"></div>
+            </div>
+            
+            <div class="character-sheet">
+                <h4>🛡️ Hero Status</h4>
+                <p><strong>Attack Power:</strong></p>
+                <div class="stat-bar"><div class="stat-fill" id="attack_bar" style="width: 30%;"></div></div>
+                <p><strong>Defense:</strong></p>
+                <div class="stat-bar"><div class="stat-fill" id="defense_bar" style="width: 25%;"></div></div>
+                <p><strong>Health:</strong></p>
+                <div class="stat-bar"><div class="stat-fill" id="health_bar" style="width: 40%;"></div></div>
+                <p><strong>Utility:</strong></p>
+                <div class="stat-bar"><div class="stat-fill" id="utility_bar" style="width: 20%;"></div></div>
+                
+                <div id="equipment_display" style="margin-top: 15px;">
+                    <p><strong>Equipment:</strong></p>
+                    <div class="equipment-slot" title="Weapon">⚔️</div>
+                    <div class="equipment-slot" title="Armor">🛡️</div>
+                    <div class="equipment-slot" title="Accessory">💍</div>
+                    <div class="equipment-slot" title="Potion">🧪</div>
+                </div>
+            </div>
+            
+            <div id="progression_feedback" style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
+                <strong>Character Progress:</strong> Your adventure begins! Find treasure to grow stronger.
+            </div>
+        </div>
+
+        <h2>⚖️ The Art of Balanced Rewards</h2>
+        
+        <canvas id="reward_balance_canvas" width="600" height="300"></canvas>
+        
+        <div class="treasure-principle">
+            <h3>🎯 The Goldilocks Principle of Loot</h3>
+            <p><strong>Like Goldilocks' porridge, rewards must be "just right" to maintain engagement:</strong></p>
+            
+            <p><strong>🔥 Too Much, Too Fast:</strong> Players feel overwhelmed and items lose value</p>
+            <p><strong>🧊 Too Little, Too Slow:</strong> Players feel unrewarded and lose motivation</p>
+            <p><strong>✨ Just Right:</strong> Regular meaningful rewards that feel earned and exciting</p>
+            
+            <p><strong>The "Christmas Morning" Principle:</strong> Each treasure discovery should feel like unwrapping a present - exciting, surprising, and valuable!</p>
+        </div>
+
+        <h2>🎭 Equipment Synergy and Combinations</h2>
+        
+        <canvas id="equipment_synergy_canvas" width="600" height="350"></canvas>
+        
+        <div class="reward-system">
+            <h3>🔗 Building Equipment Sets</h3>
+            <p><strong>Great equipment works together like instruments in an orchestra:</strong></p>
+            
+            <p><strong>⚔️ The Warrior Set:</strong> Broadsword + Plate Mail + Strength Potion = Unstoppable Tank</p>
+            <p><strong>🏹 The Ranger Set:</strong> Crossbow + Leather Armor + Speed Potion = Mobile Striker</p>
+            <p><strong>🔮 The Mage Set:</strong> Magic Staff + Robes + Wisdom Potion = Arcane Master</p>
+            <p><strong>🗡️ The Specialist Set:</strong> Shortsword + Chain Mail + Healing Potion = Versatile Support</p>
+        </div>
+
+        <h2>📈 Character Advancement Strategies</h2>
+        
+        <div class="progression-box">
+            <h3>🎯 The Investment Portfolio Approach</h3>
+            <p><strong>Like building a financial portfolio, character growth should be diversified and strategic:</strong></p>
+            
+            <p><strong>🛡️ Conservative Growth:</strong> Focus on defense and survivability first</p>
+            <ul>
+                <li>Prioritize armor and healing items</li>
+                <li>Build a strong foundation before taking risks</li>
+                <li>Good for new players or dangerous campaigns</li>
+            </ul>
+            
+            <p><strong>⚔️ Aggressive Growth:</strong> Maximize offensive capabilities</p>
+            <ul>
+                <li>Invest in powerful weapons and attack bonuses</li>
+                <li>High risk, high reward playstyle</li>
+                <li>Best when you have reliable team support</li>
+            </ul>
+            
+            <p><strong>🎪 Balanced Growth:</strong> Steady improvement across all areas</p>
+            <ul>
+                <li>Moderate upgrades to all capabilities</li>
+                <li>Flexible and adaptable to any situation</li>
+                <li>Recommended for most players and campaigns</li>
+            </ul>
+        </div>
+
+        <h2>🎪 The Psychology of Meaningful Choices</h2>
+        
+        <div class="treasure-principle">
+            <h3>🤔 Creating Difficult Decisions</h3>
+            <p><strong>The best progression systems force players to make tough choices, like choosing college majors:</strong></p>
+            
+            <p><strong>💰 Limited Resources:</strong> Can't buy everything, must prioritize</p>
+            <p><strong>⏰ Opportunity Cost:</strong> Choosing one path means giving up another</p>
+            <p><strong>🎯 Specialization vs. Versatility:</strong> Be great at one thing or good at many</p>
+            <p><strong>🎲 Risk vs. Reward:</strong> Safe upgrades vs. powerful but risky options</p>
+        </div>
+
+        <h2>🏪 Equipment Management and Trading</h2>
+        
+        <canvas id="trading_system_canvas" width="600" height="250"></canvas>
+        
+        <div class="reward-system">
+            <h3>🤝 The Marketplace Economy</h3>
+            <p><strong>Equipment trading is like a fantasy stock market:</strong></p>
+            
+            <p><strong>📊 Supply and Demand:</strong> Rare items cost more, common items are cheap</p>
+            <p><strong>💱 Character Needs:</strong> A Wizard values different items than a Barbarian</p>
+            <p><strong>⏰ Timing:</strong> Buy gear when you need it, sell when it's outdated</p>
+            <p><strong>🤝 Negotiation:</strong> Sometimes trading with teammates is better than selling</p>
+        </div>
+
+        <h2>🎨 Making Loot Feel Special</h2>
+        
+        <div class="progression-box">
+            <h3>✨ The Storytelling Approach</h3>
+            <p><strong>Every piece of equipment should have a story, like family heirlooms:</strong></p>
+            
+            <p><strong>❌ Boring:</strong> "You find a +1 sword"</p>
+            <p><strong>✅ Epic:</strong> "Beneath the fallen orc chieftain, you discover 'Shadowbane' - an ancient blade whose edge still gleams with silver fire. Legend says it was forged to slay creatures of darkness, and you can feel its eager hunger for evil blood."</p>
+            
+            <p><strong>The "Antiques Roadshow" Method:</strong> Give items history, previous owners, and legendary reputations that make players excited to wield them!</p>
+        </div>
+
+        <h2>🎯 Advanced Progression Mechanics</h2>
+        
+        <div class="treasure-principle">
+            <h3>🔄 Dynamic Growth Systems</h3>
+            <p><strong>Like video games with unlockable content:</strong></p>
+            
+            <p><strong>🏆 Achievement Unlocks:</strong> Completing quests opens new equipment options</p>
+            <p><strong>🔧 Customization Paths:</strong> Players choose how their character specializes</p>
+            <p><strong>📚 Knowledge Progression:</strong> Learning new tactics and spell combinations</p>
+            <p><strong>🤝 Reputation Systems:</strong> How other NPCs react based on your achievements</p>
+        </div>
+
+        <h2>💡 Creative Reward Ideas</h2>
+        
+        <div class="reward-system">
+            <h3>🎭 Beyond Gold and Steel</h3>
+            <p><strong>Think outside the treasure chest:</strong></p>
+            
+            <p><strong>🗺️ Information Rewards:</strong> Maps, clues, and secret knowledge</p>
+            <p><strong>🤝 Ally Rewards:</strong> NPCs who help in future adventures</p>
+            <p><strong>🏰 Property Rewards:</strong> Bases, hideouts, and safe houses</p>
+            <p><strong>👑 Status Rewards:</strong> Titles, reputation, and social standing</p>
+            <p><strong>🔮 Unique Abilities:</strong> Special powers that can't be bought</p>
+        </div>
+
+        <h2>🎮 Progression Pacing Strategies</h2>
+        
+        <canvas id="pacing_strategy_canvas" width="600" height="300"></canvas>
+        
+        <div class="progression-box">
+            <h3>⏰ The Theme Park Design Philosophy</h3>
+            <p><strong>Like designing a great theme park, progression should have rhythm and flow:</strong></p>
+            
+            <p><strong>🎢 Big Moments:</strong> Major equipment upgrades feel like riding the biggest roller coaster</p>
+            <p><strong>🎪 Small Delights:</strong> Minor improvements are like fun carnival games</p>
+            <p><strong>🍿 Rest Periods:</strong> Time to enjoy and appreciate what you've gained</p>
+            <p><strong>🎯 Clear Goals:</strong> Players can see the next exciting reward ahead</p>
+        </div>
+
+        <h2>🚨 Common Progression Pitfalls</h2>
+        
+        <div class="treasure-principle">
+            <h3>⚠️ The Seven Deadly Sins of Loot Design</h3>
+            
+            <p><strong>😴 The Boring Upgrade:</strong> +1 sword that feels exactly like the old sword</p>
+            <p><strong>💸 The Money Sink:</strong> Expensive items that don't feel worth the cost</p>
+            <p><strong>🎰 The Slot Machine:</strong> Completely random rewards with no player agency</p>
+            <p><strong>⛰️ The Grind Mountain:</strong> Progress so slow it feels like work</p>
+            <p><strong>🌊 The Power Flood:</strong> So many upgrades they lose all meaning</p>
+            <p><strong>🚫 The Dead End:</strong> Items that become useless after one adventure</p>
+            <p><strong>⚖️ The Imbalance:</strong> Rewards that make some players feel left out</p>
+        </div>
+
+        <h2>🎯 Practice Scenarios: Loot Distribution</h2>
+        
+        <div class="progression-box">
+            <h3>🧩 Treasury Master Challenges</h3>
+            
+            <p><strong>📚 Scenario 1: The Unequal Party</strong></p>
+            <p><em>Your party has a veteran player with great gear and a new player with basic equipment. How do you distribute found treasure fairly?</em></p>
+            
+            <p><strong>🏰 Scenario 2: The Specialized Find</strong></p>
+            <p><em>You find a powerful wizard staff, but your party has no wizard. Do you save it, sell it, or let someone multiclass?</em></p>
+            
+            <p><strong>🎲 Scenario 3: The Tough Choice</strong></p>
+            <p><em>Limited funds: buy one amazing weapon or several good pieces of armor for the whole party?</em></p>
+        </div>
+
+        <h2>🌟 Creating Legendary Moments</h2>
+        
+        <div class="reward-system">
+            <h3>🏆 The Hall of Fame Philosophy</h3>
+            <p><strong>Some rewards should be so special they become legends told for years:</strong></p>
+            
+            <p><strong>⚔️ The Perfect Moment:</strong> Finding exactly the right weapon at the crucial time</p>
+            <p><strong>🎭 The Dramatic Reveal:</strong> Discovering the true power of a mysterious item</p>
+            <p><strong>🤝 The Shared Victory:</strong> Equipment that helps the whole party succeed</p>
+            <p><strong>📖 The Story Generator:</strong> Items that create new adventures and plotlines</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"The Original Quest Book Adventures"</strong> - diving deep into the classic quests that started it all! We'll analyze the design principles, hidden secrets, optimal strategies, and how these timeless adventures create the perfect introduction to the HeroQuest universe.</p>
+        
+        <div class="treasure-principle">
+            <p><strong>Remember:</strong> Great progression isn't just about numbers getting bigger - it's about making players feel like they're growing, achieving, and becoming the heroes they always dreamed of being. Every reward should tell a story and every upgrade should feel like a triumph earned through courage and cunning!</p>
+        </div>
+    </div>
+
+    <script>
+        // Character Progression Simulator
+        let characterStats = {
+            attack: 30,
+            defense: 25,
+            health: 40,
+            utility: 20
+        };
+        
+        let treasuresFound = 0;
+        const treasures = [
+            {name: 'Iron Sword', attack: 15, feedback: 'A sturdy blade increases your combat prowess!'},
+            {name: 'Leather Armor', defense: 20, feedback: 'Protective gear makes you more confident in battle!'},
+            {name: 'Health Potion', health: 25, feedback: 'Healing magic strengthens your vitality!'},
+            {name: 'Magic Ring', utility: 30, feedback: 'Mystical powers expand your capabilities!'},
+            {name: 'Hero\'s Cloak', attack: 10, defense: 15, health: 15, utility: 20, feedback: 'Legendary equipment transforms you into a true hero!'}
+        ];
+        
+        function openTreasure(index) {
+            if (index >= treasuresFound) {
+                const treasure = treasures[index];
+                const chests = document.querySelectorAll('.treasure-chest');
+                chests[index].classList.add('opened');
+                
+                // Update stats
+                if (treasure.attack) characterStats.attack += treasure.attack;
+                if (treasure.defense) characterStats.defense += treasure.defense;
+                if (treasure.health) characterStats.health += treasure.health;
+                if (treasure.utility) characterStats.utility += treasure.utility;
+                
+                // Update visual bars
+                updateStatBars();
+                
+                // Update equipment display
+                const equipmentSlots = document.querySelectorAll('.equipment-slot');
+                if (index < equipmentSlots.length) {
+                    equipmentSlots[index].classList.add('equipped');
+                }
+                
+                // Update feedback
+                document.getElementById('progression_feedback').innerHTML = 
+                    `<strong>🎉 ${treasure.name} Found!</strong><br>${treasure.feedback}`;
+                
+                treasuresFound++;
+                
+                if (treasuresFound === treasures.length) {
+                    setTimeout(() => {
+                        document.getElementById('progression_feedback').innerHTML = 
+                            `<strong>🏆 Hero's Journey Complete!</strong><br>You have become a legendary warrior, feared by monsters and celebrated by the innocent!`;
+                    }, 2000);
+                }
+            }
+        }
+        
+        function updateStatBars() {
+            const maxStat = 100;
+            document.getElementById('attack_bar').style.width = Math.min(characterStats.attack, maxStat) + '%';
+            document.getElementById('defense_bar').style.width = Math.min(characterStats.defense, maxStat) + '%';
+            document.getElementById('health_bar').style.width = Math.min(characterStats.health, maxStat) + '%';
+            document.getElementById('utility_bar').style.width = Math.min(characterStats.utility, maxStat) + '%';
+        }
+        
+        // Reward Balance Visualization
+        const balanceCanvas = document.getElementById('reward_balance_canvas');
+        const balanceCtx = balanceCanvas.getContext('2d');
+        
+        function drawRewardBalance() {
+            balanceCtx.clearRect(0, 0, balanceCanvas.width, balanceCanvas.height);
+            
+            // Background
+            balanceCtx.fillStyle = '#2f1b14';
+            balanceCtx.fillRect(0, 0, balanceCanvas.width, balanceCanvas.height);
+            
+            // Draw balance scale
+            balanceCtx.strokeStyle = '#daa520';
+            balanceCtx.lineWidth = 4;
+            
+            // Scale base
+            balanceCtx.beginPath();
+            balanceCtx.moveTo(300, 250);
+            balanceCtx.lineTo(300, 100);
+            balanceCtx.stroke();
+            
+            // Scale arms
+            balanceCtx.beginPath();
+            balanceCtx.moveTo(150, 150);
+            balanceCtx.lineTo(450, 150);
+            balanceCtx.stroke();
+            
+            // Left pan (Too Little)
+            balanceCtx.fillStyle = '#8b4513';
+            balanceCtx.fillRect(100, 140, 100, 60);
+            balanceCtx.fillStyle = '#f4e4bc';
+            balanceCtx.font = '12px Arial';
+            balanceCtx.textAlign = 'center';
+            balanceCtx.fillText('Too Little', 150, 165);
+            balanceCtx.fillText('Boring', 150, 180);
+            
+            // Right pan (Too Much)
+            balanceCtx.fillStyle = '#8b4513';
+            balanceCtx.fillRect(400, 160, 100, 60);
+            balanceCtx.fillText('Too Much', 450, 185);
+            balanceCtx.fillText('Overwhelming', 450, 200);
+            
+            // Perfect balance indicator
+            balanceCtx.fillStyle = '#ffd700';
+            balanceCtx.beginPath();
+            balanceCtx.arc(300, 120, 15, 0, Math.PI * 2);
+            balanceCtx.fill();
+            balanceCtx.fillStyle = '#000';
+            balanceCtx.fillText('Perfect', 300, 125);
+            
+            balanceCtx.fillStyle = '#ffd700';
+            balanceCtx.font = '16px Arial';
+            balanceCtx.fillText('The Balance of Meaningful Rewards', 300, 30);
+            balanceCtx.textAlign = 'left';
+        }
+        
+        drawRewardBalance();
+        
+        // Equipment Synergy Visualization
+        const synergyCanvas = document.getElementById('equipment_synergy_canvas');
+        const synergyCtx = synergyCanvas.getContext('2d');
+        
+        function drawEquipmentSynergy() {
+            synergyCtx.clearRect(0, 0, synergyCanvas.width, synergyCanvas.height);
+            
+            // Background
+            synergyCtx.fillStyle = '#2f1b14';
+            synergyCtx.fillRect(0, 0, synergyCanvas.width, synergyCanvas.height);
+            
+            // Draw character types
+            const builds = [
+                {x: 150, y: 150, name: 'Tank Build', items: ['🛡️', '⚔️', '🧪'], color: '#4a90e2'},
+                {x: 450, y: 150, name: 'DPS Build', items: ['🗡️', '🏹', '⚡'], color: '#ff4500'},
+                {x: 150, y: 250, name: 'Support Build', items: ['🔮', '📚', '🌟'], color: '#9370db'},
+                {x: 450, y: 250, name: 'Utility Build', items: ['🎒', '🗝️', '💰'], color: '#32cd32'}
+            ];
+            
+            builds.forEach(build => {
+                // Draw character circle
+                synergyCtx.fillStyle = build.color;
+                synergyCtx.beginPath();
+                synergyCtx.arc(build.x, build.y, 40, 0, Math.PI * 2);
+                synergyCtx.fill();
+                
+                // Draw equipment around character
+                build.items.forEach((item, index) => {
+                    const angle = (index * 120) * (Math.PI / 180);
+                    const itemX = build.x + Math.cos(angle) * 60;
+                    const itemY = build.y + Math.sin(angle) * 60;
+                    
+                    synergyCtx.fillStyle = '#daa520';
+                    synergyCtx.fillRect(itemX - 15, itemY - 15, 30, 30);
+                    synergyCtx.fillStyle = '#000';
+                    synergyCtx.font = '16px Arial';
+                    synergyCtx.textAlign = 'center';
+                    synergyCtx.fillText(item, itemX, itemY + 5);
+                    
+                    // Draw connection line
+                    synergyCtx.strokeStyle = build.color;
+                    synergyCtx.lineWidth = 2;
+                    synergyCtx.beginPath();
+                    synergyCtx.moveTo(build.x, build.y);
+                    synergyCtx.lineTo(itemX, itemY);
+                    synergyCtx.stroke();
+                });
+                
+                // Draw build name
+                synergyCtx.fillStyle = '#f4e4bc';
+                synergyCtx.font = '12px Arial';
+                synergyCtx.fillText(build.name, build.x, build.y + 70);
+            });
+            
+            synergyCtx.fillStyle = '#ffd700';
+            synergyCtx.font = '16px Arial';
+            synergyCtx.textAlign = 'center';
+            synergyCtx.fillText('Equipment Synergy: Building Specialized Characters', 300, 30);
+            synergyCtx.textAlign = 'left';
+        }
+        
+        drawEquipmentSynergy();
+        
+        // Trading System Visualization
+        const tradingCanvas = document.getElementById('trading_system_canvas');
+        const tradingCtx = tradingCanvas.getContext('2d');
+        
+        function drawTradingSystem() {
+            tradingCtx.clearRect(0, 0, tradingCanvas.width, tradingCanvas.height);
+            
+            // Background
+            tradingCtx.fillStyle = '#2f1b14';
+            tradingCtx.fillRect(0, 0, tradingCanvas.width, tradingCanvas.height);
+            
+            // Draw marketplace
+            tradingCtx.fillStyle = '#8b4513';
+            tradingCtx.fillRect(200, 100, 200, 100);
+            tradingCtx.fillStyle = '#f4e4bc';
+            tradingCtx.font = '14px Arial';
+            tradingCtx.textAlign = 'center';
+            tradingCtx.fillText('🏪 Marketplace', 300, 130);
+            
+            // Draw traders
+            const traders = [
+                {x: 100, y: 150, name: 'Weapons', item: '⚔️'},
+                {x: 500, y: 150, name: 'Armor', item: '🛡️'},
+                {x: 150, y: 50, name: 'Magic', item: '🔮'},
+                {x: 450, y: 50, name: 'Supplies', item: '🧪'}
+            ];
+            
+            traders.forEach(trader => {
+                tradingCtx.fillStyle = '#daa520';
+                tradingCtx.fillRect(trader.x - 25, trader.y - 25, 50, 50);
+                tradingCtx.fillStyle = '#000';
+                tradingCtx.font = '20px Arial';
+                tradingCtx.fillText(trader.item, trader.x, trader.y + 5);
+                
+                tradingCtx.fillStyle = '#f4e4bc';
+                tradingCtx.font = '10px Arial';
+                tradingCtx.fillText(trader.name, trader.x, trader.y + 45);
+                
+                // Draw connection to marketplace
+                tradingCtx.strokeStyle = '#cd853f';
+                tradingCtx.lineWidth = 2;
+                tradingCtx.beginPath();
+                tradingCtx.moveTo(trader.x, trader.y);
+                tradingCtx.lineTo(300, 150);
+                tradingCtx.stroke();
+            });
+            
+            tradingCtx.fillStyle = '#ffd700';
+            tradingCtx.font = '16px Arial';
+            tradingCtx.textAlign = 'center';
+            tradingCtx.fillText('Equipment Trading Network', 300, 20);
+            tradingCtx.textAlign = 'left';
+        }
+        
+        drawTradingSystem();
+        
+        // Progression Pacing Visualization
+        const pacingCanvas = document.getElementById('pacing_strategy_canvas');
+        const pacingCtx = pacingCanvas.getContext('2d');
+        
+        function drawPacingStrategy() {
+            pacingCtx.clearRect(0, 0, pacingCanvas.width, pacingCanvas.height);
+            
+            // Background
+            pacingCtx.fillStyle = '#2f1b14';
+            pacingCtx.fillRect(0, 0, pacingCanvas.width, pacingCanvas.height);
+            
+            // Draw progression curve
+            pacingCtx.strokeStyle = '#ffd700';
+            pacingCtx.lineWidth = 3;
+            pacingCtx.beginPath();
+            
+            const points = [];
+            for (let i = 0; i <= 100; i++) {
+                const x = (i / 100) * 500 + 50;
+                const t = i / 20;
+                const y = 250 - (50 + 30 * Math.sin(t) + 20 * Math.sin(t * 2) + 10 * Math.sin(t * 3));
+                points.push({x, y});
+                
+                if (i === 0) pacingCtx.moveTo(x, y);
+                else pacingCtx.lineTo(x, y);
+            }
+            pacingCtx.stroke();
+            
+            // Mark major reward points
+            const majorRewards = [20, 40, 60, 80, 95];
+            majorRewards.forEach(point => {
+                const {x, y} = points[point];
+                pacingCtx.fillStyle = '#ffff00';
+                pacingCtx.beginPath();
+                pacingCtx.arc(x, y, 6, 0, Math.PI * 2);
+                pacingCtx.fill();
+                
+                pacingCtx.fillStyle = '#f4e4bc';
+                pacingCtx.font = '10px Arial';
+                pacingCtx.textAlign = 'center';
+                pacingCtx.fillText('Major', x, y - 15);
+                pacingCtx.fillText('Reward', x, y - 5);
+            });
+            
+            pacingCtx.fillStyle = '#ffd700';
+            pacingCtx.font = '16px Arial';
+            pacingCtx.fillText('Reward Pacing: Peaks and Valleys', 200, 30);
+            
+            pacingCtx.fillStyle = '#f4e4bc';
+            pacingCtx.font = '12px Arial';
+            pacingCtx.fillText('Adventure Progress', 250, 280);
+            pacingCtx.save();
+            pacingCtx.translate(20, 200);
+            pacingCtx.rotate(-Math.PI / 2);
+            pacingCtx.fillText('Excitement Level', 0, 0);
+            pacingCtx.restore();
+            pacingCtx.textAlign = 'left';
+        }
+        
+        drawPacingStrategy();
+    </script>
+</body>
+</html>

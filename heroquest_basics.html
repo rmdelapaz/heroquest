@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Basics - Your First Adventure</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c1810 0%, #4a2c1a 100%);
+            color: #f4e4c1;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            color: #ffd700;
+            text-align: center;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #ff6b35;
+            border-bottom: 2px solid #ff6b35;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        .hero-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            min-width: 200px;
+        }
+        .dice-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .practice-box {
+            background: rgba(255, 107, 53, 0.1);
+            border: 2px solid #ff6b35;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .analogy-box {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        canvas {
+            border: 2px solid #ffd700;
+            border-radius: 10px;
+            background: #000;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏰 HeroQuest: Your First Adventure Begins Here! 🗡️</h1>
+        
+        <div class="analogy-box">
+            <h2>🎭 What is HeroQuest?</h2>
+            <p><strong>Think of HeroQuest like being the director of your own fantasy movie!</strong> One player becomes the "Evil Wizard" (like a movie director), while up to four others become heroes (the main characters). The Evil Wizard controls the story, the monsters, and the challenges, while the heroes make decisions and fight their way through dungeons.</p>
+            
+            <p>It's like <strong>Dungeons & Dragons meets Monopoly</strong> - you have a board with rooms and corridors, but instead of buying properties, you're fighting monsters and finding treasure!</p>
+        </div>
+
+        <h2>🎲 The Foundation: Understanding the Game Flow</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Game Setup] --> B[Hero Turn: Move & Act]
+                B --> C[Combat Resolution]
+                C --> D[Search for Treasure]
+                D --> E[Evil Wizard Turn]
+                E --> F[Monster Actions]
+                F --> G{Quest Complete?}
+                G -->|No| B
+                G -->|Yes| H[Victory/Defeat]
+                
+                style A fill:#ffd700,stroke:#333,stroke-width:2px
+                style H fill:#ff6b35,stroke:#333,stroke-width:2px
+                style G fill:#90EE90,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🦸 Meet Your Heroes</h2>
+        
+        <p>Each hero is like a specialist in a video game - they have different strengths and weaknesses:</p>
+        
+        <div class="hero-card">
+            <h3>🛡️ The Barbarian</h3>
+            <p><strong>The Tank:</strong> Like a linebacker in football - high strength, lots of health, but not very smart. Perfect for charging into battle!</p>
+            <p><strong>Stats:</strong> Move 2, Attack 3, Defend 2, Body 8, Mind 2</p>
+        </div>
+
+        <div class="hero-card">
+            <h3>🏹 The Elf</h3>
+            <p><strong>The Sniper:</strong> Like a skilled archer - balanced fighter who can also cast spells. The Swiss Army knife of heroes!</p>
+            <p><strong>Stats:</strong> Move 2, Attack 2, Defend 2, Body 4, Mind 4</p>
+        </div>
+
+        <div class="hero-card">
+            <h3>🔮 The Wizard</h3>
+            <p><strong>The Artillery:</strong> Like a field medic with a rocket launcher - weak physically but devastating spells!</p>
+            <p><strong>Stats:</strong> Move 2, Attack 1, Defend 2, Body 4, Mind 6</p>
+        </div>
+
+        <div class="hero-card">
+            <h3>🗡️ The Dwarf</h3>
+            <p><strong>The Specialist:</strong> Like a demolitions expert - great at disarming traps and solid in combat!</p>
+            <p><strong>Stats:</strong> Move 2, Attack 2, Defend 3, Body 6, Mind 3</p>
+        </div>
+
+        <h2>🎯 The Dice System: Your Digital Destiny</h2>
+        
+        <div class="dice-container">
+            <canvas id="dice_animation_canvas" width="400" height="200"></canvas>
+        </div>
+
+        <div class="analogy-box">
+            <p><strong>Combat is like a poker game with dice instead of cards!</strong> You roll dice to attack, your opponent rolls to defend. The difference between your skulls (hits) and their shields (blocks) determines damage.</p>
+            
+            <p><strong>Real-world example:</strong> You're the Barbarian attacking an Orc. You roll 3 dice (your Attack value) and get 2 skulls. The Orc rolls 1 die (its Defense) and gets 1 shield. You deal 1 damage (2 skulls - 1 shield = 1 damage)!</p>
+        </div>
+
+        <h2>🗺️ Reading the Game Board</h2>
+        
+        <div class="mermaid">
+            graph LR
+                A[Stone Passage] --> B[Wooden Door]
+                B --> C[Room with Monsters]
+                C --> D[Secret Door]
+                D --> E[Treasure Room]
+                
+                F[Trap] --> G[Stairs]
+                G --> H[Furniture to Search]
+                
+                style C fill:#ff6b35,stroke:#333,stroke-width:2px
+                style E fill:#ffd700,stroke:#333,stroke-width:2px
+                style F fill:#ff0000,stroke:#333,stroke-width:2px
+        </div>
+
+        <p>The board is like a blueprint of a medieval castle. Each square represents about 5 feet of space - imagine each hero as being roughly the size of a chess piece in a real castle!</p>
+
+        <h2>🎬 Turn Structure: The Action Movie Formula</h2>
+        
+        <p>Each turn follows the same pattern as an action movie scene:</p>
+        
+        <div class="practice-box">
+            <h3>🎬 Hero Turn (The Action Scene)</h3>
+            <ol>
+                <li><strong>Move:</strong> Like choosing your position in a fight scene</li>
+                <li><strong>Attack:</strong> The dramatic sword clash or spell casting</li>
+                <li><strong>Search:</strong> The treasure hunt moment</li>
+                <li><strong>Cast Spell:</strong> The magical plot twist</li>
+            </ol>
+            
+            <h3>🎭 Evil Wizard Turn (The Plot Twist)</h3>
+            <ol>
+                <li><strong>Move Monsters:</strong> Like moving chess pieces</li>
+                <li><strong>Attack with Monsters:</strong> The villain's counterattack</li>
+                <li><strong>Reveal New Threats:</strong> The surprise monster spawn</li>
+            </ol>
+        </div>
+
+        <h2>🏴‍☠️ Common Beginner Mistakes (Learn from Others' Pain!)</h2>
+        
+        <div class="analogy-box">
+            <h3>🚫 The "Rambo" Mistake</h3>
+            <p><strong>Don't charge alone!</strong> It's like trying to storm a castle by yourself. HeroQuest rewards teamwork - stick together and support each other!</p>
+            
+            <h3>🚫 The "Scrooge" Mistake</h3>
+            <p><strong>Don't hoard spells!</strong> Your wizard's spells are like ammunition - they're useless if you never use them. Better to use a healing potion early than die with a full inventory!</p>
+            
+            <h3>🚫 The "Speed Demon" Mistake</h3>
+            <p><strong>Don't rush through rooms!</strong> It's like being a tourist who only takes photos and never actually looks around. Search everything - that's where the good treasure is!</p>
+        </div>
+
+        <h2>🎮 Interactive Combat Simulator</h2>
+        
+        <canvas id="combat_simulator_canvas" width="600" height="400"></canvas>
+        
+        <div class="practice-box">
+            <h3>🎯 Practice Activity: Your First Combat</h3>
+            <p><strong>Scenario:</strong> You're a Barbarian facing a Goblin in a narrow corridor.</p>
+            <p><strong>Your stats:</strong> Attack 3, Defend 2, Body 8</p>
+            <p><strong>Goblin stats:</strong> Attack 1, Defend 1, Body 1</p>
+            
+            <p><strong>Step-by-step:</strong></p>
+            <ol>
+                <li>Roll 3 dice for your attack</li>
+                <li>Count the skulls (hits)</li>
+                <li>Goblin rolls 1 die for defense</li>
+                <li>Count the shields (blocks)</li>
+                <li>Subtract shields from skulls = damage dealt</li>
+                <li>If damage ≥ Goblin's Body Points, it's defeated!</li>
+            </ol>
+        </div>
+
+        <h2>🌟 Why HeroQuest is Special</h2>
+        
+        <p>HeroQuest is like the perfect gateway drug to tabletop gaming. It has:</p>
+        
+        <div class="analogy-box">
+            <p><strong>🎲 Simple Rules:</strong> Like learning to ride a bike - once you get it, you never forget</p>
+            <p><strong>🎭 Great Storytelling:</strong> Like being in your own Lord of the Rings movie</p>
+            <p><strong>🤝 Social Gaming:</strong> Like having a weekly poker night, but with dragons</p>
+            <p><strong>🎨 Tangible Fun:</strong> Like LEGO for adults - you can see and touch your adventure</p>
+        </div>
+
+        <h2>🎯 Next Steps: Preparing for Your First Quest</h2>
+        
+        <div class="practice-box">
+            <h3>📋 Pre-Game Checklist</h3>
+            <p>Before you start your first adventure, make sure you have:</p>
+            <ul>
+                <li>✅ Chosen your hero (pick based on your play style!)</li>
+                <li>✅ Understood your character's stats</li>
+                <li>✅ Practiced rolling dice and counting symbols</li>
+                <li>✅ Read through the basic rules once</li>
+                <li>✅ Set up the game board according to the quest</li>
+            </ul>
+        </div>
+
+        <h2>🔮 What's Coming Next</h2>
+        
+        <p>In our next lecture, we'll dive deep into <strong>"The Art of Dungeon Mastering"</strong> - how to be an amazing Evil Wizard who creates memorable adventures. We'll cover storytelling techniques, how to balance challenge and fun, and the psychology of keeping your players engaged!</p>
+        
+        <div class="analogy-box">
+            <p><strong>Remember:</strong> HeroQuest isn't just a game - it's a storytelling engine that creates memories. Every quest is a chance to write your own epic fantasy tale with friends. The dice provide the randomness, but you and your friends provide the heroism!</p>
+        </div>
+    </div>
+
+    <script>
+        // Dice Animation
+        const diceCanvas = document.getElementById('dice_animation_canvas');
+        const diceCtx = diceCanvas.getContext('2d');
+        
+        let diceRotation = 0;
+        
+        function drawDice() {
+            diceCtx.clearRect(0, 0, diceCanvas.width, diceCanvas.height);
+            
+            // Draw animated dice
+            diceCtx.save();
+            diceCtx.translate(200, 100);
+            diceCtx.rotate(diceRotation);
+            
+            // Draw dice body
+            diceCtx.fillStyle = '#fff';
+            diceCtx.fillRect(-25, -25, 50, 50);
+            diceCtx.strokeStyle = '#000';
+            diceCtx.lineWidth = 2;
+            diceCtx.strokeRect(-25, -25, 50, 50);
+            
+            // Draw skull symbol
+            diceCtx.fillStyle = '#000';
+            diceCtx.font = '20px Arial';
+            diceCtx.textAlign = 'center';
+            diceCtx.fillText('💀', 0, 8);
+            
+            diceCtx.restore();
+            
+            // Draw text
+            diceCtx.fillStyle = '#ffd700';
+            diceCtx.font = '16px Arial';
+            diceCtx.textAlign = 'center';
+            diceCtx.fillText('HeroQuest Combat Dice', 200, 160);
+            diceCtx.fillText('Skulls = Hits, Shields = Blocks', 200, 180);
+            
+            diceRotation += 0.02;
+            requestAnimationFrame(drawDice);
+        }
+        
+        drawDice();
+        
+        // Combat Simulator
+        const combatCanvas = document.getElementById('combat_simulator_canvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        function drawCombatScene() {
+            combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Draw background
+            combatCtx.fillStyle = '#2c1810';
+            combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Draw hero (Barbarian)
+            combatCtx.fillStyle = '#4a90e2';
+            combatCtx.fillRect(50, 150, 80, 100);
+            combatCtx.fillStyle = '#fff';
+            combatCtx.font = '14px Arial';
+            combatCtx.fillText('Barbarian', 60, 140);
+            combatCtx.fillText('ATK: 3, DEF: 2', 45, 270);
+            combatCtx.fillText('Body: 8', 65, 290);
+            
+            // Draw monster (Goblin)
+            combatCtx.fillStyle = '#8b4513';
+            combatCtx.fillRect(470, 150, 80, 100);
+            combatCtx.fillStyle = '#fff';
+            combatCtx.fillText('Goblin', 490, 140);
+            combatCtx.fillText('ATK: 1, DEF: 1', 475, 270);
+            combatCtx.fillText('Body: 1', 500, 290);
+            
+            // Draw VS in the middle
+            combatCtx.fillStyle = '#ff6b35';
+            combatCtx.font = '36px Arial';
+            combatCtx.textAlign = 'center';
+            combatCtx.fillText('VS', 300, 200);
+            
+            // Draw combat arrows
+            combatCtx.strokeStyle = '#ffd700';
+            combatCtx.lineWidth = 3;
+            combatCtx.beginPath();
+            combatCtx.moveTo(130, 200);
+            combatCtx.lineTo(230, 200);
+            combatCtx.stroke();
+            
+            combatCtx.beginPath();
+            combatCtx.moveTo(370, 200);
+            combatCtx.lineTo(470, 200);
+            combatCtx.stroke();
+            
+            // Draw arrow heads
+            combatCtx.beginPath();
+            combatCtx.moveTo(225, 195);
+            combatCtx.lineTo(230, 200);
+            combatCtx.lineTo(225, 205);
+            combatCtx.stroke();
+            
+            combatCtx.beginPath();
+            combatCtx.moveTo(375, 195);
+            combatCtx.lineTo(370, 200);
+            combatCtx.lineTo(375, 205);
+            combatCtx.stroke();
+            
+            // Reset text alignment
+            combatCtx.textAlign = 'left';
+        }
+        
+        drawCombatScene();
+    </script>
+</body>
+</html>
