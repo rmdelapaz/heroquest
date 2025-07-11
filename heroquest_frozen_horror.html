@@ -10,173 +10,661 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
+
+<style>
+    /* Base styling with arctic/winter theme and excellent readability */
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.7;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+        background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0369a1 100%);
+        color: #f1f5f9;
+        font-size: 16px;
+    }
+
+    /* Main container with arctic styling */
+    .container.blizzard-effect {
+        background: rgba(15, 23, 42, 0.95);
+        padding: 48px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(14, 165, 233, 0.3);
+        border: 1px solid #0ea5e9;
+        backdrop-filter: blur(8px);
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Subtle winter background effect */
+    .container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, 
+            transparent 40%, 
+            rgba(14, 165, 233, 0.05) 50%, 
+            transparent 60%);
+        border-radius: 12px;
+        pointer-events: none;
+    }
+
+    /* Animated snowflakes */
+    .snowflake {
+        position: absolute;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        animation: snowfall 8s linear infinite;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    @keyframes snowfall {
+        0% { 
+            transform: translateY(-100vh) translateX(0) rotate(0deg); 
+            opacity: 0; 
+        }
+        10% { 
+            opacity: 1; 
+        }
+        90% { 
+            opacity: 1; 
+        }
+        100% { 
+            transform: translateY(100vh) translateX(100px) rotate(360deg); 
+            opacity: 0; 
+        }
+    }
+
+    /* Main heading with arctic theme */
+    h1 {
+        color: #7dd3fc;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        border-bottom: 3px solid #0ea5e9;
+        padding-bottom: 16px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Section headings */
+    h2 {
+        color: #bae6fd;
+        border-bottom: 2px solid #0ea5e9;
+        padding-bottom: 12px;
+        margin: 48px 0 24px 0;
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    h3 {
+        color: #7dd3fc;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 32px 0 16px 0;
+    }
+
+    h4 {
+        color: #bae6fd;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 24px 0 12px 0;
+    }
+
+    /* Frost principle boxes */
+    .frost-principle {
+        background: linear-gradient(135deg, #0369a1, #0284c7);
+        border: 2px solid #0ea5e9;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        border-left: 6px solid #7dd3fc;
+        box-shadow: 0 4px 16px rgba(14, 165, 233, 0.2);
+        position: relative;
+    }
+
+    .frost-principle::before {
+        content: '❄️';
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-size: 24px;
+        opacity: 0.7;
+    }
+
+    /* Arctic cards */
+    .arctic-card {
+        background: linear-gradient(135deg, #0284c7, #0369a1);
+        border: 2px solid #38bdf8;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 16px;
+        display: inline-block;
+        min-width: 320px;
+        vertical-align: top;
+        box-shadow: 0 2px 8px rgba(56, 189, 248, 0.2);
+        transition: all 0.2s ease;
+    }
+
+    .arctic-card:hover {
+        box-shadow: 0 8px 24px rgba(125, 211, 252, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Survival and environmental boxes */
+    .survival-box {
+        background: rgba(125, 211, 252, 0.15);
+        border: 2px solid #7dd3fc;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #0ea5e9;
+        position: relative;
+    }
+
+    .survival-box::before {
+        content: '🎯';
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-size: 20px;
+        opacity: 0.7;
+    }
+
+    .environmental-analysis {
+        background: rgba(186, 230, 253, 0.15);
+        border: 2px solid #bae6fd;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #7dd3fc;
+    }
+
+    /* Temperature gauge */
+    .temperature-gauge {
+        width: 100%;
+        height: 28px;
+        background: linear-gradient(to right, #1e40af, #3b82f6, #60a5fa, #fbbf24, #f97316, #dc2626);
+        border: 2px solid #7dd3fc;
+        border-radius: 14px;
+        margin: 16px 0;
+        position: relative;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .temp-indicator {
+        position: absolute;
+        top: -2px;
+        width: 4px;
+        height: 32px;
+        background: white;
+        border: 1px solid #1e293b;
+        border-radius: 2px;
+        transition: left 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Frozen terrain grid */
+    .frozen-terrain {
+        display: grid;
+        grid-template-columns: repeat(10, 32px);
+        grid-template-rows: repeat(8, 32px);
+        gap: 1px;
+        margin: 24px auto;
+        border: 3px solid #7dd3fc;
+        background: #0f172a;
+        padding: 12px;
+        width: fit-content;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(125, 211, 252, 0.3);
+    }
+
+    .terrain-cell {
+        width: 32px;
+        height: 32px;
+        border: 1px solid #374151;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-radius: 2px;
+    }
+
+    .terrain-cell:hover {
+        transform: scale(1.1);
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(125, 211, 252, 0.4);
+    }
+
+    /* Terrain types with better contrast */
+    .ice { background-color: #bae6fd; color: #0c4a6e; }
+    .snow { background-color: #f1f5f9; color: #334155; }
+    .water { background-color: #0284c7; color: white; }
+    .rock { background-color: #64748b; color: white; }
+    .fire { background-color: #f97316; color: white; }
+    .hero-pos { background-color: #22c55e; color: white; }
+    .monster-pos { background-color: #ef4444; color: white; }
+
+    /* Survival meter display */
+    .survival-meter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 32px 0;
+        padding: 24px;
+        background: rgba(125, 211, 252, 0.1);
+        border-radius: 12px;
+        border: 1px solid #7dd3fc;
+    }
+
+    .survival-stat {
+        background: linear-gradient(135deg, #38bdf8, #7dd3fc);
+        border: 2px solid #bae6fd;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: #0c4a6e;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .survival-stat:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Ice creature gallery */
+    .ice-creature-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .creature-portrait {
+        background: rgba(56, 189, 248, 0.2);
+        border: 2px solid #38bdf8;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2);
+        transition: all 0.2s ease;
+    }
+
+    .creature-portrait:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(125, 211, 252, 0.3);
+    }
+
+    /* Canvas elements */
+    canvas {
+        border: 2px solid #7dd3fc;
+        border-radius: 12px;
+        background: #0f172a;
+        display: block;
+        margin: 24px auto;
+        box-shadow: 0 4px 12px rgba(125, 211, 252, 0.3);
+    }
+
+    /* Weather tracking system */
+    .weather-tracker {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 24px 0;
+        padding: 20px;
+        background: rgba(186, 230, 253, 0.1);
+        border-radius: 12px;
+        border: 1px solid #bae6fd;
+    }
+
+    .weather-condition {
+        background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+        border: 2px solid #7dd3fc;
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .weather-condition:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(125, 211, 252, 0.4);
+    }
+
+    .weather-condition.active {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        border-color: #fbbf24;
+        color: #1e293b;
+    }
+
+    /* Survival challenge cards */
+    .survival-challenge {
+        background: rgba(239, 68, 68, 0.1);
+        border: 2px solid #ef4444;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+        border-left: 4px solid #dc2626;
+        position: relative;
+    }
+
+    .survival-challenge::before {
+        content: '⚠️';
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 16px;
+    }
+
+    .survival-tip {
+        background: rgba(34, 197, 94, 0.1);
+        border: 2px solid #22c55e;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+        border-left: 4px solid #16a34a;
+        position: relative;
+    }
+
+    .survival-tip::before {
+        content: '💡';
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        font-size: 16px;
+    }
+
+    /* Text improvements */
+    p {
+        margin-bottom: 16px;
+        line-height: 1.7;
+        color: #e2e8f0;
+    }
+
+    strong {
+        color: #bae6fd;
+        font-weight: 600;
+    }
+
+    em {
+        color: #cbd5e0;
+        font-style: italic;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0;
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        color: #d1d5db;
+        line-height: 1.6;
+    }
+
+    /* Links */
+    a {
+        color: #7dd3fc;
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        color: #bae6fd;
+        border-bottom-color: #bae6fd;
+    }
+
+    /* Code elements */
+    code {
+        background: #0369a1;
+        color: #e0f2fe;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 0.9em;
+        border: 1px solid #0284c7;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0;
+        background: rgba(15, 23, 42, 0.8);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    th, td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #0369a1;
+    }
+
+    th {
+        background: #0284c7;
+        font-weight: 600;
+        color: #f1f5f9;
+    }
+
+    /* Mermaid diagrams */
+    .mermaid {
+        background: rgba(3, 105, 161, 0.3) !important;
+        border: 2px solid #7dd3fc !important;
+        border-radius: 12px !important;
+        padding: 24px !important;
+        margin: 24px auto !important;
+    }
+
+    /* Blockquotes */
+    blockquote {
+        background: rgba(14, 165, 233, 0.2);
+        border-left: 4px solid #7dd3fc;
+        padding: 16px 24px;
+        margin: 24px 0;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+        color: #e2e8f0;
+    }
+
+    /* Interactive elements */
+    button, .btn {
+        background: linear-gradient(135deg, #0ea5e9, #0284c7);
+        color: white;
+        border: 2px solid #7dd3fc;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    button:hover, .btn:hover {
+        background: linear-gradient(135deg, #0284c7, #0369a1);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(125, 211, 252, 0.3);
+    }
+
+    /* Environmental hazard indicators */
+    .hazard-level {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin: 4px;
+        color: white;
+    }
+
+    .hazard-level.low { background: #22c55e; }
+    .hazard-level.moderate { background: #f59e0b; }
+    .hazard-level.high { background: #ef4444; }
+    .hazard-level.extreme { background: #7c2d12; }
+
+    /* Resource tracking */
+    .resource-tracker {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+        margin: 24px 0;
+    }
+
+    .resource-item {
+        background: rgba(56, 189, 248, 0.2);
+        border: 2px solid #38bdf8;
+        border-radius: 8px;
+        padding: 12px;
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+
+    .resource-item:hover {
+        background: rgba(125, 211, 252, 0.3);
+        transform: scale(1.05);
+    }
+
+    .resource-item.depleted {
+        background: rgba(239, 68, 68, 0.2);
+        border-color: #ef4444;
+        opacity: 0.6;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
         body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #b3e5fc 0%, #81d4fa 20%, #4fc3f7 40%, #29b6f6 60%, #03a9f4 80%, #0277bd 100%);
-            color: #f0f8ff;
+            padding: 16px;
         }
-        .container {
-            background: rgba(0, 50, 100, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(2, 119, 189, 0.6);
-            border: 2px solid #87ceeb;
+        
+        .container.blizzard-effect {
+            padding: 24px;
         }
+        
         h1 {
-            color: #87ceeb;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 8px rgba(135, 206, 235, 0.8);
-            margin-bottom: 30px;
+            font-size: 2rem;
         }
-        h2 {
-            color: #b3e5fc;
-            border-bottom: 2px solid #b3e5fc;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .frost-principle {
-            background: linear-gradient(135deg, #003264 0%, #0277bd 100%);
-            border: 2px solid #87ceeb;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 5px solid #b3e5fc;
-        }
-        .arctic-card {
-            background: linear-gradient(135deg, #0277bd 0%, #003264 100%);
-            border: 2px solid #4fc3f7;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            display: inline-block;
-            min-width: 320px;
-            vertical-align: top;
-        }
-        .survival-box {
-            background: rgba(135, 206, 235, 0.1);
-            border: 2px solid #87ceeb;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .environmental-analysis {
-            background: rgba(179, 229, 252, 0.1);
-            border: 2px solid #b3e5fc;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        canvas {
-            border: 2px solid #87ceeb;
-            border-radius: 10px;
-            background: #000033;
-            display: block;
-            margin: 20px auto;
-        }
-        .temperature-gauge {
-            width: 100%;
-            height: 30px;
-            background: linear-gradient(to right, #0d47a1, #1976d2, #42a5f5, #ffeb3b, #ff9800, #d32f2f);
-            border: 2px solid #87ceeb;
-            border-radius: 15px;
-            margin: 10px 0;
-            position: relative;
-        }
-        .temp-indicator {
-            position: absolute;
-            top: -3px;
-            width: 6px;
-            height: 36px;
-            background: #fff;
-            border-radius: 3px;
-            transition: left 0.5s ease;
-        }
-        .ice-creature-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .creature-portrait {
-            background: rgba(3, 169, 244, 0.2);
-            border: 2px solid #4fc3f7;
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-        }
-        .survival-meter {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(135, 206, 235, 0.1);
-            border-radius: 10px;
-        }
-        .survival-stat {
-            background: linear-gradient(135deg, #4fc3f7, #87ceeb);
-            border: 2px solid #b3e5fc;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #003264;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-        }
-        .blizzard-effect {
-            position: relative;
-            overflow: hidden;
-        }
-        .snowflake {
-            position: absolute;
-            color: #fff;
-            font-size: 14px;
-            animation: snowfall 3s linear infinite;
-        }
-        @keyframes snowfall {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0.3; }
-        }
+        
         .frozen-terrain {
-            display: grid;
-            grid-template-columns: repeat(10, 30px);
-            grid-template-rows: repeat(8, 30px);
-            gap: 1px;
-            margin: 20px auto;
-            border: 3px solid #87ceeb;
-            background: #000033;
-            padding: 10px;
-            width: fit-content;
+            grid-template-columns: repeat(10, 24px);
+            grid-template-rows: repeat(8, 24px);
         }
+        
         .terrain-cell {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #4fc3f7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            width: 24px;
+            height: 24px;
+            font-size: 10px;
         }
-        .ice { background-color: #b3e5fc; }
-        .snow { background-color: #e1f5fe; }
-        .water { background-color: #0277bd; }
-        .rock { background-color: #455a64; }
-        .fire { background-color: #ff5722; }
-        .hero-pos { background-color: #4caf50; }
-        .monster-pos { background-color: #f44336; }
-    </style>
+        
+        .arctic-card {
+            min-width: 280px;
+            margin: 12px 0;
+            display: block;
+        }
+        
+        .survival-meter {
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .survival-stat {
+            width: 64px;
+            height: 64px;
+            font-size: 0.9rem;
+        }
+        
+        .weather-tracker {
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .weather-condition {
+            width: 48px;
+            height: 48px;
+            font-size: 20px;
+        }
+    }
+
+    /* Focus accessibility */
+    :focus {
+        outline: 2px solid #7dd3fc;
+        outline-offset: 2px;
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+        
+        .snowflake {
+            animation: none !important;
+            display: none;
+        }
+    }
+
+    /* Winter-specific utility classes */
+    .frost-warning {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px dashed #ef4444;
+        border-radius: 4px;
+        padding: 8px 12px;
+        margin: 8px 0;
+        color: #fecaca;
+        text-align: center;
+    }
+
+    .warmth-source {
+        background: rgba(249, 115, 22, 0.2);
+        border: 1px solid #f97316;
+        border-radius: 6px;
+        padding: 12px;
+        margin: 12px 0;
+        border-left: 3px solid #ea580c;
+    }
+
+    .hypothermia-stage {
+        padding: 8px 12px;
+        border-radius: 4px;
+        margin: 4px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .hypothermia-stage.mild { background: #fbbf24; color: #1e293b; }
+    .hypothermia-stage.moderate { background: #f97316; color: white; }
+    .hypothermia-stage.severe { background: #dc2626; color: white; }
+    .hypothermia-stage.critical { background: #7f1d1d; color: white; }
+</style>
 </head>
 <body>
     <div class="container blizzard-effect">

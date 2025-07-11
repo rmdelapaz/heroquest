@@ -10,149 +10,347 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
+
+<style>
+    /* Base styling with blue theme and excellent readability */
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.7;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+        background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f1f5f9 100%);
+        color: #1e293b;
+        font-size: 16px;
+    }
+
+    /* Clean container */
+    .container {
+        background: white;
+        padding: 48px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e2e8f0;
+    }
+
+    /* Main heading with blue theme */
+    h1 {
+        color: #0369a1;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        border-bottom: 3px solid #0ea5e9;
+        padding-bottom: 16px;
+        line-height: 1.2;
+    }
+
+    /* Section headings */
+    h2 {
+        color: #0c4a6e;
+        border-bottom: 2px solid #0ea5e9;
+        padding-bottom: 12px;
+        margin: 48px 0 24px 0;
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    h3 {
+        color: #075985;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 32px 0 16px 0;
+    }
+
+    /* Quest principle boxes with blue theme */
+    .quest-principle {
+        background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+        border: 2px solid #0ea5e9;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        border-left: 6px solid #0369a1;
+        box-shadow: 0 2px 8px rgba(14, 165, 233, 0.1);
+    }
+
+    /* Quest cards with improved styling */
+    .quest-card {
+        background: white;
+        border: 2px solid #7dd3fc;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 16px;
+        display: inline-block;
+        min-width: 320px;
+        vertical-align: top;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s ease;
+    }
+
+    .quest-card:hover {
+        box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
+        transform: translateY(-2px);
+    }
+
+    /* Strategy and analysis boxes */
+    .strategy-box {
+        background: #f0f9ff;
+        border: 2px solid #38bdf8;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #0ea5e9;
+    }
+
+    .design-analysis {
+        background: #f0f9ff;
+        border: 2px solid #0ea5e9;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #0369a1;
+    }
+
+    /* Quest selector buttons */
+    .quest-selector {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin: 24px 0;
+        flex-wrap: wrap;
+    }
+
+    .quest-button {
+        background: linear-gradient(135deg, #0ea5e9, #0284c7);
+        border: 2px solid #38bdf8;
+        border-radius: 8px;
+        padding: 12px 20px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-weight: 600;
+        font-size: 14px;
+    }
+
+    .quest-button:hover {
+        background: linear-gradient(135deg, #0284c7, #0369a1);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    }
+
+    .quest-button.active {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        border-color: #fbbf24;
+    }
+
+    /* Difficulty meter with improved visibility */
+    .difficulty-meter {
+        width: 100%;
+        height: 24px;
+        background: linear-gradient(to right, #10b981, #f59e0b, #ef4444);
+        border: 2px solid #0ea5e9;
+        border-radius: 12px;
+        margin: 16px 0;
+        position: relative;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .difficulty-indicator {
+        position: absolute;
+        top: -2px;
+        width: 4px;
+        height: 28px;
+        background: white;
+        border: 1px solid #334155;
+        border-radius: 2px;
+        transition: left 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Canvas elements */
+    canvas {
+        border: 2px solid #0ea5e9;
+        border-radius: 12px;
+        background: #f8fafc;
+        display: block;
+        margin: 24px auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Dungeon map grid */
+    .dungeon-map {
+        display: grid;
+        grid-template-columns: repeat(12, 32px);
+        grid-template-rows: repeat(9, 32px);
+        gap: 1px;
+        margin: 24px auto;
+        border: 3px solid #0ea5e9;
+        background: #1e293b;
+        padding: 12px;
+        width: fit-content;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .map-cell {
+        width: 32px;
+        height: 32px;
+        border: 1px solid #475569;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-radius: 2px;
+    }
+
+    .map-cell:hover {
+        transform: scale(1.1);
+        z-index: 10;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Map cell types with better contrast */
+    .wall { background-color: #64748b; color: white; }
+    .door { background-color: #92400e; color: white; }
+    .room { background-color: #e2e8f0; color: #1e293b; }
+    .stairs { background-color: #0ea5e9; color: white; }
+    .trap { background-color: #ef4444; color: white; }
+    .treasure { background-color: #f59e0b; color: #1e293b; }
+    .monster { background-color: #dc2626; color: white; }
+    .start { background-color: #10b981; color: white; }
+    .secret { background-color: #8b5cf6; color: white; }
+
+    /* Text improvements */
+    p {
+        margin-bottom: 16px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+    strong {
+        color: #0c4a6e;
+        font-weight: 600;
+    }
+
+    em {
+        color: #64748b;
+        font-style: italic;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0;
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        color: #475569;
+        line-height: 1.6;
+    }
+
+    /* Links */
+    a {
+        color: #0ea5e9;
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        color: #0284c7;
+        border-bottom-color: #0284c7;
+    }
+
+    /* Code elements */
+    code {
+        background: #f1f5f9;
+        color: #0c4a6e;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 0.9em;
+        border: 1px solid #cbd5e0;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+        background: #f0f9ff;
+        font-weight: 600;
+        color: #0c4a6e;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
         body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: #e6f2ff;
+            padding: 16px;
         }
+        
         .container {
-            background: rgba(0, 0, 0, 0.85);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(15, 52, 96, 0.4);
+            padding: 24px;
         }
+        
         h1 {
-            color: #4fc3f7;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 8px rgba(79, 195, 247, 0.8);
-            margin-bottom: 30px;
+            font-size: 2rem;
         }
-        h2 {
-            color: #29b6f6;
-            border-bottom: 2px solid #29b6f6;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .quest-principle {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            border: 2px solid #4fc3f7;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 5px solid #29b6f6;
-        }
+        
         .quest-card {
-            background: linear-gradient(135deg, #0f3460 0%, #1a1a2e 100%);
-            border: 2px solid #03a9f4;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            display: inline-block;
-            min-width: 320px;
-            vertical-align: top;
-        }
-        .strategy-box {
-            background: rgba(79, 195, 247, 0.1);
-            border: 2px solid #4fc3f7;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .design-analysis {
-            background: rgba(41, 182, 246, 0.1);
-            border: 2px solid #29b6f6;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        canvas {
-            border: 2px solid #4fc3f7;
-            border-radius: 10px;
-            background: #000;
+            min-width: 280px;
+            margin: 12px 0;
             display: block;
-            margin: 20px auto;
         }
-        .dungeon-map {
-            display: grid;
-            grid-template-columns: repeat(12, 30px);
-            grid-template-rows: repeat(9, 30px);
-            gap: 1px;
-            margin: 20px auto;
-            border: 3px solid #4fc3f7;
-            background: #000;
-            padding: 10px;
-            width: fit-content;
-        }
-        .map-cell {
-            width: 30px;
-            height: 30px;
-            border: 1px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .wall { background-color: #666; }
-        .door { background-color: #8b4513; }
-        .room { background-color: #1a1a2e; }
-        .stairs { background-color: #4fc3f7; }
-        .trap { background-color: #ff5722; }
-        .treasure { background-color: #ffd700; }
-        .monster { background-color: #f44336; }
-        .start { background-color: #4caf50; }
-        .secret { background-color: #9c27b0; }
+        
         .quest-selector {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
         }
-        .quest-button {
-            background: linear-gradient(135deg, #03a9f4, #0288d1);
-            border: 2px solid #4fc3f7;
-            border-radius: 8px;
-            padding: 12px 20px;
-            color: white;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: bold;
+        
+        .dungeon-map {
+            grid-template-columns: repeat(12, 24px);
+            grid-template-rows: repeat(9, 24px);
         }
-        .quest-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(79, 195, 247, 0.8);
+        
+        .map-cell {
+            width: 24px;
+            height: 24px;
+            font-size: 10px;
         }
-        .quest-button.active {
-            background: linear-gradient(135deg, #ffd700, #ff8f00);
-            border-color: #ffeb3b;
+    }
+
+    /* Focus accessibility */
+    :focus {
+        outline: 2px solid #0ea5e9;
+        outline-offset: 2px;
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
         }
-        .difficulty-meter {
-            width: 100%;
-            height: 25px;
-            background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336);
-            border: 2px solid #4fc3f7;
-            border-radius: 15px;
-            margin: 10px 0;
-            position: relative;
-        }
-        .difficulty-indicator {
-            position: absolute;
-            top: -3px;
-            width: 6px;
-            height: 31px;
-            background: #fff;
-            border-radius: 3px;
-            transition: left 0.5s ease;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <div class="container">

@@ -10,70 +10,585 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
+
+    /* Base styling with beginner-friendly theme and excellent readability */
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.7;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+        background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fdba74 100%);
+        color: #1c1917;
+        font-size: 16px;
+    }
+
+    /* Main container with welcoming styling */
+    .container {
+        background: white;
+        padding: 48px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(245, 158, 11, 0.15);
+        border: 1px solid #fed7aa;
+        position: relative;
+    }
+
+    /* Subtle welcoming background effect */
+    .container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, 
+            transparent 40%, 
+            rgba(245, 158, 11, 0.02) 50%, 
+            transparent 60%);
+        border-radius: 12px;
+        pointer-events: none;
+    }
+
+    /* Main heading with welcoming theme */
+    h1 {
+        color: #d97706;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        border-bottom: 3px solid #f59e0b;
+        padding-bottom: 16px;
+        line-height: 1.2;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Section headings */
+    h2 {
+        color: #b45309;
+        border-bottom: 2px solid #f59e0b;
+        padding-bottom: 12px;
+        margin: 48px 0 24px 0;
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    h3 {
+        color: #d97706;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 32px 0 16px 0;
+    }
+
+    h4 {
+        color: #b45309;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 24px 0 12px 0;
+    }
+
+    /* Analogy boxes - key feature for beginners */
+    .analogy-box {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        border: 2px solid #f59e0b;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        border-left: 6px solid #d97706;
+        box-shadow: 0 4px 16px rgba(245, 158, 11, 0.1);
+        position: relative;
+    }
+
+    .analogy-box::before {
+        content: '💡';
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-size: 24px;
+        opacity: 0.7;
+    }
+
+    /* Practice boxes for hands-on learning */
+    .practice-box {
+        background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+        border: 2px solid #10b981;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #059669;
+        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
+        position: relative;
+    }
+
+    .practice-box::before {
+        content: '🎯';
+        position: absolute;
+        top: 16px;
+        right: 20px;
+        font-size: 20px;
+        opacity: 0.7;
+    }
+
+    /* Hero cards for character introductions */
+    .hero-card {
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        border: 2px solid #64748b;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 16px;
+        display: inline-block;
+        min-width: 200px;
+        vertical-align: top;
+        box-shadow: 0 2px 8px rgba(100, 116, 139, 0.1);
+        transition: all 0.2s ease;
+        border-left: 4px solid #f59e0b;
+    }
+
+    .hero-card:hover {
+        box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
+        transform: translateY(-2px);
+    }
+
+    /* Dice container for interactive elements */
+    .dice-container {
+        text-align: center;
+        margin: 32px 0;
+        padding: 24px;
+        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+        border-radius: 12px;
+        border: 2px solid #cbd5e0;
+    }
+
+    /* Interactive elements styling */
+    .dice-button {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin: 8px;
+        font-size: 16px;
+    }
+
+    .dice-button:hover {
+        background: linear-gradient(135deg, #d97706, #b45309);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+
+    .dice-result {
+        background: white;
+        border: 2px solid #f59e0b;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1c1917;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Tutorial step boxes */
+    .tutorial-step {
+        background: #fef3c7;
+        border: 1px solid #fbbf24;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+        border-left: 4px solid #f59e0b;
+        counter-increment: step-counter;
+    }
+
+    .tutorial-step::before {
+        content: "Step " counter(step-counter) ": ";
+        font-weight: 600;
+        color: #d97706;
+    }
+
+    .tutorial-steps {
+        counter-reset: step-counter;
+    }
+
+    /* Canvas elements */
+    canvas {
+        border: 2px solid #f59e0b;
+        border-radius: 12px;
+        background: #f8fafc;
+        display: block;
+        margin: 24px auto;
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+
+    /* Beginner tips and warnings */
+    .beginner-tip {
+        background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+        border: 2px solid #3b82f6;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+        border-left: 4px solid #1d4ed8;
+        position: relative;
+    }
+
+    .beginner-tip::before {
+        content: '💡 TIP: ';
+        font-weight: 600;
+        color: #1d4ed8;
+    }
+
+    .beginner-warning {
+        background: linear-gradient(135deg, #fef2f2, #fecaca);
+        border: 2px solid #ef4444;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+        border-left: 4px solid #dc2626;
+        position: relative;
+    }
+
+    .beginner-warning::before {
+        content: '⚠️ WARNING: ';
+        font-weight: 600;
+        color: #dc2626;
+    }
+
+    /* Progress indicators for learning */
+    .progress-tracker {
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .progress-item {
+        display: flex;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #f3f4f6;
+    }
+
+    .progress-item:last-child {
+        border-bottom: none;
+    }
+
+    .progress-checkbox {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #f59e0b;
+        margin-right: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    .progress-checkbox.completed {
+        background: #10b981;
+    }
+
+    .progress-checkbox.completed::before {
+        content: '✓';
+    }
+
+    /* Game flow visualization */
+    .game-flow {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .flow-step {
+        background: white;
+        border: 2px solid #fed7aa;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.2s ease;
+        border-left: 4px solid #f59e0b;
+    }
+
+    .flow-step:hover {
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+        transform: translateY(-2px);
+    }
+
+    .flow-number {
+        background: #f59e0b;
+        color: white;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        margin: 0 auto 12px auto;
+    }
+
+    /* Text improvements */
+    p {
+        margin-bottom: 16px;
+        line-height: 1.7;
+        color: #374151;
+    }
+
+    strong {
+        color: #b45309;
+        font-weight: 600;
+    }
+
+    em {
+        color: #6b7280;
+        font-style: italic;
+    }
+
+    /* Lists with better spacing */
+    ul, ol {
+        margin: 16px 0;
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        color: #4b5563;
+        line-height: 1.6;
+    }
+
+    /* Links */
+    a {
+        color: #f59e0b;
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        color: #d97706;
+        border-bottom-color: #d97706;
+    }
+
+    /* Code elements */
+    code {
+        background: #fef3c7;
+        color: #b45309;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 0.9em;
+        border: 1px solid #fed7aa;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #fed7aa;
+    }
+
+    th {
+        background: #fef3c7;
+        font-weight: 600;
+        color: #b45309;
+    }
+
+    /* Mermaid diagrams */
+    .mermaid {
+        background: rgba(254, 243, 199, 0.3) !important;
+        border: 2px solid #f59e0b !important;
+        border-radius: 12px !important;
+        padding: 24px !important;
+        margin: 24px auto !important;
+    }
+
+    /* Blockquotes */
+    blockquote {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        border-left: 4px solid #f59e0b;
+        padding: 16px 24px;
+        margin: 24px 0;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+        color: #374151;
+    }
+
+    /* Interactive quiz elements */
+    .quiz-question {
+        background: #f1f5f9;
+        border: 2px solid #64748b;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .quiz-options {
+        margin: 16px 0;
+    }
+
+    .quiz-option {
+        background: white;
+        border: 1px solid #cbd5e0;
+        border-radius: 6px;
+        padding: 12px 16px;
+        margin: 8px 0;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .quiz-option:hover {
+        background: #fef3c7;
+        border-color: #f59e0b;
+    }
+
+    .quiz-option.correct {
+        background: #dcfce7;
+        border-color: #22c55e;
+        color: #166534;
+    }
+
+    .quiz-option.incorrect {
+        background: #fef2f2;
+        border-color: #ef4444;
+        color: #991b1b;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
         body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #2c1810 0%, #4a2c1a 100%);
-            color: #f4e4c1;
+            padding: 16px;
         }
+        
         .container {
-            background: rgba(0, 0, 0, 0.7);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 24px;
         }
+        
         h1 {
-            color: #ffd700;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            margin-bottom: 30px;
+            font-size: 2rem;
         }
-        h2 {
-            color: #ff6b35;
-            border-bottom: 2px solid #ff6b35;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
+        
         .hero-card {
-            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            display: inline-block;
-            min-width: 200px;
-        }
-        .dice-container {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .practice-box {
-            background: rgba(255, 107, 53, 0.1);
-            border: 2px solid #ff6b35;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .analogy-box {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        canvas {
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            background: #000;
+            min-width: 180px;
+            margin: 12px 0;
             display: block;
-            margin: 20px auto;
         }
-    </style>
+        
+        .game-flow {
+            grid-template-columns: 1fr;
+        }
+        
+        .dice-container {
+            padding: 16px;
+        }
+        
+        .tutorial-step {
+            padding: 12px;
+        }
+    }
+
+    /* Focus accessibility */
+    :focus {
+        outline: 2px solid #f59e0b;
+        outline-offset: 2px;
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    /* Beginner-specific utility classes */
+    .highlight-important {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        border: 1px solid #f59e0b;
+        border-radius: 6px;
+        padding: 12px;
+        margin: 12px 0;
+        border-left: 4px solid #d97706;
+    }
+
+    .example-scenario {
+        background: #f8fafc;
+        border: 2px solid #cbd5e0;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+        position: relative;
+    }
+
+    .example-scenario::before {
+        content: '📖 EXAMPLE';
+        position: absolute;
+        top: -12px;
+        left: 16px;
+        background: white;
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: #64748b;
+        border-radius: 4px;
+    }
+
+    .quick-reference {
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+        position: sticky;
+        top: 20px;
+        z-index: 10;
+    }
+
+    .quick-reference h4 {
+        margin: 0 0 12px 0;
+        color: #374151;
+        font-size: 1rem;
+    }
+
+    .stats-display {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 8px;
+        margin: 16px 0;
+    }
+
+    .stat-item {
+        background: #f59e0b;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 14px;
+    }
+</style>
 </head>
 <body>
     <div class="container">

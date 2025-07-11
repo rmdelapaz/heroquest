@@ -10,151 +10,338 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
-        body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #8b4513 0%, #2f1b14 50%, #ffd700 100%);
-            color: #f4e4bc;
-        }
-        .container {
-            background: rgba(0, 0, 0, 0.85);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-        }
-        h1 {
-            color: #ffd700;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 8px rgba(255, 215, 0, 0.8);
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #daa520;
-            border-bottom: 2px solid #daa520;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .treasure-principle {
-            background: linear-gradient(135deg, #8b4513 0%, #daa520 100%);
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 5px solid #ffff00;
-        }
+
+<style>
+    body {
+        font-family: 'Tahoma', 'Times New Roman', serif;
+        line-height: 1.8;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 30px;
+        background: linear-gradient(135deg, #8b4513 0%, #2f1b14 50%, #ffd700 100%);
+        color: #f4e4bc;
+        font-size: 16px;
+    }
+    
+    .container {
+        background: rgba(0, 0, 0, 0.88);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+        border: 2px solid #daa520;
+    }
+    
+    h1 {
+        color: #fff8dc;
+        text-align: center;
+        font-size: 3em;
+        text-shadow: 3px 3px 10px rgba(255, 215, 0, 0.9);
+        margin-bottom: 40px;
+        letter-spacing: 2px;
+    }
+    
+    h2 {
+        color: #f0e68c;
+        border-bottom: 3px solid #daa520;
+        padding-bottom: 15px;
+        margin-top: 50px;
+        font-size: 1.8em;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    h3 {
+        color: #fff8dc;
+        font-size: 1.4em;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    
+    h4 {
+        color: #f0e68c;
+        font-size: 1.2em;
+        margin-top: 25px;
+        margin-bottom: 12px;
+    }
+    
+    p {
+        margin-bottom: 18px;
+        text-align: justify;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+    
+    ul {
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+    
+    li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+    
+    .treasure-principle {
+        background: linear-gradient(135deg, #8b4513 0%, #daa520 100%);
+        border: 2px solid #ffd700;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        border-left: 6px solid #ffff00;
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+    }
+    
+    .equipment-card {
+        background: linear-gradient(135deg, #2f1b14 0%, #8b4513 100%);
+        border: 2px solid #cd853f;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px;
+        display: inline-block;
+        min-width: 320px;
+        max-width: 380px;
+        vertical-align: top;
+        box-shadow: 0 8px 20px rgba(205, 133, 63, 0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .equipment-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(205, 133, 63, 0.6);
+    }
+    
+    .progression-box {
+        background: rgba(255, 215, 0, 0.15);
+        border: 2px solid #ffd700;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        box-shadow: inset 0 2px 10px rgba(255, 215, 0, 0.2);
+    }
+    
+    .reward-system {
+        background: rgba(218, 165, 32, 0.15);
+        border: 2px solid #daa520;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        box-shadow: inset 0 2px 10px rgba(218, 165, 32, 0.2);
+    }
+    
+    canvas {
+        border: 3px solid #ffd700;
+        border-radius: 15px;
+        background: #000;
+        display: block;
+        margin: 30px auto;
+        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+    
+    .treasure-chest {
+        width: 140px;
+        height: 90px;
+        background: linear-gradient(135deg, #8b4513, #cd853f);
+        border: 3px solid #ffd700;
+        border-radius: 15px;
+        margin: 15px;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4);
+    }
+    
+    .treasure-chest:hover {
+        transform: scale(1.08);
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+        border-color: #ffff00;
+    }
+    
+    .treasure-chest::before {
+        content: '💰';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 28px;
+        transition: all 0.3s ease;
+    }
+    
+    .treasure-chest.opened {
+        background: linear-gradient(135deg, #daa520, #ffd700);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 1);
+    }
+    
+    .treasure-chest.opened::before {
+        content: '✨';
+        font-size: 32px;
+    }
+    
+    .character-sheet {
+        background: rgba(139, 69, 19, 0.35);
+        border: 2px solid #cd853f;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px;
+        min-width: 280px;
+        display: inline-block;
+        vertical-align: top;
+        box-shadow: 0 6px 15px rgba(139, 69, 19, 0.3);
+    }
+    
+    .stat-bar {
+        width: 100%;
+        height: 24px;
+        background: #2f1b14;
+        border: 2px solid #8b4513;
+        border-radius: 12px;
+        margin: 8px 0;
+        overflow: hidden;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .stat-fill {
+        height: 100%;
+        background: linear-gradient(to right, #cd853f, #ffd700);
+        border-radius: 10px;
+        transition: width 0.8s ease;
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    
+    .equipment-slot {
+        width: 70px;
+        height: 70px;
+        border: 2px solid #8b4513;
+        border-radius: 12px;
+        display: inline-block;
+        margin: 8px;
+        background: #2f1b14;
+        text-align: center;
+        line-height: 66px;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    
+    .equipment-slot:hover {
+        border-color: #ffd700;
+        background: #8b4513;
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+    }
+    
+    .equipment-slot.equipped {
+        background: linear-gradient(135deg, #daa520, #ffd700);
+        border-color: #ffff00;
+        color: #000;
+        font-weight: bold;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+    }
+    
+    strong {
+        color: #fff8dc;
+        font-weight: 600;
+    }
+    
+    em {
+        color: #f0e68c;
+        font-style: italic;
+    }
+    
+    /* Enhanced text contrast and spacing */
+    .treasure-principle p,
+    .equipment-card p,
+    .progression-box p,
+    .reward-system p {
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+    
+    .equipment-card h3 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+        color: #fff8dc;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    /* Interactive elements enhancement */
+    .character-sheet h4 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #ffd700;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Results display enhancement */
+    div[id*="feedback"],
+    div[id*="display"] {
+        background: rgba(255, 215, 0, 0.2);
+        border: 2px solid #ffd700;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 25px;
+        min-height: 80px;
+        line-height: 1.6;
+    }
+    
+    /* Stat labels enhancement */
+    .character-sheet p {
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: #f0e68c;
+        font-size: 14px;
+    }
+    
+    /* Treasure chest container */
+    .treasure-chest-container {
+        text-align: center;
+        margin: 30px 0;
+        padding: 20px;
+        background: rgba(139, 69, 19, 0.2);
+        border-radius: 15px;
+        border: 1px solid #8b4513;
+    }
+    
+    /* Enhanced progression feedback */
+    #progression_feedback {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.15));
+        border: 2px solid #ffd700;
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 25px;
+        min-height: 100px;
+        line-height: 1.7;
+        font-size: 16px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    }
+    
+    /* Responsive design improvements */
+    @media (max-width: 768px) {
         .equipment-card {
-            background: linear-gradient(135deg, #2f1b14 0%, #8b4513 100%);
-            border: 2px solid #cd853f;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            display: inline-block;
             min-width: 280px;
-            vertical-align: top;
+            margin: 15px 5px;
         }
-        .progression-box {
-            background: rgba(255, 215, 0, 0.1);
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+        
+        .character-sheet {
+            min-width: 260px;
+            margin: 15px 5px;
         }
-        .reward-system {
-            background: rgba(218, 165, 32, 0.1);
-            border: 2px solid #daa520;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        canvas {
-            border: 2px solid #ffd700;
-            border-radius: 10px;
-            background: #000;
-            display: block;
-            margin: 20px auto;
-        }
+        
         .treasure-chest {
             width: 120px;
             height: 80px;
-            background: linear-gradient(135deg, #8b4513, #cd853f);
-            border: 3px solid #ffd700;
-            border-radius: 10px;
-            margin: 10px;
-            display: inline-block;
-            position: relative;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            margin: 10px 5px;
         }
-        .treasure-chest:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-        }
-        .treasure-chest::before {
-            content: '💰';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 24px;
-        }
-        .treasure-chest.opened {
-            background: linear-gradient(135deg, #daa520, #ffd700);
-        }
-        .treasure-chest.opened::before {
-            content: '✨';
-        }
-        .character-sheet {
-            background: rgba(139, 69, 19, 0.3);
-            border: 2px solid #cd853f;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 15px;
-            min-width: 250px;
-            display: inline-block;
-        }
-        .stat-bar {
-            width: 100%;
-            height: 20px;
-            background: #2f1b14;
-            border: 1px solid #8b4513;
-            border-radius: 10px;
-            margin: 5px 0;
-            overflow: hidden;
-        }
-        .stat-fill {
-            height: 100%;
-            background: linear-gradient(to right, #cd853f, #ffd700);
-            border-radius: 9px;
-            transition: width 0.5s ease;
-        }
+        
         .equipment-slot {
             width: 60px;
             height: 60px;
-            border: 2px solid #8b4513;
-            border-radius: 8px;
-            display: inline-block;
             margin: 5px;
-            background: #2f1b14;
-            text-align: center;
-            line-height: 56px;
             font-size: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
         }
-        .equipment-slot:hover {
-            border-color: #ffd700;
-            background: #8b4513;
-        }
-        .equipment-slot.equipped {
-            background: linear-gradient(135deg, #daa520, #ffd700);
-            border-color: #ffff00;
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
     <div class="container">

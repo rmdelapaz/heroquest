@@ -10,151 +10,523 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
+
+<style>
+    /* Base styling with warfare/military theme and excellent readability */
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.7;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+        background: linear-gradient(135deg, #a16207 0%, #92400e 50%, #78350f 100%);
+        color: #fef3c7;
+        font-size: 16px;
+    }
+
+    /* Main container with military styling */
+    .container {
+        background: rgba(15, 23, 42, 0.95);
+        padding: 48px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(161, 98, 7, 0.3);
+        border: 1px solid #92400e;
+        backdrop-filter: blur(8px);
+    }
+
+    /* Main heading with warfare theme */
+    h1 {
+        color: #d4af37;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        border-bottom: 3px solid #b45309;
+        padding-bottom: 16px;
+        line-height: 1.2;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Section headings */
+    h2 {
+        color: #fbbf24;
+        border-bottom: 2px solid #b45309;
+        padding-bottom: 12px;
+        margin: 48px 0 24px 0;
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    h3 {
+        color: #d4af37;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 32px 0 16px 0;
+    }
+
+    h4 {
+        color: #fbbf24;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin: 24px 0 12px 0;
+    }
+
+    /* Warfare principle boxes */
+    .warfare-principle {
+        background: linear-gradient(135deg, #78350f, #92400e);
+        border: 2px solid #b45309;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        border-left: 6px solid #d4af37;
+        box-shadow: 0 4px 16px rgba(180, 83, 9, 0.2);
+    }
+
+    /* Army cards */
+    .army-card {
+        background: linear-gradient(135deg, #92400e, #a16207);
+        border: 2px solid #d97706;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 16px;
+        display: inline-block;
+        min-width: 320px;
+        vertical-align: top;
+        box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+        transition: all 0.2s ease;
+    }
+
+    .army-card:hover {
+        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        transform: translateY(-2px);
+    }
+
+    /* Tactical and strategy boxes */
+    .tactical-box {
+        background: rgba(212, 175, 55, 0.15);
+        border: 2px solid #d4af37;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #b45309;
+    }
+
+    .strategy-analysis {
+        background: rgba(251, 191, 36, 0.15);
+        border: 2px solid #fbbf24;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #d4af37;
+    }
+
+    /* Horde counter display */
+    .horde-counter {
+        font-size: 48px;
+        color: #d4af37;
+        text-align: center;
+        margin: 32px 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        padding: 24px;
+        background: rgba(120, 53, 15, 0.3);
+        border-radius: 12px;
+        border: 2px solid #92400e;
+    }
+
+    /* Mass combat demonstration */
+    .mass-combat-demo {
+        background: rgba(212, 175, 55, 0.15);
+        border: 2px solid #d4af37;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        text-align: center;
+        border-left: 4px solid #b45309;
+    }
+
+    /* Engagement scale */
+    .engagement-scale {
+        width: 100%;
+        height: 28px;
+        background: linear-gradient(to right, #22c55e, #fbbf24, #f59e0b, #dc2626);
+        border: 2px solid #d4af37;
+        border-radius: 14px;
+        margin: 16px 0;
+        position: relative;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .scale-indicator {
+        position: absolute;
+        top: -2px;
+        width: 4px;
+        height: 32px;
+        background: white;
+        border: 1px solid #1e293b;
+        border-radius: 2px;
+        transition: left 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Battle formation grid */
+    .battle-formation {
+        display: grid;
+        grid-template-columns: repeat(8, 42px);
+        grid-template-rows: repeat(6, 42px);
+        gap: 2px;
+        margin: 24px auto;
+        border: 3px solid #d4af37;
+        background: #0f172a;
+        padding: 12px;
+        width: fit-content;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+    }
+
+    .formation-cell {
+        width: 42px;
+        height: 42px;
+        border: 1px solid #78350f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-radius: 2px;
+    }
+
+    .formation-cell:hover {
+        transform: scale(1.1);
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+    }
+
+    /* Formation cell types with better contrast */
+    .hero-unit { background-color: #3b82f6; color: white; }
+    .ogre-unit { background-color: #92400e; color: white; }
+    .goblin-unit { background-color: #16a34a; color: white; }
+    .empty-field { background-color: #374151; color: #d1d5db; }
+    .battlefield { background-color: #78350f; color: #fef3c7; }
+    .fortification { background-color: #6b7280; color: white; }
+
+    /* Army display */
+    .army-display {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        margin: 24px 0;
+    }
+
+    .unit-showcase {
+        background: rgba(146, 64, 14, 0.4);
+        border: 2px solid #d97706;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 12px;
+        min-width: 200px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+        transition: all 0.2s ease;
+    }
+
+    .unit-showcase:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Canvas elements */
+    canvas {
+        border: 2px solid #d4af37;
+        border-radius: 12px;
+        background: #0f172a;
+        display: block;
+        margin: 24px auto;
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Command structure display */
+    .command-structure {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .command-card {
+        background: linear-gradient(135deg, #78350f, #92400e);
+        border: 2px solid #b45309;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.2s ease;
+        border-left: 4px solid #d4af37;
+    }
+
+    .command-card:hover {
+        background: linear-gradient(135deg, #92400e, #a16207);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Victory objectives */
+    .victory-objectives {
+        background: rgba(34, 197, 94, 0.1);
+        border: 2px solid #22c55e;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #16a34a;
+    }
+
+    /* Text improvements */
+    p {
+        margin-bottom: 16px;
+        line-height: 1.7;
+        color: #f1f5f9;
+    }
+
+    strong {
+        color: #fbbf24;
+        font-weight: 600;
+    }
+
+    em {
+        color: #e2e8f0;
+        font-style: italic;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0;
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        color: #e2e8f0;
+        line-height: 1.6;
+    }
+
+    /* Links */
+    a {
+        color: #d4af37;
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        color: #fbbf24;
+        border-bottom-color: #fbbf24;
+    }
+
+    /* Code elements */
+    code {
+        background: #78350f;
+        color: #fed7aa;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 0.9em;
+        border: 1px solid #92400e;
+    }
+
+    /* Tables */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 24px 0;
+        background: rgba(15, 23, 42, 0.8);
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    th, td {
+        padding: 12px 16px;
+        text-align: left;
+        border-bottom: 1px solid #78350f;
+    }
+
+    th {
+        background: #92400e;
+        font-weight: 600;
+        color: #fbbf24;
+    }
+
+    /* Mermaid diagrams */
+    .mermaid {
+        background: rgba(120, 53, 15, 0.3) !important;
+        border: 2px solid #d4af37 !important;
+        border-radius: 12px !important;
+        padding: 24px !important;
+        margin: 24px auto !important;
+    }
+
+    /* Blockquotes */
+    blockquote {
+        background: rgba(146, 64, 14, 0.3);
+        border-left: 4px solid #d4af37;
+        padding: 16px 24px;
+        margin: 24px 0;
+        border-radius: 0 8px 8px 0;
+        font-style: italic;
+        color: #f1f5f9;
+    }
+
+    /* Interactive elements */
+    button, .btn {
+        background: linear-gradient(135deg, #a16207, #92400e);
+        color: white;
+        border: 2px solid #d4af37;
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    button:hover, .btn:hover {
+        background: linear-gradient(135deg, #92400e, #78350f);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Warfare statistics */
+    .warfare-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .warfare-stat {
+        background: rgba(120, 53, 15, 0.5);
+        border: 2px solid #b45309;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+
+    .warfare-stat:hover {
+        background: rgba(146, 64, 14, 0.7);
+        transform: scale(1.05);
+    }
+
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #d4af37;
+        margin-bottom: 8px;
+    }
+
+    .stat-label {
+        color: #fbbf24;
+        font-weight: 500;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    /* Strategic elements */
+    .strategic-note {
+        background: rgba(212, 175, 55, 0.1);
+        border: 1px solid #fbbf24;
+        border-radius: 6px;
+        padding: 12px;
+        margin: 12px 0;
+        font-size: 0.95em;
+        border-left: 3px solid #d4af37;
+    }
+
+    .tactical-advantage {
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid #4ade80;
+        border-radius: 6px;
+        padding: 12px;
+        margin: 12px 0;
+        border-left: 3px solid #22c55e;
+    }
+
+    .tactical-disadvantage {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid #f87171;
+        border-radius: 6px;
+        padding: 12px;
+        margin: 12px 0;
+        border-left: 3px solid #dc2626;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
         body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #8b4513 0%, #654321 50%, #3e2723 100%);
-            color: #fff8dc;
+            padding: 16px;
         }
+        
         .container {
-            background: rgba(0, 0, 0, 0.85);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.5);
+            padding: 24px;
         }
+        
         h1 {
-            color: #d4af37;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 8px rgba(212, 175, 55, 0.8);
-            margin-bottom: 30px;
+            font-size: 2rem;
         }
-        h2 {
-            color: #daa520;
-            border-bottom: 2px solid #daa520;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .warfare-principle {
-            background: linear-gradient(135deg, #8b4513 0%, #654321 100%);
-            border: 2px solid #d4af37;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 5px solid #daa520;
-        }
-        .army-card {
-            background: linear-gradient(135deg, #654321 0%, #8b4513 100%);
-            border: 2px solid #cd853f;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            display: inline-block;
-            min-width: 320px;
-            vertical-align: top;
-        }
-        .tactical-box {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid #d4af37;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .strategy-analysis {
-            background: rgba(218, 165, 32, 0.1);
-            border: 2px solid #daa520;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        canvas {
-            border: 2px solid #d4af37;
-            border-radius: 10px;
-            background: #000;
-            display: block;
-            margin: 20px auto;
-        }
-        .battle-formation {
-            display: grid;
-            grid-template-columns: repeat(8, 40px);
-            grid-template-rows: repeat(6, 40px);
-            gap: 2px;
-            margin: 20px auto;
-            border: 3px solid #d4af37;
-            background: #000;
-            padding: 10px;
-            width: fit-content;
-        }
-        .formation-cell {
-            width: 40px;
-            height: 40px;
-            border: 1px solid #654321;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .hero-unit { background-color: #4a90e2; }
-        .ogre-unit { background-color: #8b4513; }
-        .goblin-unit { background-color: #228b22; }
-        .empty-field { background-color: #2f1b14; }
-        .battlefield { background-color: #654321; }
-        .fortification { background-color: #696969; }
-        .army-display {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        .unit-showcase {
-            background: rgba(139, 69, 19, 0.3);
-            border: 2px solid #cd853f;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 10px;
-            min-width: 200px;
-            text-align: center;
-        }
+        
         .horde-counter {
-            font-size: 48px;
-            color: #d4af37;
-            text-align: center;
-            margin: 20px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            font-size: 36px;
         }
-        .mass-combat-demo {
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid #d4af37;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
+        
+        .battle-formation {
+            grid-template-columns: repeat(8, 32px);
+            grid-template-rows: repeat(6, 32px);
         }
-        .engagement-scale {
-            width: 100%;
-            height: 30px;
-            background: linear-gradient(to right, #228b22, #ffd700, #ff8c00, #dc143c);
-            border: 2px solid #d4af37;
-            border-radius: 15px;
-            margin: 10px 0;
-            position: relative;
+        
+        .formation-cell {
+            width: 32px;
+            height: 32px;
+            font-size: 12px;
         }
-        .scale-indicator {
-            position: absolute;
-            top: -3px;
-            width: 6px;
-            height: 36px;
-            background: #fff;
-            border-radius: 3px;
-            transition: left 0.5s ease;
+        
+        .army-card {
+            min-width: 280px;
+            margin: 12px 0;
+            display: block;
         }
-    </style>
+        
+        .army-display {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .unit-showcase {
+            min-width: 280px;
+            margin: 12px 0;
+        }
+        
+        .warfare-stats {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+    }
+
+    /* Focus accessibility */
+    :focus {
+        outline: 2px solid #d4af37;
+        outline-offset: 2px;
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+</style>
 </head>
 <body>
     <div class="container">

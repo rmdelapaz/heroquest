@@ -10,226 +10,381 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
-        body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #1a0033 0%, #2d1b69 20%, #4a148c 40%, #6a1b9a 60%, #8e24aa 80%, #9c27b0 100%);
-            color: #e1bee7;
+/* Enhanced styles for HeroQuest Spirit Queen's Torment document */
+<style>
+    body {
+        font-family: 'Tahoma', 'Times New Roman', serif;
+        line-height: 1.8;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 30px;
+        background: linear-gradient(135deg, #1a0033 0%, #2d1b69 20%, #4a148c 40%, #6a1b9a 60%, #8e24aa 80%, #9c27b0 100%);
+        color: #f3e5f5;
+        font-size: 16px;
+    }
+    
+    .container {
+        background: rgba(26, 0, 51, 0.92);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(156, 39, 176, 0.7);
+        border: 2px solid #ce93d8;
+    }
+    
+    h1 {
+        color: #f3e5f5;
+        text-align: center;
+        font-size: 3em;
+        text-shadow: 3px 3px 10px rgba(206, 147, 216, 0.9);
+        margin-bottom: 40px;
+        letter-spacing: 2px;
+    }
+    
+    h2 {
+        color: #e1bee7;
+        border-bottom: 3px solid #e1bee7;
+        padding-bottom: 15px;
+        margin-top: 50px;
+        font-size: 1.8em;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    h3 {
+        color: #f3e5f5;
+        font-size: 1.4em;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+    
+    p {
+        margin-bottom: 18px;
+        text-align: justify;
+        font-size: 16px;
+        line-height: 1.7;
+    }
+    
+    ul {
+        margin: 20px 0;
+        padding-left: 30px;
+    }
+    
+    li {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+    
+    .ethereal-principle {
+        background: linear-gradient(135deg, #1a0033 0%, #4a148c 100%);
+        border: 2px solid #ce93d8;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        border-left: 6px solid #e1bee7;
+        box-shadow: 0 8px 20px rgba(206, 147, 216, 0.3);
+    }
+    
+    .spectral-card {
+        background: linear-gradient(135deg, #4a148c 0%, #1a0033 100%);
+        border: 2px solid #9c27b0;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px;
+        display: inline-block;
+        min-width: 360px;
+        max-width: 420px;
+        vertical-align: top;
+        box-shadow: 0 8px 20px rgba(156, 39, 176, 0.4);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .spectral-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(156, 39, 176, 0.6);
+    }
+    
+    .torment-box {
+        background: rgba(206, 147, 216, 0.15);
+        border: 2px solid #ce93d8;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        box-shadow: inset 0 2px 10px rgba(206, 147, 216, 0.2);
+    }
+    
+    .horror-analysis {
+        background: rgba(225, 190, 231, 0.15);
+        border: 2px solid #e1bee7;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        box-shadow: inset 0 2px 10px rgba(225, 190, 231, 0.2);
+    }
+    
+    canvas {
+        border: 3px solid #ce93d8;
+        border-radius: 15px;
+        background: #0a0015;
+        display: block;
+        margin: 30px auto;
+        box-shadow: 0 8px 25px rgba(206, 147, 216, 0.4);
+    }
+    
+    .sanity-meter {
+        width: 100%;
+        height: 35px;
+        background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336, #9c27b0);
+        border: 3px solid #ce93d8;
+        border-radius: 20px;
+        margin: 20px 0;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(206, 147, 216, 0.3);
+    }
+    
+    .sanity-indicator {
+        position: absolute;
+        top: -3px;
+        width: 8px;
+        height: 41px;
+        background: #fff;
+        border-radius: 4px;
+        transition: left 0.8s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+    
+    .spirit-queen-portrait {
+        width: 280px;
+        height: 320px;
+        background: radial-gradient(ellipse, #9c27b0, #4a148c, #1a0033);
+        border: 3px solid #ce93d8;
+        border-radius: 20px;
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 90px;
+        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        animation: spectral-presence 4s ease-in-out infinite;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(206, 147, 216, 0.5);
+    }
+    
+    @keyframes spectral-presence {
+        0%, 100% { 
+            box-shadow: 0 0 35px rgba(206, 147, 216, 0.6);
+            transform: scale(1);
         }
-        .container {
-            background: rgba(26, 0, 51, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(156, 39, 176, 0.6);
-            border: 2px solid #ce93d8;
+        50% { 
+            box-shadow: 0 0 55px rgba(156, 39, 176, 1);
+            transform: scale(1.02);
         }
-        h1 {
-            color: #ce93d8;
-            text-align: center;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 8px rgba(206, 147, 216, 0.8);
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #e1bee7;
-            border-bottom: 2px solid #e1bee7;
-            padding-bottom: 10px;
-            margin-top: 40px;
-        }
-        .ethereal-principle {
-            background: linear-gradient(135deg, #1a0033 0%, #4a148c 100%);
-            border: 2px solid #ce93d8;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 5px solid #e1bee7;
-        }
-        .spectral-card {
-            background: linear-gradient(135deg, #4a148c 0%, #1a0033 100%);
-            border: 2px solid #9c27b0;
-            border-radius: 10px;
-            padding: 15px;
-            margin: 10px;
-            display: inline-block;
-            min-width: 320px;
-            vertical-align: top;
-        }
-        .torment-box {
-            background: rgba(206, 147, 216, 0.1);
-            border: 2px solid #ce93d8;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        .horror-analysis {
-            background: rgba(225, 190, 231, 0.1);
-            border: 2px solid #e1bee7;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-        canvas {
-            border: 2px solid #ce93d8;
-            border-radius: 10px;
-            background: #0a0015;
-            display: block;
-            margin: 20px auto;
-        }
-        .sanity-meter {
-            width: 100%;
-            height: 30px;
-            background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336, #9c27b0);
-            border: 2px solid #ce93d8;
-            border-radius: 15px;
-            margin: 10px 0;
-            position: relative;
-        }
-        .sanity-indicator {
-            position: absolute;
-            top: -3px;
-            width: 6px;
-            height: 36px;
-            background: #fff;
-            border-radius: 3px;
-            transition: left 0.5s ease;
-        }
-        .spirit-realm {
-            position: relative;
-            overflow: hidden;
-        }
-        .ethereal-wisp {
-            position: absolute;
-            color: #ce93d8;
-            font-size: 16px;
-            animation: ethereal-drift 6s ease-in-out infinite;
-            opacity: 0.7;
-        }
-        @keyframes ethereal-drift {
-            0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.3; }
-            25% { transform: translateY(-20px) translateX(10px) rotate(90deg); opacity: 0.8; }
-            50% { transform: translateY(-10px) translateX(-15px) rotate(180deg); opacity: 0.5; }
-            75% { transform: translateY(-30px) translateX(20px) rotate(270deg); opacity: 0.9; }
-        }
-        .spirit-queen-portrait {
-            width: 250px;
-            height: 300px;
-            background: radial-gradient(ellipse, #9c27b0, #4a148c, #1a0033);
-            border: 3px solid #ce93d8;
-            border-radius: 15px;
-            margin: 20px auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 72px;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
-            animation: spectral-presence 4s ease-in-out infinite;
-            position: relative;
-        }
-        @keyframes spectral-presence {
-            0%, 100% { 
-                box-shadow: 0 0 30px rgba(206, 147, 216, 0.6);
-                transform: scale(1);
-            }
-            50% { 
-                box-shadow: 0 0 50px rgba(156, 39, 176, 1);
-                transform: scale(1.02);
-            }
-        }
-        .ethereal-creatures {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .creature-manifestation {
-            background: rgba(74, 20, 140, 0.2);
-            border: 2px solid #9c27b0;
-            border-radius: 15px;
-            padding: 15px;
-            text-align: center;
-        }
-        .torment-tracker {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(206, 147, 216, 0.1);
-            border-radius: 10px;
-        }
-        .torment-stage {
-            background: linear-gradient(135deg, #9c27b0, #ce93d8);
-            border: 2px solid #e1bee7;
-            border-radius: 50%;
-            width: 80px;
-            height: 80px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #1a0033;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-            font-size: 12px;
-        }
-        .phase-connector {
-            font-size: 24px;
-            color: #ce93d8;
-        }
-        .ethereal-battlefield {
-            display: grid;
-            grid-template-columns: repeat(8, 35px);
-            grid-template-rows: repeat(6, 35px);
-            gap: 2px;
-            margin: 20px auto;
-            border: 3px solid #ce93d8;
-            background: #0a0015;
-            padding: 10px;
-            width: fit-content;
-        }
-        .ethereal-cell {
-            width: 35px;
-            height: 35px;
-            border: 1px solid #9c27b0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .spirit-realm-tile { background-color: #4a148c; }
-        .material-realm-tile { background-color: #1a0033; }
-        .ethereal-barrier { background-color: #6a1b9a; }
-        .spectral-hero { background-color: #00bcd4; }
-        .spirit-enemy { background-color: #e91e63; }
-        .veil-tear { background-color: #ffeb3b; }
-        .sanity-levels {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 20px 0;
-            padding: 20px;
-            background: rgba(206, 147, 216, 0.1);
-            border-radius: 10px;
-        }
-        .sanity-state {
-            background: linear-gradient(135deg, #9c27b0, #ce93d8);
-            border: 2px solid #e1bee7;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            font-weight: bold;
-            color: #1a0033;
-            min-width: 120px;
-        }
-    </style>
-</head>
+    }
+    
+    .ethereal-creatures {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+    
+    .creature-manifestation {
+        background: rgba(74, 20, 140, 0.25);
+        border: 2px solid #9c27b0;
+        border-radius: 15px;
+        padding: 25px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+    }
+    
+    .creature-manifestation:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(156, 39, 176, 0.5);
+    }
+    
+    .torment-tracker {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 0;
+        padding: 30px;
+        background: rgba(206, 147, 216, 0.15);
+        border-radius: 15px;
+        border: 2px solid #ce93d8;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .torment-stage {
+        background: linear-gradient(135deg, #9c27b0, #ce93d8);
+        border: 2px solid #e1bee7;
+        border-radius: 50%;
+        width: 90px;
+        height: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #1a0033;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+        transition: transform 0.3s ease;
+    }
+    
+    .torment-stage:hover {
+        transform: scale(1.05);
+    }
+    
+    .ethereal-battlefield {
+        display: grid;
+        grid-template-columns: repeat(8, 40px);
+        grid-template-rows: repeat(6, 40px);
+        gap: 3px;
+        margin: 30px auto;
+        border: 3px solid #ce93d8;
+        background: #0a0015;
+        padding: 15px;
+        width: fit-content;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(206, 147, 216, 0.4);
+    }
+    
+    .ethereal-cell {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #9c27b0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 4px;
+    }
+    
+    .ethereal-cell:hover {
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba(206, 147, 216, 0.6);
+    }
+    
+    .spirit-realm-tile { 
+        background-color: #4a148c; 
+        box-shadow: inset 0 0 10px rgba(206, 147, 216, 0.3);
+    }
+    .material-realm-tile { 
+        background-color: #1a0033; 
+        box-shadow: inset 0 0 10px rgba(156, 39, 176, 0.2);
+    }
+    .ethereal-barrier { 
+        background-color: #6a1b9a; 
+        box-shadow: inset 0 0 10px rgba(225, 190, 231, 0.3);
+    }
+    .spectral-hero { 
+        background-color: #00bcd4; 
+        box-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+    }
+    .spirit-enemy { 
+        background-color: #e91e63; 
+        box-shadow: 0 0 10px rgba(233, 30, 99, 0.6);
+    }
+    .veil-tear { 
+        background-color: #ffeb3b; 
+        box-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+    }
+    
+    .sanity-levels {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 30px 0;
+        padding: 30px;
+        background: rgba(206, 147, 216, 0.15);
+        border-radius: 15px;
+        border: 2px solid #ce93d8;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .sanity-state {
+        background: linear-gradient(135deg, #9c27b0, #ce93d8);
+        border: 2px solid #e1bee7;
+        border-radius: 15px;
+        padding: 20px;
+        text-align: center;
+        font-weight: bold;
+        color: #1a0033;
+        min-width: 130px;
+        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+        transition: transform 0.3s ease;
+    }
+    
+    .sanity-state:hover {
+        transform: translateY(-3px);
+    }
+    
+    strong {
+        color: #f3e5f5;
+        font-weight: 600;
+    }
+    
+    em {
+        color: #e1bee7;
+        font-style: italic;
+    }
+    
+    /* Enhanced text contrast and spacing */
+    .ethereal-principle p,
+    .spectral-card p,
+    .torment-box p,
+    .horror-analysis p {
+        line-height: 1.8;
+        margin-bottom: 15px;
+    }
+    
+    .spectral-card h3,
+    .creature-manifestation h4 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+        color: #f3e5f5;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    /* Results display enhancement */
+    div[id*="analysis"],
+    div[id*="result"] {
+        background: rgba(206, 147, 216, 0.2);
+        border: 2px solid #ce93d8;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 25px;
+        min-height: 80px;
+        line-height: 1.6;
+    }
+    
+    /* Atmospheric enhancement */
+    .spirit-realm {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ethereal-wisp {
+        position: absolute;
+        color: #ce93d8;
+        font-size: 18px;
+        animation: ethereal-drift 6s ease-in-out infinite;
+        opacity: 0.8;
+        pointer-events: none;
+    }
+    
+    @keyframes ethereal-drift {
+        0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.4; }
+        25% { transform: translateY(-25px) translateX(15px) rotate(90deg); opacity: 0.9; }
+        50% { transform: translateY(-15px) translateX(-20px) rotate(180deg); opacity: 0.6; }
+        75% { transform: translateY(-35px) translateX(25px) rotate(270deg); opacity: 1; }
+    }
+</style>
 <body>
     <div class="container spirit-realm">
         <h1>👻 Spirit Queen's Torment: Supernatural Horror & Ethereal Combat 🌙</h1>

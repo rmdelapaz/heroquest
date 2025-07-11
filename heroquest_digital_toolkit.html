@@ -10,574 +10,495 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
+
+<style>
+    /* Base styling with digital theme and excellent readability */
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.7;
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 24px;
+        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #f8fafc 100%);
+        color: #1e293b;
+        font-size: 16px;
+    }
+
+    /* Main container with tech styling */
+    .container.toolkit-realm {
+        background: white;
+        padding: 48px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+    }
+
+    /* Main heading with tech theme */
+    h1 {
+        color: #3730a3;
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 32px;
+        border-bottom: 3px solid #6366f1;
+        padding-bottom: 16px;
+        line-height: 1.2;
+    }
+
+    /* Section headings */
+    h2 {
+        color: #4338ca;
+        border-bottom: 2px solid #6366f1;
+        padding-bottom: 12px;
+        margin: 48px 0 24px 0;
+        font-size: 1.75rem;
+        font-weight: 600;
+    }
+
+    h3.tool-title {
+        color: #5b21b6;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin: 16px 0;
+        text-align: center;
+    }
+
+    /* Hero banner */
+    .hero-banner {
+        text-align: center;
+        font-size: 1.1rem;
+        color: #475569;
+        margin-bottom: 32px;
+        padding: 32px;
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        border-radius: 12px;
+        border: 2px solid #c7d2fe;
+        border-left: 6px solid #6366f1;
+    }
+
+    .hero-banner strong {
+        color: #1e293b;
+        font-weight: 600;
+        display: block;
+        margin-bottom: 8px;
+        font-size: 1.2rem;
+    }
+
+    .hero-banner em {
+        color: #64748b;
+        font-style: italic;
+        display: block;
+        margin-top: 12px;
+        font-size: 0.95rem;
+    }
+
+    /* Quick actions bar */
+    .quick-actions {
+        display: flex;
+        justify-content: center;
+        gap: 16px;
+        margin: 32px 0;
+        flex-wrap: wrap;
+    }
+
+    .quick-btn {
+        background: linear-gradient(135deg, #6366f1, #4f46e5);
+        border: 2px solid #a5b4fc;
+        border-radius: 8px;
+        color: white;
+        padding: 12px 20px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        text-transform: uppercase;
+        font-size: 12px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .quick-btn:hover {
+        background: linear-gradient(135deg, #4f46e5, #4338ca);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+    }
+
+    /* Toolkit grid layout */
+    .toolkit-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 24px;
+        margin: 32px 0;
+    }
+
+    /* Tool panels */
+    .tool-panel {
+        background: white;
+        border: 2px solid #e5e7eb;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s ease;
+        border-left: 4px solid #6366f1;
+    }
+
+    .tool-panel:hover {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+    /* Character sheet styling */
+    .character-sheet {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+    }
+
+    .stat-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .stat-row:last-child {
+        border-bottom: none;
+    }
+
+    .stat-label {
+        color: #475569;
+        font-weight: 500;
+    }
+
+    .stat-value {
+        color: #1e293b;
+        font-weight: 600;
+        background: #6366f1;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 6px;
+        min-width: 40px;
+        text-align: center;
+    }
+
+    /* Dice rolling interface */
+    .dice-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+    }
+
+    .dice-btn {
+        background: linear-gradient(135deg, #10b981, #059669);
+        border: 2px solid #34d399;
+        border-radius: 8px;
+        color: white;
+        padding: 16px 12px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .dice-btn:hover {
+        background: linear-gradient(135deg, #059669, #047857);
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Roll results display */
+    .roll-result {
+        background: #f1f5f9;
+        border: 2px solid #cbd5e0;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px 0;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 600;
+        color: #1e293b;
+        min-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Spell calculator */
+    .spell-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+    }
+
+    .spell-card {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        border: 2px solid #c4b5fd;
+        border-radius: 10px;
+        padding: 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        color: white;
+    }
+
+    .spell-card:hover {
+        background: linear-gradient(135deg, #7c3aed, #6d28d9);
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+    }
+
+    .spell-card.selected {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        border-color: #fbbf24;
+        color: #1e293b;
+    }
+
+    .spell-name {
+        font-weight: 600;
+        margin-bottom: 8px;
+        font-size: 14px;
+    }
+
+    .spell-cost {
+        font-size: 12px;
+        opacity: 0.9;
+    }
+
+    /* Mana tracker */
+    .mana-tracker {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+    }
+
+    .mana-circle {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #8b5cf6;
+        border: 2px solid #c4b5fd;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 12px;
+    }
+
+    .mana-circle.spent {
+        background: #9ca3af;
+        border-color: #d1d5db;
+        color: #6b7280;
+    }
+
+    .mana-circle:hover {
+        transform: scale(1.2);
+        box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
+    }
+
+    /* Combat calculator */
+    .combat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .combatant {
+        background: #f8fafc;
+        border: 2px solid #c7d2fe;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .combatant.hero {
+        border-color: #34d399;
+        border-left: 4px solid #10b981;
+    }
+
+    .combatant.monster {
+        border-color: #f87171;
+        border-left: 4px solid #ef4444;
+    }
+
+    /* Button styles */
+    .roll-btn {
+        background: linear-gradient(135deg, #10b981, #059669);
+        border: 2px solid #34d399;
+        border-radius: 8px;
+        color: white;
+        padding: 12px 24px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px;
+    }
+
+    .roll-btn:hover {
+        background: linear-gradient(135deg, #059669, #047857);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .treasure-btn {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        border: 2px solid #fbbf24;
+        border-radius: 8px;
+        color: white;
+        padding: 12px 24px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px;
+    }
+
+    .treasure-btn:hover {
+        background: linear-gradient(135deg, #d97706, #b45309);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+    }
+
+    /* Settings toggles */
+    .setting-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .setting-label {
+        color: #475569;
+        font-weight: 500;
+    }
+
+    .setting-toggle {
+        width: 48px;
+        height: 24px;
+        background: #9ca3af;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+    }
+
+    .setting-toggle.active {
+        background: #10b981;
+    }
+
+    .setting-toggle::before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        background: white;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+    }
+
+    .setting-toggle.active::before {
+        transform: translateX(24px);
+    }
+
+    /* Text improvements */
+    p {
+        margin-bottom: 16px;
+        line-height: 1.7;
+        color: #334155;
+    }
+
+    strong {
+        color: #1e293b;
+        font-weight: 600;
+    }
+
+    em {
+        color: #64748b;
+        font-style: italic;
+    }
+
+    /* Links */
+    a {
+        color: #6366f1;
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        color: #4f46e5;
+        border-bottom-color: #4f46e5;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
         body {
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 20%, #0f3460 40%, #533483 60%, #7209b7 80%, #a663cc 100%);
-            color: #e8eaf6;
+            padding: 16px;
         }
-        .container {
-            background: rgba(26, 26, 46, 0.95);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 15px 40px rgba(166, 99, 204, 0.4);
-            border: 3px solid #a663cc;
+        
+        .container.toolkit-realm {
+            padding: 24px;
         }
+        
         h1 {
-            color: #a663cc;
-            text-align: center;
-            font-size: 2.8em;
-            text-shadow: 3px 3px 12px rgba(166, 99, 204, 0.8);
-            margin-bottom: 30px;
+            font-size: 2rem;
         }
-        h2 {
-            color: #9c88ff;
-            border-bottom: 3px solid #7209b7;
-            padding-bottom: 15px;
-            margin-top: 40px;
-            font-size: 1.8em;
-        }
+        
         .toolkit-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+            grid-template-columns: 1fr;
         }
-        .tool-panel {
-            background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
-            border: 2px solid #7209b7;
-            border-radius: 15px;
-            padding: 25px;
-            position: relative;
-            min-height: 300px;
-        }
-        .tool-panel::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 45%, rgba(166,99,204,0.1) 50%, transparent 55%);
-            animation: panel-shine 8s ease-in-out infinite;
-            border-radius: 13px;
-        }
-        @keyframes panel-shine {
-            0%, 100% { transform: translateX(-100%); }
-            50% { transform: translateX(100%); }
-        }
-        .tool-title {
-            color: #a663cc;
-            font-size: 1.4em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .dice-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            position: relative;
-            z-index: 1;
-        }
-        .die {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #7209b7, #a663cc);
-            border: 3px solid #c5cae9;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #fff;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        .die:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 10px 20px rgba(166, 99, 204, 0.6);
-        }
-        .die.rolling {
-            animation: dice-roll 1s ease-in-out;
-        }
-        @keyframes dice-roll {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(90deg) scale(1.2); }
-            50% { transform: rotate(180deg) scale(1.1); }
-            75% { transform: rotate(270deg) scale(1.2); }
-        }
-        .die.combat-die {
-            background: linear-gradient(135deg, #d32f2f, #f44336);
-        }
-        .die.defense-die {
-            background: linear-gradient(135deg, #1976d2, #2196f3);
-        }
-        .die.movement-die {
-            background: linear-gradient(135deg, #388e3c, #4caf50);
-        }
-        .die.magic-die {
-            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
-        }
-        .roll-controls {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            position: relative;
-            z-index: 1;
-        }
-        .roll-btn {
-            background: linear-gradient(135deg, #533483, #7209b7);
-            border: 2px solid #a663cc;
-            border-radius: 10px;
-            color: #fff;
-            padding: 12px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-        .roll-btn:hover {
-            background: linear-gradient(135deg, #7209b7, #a663cc);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(166, 99, 204, 0.4);
-        }
-        .roll-results {
-            background: rgba(83, 52, 131, 0.3);
-            border: 2px solid #9c88ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .result-total {
-            font-size: 2em;
-            font-weight: bold;
-            color: #a663cc;
-            margin-bottom: 10px;
-        }
-        .result-breakdown {
-            color: #c5cae9;
-            font-size: 1.1em;
-        }
-        .character-sheet {
-            background: rgba(15, 52, 96, 0.4);
-            border: 2px solid #7209b7;
-            border-radius: 15px;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        .stat-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0;
-            padding: 10px;
-            background: rgba(83, 52, 131, 0.2);
-            border-radius: 8px;
-        }
-        .stat-label {
-            color: #9c88ff;
-            font-weight: bold;
-            flex: 1;
-        }
-        .stat-value {
-            background: linear-gradient(135deg, #533483, #7209b7);
-            border: 1px solid #a663cc;
-            border-radius: 5px;
-            color: #fff;
-            padding: 5px 15px;
-            text-align: center;
-            min-width: 50px;
-            font-weight: bold;
-        }
-        .stat-modifier {
-            display: flex;
-            gap: 5px;
-            margin-left: 10px;
-        }
-        .mod-btn {
-            background: #7209b7;
-            border: 1px solid #a663cc;
-            border-radius: 3px;
-            color: #fff;
-            width: 25px;
-            height: 25px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            transition: all 0.2s ease;
-        }
-        .mod-btn:hover {
-            background: #a663cc;
-            transform: scale(1.1);
-        }
-        .health-tracker {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-            position: relative;
-            z-index: 1;
-        }
-        .health-bar {
-            background: rgba(83, 52, 131, 0.3);
-            border: 2px solid #9c88ff;
-            border-radius: 10px;
-            padding: 15px;
-        }
-        .health-character {
-            color: #a663cc;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .health-display {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 10px 0;
-        }
-        .health-hearts {
-            display: flex;
-            gap: 3px;
-            flex: 1;
-        }
-        .heart {
-            width: 20px;
-            height: 20px;
-            background: #d32f2f;
-            clip-path: polygon(50% 15%, 15% 45%, 50% 85%, 85% 45%);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .heart.empty {
-            background: #424242;
-        }
-        .heart:hover {
-            transform: scale(1.2);
-        }
-        .quest-tracker {
-            background: rgba(15, 52, 96, 0.4);
-            border: 2px solid #7209b7;
-            border-radius: 15px;
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        .quest-item {
-            display: flex;
-            align-items: center;
-            margin: 10px 0;
-            padding: 10px;
-            background: rgba(83, 52, 131, 0.2);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        .quest-item:hover {
-            background: rgba(114, 9, 183, 0.3);
-            transform: translateX(5px);
-        }
-        .quest-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #a663cc;
-            border-radius: 4px;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #a663cc;
-            font-weight: bold;
-        }
-        .quest-checkbox.completed {
-            background: #a663cc;
-            color: #1a1a2e;
-        }
-        .quest-text {
-            color: #c5cae9;
-            flex: 1;
-        }
-        .treasure-generator {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .treasure-display {
-            background: linear-gradient(135deg, #ff8f00, #ffc107);
-            border: 3px solid #ffecb3;
-            border-radius: 15px;
-            padding: 20px;
-            margin: 20px 0;
-            color: #1a1a2e;
-            font-weight: bold;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-        }
-        .treasure-btn {
-            background: linear-gradient(135deg, #e65100, #ff8f00);
-            border: 2px solid #ffcc02;
-            border-radius: 10px;
-            color: #fff;
-            padding: 15px 25px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-        .treasure-btn:hover {
-            background: linear-gradient(135deg, #ff8f00, #ffc107);
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 143, 0, 0.4);
-        }
-        .spell-calculator {
-            position: relative;
-            z-index: 1;
-        }
-        .spell-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            margin: 20px 0;
-        }
-        .spell-card {
-            background: linear-gradient(135deg, #7b1fa2, #9c27b0);
-            border: 2px solid #ce93d8;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #fff;
-        }
-        .spell-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
-        }
-        .spell-card.selected {
-            background: linear-gradient(135deg, #ffc107, #ff8f00);
-            color: #1a1a2e;
-        }
-        .spell-name {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .spell-cost {
-            font-size: 0.9em;
-            opacity: 0.8;
-        }
-        .mana-tracker {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        .mana-circle {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            background: #7b1fa2;
-            border: 2px solid #ce93d8;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .mana-circle.spent {
-            background: #424242;
-        }
-        .mana-circle:hover {
-            transform: scale(1.2);
-        }
-        .combat-calculator {
-            position: relative;
-            z-index: 1;
-        }
-        .combat-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-        .combatant {
-            background: rgba(83, 52, 131, 0.3);
-            border: 2px solid #9c88ff;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-        }
-        .combatant.hero {
-            border-color: #4caf50;
-        }
-        .combatant.monster {
-            border-color: #f44336;
-        }
-        .combatant-name {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #a663cc;
-        }
-        .combat-stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 15px 0;
-        }
-        .combat-stat {
-            text-align: center;
-        }
-        .combat-stat-label {
-            font-size: 0.8em;
-            color: #9c88ff;
-        }
-        .combat-stat-value {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #c5cae9;
-        }
-        .settings-panel {
-            background: rgba(83, 52, 131, 0.2);
-            border: 2px solid #7209b7;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            position: relative;
-            z-index: 1;
-        }
-        .setting-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 15px 0;
-            padding: 10px;
-            background: rgba(26, 26, 46, 0.3);
-            border-radius: 8px;
-        }
-        .setting-label {
-            color: #9c88ff;
-            font-weight: bold;
-        }
-        .setting-toggle {
-            width: 50px;
-            height: 25px;
-            background: #424242;
-            border-radius: 25px;
-            cursor: pointer;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-        .setting-toggle.active {
-            background: #a663cc;
-        }
-        .setting-toggle::before {
-            content: '';
-            width: 21px;
-            height: 21px;
-            background: #fff;
-            border-radius: 50%;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            transition: all 0.3s ease;
-        }
-        .setting-toggle.active::before {
-            transform: translateX(25px);
-        }
-        .toolkit-realm {
-            position: relative;
-            overflow: hidden;
-        }
-        .floating-dice {
-            position: absolute;
-            color: #533483;
-            font-size: 16px;
-            animation: float-drift 12s linear infinite;
-            opacity: 0.3;
-        }
-        @keyframes float-drift {
-            0% { 
-                transform: translateX(-100vw) translateY(0) rotate(0deg); 
-                opacity: 0; 
-            }
-            25% { 
-                opacity: 0.3; 
-                transform: translateX(-50vw) translateY(-20px) rotate(90deg); 
-            }
-            50% { 
-                opacity: 0.5; 
-                transform: translateX(0) translateY(-10px) rotate(180deg); 
-            }
-            75% { 
-                opacity: 0.3; 
-                transform: translateX(50vw) translateY(-20px) rotate(270deg); 
-            }
-            100% { 
-                transform: translateX(100vw) translateY(0) rotate(360deg); 
-                opacity: 0; 
-            }
-        }
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #4caf50, #66bb6a);
-            border: 2px solid #81c784;
-            border-radius: 10px;
-            padding: 15px 20px;
-            color: #fff;
-            font-weight: bold;
-            z-index: 1000;
-            transform: translateX(400px);
-            transition: all 0.3s ease;
-        }
-        .notification.show {
-            transform: translateX(0);
-        }
+        
         .quick-actions {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
         }
-        .quick-btn {
-            background: linear-gradient(135deg, #533483, #7209b7);
-            border: 2px solid #a663cc;
-            border-radius: 25px;
-            color: #fff;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 12px;
+        
+        .combat-grid {
+            grid-template-columns: 1fr;
         }
-        .quick-btn:hover {
-            background: linear-gradient(135deg, #7209b7, #a663cc);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(166, 99, 204, 0.4);
+        
+        .dice-grid {
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
         }
-    </style>
+        
+        .spell-grid {
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        }
+    }
+
+    /* Focus accessibility */
+    :focus {
+        outline: 2px solid #6366f1;
+        outline-offset: 2px;
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+</style>
 </head>
 <body>
     <div class="container toolkit-realm">
@@ -650,7 +571,7 @@
                 <div class="roll-controls">
                     <button class="roll-btn" onclick="rollDice('combat', 2)">Combat Roll</button>
                     <button class="roll-btn" onclick="rollDice('defense', 2)">Defense Roll</button>
-                    <button class="roll-btn" onclick="rollDice('movement', 1)">Move Roll</button>
+                    <button class="roll-btn" onclick="rollDice('movement', 2)">Move Roll</button>
                     <button class="roll-btn" onclick="rollDice('magic', 1)">Magic Roll</button>
                 </div>
                 
@@ -1050,22 +971,22 @@
             
             <div class="course-grid">
                 <div style="background: rgba(83, 52, 131, 0.3); border: 2px solid #9c88ff; border-radius: 10px; padding: 20px;">
-                    <h4 style="color: #9c88ff; margin-bottom: 15px;">🎲 Enhanced Dice Rolling</h4>
+                    <h4 style="color: #9c88ff; margin-bottom: 15px;">🎲 True HeroQuest Dice System</h4>
                     <ul style="color: #c5cae9; padding-left: 20px;">
-                        <li><strong>Combat:</strong> Base hit + Attack Power bonus damage</li>
-                        <li><strong>Defense:</strong> Base block + Defense Power bonus protection</li>
-                        <li><strong>Movement:</strong> Base roll + Movement Speed total distance</li>
-                        <li><strong>Magic:</strong> Success rate increases with Magic Power</li>
+                        <li><strong>Attack Power:</strong> Number of combat dice to roll (each die: 50% hit chance)</li>
+                        <li><strong>Defense Power:</strong> Number of shield dice to roll (each die: 33% block chance)</li>
+                        <li><strong>Movement:</strong> Base die roll + Movement Speed bonus</li>
+                        <li><strong>Magic:</strong> Success rate improves with Magic Power level</li>
                     </ul>
                 </div>
                 
                 <div style="background: rgba(83, 52, 131, 0.3); border: 2px solid #9c88ff; border-radius: 10px; padding: 20px;">
-                    <h4 style="color: #9c88ff; margin-bottom: 15px;">💚 Health Management</h4>
+                    <h4 style="color: #9c88ff; margin-bottom: 15px;">💚 Enhanced Health System</h4>
                     <ul style="color: #c5cae9; padding-left: 20px;">
                         <li>Click hearts to toggle damage/healing</li>
                         <li>Use the heal button for full restoration</li>
-                        <li>Different characters have different max health</li>
-                        <li>Track up to 5 party members including expansion heroes</li>
+                        <li>Character-specific health: Wizard(4), Barbarian(6), Elf(5), Dwarf(6), Expansion(5)</li>
+                        <li>Track full party of 5 heroes including expansion characters</li>
                     </ul>
                 </div>
                 
@@ -1080,12 +1001,12 @@
                 </div>
                 
                 <div style="background: rgba(83, 52, 131, 0.3); border: 2px solid #9c88ff; border-radius: 10px; padding: 20px;">
-                    <h4 style="color: #9c88ff; margin-bottom: 15px;">⚔️ Dynamic Combat</h4>
+                    <h4 style="color: #9c88ff; margin-bottom: 15px;">⚔️ Authentic Combat System</h4>
                     <ul style="color: #c5cae9; padding-left: 20px;">
-                        <li>Character stats automatically update combat calculations</li>
-                        <li>Attack Power adds to damage rolls</li>
-                        <li>Defense Power improves damage resistance</li>
-                        <li>Real-time stat integration with combat results</li>
+                        <li>Attacker rolls Attack Power number of combat dice</li>
+                        <li>Defender rolls Defense Power number of shield dice</li>
+                        <li>Damage = Hits - Blocks (minimum 0)</li>
+                        <li>Real HeroQuest combat mechanics with detailed breakdowns</li>
                     </ul>
                 </div>
             </div>
@@ -1130,57 +1051,52 @@
             theme: true
         };
         
-        // Dice rolling functions with stat integration
+        // Dice rolling functions with proper HeroQuest mechanics
         function rollSingleDie(element, type) {
             element.classList.add('rolling');
             
             setTimeout(() => {
                 let baseResult;
-                let statBonus = 0;
+                let diceCount = 1;
                 let finalResult;
                 
                 switch(type) {
                     case 'combat':
+                        diceCount = parseInt(document.getElementById('attack_stat').textContent);
                         baseResult = Math.random() < 0.5 ? 'Hit' : 'Miss';
-                        statBonus = parseInt(document.getElementById('attack_stat').textContent);
-                        if (baseResult === 'Hit') {
-                            finalResult = `💀 Hit (+${statBonus})`;
-                        } else {
-                            finalResult = `❌ Miss`;
-                        }
+                        finalResult = baseResult;
                         break;
                     case 'defense':
+                        diceCount = parseInt(document.getElementById('defense_stat').textContent);
                         baseResult = Math.random() < 0.33 ? 'Block' : 'Hit';
-                        statBonus = parseInt(document.getElementById('defense_stat').textContent);
-                        if (baseResult === 'Block') {
-                            finalResult = `🛡️ Block (+${statBonus})`;
-                        } else {
-                            finalResult = `💥 Hit`;
-                        }
+                        finalResult = baseResult;
                         break;
                     case 'movement':
                         baseResult = Math.floor(Math.random() * 6) + 1;
-                        statBonus = parseInt(document.getElementById('movement_stat').textContent);
-                        finalResult = baseResult + statBonus;
+                        const movementBonus = parseInt(document.getElementById('movement_stat').textContent);
+                        finalResult = baseResult + movementBonus;
                         break;
                     case 'magic':
                         const magicPower = parseInt(document.getElementById('magic_stat').textContent);
-                        const successChance = Math.min(0.9, 0.3 + (magicPower * 0.1)); // Better magic = higher success
+                        const successChance = Math.min(0.9, 0.3 + (magicPower * 0.1));
                         baseResult = Math.random() < successChance ? 'Success' : 'Failure';
-                        finalResult = baseResult === 'Success' ? `⭐ Success (${magicPower} power)` : `🌟 Failure`;
+                        finalResult = baseResult;
                         break;
                 }
                 
-                element.textContent = type === 'movement' ? finalResult : (finalResult.includes('Hit') || finalResult.includes('Block') || finalResult.includes('Success')) ? '✓' : '✗';
-                element.classList.remove('rolling');
-                
-                updateStats('totalRolls', 1);
-                
                 if (type === 'movement') {
-                    showNotification(`Movement: ${baseResult} + ${statBonus} = ${finalResult} spaces`);
+                    element.textContent = finalResult;
+                    showNotification(`Movement: ${baseResult} + ${parseInt(document.getElementById('movement_stat').textContent)} = ${finalResult} spaces`);
+                } else if (type === 'combat' || type === 'defense') {
+                    element.textContent = finalResult === 'Hit' || finalResult === 'Block' ? '✓' : '✗';
+                    showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)}: ${finalResult} (using ${diceCount} dice)`);
                 } else {
-                    showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)}: ${finalResult}`);
+                    element.textContent = finalResult === 'Success' ? '⭐' : '🌟';
+                    showNotification(`Magic: ${finalResult}`);
                 }
+                
+                element.classList.remove('rolling');
+                updateStats('totalRolls', 1);
                 
                 if (settings.sound) {
                     playSound('dice');
@@ -1188,47 +1104,48 @@
             }, 1000);
         }
         
-        function rollDice(type, count) {
+        function rollDice(type, baseCount) {
             const resultsDiv = document.getElementById('dice_results');
             resultsDiv.innerHTML = '<div class="result-total">Rolling...</div>';
             
+            let actualDiceCount = baseCount;
             let results = [];
             let successes = 0;
             let totalValue = 0;
             
-            for (let i = 0; i < count; i++) {
+            // Determine actual number of dice to roll based on character stats
+            if (type === 'combat') {
+                actualDiceCount = parseInt(document.getElementById('attack_stat').textContent);
+            } else if (type === 'defense') {
+                actualDiceCount = parseInt(document.getElementById('defense_stat').textContent);
+            }
+            
+            for (let i = 0; i < actualDiceCount; i++) {
                 setTimeout(() => {
                     let baseResult;
-                    let statBonus = 0;
                     let modifiedResult;
                     
                     switch(type) {
                         case 'combat':
                             baseResult = Math.random() < 0.5 ? 'Hit' : 'Miss';
-                            statBonus = parseInt(document.getElementById('attack_stat').textContent);
-                            modifiedResult = baseResult;
                             if (baseResult === 'Hit') {
                                 successes++;
-                                totalValue += (1 + statBonus);
                             }
-                            results.push(`${baseResult}${baseResult === 'Hit' ? ` (+${statBonus})` : ''}`);
+                            results.push(baseResult);
                             break;
                         case 'defense':
                             baseResult = Math.random() < 0.33 ? 'Block' : 'Hit';
-                            statBonus = parseInt(document.getElementById('defense_stat').textContent);
-                            modifiedResult = baseResult;
                             if (baseResult === 'Block') {
                                 successes++;
-                                totalValue += (1 + statBonus);
                             }
-                            results.push(`${baseResult}${baseResult === 'Block' ? ` (+${statBonus})` : ''}`);
+                            results.push(baseResult);
                             break;
                         case 'movement':
                             baseResult = Math.floor(Math.random() * 6) + 1;
-                            statBonus = parseInt(document.getElementById('movement_stat').textContent);
-                            modifiedResult = baseResult + statBonus;
+                            const movementBonus = parseInt(document.getElementById('movement_stat').textContent);
+                            modifiedResult = baseResult + movementBonus;
                             totalValue += modifiedResult;
-                            results.push(`${baseResult}+${statBonus}=${modifiedResult}`);
+                            results.push(`${baseResult}+${movementBonus}=${modifiedResult}`);
                             break;
                         case 'magic':
                             const magicPower = parseInt(document.getElementById('magic_stat').textContent);
@@ -1236,27 +1153,26 @@
                             baseResult = Math.random() < successChance ? 'Success' : 'Failure';
                             if (baseResult === 'Success') {
                                 successes++;
-                                totalValue += magicPower;
                             }
-                            results.push(`${baseResult} (${magicPower} power)`);
+                            results.push(`${baseResult}`);
                             break;
                     }
                     
-                    if (results.length === count) {
+                    if (results.length === actualDiceCount) {
                         let totalText;
                         let breakdownText;
                         
                         if (type === 'movement') {
                             totalText = `${totalValue} Total Spaces`;
-                            breakdownText = `Rolls: ${results.join(', ')}`;
+                            breakdownText = `${actualDiceCount} dice: ${results.join(', ')}`;
                         } else if (type === 'combat') {
-                            totalText = `${successes}/${count} Hits (${totalValue} Total Damage)`;
+                            totalText = `${successes} Hits (${actualDiceCount} attack dice)`;
                             breakdownText = `Results: ${results.join(', ')}`;
                         } else if (type === 'defense') {
-                            totalText = `${successes}/${count} Blocks (${totalValue} Total Defense)`;
+                            totalText = `${successes} Blocks (${actualDiceCount} defense dice)`;
                             breakdownText = `Results: ${results.join(', ')}`;
                         } else {
-                            totalText = `${successes}/${count} Successes (${totalValue} Total Power)`;
+                            totalText = `${successes} Successes (${actualDiceCount} magic attempts)`;
                             breakdownText = `Results: ${results.join(', ')}`;
                         }
                         
@@ -1265,8 +1181,8 @@
                             <div class="result-breakdown">${breakdownText}</div>
                         `;
                         
-                        updateStats('totalRolls', count);
-                        showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} roll complete!`);
+                        updateStats('totalRolls', actualDiceCount);
+                        showNotification(`${type.charAt(0).toUpperCase() + type.slice(1)} roll complete: ${successes > 0 || totalValue > 0 ? 'Success!' : 'No success.'}`);
                     }
                 }, i * 200 + 500);
             }
@@ -1281,7 +1197,7 @@
                     rollDice('defense', 2);
                     break;
                 case 'movement':
-                    rollDice('movement', 1);
+                    rollDice('movement', 2);
                     break;
                 case 'magic':
                     rollDice('magic', 1);
@@ -1289,7 +1205,7 @@
             }
         }
         
-        // Character sheet functions with feedback
+        // Character sheet functions with proper HeroQuest feedback
         function modifyStat(stat, change) {
             const element = document.getElementById(stat + '_stat');
             let currentValue = parseInt(element.textContent);
@@ -1321,13 +1237,13 @@
             showNotification(`${stat.charAt(0).toUpperCase() + stat.slice(1)} ${change > 0 ? 'increased' : 'decreased'} to ${newValue}${getStatBonus(stat, newValue)}`);
         }
         
-        // Helper function to show stat bonuses
+        // Helper function to show proper HeroQuest stat bonuses
         function getStatBonus(stat, value) {
             switch(stat) {
                 case 'attack':
-                    return ` (Combat bonus: +${value})`;
+                    return ` (Roll ${value} combat dice)`;
                 case 'defense':
-                    return ` (Defense bonus: +${value})`;
+                    return ` (Roll ${value} defense dice)`;
                 case 'movement':
                     return ` (Movement bonus: +${value})`;
                 case 'magic':
@@ -1450,41 +1366,64 @@
             }
         }
         
-        // Combat calculator with dynamic stat integration
+        // Combat calculator with proper HeroQuest dice mechanics
         function calculateCombat(attacker) {
             const resultsDiv = document.getElementById('combat_results');
             resultsDiv.innerHTML = '<div class="result-total">Calculating...</div>';
             
             setTimeout(() => {
-                const attackRoll = Math.floor(Math.random() * 6) + 1;
-                const defenseRoll = Math.floor(Math.random() * 6) + 1;
+                // Get number of dice to roll from character stats
+                const heroAttackDice = parseInt(document.getElementById('attack_stat').textContent);
+                const heroDefenseDice = parseInt(document.getElementById('defense_stat').textContent);
+                const monsterAttackDice = parseInt(document.getElementById('monster_attack').textContent);
+                const monsterDefenseDice = parseInt(document.getElementById('monster_defense').textContent);
                 
-                // Get current character stats dynamically
-                const attackPower = parseInt(document.getElementById('attack_stat').textContent);
-                const defensePower = parseInt(document.getElementById('defense_stat').textContent);
-                
-                let totalAttack, totalDefense;
+                let attackerDice, defenderDice, attackerName, defenderName;
                 
                 if (attacker === 'hero') {
-                    totalAttack = attackRoll + attackPower;
-                    totalDefense = defenseRoll + parseInt(document.getElementById('monster_defense').textContent);
+                    attackerDice = heroAttackDice;
+                    defenderDice = monsterDefenseDice;
+                    attackerName = 'Hero';
+                    defenderName = 'Monster';
                 } else {
-                    totalAttack = attackRoll + parseInt(document.getElementById('monster_attack').textContent);
-                    totalDefense = defenseRoll + defensePower;
+                    attackerDice = monsterAttackDice;
+                    defenderDice = heroDefenseDice;
+                    attackerName = 'Monster';
+                    defenderName = 'Hero';
                 }
                 
-                const hit = totalAttack > totalDefense;
-                const damage = hit ? Math.max(1, totalAttack - totalDefense) : 0;
+                // Roll attack dice
+                let attackHits = 0;
+                let attackRolls = [];
+                for (let i = 0; i < attackerDice; i++) {
+                    const roll = Math.random() < 0.5 ? 'Hit' : 'Miss';
+                    attackRolls.push(roll);
+                    if (roll === 'Hit') attackHits++;
+                }
                 
-                // Update combat display with character stats
-                document.getElementById('hero_attack').textContent = attackPower;
-                document.getElementById('hero_defense').textContent = defensePower;
+                // Roll defense dice
+                let defenseBlocks = 0;
+                let defenseRolls = [];
+                for (let i = 0; i < defenderDice; i++) {
+                    const roll = Math.random() < 0.33 ? 'Block' : 'Hit';
+                    defenseRolls.push(roll);
+                    if (roll === 'Block') defenseBlocks++;
+                }
+                
+                // Calculate damage
+                const damage = Math.max(0, attackHits - defenseBlocks);
+                const hit = damage > 0;
+                
+                // Update display
+                document.getElementById('hero_attack').textContent = heroAttackDice;
+                document.getElementById('hero_defense').textContent = heroDefenseDice;
                 
                 resultsDiv.innerHTML = `
-                    <div class="result-total">${hit ? `${damage} Damage!` : 'Miss!'}</div>
+                    <div class="result-total">${hit ? `${damage} Damage!` : 'No Damage!'}</div>
                     <div class="result-breakdown">
-                        ${attacker === 'hero' ? 'Hero' : 'Monster'} Attack: ${attackRoll} + ${attacker === 'hero' ? attackPower : document.getElementById('monster_attack').textContent} = ${totalAttack}<br>
-                        ${attacker === 'hero' ? 'Monster' : 'Hero'} Defense: ${defenseRoll} + ${attacker === 'hero' ? document.getElementById('monster_defense').textContent : defensePower} = ${totalDefense}
+                        ${attackerName} rolled ${attackerDice} dice: ${attackRolls.join(', ')} = ${attackHits} hits<br>
+                        ${defenderName} rolled ${defenderDice} dice: ${defenseRolls.join(', ')} = ${defenseBlocks} blocks<br>
+                        ${attackHits} hits - ${defenseBlocks} blocks = ${damage} damage
                     </div>
                 `;
                 
@@ -1497,7 +1436,7 @@
                     updateStats('combatEncounters', 1);
                 }
                 
-                showNotification(`Combat complete: ${hit ? `${damage} damage dealt!` : 'Attack missed!'}!`);
+                showNotification(`Combat complete: ${hit ? `${damage} damage dealt!` : 'Attack blocked!'}!`);
             }, 1000);
         }
         
