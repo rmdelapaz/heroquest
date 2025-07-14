@@ -10,43 +10,40 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-/* Enhanced styles for HeroQuest Prophecy of Telor document */
 <style>
     body {
-          font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
         line-height: 1.8;
         max-width: 1400px;
         margin: 0 auto;
         padding: 30px;
-        background: linear-gradient(135deg, #ffd700 0%, #ffb300 20%, #ff8f00 40%, #ff6f00 60%, #e65100 80%, #bf360c 100%);
-        color: #fffef7;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 20%, #dee2e6 40%, #ced4da 60%, #adb5bd 80%, #6c757d 100%);
+        color: #212529;
         font-size: 16px;
     }
     
     .container {
-        background: rgba(191, 54, 12, 0.92);
+        background: rgba(255, 255, 255, 0.95);
         padding: 40px;
         border-radius: 20px;
-        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.7);
-        border: 2px solid #ffd700;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        border: 2px solid #6f42c1;
     }
     
- 
-    
     .prophecy-principle {
-        background: linear-gradient(135deg, #bf360c 0%, #e65100 100%);
-        border: 2px solid #ffd700;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border: 2px solid #6f42c1;
         border-radius: 15px;
         padding: 30px;
         margin: 30px 0;
-        border-left: 6px solid #ffecb3;
-        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        border-left: 6px solid #6f42c1;
+        box-shadow: 0 8px 20px rgba(111, 66, 193, 0.1);
+        color: #212529;
     }
     
     .divine-card {
-        background: linear-gradient(135deg, #e65100 0%, #bf360c 100%);
-        border: 2px solid #ff8f00;
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        border: 2px solid #0d6efd;
         border-radius: 15px;
         padding: 25px;
         margin: 20px;
@@ -54,97 +51,98 @@
         min-width: 360px;
         max-width: 420px;
         vertical-align: top;
-        box-shadow: 0 8px 20px rgba(255, 143, 0, 0.4);
+        box-shadow: 0 8px 20px rgba(13, 110, 253, 0.1);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: #212529;
     }
     
     .divine-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(255, 143, 0, 0.6);
+        box-shadow: 0 12px 30px rgba(13, 110, 253, 0.2);
     }
     
-    .destiny-box {
-        background: rgba(255, 215, 0, 0.15);
-        border: 2px solid #ffd700;
+    .choice-node {
+        background: rgba(248, 249, 250, 0.9);
+        border: 2px solid #0d6efd;
         border-radius: 15px;
-        padding: 30px;
-        margin: 30px 0;
-        box-shadow: inset 0 2px 10px rgba(255, 215, 0, 0.2);
+        padding: 25px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.1);
+        color: #212529;
     }
     
-    .mystical-analysis {
-        background: rgba(255, 236, 179, 0.15);
-        border: 2px solid #ffecb3;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 30px 0;
-        box-shadow: inset 0 2px 10px rgba(255, 236, 179, 0.2);
+    .choice-node:hover {
+        background: rgba(13, 110, 253, 0.1);
+        transform: scale(1.03);
+        box-shadow: 0 8px 20px rgba(13, 110, 253, 0.2);
     }
     
-    canvas {
-        border: 3px solid #ffd700;
-        border-radius: 15px;
-        background: #1a0e00;
-        display: block;
-        margin: 30px auto;
-        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    .choice-node.selected {
+        background: rgba(13, 110, 253, 0.15);
+        border-color: #6f42c1;
+        transform: scale(1.05);
     }
     
-    .prophecy-scroll {
-        background: linear-gradient(145deg, #f5f5dc, #f0e68c);
-        color: #8b4513;
-        border: 3px solid #daa520;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 30px 0;
-        font-family: 'Georgia', 'Times New Roman', serif;
+    strong {
+        color: #0d6efd;
+        font-weight: 600;
+    }
+    
+    em {
+        color: #6c757d;
         font-style: italic;
-        box-shadow: inset 0 0 25px rgba(139, 69, 19, 0.3), 0 8px 20px rgba(218, 165, 32, 0.4);
+    }
+    
+    h1, h2, h3, h4 {
+        color: #6f42c1;
+    }
+    
+    /* Enhanced text contrast and spacing */
+    .prophecy-principle p,
+    .divine-card p,
+    .destiny-box p,
+    .mystical-analysis p {
         line-height: 1.8;
+        margin-bottom: 15px;
+        color: #212529;
     }
     
-    .fate-meter {
-        width: 100%;
-        height: 35px;
-        background: linear-gradient(to right, #8b0000, #ff4500, #ffd700, #32cd32, #4169e1);
-        border: 3px solid #ffd700;
-        border-radius: 20px;
-        margin: 20px 0;
-        position: relative;
-        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    .divine-card h3,
+    .power-showcase h4 {
+        font-size: 1.3em;
+        margin-bottom: 15px;
+        color: #0d6efd;
+        text-shadow: none;
     }
     
-    .fate-indicator {
-        position: absolute;
-        top: -3px;
-        width: 8px;
-        height: 41px;
-        background: #fff;
-        border-radius: 4px;
-        transition: left 0.8s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
-    }
-    
-    .divine-powers {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-        margin: 30px 0;
+    /* Results display enhancement */
+    div[id*="result"] {
+        background: rgba(13, 110, 253, 0.05);
+        border: 2px solid #0d6efd;
+        border-radius: 10px;
+        padding: 20px;
+        margin-top: 25px;
+        min-height: 80px;
+        line-height: 1.6;
+        color: #212529;
     }
     
     .power-showcase {
-        background: rgba(255, 111, 0, 0.25);
-        border: 2px solid #ff8f00;
+        background: rgba(248, 249, 250, 0.9);
+        border: 2px solid #198754;
         border-radius: 15px;
         padding: 25px;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 12px rgba(255, 111, 0, 0.3);
+        box-shadow: 0 4px 12px rgba(25, 135, 84, 0.1);
+        color: #212529;
     }
     
     .power-showcase:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
+        box-shadow: 0 8px 20px rgba(25, 135, 84, 0.2);
     }
     
     .prophecy-tracker {
@@ -153,16 +151,16 @@
         align-items: center;
         margin: 30px 0;
         padding: 30px;
-        background: rgba(255, 215, 0, 0.15);
+        background: rgba(13, 110, 253, 0.05);
         border-radius: 15px;
-        border: 2px solid #ffd700;
+        border: 2px solid #0d6efd;
         flex-wrap: wrap;
         gap: 15px;
     }
     
     .prophecy-stage {
-        background: linear-gradient(135deg, #ff8f00, #ffd700);
-        border: 2px solid #ffecb3;
+        background: linear-gradient(135deg, #0d6efd, #6f42c1);
+        border: 2px solid #ffffff;
         border-radius: 50%;
         width: 90px;
         height: 90px;
@@ -171,10 +169,10 @@
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        color: #bf360c;
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        color: #ffffff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         font-size: 12px;
-        box-shadow: 0 4px 12px rgba(255, 143, 0, 0.3);
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
         transition: transform 0.3s ease;
     }
     
@@ -185,22 +183,23 @@
     .telor-avatar {
         width: 250px;
         height: 250px;
-        background: radial-gradient(circle, #ffd700, #ff8f00, #e65100);
-        border: 3px solid #ffecb3;
+        background: radial-gradient(circle, #6f42c1, #0d6efd, #198754);
+        border: 3px solid #ffffff;
         border-radius: 50%;
         margin: 30px auto;
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 80px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         animation: divine-pulse 3s ease-in-out infinite;
-        box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        box-shadow: 0 10px 30px rgba(111, 66, 193, 0.3);
+        color: #ffffff;
     }
     
     @keyframes divine-pulse {
-        0%, 100% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); }
-        50% { box-shadow: 0 0 45px rgba(255, 215, 0, 1); }
+        0%, 100% { box-shadow: 0 0 25px rgba(111, 66, 193, 0.4); }
+        50% { box-shadow: 0 0 45px rgba(111, 66, 193, 0.6); }
     }
     
     .choice-matrix {
@@ -210,65 +209,97 @@
         margin: 30px 0;
     }
     
-    .choice-node {
-        background: rgba(191, 54, 12, 0.35);
-        border: 2px solid #ff8f00;
+    .destiny-box {
+        background: rgba(25, 135, 84, 0.05);
+        border: 2px solid #198754;
         border-radius: 15px;
-        padding: 25px;
-        text-align: center;
-        cursor: pointer;
-        transition: all 0.4s ease;
-        box-shadow: 0 4px 12px rgba(255, 143, 0, 0.3);
+        padding: 30px;
+        margin: 30px 0;
+        box-shadow: inset 0 2px 10px rgba(25, 135, 84, 0.1);
+        color: #212529;
     }
     
-    .choice-node:hover {
-        background: rgba(255, 215, 0, 0.25);
-        transform: scale(1.03);
-        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+    .mystical-analysis {
+        background: rgba(111, 66, 193, 0.05);
+        border: 2px solid #6f42c1;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        box-shadow: inset 0 2px 10px rgba(111, 66, 193, 0.1);
+        color: #212529;
     }
     
-    .choice-node.selected {
-        background: rgba(255, 215, 0, 0.35);
-        border-color: #ffd700;
-        transform: scale(1.05);
+    canvas {
+        border: 3px solid #6f42c1;
+        border-radius: 15px;
+        background: #f8f9fa;
+        display: block;
+        margin: 30px auto;
+        box-shadow: 0 8px 25px rgba(111, 66, 193, 0.2);
     }
     
-    strong {
-        color: #fff3cd;
-        font-weight: 600;
-    }
-    
-    em {
-        color: #ffecb3;
+    .prophecy-scroll {
+        background: linear-gradient(145deg, #fff3cd, #ffeaa7);
+        color: #6c4a00;
+        border: 3px solid #fd7e14;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        font-family: 'Georgia', 'Times New Roman', serif;
         font-style: italic;
-    }
-    
-    /* Enhanced text contrast and spacing */
-    .prophecy-principle p,
-    .divine-card p,
-    .destiny-box p,
-    .mystical-analysis p {
+        box-shadow: inset 0 0 25px rgba(108, 74, 0, 0.1), 0 8px 20px rgba(253, 126, 20, 0.2);
         line-height: 1.8;
-        margin-bottom: 15px;
     }
     
-    .divine-card h3,
-    .power-showcase h4 {
-        font-size: 1.3em;
-        margin-bottom: 15px;
-        color: #fff3cd;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    .fate-meter {
+        width: 100%;
+        height: 35px;
+        background: linear-gradient(to right, #dc3545, #fd7e14, #ffc107, #198754, #0d6efd);
+        border: 3px solid #6f42c1;
+        border-radius: 20px;
+        margin: 20px 0;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(111, 66, 193, 0.2);
     }
     
-    /* Results display enhancement */
-    div[id*="result"] {
-        background: rgba(255, 215, 0, 0.2);
-        border: 2px solid #ffd700;
-        border-radius: 10px;
-        padding: 20px;
-        margin-top: 25px;
-        min-height: 80px;
-        line-height: 1.6;
+    .fate-indicator {
+        position: absolute;
+        top: -3px;
+        width: 8px;
+        height: 41px;
+        background: #212529;
+        border-radius: 4px;
+        transition: left 0.8s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .divine-powers {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+    
+    /* Text color improvements for headings in special sections */
+    .prophecy-scroll h3 {
+        color: #6c4a00;
+    }
+    
+    .destiny-box h3 {
+        color: #198754;
+    }
+    
+    .mystical-analysis h3 {
+        color: #6f42c1;
+    }
+    
+    /* Lists */
+    ul, ol {
+        color: #212529;
+    }
+    
+    li {
+        color: #495057;
     }
 </style>
 </head>
@@ -295,7 +326,7 @@
         <h2>📜 The Sacred Prophecy: Ancient Words of Power</h2>
         
         <div class="prophecy-scroll">
-            <h3 style="text-align: center; color: #8b4513;">The Prophecy of Telor</h3>
+            <h3 style="text-align: center;">The Prophecy of Telor</h3>
             <p style="text-align: center; font-size: 18px; margin: 20px 0;">
                 <em>"When darkness covers all the land,<br>
                 And evil's power grows too strong,<br>
@@ -307,52 +338,15 @@
                 And in the hour of greatest need,<br>
                 The prophecy shall prove true."</em>
             </p>
-            <p style="text-align: center; font-size: 12px; margin-top: 20px;">
-                - As written in the Chronicle of Ages, by the Oracle of Telor
-            </p>
         </div>
 
-        <h2>🌟 The Divine Mechanics: Fate as a Force</h2>
-        
-        <div class="mermaid">
-            graph TD
-                A[Prophetic Forces] --> B[Divine Intervention]
-                A --> C[Destiny Points]
-                A --> D[Fate Mechanics]
-                A --> E[Cosmic Balance]
-                
-                B --> B1[Miraculous Saves]
-                B --> B2[Divine Guidance]
-                B --> B3[Prophetic Visions]
-                
-                C --> C1[Earned Through Heroics]
-                C --> C2[Spent for Major Effects]
-                C --> C3[Accumulate Over Campaigns]
-                
-                D --> D1[Predetermined Outcomes]
-                D --> D2[Unavoidable Events]
-                D --> D3[Chosen One Moments]
-                
-                E --> E1[Light vs Darkness]
-                E --> E2[Order vs Chaos]
-                E --> E3[Hope vs Despair]
-                
-                style A fill:#ffd700,stroke:#333,stroke-width:3px
-                style B fill:#ffecb3,stroke:#333,stroke-width:2px
-                style C fill:#ffecb3,stroke:#333,stroke-width:2px
-                style D fill:#ffecb3,stroke:#333,stroke-width:2px
-                style E fill:#ffecb3,stroke:#333,stroke-width:2px
-        </div>
-
-        <h2>⚡ Divine Powers: The Hand of Fate</h2>
-        
-        <canvas id="divine_powers_canvas" width="600" height="300"></canvas>
+        <h2>⚡ Divine Powers: The Intervention System</h2>
         
         <div class="divine-powers">
             <div class="power-showcase">
                 <h4>🌟 Divine Intervention</h4>
                 <p><strong>The Miracle Save</strong></p>
-                <p><strong>Effect:</strong> Prevent certain death once per quest</p>
+                <p><strong>Effect:</strong> Automatic success on any roll</p>
                 <p><strong>Cost:</strong> 3 Destiny Points</p>
                 <p><strong>Manifestation:</strong> "A golden light surrounds you as fate itself intervenes..."</p>
             </div>
@@ -390,245 +384,44 @@
                 <div>Prophecy</div>
                 <div>Received</div>
             </div>
-            <div style="font-size: 24px; color: #ffd700;">→</div>
+            <div style="font-size: 24px; color: #0d6efd;">→</div>
             <div class="prophecy-stage">
                 <div style="font-size: 20px;">🔍</div>
                 <div>Signs</div>
                 <div>Manifest</div>
             </div>
-            <div style="font-size: 24px; color: #ffd700;">→</div>
+            <div style="font-size: 24px; color: #0d6efd;">→</div>
             <div class="prophecy-stage">
                 <div style="font-size: 20px;">⚔️</div>
                 <div>Trials</div>
-                <div>Faced</div>
+                <div>Begin</div>
             </div>
-            <div style="font-size: 24px; color: #ffd700;">→</div>
+            <div style="font-size: 24px; color: #0d6efd;">→</div>
             <div class="prophecy-stage">
-                <div style="font-size: 20px;">⚡</div>
-                <div>Power</div>
-                <div>Awakened</div>
-            </div>
-            <div style="font-size: 24px; color: #ffd700;">→</div>
-            <div class="prophecy-stage">
-                <div style="font-size: 20px;">👑</div>
+                <div style="font-size: 20px;">🌟</div>
                 <div>Destiny</div>
                 <div>Fulfilled</div>
             </div>
         </div>
 
-        <h2>🔮 The Mechanics of Destiny</h2>
-        
-        <canvas id="destiny_mechanics_canvas" width="600" height="350"></canvas>
+        <h2>🎲 Strategic Philosophy: The Balance of Choice and Fate</h2>
         
         <div class="destiny-box">
-            <h3>⚖️ Earning Destiny Points: The Currency of Fate</h3>
-            <p><strong>Destiny Points represent how aligned heroes are with their prophetic purpose:</strong></p>
+            <h3>⚖️ The Three Paths of Prophecy</h3>
+            <p><strong>Every prophetic hero must choose their relationship with destiny:</strong></p>
             
-            <p><strong>🌟 Heroic Actions (1 Point Each):</strong></p>
+            <p><strong>🗡️ The Sword Strategy:</strong> Fight fate and forge your own path</p>
             <ul>
-                <li>Saving innocent lives at personal risk</li>
-                <li>Showing mercy to defeated enemies</li>
-                <li>Sacrificing personal gain for the greater good</li>
-                <li>Displaying courage in the face of overwhelming odds</li>
+                <li>Resist predetermined outcomes through force</li>
+                <li>Use destiny powers sparingly to maintain independence</li>
+                <li>Create unexpected solutions to prophetic challenges</li>
+                <li>Risk destiny points for creative problem-solving</li>
             </ul>
             
-            <p><strong>⚡ Legendary Deeds (2-3 Points Each):</strong></p>
+            <p><strong>🛡️ The Shield Strategy:</strong> Embrace destiny and become its champion</p>
             <ul>
-                <li>Completing major prophecy milestones</li>
-                <li>Defeating prophetically significant enemies</li>
-                <li>Making choices that align with destiny</li>
-                <li>Fulfilling ancient oaths and promises</li>
-            </ul>
-            
-            <p><strong>👑 Mythic Achievements (4-5 Points Each):</strong></p>
-            <ul>
-                <li>Preventing apocalyptic events</li>
-                <li>Restoring balance to cosmic forces</li>
-                <li>Awakening dormant divine powers</li>
-                <li>Transcending mortal limitations</li>
-            </ul>
-        </div>
-
-        <h2>🎮 Interactive Prophecy Decision Engine</h2>
-        
-        <div class="mystical-analysis">
-            <p><strong>Make prophetic choices!</strong> Each decision influences how the prophecy unfolds and your destiny alignment.</p>
-            
-            <div class="choice-matrix" id="choice_matrix">
-                <div class="choice-node" onclick="makeChoice(0, 'light')">
-                    <h4>🌟 The Light Path</h4>
-                    <p>Choose compassion and mercy</p>
-                    <p><em>+2 Destiny Points</em></p>
-                </div>
-                <div class="choice-node" onclick="makeChoice(1, 'balance')">
-                    <h4>⚖️ The Balanced Path</h4>
-                    <p>Seek justice and equilibrium</p>
-                    <p><em>+1 Destiny Point</em></p>
-                </div>
-                <div class="choice-node" onclick="makeChoice(2, 'power')">
-                    <h4>⚡ The Power Path</h4>
-                    <p>Embrace strength and dominance</p>
-                    <p><em>Fate Uncertainty</em></p>
-                </div>
-            </div>
-            
-            <div id="prophecy_result" style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
-                <strong>Prophetic Guidance:</strong> The threads of fate await your choices...
-            </div>
-        </div>
-
-        <h2>🌍 Cosmic Balance: The Universal Stakes</h2>
-        
-        <canvas id="cosmic_balance_canvas" width="600" height="300"></canvas>
-        
-        <div class="prophecy-principle">
-            <h3>⚖️ The Great Equilibrium</h3>
-            <p><strong>The Prophecy of Telor introduced the concept that hero actions affect universal balance:</strong></p>
-            
-            <p><strong>🌟 Forces of Light:</strong></p>
-            <ul>
-                <li>Hope, healing, protection, creation</li>
-                <li>Powered by heroic deeds and selfless acts</li>
-                <li>Grants abilities that preserve and nurture</li>
-                <li>Strengthened by cooperation and unity</li>
-            </ul>
-            
-            <p><strong>🌑 Forces of Darkness:</strong></p>
-            <ul>
-                <li>Despair, destruction, corruption, entropy</li>
-                <li>Fed by cruelty and selfish ambition</li>
-                <li>Offers power through domination and fear</li>
-                <li>Grows stronger through division and hatred</li>
-            </ul>
-            
-            <p><strong>⚖️ The Balance Point:</strong></p>
-            <ul>
-                <li>Neither extreme is sustainable long-term</li>
-                <li>True wisdom lies in understanding both forces</li>
-                <li>Heroes must choose which side to strengthen</li>
-                <li>The prophecy's fulfillment depends on these choices</li>
-            </ul>
-        </div>
-
-        <h2>🔮 Prophetic Encounters: Fate-Driven Adventures</h2>
-        
-        <div class="divine-card">
-            <h3>👁️ The Oracle's Chamber</h3>
-            <p><strong>The Revelation Quest</strong></p>
-            <p><strong>Challenge:</strong> Prove worthiness to receive prophecy</p>
-            <p><strong>Innovation:</strong> Tests moral character, not combat skill</p>
-            <p><strong>Reward:</strong> Knowledge of future trials and divine guidance</p>
-            <p><strong>Consequence:</strong> Knowledge of destiny becomes burden and blessing</p>
-        </div>
-
-        <div class="divine-card">
-            <h3>⚡ The Storm of Ages</h3>
-            <p><strong>The Elemental Trial</strong></p>
-            <p><strong>Challenge:</strong> Survive natural forces embodying cosmic powers</p>
-            <p><strong>Innovation:</strong> Environment actively opposes heroes with intelligence</p>
-            <p><strong>Reward:</strong> Mastery over elemental forces</p>
-            <p><strong>Consequence:</strong> Understanding of universal interconnectedness</p>
-        </div>
-
-        <div class="divine-card">
-            <h3>🌟 The Convergence Point</h3>
-            <p><strong>The Destiny Crossroads</strong></p>
-            <p><strong>Challenge:</strong> Multiple prophecies intersect simultaneously</p>
-            <p><strong>Innovation:</strong> Player choices determine which prophecy becomes reality</p>
-            <p><strong>Reward:</strong> Shaping the future of the world</p>
-            <p><strong>Consequence:</strong> Responsibility for consequences of chosen destiny</p>
-        </div>
-
-        <h2>🎭 Character Development Through Destiny</h2>
-        
-        <canvas id="character_evolution_canvas" width="600" height="350"></canvas>
-        
-        <div class="mystical-analysis">
-            <h3>👤 The Hero's Spiritual Journey</h3>
-            <p><strong>Characters don't just gain power - they evolve spiritually and philosophically:</strong></p>
-            
-            <p><strong>🌱 Stage 1 - Awakening:</strong></p>
-            <ul>
-                <li>Heroes discover they have a greater purpose</li>
-                <li>Initial resistance to accepting destiny</li>
-                <li>Small signs and coincidences begin manifesting</li>
-                <li>Powers feel foreign and uncomfortable</li>
-            </ul>
-            
-            <p><strong>⚔️ Stage 2 - Testing:</strong></p>
-            <ul>
-                <li>Trials that challenge core beliefs and values</li>
-                <li>Temptations to abandon the prophetic path</li>
-                <li>Learning to trust in forces beyond understanding</li>
-                <li>Powers become more natural and integrated</li>
-            </ul>
-            
-            <p><strong>🌟 Stage 3 - Acceptance:</strong></p>
-            <ul>
-                <li>Embracing role as agents of destiny</li>
-                <li>Understanding personal desires vs. greater good</li>
-                <li>Wisdom to know when to act and when to wait</li>
-                <li>Powers become extensions of character's will</li>
-            </ul>
-            
-            <p><strong>👑 Stage 4 - Transcendence:</strong></p>
-            <ul>
-                <li>Heroes become legendary figures themselves</li>
-                <li>Their actions create new prophecies for future heroes</li>
-                <li>Perfect harmony between personal will and cosmic purpose</li>
-                <li>Powers transform from tools to expressions of being</li>
-            </ul>
-        </div>
-
-        <h2>📚 The Philosophy of Predetermined Destiny</h2>
-        
-        <div class="destiny-box">
-            <h3>🤔 Free Will vs. Fate: The Great Question</h3>
-            <p><strong>The expansion grapples with fundamental philosophical questions:</strong></p>
-            
-            <p><strong>📜 The Determinist View:</strong> "Everything is written in the stars"</p>
-            <ul>
-                <li>All events are part of a grand cosmic plan</li>
-                <li>Heroes fulfill destiny regardless of personal choices</li>
-                <li>Comfort in knowing ultimate victory is assured</li>
-                <li>Risk of fatalism and lack of personal agency</li>
-            </ul>
-            
-            <p><strong>⚡ The Free Will View:</strong> "We forge our own destiny"</p>
-            <ul>
-                <li>Prophecies are possibilities, not certainties</li>
-                <li>Heroes' choices determine which future comes to pass</li>
-                <li>Empowerment through personal responsibility</li>
-                <li>Burden of potential failure and consequences</li>
-            </ul>
-            
-            <p><strong>⚖️ The Synthesis View:</strong> "Destiny provides the stage, we write the play"</p>
-            <ul>
-                <li>Major events are fated, but details depend on choices</li>
-                <li>Heroes have agency within cosmic parameters</li>
-                <li>Balance between security and freedom</li>
-                <li>Emphasis on how destiny is fulfilled, not whether</li>
-            </ul>
-        </div>
-
-        <h2>🌟 Advanced Prophetic Strategies</h2>
-        
-        <canvas id="prophetic_strategies_canvas" width="600" height="300"></canvas>
-        
-        <div class="prophecy-principle">
-            <h3>🎯 Mastering Destiny: Strategic Approaches</h3>
-            
-            <p><strong>🌟 The Lighthouse Strategy:</strong> Become a beacon of hope</p>
-            <ul>
-                <li>Focus on inspiration and leadership</li>
-                <li>Rally others to the prophetic cause</li>
-                <li>Build networks of allies and supporters</li>
-                <li>Create lasting institutions and legacies</li>
-            </ul>
-            
-            <p><strong>⚡ The Lightning Rod Strategy:</strong> Draw darkness to yourself</p>
-            <ul>
-                <li>Become the primary target of evil forces</li>
+                <li>Accept prophetic guidance and divine assistance</li>
+                <li>Maximize destiny point accumulation and usage</li>
                 <li>Protect others by being the focal point</li>
                 <li>Use destiny powers for direct confrontation</li>
                 <li>Risk everything for decisive victories</li>
@@ -670,480 +463,11 @@
 
         <h2>🌟 Next Adventure Preview</h2>
         
-        <p>In our next lecture, we'll explore <strong>"Wizards of Morcar"</strong> - the expansion that took magic to its absolute limits! We'll dive into reality-bending spells, magical duels between arcane masters, advanced spellcasting systems, and encounters that make heroes feel like they're wielding the fundamental forces of creation itself.</p>
+        <p>In our next lecture, we'll explore <strong>"Spirit Queen's Torment"</strong> -Wield Fortunes Longsword and face supernatural challenges. Ghost combat and ethereal mechanics.</p>
         
         <div class="prophecy-principle">
-            <p><strong>Remember:</strong> The Prophecy of Telor taught us that the greatest adventures aren't just about personal glory or treasure - they're about becoming part of something larger than ourselves. When heroes embrace their destiny, they discover that their greatest power isn't in their weapons or spells, but in their willingness to sacrifice everything for the hope of a better world. Sometimes the most heroic act is simply believing that the future can be brighter than the past!</p>
+            <p><strong>Remember:</strong> The Prophecy of Telor taught us that the greatest adventures aren't just about personal glory or treasure - they're about becoming part of something larger than ourselves. True heroes don't just change the world; they allow the world to change them in return. When you wield the power of destiny, you become both the author and the character in the greatest story ever told!</p>
         </div>
     </div>
-
-    <script>
-        // Add divine particles for atmospheric effect
-        function createDivineParticles() {
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'golden-particle';
-                particle.textContent = '✨';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 4 + 's';
-                particle.style.animationDuration = (Math.random() * 2 + 3) + 's';
-                document.querySelector('.fate-thread').appendChild(particle);
-            }
-        }
-        
-        createDivineParticles();
-        
-        // Divine Powers Visualization
-        const divineCanvas = document.getElementById('divine_powers_canvas');
-        const divineCtx = divineCanvas.getContext('2d');
-        
-        function drawDivinePowers() {
-            divineCtx.clearRect(0, 0, divineCanvas.width, divineCanvas.height);
-            
-            // Background
-            divineCtx.fillStyle = '#1a0e00';
-            divineCtx.fillRect(0, 0, divineCanvas.width, divineCanvas.height);
-            
-            // Draw divine energy emanating from center
-            const centerX = 300;
-            const centerY = 150;
-            
-            // Divine aura
-            const gradient = divineCtx.createRadialGradient(centerX, centerY, 0, centerX, centerY, 120);
-            gradient.addColorStop(0, 'rgba(255, 215, 0, 0.8)');
-            gradient.addColorStop(0.5, 'rgba(255, 143, 0, 0.4)');
-            gradient.addColorStop(1, 'rgba(191, 54, 12, 0.1)');
-            
-            divineCtx.fillStyle = gradient;
-            divineCtx.beginPath();
-            divineCtx.arc(centerX, centerY, 120, 0, Math.PI * 2);
-            divineCtx.fill();
-            
-            // Divine power nodes
-            const powers = [
-                {x: 150, y: 100, name: 'Intervention', symbol: '🌟', cost: 3},
-                {x: 450, y: 100, name: 'Vision', symbol: '👁️', cost: 1},
-                {x: 150, y: 200, name: 'Lightning', symbol: '⚡', cost: 2},
-                {x: 450, y: 200, name: 'Aegis', symbol: '🛡️', cost: 4}
-            ];
-            
-            powers.forEach(power => {
-                // Power aura
-                divineCtx.fillStyle = `rgba(255, 215, 0, ${0.3 + power.cost * 0.1})`;
-                divineCtx.beginPath();
-                divineCtx.arc(power.x, power.y, 25 + power.cost * 5, 0, Math.PI * 2);
-                divineCtx.fill();
-                
-                // Power core
-                divineCtx.fillStyle = '#ffd700';
-                divineCtx.beginPath();
-                divineCtx.arc(power.x, power.y, 15, 0, Math.PI * 2);
-                divineCtx.fill();
-                
-                // Power symbol
-                divineCtx.fillStyle = '#1a0e00';
-                divineCtx.font = '20px Arial';
-                divineCtx.textAlign = 'center';
-                divineCtx.fillText(power.symbol, power.x, power.y + 7);
-                
-                // Connection to center
-                divineCtx.strokeStyle = '#ffecb3';
-                divineCtx.lineWidth = 2;
-                divineCtx.beginPath();
-                divineCtx.moveTo(power.x, power.y);
-                divineCtx.lineTo(centerX, centerY);
-                divineCtx.stroke();
-                
-                // Labels
-                divineCtx.fillStyle = '#fffde7';
-                divineCtx.font = '12px Arial';
-                divineCtx.fillText(power.name, power.x, power.y + 45);
-                divineCtx.font = '10px Arial';
-                divineCtx.fillText(`${power.cost} DP`, power.x, power.y + 60);
-            });
-            
-            // Central divine source
-            divineCtx.fillStyle = '#fff';
-            divineCtx.beginPath();
-            divineCtx.arc(centerX, centerY, 20, 0, Math.PI * 2);
-            divineCtx.fill();
-            
-            divineCtx.fillStyle = '#bf360c';
-            divineCtx.font = '24px Arial';
-            divineCtx.fillText('⚡', centerX, centerY + 8);
-            
-            divineCtx.fillStyle = '#ffd700';
-            divineCtx.font = '16px Arial';
-            divineCtx.textAlign = 'center';
-            divineCtx.fillText('Divine Power Network: Telor\'s Gifts', 300, 30);
-            divineCtx.textAlign = 'left';
-        }
-        
-        drawDivinePowers();
-        
-        // Destiny Mechanics Visualization
-        const destinyCanvas = document.getElementById('destiny_mechanics_canvas');
-        const destinyCtx = destinyCanvas.getContext('2d');
-        
-        function drawDestinyMechanics() {
-            destinyCtx.clearRect(0, 0, destinyCanvas.width, destinyCanvas.height);
-            
-            // Background
-            destinyCtx.fillStyle = '#1a0e00';
-            destinyCtx.fillRect(0, 0, destinyCanvas.width, destinyCanvas.height);
-            
-            // Draw destiny point accumulation curve
-            destinyCtx.strokeStyle = '#ffd700';
-            destinyCtx.lineWidth = 4;
-            destinyCtx.beginPath();
-            
-            const actions = [
-                {x: 100, y: 250, points: 1, action: 'Heroic\nAction'},
-                {x: 200, y: 200, points: 3, action: 'Major\nVictory'},
-                {x: 300, y: 180, points: 5, action: 'Prophecy\nMilestone'},
-                {x: 400, y: 150, points: 8, action: 'Legendary\nDeed'},
-                {x: 500, y: 100, points: 12, action: 'Mythic\nAchievement'}
-            ];
-            
-            actions.forEach((action, index) => {
-                const y = 300 - (action.points * 15);
-                
-                if (index === 0) destinyCtx.moveTo(action.x, y);
-                else destinyCtx.lineTo(action.x, y);
-                
-                // Action markers
-                destinyCtx.fillStyle = '#ffecb3';
-                destinyCtx.beginPath();
-                destinyCtx.arc(action.x, y, 8, 0, Math.PI * 2);
-                destinyCtx.fill();
-                
-                // Point values
-                destinyCtx.fillStyle = '#fffde7';
-                destinyCtx.font = '12px Arial';
-                destinyCtx.textAlign = 'center';
-                destinyCtx.fillText(action.points + ' DP', action.x, y - 20);
-                
-                // Action labels
-                destinyCtx.font = '10px Arial';
-                const lines = action.action.split('\n');
-                lines.forEach((line, lineIndex) => {
-                    destinyCtx.fillText(line, action.x, y + 25 + (lineIndex * 12));
-                });
-            });
-            
-            destinyCtx.stroke();
-            
-            // Draw usage examples
-            const usageExamples = [
-                {x: 150, y: 80, use: 'Divine Intervention (3 DP)', effect: 'Prevent Death'},
-                {x: 350, y: 60, use: 'Prophetic Vision (1 DP)', effect: 'See Future'},
-                {x: 450, y: 40, use: 'Aegis of Destiny (4 DP)', effect: 'Invulnerability'}
-            ];
-            
-            usageExamples.forEach(usage => {
-                destinyCtx.fillStyle = 'rgba(255, 215, 0, 0.2)';
-                destinyCtx.fillRect(usage.x - 60, usage.y - 15, 120, 30);
-                destinyCtx.strokeStyle = '#ffd700';
-                destinyCtx.lineWidth = 1;
-                destinyCtx.strokeRect(usage.x - 60, usage.y - 15, 120, 30);
-                
-                destinyCtx.fillStyle = '#fffde7';
-                destinyCtx.font = '9px Arial';
-                destinyCtx.textAlign = 'center';
-                destinyCtx.fillText(usage.use, usage.x, usage.y - 5);
-                destinyCtx.fillText(usage.effect, usage.x, usage.y + 8);
-            });
-            
-            destinyCtx.fillStyle = '#ffd700';
-            destinyCtx.font = '16px Arial';
-            destinyCtx.textAlign = 'center';
-            destinyCtx.fillText('Destiny Point Economy: Earning and Spending Divine Favor', 300, 30);
-            destinyCtx.textAlign = 'left';
-        }
-        
-        drawDestinyMechanics();
-        
-        // Interactive Prophecy Choices
-        let destinyPoints = 5;
-        let choicesMade = 0;
-        const prophecyResult = document.getElementById('prophecy_result');
-        
-        function makeChoice(choiceIndex, pathType) {
-            // Remove previous selections
-            document.querySelectorAll('.choice-node').forEach(node => {
-                node.classList.remove('selected');
-            });
-            
-            // Select current choice
-            document.querySelectorAll('.choice-node')[choiceIndex].classList.add('selected');
-            
-            choicesMade++;
-            let result = '';
-            
-            switch(pathType) {
-                case 'light':
-                    destinyPoints += 2;
-                    result = `🌟 You chose the path of light! The prophecy shines brighter. (+2 Destiny Points, Total: ${destinyPoints})`;
-                    break;
-                case 'balance':
-                    destinyPoints += 1;
-                    result = `⚖️ You chose the balanced path. Wisdom guides your steps. (+1 Destiny Point, Total: ${destinyPoints})`;
-                    break;
-                case 'power':
-                    result = `⚡ You chose raw power. The prophecy's outcome becomes uncertain... (Destiny Points unchanged: ${destinyPoints})`;
-                    break;
-            }
-            
-            if (choicesMade >= 3) {
-                if (destinyPoints >= 8) {
-                    result += `<br><br>🏆 <strong>Prophecy Status: HEROIC FULFILLMENT!</strong> Your choices align perfectly with destiny!`;
-                } else if (destinyPoints >= 5) {
-                    result += `<br><br>⚖️ <strong>Prophecy Status: Balanced Path.</strong> You walk the middle road of wisdom.`;
-                } else {
-                    result += `<br><br>⚡ <strong>Prophecy Status: Uncertain Future.</strong> Your path has diverged from the traditional prophecy...`;
-                }
-            }
-            
-            prophecyResult.innerHTML = `<strong>Prophetic Guidance:</strong> ${result}`;
-        }
-        
-        // Cosmic Balance Visualization
-        const balanceCanvas = document.getElementById('cosmic_balance_canvas');
-        const balanceCtx = balanceCanvas.getContext('2d');
-        
-        function drawCosmicBalance() {
-            balanceCtx.clearRect(0, 0, balanceCanvas.width, balanceCanvas.height);
-            
-            // Background
-            balanceCtx.fillStyle = '#1a0e00';
-            balanceCtx.fillRect(0, 0, balanceCanvas.width, balanceCanvas.height);
-            
-            // Draw cosmic scale
-            const centerX = 300;
-            const centerY = 150;
-            
-            // Scale base
-            balanceCtx.strokeStyle = '#ffd700';
-            balanceCtx.lineWidth = 6;
-            balanceCtx.beginPath();
-            balanceCtx.moveTo(centerX, 250);
-            balanceCtx.lineTo(centerX, 100);
-            balanceCtx.stroke();
-            
-            // Scale arms
-            balanceCtx.beginPath();
-            balanceCtx.moveTo(150, 150);
-            balanceCtx.lineTo(450, 150);
-            balanceCtx.stroke();
-            
-            // Left scale (Light)
-            balanceCtx.fillStyle = '#fff';
-            balanceCtx.fillRect(100, 140, 100, 60);
-            balanceCtx.fillStyle = '#ffd700';
-            balanceCtx.font = '14px Arial';
-            balanceCtx.textAlign = 'center';
-            balanceCtx.fillStyle = '#000';
-            balanceCtx.fillText('Forces of', 150, 160);
-            balanceCtx.fillText('LIGHT', 150, 175);
-            balanceCtx.fillText('Hope • Healing', 150, 190);
-            
-            // Right scale (Darkness)
-            balanceCtx.fillStyle = '#333';
-            balanceCtx.fillRect(400, 160, 100, 60);
-            balanceCtx.fillStyle = '#fff';
-            balanceCtx.fillText('Forces of', 450, 180);
-            balanceCtx.fillText('DARKNESS', 450, 195);
-            balanceCtx.fillText('Despair • Destruction', 450, 210);
-            
-            // Balance point indicator
-            balanceCtx.fillStyle = '#ffd700';
-            balanceCtx.beginPath();
-            balanceCtx.arc(centerX, 120, 15, 0, Math.PI * 2);
-            balanceCtx.fill();
-            balanceCtx.fillStyle = '#000';
-            balanceCtx.font = '16px Arial';
-            balanceCtx.fillText('⚖️', centerX, 128);
-            
-            // Cosmic energy flows
-            for (let i = 0; i < 5; i++) {
-                const angle = (i * 72) * (Math.PI / 180);
-                const startX = centerX + Math.cos(angle) * 40;
-                const startY = centerY + Math.sin(angle) * 40;
-                const endX = centerX + Math.cos(angle) * 80;
-                const endY = centerY + Math.sin(angle) * 80;
-                
-                balanceCtx.strokeStyle = '#ffecb3';
-                balanceCtx.lineWidth = 2;
-                balanceCtx.beginPath();
-                balanceCtx.moveTo(startX, startY);
-                balanceCtx.lineTo(endX, endY);
-                balanceCtx.stroke();
-            }
-            
-            balanceCtx.fillStyle = '#ffd700';
-            balanceCtx.font = '16px Arial';
-            balanceCtx.textAlign = 'center';
-            balanceCtx.fillText('The Cosmic Balance: Light vs. Darkness', 300, 30);
-            balanceCtx.textAlign = 'left';
-        }
-        
-        drawCosmicBalance();
-        
-        // Character Evolution Visualization
-        const evolutionCanvas = document.getElementById('character_evolution_canvas');
-        const evolutionCtx = evolutionCanvas.getContext('2d');
-        
-        function drawCharacterEvolution() {
-            evolutionCtx.clearRect(0, 0, evolutionCanvas.width, evolutionCanvas.height);
-            
-            // Background
-            evolutionCtx.fillStyle = '#1a0e00';
-            evolutionCtx.fillRect(0, 0, evolutionCanvas.width, evolutionCanvas.height);
-            
-            // Draw evolution stages
-            const stages = [
-                {x: 120, y: 200, stage: 'Awakening', symbol: '🌱', level: 1},
-                {x: 240, y: 170, stage: 'Testing', symbol: '⚔️', level: 2},
-                {x: 360, y: 140, stage: 'Acceptance', symbol: '🌟', level: 3},
-                {x: 480, y: 110, stage: 'Transcendence', symbol: '👑', level: 4}
-            ];
-            
-            // Draw evolution path
-            evolutionCtx.strokeStyle = '#ffd700';
-            evolutionCtx.lineWidth = 3;
-            evolutionCtx.beginPath();
-            stages.forEach((stage, index) => {
-                if (index === 0) evolutionCtx.moveTo(stage.x, stage.y);
-                else evolutionCtx.lineTo(stage.x, stage.y);
-            });
-            evolutionCtx.stroke();
-            
-            // Draw stages
-            stages.forEach(stage => {
-                // Stage aura
-                const intensity = stage.level / 4;
-                evolutionCtx.fillStyle = `rgba(255, 215, 0, ${0.2 + intensity * 0.3})`;
-                evolutionCtx.beginPath();
-                evolutionCtx.arc(stage.x, stage.y, 30 + stage.level * 5, 0, Math.PI * 2);
-                evolutionCtx.fill();
-                
-                // Stage core
-                evolutionCtx.fillStyle = '#ffd700';
-                evolutionCtx.beginPath();
-                evolutionCtx.arc(stage.x, stage.y, 20, 0, Math.PI * 2);
-                evolutionCtx.fill();
-                
-                // Stage symbol
-                evolutionCtx.fillStyle = '#1a0e00';
-                evolutionCtx.font = '20px Arial';
-                evolutionCtx.textAlign = 'center';
-                evolutionCtx.fillText(stage.symbol, stage.x, stage.y + 7);
-                
-                // Stage name
-                evolutionCtx.fillStyle = '#fffde7';
-                evolutionCtx.font = '12px Arial';
-                evolutionCtx.fillText(stage.stage, stage.x, stage.y + 45);
-                evolutionCtx.fillText(`Level ${stage.level}`, stage.x, stage.y + 60);
-            });
-            
-            // Draw transformation arrows
-            for (let i = 0; i < stages.length - 1; i++) {
-                const current = stages[i];
-                const next = stages[i + 1];
-                const midX = (current.x + next.x) / 2;
-                const midY = (current.y + next.y) / 2;
-                
-                evolutionCtx.fillStyle = '#ffecb3';
-                evolutionCtx.font = '16px Arial';
-                evolutionCtx.textAlign = 'center';
-                evolutionCtx.fillText('→', midX, midY);
-            }
-            
-            evolutionCtx.fillStyle = '#ffd700';
-            evolutionCtx.font = '16px Arial';
-            evolutionCtx.fillText('Spiritual Evolution: The Hero\'s Journey Through Destiny', 150, 30);
-            evolutionCtx.textAlign = 'left';
-        }
-        
-        drawCharacterEvolution();
-        
-        // Prophetic Strategies Visualization
-        const strategiesCanvas = document.getElementById('prophetic_strategies_canvas');
-        const strategiesCtx = strategiesCanvas.getContext('2d');
-        
-        function drawPropheticStrategies() {
-            strategiesCtx.clearRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
-            
-            // Background
-            strategiesCtx.fillStyle = '#1a0e00';
-            strategiesCtx.fillRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
-            
-            // Draw strategic approaches
-            const strategies = [
-                {x: 150, y: 150, name: 'Lighthouse', symbol: '🌟', description: 'Inspire Others'},
-                {x: 300, y: 100, name: 'Lightning Rod', symbol: '⚡', description: 'Draw Evil'},
-                {x: 450, y: 150, name: 'River', symbol: '🌊', description: 'Flow with Fate'}
-            ];
-            
-            strategies.forEach(strategy => {
-                // Strategy area
-                strategiesCtx.fillStyle = 'rgba(255, 215, 0, 0.2)';
-                strategiesCtx.beginPath();
-                strategiesCtx.arc(strategy.x, strategy.y, 60, 0, Math.PI * 2);
-                strategiesCtx.fill();
-                
-                strategiesCtx.strokeStyle = '#ffd700';
-                strategiesCtx.lineWidth = 3;
-                strategiesCtx.stroke();
-                
-                // Strategy core
-                strategiesCtx.fillStyle = '#ffecb3';
-                strategiesCtx.beginPath();
-                strategiesCtx.arc(strategy.x, strategy.y, 25, 0, Math.PI * 2);
-                strategiesCtx.fill();
-                
-                // Strategy symbol
-                strategiesCtx.fillStyle = '#1a0e00';
-                strategiesCtx.font = '24px Arial';
-                strategiesCtx.textAlign = 'center';
-                strategiesCtx.fillText(strategy.symbol, strategy.x, strategy.y + 8);
-                
-                // Strategy labels
-                strategiesCtx.fillStyle = '#fffde7';
-                strategiesCtx.font = '12px Arial';
-                strategiesCtx.fillText(strategy.name, strategy.x, strategy.y + 80);
-                strategiesCtx.font = '10px Arial';
-                strategiesCtx.fillText(strategy.description, strategy.x, strategy.y + 95);
-                
-                // Connect to center
-                strategiesCtx.strokeStyle = '#ffecb3';
-                strategiesCtx.lineWidth = 2;
-                strategiesCtx.setLineDash([5, 5]);
-                strategiesCtx.beginPath();
-                strategiesCtx.moveTo(strategy.x, strategy.y);
-                strategiesCtx.lineTo(300, 200);
-                strategiesCtx.stroke();
-                strategiesCtx.setLineDash([]);
-            });
-            
-            // Central prophecy
-            strategiesCtx.fillStyle = '#ffd700';
-            strategiesCtx.beginPath();
-            strategiesCtx.arc(300, 200, 20, 0, Math.PI * 2);
-            strategiesCtx.fill();
-            
-            strategiesCtx.fillStyle = '#1a0e00';
-            strategiesCtx.font = '16px Arial';
-            strategiesCtx.textAlign = 'center';
-            strategiesCtx.fillText('📜', 300, 208);
-            
-            strategiesCtx.fillStyle = '#ffd700';
-            strategiesCtx.font = '16px Arial';
-            strategiesCtx.fillText('Prophetic Strategy Approaches', 300, 30);
-            strategiesCtx.textAlign = 'left';
-        }
-        
-        drawPropheticStrategies();
-    </script>
 </body>
 </html>
