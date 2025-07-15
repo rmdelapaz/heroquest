@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halls of Legend: Ancient Dungeons and Mystical Sites</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #2f2f2f, #1a1a1a, #3d2d1a); color: #f4f1e8; }
+        .container { max-width: 1200px; margin: 0 auto; background: rgba(0,0,0,0.85); padding: 30px; border-radius: 15px; box-shadow: 0 0 50px rgba(139,69,19,0.6); border: 3px solid #8b4513; }
+        h1 { color: #daa520; text-align: center; font-size: 2.8em; text-shadow: 3px 3px 8px #000; margin-bottom: 30px; }
+        h2 { color: #cd853f; border-bottom: 3px solid #cd853f; padding-bottom: 10px; margin-top: 40px; text-shadow: 2px 2px 4px #000; }
+        h3 { color: #daa520; margin-top: 30px; text-shadow: 1px 1px 2px #000; }
+        .dungeon-card { background: linear-gradient(145deg, #2f1b14, #1a1a2e); border: 3px solid; border-radius: 15px; padding: 25px; margin: 25px 0; position: relative; box-shadow: 0 15px 30px rgba(0,0,0,0.7); overflow: hidden; }
+        .dungeon-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, transparent, rgba(218,165,32,0.6), transparent); animation: mysticalShimmer 5s infinite; }
+        @keyframes mysticalShimmer { 0%, 100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+        .ancient-ruin { border-color: #8b4513; }
+        .magical-nexus { border-color: #9370db; }
+        .temple-complex { border-color: #ffd700; }
+        .fortress-dungeon { border-color: #696969; }
+        .location-type { position: absolute; top: -15px; left: 20px; padding: 8px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+        .ancient-ruin .location-type { background: #8b4513; color: white; }
+        .magical-nexus .location-type { background: #9370db; color: white; }
+        .temple-complex .location-type { background: #ffd700; color: black; }
+        .fortress-dungeon .location-type { background: #696969; color: white; }
+        .legend-tome { background: rgba(139,69,19,0.5); border: 3px solid #cd853f; border-radius: 10px; padding: 20px; margin: 20px 0; position: relative; }
+        .legend-tome::before { content: "📖"; position: absolute; top: -12px; left: 15px; font-size: 2.2em; background: rgba(0,0,0,0.9); padding: 5px; border-radius: 50%; }
+        .chamber-layout { background: rgba(139,0,139,0.2); border: 2px solid #9370db; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .danger-warning { background: rgba(139,0,0,0.3); border-left: 5px solid #dc143c; padding: 15px; margin: 15px 0; }
+        .treasure-hint { background: rgba(255,215,0,0.2); border: 2px dashed #ffd700; border-radius: 10px; padding: 15px; margin: 15px 0; }
+        .hazard-tag { display: inline-block; background: rgba(139,0,0,0.5); border: 1px solid #8b0000; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; font-weight: bold; color: #ff6b6b; }
+        .mystery-tag { display: inline-block; background: rgba(147,112,219,0.4); border: 1px solid #9370db; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; color: #dda0dd; }
+        .reward-tag { display: inline-block; background: rgba(255,215,0,0.4); border: 1px solid #ffd700; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; color: #ffd700; }
+        #dungeonMapCanvas { border: 3px solid #daa520; border-radius: 15px; background: radial-gradient(ellipse at center, #2f2f2f, #1a1a1a); }
+        .mermaid { background: rgba(139,69,19,0.2); border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .exploration-meter { background: #333; border-radius: 10px; height: 25px; margin: 8px 0; overflow: hidden; position: relative; border: 2px solid #8b4513; }
+        .exploration-fill { height: 100%; border-radius: 8px; transition: width 0.5s ease; position: relative; }
+        .exploration-label { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 0.85em; text-shadow: 2px 2px 4px #000; }
+        .quest-chronicle { background: rgba(25,25,112,0.3); border: 2px solid #191970; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .room-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .room-card { background: rgba(139,69,19,0.3); border: 2px solid #8b4513; border-radius: 8px; padding: 15px; text-align: center; position: relative; }
+        .secret-passage { background: rgba(75,0,130,0.2); border: 2px dashed #4b0082; border-radius: 10px; padding: 15px; margin: 15px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏛️ Halls of Legend: Ancient Dungeons and Mystical Sites 🏛️</h1>
+        
+        <div class="legend-tome">
+            <p><em>"Beneath the world of sunlight and fresh air lies another realm entirely—a shadowed underworld of forgotten chambers, trapped corridors, and rooms that have not felt the warmth of human presence for centuries. These are the places where legends are born and heroes are tested, where every stone holds a secret and every shadow might conceal either treasure or terror..."</em></p>
+        </div>
+
+        <h2>The Architecture of Adventure</h2>
+        <p>Dungeons in the HeroQuest world are not mere hole-in-the-ground lairs—they are complex ecosystems of mystery and danger, each with its own personality, history, and purpose. Think of them as three-dimensional puzzles designed by ancient minds, where the very layout tells a story and every room serves a function in a grand design that spans centuries or millennia.</p>
+
+        <h2>The Underground Realm</h2>
+        <canvas id="dungeonMapCanvas" width="1000" height="500"></canvas>
+        
+        <script>
+            const dungeonCanvasElement = document.getElementById('dungeonMapCanvas');
+            const dungeonCtx = dungeonCanvasElement.getContext('2d');
+            let dungeonAnimFrame = 0;
+            
+            function drawDungeonMap() {
+                dungeonCtx.clearRect(0, 0, 1000, 500);
+                dungeonAnimFrame++;
+                
+                // Draw stone background texture
+                for (let i = 0; i < 50; i++) {
+                    dungeonCtx.fillStyle = `rgba(139, 69, 19, ${0.1 + Math.random() * 0.1})`;
+                    dungeonCtx.fillRect(Math.random() * 1000, Math.random() * 500, 20, 20);
+                }
+                
+                // Draw dungeon rooms
+                const rooms = [
+                    {x: 100, y: 100, w: 120, h: 80, name: 'Entrance Hall', type: 'safe'},
+                    {x: 300, y: 150, w: 100, h: 100, name: 'Guard Chamber', type: 'combat'},
+                    {x: 500, y: 80, w: 90, h: 120, name: 'Treasure Vault', type: 'treasure'},
+                    {x: 700, y: 200, w: 110, h: 90, name: 'Throne Room', type: 'boss'},
+                    {x: 200, y: 300, w: 80, h: 80, name: 'Prison Cells', type: 'mystery'},
+                    {x: 400, y: 350, w: 100, h: 70, name: 'Armory', type: 'equipment'},
+                    {x: 600, y: 300, w: 120, h: 100, name: 'Ritual Chamber', type: 'magical'},
+                    {x: 800, y: 50, w: 80, h: 80, name: 'Laboratory', type: 'trap'}
+                ];
+                
+                // Room colors based on type
+                const roomColors = {
+                    safe: '#228b22',
+                    combat: '#dc143c',
+                    treasure: '#ffd700',
+                    boss: '#8b0000',
+                    mystery: '#9370db',
+                    equipment: '#696969',
+                    magical: '#4169e1',
+                    trap: '#ff4500'
+                };
+                
+                // Draw corridors first (behind rooms)
+                dungeonCtx.strokeStyle = '#8b4513';
+                dungeonCtx.lineWidth = 8;
+                dungeonCtx.setLineDash([15, 5]);
+                dungeonCtx.lineDashOffset = dungeonAnimFrame * 0.2;
+                
+                dungeonCtx.beginPath();
+                dungeonCtx.moveTo(220, 140);
+                dungeonCtx.lineTo(300, 200);
+                dungeonCtx.moveTo(400, 200);
+                dungeonCtx.lineTo(500, 140);
+                dungeonCtx.moveTo(590, 140);
+                dungeonCtx.lineTo(700, 245);
+                dungeonCtx.moveTo(280, 300);
+                dungeonCtx.lineTo(400, 385);
+                dungeonCtx.moveTo(500, 385);
+                dungeonCtx.lineTo(600, 350);
+                dungeonCtx.moveTo(720, 350);
+                dungeonCtx.lineTo(800, 130);
+                dungeonCtx.stroke();
+                dungeonCtx.setLineDash([]);
+                
+                // Draw rooms
+                rooms.forEach((room, index) => {
+                    const pulse = Math.sin(dungeonAnimFrame * 0.03 + index * 0.7) * 0.1 + 0.9;
+                    
+                    // Room shadow
+                    dungeonCtx.fillStyle = 'rgba(0,0,0,0.5)';
+                    dungeonCtx.fillRect(room.x + 5, room.y + 5, room.w, room.h);
+                    
+                    // Room base
+                    dungeonCtx.fillStyle = roomColors[room.type] + '80';
+                    dungeonCtx.fillRect(room.x, room.y, room.w, room.h);
+                    
+                    // Room border with glow
+                    dungeonCtx.shadowColor = roomColors[room.type];
+                    dungeonCtx.shadowBlur = 10 * pulse;
+                    dungeonCtx.strokeStyle = roomColors[room.type];
+                    dungeonCtx.lineWidth = 3;
+                    dungeonCtx.strokeRect(room.x, room.y, room.w, room.h);
+                    dungeonCtx.shadowBlur = 0;
+                    
+                    // Room name
+                    dungeonCtx.fillStyle = roomColors[room.type];
+                    dungeonCtx.font = 'bold 11px serif';
+                    dungeonCtx.textAlign = 'center';
+                    dungeonCtx.fillText(room.name, room.x + room.w/2, room.y + room.h/2 + 4);
+                });
+                
+                // Draw mystical energy flows
+                for (let i = 0; i < 20; i++) {
+                    const t = (dungeonAnimFrame + i * 15) * 0.015;
+                    const x = 500 + Math.sin(t) * 300 + Math.cos(t * 1.3) * 100;
+                    const y = 250 + Math.cos(t * 0.7) * 120 + Math.sin(t * 1.7) * 80;
+                    const alpha = (Math.sin(t * 2) + 1) * 0.3;
+                    
+                    dungeonCtx.fillStyle = `rgba(218, 165, 32, ${alpha})`;
+                    dungeonCtx.beginPath();
+                    dungeonCtx.arc(x, y, 2, 0, Math.PI * 2);
+                    dungeonCtx.fill();
+                }
+                
+                // Secret doors indicator
+                const secretDoors = [{x: 350, y: 180}, {x: 650, y: 320}, {x: 750, y: 90}];
+                secretDoors.forEach((door, index) => {
+                    const secretPulse = Math.sin(dungeonAnimFrame * 0.1 + index * 2) * 0.5 + 0.5;
+                    dungeonCtx.fillStyle = `rgba(147, 112, 219, ${secretPulse})`;
+                    dungeonCtx.fillRect(door.x - 3, door.y - 3, 6, 6);
+                });
+            }
+            
+            setInterval(drawDungeonMap, 50);
+        </script>
+
+        <h2>The Great Dungeon Archetypes</h2>
+
+        <div class="dungeon-card ancient-ruin">
+            <div class="location-type">Ancient Ruins</div>
+            <h3>🏛️ The Trial of Champions</h3>
+            
+            <div class="chamber-layout">
+                <h4>Architectural Legacy</h4>
+                <p>These ruins represent the skeletal remains of once-great civilizations, like massive stone bones jutting from the earth. They are testing grounds built by ancient peoples who understood that true heroes must prove themselves through deed, not just declaration. The very architecture serves as an examination—each room designed to test a different aspect of heroic character.</p>
+                
+                <p>The Trial of Champions, for instance, isn't just a dungeon—it's a graduation ceremony for heroes, designed by the same lost civilization that created the testing protocols used by mentor wizards. Each chamber presents challenges that increase in complexity, building skills that heroes will need for greater threats.</p>
+            </div>
+            
+            <div class="exploration-meter">
+                <div class="exploration-fill" style="width: 85%; background: linear-gradient(90deg, #8b4513, #cd853f);">
+                    <div class="exploration-label">Historical Significance</div>
+                </div>
+            </div>
+            <div class="exploration-meter">
+                <div class="exploration-fill" style="width: 92%; background: linear-gradient(90deg, #dc143c, #ff6347);">
+                    <div class="exploration-label">Combat Challenges</div>
+                </div>
+            </div>
+            <div class="exploration-meter">
+                <div class="exploration-fill" style="width: 78%; background: linear-gradient(90deg, #9370db, #dda0dd);">
+                    <div class="exploration-label">Magical Mysteries</div>
+                </div>
+            </div>
+            
+            <div class="room-grid">
+                <div class="room-card">
+                    <h4>📚 The Hall of Records</h4>
+                    <p>Stone tablets that chronicle the rise and fall of the builders, providing context for the trials ahead.</p>
+                    <span class="mystery-tag">📜 Ancient Lore</span>
+                </div>
+                <div class="room-card">
+                    <h4>⚔️ Combat Chambers</h4>
+                    <p>Rooms designed to test martial prowess against increasingly dangerous guardians and traps.</p>
+                    <span class="hazard-tag">🗡️ Weapon Training</span>
+                </div>
+                <div class="room-card">
+                    <h4>🧩 Puzzle Sanctums</h4>
+                    <p>Chambers where wit matters more than strength, testing mental acuity and problem-solving skills.</p>
+                    <span class="mystery-tag">🎲 Logic Tests</span>
+                </div>
+            </div>
+            
+            <span class="hazard-tag">🪤 Ancient Traps</span>
+            <span class="hazard-tag">👹 Guardian Constructs</span>
+            <span class="reward-tag">📚 Lost Knowledge</span>
+            <span class="reward-tag">⚔️ Masterwork Weapons</span>
+        </div>
+
+        <div class="dungeon-card magical-nexus">
+            <div class="location-type">Magical Nexus</div>
+            <h3>🔮 Verag's Objective</h3>
+            
+            <div class="chamber-layout">
+                <h4>Where Reality Bends</h4>
+                <p>Magical nexus sites exist where the fundamental forces of reality converge, creating areas of concentrated power that warp the normal laws of physics. Verag's Objective serves as the ultimate magical laboratory—a place where ambitious sorcerers conduct experiments that could reshape the very fabric of existence, either for grand benefit or catastrophic consequence.</p>
+                
+                <p>The dungeon itself is alive with magic, constantly shifting and reconfiguring as the energies within seek new equilibria. Rooms might change size, gravity might work differently, and time itself can become unreliable. Heroes venturing here must adapt not just to static challenges, but to an environment that actively responds to their presence.</p>
+            </div>
+            
+            <div class="danger-warning">
+                <h4>Reality Distortion Zones</h4>
+                <p>Certain chambers contain magical fields so intense that they alter fundamental properties of matter and energy. Weapons might become ethereal, armor could turn to lead, or heroes themselves might find their physical forms partially phased into other dimensions. These aren't just obstacles—they're opportunities for creative problem-solving by heroes clever enough to use the distortions to their advantage.</p>
+            </div>
+            
+            <div class="secret-passage">
+                <h4>The Astral Observatory</h4>
+                <p>Hidden at the nexus's heart lies Verag's true laboratory—a chamber that exists partially in multiple dimensions simultaneously. Here, the barriers between the material plane and other realms become gossamer-thin, allowing observation of cosmic forces beyond mortal comprehension. Heroes who reach this sanctum gain insight into the fundamental workings of magic itself.</p>
+            </div>
+            
+            <span class="hazard-tag">⚡ Wild Magic Surges</span>
+            <span class="hazard-tag">🌀 Dimensional Rifts</span>
+            <span class="mystery-tag">🔮 Scrying Pools</span>
+            <span class="reward-tag">📚 Magical Formulae</span>
+            <span class="reward-tag">💎 Power Crystals</span>
+        </div>
+
+        <div class="mermaid">
+            graph TB
+                A[Dungeon Ecosystem] --> B[Surface Ruins]
+                A --> C[Upper Levels]
+                A --> D[Deep Chambers]
+                A --> E[Hidden Sanctums]
+                
+                B --> F[Entrance Guardians]
+                B --> G[Warning Inscriptions]
+                
+                C --> H[Testing Grounds]
+                C --> I[Living Quarters]
+                C --> J[Storage Chambers]
+                
+                D --> K[Treasure Vaults]
+                D --> L[Ritual Spaces]
+                D --> M[Power Sources]
+                
+                E --> N[Ancient Secrets]
+                E --> O[Legendary Artifacts]
+                E --> P[Cosmic Gateways]
+                
+                style A fill:#daa520
+                style N fill:#9370db
+                style O fill:#ffd700
+                style P fill:#dc143c
+        </div>
+
+        <div class="dungeon-card temple-complex">
+            <div class="location-type">Sacred Temple</div>
+            <h3>⛩️ The Tomb of Fellmarg</h3>
+            
+            <div class="chamber-layout">
+                <h4>Halls of Divine Mystery</h4>
+                <p>Temple complexes serve as bridges between the mortal and divine realms, places where the cosmic forces that govern existence touch the material world most directly. The Tomb of Fellmarg represents the dark side of this concept—a sacred space corrupted by the malevolent influence of an evil sorcerer whose very presence has twisted the divine energies into something sinister and wrong.</p>
+                
+                <p>Originally built as a sanctuary of light and healing, the temple's architecture still carries echoes of its noble purpose—soaring columns, intricate frescoes depicting acts of heroism, and chambers designed to inspire awe and reverence. But now these same spaces serve darker purposes, their beauty corrupted into something that mocks their original intent.</p>
+            </div>
+            
+            <div class="treasure-hint">
+                <h4>The Sarcophagus Chamber</h4>
+                <p>At the temple's heart lies Fellmarg's tomb—not merely a burial place, but a carefully constructed magical device designed to preserve and amplify the sorcerer's malevolent will. The chamber itself acts as a lens for dark energies, focusing them into a concentration of evil so intense that it can animate the dead, corrupt the living, and bend reality to serve the deceased sorcerer's twisted vision.</p>
+            </div>
+            
+            <div class="quest-chronicle">
+                <h4>The Corruption Spreads</h4>
+                <p>Heroes who venture into Fellmarg's tomb discover that the sorcerer's influence extends far beyond his physical remains. His malevolent will has seeped into the very stones, creating an environment where evil thoughts become reality, where shadows move independently of their sources, and where the boundary between life and death becomes meaninglessly blurred.</p>
+                
+                <p>The true challenge isn't just defeating Fellmarg's guardians—it's resisting the psychological corruption that the tomb inflicts on all who enter. Heroes must maintain their moral clarity in a place designed to erode such distinctions, holding fast to their principles even as the environment tries to convince them that such concepts are meaningless.</p>
+            </div>
+            
+            <span class="hazard-tag">👻 Restless Spirits</span>
+            <span class="hazard-tag">🕯️ Cursed Flames</span>
+            <span class="mystery-tag">📿 Sacred Relics</span>
+            <span class="mystery-tag">🗿 Ancient Prophecies</span>
+            <span class="reward-tag">✨ Divine Blessings</span>
+        </div>
+
+        <div class="dungeon-card fortress-dungeon">
+            <div class="location-type">Military Stronghold</div>
+            <h3>🏰 The Bastion of Chaos</h3>
+            
+            <div class="chamber-layout">
+                <h4>Architecture of War</h4>
+                <p>Fortress dungeons represent the militarization of evil—organized, strategic, and designed with the specific purpose of projecting power across vast territories. The Bastion of Chaos serves as both stronghold and symbol, a place where the forces of darkness gather to plan their campaigns against the forces of light. Every stone was placed with military precision, every corridor designed to provide defensive advantages.</p>
+                
+                <p>Unlike ancient ruins that test individual heroism, fortress dungeons challenge heroes to think tactically, to understand that sometimes the direct approach leads only to defeat. These strongholds must be approached like military campaigns, with careful planning, strategic thinking, and the understanding that every room conquered brings the heroes closer to a final confrontation with a prepared and dangerous enemy.</p>
+            </div>
+            
+            <div class="exploration-meter">
+                <div class="exploration-fill" style="width: 96%; background: linear-gradient(90deg, #696969, #a9a9a9);">
+                    <div class="exploration-label">Defensive Design</div>
+                </div>
+            </div>
+            <div class="exploration-meter">
+                <div class="exploration-fill" style="width: 88%; background: linear-gradient(90deg, #dc143c, #ff4500);">
+                    <div class="exploration-label">Combat Intensity</div>
+                </div>
+            </div>
+            <div class="exploration-meter">
+                <div class="exploration-fill" style="width: 94%; background: linear-gradient(90deg, #4b0082, #8b008b);">
+                    <div class="exploration-label">Strategic Complexity</div>
+                </div>
+            </div>
+            
+            <div class="danger-warning">
+                <h4>The Command Structure</h4>
+                <p>The bastion operates under strict military hierarchy, with each level commanded by increasingly powerful lieutenants who coordinate their defenses. Heroes can't simply fight their way through room by room—they must understand how the fortress operates as a system, identifying key points where a successful strike can cripple entire sections of the defensive network.</p>
+            </div>
+            
+            <span class="hazard-tag">⚔️ Elite Guards</span>
+            <span class="hazard-tag">🏹 Archer Positions</span>
+            <span class="hazard-tag">🛡️ Fortified Chokepoints</span>
+            <span class="reward-tag">👑 Command Authority</span>
+            <span class="reward-tag">⚔️ Military Arsenal</span>
+        </div>
+
+        <h2>The Living Dungeon Ecosystem</h2>
+        <p>Every dungeon operates as a complex ecosystem where different elements interact in ways that create emergent challenges. Monsters don't simply wait in rooms for heroes to arrive—they patrol territories, respond to alarms, and coordinate their defenses. Traps aren't just isolated obstacles—they're part of integrated security systems that channel intruders into kill zones or away from sensitive areas.</p>
+
+        <div class="legend-tome">
+            <h3>The Dungeon's Memory</h3>
+            <p>The most experienced heroes learn to read a dungeon like a book, understanding that every architectural choice tells part of a story. Wide corridors suggest the movement of large creatures or heavy cargo. Multiple exits from a room indicate either escape routes or tactical repositioning capabilities. Rooms with no apparent purpose often conceal the dungeon's most important secrets.</p>
+            
+            <p>The arrangement of chambers reveals the mindset of their creators—whether they prioritized defense, ritual function, storage, or research. A hero who can interpret these clues gains tremendous advantages, knowing what to expect around the next corner and how to approach each challenge with maximum effectiveness.</p>
+        </div>
+
+        <div class="quest-chronicle">
+            <h3>The Hero's Journey Through Stone and Shadow</h3>
+            <p>Dungeons serve as more than just sources of treasure and experience—they are transformative spaces where heroes confront not just external challenges, but internal ones as well. The confined spaces, constant danger, and psychological pressure of underground exploration force adventuring parties to work together in ways that surface travel never demands.</p>
+            
+            <p>A successful dungeon expedition creates bonds between heroes that can last lifetimes, forged in the crucible of shared danger and mutual dependence. These underground trials strip away social pretenses and reveal true character, showing who can be trusted when the stakes are highest and escape routes are limited.</p>
+        </div>
+
+        <div class="treasure-hint">
+            <h3>Beyond Gold and Glory</h3>
+            <p>The greatest treasures found in dungeons aren't always material. Ancient knowledge, magical formulae, historical records, and divine revelations often prove more valuable than any amount of gold. Heroes emerge from successful expeditions not just richer, but wiser—carrying insights that can reshape their understanding of the world and their place within it.</p>
+        </div>
+
+        <div class="legend-tome">
+            <p><em>"Thus stand the dungeons—silent testament to ages past, crucibles of the present, and gateways to futures yet unwritten. In their shadowed halls, heroes discover not just what they can take, but who they can become. For in the end, the greatest treasure any dungeon yields is the transformation of those brave enough to explore its depths..."</em></p>
+        </div>
+    </div>
+</body>
+</html>

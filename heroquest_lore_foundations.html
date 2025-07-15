@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Ancient Realms: Foundations of HeroQuest</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #2c1810, #4a3728); color: #f4f1e8; }
+        .container { max-width: 900px; margin: 0 auto; background: rgba(0,0,0,0.7); padding: 30px; border-radius: 15px; box-shadow: 0 0 30px rgba(255,215,0,0.3); }
+        h1 { color: #ffd700; text-align: center; font-size: 2.5em; text-shadow: 2px 2px 4px #000; margin-bottom: 30px; }
+        h2 { color: #ff6b35; border-bottom: 2px solid #ff6b35; padding-bottom: 10px; margin-top: 40px; }
+        .ancient-scroll { background: rgba(139,69,19,0.3); border: 3px solid #8b4513; border-radius: 10px; padding: 20px; margin: 20px 0; position: relative; }
+        .ancient-scroll::before { content: "📜"; position: absolute; top: -10px; left: 10px; font-size: 2em; background: rgba(0,0,0,0.8); padding: 5px; border-radius: 50%; }
+        .realm-card { background: linear-gradient(45deg, #1a1a2e, #16213e); border: 2px solid #0f3460; border-radius: 10px; padding: 20px; margin: 15px 0; box-shadow: 0 4px 8px rgba(0,0,0,0.3); }
+        .character-spotlight { background: rgba(255,107,53,0.1); border-left: 5px solid #ff6b35; padding: 15px; margin: 20px 0; }
+        #cosmologyCanvas { border: 2px solid #ffd700; border-radius: 10px; background: radial-gradient(circle, #000428, #004e92); }
+        .mermaid { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚔️ The Ancient Realms: Foundations of HeroQuest ⚔️</h1>
+        
+        <div class="ancient-scroll">
+            <p><em>"In the beginning, when the world was young and magic flowed like rivers through the land, there existed realms where heroes were forged in the crucible of adventure, and legends were born from the clash of steel and spell..."</em></p>
+        </div>
+
+        <h2>The World of HeroQuest</h2>
+        <p>Imagine a world where the very air crackles with ancient magic, where forgotten dungeons lie beneath every hill like sleeping giants, and where the boundary between myth and reality is as thin as morning mist. This is the realm of HeroQuest—a land that exists in that magical space between the familiar and the fantastic, much like how Tolkien's Middle-earth feels both foreign and achingly familiar.</p>
+
+        <div class="realm-card">
+            <h3>The Cosmic Tapestry</h3>
+            <p>The HeroQuest universe operates on multiple planes of existence, woven together like an intricate tapestry. Think of it as a grand library where each floor represents a different realm—the material world where heroes walk, the ethereal planes where spirits dwell, and the chaotic realms where dark powers scheme.</p>
+        </div>
+
+        <h2>The Cosmological Structure</h2>
+        <canvas id="cosmologyCanvas" width="800" height="400"></canvas>
+        
+        <script>
+            const cosmologyCanvas = document.getElementById('cosmologyCanvas');
+            const ctx = cosmologyCanvas.getContext('2d');
+            
+            // Draw the cosmic structure
+            function drawCosmology() {
+                // Clear canvas
+                ctx.clearRect(0, 0, 800, 400);
+                
+                // Material Plane (center)
+                ctx.fillStyle = '#8B4513';
+                ctx.fillRect(300, 180, 200, 40);
+                ctx.fillStyle = '#FFD700';
+                ctx.font = '16px serif';
+                ctx.fillText('Material Plane', 320, 205);
+                
+                // Ethereal Realm (above)
+                ctx.fillStyle = 'rgba(173, 216, 230, 0.7)';
+                ctx.fillRect(300, 120, 200, 40);
+                ctx.fillStyle = '#87CEEB';
+                ctx.fillText('Ethereal Realm', 325, 145);
+                
+                // Chaos Realm (below)
+                ctx.fillStyle = 'rgba(139, 0, 0, 0.7)';
+                ctx.fillRect(300, 240, 200, 40);
+                ctx.fillStyle = '#FF4500';
+                ctx.fillText('Chaos Realm', 335, 265);
+                
+                // Draw connecting lines
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(400, 160);
+                ctx.lineTo(400, 180);
+                ctx.moveTo(400, 220);
+                ctx.lineTo(400, 240);
+                ctx.stroke();
+                
+                // Add mystical effects
+                const time = Date.now() * 0.001;
+                for (let i = 0; i < 20; i++) {
+                    const x = 100 + (Math.sin(time + i) * 50) + (i * 30);
+                    const y = 200 + (Math.cos(time + i * 0.7) * 100);
+                    ctx.fillStyle = `rgba(255, 215, 0, ${0.3 + Math.sin(time + i) * 0.2})`;
+                    ctx.beginPath();
+                    ctx.arc(x, y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            setInterval(drawCosmology, 50);
+        </script>
+
+        <h2>The Powers That Shape Reality</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[The Light] --> B[Order & Protection]
+                C[The Darkness] --> D[Chaos & Corruption]
+                B --> E[Human Kingdoms]
+                D --> F[Orc Tribes]
+                D --> G[Undead Legions]
+                E --> H[Heroes]
+                F --> I[Warlords]
+                G --> J[Necromancers]
+                
+                style A fill:#FFD700
+                style C fill:#8B0000
+                style H fill:#4169E1
+        </div>
+
+        <div class="character-spotlight">
+            <h3>The Eternal Struggle</h3>
+            <p>Like the eternal dance between day and night, the forces of Light and Darkness wage an endless war across the realms. This isn't a simple good-versus-evil narrative—it's more like the cosmic balance between order and chaos, creation and entropy. The Light represents structure, civilization, and protection, while the Darkness embodies change, freedom from constraint, and raw, untamed power.</p>
+        </div>
+
+        <h2>The Material Plane: Where Heroes Walk</h2>
+        <p>The material plane serves as the primary stage for heroic adventures, much like how a theater provides the setting for grand dramas. Here, ancient kingdoms rise and fall like the tide, each leaving behind ruins that become the dungeons and strongholds where heroes test their mettle.</p>
+
+        <div class="realm-card">
+            <h3>The Empire's Legacy</h3>
+            <p>Long ago, a great Empire stretched across the known world like a protective blanket, bringing law, order, and prosperity to countless peoples. But empires, like mighty oaks, eventually fall—some to rot from within, others to the fierce storms of war. When this Empire crumbled, it left behind a patchwork of successor kingdoms, each clutching fragments of ancient glory like children holding pieces of a broken mirror.</p>
+        </div>
+
+        <div class="realm-card">
+            <h3>The Borderlands</h3>
+            <p>Between these civilized realms lie the Borderlands—wild territories where the king's law holds about as much sway as a whisper in a hurricane. These are the places where monsters roam freely, where ancient ruins hide treasures and terrors in equal measure, and where a hero's reputation is earned one perilous quest at a time.</p>
+        </div>
+
+        <h2>The Arcane Foundations</h2>
+        <p>Magic in the HeroQuest world isn't the neat, categorized system of a university—it's wild, primal, and dangerous, like trying to harness lightning in a bottle. It flows from the very fabric of reality, concentrated in certain places and objects, and those who wield it must always remember that magic has a will of its own.</p>
+
+        <div class="ancient-scroll">
+            <h3>The Four Winds of Magic</h3>
+            <p><strong>Earth Magic:</strong> The power of stone and growing things, as reliable and enduring as the mountains themselves.</p>
+            <p><strong>Air Magic:</strong> Swift and unpredictable, like trying to catch the wind—it can lift you to great heights or dash you against the rocks.</p>
+            <p><strong>Fire Magic:</strong> Passionate and destructive, a double-edged sword that can warm a hearth or burn down a city.</p>
+            <p><strong>Water Magic:</strong> Fluid and adaptive, finding its way through any obstacle, wearing down the mightiest fortress drop by drop.</p>
+        </div>
+
+        <h2>The Call to Adventure</h2>
+        <p>In this world of crumbling empires and wild magic, heroes emerge not because they seek glory, but because they answer a call that resonates in their very souls. Like metal drawn to a magnet, they are pulled toward ancient dungeons, forgotten temples, and cursed strongholds where ordinary folk fear to tread.</p>
+
+        <div class="character-spotlight">
+            <p>These heroes come from all walks of life—some are noble knights carrying the weight of ancestral honor, others are cunning rogues who've learned that sometimes the only way to survive is to take what you need. Some wield magic with the scholarly precision of a master craftsman, while others channel divine power with the unwavering faith of a true believer.</p>
+        </div>
+
+        <p>But what unites them all is this: in a world where darkness creeps at the edges of civilization like fog rolling in from the sea, someone must stand as a beacon of hope. Someone must venture into the places where nightmares dwell and emerge victorious, carrying not just treasure, but proof that even in the darkest depths, the light of heroism can never be fully extinguished.</p>
+
+        <div class="ancient-scroll">
+            <p><em>"And so begins our tale, in a world where every shadow might hide an adventure, every ruin might contain a legend, and every hero carries within them the power to change the very course of history..."</em></p>
+        </div>
+    </div>
+</body>
+</html>

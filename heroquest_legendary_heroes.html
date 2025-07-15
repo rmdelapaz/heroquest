@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Champions of Light: The Legendary Heroes</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #2c1810, #4a2c2a, #1a1a3a); color: #f4f1e8; }
+        .container { max-width: 1100px; margin: 0 auto; background: rgba(0,0,0,0.85); padding: 30px; border-radius: 15px; box-shadow: 0 0 40px rgba(255,215,0,0.4); }
+        h1 { color: #ffd700; text-align: center; font-size: 2.8em; text-shadow: 3px 3px 6px #000; margin-bottom: 30px; }
+        h2 { color: #ff6b35; border-bottom: 3px solid #ff6b35; padding-bottom: 10px; margin-top: 40px; }
+        h3 { color: #87ceeb; margin-top: 30px; text-shadow: 1px 1px 2px #000; }
+        .hero-card { background: linear-gradient(145deg, #2f1b14, #1a1a2e); border: 3px solid; border-radius: 15px; padding: 25px; margin: 25px 0; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.5); overflow: hidden; }
+        .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: shimmer 3s infinite; }
+        @keyframes shimmer { 0%, 100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
+        .barbarian { border-color: #dc143c; }
+        .dwarf { border-color: #b8860b; }
+        .elf { border-color: #32cd32; }
+        .wizard { border-color: #4169e1; }
+        .hero-title { position: absolute; top: -15px; left: 20px; padding: 8px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+        .barbarian .hero-title { background: #dc143c; color: white; }
+        .dwarf .hero-title { background: #b8860b; color: white; }
+        .elf .hero-title { background: #32cd32; color: white; }
+        .wizard .hero-title { background: #4169e1; color: white; }
+        .legend-scroll { background: rgba(139,69,19,0.4); border: 3px solid #8b4513; border-radius: 10px; padding: 20px; margin: 20px 0; position: relative; }
+        .legend-scroll::before { content: "📜"; position: absolute; top: -12px; left: 15px; font-size: 2.2em; background: rgba(0,0,0,0.9); padding: 5px; border-radius: 50%; }
+        .skill-showcase { background: rgba(70,130,180,0.2); border: 2px solid #4682b4; border-radius: 10px; padding: 15px; margin: 15px 0; }
+        .backstory-panel { background: rgba(75,0,130,0.2); border-left: 5px solid #9370db; padding: 20px; margin: 20px 0; }
+        .weapon-stats { display: inline-block; background: rgba(255,69,0,0.3); border: 1px solid #ff4500; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; font-weight: bold; }
+        .personality-trait { display: inline-block; background: rgba(60,179,113,0.3); border: 1px solid #3cb371; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; }
+        #heroLineageCanvas { border: 3px solid #ffd700; border-radius: 15px; background: radial-gradient(ellipse at center, #191970, #000080); }
+        .mermaid { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .stat-bar { background: #333; border-radius: 10px; height: 20px; margin: 5px 0; overflow: hidden; position: relative; }
+        .stat-fill { height: 100%; border-radius: 10px; transition: width 0.5s ease; position: relative; }
+        .stat-label { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 0.8em; text-shadow: 1px 1px 2px #000; }
+        .adventure-hook { background: rgba(255,215,0,0.1); border: 2px dashed #ffd700; border-radius: 10px; padding: 20px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚔️ Champions of Light: The Legendary Heroes ⚔️</h1>
+        
+        <div class="legend-scroll">
+            <p><em>"In the darkest hours, when evil's shadow stretches across the land like the wings of some cosmic predator, heroes rise. Not because they are without fear, but because they choose courage over comfort, duty over safety, and hope over despair..."</em></p>
+        </div>
+
+        <h2>The Eternal Fellowship</h2>
+        <p>Throughout the ages, certain archetypes of heroes have emerged again and again, like eternal roles in a cosmic play. These aren't just character classes—they're philosophical approaches to the heroic life, each representing a different path to greatness. Think of them as the fundamental notes in the symphony of heroism, each with its own unique melody, yet harmonizing perfectly when brought together.</p>
+
+        <h2>The Lineages of Legend</h2>
+        <canvas id="heroLineageCanvas" width="900" height="400"></canvas>
+        
+        <script>
+            const heroCanvasElement = document.getElementById('heroLineageCanvas');
+            const heroCtx = heroCanvasElement.getContext('2d');
+            let heroAnimFrame = 0;
+            
+            function drawHeroLineages() {
+                heroCtx.clearRect(0, 0, 900, 400);
+                heroAnimFrame++;
+                
+                // Draw constellation-like connections
+                const heroes = [
+                    {name: 'The Barbarian', x: 150, y: 100, color: '#dc143c'},
+                    {name: 'The Dwarf', x: 350, y: 150, color: '#b8860b'},
+                    {name: 'The Elf', x: 550, y: 100, color: '#32cd32'},
+                    {name: 'The Wizard', x: 750, y: 150, color: '#4169e1'}
+                ];
+                
+                // Draw connecting lines (bonds of fellowship)
+                heroCtx.strokeStyle = 'rgba(255, 215, 0, 0.3)';
+                heroCtx.lineWidth = 2;
+                heroCtx.setLineDash([5, 5]);
+                heroCtx.lineDashOffset = heroAnimFrame * 0.2;
+                
+                for (let i = 0; i < heroes.length; i++) {
+                    for (let j = i + 1; j < heroes.length; j++) {
+                        heroCtx.beginPath();
+                        heroCtx.moveTo(heroes[i].x, heroes[i].y);
+                        heroCtx.lineTo(heroes[j].x, heroes[j].y);
+                        heroCtx.stroke();
+                    }
+                }
+                heroCtx.setLineDash([]);
+                
+                // Draw hero nodes
+                heroes.forEach((hero, index) => {
+                    const pulse = Math.sin(heroAnimFrame * 0.05 + index * 1.5) * 0.2 + 0.8;
+                    
+                    // Outer glow
+                    heroCtx.shadowColor = hero.color;
+                    heroCtx.shadowBlur = 20 * pulse;
+                    heroCtx.fillStyle = hero.color;
+                    heroCtx.beginPath();
+                    heroCtx.arc(hero.x, hero.y, 25 * pulse, 0, Math.PI * 2);
+                    heroCtx.fill();
+                    
+                    // Reset shadow
+                    heroCtx.shadowBlur = 0;
+                    
+                    // Inner core
+                    heroCtx.fillStyle = 'white';
+                    heroCtx.beginPath();
+                    heroCtx.arc(hero.x, hero.y, 8, 0, Math.PI * 2);
+                    heroCtx.fill();
+                    
+                    // Hero name
+                    heroCtx.fillStyle = hero.color;
+                    heroCtx.font = 'bold 14px serif';
+                    heroCtx.textAlign = 'center';
+                    heroCtx.fillText(hero.name, hero.x, hero.y + 50);
+                });
+                
+                // Draw energy streams between heroes
+                for (let i = 0; i < 30; i++) {
+                    const t = (heroAnimFrame + i * 10) * 0.01;
+                    const x = 150 + Math.sin(t) * 300 + Math.cos(t * 1.3) * 200;
+                    const y = 200 + Math.cos(t * 0.7) * 80 + Math.sin(t * 1.7) * 50;
+                    const alpha = (Math.sin(t * 2) + 1) * 0.3;
+                    
+                    heroCtx.fillStyle = `rgba(255, 215, 0, ${alpha})`;
+                    heroCtx.beginPath();
+                    heroCtx.arc(x, y, 2, 0, Math.PI * 2);
+                    heroCtx.fill();
+                }
+            }
+            
+            setInterval(drawHeroLineages, 50);
+        </script>
+
+        <h2>The Legendary Archetypes</h2>
+
+        <div class="hero-card barbarian">
+            <div class="hero-title">The Barbarian</div>
+            <h3>🗡️ The Untamed Warrior</h3>
+            
+            <div class="backstory-panel">
+                <h4>Origins of Fury</h4>
+                <p>Barbarians don't emerge from the civilized world—they are forged in the crucible of the wilderness, where survival depends not on laws or customs, but on strength, cunning, and an unbreakable will. Picture warriors raised by wolves, literally or figuratively, people who learned to fight before they learned to speak, and who trust their instincts more than any scholar's book.</p>
+                
+                <p>They come from the places that maps mark as "Here Be Dragons"—the frozen wastes beyond the Northern Reaches, the trackless deserts where nomad tribes follow ancient migrations, or the deep forests where the old spirits still hold sway. These are lands where civilization is not a blessing but a weakness, where the artificial comforts of city life make you soft and vulnerable.</p>
+                
+                <p>Whether male or female, barbarian warriors embody different aspects of primal strength—some channel pure aggressive fury like a berserker storm, while others blend that rage with protective instincts, fighting with the fierce devotion of wolves defending their pack. All share the same fundamental philosophy: in a world of increasing complexity and corruption, sometimes the old ways of strength, honor, and direct action are the only reliable paths to truth.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Legendary Abilities</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 95%; background: linear-gradient(90deg, #dc143c, #ff6b6b);">
+                        <div class="stat-label">Raw Strength & Endurance</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 90%; background: linear-gradient(90deg, #8b0000, #dc143c);">
+                        <div class="stat-label">Combat Instincts</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 85%; background: linear-gradient(90deg, #654321, #8b4513);">
+                        <div class="stat-label">Wilderness Survival</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">⚔️ Two-Handed Mastery</span>
+                <span class="weapon-stats">🛡️ Berserker Rage</span>
+                <span class="weapon-stats">🏃 Relentless Pursuit</span>
+                <span class="weapon-stats">🏹 Throwing Weapons</span>
+                <span class="weapon-stats">🐺 Beast Communion</span>
+            </div>
+            
+            <div class="adventure-hook">
+                <h4>The Call of Ancient Blood</h4>
+                <p>Many barbarians carry the blood of ancient heroes in their veins—descendants of legendary warrior-kings and warrior-queens who once ruled vast territories with nothing but their strength and the loyalty of their followers. When the civilized world grows too corrupt or weak, these dormant bloodlines awaken, calling their bearers to restore the old ways through deed and blade.</p>
+                
+                <p>Some fight with the explosive fury of the storm, others with the patient wisdom of the hunt, but all understand that true strength comes not from weapons or armor, but from an unbreakable connection to the primal forces that shaped the world.</p>
+            </div>
+            
+            <span class="personality-trait">🔥 Fierce Loyalty</span>
+            <span class="personality-trait">⚡ Explosive Temper</span>
+            <span class="personality-trait">🗻 Immovable Honor</span>
+            <span class="personality-trait">🐺 Pack Mentality</span>
+            <span class="personality-trait">🌙 Protective Instincts</span>
+            <span class="personality-trait">💝 Righteous Fury</span>
+        </div>
+
+        <div class="hero-card dwarf">
+            <div class="hero-title">The Dwarf</div>
+            <h3>⚒️ The Mountain's Heart</h3>
+            
+            <div class="backstory-panel">
+                <h4>Children of Stone and Steel</h4>
+                <p>To understand dwarves, you must first understand that they are not just short humans—they are an entirely different philosophy of existence made flesh. Where humans reach for the sky, dwarves delve deep. Where humans change with the seasons, dwarves endure like the mountains themselves. They are the living embodiment of permanence in a world of constant flux.</p>
+                
+                <p>Dwarven society is built on three unshakeable pillars: craftsmanship that borders on the divine, loyalty that death itself cannot break, and a memory that holds grudges for centuries while treasuring friendships for millennia. A dwarf's word is literally as solid as stone—break it, and you've committed a sin that will echo through generations.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Forge-Born Talents</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 98%; background: linear-gradient(90deg, #b8860b, #ffd700);">
+                        <div class="stat-label">Master Craftsmanship</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 92%; background: linear-gradient(90deg, #696969, #a9a9a9);">
+                        <div class="stat-label">Defensive Combat</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 88%; background: linear-gradient(90deg, #8b4513, #cd853f);">
+                        <div class="stat-label">Underground Navigation</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">🔨 Hammer Mastery</span>
+                <span class="weapon-stats">🛡️ Shield Wall</span>
+                <span class="weapon-stats">💎 Treasure Sense</span>
+            </div>
+            
+            <div class="legend-scroll">
+                <h4>The Great Clans</h4>
+                <p><strong>Clan Ironforge:</strong> Master weaponsmiths who can forge blades that never dull and armor that turns aside dragon fire.</p>
+                <p><strong>Clan Goldbeard:</strong> Legendary miners who can sense precious metals through solid rock and have mapped tunnels that span continents.</p>
+                <p><strong>Clan Stonewall:</strong> The eternal guardians, who have held mountain passes against impossible odds for over a thousand years.</p>
+            </div>
+            
+            <span class="personality-trait">⛰️ Stubborn Determination</span>
+            <span class="personality-trait">🤝 Unbreakable Oaths</span>
+            <span class="personality-trait">🍺 Legendary Constitution</span>
+            <span class="personality-trait">💰 Shrewd Negotiator</span>
+        </div>
+
+        <div class="hero-card elf">
+            <div class="hero-title">The Elf</div>
+            <h3>🌟 The Eternal Guardian</h3>
+            
+            <div class="backstory-panel">
+                <h4>Dancers Between Worlds</h4>
+                <p>Elves exist in the spaces between—between mortal and immortal, between the physical and the spiritual, between the ancient past and the distant future. To a human, a century is a lifetime; to an elf, it's barely enough time to properly learn a new song. This perspective shapes everything about them, from their seemingly casual approach to urgent matters to their ability to see patterns that span generations.</p>
+                
+                <p>They are the memory keepers of the world, living links to ages when magic flowed more freely and the boundaries between realms were mere suggestions. An elf warrior isn't just fighting today's battle—they're continuing a war that began before human civilization took its first steps, defending principles that will matter long after current kingdoms have crumbled to dust.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Grace of Ages</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 96%; background: linear-gradient(90deg, #32cd32, #90ee90);">
+                        <div class="stat-label">Archery & Precision</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 94%; background: linear-gradient(90deg, #9370db, #dda0dd);">
+                        <div class="stat-label">Magical Affinity</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 90%; background: linear-gradient(90deg, #228b22, #32cd32);">
+                        <div class="stat-label">Natural Awareness</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">🏹 Perfect Accuracy</span>
+                <span class="weapon-stats">✨ Spell Weaving</span>
+                <span class="weapon-stats">👁️ Farsight</span>
+            </div>
+            
+            <div class="adventure-hook">
+                <h4>The Long View</h4>
+                <p>When an elf takes up the adventurer's path, it's never for simple reasons. They might be pursuing a vendetta that began three centuries ago, seeking to prevent a catastrophe they've foreseen through prophetic dreams, or working to heal a wound in the world's spiritual fabric that only they can perceive. Their missions often seem mysterious or even counterproductive to shorter-lived companions, but time usually proves the wisdom of elven foresight.</p>
+            </div>
+            
+            <span class="personality-trait">🌙 Mysterious Wisdom</span>
+            <span class="personality-trait">🎭 Subtle Humor</span>
+            <span class="personality-trait">🌿 Nature's Ally</span>
+            <span class="personality-trait">⏳ Patient Strategist</span>
+        </div>
+
+        <div class="hero-card wizard">
+            <div class="hero-title">The Wizard</div>
+            <h3>🔮 The Reality Shaper</h3>
+            
+            <div class="backstory-panel">
+                <h4>Seekers of Ultimate Truth</h4>
+                <p>Wizards are the ultimate rebels—not against kings or laws, but against the very limitations of reality itself. They look at the world and say "This isn't enough," then dedicate their lives to bending the fundamental forces of existence to their will. Think of them as cosmic engineers, treating magic not as a mystical force but as a science waiting to be mastered.</p>
+                
+                <p>The path of the wizard is one of sacrifice and obsession. While others sleep, they study. While others celebrate, they experiment. While others accept the world as it is, they envision what it could become. This isn't just academic curiosity—it's a burning need to understand, to control, to transcend the mortal limitations that bind lesser minds.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Mastery of the Arcane</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 99%; background: linear-gradient(90deg, #4169e1, #87ceeb);">
+                        <div class="stat-label">Spell Knowledge</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 93%; background: linear-gradient(90deg, #9932cc, #ba55d3);">
+                        <div class="stat-label">Magical Research</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 87%; background: linear-gradient(90deg, #ff4500, #ffa500);">
+                        <div class="stat-label">Battle Magic</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">⚡ Lightning Bolts</span>
+                <span class="weapon-stats">🔥 Fireball</span>
+                <span class="weapon-stats">🧠 Mind Magic</span>
+            </div>
+            
+            <div class="mermaid">
+                graph TB
+                    A[The Wizard's Path] --> B[Apprentice]
+                    A --> C[Scholar]
+                    A --> D[Battle Mage]
+                    A --> E[Archmage]
+                    
+                    B --> F[Basic Cantrips]
+                    C --> G[Ancient Knowledge]
+                    D --> H[Combat Spells]
+                    E --> I[Reality Manipulation]
+                    
+                    F --> J[Magical Focus]
+                    G --> J
+                    H --> J
+                    I --> K[Legendary Status]
+                    
+                    style A fill:#4169e1
+                    style K fill:#ffd700
+            </div>
+            
+            <div class="legend-scroll">
+                <h4>The Great Schools</h4>
+                <p><strong>The Academy of Elemental Mastery:</strong> Where wizards learn to command fire, ice, lightning, and storm with the precision of a master craftsman.</p>
+                <p><strong>The Order of the Celestial Eye:</strong> Devoted to divination and the understanding of fate itself—these wizards see not just what is, but what could be.</p>
+                <p><strong>The Circle of the Void:</strong> The most dangerous school, dealing with the spaces between reality where the fundamental laws break down.</p>
+            </div>
+            
+            <span class="personality-trait">🔬 Insatiable Curiosity</span>
+            <span class="personality-trait">📚 Living Library</span>
+            <span class="personality-trait">⚡ Volatile Temper</span>
+            <span class="personality-trait">🎯 Laser Focus</span>
+        </div>
+
+        <h2>The Extended Fellowship: Heroes of the Quest Packs</h2>
+        <p>While the core four heroes form the foundation of any adventuring party, the world has called forth other champions, each bringing unique skills and perspectives to the eternal struggle against darkness. These additional heroes emerged from specific quests and challenges, proving that heroism takes many forms.</p>
+
+        <div class="hero-card" style="border-color: #ff1493;">
+            <div class="hero-title" style="background: #ff1493;">The Female Barbarian</div>
+            <h3>🌺 The Wild Rose Warrior</h3>
+            
+            <div class="backstory-panel">
+                <h4>Daughter of the Northern Winds</h4>
+                <p>She embodies a different aspect of barbarian philosophy—not just raw fury, but the fierce protective instinct of the she-wolf defending her pack. Where male barbarians might charge headlong into battle, she combines primal rage with maternal wisdom, making her equally deadly in combat and invaluable as a strategic thinker who considers the long-term survival of her people.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Primal Grace</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 93%; background: linear-gradient(90deg, #ff1493, #ff69b4);">
+                        <div class="stat-label">Intuitive Combat</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 89%; background: linear-gradient(90deg, #8b008b, #ff1493);">
+                        <div class="stat-label">Pack Leadership</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">🏹 Throwing Weapons</span>
+                <span class="weapon-stats">🐺 Beast Communion</span>
+                <span class="weapon-stats">💝 Protective Fury</span>
+            </div>
+            
+            <span class="personality-trait">🌙 Lunar Wisdom</span>
+            <span class="personality-trait">⚡ Righteous Fury</span>
+            <span class="personality-trait">🛡️ Fierce Protection</span>
+        </div>
+
+        <div class="hero-card" style="border-color: #20b2aa;">
+            <div class="hero-title" style="background: #20b2aa;">The Bard</div>
+            <h3>🎵 The Weaver of Tales</h3>
+            
+            <div class="backstory-panel">
+                <h4>Keeper of the Living Memory</h4>
+                <p>In a world where libraries burn and kingdoms fall, the bard serves as the living memory of civilization. They are part historian, part entertainer, part diplomat, and part spy. Their power lies not in steel or sorcery, but in words—the ability to inspire allies, demoralize enemies, and preserve the stories that give meaning to heroic sacrifice.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>The Power of Song</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 96%; background: linear-gradient(90deg, #20b2aa, #40e0d0);">
+                        <div class="stat-label">Inspiration & Morale</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 88%; background: linear-gradient(90deg, #4682b4, #87ceeb);">
+                        <div class="stat-label">Social Manipulation</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">🎼 Battle Songs</span>
+                <span class="weapon-stats">🗣️ Commanding Voice</span>
+                <span class="weapon-stats">📚 Ancient Lore</span>
+            </div>
+            
+            <span class="personality-trait">🎭 Master Performer</span>
+            <span class="personality-trait">📖 Living Library</span>
+            <span class="personality-trait">🕊️ Diplomatic Spirit</span>
+        </div>
+
+        <div class="hero-card" style="border-color: #daa520;">
+            <div class="hero-title" style="background: #daa520;">The Warlock</div>
+            <h3>🔥 The Forbidden Scholar</h3>
+            
+            <div class="backstory-panel">
+                <h4>Walker of Dark Paths</h4>
+                <p>The warlock represents the dangerous path of fighting fire with fire—a spellcaster who has studied the same dark arts used by the enemy, believing that understanding evil is necessary to defeat it. They walk a razor's edge between heroism and damnation, using forbidden knowledge for righteous purposes while constantly resisting its corrupting influence.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Mastery Through Darkness</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 91%; background: linear-gradient(90deg, #8b0000, #dc143c);">
+                        <div class="stat-label">Dark Magic</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 87%; background: linear-gradient(90deg, #4b0082, #8b008b);">
+                        <div class="stat-label">Forbidden Knowledge</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">💀 Death Magic</span>
+                <span class="weapon-stats">👁️ Soul Sight</span>
+                <span class="weapon-stats">🌀 Chaos Control</span>
+            </div>
+            
+            <span class="personality-trait">📚 Forbidden Scholar</span>
+            <span class="personality-trait">⚖️ Moral Complexity</span>
+            <span class="personality-trait">🔥 Dangerous Passion</span>
+        </div>
+
+        <div class="hero-card" style="border-color: #9370db;">
+            <div class="hero-title" style="background: #9370db;">The Druid</div>
+            <h3>🌿 The Nature's Voice</h3>
+            
+            <div class="backstory-panel">
+                <h4>Guardian of the Old Ways</h4>
+                <p>Druids serve as intermediaries between civilization and the wild, understanding that true balance requires respect for both human achievement and natural order. They draw their power directly from the living world—not just plants and animals, but the fundamental forces of growth, decay, and renewal that govern all existence.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Natural Harmony</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 94%; background: linear-gradient(90deg, #228b22, #32cd32);">
+                        <div class="stat-label">Nature Magic</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 90%; background: linear-gradient(90deg, #8fbc8f, #98fb98);">
+                        <div class="stat-label">Healing Arts</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">🌳 Plant Control</span>
+                <span class="weapon-stats">🐺 Animal Speech</span>
+                <span class="weapon-stats">⛈️ Weather Command</span>
+            </div>
+            
+            <span class="personality-trait">🌍 Earth Wisdom</span>
+            <span class="personality-trait">☯️ Balance Seeker</span>
+            <span class="personality-trait">🦋 Gentle Strength</span>
+        </div>
+
+        <div class="hero-card" style="border-color: #ffd700;">
+            <div class="hero-title" style="background: #ffd700; color: #000;">The Knight</div>
+            <h3>⚔️ The Shining Exemplar</h3>
+            
+            <div class="backstory-panel">
+                <h4>Champion of Noble Ideals</h4>
+                <p>The knight represents the highest aspirations of civilized society—not just martial prowess, but the wedding of strength to justice, power to responsibility. They are living symbols of the belief that might should serve right, that true nobility comes from service to others, and that even in the darkest times, honor matters more than survival.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Righteous Authority</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 92%; background: linear-gradient(90deg, #ffd700, #ffff99);">
+                        <div class="stat-label">Martial Excellence</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 89%; background: linear-gradient(90deg, #4169e1, #87ceeb);">
+                        <div class="stat-label">Leadership</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">🗡️ Sword Master</span>
+                <span class="weapon-stats">🛡️ Divine Protection</span>
+                <span class="weapon-stats">🏇 Mounted Combat</span>
+            </div>
+            
+            <span class="personality-trait">⚖️ Unwavering Justice</span>
+            <span class="personality-trait">🛡️ Protective Duty</span>
+            <span class="personality-trait">👑 Natural Leader</span>
+        </div>
+
+        <div class="hero-card" style="border-color: #dc143c;">
+            <div class="hero-title" style="background: #dc143c;">The Monk</div>
+            <h3>☯️ The Inner Flame</h3>
+            
+            <div class="backstory-panel">
+                <h4>Master of Self</h4>
+                <p>Monks represent the path of internal mastery—the belief that the greatest enemy is not external darkness, but the chaos and weakness within oneself. Through rigorous discipline, meditation, and training, they transform their own bodies into perfect weapons and their minds into unassailable fortresses of clarity and purpose.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Perfect Balance</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 95%; background: linear-gradient(90deg, #dc143c, #ff6347);">
+                        <div class="stat-label">Unarmed Combat</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 93%; background: linear-gradient(90deg, #800080, #9370db);">
+                        <div class="stat-label">Mental Discipline</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">👊 Martial Arts</span>
+                <span class="weapon-stats">🧘 Mind Over Matter</span>
+                <span class="weapon-stats">⚡ Lightning Speed</span>
+            </div>
+            
+            <span class="personality-trait">🧘 Serene Focus</span>
+            <span class="personality-trait">💪 Iron Discipline</span>
+            <span class="personality-trait">☯️ Inner Peace</span>
+        </div>
+
+        <div class="hero-card" style="border-color: #ff4500;">
+            <div class="hero-title" style="background: #ff4500;">The Rogue</div>
+            <h3>🗡️ The Shadow Walker</h3>
+            
+            <div class="backstory-panel">
+                <h4>Necessity's Child</h4>
+                <p>Rogues emerge from the spaces between laws—not necessarily criminals, but pragmatists who understand that sometimes the greater good requires bending or breaking lesser rules. They are the specialists in problems that can't be solved with honest steel or righteous magic, the ones who handle the dirty work that keeps civilization clean.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Skills of Survival</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 96%; background: linear-gradient(90deg, #ff4500, #ffa500);">
+                        <div class="stat-label">Stealth & Subterfuge</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 88%; background: linear-gradient(90deg, #8b4513, #cd853f);">
+                        <div class="stat-label">Precision Strikes</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">🗡️ Sneak Attack</span>
+                <span class="weapon-stats">🔓 Lock Picking</span>
+                <span class="weapon-stats">👤 Disguise</span>
+            </div>
+            
+            <span class="personality-trait">🎭 Adaptable</span>
+            <span class="personality-trait">🔍 Sharp Observer</span>
+            <span class="personality-trait">🎯 Opportunistic</span>
+        </div>
+
+        <div class="hero-card" style="border-color: #8b0000;">
+            <div class="hero-title" style="background: #8b0000;">The Berserker</div>
+            <h3>🔥 The Fury Incarnate</h3>
+            
+            <div class="backstory-panel">
+                <h4>Child of Primal Rage</h4>
+                <p>The Berserker represents the raw, untamed essence of combat fury taken to its ultimate extreme. Unlike the focused aggression of the barbarian, the berserker channels a primal rage so pure and consuming that it transforms them into a living weapon of destruction. They are warriors who have learned to harness the beast within, becoming avatars of battle frenzy that can tear through enemy ranks like a hurricane of steel and fury.</p>
+                
+                <p>Born in the savage jungles of Delthrak, where civilization's laws hold no sway and only the strongest survive, berserkers learn early that sometimes the only way to face overwhelming odds is to become something more than human—to embrace the wild chaos that lurks in every mortal heart and use it as a weapon against the forces of darkness.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Unstoppable Rampage</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 98%; background: linear-gradient(90deg, #8b0000, #ff0000);">
+                        <div class="stat-label">Berserk Fury</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 85%; background: linear-gradient(90deg, #ff4500, #ffa500);">
+                        <div class="stat-label">Pain Resistance</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 92%; background: linear-gradient(90deg, #654321, #8b4513);">
+                        <div class="stat-label">Jungle Survival</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">⚡ Rage Mode</span>
+                <span class="weapon-stats">🪓 Dual Weapons</span>
+                <span class="weapon-stats">💀 Intimidation</span>
+            </div>
+            
+            <span class="personality-trait">🔥 Volcanic Temper</span>
+            <span class="personality-trait">🐅 Predator Instincts</span>
+            <span class="personality-trait">⚡ Explosive Violence</span>
+            <span class="personality-trait">🌿 Jungle Wisdom</span>
+        </div>
+
+        <div class="hero-card" style="border-color: #228b22;">
+            <div class="hero-title" style="background: #228b22;">The Explorer</div>
+            <h3>🗺️ The Pathfinder</h3>
+            
+            <div class="backstory-panel">
+                <h4>Master of the Unknown</h4>
+                <p>The Explorer embodies humanity's eternal drive to push beyond known boundaries, to map the unmappable and discover the undiscoverable. Born from the treacherous jungles of Delthrak, where every step might lead to either wondrous discovery or terrible death, explorers develop an uncanny ability to navigate through environments that would confound or kill ordinary travelers.</p>
+                
+                <p>They are part scholar, part survivalist, and part treasure hunter—driven not just by the promise of gold, but by an insatiable curiosity about the world's hidden secrets. An explorer sees every mysterious ruin as a puzzle waiting to be solved, every uncharted territory as an invitation to adventure, and every "impossible" challenge as merely another problem requiring creative solutions.</p>
+            </div>
+            
+            <div class="skill-showcase">
+                <h4>Mastery of the Wild</h4>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 96%; background: linear-gradient(90deg, #228b22, #32cd32);">
+                        <div class="stat-label">Navigation & Tracking</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 89%; background: linear-gradient(90deg, #8b4513, #cd853f);">
+                        <div class="stat-label">Trap Detection</div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" style="width: 87%; background: linear-gradient(90deg, #daa520, #ffd700);">
+                        <div class="stat-label">Ancient Lore</div>
+                    </div>
+                </div>
+                
+                <span class="weapon-stats">🏹 Ranged Precision</span>
+                <span class="weapon-stats">🗺️ Pathfinding</span>
+                <span class="weapon-stats">💎 Treasure Sense</span>
+            </div>
+            
+            <div class="adventure-hook">
+                <h4>The Call of the Unknown</h4>
+                <p>Explorers are drawn to the places marked on maps with warnings like "Here Be Dragons" or "Unexplored Territory." They thrive in environments where quick thinking and adaptability matter more than raw strength, using their extensive knowledge of ancient civilizations and natural phenomena to overcome obstacles that would stop other heroes cold.</p>
+            </div>
+            
+            <span class="personality-trait">🧭 Insatiable Curiosity</span>
+            <span class="personality-trait">🎯 Methodical Planning</span>
+            <span class="personality-trait">🦎 Adaptive Survivor</span>
+            <span class="personality-trait">📚 Living Atlas</span>
+        </div>
+
+        <h2>The Bonds of Fellowship</h2>
+        <p>These heroes rarely adventure alone—not because they can't, but because the greatest challenges require the perfect fusion of different strengths. Like instruments in an orchestra, each hero brings a unique voice to the symphony of adventure. The original four provide the foundation, but the addition of specialized heroes creates opportunities for more complex strategies and deeper character dynamics.</p>
+
+        <div class="adventure-hook">
+            <h3>The Heroic Cycle</h3>
+            <p>Every generation, when the world grows dark and hope seems lost, these archetypes manifest again. Sometimes they're reincarnations of ancient champions, sometimes they're entirely new souls called to fill eternal roles. But always, they come when needed most—drawn together by fate, necessity, or perhaps by the cosmic forces that demand balance between light and shadow.</p>
+            
+            <p>Their adventures become the stuff of legend not just because of their individual prowess, but because of how they complement and elevate each other. A barbarian alone is a warrior; a barbarian with companions becomes a force of nature guided by wisdom, protected by loyalty, and amplified by magic.</p>
+        </div>
+
+        <div class="legend-scroll">
+            <p><em>"Thus stand the heroes—each a master of their chosen path, each carrying within them the potential to change the world. But only when united do they become truly legendary, for in their fellowship lies the power to face whatever darkness may rise from the depths of nightmare..."</em></p>
+        </div>
+    </div>
+</body>
+</html>

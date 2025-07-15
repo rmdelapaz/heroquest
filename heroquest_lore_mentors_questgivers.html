@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisdom's Guardians: Mentors and Quest-Givers</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #2f4f4f, #1e3a3a, #483d8b); color: #f4f1e8; }
+        .container { max-width: 1200px; margin: 0 auto; background: rgba(0,0,0,0.87); padding: 30px; border-radius: 15px; box-shadow: 0 0 70px rgba(72,61,139,0.5); border: 3px solid #483d8b; }
+        h1 { color: #dda0dd; text-align: center; font-size: 2.8em; text-shadow: 3px 3px 8px #000, 0 0 20px #dda0dd; margin-bottom: 30px; }
+        h2 { color: #9370db; border-bottom: 3px solid #9370db; padding-bottom: 10px; margin-top: 40px; text-shadow: 2px 2px 4px #000; }
+        h3 { color: #ba55d3; margin-top: 30px; text-shadow: 1px 1px 2px #000; }
+        .mentor-card { background: linear-gradient(145deg, #2f2f4f, #1a1a2e); border: 3px solid; border-radius: 15px; padding: 25px; margin: 25px 0; position: relative; box-shadow: 0 15px 30px rgba(0,0,0,0.8); overflow: hidden; }
+        .mentor-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, transparent, rgba(186,85,211,0.7), transparent); animation: wisdomShimmer 5s infinite; }
+        @keyframes wisdomShimmer { 0%, 100% { transform: translateX(-150%); } 50% { transform: translateX(150%); } }
+        .wise-mentor { border-color: #4169e1; }
+        .noble-patron { border-color: #ffd700; }
+        .mysterious-guide { border-color: #9370db; }
+        .divine-messenger { border-color: #87ceeb; }
+        .fallen-hero { border-color: #cd853f; }
+        .mentor-type { position: absolute; top: -15px; left: 20px; padding: 8px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+        .wise-mentor .mentor-type { background: #4169e1; color: white; }
+        .noble-patron .mentor-type { background: #ffd700; color: black; }
+        .mysterious-guide .mentor-type { background: #9370db; color: white; }
+        .divine-messenger .mentor-type { background: #87ceeb; color: black; }
+        .fallen-hero .mentor-type { background: #cd853f; color: white; }
+        .wisdom-scroll { background: rgba(72,61,139,0.4); border: 3px solid #483d8b; border-radius: 10px; padding: 20px; margin: 20px 0; position: relative; }
+        .wisdom-scroll::before { content: "🧙"; position: absolute; top: -12px; left: 15px; font-size: 2.2em; background: rgba(0,0,0,0.9); padding: 5px; border-radius: 50%; }
+        .guidance-lesson { background: rgba(147,112,219,0.2); border: 2px solid #9370db; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .quest-briefing { background: rgba(255,215,0,0.15); border-left: 5px solid #ffd700; padding: 15px; margin: 15px 0; }
+        .warning-wisdom { background: rgba(139,69,19,0.3); border: 2px dashed #8b4513; border-radius: 10px; padding: 15px; margin: 15px 0; }
+        .teaching-tag { display: inline-block; background: rgba(72,61,139,0.5); border: 1px solid #483d8b; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; font-weight: bold; color: #dda0dd; }
+        .specialty-tag { display: inline-block; background: rgba(255,215,0,0.4); border: 1px solid #ffd700; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; color: #ffd700; }
+        .motivation-tag { display: inline-block; background: rgba(147,112,219,0.4); border: 1px solid #9370db; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; color: #dda0dd; }
+        #mentorNetworkCanvas { border: 3px solid #dda0dd; border-radius: 15px; background: radial-gradient(ellipse at center, #2f4f4f, #1a1a2e); }
+        .mermaid { background: rgba(72,61,139,0.2); border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .wisdom-meter { background: #333; border-radius: 10px; height: 25px; margin: 8px 0; overflow: hidden; position: relative; border: 2px solid #9370db; }
+        .wisdom-fill { height: 100%; border-radius: 8px; transition: width 0.5s ease; position: relative; }
+        .wisdom-label { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 0.85em; text-shadow: 2px 2px 4px #000; }
+        .training-regimen { background: rgba(65,105,225,0.2); border: 2px solid #4169e1; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .mentor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
+        .teaching-card { background: rgba(72,61,139,0.3); border: 2px solid #483d8b; border-radius: 10px; padding: 20px; text-align: center; position: relative; }
+        .secret-knowledge { background: rgba(75,0,130,0.3); border: 2px dashed #4b0082; border-radius: 10px; padding: 15px; margin: 15px 0; }
+        .legacy-chain { background: rgba(139,69,19,0.2); border: 2px solid #8b4513; border-radius: 10px; padding: 20px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧙 Wisdom's Guardians: Mentors and Quest-Givers 🧙</h1>
+        
+        <div class="wisdom-scroll">
+            <p><em>"In every hero's journey, there comes a moment when raw courage meets its limitations, when good intentions clash against harsh realities, and when the path forward disappears into shadow and uncertainty. It is in these crucial moments that the true guardians of wisdom reveal themselves—mentors who have walked similar paths, quest-givers who see the larger picture, and guides who understand that the greatest gift they can offer is not the solution, but the wisdom to find it..."</em></p>
+        </div>
+
+        <h2>The Sacred Role of the Guide</h2>
+        <p>Mentorship in the HeroQuest world is not mere instruction—it is a sacred responsibility that transcends the simple transfer of knowledge or skills. True mentors understand that heroes are not created through teaching alone, but through the careful cultivation of inner strength, moral clarity, and the wisdom to know when to fight and when to seek another path. Like gardeners tending rare flowers, mentors provide the right conditions for heroism to bloom naturally from within.</p>
+
+        <h2>The Network of Wisdom</h2>
+        <canvas id="mentorNetworkCanvas" width="1000" height="450"></canvas>
+        
+        <script>
+            const mentorCanvasElement = document.getElementById('mentorNetworkCanvas');
+            const mentorCtx = mentorCanvasElement.getContext('2d');
+            let mentorAnimFrame = 0;
+            
+            function drawMentorNetwork() {
+                mentorCtx.clearRect(0, 0, 1000, 450);
+                mentorAnimFrame++;
+                
+                // Define mentor archetypes and their positions
+                const mentors = [
+                    {name: 'The Wizard Mentor', x: 200, y: 150, color: '#4169e1', type: 'wise', influence: 0.9},
+                    {name: 'Noble Patron', x: 500, y: 100, color: '#ffd700', type: 'patron', influence: 0.8},
+                    {name: 'Mysterious Guide', x: 800, y: 180, color: '#9370db', type: 'guide', influence: 0.85},
+                    {name: 'Divine Herald', x: 150, y: 350, color: '#87ceeb', type: 'divine', influence: 0.9},
+                    {name: 'Fallen Champion', x: 650, y: 320, color: '#cd853f', type: 'fallen', influence: 0.75},
+                    {name: 'Ancient Oracle', x: 400, y: 280, color: '#dda0dd', type: 'oracle', influence: 0.95}
+                ];
+                
+                // Draw wisdom connections between mentors
+                mentorCtx.strokeStyle = 'rgba(147, 112, 219, 0.4)';
+                mentorCtx.lineWidth = 2;
+                mentorCtx.setLineDash([15, 5]);
+                mentorCtx.lineDashOffset = mentorAnimFrame * 0.3;
+                
+                for (let i = 0; i < mentors.length; i++) {
+                    for (let j = i + 1; j < mentors.length; j++) {
+                        const distance = Math.sqrt(Math.pow(mentors[i].x - mentors[j].x, 2) + Math.pow(mentors[i].y - mentors[j].y, 2));
+                        if (distance < 300) {
+                            mentorCtx.beginPath();
+                            mentorCtx.moveTo(mentors[i].x, mentors[i].y);
+                            mentorCtx.lineTo(mentors[j].x, mentors[j].y);
+                            mentorCtx.stroke();
+                        }
+                    }
+                }
+                mentorCtx.setLineDash([]);
+                
+                // Draw hero positions around mentors
+                const heroes = [
+                    {x: 100, y: 100}, {x: 300, y: 80}, {x: 600, y: 60},
+                    {x: 900, y: 120}, {x: 50, y: 300}, {x: 250, y: 380},
+                    {x: 550, y: 400}, {x: 750, y: 360}, {x: 850, y: 280}
+                ];
+                
+                // Draw guidance beams from mentors to heroes
+                heroes.forEach((hero, index) => {
+                    const closestMentor = mentors.reduce((closest, mentor) => {
+                        const distance = Math.sqrt(Math.pow(mentor.x - hero.x, 2) + Math.pow(mentor.y - hero.y, 2));
+                        return distance < closest.distance ? {mentor, distance} : closest;
+                    }, {distance: Infinity});
+                    
+                    if (closestMentor.mentor) {
+                        const guidance = Math.sin(mentorAnimFrame * 0.04 + index) * 0.3 + 0.7;
+                        mentorCtx.strokeStyle = `${closestMentor.mentor.color}60`;
+                        mentorCtx.lineWidth = 3;
+                        mentorCtx.beginPath();
+                        mentorCtx.moveTo(closestMentor.mentor.x, closestMentor.mentor.y);
+                        mentorCtx.lineTo(hero.x, hero.y);
+                        mentorCtx.stroke();
+                    }
+                });
+                
+                // Draw mentor nodes
+                mentors.forEach((mentor, index) => {
+                    const pulse = Math.sin(mentorAnimFrame * 0.05 + index * 1.2) * 0.2 * mentor.influence + 0.8;
+                    
+                    // Wisdom aura
+                    mentorCtx.shadowColor = mentor.color;
+                    mentorCtx.shadowBlur = 25 * pulse;
+                    mentorCtx.fillStyle = mentor.color + '40';
+                    mentorCtx.beginPath();
+                    mentorCtx.arc(mentor.x, mentor.y, 35 * pulse * mentor.influence, 0, Math.PI * 2);
+                    mentorCtx.fill();
+                    
+                    // Inner wisdom core
+                    mentorCtx.shadowBlur = 10 * pulse;
+                    mentorCtx.fillStyle = mentor.color;
+                    mentorCtx.beginPath();
+                    mentorCtx.arc(mentor.x, mentor.y, 12 * pulse, 0, Math.PI * 2);
+                    mentorCtx.fill();
+                    mentorCtx.shadowBlur = 0;
+                    
+                    // Mentor title
+                    mentorCtx.fillStyle = mentor.color;
+                    mentorCtx.font = 'bold 11px serif';
+                    mentorCtx.textAlign = 'center';
+                    mentorCtx.fillText(mentor.name, mentor.x, mentor.y + 55);
+                });
+                
+                // Draw hero nodes
+                heroes.forEach((hero, index) => {
+                    const heroGlow = Math.sin(mentorAnimFrame * 0.06 + index * 0.8) * 0.3 + 0.7;
+                    mentorCtx.fillStyle = `rgba(255, 255, 255, ${heroGlow})`;
+                    mentorCtx.beginPath();
+                    mentorCtx.arc(hero.x, hero.y, 6, 0, Math.PI * 2);
+                    mentorCtx.fill();
+                });
+                
+                // Wisdom particles flowing through the network
+                for (let i = 0; i < 40; i++) {
+                    const t = (mentorAnimFrame + i * 15) * 0.02;
+                    const x = 500 + Math.sin(t) * 350 + Math.cos(t * 1.4) * 150;
+                    const y = 225 + Math.cos(t * 0.8) * 120 + Math.sin(t * 1.9) * 80;
+                    const alpha = (Math.sin(t * 3) + 1) * 0.4;
+                    
+                    mentorCtx.fillStyle = `rgba(186, 85, 211, ${alpha})`;
+                    mentorCtx.beginPath();
+                    mentorCtx.arc(x, y, 2, 0, Math.PI * 2);
+                    mentorCtx.fill();
+                }
+            }
+            
+            setInterval(drawMentorNetwork, 50);
+        </script>
+
+        <h2>The Great Mentors and Their Teachings</h2>
+
+        <div class="mentor-card wise-mentor">
+            <div class="mentor-type">The Wise Mentor</div>
+            <h3>🔮 Zargon's Greatest Student</h3>
+            
+            <div class="guidance-lesson">
+                <h4>The Master Who Transcended Darkness</h4>
+                <p>Perhaps no mentor embodies the transformative power of wisdom more than the figure known only as "Zargon's Greatest Student"—a wizard who once served the forces of darkness under the evil sorcerer Zargon, but who found the strength to break free from corruption and dedicate their remaining years to ensuring that others never walk the same dark path they once traveled.</p>
+                
+                <p>This mentor understands evil not as an abstract concept but as a lived experience, making them uniquely qualified to guide heroes who face temptation, moral ambiguity, and the seductive whispers of power without consequence. They teach not through preaching but through questions, forcing heroes to examine their own motivations and discover for themselves why certain choices lead to strength while others lead to corruption.</p>
+            </div>
+            
+            <div class="wisdom-meter">
+                <div class="wisdom-fill" style="width: 95%; background: linear-gradient(90deg, #4169e1, #87ceeb);">
+                    <div class="wisdom-label">Magical Knowledge</div>
+                </div>
+            </div>
+            <div class="wisdom-meter">
+                <div class="wisdom-fill" style="width: 98%; background: linear-gradient(90deg, #9370db, #dda0dd);">
+                    <div class="wisdom-label">Moral Understanding</div>
+                </div>
+            </div>
+            <div class="wisdom-meter">
+                <div class="wisdom-fill" style="width: 92%; background: linear-gradient(90deg, #8b4513, #cd853f);">
+                    <div class="wisdom-label">Life Experience</div>
+                </div>
+            </div>
+            
+            <div class="training-regimen">
+                <h4>The Seven Trials of Wisdom</h4>
+                <p>This mentor's teaching method involves seven carefully designed trials, each addressing a different aspect of heroic development: Courage in the face of the unknown, Compassion for those who have fallen to darkness, Wisdom to distinguish between justice and vengeance, Temperance to resist the corruption of power, Loyalty to ideals rather than personalities, Humility to accept guidance from unlikely sources, and Faith in the ultimate triumph of light over darkness.</p>
+                
+                <p>Each trial is designed not to test what the student knows, but to reveal what they still need to learn. The mentor provides guidance and context, but the heroes must face each challenge with their own strength, discovering through experience why certain principles matter more than personal comfort or convenience.</p>
+            </div>
+            
+            <span class="teaching-tag">🧠 Mental Discipline</span>
+            <span class="teaching-tag">⚡ Spell Mastery</span>
+            <span class="teaching-tag">⚖️ Moral Philosophy</span>
+            <span class="specialty-tag">🔮 Divination</span>
+            <span class="specialty-tag">🛡️ Protection Magic</span>
+            <span class="motivation-tag">💡 Redemption</span>
+        </div>
+
+        <div class="mentor-card noble-patron">
+            <div class="mentor-type">Noble Patron</div>
+            <h3>👑 Sir Ragnar the Bold</h3>
+            
+            <div class="guidance-lesson">
+                <h4>The Knight Who Never Fell</h4>
+                <p>Sir Ragnar represents the ideal of noble patronage—a knight whose reputation for honor, courage, and unwavering dedication to justice has made him a legend throughout the civilized world. Unlike mentors who teach through mystery and hidden wisdom, Sir Ragnar leads by example, showing heroes what it means to live according to a code of honor even when that code demands personal sacrifice.</p>
+                
+                <p>His approach to mentorship is direct and practical: he provides heroes with missions that test their commitment to justice, offers them opportunities to prove themselves in service to those who cannot protect themselves, and demonstrates through his own actions that true nobility comes not from bloodline or wealth, but from the choice to use one's strength in service of the greater good.</p>
+            </div>
+            
+            <div class="quest-briefing">
+                <h4>The Missions of Honor</h4>
+                <p>Sir Ragnar's quests always involve protecting the innocent, but they're designed to test different aspects of heroic character. Some missions require heroes to choose between personal gain and public good, others force them to decide how far they're willing to go to achieve just ends, and still others test their ability to show mercy to enemies who have surrendered or asked for redemption.</p>
+                
+                <p>The true lesson in these missions is not the completion of objectives, but the discovery of what kind of heroes they want to become. Sir Ragnar provides guidance and support, but he never makes the moral choices for his protégés—understanding that heroes must earn their moral authority through their own decisions.</p>
+            </div>
+            
+            <span class="teaching-tag">⚔️ Combat Excellence</span>
+            <span class="teaching-tag">🛡️ Defensive Tactics</span>
+            <span class="teaching-tag">👑 Noble Bearing</span>
+            <span class="specialty-tag">🏇 Mounted Combat</span>
+            <span class="specialty-tag">⚖️ Code of Honor</span>
+            <span class="motivation-tag">🛡️ Protection of Innocents</span>
+        </div>
+
+        <div class="mermaid">
+            graph TD
+                A[The Mentor's Path] --> B[Recognition]
+                A --> C[Testing]
+                A --> D[Training]
+                A --> E[Graduation]
+                
+                B --> F[Potential Identified]
+                B --> G[Initial Contact]
+                
+                C --> H[Moral Challenges]
+                C --> I[Skill Assessments]
+                C --> J[Character Tests]
+                
+                D --> K[Knowledge Transfer]
+                D --> L[Wisdom Sharing]
+                D --> M[Experience Building]
+                
+                E --> N[Final Trial]
+                E --> O[Independence]
+                E --> P[Legacy Creation]
+                
+                style A fill:#9370db
+                style N fill:#ffd700
+                style O fill:#32cd32
+                style P fill:#dda0dd
+        </div>
+
+        <div class="mentor-card mysterious-guide">
+            <div class="mentor-type">Mysterious Guide</div>
+            <h3>🌙 The Wanderer</h3>
+            
+            <div class="guidance-lesson">
+                <h4>The Teacher Who Appears When Most Needed</h4>
+                <p>The Wanderer is a figure of legend—a mysterious mentor who appears at crucial moments in heroes' journeys, often in disguise, always at the precise moment when guidance is most desperately needed. Some say the Wanderer is a former hero who achieved such wisdom that they transcended normal mortality; others believe they are an agent of the cosmic forces, sent to ensure that crucial turning points in history unfold as they should.</p>
+                
+                <p>What makes the Wanderer unique is their teaching method: they never provide direct answers, but instead create situations where heroes must discover the truth for themselves. They might appear as a humble beggar who asks a simple question that reveals a hero's hidden prejudices, or as a fellow traveler who shares a story that contains the exact wisdom needed to overcome a current challenge.</p>
+            </div>
+            
+            <div class="secret-knowledge">
+                <h4>The Hidden Curriculum</h4>
+                <p>The Wanderer's lessons often don't become clear until long after the encounter has ended. A hero might spend weeks puzzling over a cryptic comment or seemingly irrelevant story, only to suddenly understand its meaning at the moment when that understanding becomes crucial for survival or success.</p>
+                
+                <p>This delayed revelation teaches heroes to think beyond immediate circumstances, to look for deeper patterns and connections, and to trust that wisdom often comes from unexpected sources. The Wanderer's greatest gift is teaching heroes to become their own mentors, to find guidance within themselves when external help is not available.</p>
+            </div>
+            
+            <span class="teaching-tag">🎭 Hidden Lessons</span>
+            <span class="teaching-tag">🧩 Cryptic Wisdom</span>
+            <span class="teaching-tag">🗺️ Path Finding</span>
+            <span class="specialty-tag">🌟 Prophetic Insight</span>
+            <span class="specialty-tag">🎪 Disguise Mastery</span>
+            <span class="motivation-tag">🌙 Cosmic Purpose</span>
+        </div>
+
+        <div class="mentor-card divine-messenger">
+            <div class="mentor-type">Divine Herald</div>
+            <h3>✨ The Angel of Guidance</h3>
+            
+            <div class="guidance-lesson">
+                <h4>Voice of the Celestial Realms</h4>
+                <p>The Angel of Guidance represents direct divine intervention in mortal affairs—a celestial being whose very presence reminds heroes that their struggles are part of a cosmic drama far grander than any individual lifetime. Unlike mortal mentors who teach through experience and wisdom, the Angel provides guidance through divine revelation, offering glimpses of the larger patterns that give meaning to seemingly random events.</p>
+                
+                <p>However, even divine guidance comes with limitations. The Angel cannot simply solve problems for heroes or remove the challenges they face—that would rob them of the opportunity to grow through struggle. Instead, the Angel provides hope in dark moments, clarity when confusion threatens to overwhelm, and the assurance that no sacrifice made in service of good is ever truly lost.</p>
+            </div>
+            
+            <div class="divine-blessing">
+                <h4>The Gift of Sacred Purpose</h4>
+                <p>Heroes blessed by the Angel's guidance find that their weapons strike with greater precision against evil, their healing abilities flow more freely, and their presence inspires others to acts of courage and selflessness. But perhaps more importantly, they gain access to divine insight—the ability to sense the spiritual weight of moral choices and to understand instinctively which path leads toward light and which toward darkness.</p>
+                
+                <p>This blessing comes with responsibility: heroes touched by divine grace become beacons of hope for others, and their actions carry greater weight in the cosmic balance. They cannot simply live for themselves—they must consider how their choices affect the larger struggle between good and evil.</p>
+            </div>
+            
+            <span class="teaching-tag">✨ Divine Wisdom</span>
+            <span class="teaching-tag">🕊️ Sacred Purpose</span>
+            <span class="teaching-tag">💖 Spiritual Insight</span>
+            <span class="specialty-tag">🛡️ Divine Protection</span>
+            <span class="specialty-tag">⚡ Celestial Power</span>
+            <span class="motivation-tag">⭐ Cosmic Mission</span>
+        </div>
+
+        <div class="mentor-card fallen-hero">
+            <div class="mentor-type">Cautionary Guide</div>
+            <h3>⚔️ The Broken Champion</h3>
+            
+            <div class="guidance-lesson">
+                <h4>Wisdom Born from Failure</h4>
+                <p>The Broken Champion represents perhaps the most painful but necessary type of mentorship—guidance from one who achieved great heights but fell from grace, not through evil intent but through hubris, moral blindness, or simple human weakness. Their scars, both physical and spiritual, serve as living warnings about the price of unchecked ambition and the importance of maintaining moral clarity even in moments of triumph.</p>
+                
+                <p>What makes the Broken Champion valuable as a mentor is not their past glory, but their hard-won understanding of how good intentions can lead to terrible consequences. They teach heroes to question their own motivations, to seek counsel from others even when success seems assured, and to remember that the moment one believes they are beyond corruption is the moment corruption begins.</p>
+            </div>
+            
+            <div class="warning-wisdom">
+                <h4>The Lessons of Loss</h4>
+                <p>The Broken Champion's teachings often focus on prevention rather than achievement—showing heroes how to recognize the warning signs of moral compromise, how to maintain humility in the face of praise, and how to distinguish between confidence and arrogance. They share stories not of their victories, but of the small compromises and justified exceptions that eventually led to their fall.</p>
+                
+                <p>These lessons are often difficult to hear, because they force heroes to confront their own capacity for failure and moral blindness. But they're essential for anyone who hopes to maintain their integrity across a lifetime of challenging decisions and tempting opportunities.</p>
+            </div>
+            
+            <span class="teaching-tag">💔 Hard Lessons</span>
+            <span class="teaching-tag">⚖️ Moral Caution</span>
+            <span class="teaching-tag">🪞 Self-Reflection</span>
+            <span class="specialty-tag">🧠 Psychological Insight</span>
+            <span class="specialty-tag">⚠️ Warning Signs</span>
+            <span class="motivation-tag">🔄 Redemption</span>
+        </div>
+
+        <h2>The Quest-Givers: Architects of Adventure</h2>
+        
+        <div class="mentor-grid">
+            <div class="teaching-card">
+                <h4>🏛️ The Desperate Mayor</h4>
+                <p>Represents the common people's need for heroic intervention—someone whose community faces threats beyond normal capabilities.</p>
+                <span class="specialty-tag">🛡️ Community Protection</span>
+                <span class="motivation-tag">🏠 Local Crisis</span>
+            </div>
+            <div class="teaching-card">
+                <h4>📚 The Scholarly Collector</h4>
+                <p>Seeks ancient artifacts or lost knowledge, providing quests that combine adventure with intellectual discovery.</p>
+                <span class="specialty-tag">📜 Ancient Lore</span>
+                <span class="motivation-tag">🔍 Knowledge Seeking</span>
+            </div>
+            <div class="teaching-card">
+                <h4>👻 The Restless Spirit</h4>
+                <p>A ghostly figure seeking resolution for unfinished business, offering quests that blend mystery with moral complexity.</p>
+                <span class="specialty-tag">🌙 Supernatural Insight</span>
+                <span class="motivation-tag">⚖️ Cosmic Justice</span>
+            </div>
+            <div class="teaching-card">
+                <h4>💰 The Merchant Prince</h4>
+                <p>Wealthy traders who need protection for valuable cargo or safe passage through dangerous territories.</p>
+                <span class="specialty-tag">💎 Valuable Resources</span>
+                <span class="motivation-tag">💰 Commercial Interest</span>
+            </div>
+        </div>
+
+        <div class="legacy-chain">
+            <h3>The Eternal Cycle of Mentorship</h3>
+            <p>The most profound truth about mentorship in the HeroQuest world is that it forms an unbroken chain stretching back to the first heroes and forward to generations yet unborn. Every mentor was once a student; every hero who achieves wisdom becomes responsible for sharing that wisdom with those who follow.</p>
+            
+            <p>This creates a living tradition where knowledge and wisdom accumulate across generations, but also evolve and adapt to meet new challenges. Each generation of heroes faces threats their mentors never imagined, forcing them to expand and refine the wisdom they inherited. In this way, the mentorship tradition itself becomes a force for growth and positive change in the world.</p>
+        </div>
+
+        <div class="wisdom-scroll">
+            <h3>The Greatest Teaching</h3>
+            <p>The ultimate goal of every true mentor is to become unnecessary—to guide their students to a point where they no longer need external guidance, where they have internalized the principles and wisdom necessary to make good choices independently. This requires mentors to resist the temptation to create dependency, to avoid the ego satisfaction of being indispensable, and to celebrate when their students surpass them.</p>
+            
+            <p>The greatest mentors understand that their legacy lies not in being remembered, but in the chain of wisdom they help perpetuate. A mentor's true measure of success is not the gratitude of their students, but the quality of mentorship those students eventually provide to the next generation of heroes.</p>
+        </div>
+
+        <div class="wisdom-scroll">
+            <p><em>"Thus stands the sacred tradition of guidance—a river of wisdom flowing from age to age, carrying forward the hard-won insights of those who faced darkness and chose light. In this great continuity, every mentor is both teacher and student, every hero is both guided and guide, and every generation adds its own verses to the eternal song of wisdom that helps ensure that courage, honor, and hope never fade from the world..."</em></p>
+        </div>
+    </div>
+</body>
+</html>

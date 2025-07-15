@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Realms of Mortal Men: The Kingdoms and Regions</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #1a472a, #2d5a3d); color: #f4f1e8; }
+        .container { max-width: 1000px; margin: 0 auto; background: rgba(0,0,0,0.8); padding: 30px; border-radius: 15px; box-shadow: 0 0 30px rgba(34,139,34,0.4); }
+        h1 { color: #32cd32; text-align: center; font-size: 2.5em; text-shadow: 2px 2px 4px #000; margin-bottom: 30px; }
+        h2 { color: #ffd700; border-bottom: 2px solid #ffd700; padding-bottom: 10px; margin-top: 40px; }
+        h3 { color: #87ceeb; margin-top: 30px; }
+        .kingdom-card { background: linear-gradient(135deg, #2f4f4f, #1e3a3a); border: 3px solid #4682b4; border-radius: 15px; padding: 25px; margin: 20px 0; position: relative; box-shadow: 0 8px 16px rgba(0,0,0,0.4); }
+        .kingdom-banner { position: absolute; top: -15px; left: 20px; background: #4682b4; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9em; }
+        .region-spotlight { background: rgba(255,215,0,0.1); border: 2px solid #ffd700; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .ancient-text { background: rgba(139,69,19,0.4); border-left: 5px solid #8b4513; padding: 15px; margin: 20px 0; font-style: italic; }
+        .political-web { background: rgba(128,0,128,0.1); border: 2px dashed #9370db; border-radius: 10px; padding: 20px; margin: 20px 0; }
+        #mapCanvas { border: 3px solid #32cd32; border-radius: 15px; background: radial-gradient(ellipse at center, #228b22, #006400); box-shadow: inset 0 0 50px rgba(0,0,0,0.5); }
+        .trade-route { background: linear-gradient(90deg, #daa520, #b8860b); height: 3px; margin: 10px 0; border-radius: 2px; }
+        .mermaid { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .settlement-type { display: inline-block; background: rgba(70,130,180,0.3); border: 1px solid #4682b4; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏰 Realms of Mortal Men: The Kingdoms and Regions 🏰</h1>
+        
+        <div class="ancient-text">
+            <p><em>"From the marble halls of great kingdoms to the windswept borderlands where wolves howl at the moon, the material plane sprawls like a vast tapestry woven from the dreams and ambitions of countless generations..."</em></p>
+        </div>
+
+        <h2>The Living Map of the Known World</h2>
+        <p>Picture the known world as a great patchwork quilt, where each square tells a story of triumph and tragedy, of kingdoms risen from the ashes of their predecessors. Like pieces of a shattered mirror, the fragments of the old Empire reflect different aspects of what once was—some preserving ancient traditions, others embracing radical change, and still others falling into shadow and ruin.</p>
+
+        <canvas id="mapCanvas" width="900" height="500"></canvas>
+        
+        <script>
+            const mapCanvasElement = document.getElementById('mapCanvas');
+            const mapCtx = mapCanvasElement.getContext('2d');
+            let animationFrame = 0;
+            
+            function drawWorldMap() {
+                mapCtx.clearRect(0, 0, 900, 500);
+                animationFrame++;
+                
+                // Draw landmasses with organic shapes
+                mapCtx.fillStyle = '#2f4f2f';
+                mapCtx.beginPath();
+                mapCtx.moveTo(50, 150);
+                mapCtx.quadraticCurveTo(200, 100, 350, 120);
+                mapCtx.quadraticCurveTo(500, 140, 650, 160);
+                mapCtx.quadraticCurveTo(800, 180, 850, 250);
+                mapCtx.quadraticCurveTo(820, 350, 700, 380);
+                mapCtx.quadraticCurveTo(500, 400, 300, 390);
+                mapCtx.quadraticCurveTo(150, 380, 80, 320);
+                mapCtx.quadraticCurveTo(30, 250, 50, 150);
+                mapCtx.fill();
+                
+                // Kingdom territories
+                const kingdoms = [
+                    {name: 'The Northern Reaches', x: 150, y: 140, color: '#4169e1', radius: 60},
+                    {name: 'The Central Kingdoms', x: 400, y: 200, color: '#ffd700', radius: 80},
+                    {name: 'The Southern Provinces', x: 600, y: 320, color: '#ff6347', radius: 70},
+                    {name: 'The Western Marches', x: 200, y: 280, color: '#9370db', radius: 50},
+                    {name: 'The Eastern Domains', x: 650, y: 180, color: '#32cd32', radius: 55}
+                ];
+                
+                kingdoms.forEach((kingdom, index) => {
+                    const pulse = Math.sin(animationFrame * 0.05 + index) * 0.1 + 0.9;
+                    mapCtx.fillStyle = kingdom.color + '40';
+                    mapCtx.beginPath();
+                    mapCtx.arc(kingdom.x, kingdom.y, kingdom.radius * pulse, 0, Math.PI * 2);
+                    mapCtx.fill();
+                    
+                    mapCtx.strokeStyle = kingdom.color;
+                    mapCtx.lineWidth = 2;
+                    mapCtx.stroke();
+                    
+                    // Kingdom names
+                    mapCtx.fillStyle = kingdom.color;
+                    mapCtx.font = '12px serif';
+                    mapCtx.textAlign = 'center';
+                    mapCtx.fillText(kingdom.name, kingdom.x, kingdom.y + 5);
+                });
+                
+                // Trade routes (animated)
+                mapCtx.strokeStyle = '#daa520';
+                mapCtx.lineWidth = 3;
+                mapCtx.setLineDash([10, 5]);
+                mapCtx.lineDashOffset = -animationFrame * 0.5;
+                mapCtx.beginPath();
+                mapCtx.moveTo(150, 140);
+                mapCtx.lineTo(400, 200);
+                mapCtx.lineTo(650, 180);
+                mapCtx.moveTo(400, 200);
+                mapCtx.lineTo(600, 320);
+                mapCtx.moveTo(200, 280);
+                mapCtx.lineTo(400, 200);
+                mapCtx.stroke();
+                mapCtx.setLineDash([]);
+                
+                // Ancient ruins (twinkling)
+                for (let i = 0; i < 15; i++) {
+                    const x = 100 + (i * 50) + Math.sin(animationFrame * 0.03 + i) * 20;
+                    const y = 100 + Math.cos(animationFrame * 0.04 + i * 0.7) * 150;
+                    const alpha = (Math.sin(animationFrame * 0.08 + i * 2) + 1) * 0.3;
+                    mapCtx.fillStyle = `rgba(139, 69, 19, ${alpha})`;
+                    mapCtx.fillRect(x - 3, y - 3, 6, 6);
+                }
+            }
+            
+            setInterval(drawWorldMap, 50);
+        </script>
+
+        <h2>The Great Kingdoms</h2>
+
+        <div class="kingdom-card">
+            <div class="kingdom-banner">The Northern Reaches</div>
+            <h3>Realm of the Iron Crown</h3>
+            <p>Imagine a land where winter holds court for half the year, where great pine forests stretch to the horizon like a sea of green spears, and where the people are as enduring as the granite peaks that pierce the sky. The Northern Reaches embody the old ways—honor above profit, loyalty above convenience, and the ancient codes that have guided northern folk since the world was young.</p>
+            
+            <div class="region-spotlight">
+                <h4>The Fortress Cities</h4>
+                <p>Built like eagles' nests upon impossible crags, the fortress cities of the North command respect through sheer audacity. <strong>Ironhold</strong>, the capital, perches on a mountain peak so high that clouds often shroud its towers. Here, the High King rules from a throne carved from a single piece of meteoric iron—a symbol that his authority comes from the heavens themselves.</p>
+                
+                <span class="settlement-type">⛰️ Mountain Fortress</span>
+                <span class="settlement-type">🛡️ Military Stronghold</span>
+                <span class="settlement-type">⚒️ Mining Hub</span>
+            </div>
+            
+            <p>The northerners are like wolves—fiercely loyal to their pack, but implacable enemies to those who threaten their kin. Their warriors train in conditions that would break lesser men, fighting with weapons forged from star-metal and blessed by runes older than written history.</p>
+        </div>
+
+        <div class="kingdom-card">
+            <div class="kingdom-banner">The Central Kingdoms</div>
+            <h3>The Heartland Confederacy</h3>
+            <p>If the North is the sword arm of civilization, then the Central Kingdoms are its beating heart—a collection of allied realms that have learned to prosper through cooperation rather than conquest. Picture rolling hills covered in golden wheat, rivers busy with merchant barges, and cities that sprawl beyond their ancient walls like flowers blooming in spring.</p>
+            
+            <div class="political-web">
+                <h4>The Council of Seven Crowns</h4>
+                <p>Unlike the rigid hierarchy of empires past, the Central Kingdoms govern themselves through the Council of Seven Crowns—a deliberative body where each kingdom sends representatives to hash out trade disputes, coordinate military responses, and occasionally engage in the elaborate verbal dueling that passes for diplomacy.</p>
+            </div>
+            
+            <div class="region-spotlight">
+                <h4>Notable Realms</h4>
+                <p><strong>Goldmeadow:</strong> The breadbasket kingdom, where fields stretch to the horizon and the harvest festivals last for weeks. Think of it as the agricultural powerhouse that keeps everyone fed.</p>
+                
+                <p><strong>Riverlands:</strong> A merchant republic built along the convergence of three great rivers, where information flows as freely as the water, and a clever trader can become wealthy beyond imagination—or lose everything on a single bad cargo.</p>
+                
+                <p><strong>Scholarly Sanctuary of Arcanum:</strong> A city-state devoted entirely to learning, where the great Library-Fortress houses more knowledge than some kingdoms possess wealth. Here, wizards study alongside scholars, and the pursuit of truth is considered the highest calling.</p>
+                
+                <span class="settlement-type">🌾 Agricultural Hub</span>
+                <span class="settlement-type">🚢 Trade Center</span>
+                <span class="settlement-type">📚 Seat of Learning</span>
+                <span class="settlement-type">🏛️ Political Capital</span>
+            </div>
+        </div>
+
+        <div class="mermaid">
+            graph LR
+                A[Council of Seven Crowns] --> B[Goldmeadow]
+                A --> C[Riverlands]
+                A --> D[Arcanum]
+                A --> E[Thornwall]
+                A --> F[Silverpeak]
+                A --> G[Greenwood]
+                A --> H[Sunset Harbor]
+                
+                B --> I[Agricultural Exports]
+                C --> J[Trade Networks]
+                D --> K[Magical Research]
+                E --> L[Border Defense]
+                
+                style A fill:#ffd700
+                style I fill:#90ee90
+                style J fill:#87ceeb
+                style K fill:#dda0dd
+                style L fill:#ff6347
+        </div>
+
+        <div class="kingdom-card">
+            <div class="kingdom-banner">The Southern Provinces</div>
+            <h3>Lands of Sun and Shadow</h3>
+            <p>The South is a realm of contrasts as stark as noon and midnight—wealthy coastal cities where silk-clad merchants haggle over exotic spices, while inland, vast deserts hide ancient tombs and forgotten cities that predate the Empire by millennia. It's a land where the past and present dance together like mirages in the heat.</p>
+            
+            <div class="region-spotlight">
+                <h4>The Pearl Cities</h4>
+                <p>Strung along the southern coast like jewels on a golden chain, the Pearl Cities represent the height of southern sophistication. <strong>Miraleth the Golden</strong> serves as the unofficial capital—a city so wealthy that its streets are paved with marble, and its fountains flow with water perfumed with rare oils.</p>
+                
+                <p>These aren't just trading posts—they're cultural melting pots where northern furs meet southern silk, where barbarian gold buys civilized luxuries, and where a person's worth is measured not by their bloodline but by their ability to navigate the complex web of commerce and politics.</p>
+                
+                <span class="settlement-type">🏖️ Coastal Port</span>
+                <span class="settlement-type">💰 Trade Metropolis</span>
+                <span class="settlement-type">🏺 Cultural Center</span>
+            </div>
+            
+            <div class="ancient-text">
+                <p><strong>The Desert of Whispers:</strong> Beyond the coastal prosperity lies the great southern desert, where the bones of ancient civilizations bleach under an unforgiving sun. Here, nomad tribes follow routes known only to them, and treasure hunters brave the shifting sands in search of tombs that promise either unimaginable wealth or a lonely death.</p>
+            </div>
+        </div>
+
+        <h2>The Borderlands and Wild Territories</h2>
+
+        <div class="kingdom-card">
+            <div class="kingdom-banner">The Western Marches</div>
+            <h3>Where Civilization Meets the Unknown</h3>
+            <p>The Western Marches exist in that twilight space between the ordered world of kingdoms and the chaotic realm of pure wilderness. Imagine a frontier where every sunset might reveal a new threat, where ancient forests hold secrets that predate human civilization, and where the line between heroism and survival blurs like smoke in the wind.</p>
+            
+            <div class="region-spotlight">
+                <h4>Frontier Settlements</h4>
+                <p><strong>Last Hope:</strong> The westernmost permanent settlement, a fortified town that serves as the final stop for adventurers heading into the true wilderness. It's a place where rumors are currency, where maps are worth their weight in gold, and where every stranger might be running from something—or toward something even more dangerous.</p>
+                
+                <p><strong>The Watchtowers:</strong> A series of ancient stone towers that march westward like sleeping giants, built by the Empire to warn of threats from the deep wilderness. Many are now abandoned, their beacon fires cold, but some still maintain lonely vigils against horrors that civilization prefers to forget.</p>
+                
+                <span class="settlement-type">🏕️ Frontier Town</span>
+                <span class="settlement-type">👁️ Watch Post</span>
+                <span class="settlement-type">🌲 Wilderness Outpost</span>
+            </div>
+        </div>
+
+        <div class="kingdom-card">
+            <div class="kingdom-banner">The Eastern Domains</div>
+            <h3>Realm of Ancient Mysteries</h3>
+            <p>The East is old—older than memory, older than legend. Here, crumbling towers reach toward skies that have seen the rise and fall of civilizations whose names are lost to time. It's a land where magic runs deeper than anywhere else, where the very stones remember spells cast in ages past, and where scholars come to study mysteries that have puzzled the wisest minds for generations.</p>
+            
+            <div class="ancient-text">
+                <p><strong>The Ruined Metropolis of Keth Morai:</strong> Once the eastern capital of the Empire, now a haunted maze of broken walls and toppled monuments. They say the city fell in a single night when its rulers dabbled in magics too dangerous to control. Now it stands as a warning—and an irresistible lure for those who believe they can succeed where ancient emperors failed.</p>
+            </div>
+        </div>
+
+        <h2>The Great Trade Networks</h2>
+        <div class="trade-route"></div>
+        <p>Like blood vessels carrying life through a great body, the trade routes connect these disparate realms into a functioning whole. The <strong>Golden Circuit</strong> links the northern mines to southern markets, while the <strong>Scholar's Road</strong> carries knowledge and magical components between the great centers of learning.</p>
+
+        <div class="political-web">
+            <h3>The Delicate Balance</h3>
+            <p>These kingdoms don't exist in isolation—they're bound together by treaties as complex as spider webs, trade agreements that can make or break nations, and old grudges that simmer like coals waiting for the right wind to fan them into flame. A conflict that starts as a trade dispute in the South can end up drawing in northern warriors and eastern wizards, because in this interconnected world, no kingdom truly stands alone.</p>
+        </div>
+
+        <div class="ancient-text">
+            <p><em>"Thus stands the mortal world—a tapestry of ambition and fear, of ancient glory and present struggle, where every hill might hide a ruin, every road might lead to adventure, and every kingdom guards secrets that could reshape the very foundations of reality..."</em></p>
+        </div>
+    </div>
+</body>
+</html>
