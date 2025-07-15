@@ -179,8 +179,16 @@
         margin: 24px 0;
     }
 
+    /* Special grid for hero tutorials - 2 columns on larger screens */
+    .hero-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin: 24px 0;
+    }
+
     /* Course cards with modern styling */
-    .course-card {
+    .course-card, .expansion-card, .hero-card {
         background: white;
         border: 1px solid #e2e8f0;
         border-radius: 8px;
@@ -190,12 +198,12 @@
         overflow: hidden;
     }
 
-    .course-card:hover {
+    .course-card:hover, .expansion-card:hover, .hero-card:hover {
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
         transform: translateY(-4px);
     }
 
-    .course-card::before {
+    .course-card::before, .expansion-card::before, .hero-card::before {
         content: '';
         position: absolute;
         top: 0;
@@ -203,6 +211,38 @@
         right: 0;
         height: 4px;
         background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+    }
+
+    /* Hero card specific styling */
+    .hero-card {
+        border-left: 4px solid #10b981;
+        padding: 20px;
+    }
+
+    .hero-card::before {
+        background: linear-gradient(90deg, #10b981, #059669);
+    }
+
+    .course-link {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #1e293b;
+        text-decoration: none;
+        display: block;
+        margin-bottom: 12px;
+    }
+
+    .course-description, .expansion-description, .hero-description {
+        color: #64748b;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 12px;
+    }
+
+    .course-features, .hero-features {
+        font-size: 0.85rem;
+        color: #94a3b8;
+        font-style: italic;
     }
 
     /* Quest styling with subtle enhancements */
@@ -255,6 +295,45 @@
         position: relative;
         z-index: 1;
         line-height: 1.6;
+    }
+
+    /* Navigation help grid */
+    .help-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 24px 0;
+    }
+
+    .help-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.2s ease;
+    }
+
+    .help-item:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transform: translateY(-2px);
+    }
+
+    .help-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+    }
+
+    .help-title {
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 8px;
+    }
+
+    .help-text {
+        color: #64748b;
+        font-size: 0.9rem;
+        line-height: 1.5;
     }
 
     /* Links with better visibility */
@@ -409,7 +488,11 @@
             gap: 16px;
         }
         
-        .course-grid {
+        .course-grid, .hero-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .help-grid {
             grid-template-columns: 1fr;
         }
     }
@@ -452,12 +535,12 @@
                 <div class="stat-label">Complete Tutorials</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">9</div>
-                <div class="stat-label">Expansion Packs</div>
+                <div class="stat-number">11</div>
+                <div class="stat-label">Hero Classes</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">1</div>
-                <div class="stat-label">Digital Toolkit</div>
+                <div class="stat-number">9</div>
+                <div class="stat-label">Expansion Packs</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">∞</div>
@@ -465,12 +548,9 @@
             </div>
         </div>
 
-
-
-       
         <div class="course-section">
             <h2>📖 Foundation Courses</h2>
-            <p style="color: #c5cae9; margin-bottom: 25px;">Start your journey with these essential tutorials that cover the core HeroQuest experience.</p>
+            <p style="color: #475569; margin-bottom: 25px;">Start your journey with these essential tutorials that cover the core HeroQuest experience.</p>
             
             <div class="course-grid">
                 <div class="course-card">
@@ -536,8 +616,125 @@
         </div>
 
         <div class="course-section">
+            <h2>🦸 Hero Class Tutorials</h2>
+            <p style="color: #475569; margin-bottom: 25px;">Master each hero class with dedicated tutorials covering unique abilities, strategies, and advanced techniques.</p>
+            
+            <div class="hero-grid">
+                <div class="hero-card">
+                    <a href="heroquest_barbarian_tutorial.html" class="course-link">🪓 Barbarian Mastery</a>
+                    <div class="hero-description">
+                        Unleash primal fury and master berserker rage. Learn optimal positioning, damage maximization, and survival tactics.
+                    </div>
+                    <div class="hero-features">
+                        ⚔️ Rage mechanics • 💪 Strength optimization • 🛡️ Damage mitigation
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_dwarf_tutorial.html" class="course-link">⚒️ Dwarf Mastery</a>
+                    <div class="hero-description">
+                        Master dwarven resilience and tactical defense. Discover treasure-finding secrets and dungeon navigation expertise.
+                    </div>
+                    <div class="hero-features">
+                        💎 Treasure detection • 🛡️ Defensive tactics • 🏰 Dungeon expertise
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_elf_tutorial.html" class="course-link">🏹 Elf Mastery</a>
+                    <div class="hero-description">
+                        Perfect ranged combat and magical aptitude. Learn advanced archery techniques and spell-sword combinations.
+                    </div>
+                    <div class="hero-features">
+                        🎯 Precision shooting • ✨ Magic integration • 👁️ Enhanced perception
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_wizard_tutorial.html" class="course-link">🧙 Wizard Mastery</a>
+                    <div class="hero-description">
+                        Unlock the full potential of arcane magic. Master spell combinations, mana management, and battlefield control.
+                    </div>
+                    <div class="hero-features">
+                        🔮 Spell mastery • 💫 Mana optimization • 🌟 Area control
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_warlock_tutorial.html" class="course-link">🌙 Warlock Mastery</a>
+                    <div class="hero-description">
+                        Harness dark magic and forbidden knowledge. Learn curse mechanics, shadow manipulation, and risk management.
+                    </div>
+                    <div class="hero-features">
+                        🖤 Dark magic • 👻 Curse tactics • ⚡ Risk vs reward
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_bard_tutorial.html" class="course-link">🎵 Bard Mastery</a>
+                    <div class="hero-description">
+                        Master the art of inspiration and support. Learn team coordination, morale effects, and versatile magic.
+                    </div>
+                    <div class="hero-features">
+                        🎶 Inspiration effects • 🤝 Team support • 🎭 Versatile skills
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_knight_tutorial.html" class="course-link">🛡️ Knight Mastery</a>
+                    <div class="hero-description">
+                        Embody honor and protection. Master defensive formations, leadership skills, and righteous combat techniques.
+                    </div>
+                    <div class="hero-features">
+                        🏆 Leadership • ⚔️ Honor code • 🛡️ Protection tactics
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_berserker_tutorial.html" class="course-link">⚡ Berserker Mastery</a>
+                    <div class="hero-description">
+                        Channel unstoppable fury and reckless abandon. Learn rage management, high-risk combat, and intimidation.
+                    </div>
+                    <div class="hero-features">
+                        🔥 Fury states • ⚔️ Reckless attacks • 😤 Intimidation
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_explorer_tutorial.html" class="course-link">🗺️ Explorer Mastery</a>
+                    <div class="hero-description">
+                        Master navigation and discovery. Learn trap detection, secret finding, and wilderness survival techniques.
+                    </div>
+                    <div class="hero-features">
+                        🧭 Navigation • 🔍 Discovery • 🪤 Trap detection
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_monk_tutorial.html" class="course-link">🧘 Monk Mastery</a>
+                    <div class="hero-description">
+                        Achieve spiritual balance and martial prowess. Master meditation, chi energy, and unarmed combat techniques.
+                    </div>
+                    <div class="hero-features">
+                        ☯️ Balance • 💨 Chi energy • 👊 Martial arts
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <a href="heroquest_rogue_tutorial.html" class="course-link">🗡️ Rogue Mastery</a>
+                    <div class="hero-description">
+                        Perfect stealth and cunning tactics. Learn lockpicking, backstab techniques, and shadowy infiltration.
+                    </div>
+                    <div class="hero-features">
+                        🥷 Stealth • 🔓 Lockpicking • ⚡ Sneak attacks
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="course-section">
             <h2>🎲 Digital Tools</h2>
-            <p style="color: #c5cae9; margin-bottom: 25px;">Enhance your gameplay experience with our comprehensive digital companion tools.</p>
+            <p style="color: #475569; margin-bottom: 25px;">Enhance your gameplay experience with our comprehensive digital companion tools.</p>
             
             <div class="course-grid">
                 <div class="course-card" style="grid-column: 1 / -1; max-width: 800px; margin: 0 auto;">
@@ -549,8 +746,8 @@
                         🎲 Advanced dice roller • 👤 Character sheet manager • ❤️ Health tracker • 📜 Quest progress system • 💰 Treasure generator • 🔮 Spell calculator • ⚔️ Combat calculator • 📊 Statistics tracking • 🏆 Achievement system • ⚙️ Customizable settings
                     </div>
                     <div style="text-align: center; margin-top: 15px; padding: 15px; background: rgba(139, 195, 74, 0.2); border-radius: 10px; border: 2px solid #8bc34a;">
-                        <strong style="color: #8bc34a;">🌟 FEATURED TOOL</strong><br>
-                        <span style="color: #c5cae9; font-size: 0.9em;">Perfect for both tabletop and digital play sessions!</span>
+                        <strong style="color: #059669;">🌟 FEATURED TOOL</strong><br>
+                        <span style="color: #64748b; font-size: 0.9em;">Perfect for both tabletop and digital play sessions!</span>
                     </div>
                 </div>
             </div>
@@ -559,33 +756,40 @@
         <div class="mermaid">
             graph TD
                 A[HeroQuest Mastery] --> B[Foundation Skills]
-                A --> C[Advanced Techniques]
-                A --> D[Expansion Mastery]
+                A --> C[Hero Classes]
+                A --> D[Advanced Techniques]
+                A --> E[Expansion Mastery]
                 
                 B --> B1[Basic Rules]
                 B --> B2[Combat Basics]
                 B --> B3[Simple Magic]
                 B --> B4[Dungeon Basics]
                 
-                C --> C1[Advanced Combat]
-                C --> C2[Complex Magic]
-                C --> C3[Treasure Systems]
-                C --> C4[Quest Design]
+                C --> C1[Warrior Classes]
+                C --> C2[Magic Users]
+                C --> C3[Specialists]
+                C --> C4[Hybrid Classes]
                 
-                D --> D1[Classic Expansions]
-                D --> D2[Modern Additions]
-                D --> D3[Specialty Mechanics]
-                D --> D4[Master Campaigns]
+                D --> D1[Advanced Combat]
+                D --> D2[Complex Magic]
+                D --> D3[Treasure Systems]
+                D --> D4[Quest Design]
+                
+                E --> E1[Classic Expansions]
+                E --> E2[Modern Additions]
+                E --> E3[Specialty Mechanics]
+                E --> E4[Master Campaigns]
                 
                 style A fill:#a663cc,stroke:#333,stroke-width:3px
                 style B fill:#7209b7,stroke:#333,stroke-width:2px
-                style C fill:#533483,stroke:#333,stroke-width:2px
-                style D fill:#9c88ff,stroke:#333,stroke-width:2px
+                style C fill:#10b981,stroke:#333,stroke-width:2px
+                style D fill:#533483,stroke:#333,stroke-width:2px
+                style E fill:#9c88ff,stroke:#333,stroke-width:2px
         </div>
 
         <div class="course-section">
             <h2>🏰 Expansion Adventures</h2>
-            <p style="color: #c5cae9; margin-bottom: 25px;">Explore the rich world of HeroQuest expansions, each offering unique mechanics and unforgettable adventures.</p>
+            <p style="color: #475569; margin-bottom: 25px;">Explore the rich world of HeroQuest expansions, each offering unique mechanics and unforgettable adventures.</p>
             
             <div class="course-grid">
                 <div class="expansion-card">
@@ -593,7 +797,6 @@
                     <div class="expansion-description">
                         Introduces fortress sieges, new quests, and challenging monsters. Master defensive strategies and siege warfare.
                     </div>
-                   
                 </div>
 
                 <div class="expansion-card">
@@ -601,7 +804,6 @@
                     <div class="expansion-description">
                         Epic storyline featuring the Witch Lord's return. Advanced quest design and narrative techniques.
                     </div>
-                   
                 </div>
 
                 <div class="expansion-card">
@@ -609,7 +811,6 @@
                     <div class="expansion-description">
                         Decipher ancient secrets and master the amulet of wisdom. Puzzle-solving and mystical challenges.
                     </div>
-                   
                 </div>
 
                 <div class="expansion-card">
@@ -617,7 +818,6 @@
                     <div class="expansion-description">
                         Wield Fortune's Longsword and face supernatural challenges. Ghost combat and ethereal mechanics.
                     </div>
-                   
                 </div>
 
                 <div class="expansion-card">
@@ -625,7 +825,6 @@
                     <div class="expansion-description">
                         Mass combat system and arena-style gameplay. Tactical warfare and resource management.
                     </div>
-                   
                 </div>
 
                 <div class="expansion-card">
@@ -633,7 +832,6 @@
                     <div class="expansion-description">
                         Arctic survival and ice-themed monsters. Environmental hazards and extreme weather mechanics.
                     </div>
-                   
                 </div>
 
                 <div class="expansion-card">
@@ -641,7 +839,6 @@
                     <div class="expansion-description">
                         Reality manipulation and mirror world mechanics. Advanced magical theory and dimensional combat.
                     </div>
-                   
                 </div>
 
                 <div class="expansion-card">
@@ -649,7 +846,6 @@
                     <div class="expansion-description">
                         Alchemy systems, reputation mechanics, and deep roleplaying elements. Character development focus.
                     </div>
-                   
                 </div>
 
                 <div class="expansion-card">
@@ -657,7 +853,6 @@
                     <div class="expansion-description">
                         Wilderness survival and environmental combat. Master nature's challenges and predator encounters.
                     </div>
-                   
                 </div>
             </div>
         </div>
@@ -669,7 +864,7 @@
                 <div class="help-item">
                     <div class="help-icon">🎯</div>
                     <div class="help-title">For Beginners</div>
-                    <div class="help-text">Start with HeroQuest Basics, then move through Foundation Courses before exploring expansions.</div>
+                    <div class="help-text">Start with HeroQuest Basics, then choose a hero class tutorial before exploring expansions.</div>
                 </div>
                 
                 <div class="help-item">
@@ -685,15 +880,15 @@
                 </div>
                 
                 <div class="help-item">
-                    <div class="help-icon">🔮</div>
-                    <div class="help-title">For Magic Users</div>
-                    <div class="help-text">Dive deep into Magic & Spells, then explore magical expansions like Mage of the Mirror.</div>
+                    <div class="help-icon">🦸</div>
+                    <div class="help-title">Hero Specialists</div>
+                    <div class="help-text">Master your favorite character with dedicated hero class tutorials covering unique abilities and strategies.</div>
                 </div>
                 
                 <div class="help-item">
-                    <div class="help-icon">🌿</div>
-                    <div class="help-title">For Survivalists</div>
-                    <div class="help-text">Master environmental challenges with Jungles of Delthrak and Frozen Horror tutorials.</div>
+                    <div class="help-icon">🔮</div>
+                    <div class="help-title">For Magic Users</div>
+                    <div class="help-text">Dive deep into Magic & Spells, then explore magical hero classes and expansions like Mage of the Mirror.</div>
                 </div>
                 
                 <div class="help-item">
@@ -707,14 +902,14 @@
         <div class="master-quest">
             <div class="master-title">🏆 The Ultimate Challenge</div>
             <div class="master-description">
-                Complete all foundation courses, explore the expansion tutorials, and master the digital toolkit to unlock the legendary<br>
+                Complete all foundation courses, master every hero class, explore the expansion tutorials, and utilize the digital toolkit to unlock the legendary<br>
                 <strong>"Master of the Eternal Quest"</strong> achievement and gain access to exclusive advanced content!
             </div>
         </div>
 
         <div class="course-section">
             <h3 style="color: #a663cc; text-align: center;">🌟 Your HeroQuest Journey Awaits</h3>
-            <p style="text-align: center; color: #c5cae9; font-size: 1.1em; margin: 25px 0;">
+            <p style="text-align: center; color: #64748b; font-size: 1.1em; margin: 25px 0;">
                 Whether you're a complete newcomer or a seasoned veteran, this comprehensive course series will transform your HeroQuest experience. 
                 Each tutorial combines interactive learning with practical examples, ensuring you not only understand the theory but can apply it in real gameplay.
             </p>
@@ -727,16 +922,18 @@
     <script>
         // Progress tracking and visual enhancements
         function updateProgress() {
-            const availableCourses = 16; // All courses now available including digital toolkit
-            const totalCourses = 16; // Total planned courses
+            const availableCourses = 27; // Foundation (6) + Hero Classes (11) + Expansions (9) + Digital Toolkit (1)
+            const totalCourses = 27;
             const progressPercentage = 100; // Complete!
             
             const progressIndicator = document.querySelector('.progress-indicator');
-            progressIndicator.style.width = progressPercentage + '%';
+            if (progressIndicator) {
+                progressIndicator.style.width = progressPercentage + '%';
+            }
         }
         
         // Add hover effects to course cards
-        document.querySelectorAll('.course-card, .expansion-card').forEach(card => {
+        document.querySelectorAll('.course-card, .expansion-card, .hero-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
                 this.style.transform = 'translateY(-8px) scale(1.02)';
             });
@@ -785,6 +982,7 @@
         // Add sparkle effect to master quest
         function createSparkles() {
             const masterQuest = document.querySelector('.master-quest');
+            if (!masterQuest) return;
             
             setInterval(() => {
                 const sparkle = document.createElement('div');

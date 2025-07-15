@@ -11,7 +11,6 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
-
 <style>
     /* Base styling with jungle/nature theme and excellent readability */
     body {
@@ -51,7 +50,93 @@
         pointer-events: none;
     }
 
-   
+    /* Hero class styling */
+    .hero-section {
+        background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+        border: 3px solid #22c55e;
+        border-radius: 16px;
+        padding: 32px;
+        margin: 32px 0;
+        box-shadow: 0 8px 24px rgba(34, 197, 94, 0.15);
+    }
+
+    .hero-card {
+        background: linear-gradient(135deg, #bbf7d0, #86efac);
+        border: 2px solid #16a34a;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 16px 0;
+        border-left: 6px solid #15803d;
+        box-shadow: 0 4px 16px rgba(34, 197, 94, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .hero-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-card.berserker {
+        border-color: #dc2626;
+        border-left-color: #991b1b;
+        background: linear-gradient(135deg, #fee2e2, #fecaca);
+    }
+
+    .hero-card.explorer {
+        border-color: #0369a1;
+        border-left-color: #075985;
+        background: linear-gradient(135deg, #e0f2fe, #b3e5fc);
+    }
+
+    .hero-abilities {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 16px;
+        margin: 20px 0;
+    }
+
+    .ability-card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #4ade80;
+        border-radius: 8px;
+        padding: 16px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+    }
+
+    .ability-card:hover {
+        background: rgba(34, 197, 94, 0.1);
+        transform: scale(1.02);
+    }
+
+    .ability-card.berserker-ability {
+        border-color: #ef4444;
+    }
+
+    .ability-card.explorer-ability {
+        border-color: #3b82f6;
+    }
+
+    .hero-stats {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        border: 1px solid #bbf7d0;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 8px;
+    }
+
+    .stat-value {
+        font-size: 24px;
+        font-weight: bold;
+        color: #15803d;
+    }
 
     /* Jungle principle boxes */
     .jungle-principle {
@@ -365,6 +450,60 @@
         margin: 24px auto !important;
     }
 
+    /* Hero selector */
+    .hero-selector {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin: 24px 0;
+        padding: 20px;
+        background: rgba(187, 247, 208, 0.2);
+        border-radius: 12px;
+        border: 1px solid #bbf7d0;
+    }
+
+    .hero-button {
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        border: 2px solid #4ade80;
+        border-radius: 12px;
+        padding: 16px 24px;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        min-width: 150px;
+    }
+
+    .hero-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-button.active {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+        border-color: #fbbf24;
+        color: #1e293b;
+    }
+
+    .hero-button.berserker {
+        background: linear-gradient(135deg, #dc2626, #b91c1c);
+        border-color: #ef4444;
+    }
+
+    .hero-button.berserker.active {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
+    .hero-button.explorer {
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        border-color: #3b82f6;
+    }
+
+    .hero-button.explorer.active {
+        background: linear-gradient(135deg, #f59e0b, #d97706);
+    }
+
     /* Responsive design */
     @media (max-width: 768px) {
         body {
@@ -415,6 +554,15 @@
             height: 48px;
             font-size: 20px;
         }
+
+        .hero-selector {
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .hero-abilities {
+            grid-template-columns: 1fr;
+        }
     }
 
     /* Focus accessibility */
@@ -444,7 +592,27 @@
             <p><strong>Real-world analogy:</strong> Think of this expansion like going from playing chess in a comfortable room to playing chess while skydiving in a thunderstorm. The basic rules still apply, but now you're dealing with oxygen deprivation, wind shear, equipment failure, and time pressure. It's not just about making the right move - it's about surviving long enough to make ANY move at all!</p>
         </div>
 
-        <div class="jungle-canopy"></div>
+        <h2>🦸 Choose Your Jungle Hero</h2>
+        
+        <div class="hero-selector">
+            <div class="hero-button berserker active" onclick="selectHero('berserker')" id="berserker_button">
+                <div style="font-size: 24px;">🪓</div>
+                <div>Berserker</div>
+                <div style="font-size: 12px;">Fury Fighter</div>
+            </div>
+            <div class="hero-button explorer" onclick="selectHero('explorer')" id="explorer_button">
+                <div style="font-size: 24px;">🗺️</div>
+                <div>Explorer</div>
+                <div style="font-size: 12px;">Jungle Expert</div>
+            </div>
+        </div>
+
+        <!-- Hero Profiles Section -->
+        <div class="hero-section">
+            <div id="hero_profile">
+                <!-- Hero profile will be dynamically loaded here -->
+            </div>
+        </div>
 
         <div class="survival-meter">
             <div class="survival-indicator" id="survival_indicator" style="left: 60%;"></div>
@@ -459,6 +627,7 @@
                 A --> C[Wildlife Encounters]
                 A --> D[Resource Management]
                 A --> E[Weather Systems]
+                A --> F[Hero Specializations]
                 
                 B --> B1[Poisonous Plants]
                 B --> B2[Quicksand Traps]
@@ -480,11 +649,16 @@
                 E --> E3[Flash Floods]
                 E --> E4[Toxic Fog]
                 
+                F --> F1[Berserker Rage]
+                F --> F2[Explorer Navigation]
+                F --> F3[Barbarian Survival]
+                
                 style A fill:#8bc34a,stroke:#333,stroke-width:3px
                 style B fill:#9ccc65,stroke:#333,stroke-width:2px
                 style C fill:#9ccc65,stroke:#333,stroke-width:2px
                 style D fill:#9ccc65,stroke:#333,stroke-width:2px
                 style E fill:#9ccc65,stroke:#333,stroke-width:2px
+                style F fill:#66bb6a,stroke:#333,stroke-width:2px
         </div>
 
         <h2>🌦️ Interactive Weather System</h2>
@@ -865,6 +1039,211 @@
     </div>
 
     <script>
+        // Hero data with specialized abilities
+        const heroes = {
+            berserker: {
+                name: "Berserker",
+                symbol: "🪓",
+                description: "A wild warrior whose fury makes them a force of nature in jungle combat.",
+                stats: {
+                    body: 5,
+                    mind: 1,
+                    attack: 3,
+                    defend: 1
+                },
+                abilities: [
+                    {
+                        name: "Berserker Rage",
+                        description: "Channel primal fury to become an unstoppable force in combat.",
+                        effect: "Double attack dice but cannot defend or use mind-based skills while raging."
+                    },
+                    {
+                        name: "Beast Intimidation",
+                        description: "Terrifying presence can frighten away smaller predators.",
+                        effect: "Automatically succeed intimidation checks against animals with Body 3 or less."
+                    },
+                    {
+                        name: "Pain Immunity",
+                        description: "Ignore pain and fatigue through sheer willpower.",
+                        effect: "Continue fighting at full effectiveness even when critically wounded."
+                    },
+                    {
+                        name: "Primitive Instincts",
+                        description: "Tap into ancient survival knowledge buried in genetic memory.",
+                        effect: "Instinctively know which plants/animals are dangerous without testing."
+                    }
+                ],
+                specializations: [
+                    "Apex combat effectiveness against large predators",
+                    "Natural resistance to fear and psychological pressure",
+                    "Intuitive understanding of predator-prey dynamics"
+                ],
+                jungleStrengths: [
+                    "Devastating against apex predators like tigers and bears",
+                    "Can clear paths through dense vegetation with raw strength",
+                    "Natural camouflage abilities when moving stealthily",
+                    "Resistance to toxic plants and venomous creatures"
+                ],
+                jungleWeaknesses: [
+                    "Rage makes careful planning impossible",
+                    "Poor at delicate tasks like trap-setting or herbalism",
+                    "Tends to attract attention rather than avoid it",
+                    "Struggles with complex environmental puzzles"
+                ]
+            },
+            explorer: {
+                name: "Explorer",
+                symbol: "🗺️",
+                description: "A seasoned wilderness expert who thrives in the most hostile environments.",
+                stats: {
+                    body: 3,
+                    mind: 4,
+                    attack: 2,
+                    defend: 2
+                },
+                abilities: [
+                    {
+                        name: "Master Navigator",
+                        description: "Never lose direction and can find paths through impossible terrain.",
+                        effect: "Automatically succeed all navigation checks and move through difficult terrain without penalty."
+                    },
+                    {
+                        name: "Beast Whisperer",
+                        description: "Communicate with and befriend jungle animals.",
+                        effect: "Can recruit animal allies and gain information from local wildlife."
+                    },
+                    {
+                        name: "Survival Expertise",
+                        description: "Supreme knowledge of wilderness survival techniques.",
+                        effect: "Find food, water, and shelter in any environment. Craft advanced tools from natural materials."
+                    },
+                    {
+                        name: "Danger Sense",
+                        description: "Detect environmental hazards and predator signs before others.",
+                        effect: "Warn party of approaching threats 1 turn early. Avoid environmental traps automatically."
+                    }
+                ],
+                specializations: [
+                    "Supreme navigation and pathfinding abilities",
+                    "Expert at resource location and management",
+                    "Advanced knowledge of flora and fauna behavior"
+                ],
+                jungleStrengths: [
+                    "Can find safe routes through dangerous terrain",
+                    "Identifies edible/medicinal plants and clean water sources",
+                    "Predicts weather patterns and seasonal changes",
+                    "Builds sophisticated traps and shelters",
+                    "Communicates with neutral jungle inhabitants"
+                ],
+                jungleWeaknesses: [
+                    "Lower combat effectiveness against large predators",
+                    "Relies on preparation rather than raw power",
+                    "Vulnerable when forced into direct confrontation",
+                    "Knowledge-based abilities useless in completely alien environments"
+                ]
+            }
+        };
+
+        let currentHero = 'berserker';
+
+        function selectHero(heroType) {
+            currentHero = heroType;
+            
+            // Update button states
+            document.querySelectorAll('.hero-button').forEach(button => button.classList.remove('active'));
+            document.getElementById(`${heroType}_button`).classList.add('active');
+            
+            // Update hero profile display
+            updateHeroProfile(heroType);
+            
+            // Update survival skills based on hero
+            updateSurvivalSkills(heroType);
+        }
+
+        function updateHeroProfile(heroType) {
+            const hero = heroes[heroType];
+            const profileDiv = document.getElementById('hero_profile');
+            
+            profileDiv.innerHTML = `
+                <div class="hero-card ${heroType}">
+                    <h2>${hero.symbol} ${hero.name} - Jungle Specialist</h2>
+                    <p><strong>${hero.description}</strong></p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">${hero.stats.body}</div>
+                            <div>Body</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${hero.stats.mind}</div>
+                            <div>Mind</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${hero.stats.attack}</div>
+                            <div>Attack</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">${hero.stats.defend}</div>
+                            <div>Defend</div>
+                        </div>
+                    </div>
+                    
+                    <h3>🌟 Special Abilities</h3>
+                    <div class="hero-abilities">
+                        ${hero.abilities.map(ability => `
+                            <div class="ability-card ${heroType}-ability">
+                                <h4>${ability.name}</h4>
+                                <p><strong>${ability.description}</strong></p>
+                                <p><em>Effect: ${ability.effect}</em></p>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <h3>🌿 Jungle Specializations</h3>
+                    <ul>
+                        ${hero.specializations.map(spec => `<li>${spec}</li>`).join('')}
+                    </ul>
+                    
+                    <h3>💪 Jungle Strengths</h3>
+                    <ul>
+                        ${hero.jungleStrengths.map(strength => `<li style="color: #15803d;">${strength}</li>`).join('')}
+                    </ul>
+                    
+                    <h3>⚠️ Jungle Challenges</h3>
+                    <ul>
+                        ${hero.jungleWeaknesses.map(weakness => `<li style="color: #dc2626;">${weakness}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+        }
+
+        function updateSurvivalSkills(heroType) {
+            const hero = heroes[heroType];
+            const indicator = document.getElementById('survival_indicator');
+            const levelText = document.getElementById('survival_level');
+            
+            // Adjust survival meter based on hero type
+            let survivalLevel = 60; // Base level
+            
+            switch(heroType) {
+                case 'berserker':
+                    survivalLevel = 45; // Lower base survival due to reckless nature
+                    levelText.textContent = 'PRIMAL INSTINCTS AWAKENING';
+                    break;
+                case 'explorer':
+                    survivalLevel = 80; // Higher base survival due to expertise
+                    levelText.textContent = 'THRIVING IN NATURAL HABITAT';
+                    break;
+                default:
+                    levelText.textContent = 'ADAPTING TO ENVIRONMENT';
+            }
+            
+            indicator.style.left = survivalLevel + '%';
+        }
+
+        // Initialize with berserker hero
+        updateHeroProfile('berserker');
+
         // Add nature elements for atmospheric effect
         function createNatureElements() {
             const elements = ['🌿', '🍃', '🦋', '🐛', '🌺', '💧', '🌸', '🦎'];
@@ -914,22 +1293,38 @@
             document.querySelectorAll('.weather-node').forEach(node => node.classList.remove('active'));
             document.querySelectorAll('.weather-node')[weatherIndex].classList.add('active');
             
-            // Update survival indicator
+            // Update survival indicator based on hero type and weather
+            const hero = heroes[currentHero];
             const indicator = document.getElementById('survival_indicator');
             const levelText = document.getElementById('survival_level');
             
             const weather = weatherConditions[weatherIndex];
-            indicator.style.left = weather.visibility + '%';
+            let adjustedVisibility = weather.visibility;
             
-            if (weather.visibility >= 80) levelText.textContent = 'THRIVING';
-            else if (weather.visibility >= 60) levelText.textContent = 'ADAPTING TO ENVIRONMENT';
-            else if (weather.visibility >= 40) levelText.textContent = 'STRUGGLING TO SURVIVE';
-            else if (weather.visibility >= 20) levelText.textContent = 'CRITICAL CONDITION';
+            // Hero-specific weather adaptations
+            if (currentHero === 'explorer') {
+                adjustedVisibility = Math.min(100, weather.visibility + 20); // Explorer adapts better
+            } else if (currentHero === 'berserker' && weatherIndex === 3) {
+                adjustedVisibility = Math.min(100, weather.visibility + 15); // Berserker thrives in storms
+            }
+            
+            indicator.style.left = adjustedVisibility + '%';
+            
+            if (adjustedVisibility >= 80) levelText.textContent = 'THRIVING';
+            else if (adjustedVisibility >= 60) levelText.textContent = 'ADAPTING TO ENVIRONMENT';
+            else if (adjustedVisibility >= 40) levelText.textContent = 'STRUGGLING TO SURVIVE';
+            else if (adjustedVisibility >= 20) levelText.textContent = 'CRITICAL CONDITION';
             else levelText.textContent = 'LIFE THREATENING';
             
             // Update effects display
             const effectsDiv = document.getElementById('weather_effects');
-            effectsDiv.innerHTML = `<strong>Environmental Effects:</strong> ${weather.name} - ${weather.effects}`;
+            let heroBonus = '';
+            if (currentHero === 'explorer' && weatherIndex > 0) {
+                heroBonus = ' <strong>[Explorer Bonus: Reduced weather penalties due to superior wilderness knowledge]</strong>';
+            } else if (currentHero === 'berserker' && weatherIndex === 3) {
+                heroBonus = ' <strong>[Berserker Bonus: Storm fury enhances combat abilities]</strong>';
+            }
+            effectsDiv.innerHTML = `<strong>Environmental Effects:</strong> ${weather.name} - ${weather.effects}${heroBonus}`;
             
             // Update danger level
             updateDangerLevel(weatherIndex);
@@ -950,9 +1345,9 @@
             threatSpan.textContent = dangerLevels[weatherIndex];
         }
         
-        // Survival Skills System
+        // Survival Skills System with hero modifications
         let survivalEnergy = 8;
-        const skills = [
+        const baseSkills = [
             { name: 'Track Game', cost: 2, effect: 'Successfully located fresh deer tracks and potential hunting grounds!' },
             { name: 'Find Water', cost: 1, effect: 'Discovered clean spring water source hidden behind rock formation!' },
             { name: 'Build Shelter', cost: 3, effect: 'Constructed weatherproof lean-to shelter with drainage and ventilation!' },
@@ -963,7 +1358,33 @@
             { name: 'Navigate', cost: 1, effect: 'Determined location using sun position and natural landmarks!' }
         ];
         
+        function getModifiedSkills() {
+            const hero = heroes[currentHero];
+            return baseSkills.map((skill, index) => {
+                let modifiedSkill = {...skill};
+                
+                // Hero-specific skill modifications
+                if (currentHero === 'explorer') {
+                    if (index === 1 || index === 7) { // Find Water, Navigate
+                        modifiedSkill.cost = Math.max(1, skill.cost - 1);
+                        modifiedSkill.effect += ' [Explorer expertise provides superior results]';
+                    }
+                } else if (currentHero === 'berserker') {
+                    if (index === 0 || index === 6) { // Track Game, Camouflage
+                        modifiedSkill.effect += ' [Berserker instincts enhance natural hunting abilities]';
+                    }
+                    if (index === 2 || index === 3) { // Build Shelter, Make Fire
+                        modifiedSkill.cost += 1; // Berserker struggles with delicate tasks
+                        modifiedSkill.effect += ' [Crude but effective berserker construction]';
+                    }
+                }
+                
+                return modifiedSkill;
+            });
+        }
+        
         function useSurvivalSkill(index, skillType) {
+            const skills = getModifiedSkills();
             const skill = skills[index];
             const skillElement = document.querySelectorAll('.matrix-skill')[index];
             const resultDiv = document.getElementById('skill_result');
@@ -975,16 +1396,27 @@
                 skillElement.classList.add('used');
                 setTimeout(() => skillElement.classList.remove('used'), 2000);
                 
+                // Hero-specific success bonuses
+                let heroBonus = '';
+                if (currentHero === 'explorer' && (index === 1 || index === 7)) {
+                    heroBonus = '<br><strong>🗺️ Explorer Mastery: Superior wilderness knowledge ensures exceptional results!</strong>';
+                } else if (currentHero === 'berserker' && (index === 0 || index === 6)) {
+                    heroBonus = '<br><strong>🪓 Berserker Instincts: Primal hunting abilities unlock hidden potential!</strong>';
+                }
+                
                 resultDiv.innerHTML = `
                     <strong>🌟 ${skill.name} Successfully Applied!</strong><br>
-                    ${skill.effect}<br>
+                    ${skill.effect}${heroBonus}<br>
                     <em>Energy consumed: ${skill.cost} points (${survivalEnergy} energy remaining)</em>
                 `;
                 
-                // Regenerate energy over time
+                // Regenerate energy over time (heroes recover at different rates)
                 setTimeout(() => {
                     if (survivalEnergy < 8) {
-                        survivalEnergy = Math.min(8, survivalEnergy + 1);
+                        let recovery = 1;
+                        if (currentHero === 'berserker') recovery = 2; // Berserkers recover faster
+                        if (currentHero === 'explorer') recovery = 1; // Explorers manage energy efficiently
+                        survivalEnergy = Math.min(8, survivalEnergy + recovery);
                     }
                 }, 4000);
             } else {
@@ -1028,8 +1460,16 @@
                 const x = centerX + Math.cos(angle) * radius;
                 const y = centerY + Math.sin(angle) * radius;
                 
+                // Hero-specific skill highlighting
+                let skillColor = skill.color;
+                if (currentHero === 'explorer' && (skill.name === 'Water' || skill.name === 'Navigation')) {
+                    skillColor = '#1976d2'; // Blue for explorer specialties
+                } else if (currentHero === 'berserker' && (skill.name === 'Hunting' || skill.name === 'Stealth')) {
+                    skillColor = '#d32f2f'; // Red for berserker specialties
+                }
+                
                 // Skill area
-                skillsCtx.fillStyle = skill.color;
+                skillsCtx.fillStyle = skillColor;
                 skillsCtx.beginPath();
                 skillsCtx.arc(x, y, 25, 0, Math.PI * 2);
                 skillsCtx.fill();
@@ -1050,7 +1490,7 @@
                 skillsCtx.fillText(skill.name, x, y + 40);
                 
                 // Connection to center
-                skillsCtx.strokeStyle = skill.color + '80';
+                skillsCtx.strokeStyle = skillColor + '80';
                 skillsCtx.lineWidth = 1;
                 skillsCtx.beginPath();
                 skillsCtx.moveTo(x, y);
@@ -1058,24 +1498,38 @@
                 skillsCtx.stroke();
             });
             
-            // Center hub
-            skillsCtx.fillStyle = '#8bc34a';
+            // Center hub with hero symbol
+            const hero = heroes[currentHero];
+            let hubColor = '#8bc34a';
+            if (currentHero === 'berserker') hubColor = '#d32f2f';
+            if (currentHero === 'explorer') hubColor = '#1976d2';
+            
+            skillsCtx.fillStyle = hubColor;
             skillsCtx.beginPath();
             skillsCtx.arc(centerX, centerY, 30, 0, Math.PI * 2);
             skillsCtx.fill();
             
-            skillsCtx.fillStyle = '#000';
+            skillsCtx.fillStyle = '#fff';
             skillsCtx.font = '20px Arial';
             skillsCtx.textAlign = 'center';
-            skillsCtx.fillText('🌿', centerX, centerY + 7);
+            skillsCtx.fillText(hero.symbol, centerX, centerY + 7);
             
-            skillsCtx.fillStyle = '#8bc34a';
+            skillsCtx.fillStyle = hubColor;
             skillsCtx.font = '16px Arial';
-            skillsCtx.fillText('Wilderness Survival Skills', 300, 30);
+            skillsCtx.fillText(`${hero.name} Wilderness Skills`, 300, 30);
             skillsCtx.textAlign = 'left';
         }
         
         drawSurvivalSkills();
+        
+        // Update skills visualization when hero changes
+        function updateVisualization() {
+            drawSurvivalSkills();
+            drawEnvironmentCombat();
+            drawSurvivalScience();
+            drawPredators();
+            drawStrategies();
+        }
         
         // Interactive Jungle Map
         const jungleGrid = document.getElementById('jungle_map');
@@ -1121,7 +1575,7 @@
         
         // Add heroes and threats
         jungleGrid.children[35].className = 'jungle-cell hero-position';
-        jungleGrid.children[35].textContent = '🦸';
+        jungleGrid.children[35].textContent = heroes[currentHero].symbol;
         jungleState[35] = 'hero';
         
         jungleGrid.children[55].className = 'jungle-cell dangerous-predator';
@@ -1130,38 +1584,66 @@
         
         function analyzeTerrainEffect(index) {
             const terrain = jungleState[index];
+            const hero = heroes[currentHero];
             let analysis = '';
+            let heroInsight = '';
             
             switch(terrain) {
                 case 'jungle':
                     analysis = 'Dense Jungle. Provides cover but limits visibility. Rich in plant resources but harbors dangerous creatures.';
+                    if (currentHero === 'explorer') {
+                        heroInsight = ' [Explorer knows: Hidden animal trails provide faster movement paths]';
+                    } else if (currentHero === 'berserker') {
+                        heroInsight = ' [Berserker senses: Predator scent marks indicate territorial boundaries]';
+                    }
                     break;
                 case 'river':
                     analysis = 'Fresh Water Source. Essential for survival but may contain parasites. Predators often gather here.';
+                    if (currentHero === 'explorer') {
+                        heroInsight = ' [Explorer expertise: Can identify water quality and purification methods]';
+                    }
                     break;
                 case 'rocks':
                     analysis = 'Rocky Terrain. Elevated position provides tactical advantage. Good for tool-making materials.';
+                    if (currentHero === 'berserker') {
+                        heroInsight = ' [Berserker advantage: Natural weapons and defensive positions available]';
+                    }
                     break;
                 case 'swamp':
                     analysis = 'Swamp Marsh. Dangerous footing and disease vectors. Rich in amphibian life and medicinal plants.';
+                    if (currentHero === 'explorer') {
+                        heroInsight = ' [Explorer knowledge: Rare medicinal plants found only in wetland environments]';
+                    }
                     break;
                 case 'ruins':
                     analysis = 'Ancient Ruins. May contain treasures but often guarded or cursed. Shelter from weather.';
+                    heroInsight = ' [All heroes sense ancient magic and potential danger]';
                     break;
                 case 'resources':
                     analysis = 'Resource Cache. Valuable survival supplies. May be defended by territorial animals.';
+                    if (currentHero === 'berserker') {
+                        heroInsight = ' [Berserker instinct: Fight-or-flight response triggered by resource competition]';
+                    }
                     break;
                 case 'hero':
-                    analysis = 'Hero Position. Current location of adventuring party. Assess surroundings for threats and opportunities.';
+                    analysis = `${hero.name} Position. Current location of adventuring party. Assess surroundings for threats and opportunities.`;
+                    heroInsight = ` [${hero.name} special: Use ${hero.abilities[0].name} to enhance situational awareness]`;
                     break;
                 case 'predator':
                     analysis = 'Apex Predator Territory. Extremely dangerous. Avoid direct confrontation unless fully prepared.';
+                    if (currentHero === 'berserker') {
+                        heroInsight = ' [Berserker bloodlust: Challenge accepted! Rage building...]';
+                    } else if (currentHero === 'explorer') {
+                        heroInsight = ' [Explorer wisdom: Study behavior patterns before engaging]';
+                    } else {
+                        heroInsight = ' [Barbarian caution: Assess threat level and prepare accordingly]';
+                    }
                     break;
                 default:
                     analysis = 'Unknown terrain type.';
             }
             
-            terrainAnalysis.innerHTML = `<strong>Environmental Assessment:</strong> ${analysis}`;
+            terrainAnalysis.innerHTML = `<strong>Environmental Assessment:</strong> ${analysis}${heroInsight}`;
         }
         
         // Environment Combat Visualization
@@ -1183,9 +1665,10 @@
                 {x: 500, y: 120, type: 'Toxic Spores', symbol: '☁️', color: '#9c27b0'}
             ];
             
-            // Hero position
+            // Hero position with hero-specific symbol
             const heroX = 300;
             const heroY = 200;
+            const hero = heroes[currentHero];
             
             hazards.forEach(hazard => {
                 // Hazard effect radius
@@ -1215,8 +1698,15 @@
                 envCombatCtx.font = '10px Arial';
                 envCombatCtx.fillText(hazard.type, hazard.x, hazard.y + 60);
                 
-                // Threat lines to hero
-                envCombatCtx.strokeStyle = hazard.color + '60';
+                // Threat lines to hero (modified by hero type)
+                let lineOpacity = '60';
+                if (currentHero === 'explorer' && hazard.type !== 'Predator Stalking') {
+                    lineOpacity = '30'; // Explorer better at avoiding environmental hazards
+                } else if (currentHero === 'berserker' && hazard.type === 'Predator Stalking') {
+                    lineOpacity = '90'; // Berserker attracts predator attention
+                }
+                
+                envCombatCtx.strokeStyle = hazard.color + lineOpacity;
                 envCombatCtx.lineWidth = 1;
                 envCombatCtx.setLineDash([3, 3]);
                 envCombatCtx.beginPath();
@@ -1226,8 +1716,11 @@
                 envCombatCtx.setLineDash([]);
             });
             
-            // Draw hero
-            envCombatCtx.fillStyle = '#ff9800';
+            // Draw hero with class-specific color
+            let heroColor = '#d32f2f'; // Default berserker
+            if (currentHero === 'explorer') heroColor = '#1976d2';
+            
+            envCombatCtx.fillStyle = heroColor;
             envCombatCtx.beginPath();
             envCombatCtx.arc(heroX, heroY, 20, 0, Math.PI * 2);
             envCombatCtx.fill();
@@ -1239,11 +1732,11 @@
             envCombatCtx.fillStyle = '#fff';
             envCombatCtx.font = '16px Arial';
             envCombatCtx.textAlign = 'center';
-            envCombatCtx.fillText('🦸', heroX, heroY + 5);
+            envCombatCtx.fillText(hero.symbol, heroX, heroY + 5);
             
             envCombatCtx.fillStyle = '#8bc34a';
             envCombatCtx.font = '16px Arial';
-            envCombatCtx.fillText('Environmental Combat: Multiple Simultaneous Threats', 300, 30);
+            envCombatCtx.fillText(`${hero.name} vs Environmental Threats`, 300, 30);
             envCombatCtx.textAlign = 'left';
         }
         
@@ -1307,10 +1800,24 @@
             scienceCtx.font = '12px Arial';
             scienceCtx.fillText('Water Table', 560, 325);
             
+            // Add hero position indicator in appropriate layer
+            const hero = heroes[currentHero];
+            let heroLayer = 3; // Default forest floor for berserker
+            if (currentHero === 'explorer') heroLayer = 2; // Shrub layer for navigation
+            
+            const layerY = layers[heroLayer].y + layers[heroLayer].height / 2;
+            scienceCtx.fillStyle = '#fff';
+            scienceCtx.beginPath();
+            scienceCtx.arc(300, layerY, 8, 0, Math.PI * 2);
+            scienceCtx.fill();
+            scienceCtx.fillStyle = '#000';
+            scienceCtx.font = '12px Arial';
+            scienceCtx.textAlign = 'center';
+            scienceCtx.fillText(hero.symbol, 300, layerY + 3);
+            
             scienceCtx.fillStyle = '#8bc34a';
             scienceCtx.font = '16px Arial';
-            scienceCtx.textAlign = 'center';
-            scienceCtx.fillText('Jungle Ecosystem Layers and Biodiversity', 300, 30);
+            scienceCtx.fillText(`${hero.name} Ecosystem Analysis`, 300, 30);
             scienceCtx.textAlign = 'left';
         }
         
@@ -1334,9 +1841,18 @@
                 {x: 450, y: 180, name: 'Razorclaw Raptor', symbol: '🦅', color: '#1976d2', territory: 70}
             ];
             
+            const hero = heroes[currentHero];
+            
             predators.forEach(predator => {
-                // Territory area
-                predatorCtx.fillStyle = predator.color + '20';
+                // Territory area - modified by hero effectiveness
+                let territoryOpacity = '20';
+                if (currentHero === 'berserker' && predator.name === 'Shadow Tiger') {
+                    territoryOpacity = '40'; // Berserker more likely to engage
+                } else if (currentHero === 'explorer') {
+                    territoryOpacity = '10'; // Explorer avoids territories better
+                }
+                
+                predatorCtx.fillStyle = predator.color + territoryOpacity;
                 predatorCtx.beginPath();
                 predatorCtx.arc(predator.x, predator.y, predator.territory, 0, Math.PI * 2);
                 predatorCtx.fill();
@@ -1368,9 +1884,10 @@
                 predatorCtx.font = '12px Arial';
                 predatorCtx.fillText(predator.name, predator.x, predator.y + 45);
                 
-                // Hunting pattern indicators
-                for (let i = 0; i < 6; i++) {
-                    const angle = (i * 60) * (Math.PI / 180);
+                // Hunting pattern indicators - adjusted for hero type
+                const patternCount = currentHero === 'explorer' ? 3 : 6; // Explorer spots fewer patterns
+                for (let i = 0; i < patternCount; i++) {
+                    const angle = (i * (360/patternCount)) * (Math.PI / 180);
                     const startX = predator.x + Math.cos(angle) * 30;
                     const startY = predator.y + Math.sin(angle) * 30;
                     const endX = predator.x + Math.cos(angle) * 50;
@@ -1385,10 +1902,23 @@
                 }
             });
             
+            // Draw hero position
+            let heroColor = '#d32f2f'; // Default berserker
+            if (currentHero === 'explorer') heroColor = '#1976d2';
+            
+            predatorCtx.fillStyle = heroColor;
+            predatorCtx.beginPath();
+            predatorCtx.arc(300, 200, 15, 0, Math.PI * 2);
+            predatorCtx.fill();
+            
+            predatorCtx.fillStyle = '#fff';
+            predatorCtx.font = '12px Arial';
+            predatorCtx.textAlign = 'center';
+            predatorCtx.fillText(hero.symbol, 300, 205);
+            
             predatorCtx.fillStyle = '#8bc34a';
             predatorCtx.font = '16px Arial';
-            predatorCtx.textAlign = 'center';
-            predatorCtx.fillText('Apex Predator Territories and Hunting Patterns', 300, 30);
+            predatorCtx.fillText(`${hero.name} vs Apex Predators`, 300, 30);
             predatorCtx.textAlign = 'left';
         }
         
@@ -1405,14 +1935,33 @@
             strategyCtx.fillStyle = '#1a3a1a';
             strategyCtx.fillRect(0, 0, strategyCanvas.width, strategyCanvas.height);
             
-            // Draw strategic approaches
-            const strategies = [
-                {x: 120, y: 120, name: 'Adaptation\nApproach', symbol: '🌿', color: '#2e7d32'},
-                {x: 300, y: 80, name: 'Aggressive\nStrategy', symbol: '⚔️', color: '#d32f2f'},
-                {x: 480, y: 120, name: 'Stealth\nDoctrine', symbol: '🥷', color: '#1976d2'},
-                {x: 200, y: 220, name: 'Resource\nManagement', symbol: '📦', color: '#ff9800'},
-                {x: 400, y: 220, name: 'Territory\nControl', symbol: '🏰', color: '#9c27b0'}
-            ];
+            // Draw strategic approaches - customized by hero
+            let strategies = [];
+            if (currentHero === 'berserker') {
+                strategies = [
+                    {x: 120, y: 120, name: 'Berserker\nRage', symbol: '🪓', color: '#d32f2f'},
+                    {x: 300, y: 80, name: 'Intimidation\nTactics', symbol: '😤', color: '#d32f2f'},
+                    {x: 480, y: 120, name: 'Frontal\nAssault', symbol: '⚔️', color: '#d32f2f'},
+                    {x: 200, y: 220, name: 'Territory\nMarking', symbol: '🏴', color: '#ff9800'},
+                    {x: 400, y: 220, name: 'Pack\nDominance', symbol: '👑', color: '#ff9800'}
+                ];
+            } else if (currentHero === 'explorer') {
+                strategies = [
+                    {x: 120, y: 120, name: 'Stealth\nNavigation', symbol: '🗺️', color: '#1976d2'},
+                    {x: 300, y: 80, name: 'Environmental\nReading', symbol: '🔍', color: '#1976d2'},
+                    {x: 480, y: 120, name: 'Animal\nAlliance', symbol: '🤝', color: '#1976d2'},
+                    {x: 200, y: 220, name: 'Resource\nOptimization', symbol: '📦', color: '#4caf50'},
+                    {x: 400, y: 220, name: 'Safe\nPassage', symbol: '🛤️', color: '#4caf50'}
+                ];
+            } else {
+                strategies = [
+                    {x: 120, y: 120, name: 'Berserker\nRage', symbol: '🪓', color: '#d32f2f'},
+                    {x: 300, y: 80, name: 'Intimidation\nTactics', symbol: '😤', color: '#d32f2f'},
+                    {x: 480, y: 120, name: 'Frontal\nAssault', symbol: '⚔️', color: '#d32f2f'},
+                    {x: 200, y: 220, name: 'Territory\nMarking', symbol: '🏴', color: '#ff9800'},
+                    {x: 400, y: 220, name: 'Pack\nDominance', symbol: '👑', color: '#ff9800'}
+                ];
+            }
             
             strategies.forEach((strategy, index) => {
                 // Strategy influence area
@@ -1461,10 +2010,11 @@
                 }
             });
             
+            const hero = heroes[currentHero];
             strategyCtx.fillStyle = '#8bc34a';
             strategyCtx.font = '16px Arial';
             strategyCtx.textAlign = 'center';
-            strategyCtx.fillText('Advanced Wilderness Survival Strategies', 300, 30);
+            strategyCtx.fillText(`${hero.name} Wilderness Strategies`, 300, 30);
             strategyCtx.textAlign = 'left';
         }
         
@@ -1503,15 +2053,46 @@
             document.querySelectorAll('.environment-layers .layer-node').forEach(node => node.classList.remove('active'));
             document.querySelectorAll('.environment-layers .layer-node')[seasonIndex].classList.add('active');
             
-            // Update effects display
+            // Update effects display with hero-specific bonuses
             const season = seasons[seasonIndex];
             const effectsDiv = document.getElementById('season_effects');
-            effectsDiv.innerHTML = `<strong>Seasonal Effects:</strong> ${season.name} - ${season.effects}`;
+            let heroBonus = '';
             
-            // Update survival meter based on season
+            if (currentHero === 'explorer') {
+                heroBonus = ' <strong>[Explorer Advantage: Superior seasonal adaptation and resource prediction]</strong>';
+            } else if (currentHero === 'berserker' && seasonIndex === 3) {
+                heroBonus = ' <strong>[Berserker Bloodlust: Hunting season triggers enhanced combat instincts]</strong>';
+            }
+            
+            effectsDiv.innerHTML = `<strong>Seasonal Effects:</strong> ${season.name} - ${season.effects}${heroBonus}`;
+            
+            // Update survival meter based on season and hero
             const indicator = document.getElementById('survival_indicator');
-            indicator.style.left = season.waterAvailability + '%';
+            let adjustedAvailability = season.waterAvailability;
+            
+            if (currentHero === 'explorer') {
+                adjustedAvailability = Math.min(100, season.waterAvailability + 15);
+            } else if (currentHero === 'berserker' && seasonIndex === 0) {
+                adjustedAvailability = Math.max(10, season.waterAvailability - 10); // Berserker struggles more in dry season
+            }
+            
+            indicator.style.left = adjustedAvailability + '%';
         }
+        
+        // Update hero position symbol in jungle map when hero changes
+        function updateHeroPosition() {
+            if (jungleGrid.children[35]) {
+                jungleGrid.children[35].textContent = heroes[currentHero].symbol;
+            }
+        }
+        
+        // Override the selectHero function to include all updates
+        const originalSelectHero = selectHero;
+        selectHero = function(heroType) {
+            originalSelectHero(heroType);
+            updateHeroPosition();
+            updateVisualization();
+        };
     </script>
 </body>
 </html>

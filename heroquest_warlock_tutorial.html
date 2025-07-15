@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Warlock Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #8B0000;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #8B0000, #DC143C);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #800000;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #FFF0F5;
+            border-left: 5px solid #8B0000;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .dark-magic {
+            background: #2F2F2F;
+            color: #FFB6C1;
+            border: 2px solid #8B0000;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #DC143C;
+        }
+        .balance-warning {
+            background: #FFE4E1;
+            border: 2px solid #FF6347;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .tactical-hybrid {
+            background: #F0F8FF;
+            border: 2px solid #4682B4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .chaos-power {
+            background: #1C1C1C;
+            color: #FF4500;
+            border: 2px solid #8B0000;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .corruption-theme {
+            background: #2E2E2E;
+            color: #DDA0DD;
+            border: 2px solid #4B0082;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚫ The Warlock Hero: Master of Dark Power</h1>
+        <p><em>Welcome, seeker of forbidden knowledge! Today we explore the corrupted arts and terrible power of HeroQuest's most dangerous magical practitioner.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Warlock</h2>
+            <p>The Warlock is HeroQuest's embodiment of corrupted magical power - imagine a Wizard who has traded pure arcane study for raw, chaotic energy drawn from dark sources. Where the Wizard represents scholarly mastery, the Warlock channels primal forces that are both more immediately powerful and far more dangerous to wield. This hero walks the razor's edge between devastating effectiveness and self-destruction.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Dark Hybrid</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 2 combat dice</div>
+            <div class="stat-display">Defend: 2 combat dice</div>
+            <div class="stat-display">Body Points: 5</div>
+            <div class="stat-display">Mind Points: 5</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were academic disciplines, the Warlock would be a brilliant researcher who abandoned ethics for results. Like a scientist who conducts dangerous experiments without safety protocols, the Warlock gains power through methods that put them at constant risk. They're more physically capable than a pure Wizard, but their magic comes with a terrible price.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Warlock Stats: The Middle Path of Power</h3>
+                <canvas id="warlockStatsCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="balance-warning">
+                <h3>⚖️ The Balance of Corruption</h3>
+                <p><strong>Physical Improvement:</strong> 2 Attack dice and 5 Body Points make the Warlock more durable than a Wizard</p>
+                <p><strong>Magical Sacrifice:</strong> 5 Mind Points instead of 6 means fewer spells but still substantial casting ability</p>
+                <p><strong>Hybrid Nature:</strong> Can fight in melee when necessary, unlike the pure Wizard</p>
+                <p><strong>The Trade-off:</strong> More balanced capabilities, but dark magic comes with unique risks</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Dark Magic Mastery: Power Through Corruption</h2>
+            
+            <p>The Warlock's 5 Mind Points provide substantial magical capability, but their access to Chaos Magic and dark spells fundamentally changes how they approach magical combat compared to traditional Wizards.</p>
+
+            <div class="dark-magic">
+                <h3>🔥 Chaos Magic Capabilities</h3>
+                <p><strong>Chaos Spells:</strong> Access to unique dark magic unavailable to other heroes</p>
+                <p><strong>Enhanced Damage:</strong> Dark spells often deal more damage than their standard counterparts</p>
+                <p><strong>Unpredictable Effects:</strong> Chaos magic can have random additional consequences</p>
+                <p><strong>Corruption Risk:</strong> Dark magic use may have negative effects on the caster</p>
+                <p><strong>Forbidden Knowledge:</strong> Can cast spells that manipulate death, fear, and chaos itself</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Magical Power Comparison</h3>
+                <canvas id="magicalPowerCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="chaos-power">
+                <h3>⚡ Signature Chaos Spells</h3>
+                <p><strong>Chaos Bolt (2 MP):</strong> Unpredictable magical projectile with variable effects</p>
+                <p><strong>Summon Chaos (3 MP):</strong> Call forth chaotic energies that affect multiple targets</p>
+                <p><strong>Dark Healing (1 MP):</strong> Restore health by draining life force from enemies</p>
+                <p><strong>Fear (2 MP):</strong> Terrorize enemies, potentially causing them to flee</p>
+                <p><strong>Corruption (3 MP):</strong> Weaken enemies through magical decay</p>
+                <p><strong>Soul Burn (2 MP):</strong> Direct magical damage that bypasses physical defenses</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Combat Versatility: The Warrior-Mage</h2>
+            
+            <p>Unlike the Wizard's complete reliance on magic, the Warlock can engage in physical combat when necessary. This flexibility makes them less vulnerable but requires different tactical considerations.</p>
+
+            <div class="tactical-hybrid">
+                <h3>⚔️ Hybrid Combat Analysis</h3>
+                <p><strong>Melee Capability:</strong> 2 Attack dice allow meaningful physical combat</p>
+                <p><strong>Defensive Resilience:</strong> 5 Body Points and 2 Defend dice provide survivability</p>
+                <p><strong>Tactical Flexibility:</strong> Can switch between magic and melee as situations demand</p>
+                <p><strong>Resource Conservation:</strong> Physical combat preserves Mind Points for crucial moments</p>
+                <p><strong>Emergency Backup:</strong> Still dangerous even when magically depleted</p>
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[Warlock Turn Begins] --> B{Magic Available?}
+                    B -->|Yes, 3+ MP| C{Multiple Enemies?}
+                    C -->|Yes| D[Chaos Area Spell]
+                    C -->|No| E{Tough Single Enemy?}
+                    E -->|Yes| F[Focused Dark Magic]
+                    E -->|No| G[Physical Combat to Save MP]
+                    B -->|Low MP 1-2| H{Immediate Threat?}
+                    H -->|Yes| I[Emergency Healing/Escape Spell]
+                    H -->|No| J[Melee Combat]
+                    D --> K[Assess Chaos Results]
+                    F --> L[Evaluate Target Status]
+                    G --> M[Consider Magic Next Turn]
+                    I --> N[Reposition for Safety]
+                    J --> O[Plan Next Action]
+            </div>
+
+            <div class="canvas-container">
+                <h3>Combat Mode Effectiveness</h3>
+                <canvas id="combatModesCanvas" width="500" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>The Price of Power: Chaos and Corruption</h2>
+            
+            <p>The Warlock's dark magic comes with inherent risks that other magical heroes don't face. Understanding and managing these dangers is crucial to successful Warlock play.</p>
+
+            <div class="corruption-theme">
+                <h3>💀 Corruption Mechanics</h3>
+                <p><strong>Chaos Backfire:</strong> Dark spells may have unpredictable negative effects on the caster</p>
+                <p><strong>Mental Strain:</strong> Channeling chaotic energies can cause temporary Mind Point penalties</p>
+                <p><strong>Physical Toll:</strong> Some dark magic drains the caster's life force</p>
+                <p><strong>Moral Corruption:</strong> Excessive dark magic use may affect quest outcomes</p>
+                <p><strong>Addiction Risk:</strong> The power of chaos magic can become compulsive</p>
+            </div>
+
+            <div class="balance-warning">
+                <h3>Risk Management Strategies</h3>
+                <p><strong>Measured Usage:</strong> Don't rely exclusively on dark magic</p>
+                <p><strong>Physical Backup:</strong> Maintain melee combat skills as a safety net</p>
+                <p><strong>Corruption Tracking:</strong> Monitor cumulative effects of dark magic use</p>
+                <p><strong>Emergency Protocols:</strong> Have plans for when chaos magic backfires</p>
+                <p><strong>Party Support:</strong> Ensure allies can assist if corruption becomes problematic</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Risk vs Reward Analysis</h3>
+                <canvas id="riskRewardCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Positioning Strategy: The Flexible Caster</h2>
+            
+            <p>The Warlock's positioning requirements are less stringent than a pure Wizard's, but their dual nature creates unique tactical considerations for optimal placement.</p>
+
+            <div class="analogy-box">
+                <strong>Military Analogy:</strong> The Warlock is like a combat engineer with explosives - dangerous enough to fight at close range when necessary, but truly devastating when given space to work with their specialized tools. They can be in the second rank instead of completely in the rear.
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[Assess Battlefield] --> B{Enemy Clustering?}
+                    B -->|Yes| C[Position for Area Chaos Spells]
+                    B -->|No| D{Party Needs Support?}
+                    D -->|Yes| E[Mid-Range Support Position]
+                    D -->|No| F{High Value Target?}
+                    F -->|Yes| G[Optimal Single-Target Position]
+                    F -->|No| H[Conservative Melee Support]
+                    C --> I[Maintain Spell Range]
+                    E --> J[Balance Magic and Melee Options]
+                    G --> K[Focus Fire Position]
+                    H --> L[Second Rank Fighting]
+            </div>
+
+            <div class="canvas-container">
+                <h3>Warlock Positioning Tactics</h3>
+                <canvas id="warlockPositioningCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <div class="tactical-hybrid">
+                <h3>🎯 Positioning Principles</h3>
+                <p><strong>Medium Range Optimal:</strong> Close enough to support party, far enough for safe casting</p>
+                <p><strong>Escape Route Planning:</strong> Always have withdrawal options but don't require them as desperately as Wizards</p>
+                <p><strong>Battlefield Control:</strong> Position to maximize chaos spell effectiveness</p>
+                <p><strong>Dual Readiness:</strong> Stay prepared to switch between magic and melee</p>
+                <p><strong>Corruption Consideration:</strong> Avoid positions where chaos backfire would be catastrophic</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Strategy: Tools of Dark Power</h2>
+            
+            <p>The Warlock's equipment needs reflect their hybrid nature - requiring both magical enhancement and physical combat capability, while also needing protection against the corrupting effects of their own power.</p>
+
+            <div class="dark-magic">
+                <h3>🛡️ Optimal Warlock Loadout</h3>
+                <p><strong>Dark Staff:</strong> Enhances chaos magic power and provides melee backup</p>
+                <p><strong>Protective Amulets:</strong> Guard against corruption and magical backlash</p>
+                <p><strong>Medium Armor:</strong> Balance protection with magical mobility</p>
+                <p><strong>Backup Weapon:</strong> Reliable melee option for when magic isn't available</p>
+                <p><strong>Healing Supplies:</strong> Counter the physical toll of dark magic</p>
+                <p><strong>Chaos Components:</strong> Enhance dark spell effectiveness</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Impact on Warlock Performance</h3>
+                <canvas id="equipmentImpactCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="corruption-theme">
+                <h3>Corruption Protection Priority</h3>
+                <p><strong>Primary Defense:</strong> Items that reduce chaos magic backlash</p>
+                <p><strong>Secondary Protection:</strong> Equipment that enhances magical control</p>
+                <p><strong>Tertiary Support:</strong> Physical combat enhancement for backup capabilities</p>
+                <p><strong>Philosophy:</strong> Power means nothing if it destroys the wielder</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Party Dynamics: The Dangerous Ally</h2>
+            
+            <p>The Warlock's relationship with party members is complex - they provide significant magical support but their chaotic nature can create unpredictable situations that affect the entire group.</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Warlock: Chaos Magic Support] --> B[Barbarian: Appreciates Magical Backup]
+                    A --> C[Dwarf: Wary of Unpredictable Magic]
+                    A --> D[Elf: Understands Magical Risks]
+                    A --> E[Wizard: Disapproves of Dark Arts]
+                    B --> F[Tactical Effectiveness]
+                    C --> G[Cautious Cooperation]
+                    D --> H[Mutual Magical Respect]
+                    E --> I[Professional Tension]
+                    F --> J[Party Success with Risk]
+                    G --> J
+                    H --> J
+                    I --> J
+            </div>
+
+            <div class="tactical-hybrid">
+                <h3>🤝 Party Synergy Strategies</h3>
+                <p><strong>With Barbarian:</strong> Provide magical support while tank handles front line</p>
+                <p><strong>With Dwarf:</strong> Dwarf's caution balances Warlock's risk-taking nature</p>
+                <p><strong>With Elf:</strong> Shared understanding of magical versatility and resource management</p>
+                <p><strong>With Wizard:</strong> Philosophical differences but complementary magical approaches</p>
+                <p><strong>Risk Communication:</strong> Party must understand when chaos magic might affect everyone</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Party Effectiveness with Warlock</h3>
+                <canvas id="partySynergyCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: Mastering Chaos</h2>
+            
+            <div class="chaos-power">
+                <h3>⚡ Advanced Warlock Tactics</h3>
+                <p><strong>Chaos Cycling:</strong> Alternate between safe standard spells and risky chaos magic</p>
+                <p><strong>Corruption Management:</strong> Track and mitigate accumulating dark magic effects</p>
+                <p><strong>Hybrid Switching:</strong> Seamlessly transition between magical and physical combat</p>
+                <p><strong>Risk Calculation:</strong> Assess when chaos magic rewards justify the dangers</p>
+                <p><strong>Emergency Protocols:</strong> Have plans for when dark magic goes wrong</p>
+            </div>
+
+            <div class="balance-warning">
+                <h3>Master-Level Example: The Controlled Chaos Gambit</h3>
+                <p><strong>Setup:</strong> Large group of enemies in confined space</p>
+                <p><strong>Phase 1:</strong> Position with escape route and party support nearby</p>
+                <p><strong>Phase 2:</strong> Cast Summon Chaos (3 MP) targeting enemy center</p>
+                <p><strong>Phase 3:</strong> If chaos backfires, immediately use emergency healing or teleport</p>
+                <p><strong>Phase 4:</strong> Switch to physical combat while chaos effects resolve</p>
+                <p><strong>Result:</strong> Maximum damage potential with managed risk through preparation</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Chaos Magic Success Rates</h3>
+                <canvas id="chaosSuccessCanvas" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>When to Choose the Warlock: Optimal Scenarios</h2>
+            
+            <div class="dark-magic">
+                <h3>Perfect Warlock Missions</h3>
+                <p><strong>High-Risk Campaigns:</strong> Adventures where maximum power justifies corruption risks</p>
+                <p><strong>Large Enemy Groups:</strong> Scenarios where chaos area spells shine</p>
+                <p><strong>Flexible Requirements:</strong> Quests needing both magical and physical capabilities</p>
+                <p><strong>Experienced Players:</strong> Those comfortable managing complex risk/reward mechanics</p>
+                <p><strong>Dark-Themed Adventures:</strong> Campaigns where corruption fits the narrative</p>
+            </div>
+
+            <div class="balance-warning">
+                <h3>Challenging Scenarios for Warlocks</h3>
+                <p><strong>Precision-Required Missions:</strong> When predictable outcomes are essential</p>
+                <p><strong>Corruption-Sensitive Quests:</strong> Adventures where dark magic use has severe consequences</p>
+                <p><strong>New Player Groups:</strong> Teams unfamiliar with chaos magic mechanics</p>
+                <p><strong>Pure Combat Gauntlets:</strong> When sustained physical fighting is required</p>
+                <p><strong>Diplomatic Scenarios:</strong> Social situations where dark magic reputation matters</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Chaos Magic Deep Dive: Understanding Unpredictability</h2>
+            
+            <div class="corruption-theme">
+                <h3>🎲 Chaos Mechanics Analysis</h3>
+                <p><strong>Random Elements:</strong> Chaos spells often involve dice rolls for effects</p>
+                <p><strong>Power Variance:</strong> Effects can range from minimal to devastating</p>
+                <p><strong>Unintended Consequences:</strong> Magic may affect unintended targets</p>
+                <p><strong>Cumulative Effects:</strong> Multiple chaos spells may interact unpredictably</p>
+                <p><strong>Environmental Impact:</strong> Chaos magic can alter the battlefield itself</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Chaos Spell Outcome Distribution</h3>
+                <canvas id="chaosOutcomesCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Scientific Analogy:</strong> Using chaos magic is like conducting nuclear experiments - incredible power potential, but you need extensive safety protocols and must accept that sometimes things will go catastrophically wrong despite your best efforts.
+            </div>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Chaos Magic Mastery:</strong> Detailed analysis of each dark spell and optimal usage</li>
+                <li><strong>Corruption Management:</strong> Long-term strategies for handling dark magic side effects</li>
+                <li><strong>Hybrid Combat Techniques:</strong> Advanced magic-melee combination tactics</li>
+                <li><strong>Risk Assessment:</strong> Mathematical analysis of chaos magic probability outcomes</li>
+                <li><strong>Party Communication:</strong> Coordinating with allies when using unpredictable magic</li>
+                <li><strong>Equipment Optimization:</strong> Balancing magical enhancement with corruption protection</li>
+                <li><strong>Emergency Protocols:</strong> Crisis management when chaos magic backfires</li>
+                <li><strong>Ethical Considerations:</strong> Role-playing the moral implications of dark magic use</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, keeper of forbidden secrets: Power without wisdom is destruction, and wisdom without courage is impotence. The Warlock walks the narrow path between these extremes, wielding forces that lesser minds cannot comprehend and greater souls dare not touch. In the depths of Morcar's realm, sometimes only darkness can overcome darkness!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Warlock Stats Analysis Chart
+        const warlockStatsCanvas = document.getElementById('warlockStatsCanvas');
+        const warlockStatsCtx = warlockStatsCanvas.getContext('2d');
+        
+        warlockStatsCtx.clearRect(0, 0, 500, 300);
+        warlockStatsCtx.font = '14px Arial';
+        warlockStatsCtx.textAlign = 'center';
+        
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 2, max: 4, color: '#DC143C', label: '2 dice'},
+            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
+            {name: 'Body', value: 5, max: 8, color: '#8B0000', label: '5 points'},
+            {name: 'Mind', value: 5, max: 6, color: '#4B0082', label: '5 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            warlockStatsCtx.fillStyle = stat.color;
+            warlockStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            warlockStatsCtx.fillStyle = 'black';
+            warlockStatsCtx.fillText(stat.label, x, 250);
+            warlockStatsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Magical Power Comparison
+        const magicalCanvas = document.getElementById('magicalPowerCanvas');
+        const magicalCtx = magicalCanvas.getContext('2d');
+        
+        magicalCtx.clearRect(0, 0, 600, 250);
+        magicalCtx.font = '12px Arial';
+        magicalCtx.textAlign = 'center';
+        
+        const casters = [
+            {name: 'Wizard', mindPoints: 6, purity: 100, power: 85, color: '#9370DB'},
+            {name: 'Warlock', mindPoints: 5, purity: 60, power: 95, color: '#8B0000'},
+            {name: 'Elf', mindPoints: 4, purity: 90, power: 70, color: '#32CD32'}
+        ];
+        
+        casters.forEach((caster, i) => {
+            const x = 120 + i * 150;
+            
+            // Mind Points
+            const mpHeight = (caster.mindPoints / 6) * 120;
+            magicalCtx.fillStyle = caster.color;
+            magicalCtx.fillRect(x - 60, 180 - mpHeight, 30, mpHeight);
+            
+            // Purity (safety)
+            const purityHeight = (caster.purity / 100) * 120;
+            magicalCtx.fillStyle = caster.color;
+            magicalCtx.globalAlpha = 0.5;
+            magicalCtx.fillRect(x - 15, 180 - purityHeight, 30, purityHeight);
+            
+            // Raw Power
+            const powerHeight = (caster.power / 100) * 120;
+            magicalCtx.fillStyle = caster.color;
+            magicalCtx.globalAlpha = 0.8;
+            magicalCtx.fillRect(x + 30, 180 - powerHeight, 30, powerHeight);
+            magicalCtx.globalAlpha = 1.0;
+            
+            magicalCtx.fillStyle = 'black';
+            magicalCtx.fillText(caster.mindPoints + ' MP', x - 45, 195);
+            magicalCtx.fillText(caster.purity + '%', x, 195);
+            magicalCtx.fillText(caster.power, x + 45, 195);
+            magicalCtx.fillText(caster.name, x, 215);
+        });
+        
+        magicalCtx.fillText('Mind Points | Purity | Raw Power', 300, 30);
+
+        // Combat Modes Effectiveness
+        const combatCanvas = document.getElementById('combatModesCanvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        combatCtx.clearRect(0, 0, 500, 300);
+        combatCtx.font = '12px Arial';
+        combatCtx.textAlign = 'center';
+        
+        const combatModes = [
+            {scenario: 'Single Enemy', chaos: 85, standard: 70, melee: 60},
+            {scenario: 'Multiple Enemies', chaos: 95, standard: 75, melee: 45},
+            {scenario: 'Armored Foe', chaos: 80, standard: 60, melee: 55},
+            {scenario: 'When Low MP', chaos: 20, standard: 30, melee: 75}
+        ];
+        
+        combatModes.forEach((mode, i) => {
+            const x = 80 + i * 90;
+            
+            // Chaos magic
+            const chaosHeight = (mode.chaos / 100) * 120;
+            combatCtx.fillStyle = '#8B0000';
+            combatCtx.fillRect(x - 30, 200 - chaosHeight, 18, chaosHeight);
+            
+            // Standard magic
+            const standardHeight = (mode.standard / 100) * 120;
+            combatCtx.fillStyle = '#9370DB';
+            combatCtx.fillRect(x - 6, 200 - standardHeight, 18, standardHeight);
+            
+            // Melee
+            const meleeHeight = (mode.melee / 100) * 120;
+            combatCtx.fillStyle = '#4169E1';
+            combatCtx.fillRect(x + 18, 200 - meleeHeight, 18, meleeHeight);
+            
+            combatCtx.fillStyle = 'black';
+            combatCtx.fillText(mode.chaos, x - 21, 220);
+            combatCtx.fillText(mode.standard, x + 3, 220);
+            combatCtx.fillText(mode.melee, x + 27, 220);
+            
+            combatCtx.save();
+            combatCtx.translate(x, 240);
+            combatCtx.rotate(-Math.PI / 6);
+            combatCtx.fillText(mode.scenario, 0, 0);
+            combatCtx.restore();
+        });
+        
+        combatCtx.fillText('Chaos (Red) | Standard (Purple) | Melee (Blue)', 250, 30);
+
+        // Risk vs Reward Analysis
+        const riskCanvas = document.getElementById('riskRewardCanvas');
+        const riskCtx = riskCanvas.getContext('2d');
+        
+        riskCtx.clearRect(0, 0, 500, 250);
+        riskCtx.font = '12px Arial';
+        riskCtx.textAlign = 'center';
+        
+        const riskLevels = [
+            {approach: 'Conservative', risk: 20, reward: 60, color: '#32CD32'},
+            {approach: 'Balanced', risk: 40, reward: 80, color: '#FFD700'},
+            {approach: 'Aggressive', risk: 70, reward: 95, color: '#FF6347'},
+            {approach: 'Reckless', risk: 90, reward: 85, color: '#8B0000'}
+        ];
+        
+        riskLevels.forEach((level, i) => {
+            const x = 80 + i * 90;
+            
+            // Risk bar (downward, representing danger)
+            const riskHeight = (level.risk / 100) * 80;
+            riskCtx.fillStyle = level.color;
+            riskCtx.globalAlpha = 0.6;
+            riskCtx.fillRect(x - 25, 150, 20, riskHeight);
+            
+            // Reward bar (upward, representing benefit)
+            const rewardHeight = (level.reward / 100) * 80;
+            riskCtx.fillStyle = level.color;
+            riskCtx.globalAlpha = 1.0;
+            riskCtx.fillRect(x + 5, 150 - rewardHeight, 20, rewardHeight);
+            
+            riskCtx.fillStyle = 'black';
+            riskCtx.fillText(level.risk + '%', x - 15, 240);
+            riskCtx.fillText(level.reward + '%', x + 15, 60);
+            riskCtx.fillText(level.approach, x, 260);
+        });
+        
+        riskCtx.fillText('Risk (Down) vs Reward (Up) by Approach', 250, 30);
+
+        // Warlock Positioning Tactics
+        const posCanvas = document.getElementById('warlockPositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw walls/obstacles
+        posCtx.fillStyle = '#654321';
+        posCtx.fillRect(200, 50, 50, 150);
+        posCtx.fillRect(100, 250, 200, 50);
+        
+        // Draw enemies
+        posCtx.fillStyle = '#FF0000';
+        posCtx.fillRect(325, 125, 25, 25);
+        posCtx.fillRect(275, 175, 25, 25);
+        posCtx.fillRect(350, 325, 25, 25);
+        posCtx.fillRect(50, 350, 25, 25);
+        
+        // Draw allies
+        posCtx.fillStyle = '#4169E1';
+        posCtx.fillRect(275, 75, 25, 25);
+        posCtx.fillRect(125, 175, 25, 25);
+        
+        // Draw Warlock (medium position - not front, not back)
+        posCtx.fillStyle = '#8B0000';
+        posCtx.fillRect(175, 125, 25, 25);
+        
+        // Draw chaos spell area effect
+        posCtx.strokeStyle = '#DC143C';
+        posCtx.setLineDash([5, 5]);
+        posCtx.lineWidth = 3;
+        posCtx.beginPath();
+        posCtx.arc(325, 175, 40, 0, 2 * Math.PI);
+        posCtx.stroke();
+        
+        // Draw backup melee range
+        posCtx.strokeStyle = '#8B0000';
+        posCtx.setLineDash([3, 3]);
+        posCtx.lineWidth = 2;
+        posCtx.beginPath();
+        posCtx.arc(187, 137, 25, 0, 2 * Math.PI);
+        posCtx.stroke();
+        
+        posCtx.setLineDash([]);
+        posCtx.lineWidth = 1;
+        
+        // Labels
+        posCtx.fillStyle = 'white';
+        posCtx.font = '10px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('W', 187, 140);
+        posCtx.fillText('B', 287, 90);
+        posCtx.fillText('D', 137, 190);
+        
+        posCtx.fillText('E', 337, 140);
+        posCtx.fillText('E', 287, 190);
+        posCtx.fillText('E', 362, 340);
+        posCtx.fillText('E', 62, 365);
+        
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Warlock: Medium Range, Chaos + Melee Options', 200, 20);
+
+        // Equipment Impact on Performance
+        const equipCanvas = document.getElementById('equipmentImpactCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 300);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        const equipCategories = [
+            {name: 'Chaos Power', base: 75, equipped: 90, color: '#8B0000'},
+            {name: 'Corruption Resist', base: 40, equipped: 80, color: '#4B0082'},
+            {name: 'Melee Combat', base: 60, equipped: 75, color: '#4169E1'},
+            {name: 'Survivability', base: 50, equipped: 70, color: '#32CD32'}
+        ];
+        
+        equipCategories.forEach((category, i) => {
+            const x = 80 + i * 90;
+            
+            // Base
+            const baseHeight = (category.base / 100) * 150;
+            equipCtx.fillStyle = '#DDD';
+            equipCtx.fillRect(x - 25, 200 - baseHeight, 20, baseHeight);
+            
+            // Equipped
+            const equipHeight = (category.equipped / 100) * 150;
+            equipCtx.fillStyle = category.color;
+            equipCtx.fillRect(x + 5, 200 - equipHeight, 20, equipHeight);
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(category.base + '%', x - 15, 220);
+            equipCtx.fillText(category.equipped + '%', x + 15, 220);
+            equipCtx.fillText(category.name, x, 240);
+        });
+        
+        equipCtx.fillText('Base (Gray) vs Equipped (Color) Capabilities', 250, 30);
+
+        // Party Synergy Canvas
+        const synergyCanvas = document.getElementById('partySynergyCanvas');
+        const synergyCtx = synergyCanvas.getContext('2d');
+        
+        synergyCtx.clearRect(0, 0, 500, 250);
+        synergyCtx.font = '12px Arial';
+        synergyCtx.textAlign = 'center';
+        
+        const partyCombs = [
+            {combo: 'Warlock Solo', effectiveness: 65, color: '#8B0000'},
+            {combo: 'Warlock + Barbarian', effectiveness: 85, color: '#4ECDC4'},
+            {combo: 'Warlock + Dwarf', effectiveness: 80, color: '#96CEB4'},
+            {combo: 'Warlock + Elf', effectiveness: 82, color: '#32CD32'},
+            {combo: 'Full Party', effectiveness: 88, color: '#FFD700'}
+        ];
+        
+        partyCombs.forEach((combo, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (combo.effectiveness / 100) * 150;
+            
+            synergyCtx.fillStyle = combo.color;
+            synergyCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
+            
+            synergyCtx.fillStyle = 'black';
+            synergyCtx.fillText(combo.effectiveness + '%', x, 185 - barHeight);
+            synergyCtx.save();
+            synergyCtx.translate(x, 220);
+            synergyCtx.rotate(-Math.PI / 4);
+            synergyCtx.fillText(combo.combo, 0, 0);
+            synergyCtx.restore();
+        });
+
+        // Chaos Magic Success Rates
+        const chaosCanvas = document.getElementById('chaosSuccessCanvas');
+        const chaosCtx = chaosCanvas.getContext('2d');
+        
+        chaosCtx.clearRect(0, 0, 600, 300);
+        chaosCtx.font = '11px Arial';
+        chaosCtx.textAlign = 'center';
+        
+        const chaosSpells = [
+            {spell: 'Chaos Bolt', success: 70, backfire: 15, devastating: 15, color: '#FF4500'},
+            {spell: 'Summon Chaos', success: 60, backfire: 25, devastating: 15, color: '#8B0000'},
+            {spell: 'Dark Healing', success: 80, backfire: 10, devastating: 10, color: '#4B0082'},
+            {spell: 'Fear', success: 75, backfire: 20, devastating: 5, color: '#2F4F4F'},
+            {spell: 'Soul Burn', success: 65, backfire: 20, devastating: 15, color: '#DC143C'}
+        ];
+        
+        chaosSpells.forEach((spell, i) => {
+            const x = 80 + i * 100;
+            const totalHeight = 150;
+            
+            // Success (green portion)
+            const successHeight = (spell.success / 100) * totalHeight;
+            chaosCtx.fillStyle = '#32CD32';
+            chaosCtx.fillRect(x - 30, 200 - successHeight, 60, successHeight);
+            
+            // Backfire (yellow portion)
+            const backfireHeight = (spell.backfire / 100) * totalHeight;
+            chaosCtx.fillStyle = '#FFD700';
+            chaosCtx.fillRect(x - 30, 200, 60, backfireHeight);
+            
+            // Devastating result (red portion)
+            const devastatingHeight = (spell.devastating / 100) * totalHeight;
+            chaosCtx.fillStyle = spell.color;
+            chaosCtx.fillRect(x - 30, 200 + backfireHeight, 60, devastatingHeight);
+            
+            chaosCtx.fillStyle = 'black';
+            chaosCtx.fillText(spell.success + '%', x, 190 - successHeight/2);
+            chaosCtx.fillText(spell.backfire + '%', x, 205 + backfireHeight/2);
+            chaosCtx.fillText(spell.devastating + '%', x, 215 + backfireHeight + devastatingHeight/2);
+            
+            chaosCtx.save();
+            chaosCtx.translate(x, 270);
+            chaosCtx.rotate(-Math.PI / 6);
+            chaosCtx.fillText(spell.spell, 0, 0);
+            chaosCtx.restore();
+        });
+        
+        chaosCtx.fillText('Success (Green) | Backfire (Yellow) | Devastating (Color)', 300, 30);
+
+        // Chaos Spell Outcome Distribution
+        const outcomeCanvas = document.getElementById('chaosOutcomesCanvas');
+        const outcomeCtx = outcomeCanvas.getContext('2d');
+        
+        outcomeCtx.clearRect(0, 0, 500, 250);
+        outcomeCtx.font = '12px Arial';
+        outcomeCtx.textAlign = 'center';
+        
+        const outcomes = [
+            {result: 'Minimal Effect', probability: 15, color: '#DDD'},
+            {result: 'Expected Result', probability: 45, color: '#32CD32'},
+            {result: 'Enhanced Effect', probability: 20, color: '#FFD700'},
+            {result: 'Backfire', probability: 15, color: '#FF6347'},
+            {result: 'Catastrophic', probability: 5, color: '#8B0000'}
+        ];
+        
+        outcomes.forEach((outcome, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (outcome.probability / 50) * 150;
+            
+            outcomeCtx.fillStyle = outcome.color;
+            outcomeCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
+            
+            outcomeCtx.fillStyle = 'black';
+            outcomeCtx.fillText(outcome.probability + '%', x, 185 - barHeight);
+            outcomeCtx.save();
+            outcomeCtx.translate(x, 220);
+            outcomeCtx.rotate(-Math.PI / 4);
+            outcomeCtx.fillText(outcome.result, 0, 0);
+            outcomeCtx.restore();
+        });
+        
+        outcomeCtx.fillText('Typical Chaos Magic Outcome Distribution', 250, 30);
+    </script>
+</body>
+</html>

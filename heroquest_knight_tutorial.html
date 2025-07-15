@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Knight Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #4682B4;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #4682B4, #87CEEB);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #2F4F4F;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #F0F8FF;
+            border-left: 5px solid #4682B4;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .chivalric-code {
+            background: #E6E6FA;
+            border: 2px solid #6A5ACD;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #4169E1;
+        }
+        .defensive-mastery {
+            background: #F0F8FF;
+            border: 2px solid #4682B4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .honor-bound {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .tactical-discipline {
+            background: #F5F5DC;
+            border: 2px solid #A0522D;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .protection-aura {
+            background: #FFFACD;
+            border: 2px solid #DEB887;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .noble-bearing {
+            background: #FDF5E6;
+            border: 2px solid #CD853F;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>⚔️ The Knight Hero: Paragon of Honor and Steel</h1>
+        <p><em>Welcome, noble warrior! Today we explore the disciplined prowess and unwavering dedication of HeroQuest's most honorable defender.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Knight</h2>
+            <p>The Knight is HeroQuest's embodiment of disciplined martial excellence and unwavering honor - imagine a medieval paladin who combines the tactical precision of a master strategist with the protective instincts of a devoted guardian. Where other warriors fight for glory or gold, the Knight stands as an unbreakable wall between evil and innocence, wielding superior armor, refined combat techniques, and an unshakeable code of honor that transforms mere fighting into an art form.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Armored Fortress</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 3 combat dice</div>
+            <div class="stat-display">Defend: 3 combat dice</div>
+            <div class="stat-display">Body Points: 8</div>
+            <div class="stat-display">Mind Points: 3</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were military units, the Knight would be a main battle tank - heavily armored (3 Defend, 8 Body), powerfully armed (3 Attack), with sophisticated targeting systems (3 Mind for tactical thinking) but requiring careful positioning and support to maximize effectiveness. Like a tank, the Knight dominates through superior protection and firepower rather than speed or stealth.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Knight Stats: The Fortress Warrior</h3>
+                <canvas id="knightStatsCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="defensive-mastery">
+                <h3>⚔️ Superior Combat Statistics</h3>
+                <p><strong>Maximum Attack:</strong> 3 dice equals the Barbarian's raw offensive power</p>
+                <p><strong>Maximum Defense:</strong> 3 dice provides unparalleled damage resistance</p>
+                <p><strong>Maximum Body:</strong> 8 points creates the ultimate damage-absorbing warrior</p>
+                <p><strong>Tactical Mind:</strong> 3 Mind Points enable strategic thinking and limited spellcasting</p>
+                <p><strong>Balanced Excellence:</strong> High stats across all combat categories without major weaknesses</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Defensive Mastery: The Unbreakable Wall</h2>
+            
+            <p>The Knight's defining characteristic is unparalleled defensive capability. With 3 defend dice and 8 Body Points, they can absorb punishment that would destroy any other hero while maintaining combat effectiveness.</p>
+
+            <div class="defensive-mastery">
+                <h3>🛡️ Defensive Superiority Analysis</h3>
+                <p><strong>Triple Defense:</strong> 3 defend dice provide maximum combat protection</p>
+                <p><strong>Damage Absorption:</strong> 8 Body Points create incredible staying power</p>
+                <p><strong>Armor Synergy:</strong> Heavy armor compounds already superior defenses</p>
+                <p><strong>Threat Soaking:</strong> Can draw enemy fire without fear of elimination</p>
+                <p><strong>Endurance Fighting:</strong> Maintains effectiveness through extended combat</p>
+                <p><strong>Party Shield:</strong> Protects allies by being the most attractive target</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Defensive Capability Comparison</h3>
+                <canvas id="defensiveComparisonCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="tactical-discipline">
+                <h3>Damage Mitigation Mathematics</h3>
+                <p><strong>vs Single Attacker:</strong> 3 defend dice provide ~75% damage negation</p>
+                <p><strong>vs Multiple Attackers:</strong> High Body Points ensure survival even when overwhelmed</p>
+                <p><strong>vs Elite Enemies:</strong> Can trade blows with the strongest foes and win through attrition</p>
+                <p><strong>Emergency Tanking:</strong> Can protect weakened allies by absorbing focused fire</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Combat Excellence: The Master-at-Arms</h2>
+            
+            <p>Beyond defense, the Knight's 3 attack dice provide devastating offensive capability equal to the Barbarian's raw power but enhanced by tactical discipline and superior equipment access.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Knight Combat Turn] --> B{Tactical Assessment}
+                    B --> C{Primary Threat Identified?}
+                    C -->|Yes| D[Focus Fire on Priority Target]
+                    C -->|No| E{Multiple Weak Enemies?}
+                    E -->|Yes| F[Systematic Elimination]
+                    E -->|No| G{Ally in Danger?}
+                    G -->|Yes| H[Protective Intervention]
+                    G -->|No| I[Standard Combat Engagement]
+                    D --> J[Evaluate Threat Reduction]
+                    F --> K[Clear Battlefield Methodically]
+                    H --> L[Assess Ally Safety]
+                    I --> M[Maintain Combat Pressure]
+                    J --> N[Reassess Tactical Situation]
+                    K --> N
+                    L --> N
+                    M --> N
+            </mermaid>
+
+            <div class="chivalric-code">
+                <h3>⚔️ Knightly Combat Principles</h3>
+                <p><strong>Honorable Engagement:</strong> Face enemies directly rather than relying on tricks</p>
+                <p><strong>Protective Priority:</strong> Shield allies before seeking personal glory</p>
+                <p><strong>Tactical Discipline:</strong> Use superior training to outfight rather than overwhelm</p>
+                <p><strong>Sustained Pressure:</strong> Maintain consistent offensive output throughout combat</p>
+                <p><strong>Noble Bearing:</strong> Fight with dignity even in desperate circumstances</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Combat Effectiveness Analysis</h3>
+                <canvas id="combatEffectivenessCanvas" width="500" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>The Code of Chivalry: Honor as Strength</h2>
+            
+            <p>The Knight's power comes not just from superior stats but from adherence to a strict moral code that provides both mechanical benefits and roleplay depth. Honor is not a weakness - it's a source of supernatural strength.</p>
+
+            <div class="honor-bound">
+                <h3>🏆 Chivalric Virtues and Powers</h3>
+                <p><strong>Courage:</strong> Immunity to fear effects and moral bonus against intimidating foes</p>
+                <p><strong>Honor:</strong> Enhanced effectiveness when fighting evil or protecting innocents</p>
+                <p><strong>Justice:</strong> Bonus damage against undead, demons, and corrupt enemies</p>
+                <p><strong>Temperance:</strong> Resistance to magical charms and mind control</p>
+                <p><strong>Charity:</strong> Ability to share healing and protective benefits with allies</p>
+                <p><strong>Humility:</strong> Bonus experience for supporting others rather than seeking glory</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Chivalric Virtue Benefits</h3>
+                <canvas id="chivalricVirtuesCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="noble-bearing">
+                <h3>Honor Mechanics in Practice</h3>
+                <p><strong>Moral Imperative:</strong> Must protect innocents and aid fellow heroes</p>
+                <p><strong>Combat Ethics:</strong> Cannot attack helpless or surrendering enemies</p>
+                <p><strong>Truth Binding:</strong> Cannot lie or break sworn oaths</p>
+                <p><strong>Nobility Obligation:</strong> Must show mercy to defeated honorable opponents</p>
+                <p><strong>Sacred Trust:</strong> Party members gain bonuses when fighting alongside the Knight</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Mastery: The Armored Advantage</h2>
+            
+            <p>Knights have access to the heaviest armor and finest weapons in HeroQuest, equipment that would burden other heroes but which the Knight uses to devastating effect through superior training and conditioning.</p>
+
+            <div class="tactical-discipline">
+                <h3>⚔️🛡️ Superior Equipment Access</h3>
+                <p><strong>Plate Mail:</strong> Maximum armor protection without mobility penalties</p>
+                <p><strong>Great Sword:</strong> Two-handed weapons for devastating damage output</p>
+                <p><strong>Tower Shield:</strong> Ultimate defensive equipment for protection specialization</p>
+                <p><strong>War Lance:</strong> Mounted combat weapons for special tactical advantages</p>
+                <p><strong>Blessed Weapons:</strong> Holy armaments effective against evil creatures</p>
+                <p><strong>Knightly Regalia:</strong> Ceremonial items that provide social and moral bonuses</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Effectiveness Impact</h3>
+                <canvas id="equipmentImpactCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="protection-aura">
+                <h3>Armor Specialization Philosophy</h3>
+                <p><strong>Maximum Protection:</strong> Use the heaviest available armor without penalty</p>
+                <p><strong>Weapon Mastery:</strong> Train with all weapon types for tactical flexibility</p>
+                <p><strong>Equipment Synergy:</strong> Combine armor and weapons for compound benefits</p>
+                <p><strong>Maintenance Discipline:</strong> Keep equipment in perfect condition for reliability</p>
+                <p><strong>Sacred Armaments:</strong> Prefer blessed or consecrated equipment when available</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Tactical Leadership: The Commander's Art</h2>
+            
+            <p>The Knight's 3 Mind Points enable not just basic spellcasting but sophisticated tactical thinking that makes the entire party more effective through superior planning and coordination.</p>
+
+            <div class="chivalric-code">
+                <h3>🎯 Leadership Capabilities</h3>
+                <p><strong>Tactical Coordination:</strong> Direct party movements for optimal positioning</p>
+                <p><strong>Threat Assessment:</strong> Identify priority targets and optimal engagement strategies</p>
+                <p><strong>Resource Management:</strong> Allocate party resources for maximum efficiency</p>
+                <p><strong>Morale Leadership:</strong> Inspire allies through example and encouragement</p>
+                <p><strong>Strategic Planning:</strong> Develop long-term approaches to complex challenges</p>
+                <p><strong>Crisis Command:</strong> Take charge during desperate situations</p>
+            </div>
+
+            <div class="mermaid">
+                graph LR
+                    A[Knight: Tactical Leadership] --> B[Barbarian: Directed Aggression]
+                    A --> C[Dwarf: Coordinated Utility]
+                    A --> D[Elf: Strategic Flexibility]
+                    A --> E[Wizard: Protected Casting]
+                    B --> F[Enhanced Party Effectiveness]
+                    C --> F
+                    D --> F
+                    E --> F
+                    G[Knight Protection] --> H[Party Survival Bonus]
+                    H --> F
+            </mermaid>
+
+            <div class="canvas-container">
+                <h3>Leadership Impact on Party Performance</h3>
+                <canvas id="leadershipImpactCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Positioning Strategy: The Immovable Guardian</h2>
+            
+            <p>Knight positioning focuses on controlling space, protecting allies, and creating tactical advantages through superior defensive capabilities and battlefield presence.</p>
+
+            <div class="canvas-container">
+                <h3>Knight Tactical Positioning</h3>
+                <canvas id="knightPositioningCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <div class="defensive-mastery">
+                <h3>🛡️ Guardian Positioning Principles</h3>
+                <p><strong>Chokepoint Control:</strong> Block narrow passages to limit enemy movement</p>
+                <p><strong>Ally Protection:</strong> Position between threats and vulnerable party members</p>
+                <p><strong>Threat Interception:</strong> Move to engage dangerous enemies before they reach others</p>
+                <p><strong>Tactical Anchoring:</strong> Provide stable reference point for party maneuvers</p>
+                <p><strong>Area Denial:</strong> Use presence and threat to control battlefield geography</p>
+            </div>
+
+            <div class="honor-bound">
+                <h3>Protective Positioning Ethics</h3>
+                <p><strong>Shield First:</strong> Always position to protect others before self</p>
+                <p><strong>Face Danger:</strong> Confront threats directly rather than avoiding them</p>
+                <p><strong>Hold Ground:</strong> Maintain position even under pressure</p>
+                <p><strong>Noble Sacrifice:</strong> Accept personal risk to ensure party safety</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Party Dynamics: The Stalwart Foundation</h2>
+            
+            <p>The Knight serves as the party's moral and tactical center, providing both physical protection and inspirational leadership that elevates everyone's performance.</p>
+
+            <div class="protection-aura">
+                <h3>🤝 Knightly Party Synergies</h3>
+                <p><strong>With Barbarian:</strong> Form devastating front-line combination of offense and defense</p>
+                <p><strong>With Dwarf:</strong> Create ultimate defensive partnership with overlapping protection</p>
+                <p><strong>With Elf:</strong> Provide protection allowing flexible tactics and spellcasting</p>
+                <p><strong>With Wizard:</strong> Essential protection enabling safe high-level spellcasting</p>
+                <p><strong>Universal Benefit:</strong> All heroes fight better with Knight protection and leadership</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Party Survival Rates with Knight</h3>
+                <canvas id="partySurvivalCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="tactical-discipline">
+                <h3>Command and Control Benefits</h3>
+                <p><strong>Tactical Coordination:</strong> Party movements become more efficient and effective</p>
+                <p><strong>Threat Prioritization:</strong> Team focuses fire on optimal targets</p>
+                <p><strong>Resource Optimization:</strong> Better allocation of party abilities and equipment</p>
+                <p><strong>Morale Enhancement:</strong> Allies fight with greater courage and determination</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: The Master Knight</h2>
+            
+            <div class="chivalric-code">
+                <h3>⚔️ Advanced Knightly Tactics</h3>
+                <p><strong>Defensive Cycling:</strong> Rotate between offensive and defensive stances</p>
+                <p><strong>Threat Triangulation:</strong> Position to engage multiple enemies simultaneously</p>
+                <p><strong>Protective Mobility:</strong> Move defensively while maintaining party protection</p>
+                <p><strong>Honor Channeling:</strong> Use moral conviction to enhance combat effectiveness</p>
+                <p><strong>Tactical Sacrifice:</strong> Accept strategic damage to create tactical advantages</p>
+            </div>
+
+            <div class="noble-bearing">
+                <h3>Master-Level Example: The Last Stand Gambit</h3>
+                <p><strong>Setup:</strong> Party overwhelmed by superior numbers with retreat impossible</p>
+                <p><strong>Phase 1:</strong> Knight positions in central chokepoint to limit enemy approach</p>
+                <p><strong>Phase 2:</strong> Use maximum defensive stance to absorb concentrated attacks</p>
+                <p><strong>Phase 3:</strong> Coordinate party attacks on isolated enemies while holding position</p>
+                <p><strong>Phase 4:</strong> Channel honor bonus for enhanced effectiveness against evil foes</p>
+                <p><strong>Result:</strong> Transform potential party wipe into heroic victory through tactical sacrifice</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Advanced Technique Mastery Progression</h3>
+                <canvas id="advancedTechniquesCanvas" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>When to Choose the Knight: Optimal Scenarios</h2>
+            
+            <div class="tactical-discipline">
+                <h3>Perfect Knight Missions</h3>
+                <p><strong>High-Damage Encounters:</strong> Scenarios with powerful enemies requiring superior defense</p>
+                <p><strong>Protection-Critical Quests:</strong> Adventures where party member survival is essential</p>
+                <p><strong>Evil-Heavy Campaigns:</strong> Missions against undead, demons, or corrupt opponents</p>
+                <p><strong>Tactical Combat:</strong> Encounters requiring disciplined strategy over raw power</p>
+                <p><strong>Leadership-Dependent Groups:</strong> Parties needing coordination and tactical guidance</p>
+                <p><strong>Honor-Themed Adventures:</strong> Quests where moral choices affect outcomes</p>
+            </div>
+
+            <div class="honor-bound">
+                <h3>Challenging Scenarios for Knights</h3>
+                <p><strong>Stealth Missions:</strong> Heavy armor incompatible with sneaking requirements</p>
+                <p><strong>Speed-Critical Quests:</strong> Situations where rapid movement trumps protection</p>
+                <p><strong>Morally Ambiguous Adventures:</strong> Scenarios requiring ethically questionable actions</p>
+                <p><strong>Magic-Heavy Encounters:</strong> Situations where 3 Mind Points prove insufficient</p>
+                <p><strong>Solo Operations:</strong> Missions where protective abilities can't be utilized</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Honor System: The Source of Power</h2>
+            
+            <div class="protection-aura">
+                <h3>🏆 Honor Mechanics Deep Dive</h3>
+                <p><strong>Virtue Accumulation:</strong> Gain honor points through heroic and selfless actions</p>
+                <p><strong>Divine Favor:</strong> High honor provides supernatural protection and enhancement</p>
+                <p><strong>Moral Strength:</strong> Honor points can be spent for temporary ability boosts</p>
+                <p><strong>Corruption Resistance:</strong> Strong honor provides immunity to many dark effects</p>
+                <p><strong>Inspiration Aura:</strong> High honor Knight inspires nearby allies</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Honor Level Benefits Analysis</h3>
+                <canvas id="honorSystemCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Moral Physics Analogy:</strong> The Knight's honor system works like moral physics - just as physical laws govern matter and energy, spiritual laws govern courage and righteousness. The Knight who acts with perfect honor gains access to supernatural forces that transcend normal physical limitations.
+            </div>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Chivalric Combat Mastery:</strong> Advanced techniques for armored warfare and weapon specialization</li>
+                <li><strong>Honor System Mechanics:</strong> Detailed analysis of virtue accumulation and divine favor</li>
+                <li><strong>Tactical Leadership Theory:</strong> Command principles for coordinating adventuring parties</li>
+                <li><strong>Sacred Armament Guide:</strong> Blessed weapons and holy armor for fighting supernatural evil</li>
+                <li><strong>Defensive Positioning:</strong> Advanced strategies for battlefield control and protection</li>
+                <li><strong>Knightly Orders:</strong> Different chivalric traditions and their specialized abilities</li>
+                <li><strong>Moral Combat Ethics:</strong> Honorable fighting techniques and rules of engagement</li>
+                <li><strong>Divine Magic Access:</strong> Paladin-style abilities available to high-honor Knights</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, noble champion: Your strength comes not from your sword or shield, but from the unwavering conviction that guides your hand. In the darkest depths of Morcar's domain, when evil seems overwhelming and hope appears lost, it is the Knight who stands firm - not because victory is certain, but because standing firm is right. Honor is not a burden but a beacon, and through your example, ordinary souls become heroes. Go forth with courage, for righteousness is its own reward!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Knight Stats Analysis
+        const knightStatsCanvas = document.getElementById('knightStatsCanvas');
+        const knightStatsCtx = knightStatsCanvas.getContext('2d');
+        
+        knightStatsCtx.clearRect(0, 0, 500, 300);
+        knightStatsCtx.font = '14px Arial';
+        knightStatsCtx.textAlign = 'center';
+        
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 3, max: 3, color: '#4ECDC4', label: '3 dice'},
+            {name: 'Defend', value: 3, max: 3, color: '#45B7D1', label: '3 dice'},
+            {name: 'Body', value: 8, max: 8, color: '#96CEB4', label: '8 points'},
+            {name: 'Mind', value: 3, max: 6, color: '#FFEAA7', label: '3 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            knightStatsCtx.fillStyle = stat.color;
+            knightStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            knightStatsCtx.fillStyle = 'black';
+            knightStatsCtx.fillText(stat.label, x, 250);
+            knightStatsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Defensive Capability Comparison
+        const defenseCanvas = document.getElementById('defensiveComparisonCanvas');
+        const defenseCtx = defenseCanvas.getContext('2d');
+        
+        defenseCtx.clearRect(0, 0, 600, 250);
+        defenseCtx.font = '12px Arial';
+        defenseCtx.textAlign = 'center';
+        
+        const heroes = [
+            {hero: 'Knight', defense: 3, body: 8, total: 11, color: '#4682B4'},
+            {hero: 'Barbarian', defense: 2, body: 8, total: 10, color: '#8B4513'},
+            {hero: 'Dwarf', defense: 2, body: 7, total: 9, color: '#696969'},
+            {hero: 'Elf', defense: 2, body: 6, total: 8, color: '#32CD32'},
+            {hero: 'Wizard', defense: 2, body: 4, total: 6, color: '#9370DB'}
+        ];
+        
+        heroes.forEach((hero, i) => {
+            const x = 80 + i * 100;
+            
+            // Defense dice
+            const defHeight = (hero.defense / 3) * 80;
+            defenseCtx.fillStyle = hero.color;
+            defenseCtx.fillRect(x - 35, 180 - defHeight, 30, defHeight);
+            
+            // Body points
+            const bodyHeight = (hero.body / 8) * 80;
+            defenseCtx.fillStyle = hero.color;
+            defenseCtx.globalAlpha = 0.6;
+            defenseCtx.fillRect(x + 5, 180 - bodyHeight, 30, bodyHeight);
+            defenseCtx.globalAlpha = 1.0;
+            
+            defenseCtx.fillStyle = 'black';
+            defenseCtx.fillText(hero.defense + ' def', x - 20, 195);
+            defenseCtx.fillText(hero.body + ' body', x + 20, 195);
+            defenseCtx.fillText('Total: ' + hero.total, x, 215);
+            defenseCtx.fillText(hero.hero, x, 235);
+        });
+        
+        defenseCtx.fillText('Defense Dice (Solid) vs Body Points (Faded)', 300, 30);
+
+        // Combat Effectiveness Analysis
+        const combatCanvas = document.getElementById('combatEffectivenessCanvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        combatCtx.clearRect(0, 0, 500, 300);
+        combatCtx.font = '12px Arial';
+        combatCtx.textAlign = 'center';
+        
+        const combatScenarios = [
+            {scenario: 'vs Weak Enemies', offense: 95, defense: 98, endurance: 100, color: '#32CD32'},
+            {scenario: 'vs Equal Foes', offense: 85, defense: 90, endurance: 95, color: '#4682B4'},
+            {scenario: 'vs Elite Enemies', offense: 75, defense: 85, endurance: 90, color: '#DAA520'},
+            {scenario: 'vs Boss Monsters', offense: 70, defense: 80, endurance: 85, color: '#FF6347'}
+        ];
+        
+        combatScenarios.forEach((scenario, i) => {
+            const x = 80 + i * 90;
+            
+            // Offense
+            const offHeight = (scenario.offense / 100) * 100;
+            combatCtx.fillStyle = scenario.color;
+            combatCtx.fillRect(x - 30, 200 - offHeight, 18, offHeight);
+            
+            // Defense
+            const defHeight = (scenario.defense / 100) * 100;
+            combatCtx.fillStyle = scenario.color;
+            combatCtx.globalAlpha = 0.7;
+            combatCtx.fillRect(x - 6, 200 - defHeight, 18, defHeight);
+            
+            // Endurance
+            const endHeight = (scenario.endurance / 100) * 100;
+            combatCtx.fillStyle = scenario.color;
+            combatCtx.globalAlpha = 0.4;
+            combatCtx.fillRect(x + 18, 200 - endHeight, 18, endHeight);
+            combatCtx.globalAlpha = 1.0;
+            
+            combatCtx.fillStyle = 'black';
+            combatCtx.fillText(scenario.offense, x - 21, 220);
+            combatCtx.fillText(scenario.defense, x + 3, 220);
+            combatCtx.fillText(scenario.endurance, x + 27, 220);
+            
+            combatCtx.save();
+            combatCtx.translate(x, 250);
+            combatCtx.rotate(-Math.PI / 6);
+            combatCtx.fillText(scenario.scenario, 0, 0);
+            combatCtx.restore();
+        });
+        
+        combatCtx.fillText('Offense (Dark) | Defense (Med) | Endurance (Light)', 250, 30);
+
+        // Chivalric Virtues Benefits
+        const virtuesCanvas = document.getElementById('chivalricVirtuesCanvas');
+        const virtuesCtx = virtuesCanvas.getContext('2d');
+        
+        virtuesCtx.clearRect(0, 0, 600, 250);
+        virtuesCtx.font = '11px Arial';
+        virtuesCtx.textAlign = 'center';
+        
+        const virtues = [
+            {virtue: 'Courage', combat: 85, social: 70, spiritual: 90, color: '#FF6347'},
+            {virtue: 'Honor', combat: 80, social: 95, spiritual: 85, color: '#DAA520'},
+            {virtue: 'Justice', combat: 90, social: 80, spiritual: 95, color: '#4169E1'},
+            {virtue: 'Temperance', combat: 70, social: 85, spiritual: 90, color: '#32CD32'},
+            {virtue: 'Charity', combat: 60, social: 90, spiritual: 100, color: '#9370DB'}
+        ];
+        
+        virtues.forEach((virtue, i) => {
+            const x = 80 + i * 100;
+            
+            // Combat benefit
+            const combatHeight = (virtue.combat / 100) * 80;
+            virtuesCtx.fillStyle = virtue.color;
+            virtuesCtx.fillRect(x - 30, 180 - combatHeight, 18, combatHeight);
+            
+            // Social benefit
+            const socialHeight = (virtue.social / 100) * 80;
+            virtuesCtx.fillStyle = virtue.color;
+            virtuesCtx.globalAlpha = 0.7;
+            virtuesCtx.fillRect(x - 6, 180 - socialHeight, 18, socialHeight);
+            
+            // Spiritual benefit
+            const spiritualHeight = (virtue.spiritual / 100) * 80;
+            virtuesCtx.fillStyle = virtue.color;
+            virtuesCtx.globalAlpha = 0.4;
+            virtuesCtx.fillRect(x + 18, 180 - spiritualHeight, 18, spiritualHeight);
+            virtuesCtx.globalAlpha = 1.0;
+            
+            virtuesCtx.fillStyle = 'black';
+            virtuesCtx.fillText(virtue.combat, x - 21, 195);
+            virtuesCtx.fillText(virtue.social, x + 3, 195);
+            virtuesCtx.fillText(virtue.spiritual, x + 27, 195);
+            virtuesCtx.fillText(virtue.virtue, x, 215);
+        });
+        
+        virtuesCtx.fillText('Combat (Dark) | Social (Med) | Spiritual (Light)', 300, 30);
+
+        // Equipment Impact Analysis
+        const equipCanvas = document.getElementById('equipmentImpactCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 300);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        const equipment = [
+            {type: 'Plate Mail', base: 80, equipped: 95, color: '#4682B4'},
+            {type: 'Great Sword', base: 85, equipped: 100, color: '#B22222'},
+            {type: 'Tower Shield', base: 75, equipped: 90, color: '#2F4F4F'},
+            {type: 'Blessed Arms', base: 70, equipped: 95, color: '#DAA520'}
+        ];
+        
+        equipment.forEach((equip, i) => {
+            const x = 80 + i * 90;
+            
+            // Base effectiveness
+            const baseHeight = (equip.base / 100) * 150;
+            equipCtx.fillStyle = '#DDD';
+            equipCtx.fillRect(x - 25, 200 - baseHeight, 20, baseHeight);
+            
+            // With equipment
+            const equipHeight = (equip.equipped / 100) * 150;
+            equipCtx.fillStyle = equip.color;
+            equipCtx.fillRect(x + 5, 200 - equipHeight, 20, equipHeight);
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(equip.base + '%', x - 15, 220);
+            equipCtx.fillText(equip.equipped + '%', x + 15, 220);
+            equipCtx.fillText(equip.type, x, 240);
+        });
+
+        // Leadership Impact on Party
+        const leadershipCanvas = document.getElementById('leadershipImpactCanvas');
+        const leadershipCtx = leadershipCanvas.getContext('2d');
+        
+        leadershipCtx.clearRect(0, 0, 500, 250);
+        leadershipCtx.font = '12px Arial';
+        leadershipCtx.textAlign = 'center';
+        
+        const leadershipAreas = [
+            {area: 'Coordination', without: 60, with: 85, color: '#4682B4'},
+            {area: 'Survival', without: 70, with: 90, color: '#32CD32'},
+            {area: 'Efficiency', without: 65, with: 80, color: '#DAA520'},
+            {area: 'Morale', without: 55, with: 95, color: '#FF6347'}
+        ];
+        
+        leadershipAreas.forEach((area, i) => {
+            const x = 80 + i * 90;
+            
+            // Without Knight
+            const withoutHeight = (area.without / 100) * 120;
+            leadershipCtx.fillStyle = '#DDD';
+            leadershipCtx.fillRect(x - 25, 180 - withoutHeight, 20, withoutHeight);
+            
+            // With Knight
+            const withHeight = (area.with / 100) * 120;
+            leadershipCtx.fillStyle = area.color;
+            leadershipCtx.fillRect(x + 5, 180 - withHeight, 20, withHeight);
+            
+            leadershipCtx.fillStyle = 'black';
+            leadershipCtx.fillText(area.without + '%', x - 15, 195);
+            leadershipCtx.fillText(area.with + '%', x + 15, 195);
+            leadershipCtx.fillText(area.area, x, 215);
+        });
+
+        // Knight Positioning Tactics
+        const posCanvas = document.getElementById('knightPositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw corridor walls (chokepoint)
+        posCtx.fillStyle = '#654321';
+        posCtx.fillRect(150, 0, 50, 150);
+        posCtx.fillRect(200, 0, 50, 150);
+        posCtx.fillRect(150, 250, 50, 150);
+        posCtx.fillRect(200, 250, 50, 150);
+        
+        // Draw enemies
+        posCtx.fillStyle = '#FF0000';
+        posCtx.fillRect(175, 25, 25, 25);
+        posCtx.fillRect(275, 75, 25, 25);
+        posCtx.fillRect(325, 125, 25, 25);
+        posCtx.fillRect(175, 325, 25, 25);
+        
+        // Draw Knight (chokepoint control)
+        posCtx.fillStyle = '#4682B4';
+        posCtx.fillRect(175, 175, 25, 25);
+        
+        // Draw protected allies behind Knight
+        posCtx.fillStyle = '#32CD32';
+        posCtx.fillRect(125, 225, 20, 20);  // Wizard
+        posCtx.fillRect(225, 225, 20, 20);  // Elf
+        posCtx.fillRect(175, 275, 20, 20);  // Dwarf
+        
+        // Draw protection zones
+        posCtx.strokeStyle = '#4682B4';
+        posCtx.setLineDash([3, 3]);
+        posCtx.lineWidth = 2;
+        
+        // Protected area behind Knight
+        posCtx.beginPath();
+        posCtx.arc(187, 250, 60, 0, Math.PI);
+        posCtx.stroke();
+        
+        // Threat interception zone
+        posCtx.strokeStyle = '#B22222';
+        posCtx.setLineDash([2, 2]);
+        posCtx.beginPath();
+        posCtx.arc(187, 137, 40, 0, 2 * Math.PI);
+        posCtx.stroke();
+        
+        posCtx.setLineDash([]);
+        posCtx.lineWidth = 1;
+        
+        // Labels
+        posCtx.fillStyle = 'white';
+        posCtx.font = '10px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('K', 187, 190);  // Knight
+        posCtx.fillText('W', 135, 238);  // Wizard
+        posCtx.fillText('E', 235, 238);  // Elf
+        posCtx.fillText('D', 185, 288);  // Dwarf
+        
+        posCtx.fillText('E', 187, 40);   // Enemies
+        posCtx.fillText('E', 287, 90);
+        posCtx.fillText('E', 337, 140);
+        posCtx.fillText('E', 187, 340);
+        
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Knight: Chokepoint Control & Ally Protection', 200, 20);
+
+        // Party Survival Rates
+        const survivalCanvas = document.getElementById('partySurvivalCanvas');
+        const survivalCtx = survivalCanvas.getContext('2d');
+        
+        survivalCtx.clearRect(0, 0, 500, 250);
+        survivalCtx.font = '12px Arial';
+        survivalCtx.textAlign = 'center';
+        
+        const scenarios = [
+            {scenario: 'Easy Encounters', without: 85, with: 95, color: '#32CD32'},
+            {scenario: 'Normal Combat', without: 70, with: 90, color: '#4682B4'},
+            {scenario: 'Hard Battles', without: 45, with: 75, color: '#DAA520'},
+            {scenario: 'Boss Fights', without: 25, with: 60, color: '#FF6347'}
+        ];
+        
+        scenarios.forEach((scenario, i) => {
+            const x = 80 + i * 90;
+            
+            // Without Knight
+            const withoutHeight = (scenario.without / 100) * 120;
+            survivalCtx.fillStyle = '#DDD';
+            survivalCtx.fillRect(x - 25, 180 - withoutHeight, 20, withoutHeight);
+            
+            // With Knight
+            const withHeight = (scenario.with / 100) * 120;
+            survivalCtx.fillStyle = scenario.color;
+            survivalCtx.fillRect(x + 5, 180 - withHeight, 20, withHeight);
+            
+            survivalCtx.fillStyle = 'black';
+            survivalCtx.fillText(scenario.without + '%', x - 15, 195);
+            survivalCtx.fillText(scenario.with + '%', x + 15, 195);
+            survivalCtx.fillText(scenario.scenario, x, 215);
+        });
+
+        // Advanced Techniques Mastery
+        const techCanvas = document.getElementById('advancedTechniquesCanvas');
+        const techCtx = techCanvas.getContext('2d');
+        
+        techCtx.clearRect(0, 0, 600, 300);
+        techCtx.font = '11px Arial';
+        techCtx.textAlign = 'center';
+        
+        const techniques = [
+            {tech: 'Defensive Cycling', complexity: 60, effectiveness: 80, honor: 70, color: '#4682B4'},
+            {tech: 'Threat Triangle', complexity: 75, effectiveness: 85, honor: 75, color: '#2F4F4F'},
+            {tech: 'Protective Mobility', complexity: 80, effectiveness: 90, honor: 80, color: '#32CD32'},
+            {tech: 'Honor Channeling', complexity: 90, effectiveness: 95, honor: 100, color: '#DAA520'},
+            {tech: 'Tactical Sacrifice', complexity: 95, effectiveness: 100, honor: 95, color: '#B22222'}
+        ];
+        
+        techniques.forEach((tech, i) => {
+            const x = 80 + i * 100;
+            
+            // Complexity
+            const complexHeight = (tech.complexity / 100) * 120;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.4;
+            techCtx.fillRect(x - 35, 220 - complexHeight, 20, complexHeight);
+            
+            // Effectiveness
+            const effHeight = (tech.effectiveness / 100) * 120;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.7;
+            techCtx.fillRect(x - 10, 220 - effHeight, 20, effHeight);
+            
+            // Honor requirement
+            const honorHeight = (tech.honor / 100) * 120;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 1.0;
+            techCtx.fillRect(x + 15, 220 - honorHeight, 20, honorHeight);
+            
+            techCtx.fillStyle = 'black';
+            techCtx.fillText(tech.complexity, x - 25, 240);
+            techCtx.fillText(tech.effectiveness, x, 240);
+            techCtx.fillText(tech.honor, x + 25, 240);
+            
+            techCtx.save();
+            techCtx.translate(x, 270);
+            techCtx.rotate(-Math.PI / 6);
+            techCtx.fillText(tech.tech, 0, 0);
+            techCtx.restore();
+        });
+        
+        techCtx.fillText('Complexity (Light) | Effectiveness (Med) | Honor Req (Dark)', 300, 30);
+
+        // Honor System Benefits
+        const honorCanvas = document.getElementById('honorSystemCanvas');
+        const honorCtx = honorCanvas.getContext('2d');
+        
+        honorCtx.clearRect(0, 0, 500, 250);
+        honorCtx.font = '12px Arial';
+        honorCtx.textAlign = 'center';
+        
+        const honorLevels = [
+            {level: 'Novice', combat: 50, divine: 20, inspiration: 30, color: '#696969'},
+            {level: 'Worthy', combat: 70, divine: 50, inspiration: 60, color: '#4682B4'},
+            {level: 'Noble', combat: 85, divine: 75, inspiration: 80, color: '#DAA520'},
+            {level: 'Paragon', combat: 95, divine: 90, inspiration: 95, color: '#FFD700'},
+            {level: 'Saint', combat: 100, divine: 100, inspiration: 100, color: '#FFFFFF'}
+        ];
+        
+        honorLevels.forEach((level, i) => {
+            const x = 60 + i * 80;
+            
+            // Combat bonus
+            const combatHeight = (level.combat / 100) * 100;
+            honorCtx.fillStyle = level.color;
+            if (level.color === '#FFFFFF') {
+                honorCtx.strokeStyle = '#000';
+                honorCtx.strokeRect(x - 30, 180 - combatHeight, 18, combatHeight);
+                honorCtx.fillStyle = '#F0F0F0';
+            }
+            honorCtx.fillRect(x - 30, 180 - combatHeight, 18, combatHeight);
+            
+            // Divine favor
+            const divineHeight = (level.divine / 100) * 100;
+            honorCtx.fillStyle = level.color;
+            if (level.color === '#FFFFFF') honorCtx.fillStyle = '#F0F0F0';
+            honorCtx.globalAlpha = 0.7;
+            honorCtx.fillRect(x - 6, 180 - divineHeight, 18, divineHeight);
+            
+            // Inspiration aura
+            const inspHeight = (level.inspiration / 100) * 100;
+            honorCtx.fillStyle = level.color;
+            if (level.color === '#FFFFFF') honorCtx.fillStyle = '#F0F0F0';
+            honorCtx.globalAlpha = 0.4;
+            honorCtx.fillRect(x + 18, 180 - inspHeight, 18, inspHeight);
+            honorCtx.globalAlpha = 1.0;
+            
+            honorCtx.fillStyle = 'black';
+            honorCtx.fillText(level.combat, x - 21, 195);
+            honorCtx.fillText(level.divine, x + 3, 195);
+            honorCtx.fillText(level.inspiration, x + 27, 195);
+            honorCtx.fillText(level.level, x, 215);
+        });
+        
+        honorCtx.fillText('Combat (Dark) | Divine (Med) | Inspiration (Light)', 250, 30);
+    </script>
+</body>
+</html>

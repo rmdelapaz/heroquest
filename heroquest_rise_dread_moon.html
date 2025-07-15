@@ -55,7 +55,17 @@
         backdrop-filter: blur(8px);
     }
 
-  
+    /* Knight-specific styling */
+    .knight-principle {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
+        border: 2px solid #fbbf24;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        border-left: 6px solid #f59e0b;
+        box-shadow: 0 4px 16px rgba(30, 64, 175, 0.3);
+    }
+
     /* Lunar principle boxes */
     .lunar-principle {
         background: linear-gradient(135deg, #374151, #4b5563);
@@ -84,6 +94,75 @@
         padding: 24px;
         margin: 24px 0;
         border-left: 4px solid #f59e0b;
+    }
+
+    /* Beast showcase styling */
+    .beast-forms {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 24px 0;
+    }
+
+    .beast-showcase {
+        background: linear-gradient(135deg, #4b5563, #6b7280);
+        border: 2px solid #f97316;
+        border-radius: 12px;
+        padding: 20px;
+        border-left: 4px solid #ea580c;
+    }
+
+    .beast-showcase h4 {
+        color: #fbbf24;
+        margin-top: 0;
+        font-size: 1.2em;
+    }
+
+    /* Knight vs Beast comparison */
+    .knight-beast-comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin: 24px 0;
+    }
+
+    .knight-form, .beast-form {
+        padding: 24px;
+        border-radius: 12px;
+        border: 2px solid;
+    }
+
+    .knight-form {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
+        border-color: #60a5fa;
+    }
+
+    .beast-form {
+        background: linear-gradient(135deg, #dc2626, #ef4444);
+        border-color: #f87171;
+    }
+
+    /* Knight equipment display */
+    .knight-equipment {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .equipment-item {
+        background: linear-gradient(135deg, #475569, #64748b);
+        border: 2px solid #94a3b8;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .equipment-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        border-color: #fbbf24;
     }
 
     /* Moon phase tracker */
@@ -221,6 +300,7 @@
     .lycanthrope { background-color: #ef4444; color: white; }
     .human-form { background-color: #3b82f6; color: white; }
     .beast-form { background-color: #dc2626; color: white; }
+    .knight-form { background-color: #1e40af; color: white; }
 
     /* Portal effect */
     .dread-moon-portal {
@@ -310,6 +390,18 @@
         
         h1 {
             font-size: 2rem;
+        }
+        
+        .knight-beast-comparison {
+            grid-template-columns: 1fr;
+        }
+        
+        .knight-equipment {
+            grid-template-columns: 1fr;
+        }
+        
+        .beast-forms {
+            grid-template-columns: 1fr;
         }
         
         .moon-cycles {
@@ -684,6 +776,138 @@
             </ul>
         </div>
 
+        <h2>🛡️ The Knight's Lycanthropic Ordeal</h2>
+        
+        <div class="knight-principle">
+            <h2>⚔️ Honor vs. Beast: The Knight's Greatest Trial</h2>
+            <p><strong>For the Knight, lycanthropy represents the ultimate test of chivalric values!</strong> Sworn to protect the innocent, uphold justice, and maintain honor, the Knight must now wrestle with an inner beast that threatens everything they stand for. This creates a unique paradox - can true honor survive when you become the very monster you've sworn to destroy?</p>
+            
+            <p><strong>The Knight's Dilemma:</strong> Every transformation risks breaking sacred oaths. Every full moon becomes a test of will stronger than any dragon or dungeon. The Knight must learn to fight not just external evil, but the darkness that now lives within their own soul - while somehow maintaining the code of chivalry that defines their very identity.</p>
+        </div>
+
+        <h2>⚔️ Knight vs. Beast: The Internal War</h2>
+        
+        <div class="knight-beast-comparison">
+            <div class="knight-form">
+                <h3>⚔️ Knight Form</h3>
+                <p><strong>Chivalric Strengths:</strong></p>
+                <ul>
+                    <li>🛡️ Superior armor and defense</li>
+                    <li>⚔️ Masterful weapon techniques</li>
+                    <li>🙏 Divine blessing and protection</li>
+                    <li>👑 Natural leadership abilities</li>
+                    <li>🤝 Strong team coordination</li>
+                    <li>📜 Tactical planning expertise</li>
+                </ul>
+                
+                <p><strong>Moral Anchors:</strong></p>
+                <ul>
+                    <li>Honor code prevents unnecessary violence</li>
+                    <li>Oath to protect the innocent</li>
+                    <li>Duty to uphold justice</li>
+                    <li>Loyalty to companions</li>
+                </ul>
+            </div>
+            
+            <div class="beast-form">
+                <h3>🐺 Beast Form</h3>
+                <p><strong>Lycanthropic Powers:</strong></p>
+                <ul>
+                    <li>🦷 Natural weapons (claws, fangs)</li>
+                    <li>💪 Enhanced strength and speed</li>
+                    <li>👁️ Supernatural senses</li>
+                    <li>🩹 Accelerated healing</li>
+                    <li>😱 Fear-inducing presence</li>
+                    <li>🌙 Lunar-enhanced abilities</li>
+                </ul>
+                
+                <p><strong>Beast Instincts:</strong></p>
+                <ul>
+                    <li>Aggression overrides honor</li>
+                    <li>Pack mentality vs. individual duty</li>
+                    <li>Survival instincts vs. sacrifice</li>
+                    <li>Territory marking vs. chivalry</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>⚔️ Knight Equipment & Lycanthropic Challenges</h2>
+        
+        <div class="knight-equipment">
+            <div class="equipment-item">
+                <h4>🛡️ Great Shield</h4>
+                <p><strong>Human Form:</strong> +3 Defense, blocks attacks</p>
+                <p><strong>Beast Form:</strong> Too heavy, restricts movement</p>
+                <p><em>Conflict: Protection vs. mobility</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>⚔️ Blessed Longsword</h4>
+                <p><strong>Human Form:</strong> +2 Attack, +1 vs. evil</p>
+                <p><strong>Beast Form:</strong> Cannot wield, drops when transforming</p>
+                <p><em>Challenge: Divine blessing vs. cursed nature</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>🛡️ Plate Armor</h4>
+                <p><strong>Human Form:</strong> +4 Defense, intimidation</p>
+                <p><strong>Beast Form:</strong> Restricts transformation, may break</p>
+                <p><em>Dilemma: Heavy protection vs. natural form</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>🐎 Noble Steed</h4>
+                <p><strong>Human Form:</strong> Mounted combat, mobility</p>
+                <p><strong>Beast Form:</strong> Horse fears lycanthrope scent</p>
+                <p><em>Bond tested: Loyalty vs. primal fear</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>🙏 Holy Symbol</h4>
+                <p><strong>Human Form:</strong> Divine protection, turn undead</p>
+                <p><strong>Beast Form:</strong> May cause self-harm if cursed</p>
+                <p><em>Crisis: Faith vs. curse</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>📜 Code of Chivalry</h4>
+                <p><strong>Human Form:</strong> Moral guidance, inspiration</p>
+                <p><strong>Beast Form:</strong> Forgotten, instincts override</p>
+                <p><em>Core conflict: Reason vs. beast mind</em></p>
+            </div>
+        </div>
+
+        <h2>🛡️ The Knight's Social Burden</h2>
+        
+        <div class="transformation-box">
+            <h3>👑 Leadership Under the Curse</h3>
+            <p><strong>The Knight's lycanthropy creates unprecedented social challenges:</strong></p>
+            
+            <p><strong>🤝 Team Dynamics:</strong></p>
+            <ul>
+                <li>Maintaining leadership authority despite dangerous condition</li>
+                <li>Protecting party members from their own beast form</li>
+                <li>Dealing with fear and distrust from companions</li>
+                <li>Balancing team safety with personal transformation needs</li>
+            </ul>
+            
+            <p><strong>👑 Noble Responsibilities:</strong></p>
+            <ul>
+                <li>Concealing condition from subjects and peers</li>
+                <li>Managing lands and duties while dealing with curse</li>
+                <li>Arranging for competent substitutes during danger periods</li>
+                <li>Maintaining public image and confidence</li>
+            </ul>
+            
+            <p><strong>⛪ Religious Obligations:</strong></p>
+            <ul>
+                <li>Seeking divine guidance and possible cure through faith</li>
+                <li>Confessing condition to religious authorities</li>
+                <li>Balancing curse with holy calling and divine favor</li>
+                <li>Using religious discipline to maintain human control</li>
+            </ul>
+        </div>
+
         <h2>🌕 Advanced Lycanthrope Strategies</h2>
         
         <canvas id="lycanthrope_strategies_canvas" width="600" height="350"></canvas>
@@ -728,6 +952,7 @@
                 <li>Delicate operations requiring precise control</li>
                 <li>Shopping, equipment maintenance, and planning</li>
                 <li>Training and skill development sessions</li>
+                <li><strong>Knight Focus:</strong> Court duties, religious ceremonies, public appearances</li>
             </ul>
             
             <p><strong>🌓 Quarter Moon Adventures (Moderate Risk):</strong></p>
@@ -736,6 +961,7 @@
                 <li>Investigations and puzzle-solving quests</li>
                 <li>Balanced risk-reward scenarios</li>
                 <li>Team coordination building exercises</li>
+                <li><strong>Knight Focus:</strong> Military campaigns, standard questing duties</li>
             </ul>
             
             <p><strong>🌕 Full Moon Adventures (High Intensity):</strong></p>
@@ -744,6 +970,7 @@
                 <li>Assault operations against major threats</li>
                 <li>Emergency response situations</li>
                 <li>Embracing the beast for greater good</li>
+                <li><strong>Knight Focus:</strong> Isolation protocols, trusted substitutes take command</li>
             </ul>
         </div>
 
@@ -770,14 +997,24 @@
             <p><strong>⚖️ The Balanced:</strong> Use both human and beast forms strategically</p>
             <p><strong>🌟 The Teacher:</strong> Help another lycanthrope achieve control</p>
             <p><strong>💊 The Seeker:</strong> Find and achieve a permanent cure for the curse</p>
+            
+            <p><strong>🛡️ Knight-Specific Trials:</strong></p>
+            <ul>
+                <li><strong>The Honorable Beast:</strong> Maintain chivalric principles while in beast form</li>
+                <li><strong>The Noble Leader:</strong> Successfully command party through full lunar cycle</li>
+                <li><strong>The Divine Warrior:</strong> Use lycanthropic power for righteous purposes</li>
+                <li><strong>The Code Keeper:</strong> Create new chivalric principles embracing dual nature</li>
+            </ul>
         </div>
 
         <h2>🌟 Next Adventure Preview</h2>
         
-        <p>In our next lecture, we'll explore <strong>"Jungles of Delthrak"</strong> - Wilderness survival and environmental combat. Master natures' cchallenges and predator encounters.</p>
+        <p>In our next lecture, we'll explore <strong>"Jungles of Delthrak"</strong> - Wilderness survival and environmental combat. Master nature's challenges and predator encounters.</p>
         
         <div class="lunar-principle">
             <p><strong>Remember:</strong> Rise of the Dread Moon taught us that heroism isn't about being perfect - it's about maintaining your humanity even when you're literally becoming a monster. The greatest battles aren't always against external enemies, but against the darkness within ourselves. Sometimes the most heroic act is learning to live with aspects of yourself that you fear, and finding ways to use even your darkest traits in service of the light!</p>
+            
+            <p><strong>For the Knight:</strong> The curse may change the body, but cannot touch a truly noble heart. A Knight who maintains their protective instincts and moral core, whether human or wolf, proves that chivalry is not about perfection, but about choosing to serve others regardless of personal cost!</p>
         </div>
     </div>
 

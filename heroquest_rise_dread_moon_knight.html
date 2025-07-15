@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Rise of the Dread Moon - Knight & Lycanthropic Transformation</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+
+<style>
+    /* Base styling with dark theme and excellent readability */
+    body {
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.7;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px;
+        background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+        color: #f1f5f9;
+        font-size: 16px;
+        position: relative;
+    }
+
+    /* Night sky effect container */
+    .night-sky {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Twinkling stars */
+    .star {
+        position: absolute;
+        color: #fbbf24;
+        font-size: 8px;
+        animation: twinkle 2s ease-in-out infinite;
+        pointer-events: none;
+    }
+
+    @keyframes twinkle {
+        0%, 100% { opacity: 0.3; }
+        50% { opacity: 1; }
+    }
+
+    /* Main container with dark theme */
+    .container {
+        background: rgba(15, 23, 42, 0.95);
+        padding: 48px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        border: 1px solid #374151;
+        backdrop-filter: blur(8px);
+    }
+
+    /* Knight-specific styling */
+    .knight-principle {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
+        border: 2px solid #fbbf24;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        border-left: 6px solid #f59e0b;
+        box-shadow: 0 4px 16px rgba(30, 64, 175, 0.3);
+    }
+
+    /* Lunar principle boxes */
+    .lunar-principle {
+        background: linear-gradient(135deg, #374151, #4b5563);
+        border: 2px solid #f59e0b;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        border-left: 6px solid #fbbf24;
+        box-shadow: 0 4px 16px rgba(245, 158, 11, 0.2);
+    }
+
+    /* Transformation boxes */
+    .transformation-box {
+        background: linear-gradient(135deg, #4b5563, #6b7280);
+        border: 2px solid #f97316;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #ea580c;
+    }
+
+    .moon-analysis {
+        background: linear-gradient(135deg, #374151, #4b5563);
+        border: 2px solid #fbbf24;
+        border-radius: 12px;
+        padding: 24px;
+        margin: 24px 0;
+        border-left: 4px solid #f59e0b;
+    }
+
+    /* Knight vs Beast comparison */
+    .knight-beast-comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        margin: 24px 0;
+    }
+
+    .knight-form, .beast-form {
+        padding: 24px;
+        border-radius: 12px;
+        border: 2px solid;
+    }
+
+    .knight-form {
+        background: linear-gradient(135deg, #1e40af, #3b82f6);
+        border-color: #60a5fa;
+    }
+
+    .beast-form {
+        background: linear-gradient(135deg, #dc2626, #ef4444);
+        border-color: #f87171;
+    }
+
+    /* Knight equipment display */
+    .knight-equipment {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin: 24px 0;
+    }
+
+    .equipment-item {
+        background: linear-gradient(135deg, #475569, #64748b);
+        border: 2px solid #94a3b8;
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .equipment-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        border-color: #fbbf24;
+    }
+
+    /* Chivalry meter */
+    .chivalry-meter {
+        width: 100%;
+        height: 24px;
+        background: linear-gradient(to right, #dc2626, #f59e0b, #10b981, #3b82f6);
+        border: 2px solid #fbbf24;
+        border-radius: 12px;
+        margin: 16px 0;
+        position: relative;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .chivalry-indicator {
+        position: absolute;
+        top: -2px;
+        width: 4px;
+        height: 28px;
+        background: white;
+        border: 1px solid #1e293b;
+        border-radius: 2px;
+        transition: left 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Moon phase tracker */
+    .moon-cycles {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 32px 0;
+        padding: 24px;
+        background: rgba(75, 85, 99, 0.3);
+        border-radius: 12px;
+        border: 1px solid #6b7280;
+    }
+
+    .moon-phase {
+        background: linear-gradient(135deg, #6b7280, #9ca3af);
+        border: 2px solid #fbbf24;
+        border-radius: 50%;
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .moon-phase:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 16px rgba(251, 191, 36, 0.4);
+    }
+
+    .moon-phase.active {
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        color: #1e293b;
+        transform: scale(1.05);
+    }
+
+    /* Transformation tracker */
+    .transformation-tracker {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 24px 0;
+        padding: 24px;
+        background: rgba(239, 68, 68, 0.1);
+        border-radius: 12px;
+        border: 1px solid #ef4444;
+    }
+
+    .transform-stage {
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        border: 2px solid #fbbf24;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: white;
+        font-size: 12px;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Meters with better visibility */
+    .moon-phase-meter,
+    .curse-meter {
+        width: 100%;
+        height: 24px;
+        background: linear-gradient(to right, #10b981, #f59e0b, #ef4444, #8b5cf6);
+        border: 2px solid #fbbf24;
+        border-radius: 12px;
+        margin: 16px 0;
+        position: relative;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .moon-indicator,
+    .curse-indicator {
+        position: absolute;
+        top: -2px;
+        width: 4px;
+        height: 28px;
+        background: white;
+        border: 1px solid #1e293b;
+        border-radius: 2px;
+        transition: left 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Lunar battlefield grid */
+    .lunar-battlefield {
+        display: grid;
+        grid-template-columns: repeat(10, 32px);
+        grid-template-rows: repeat(8, 32px);
+        gap: 1px;
+        margin: 24px auto;
+        border: 3px solid #f59e0b;
+        background: #0f172a;
+        padding: 12px;
+        width: fit-content;
+        border-radius: 8px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .lunar-cell {
+        width: 32px;
+        height: 32px;
+        border: 1px solid #374151;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-radius: 2px;
+    }
+
+    .lunar-cell:hover {
+        transform: scale(1.1);
+        z-index: 10;
+        box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+    }
+
+    /* Lunar cell types */
+    .moonlight { background-color: #fbbf24; color: #1e293b; }
+    .shadow { background-color: #374151; color: #f1f5f9; }
+    .cursed-ground { background-color: #8b5cf6; color: white; }
+    .normal-terrain { background-color: #92400e; color: white; }
+    .lycanthrope { background-color: #ef4444; color: white; }
+    .human-form { background-color: #3b82f6; color: white; }
+    .beast-form { background-color: #dc2626; color: white; }
+    .knight-form { background-color: #1e40af; color: white; }
+
+    /* Portal effect */
+    .dread-moon-portal {
+        font-size: 64px;
+        text-align: center;
+        margin: 32px 0;
+        animation: moon-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes moon-pulse {
+        0%, 100% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    /* Text improvements */
+    p {
+        margin-bottom: 16px;
+        line-height: 1.7;
+        color: #e2e8f0;
+    }
+
+    strong {
+        color: #fbbf24;
+        font-weight: 600;
+    }
+
+    em {
+        color: #cbd5e0;
+        font-style: italic;
+    }
+
+    /* Lists */
+    ul, ol {
+        margin: 16px 0;
+        padding-left: 24px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        color: #d1d5db;
+        line-height: 1.6;
+    }
+
+    /* Links */
+    a {
+        color: #fbbf24;
+        text-decoration: none;
+        font-weight: 500;
+        border-bottom: 1px solid transparent;
+        transition: all 0.2s ease;
+    }
+
+    a:hover {
+        color: #f59e0b;
+        border-bottom-color: #f59e0b;
+    }
+
+    /* Code elements */
+    code {
+        background: #374151;
+        color: #fde68a;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        font-size: 0.9em;
+        border: 1px solid #4b5563;
+    }
+
+    /* Mermaid diagrams */
+    .mermaid {
+        background: rgba(30, 41, 59, 0.8) !important;
+        border: 2px solid #f59e0b !important;
+        border-radius: 12px !important;
+        padding: 24px !important;
+        margin: 24px auto !important;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+        body {
+            padding: 16px;
+        }
+        
+        .container {
+            padding: 24px;
+        }
+        
+        h1 {
+            font-size: 2rem;
+        }
+        
+        .knight-beast-comparison {
+            grid-template-columns: 1fr;
+        }
+        
+        .knight-equipment {
+            grid-template-columns: 1fr;
+        }
+        
+        .moon-cycles {
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        
+        .moon-phase {
+            width: 56px;
+            height: 56px;
+            font-size: 20px;
+        }
+        
+        .transformation-tracker {
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .transform-stage {
+            width: 64px;
+            height: 64px;
+            font-size: 10px;
+        }
+        
+        .lunar-battlefield {
+            grid-template-columns: repeat(10, 24px);
+            grid-template-rows: repeat(8, 24px);
+        }
+        
+        .lunar-cell {
+            width: 24px;
+            height: 24px;
+            font-size: 10px;
+        }
+    }
+
+    /* Focus accessibility */
+    :focus {
+        outline: 2px solid #fbbf24;
+        outline-offset: 2px;
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+        
+        .star {
+            animation: none !important;
+        }
+        
+        .dread-moon-portal {
+            animation: none !important;
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="container night-sky">
+        <h1>🌙 Rise of the Dread Moon: The Knight's Lycanthropic Ordeal 🛡️🐺</h1>
+        
+        <div class="knight-principle">
+            <h2>⚔️ The Knight's Greatest Trial: Honor vs. Beast</h2>
+            <p><strong>For the Knight, lycanthropy represents the ultimate test of chivalric values!</strong> Sworn to protect the innocent, uphold justice, and maintain honor, the Knight must now wrestle with an inner beast that threatens everything they stand for. This expansion transformed the noble Knight from stalwart defender into a walking moral dilemma - can true honor survive when you become the very monster you've sworn to destroy?</p>
+            
+            <p><strong>The Knight's Paradox:</strong> Every transformation risks breaking sacred oaths. Every full moon becomes a test of will stronger than any dragon or dungeon. The Knight must learn to fight not just external evil, but the darkness that now lives within their own soul - while somehow maintaining the code of chivalry that defines their very identity.</p>
+        </div>
+
+        <div class="dread-moon-portal">
+            🌕
+        </div>
+
+        <div class="moon-phase-meter">
+            <div class="moon-indicator" id="moon_indicator" style="left: 75%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Moon Phase: <span id="moon_phase">FULL MOON RISING</span></em></p>
+
+        <div class="chivalry-meter">
+            <div class="chivalry-indicator" id="chivalry_indicator" style="left: 60%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Chivalric Code: <span id="chivalry_level">HONOR UNDER STRAIN</span></em></p>
+
+        <div class="curse-meter">
+            <div class="curse-indicator" id="curse_indicator" style="left: 60%;"></div>
+        </div>
+        <p style="text-align: center;"><em>Curse Severity: <span id="curse_level">LYCANTHROPIC SURGE</span></em></p>
+
+        <h2>🛡️ The Knight's Lycanthropic Dilemma</h2>
+        
+        <div class="mermaid">
+            graph TD
+                A[Lycanthropic Knight] --> B[Honor Code Conflict]
+                A --> C[Equipment Limitations]
+                A --> D[Social Responsibilities]
+                A --> E[Combat Adaptations]
+                
+                B --> B1[Protect vs. Destroy]
+                B --> B2[Truth vs. Secrecy]
+                B --> B3[Duty vs. Safety]
+                B --> B4[Justice vs. Survival]
+                
+                C --> C1[Heavy Armor Burden]
+                C --> C2[Blessed Weapons]
+                C --> C3[Shield Techniques]
+                C --> C4[Mount Relationships]
+                
+                D --> D1[Leadership Role]
+                D --> D2[Public Expectations]
+                D --> D3[Noble Obligations]
+                D --> D4[Religious Duties]
+                
+                E --> E1[Defensive Priorities]
+                E --> E2[Team Protection]
+                E --> E3[Tactical Planning]
+                E --> E4[Beast Form Strategy]
+                
+                style A fill:#1e40af,stroke:#333,stroke-width:3px
+                style B fill:#ef4444,stroke:#333,stroke-width:2px
+                style C fill:#f59e0b,stroke:#333,stroke-width:2px
+                style D fill:#10b981,stroke:#333,stroke-width:2px
+                style E fill:#8b5cf6,stroke:#333,stroke-width:2px
+        </div>
+
+        <h2>🛡️ Knight vs. Beast: The Internal War</h2>
+        
+        <div class="knight-beast-comparison">
+            <div class="knight-form">
+                <h3>⚔️ Knight Form</h3>
+                <p><strong>Chivalric Strengths:</strong></p>
+                <ul>
+                    <li>🛡️ Superior armor and defense</li>
+                    <li>⚔️ Masterful weapon techniques</li>
+                    <li>🙏 Divine blessing and protection</li>
+                    <li>👑 Natural leadership abilities</li>
+                    <li>🤝 Strong team coordination</li>
+                    <li>📜 Tactical planning expertise</li>
+                </ul>
+                
+                <p><strong>Moral Anchors:</strong></p>
+                <ul>
+                    <li>Honor code prevents unnecessary violence</li>
+                    <li>Oath to protect the innocent</li>
+                    <li>Duty to uphold justice</li>
+                    <li>Loyalty to companions</li>
+                </ul>
+            </div>
+            
+            <div class="beast-form">
+                <h3>🐺 Beast Form</h3>
+                <p><strong>Lycanthropic Powers:</strong></p>
+                <ul>
+                    <li>🦷 Natural weapons (claws, fangs)</li>
+                    <li>💪 Enhanced strength and speed</li>
+                    <li>👁️ Supernatural senses</li>
+                    <li>🩹 Accelerated healing</li>
+                    <li>😱 Fear-inducing presence</li>
+                    <li>🌙 Lunar-enhanced abilities</li>
+                </ul>
+                
+                <p><strong>Beast Instincts:</strong></p>
+                <ul>
+                    <li>Aggression overrides honor</li>
+                    <li>Pack mentality vs. individual duty</li>
+                    <li>Survival instincts vs. sacrifice</li>
+                    <li>Territory marking vs. chivalry</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>⚔️ Knight Equipment & Lycanthropic Challenges</h2>
+        
+        <div class="knight-equipment">
+            <div class="equipment-item">
+                <h4>🛡️ Great Shield</h4>
+                <p><strong>Human Form:</strong> +3 Defense, blocks attacks</p>
+                <p><strong>Beast Form:</strong> Too heavy, restricts movement</p>
+                <p><em>Conflict: Protection vs. mobility</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>⚔️ Blessed Longsword</h4>
+                <p><strong>Human Form:</strong> +2 Attack, +1 vs. evil</p>
+                <p><strong>Beast Form:</strong> Cannot wield, drops when transforming</p>
+                <p><em>Challenge: Divine blessing vs. cursed nature</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>🛡️ Plate Armor</h4>
+                <p><strong>Human Form:</strong> +4 Defense, intimidation</p>
+                <p><strong>Beast Form:</strong> Restricts transformation, may break</p>
+                <p><em>Dilemma: Heavy protection vs. natural form</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>🐎 Noble Steed</h4>
+                <p><strong>Human Form:</strong> Mounted combat, mobility</p>
+                <p><strong>Beast Form:</strong> Horse fears lycanthrope scent</p>
+                <p><em>Bond tested: Loyalty vs. primal fear</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>🙏 Holy Symbol</h4>
+                <p><strong>Human Form:</strong> Divine protection, turn undead</p>
+                <p><strong>Beast Form:</strong> May cause self-harm if cursed</p>
+                <p><em>Crisis: Faith vs. curse</em></p>
+            </div>
+            
+            <div class="equipment-item">
+                <h4>📜 Code of Chivalry</h4>
+                <p><strong>Human Form:</strong> Moral guidance, inspiration</p>
+                <p><strong>Beast Form:</strong> Forgotten, instincts override</p>
+                <p><em>Core conflict: Reason vs. beast mind</em></p>
+            </div>
+        </div>
+
+        <h2>🌙 Interactive Moon Phase Tracker</h2>
+        
+        <div class="moon-cycles">
+            <div class="moon-phase" onclick="setMoonPhase(0, 'new')" title="New Moon">
+                🌑
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(1, 'waxing')" title="Waxing Crescent">
+                🌒
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(2, 'quarter')" title="First Quarter">
+                🌓
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(3, 'waxing-gibbous')" title="Waxing Gibbous">
+                🌔
+            </div>
+            <div class="moon-phase active" onclick="setMoonPhase(4, 'full')" title="Full Moon">
+                🌕
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(5, 'waning-gibbous')" title="Waning Gibbous">
+                🌖
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(6, 'last-quarter')" title="Last Quarter">
+                🌗
+            </div>
+            <div class="moon-phase" onclick="setMoonPhase(7, 'waning')" title="Waning Crescent">
+                🌘
+            </div>
+        </div>
+
+        <div id="moon_effects" style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 10px;">
+            <strong>Lunar Effects on Knight:</strong> Full Moon - Transformation inevitable! Chivalric code severely tested. Equipment becomes burden rather than aid.
+        </div>
+
+        <h2>🔄 The Knight's Transformation Cycle</h2>
+        
+        <div class="transformation-tracker">
+            <div class="transform-stage">
+                <div style="font-size: 20px;">⚔️</div>
+                <div>Noble</div>
+                <div>Knight</div>
+            </div>
+            <div style="font-size: 24px; color: #ffa726;">→</div>
+            <div class="transform-stage">
+                <div style="font-size: 20px;">😰</div>
+                <div>Honor</div>
+                <div>Conflict</div>
+            </div>
+            <div style="font-size: 24px; color: #ffa726;">→</div>
+            <div class="transform-stage">
+                <div style="font-size: 20px;">🛡️</div>
+                <div>Fighting</div>
+                <div>Change</div>
+            </div>
+            <div style="font-size: 24px; color: #ffa726;">→</div>
+            <div class="transform-stage">
+                <div style="font-size: 20px;">🐺</div>
+                <div>Beast</div>
+                <div>Unleashed</div>
+            </div>
+            <div style="font-size: 24px; color: #ffa726;">→</div>
+            <div class="transform-stage">
+                <div style="font-size: 20px;">😱</div>
+                <div>Guilt &</div>
+                <div>Shame</div>
+            </div>
+        </div>
+
+        <h2>⚔️ Knight Lycanthrope Combat Strategies</h2>
+        
+        <canvas id="knight_combat_canvas" width="600" height="300"></canvas>
+        
+        <div class="transformation-box">
+            <h3>🛡️ Adaptive Knight Combat</h3>
+            <p><strong>The Knight must develop unique strategies to maintain effectiveness across forms:</strong></p>
+            
+            <p><strong>⚔️ Pre-Transformation Tactics:</strong></p>
+            <ul>
+                <li>Position allies safely away from transformation zone</li>
+                <li>Remove heavy armor to prevent restriction damage</li>
+                <li>Secure weapons and holy items away from beast reach</li>
+                <li>Establish retreat signals and safety protocols</li>
+            </ul>
+            
+            <p><strong>🐺 Beast Form Combat:</strong></p>
+            <ul>
+                <li>Use enhanced speed for hit-and-run tactics</li>
+                <li>Leverage fear effects to scatter weak enemies</li>
+                <li>Coordinate with other lycanthropes if present</li>
+                <li>Target enemy spell-casters and ranged attackers</li>
+            </ul>
+            
+            <p><strong>🛡️ Post-Transformation Recovery:</strong></p>
+            <ul>
+                <li>Immediate equipment re-acquisition</li>
+                <li>Assess collateral damage and allies' safety</li>
+                <li>Re-establish team leadership and coordination</li>
+                <li>Address any honor code violations that occurred</li>
+            </ul>
+        </div>
+
+        <h2>🏰 The Knight's Social Burden</h2>
+        
+        <div class="knight-principle">
+            <h3>👑 Leadership Under the Curse</h3>
+            <p><strong>The Knight's lycanthropy creates unprecedented social challenges:</strong></p>
+            
+            <p><strong>🤝 Team Dynamics:</strong></p>
+            <ul>
+                <li>Maintaining leadership authority despite dangerous condition</li>
+                <li>Protecting party members from their own beast form</li>
+                <li>Dealing with fear and distrust from companions</li>
+                <li>Balancing team safety with personal transformation needs</li>
+            </ul>
+            
+            <p><strong>👑 Noble Responsibilities:</strong></p>
+            <ul>
+                <li>Concealing condition from subjects and peers</li>
+                <li>Managing lands and duties while dealing with curse</li>
+                <li>Arranging for competent substitutes during danger periods</li>
+                <li>Maintaining public image and confidence</li>
+            </ul>
+            
+            <p><strong>⛪ Religious Obligations:</strong></p>
+            <ul>
+                <li>Seeking divine guidance and possible cure through faith</li>
+                <li>Confessing condition to religious authorities</li>
+                <li>Balancing curse with holy calling and divine favor</li>
+                <li>Using religious discipline to maintain human control</li>
+            </ul>
+        </div>
+
+        <h2>🌙 Interactive Knight Battlefield</h2>
+        
+        <div class="moon-analysis">
+            <p><strong>Command the battlefield as a lycanthropic Knight!</strong> Click terrain to see how environmental factors affect your dual nature and tactical options.</p>
+            
+            <div class="lunar-battlefield" id="lunar_battlefield">
+                <!-- Grid will be populated by JavaScript -->
+            </div>
+            
+            <p><strong>Terrain Legend:</strong> 🌙 Moonlight | 🌑 Shadow | 💜 Cursed Ground | 🌍 Normal | ⚔️ Knight | 👤 Human | 🐺 Beast</p>
+            
+            <div id="terrain_effects" style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 10px;">
+                <strong>Knight Environmental Effects:</strong> Click terrain tiles to analyze how different environments affect your chivalric duties and lycanthropic nature!
+            </div>
+        </div>
+
+        <h2>🛡️ Chivalric Code vs. Beast Instincts</h2>
+        
+        <canvas id="chivalry_conflict_canvas" width="600" height="350"></canvas>
+        
+        <div class="transformation-box">
+            <h3>⚖️ The Honor Struggle</h3>
+            <p><strong>Each aspect of the chivalric code faces direct challenge from lycanthropic instincts:</strong></p>
+            
+            <p><strong>🛡️ Protect the Innocent vs. 🐺 Hunt the Weak</strong></p>
+            <ul>
+                <li>Knight code: Shield others from harm</li>
+                <li>Beast instinct: Target vulnerable prey first</li>
+                <li>Resolution: Learn to channel protective instincts</li>
+            </ul>
+            
+            <p><strong>⚔️ Honor in Combat vs. 🩸 Savage Victory</strong></p>
+            <ul>
+                <li>Knight code: Fair fight, mercy to defeated</li>
+                <li>Beast instinct: Kill or be killed, no mercy</li>
+                <li>Resolution: Develop controlled aggression techniques</li>
+            </ul>
+            
+            <p><strong>🤝 Loyalty to Companions vs. 👥 Pack Hierarchy</strong></p>
+            <ul>
+                <li>Knight code: Faithful to chosen allies</li>
+                <li>Beast instinct: Follow alpha, dominate weaker</li>
+                <li>Resolution: Merge leadership with pack dynamics</li>
+            </ul>
+            
+            <p><strong>🙏 Divine Service vs. 🌙 Lunar Worship</strong></p>
+            <ul>
+                <li>Knight code: Serve higher divine purpose</li>
+                <li>Beast instinct: Answer call of moon and nature</li>
+                <li>Resolution: Find divine purpose in curse acceptance</li>
+            </ul>
+        </div>
+
+        <h2>🎯 Knight-Specific Lycanthrope Mastery</h2>
+        
+        <div class="lunar-principle">
+            <h3>🏆 Advanced Knight Techniques</h3>
+            
+            <p><strong>🛡️ The Protective Transformation:</strong></p>
+            <ul>
+                <li>Learning to transform voluntarily to defend others</li>
+                <li>Using beast form as intimidation without violence</li>
+                <li>Channeling lycanthropic power for heroic purposes</li>
+                <li>Maintaining protective instincts in beast form</li>
+            </ul>
+            
+            <p><strong>⚔️ Sacred Beast Warrior Path:</strong></p>
+            <ul>
+                <li>Blessing weapons to remain effective in beast form</li>
+                <li>Developing hybrid fighting techniques</li>
+                <li>Creating armor designed for transformation</li>
+                <li>Teaching other knights to work with lycanthropes</li>
+            </ul>
+            
+            <p><strong>👑 Noble Beast Leader:</strong></p>
+            <ul>
+                <li>Ruling justly despite cursed condition</li>
+                <li>Establishing lycanthrope rights and protections</li>
+                <li>Creating new codes of honor for cursed knights</li>
+                <li>Becoming advocate for other afflicted nobles</li>
+            </ul>
+        </div>
+
+        <h2>🌕 The Knight's Lunar Calendar</h2>
+        
+        <div class="moon-analysis">
+            <h3>📅 Strategic Honor Management</h3>
+            <p><strong>The wise Knight plans duties around lunar cycles to minimize honor conflicts:</strong></p>
+            
+            <p><strong>🌑 New Moon Duties (Peak Honor Period):</strong></p>
+            <ul>
+                <li>Court appearances and diplomatic missions</li>
+                <li>Training young squires in chivalric code</li>
+                <li>Religious ceremonies and divine service</li>
+                <li>Public works and community leadership</li>
+            </ul>
+            
+            <p><strong>🌓 Quarter Moon Service (Balanced Period):</strong></p>
+            <ul>
+                <li>Standard questing and adventure duties</li>
+                <li>Military campaigns and tactical operations</li>
+                <li>Investigating threats to the realm</li>
+                <li>Balancing human leadership with beast awareness</li>
+            </ul>
+            
+            <p><strong>🌕 Full Moon Isolation (Crisis Management):</strong></p>
+            <ul>
+                <li>Retreat to secure transformation chamber</li>
+                <li>Emergency protocols for sudden crises</li>
+                <li>Trusted allies maintain duties in absence</li>
+                <li>Using beast form against truly evil threats only</li>
+            </ul>
+        </div>
+
+        <h2>🏆 The Knight's Legacy Challenges</h2>
+        
+        <div class="transformation-box">
+            <h3>⚔️ Trials of the Cursed Knight</h3>
+            <p><strong>Prove your mastery of honor despite the beast within:</strong></p>
+            
+            <p><strong>🛡️ The Protector's Trial:</strong> Defend innocents while in beast form without harming them</p>
+            <p><strong>⚔️ The Honorable Beast:</strong> Defeat evil enemies using only lycanthropic abilities</p>
+            <p><strong>👑 The Noble Leader:</strong> Lead party successfully through entire lunar cycle</p>
+            <p><strong>🙏 The Faithful Cursed:</strong> Maintain divine favor despite lycanthropic nature</p>
+            <p><strong>🌟 The Reformed Code:</strong> Create new chivalric principles that embrace dual nature</p>
+        </div>
+
+        <h2>🌟 Next Adventure Preview</h2>
+        
+        <p>In our next lecture, we'll explore <strong>"Jungles of Delthrak"</strong> - Wilderness survival and environmental combat. Master nature's challenges and predator encounters in the wild.</p>
+        
+        <div class="knight-principle">
+            <p><strong>Remember:</strong> The Knight's greatest victory isn't conquering the beast within - it's learning that true honor can exist in any form. A Knight who maintains their protective instincts and moral core, whether human or wolf, proves that chivalry is not about perfection, but about choosing to serve others regardless of personal cost. The curse may change the body, but cannot touch a truly noble heart!</p>
+        </div>
+    </div>
+
+    <script>
+        // Add twinkling stars for night sky effect
+        function createStars() {
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.textContent = '✦';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 2 + 's';
+                document.querySelector('.night-sky').appendChild(star);
+            }
+        }
+        
+        createStars();
+        
+        // Interactive Moon Phase System with Knight-specific effects
+        const moonPhases = [
+            { 
+                name: 'New Moon', 
+                symbol: '🌑', 
+                power: 10, 
+                control: 90, 
+                chivalry: 95,
+                effects: 'Peak chivalric control. Perfect time for diplomatic missions and public duties.',
+                knightEffects: 'Maximum honor, full equipment effectiveness, divine favor strong.'
+            },
+            { 
+                name: 'Waxing Crescent', 
+                symbol: '🌒', 
+                power: 25, 
+                control: 75, 
+                chivalry: 85,
+                effects: 'Growing lycanthropic awareness. Good for training and combat practice.',
+                knightEffects: 'Slight tension between honor and instinct. Enhanced senses aid tactics.'
+            },
+            { 
+                name: 'First Quarter', 
+                symbol: '🌓', 
+                power: 40, 
+                control: 60, 
+                chivalry: 70,
+                effects: 'Balanced transformation risk. Standard questing conditions.',
+                knightEffects: 'Honor code stressed but holding. Equipment still fully usable.'
+            },
+            { 
+                name: 'Waxing Gibbous', 
+                symbol: '🌔', 
+                power: 65, 
+                control: 35, 
+                chivalry: 55,
+                effects: 'High transformation risk. Honor becoming difficult to maintain.',
+                knightEffects: 'Chivalric restraints weakening. Aggressive tactics emerging.'
+            },
+            { 
+                name: 'Full Moon', 
+                symbol: '🌕', 
+                power: 100, 
+                control: 10, 
+                chivalry: 20,
+                effects: 'Transformation inevitable! Honor code severely compromised.',
+                knightEffects: 'Beast dominates. Equipment hindrance. Leadership questioned.'
+            },
+            { 
+                name: 'Waning Gibbous', 
+                symbol: '🌖', 
+                power: 75, 
+                control: 40, 
+                chivalry: 45,
+                effects: 'Powerful but returning control. Mixed human-beast consciousness.',
+                knightEffects: 'Honor slowly returning. Guilt over beast actions beginning.'
+            },
+            { 
+                name: 'Last Quarter', 
+                symbol: '🌗', 
+                power: 50, 
+                control: 70, 
+                chivalry: 65,
+                effects: 'Moderate beast influence. Chivalric principles reasserting.',
+                knightEffects: 'Regaining moral clarity. Equipment cooperation improving.'
+            },
+            { 
+                name: 'Waning Crescent', 
+                symbol: '🌘', 
+                power: 20, 
+                control: 85, 
+                chivalry: 80,
+                effects: 'Minimal beast influence. Recovery from transformation trauma.',
+                knightEffects: 'Honor restoration period. Seeking atonement for beast actions.'
+            }
+        ];
+        
+        let currentMoonPhase = 4; // Start at full moon
+        
+        function setMoonPhase(phaseIndex, phaseName) {
+            currentMoonPhase = phaseIndex;
+            
+            // Update active moon phase
+            document.querySelectorAll('.moon-phase').forEach(phase => phase.classList.remove('active'));
+            document.querySelectorAll('.moon-phase')[phaseIndex].classList.add('active');
+            
+            // Update moon indicator
+            const indicator = document.getElementById('moon_indicator');
+            const phaseLevel = document.getElementById('moon_phase');
+            
+            indicator.style.left = (phaseIndex * 12.5) + '%';
+            phaseLevel.textContent = moonPhases[phaseIndex].name.toUpperCase();
+            
+            // Update chivalry indicator
+            const chivalryIndicator = document.getElementById('chivalry_indicator');
+            const chivalryLevel = document.getElementById('chivalry_level');
+            const phase = moonPhases[phaseIndex];
+            
+            chivalryIndicator.style.left = phase.chivalry + '%';
+            
+            if (phase.chivalry >= 90) chivalryLevel.textContent = 'PERFECT HONOR';
+            else if (phase.chivalry >= 70) chivalryLevel.textContent = 'HONOR STRONG';
+            else if (phase.chivalry >= 50) chivalryLevel.textContent = 'HONOR STRAINED';
+            else if (phase.chivalry >= 30) chivalryLevel.textContent = 'HONOR FAILING';
+            else chivalryLevel.textContent = 'BEAST DOMINANCE';
+            
+            // Update effects display
+            const effectsDiv = document.getElementById('moon_effects');
+            effectsDiv.innerHTML = `
+                <strong>Lunar Effects on Knight:</strong> ${phase.name} - ${phase.knightEffects}<br>
+                <strong>Beast Power:</strong> ${phase.power}% | <strong>Human Control:</strong> ${phase.control}% | <strong>Chivalric Honor:</strong> ${phase.chivalry}%
+            `;
+            
+            // Update curse indicator based on moon phase
+            const curseIndicator = document.getElementById('curse_indicator');
+            const curseLevel = document.getElementById('curse_level');
+            
+            curseIndicator.style.left = phase.power + '%';
+            
+            if (phase.power >= 80) curseLevel.textContent = 'BEAST DOMINANCE';
+            else if (phase.power >= 60) curseLevel.textContent = 'LYCANTHROPIC SURGE';
+            else if (phase.power >= 40) curseLevel.textContent = 'GROWING INFLUENCE';
+            else if (phase.power >= 20) curseLevel.textContent = 'MINOR EFFECTS';
+            else curseLevel.textContent = 'DORMANT CURSE';
+        }
+        
+        // Knight Combat Visualization
+        const combatCanvas = document.getElementById('knight_combat_canvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        function drawKnightCombat() {
+            combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Background
+            combatCtx.fillStyle = '#000011';
+            combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
+            
+            // Draw knight transformation sequence
+            const forms = [
+                {x: 120, y: 150, form: 'Armored Knight', symbol: '⚔️', color: '#1e40af', abilities: ['Heavy Armor', 'Blessed Weapons', 'Leadership']},
+                {x: 300, y: 150, form: 'Struggling Knight', symbol: '😰', color: '#f59e0b', abilities: ['Conflicted', 'Removing Gear', 'Honor Stress']},
+                {x: 480, y: 150, form: 'Beast Knight', symbol: '🐺', color: '#dc143c', abilities: ['Raw Power', 'Natural Weapons', 'Pack Instincts']}
+            ];
+            
+            forms.forEach((form, index) => {
+                // Form representation
+                combatCtx.fillStyle = form.color;
+                combatCtx.beginPath();
+                combatCtx.arc(form.x, form.y, 35, 0, Math.PI * 2);
+                combatCtx.fill();
+                
+                combatCtx.strokeStyle = '#ffa726';
+                combatCtx.lineWidth = 3;
+                combatCtx.stroke();
+                
+                // Form symbol
+                combatCtx.fillStyle = '#fff';
+                combatCtx.font = '24px Arial';
+                combatCtx.textAlign = 'center';
+                combatCtx.fillText(form.symbol, form.x, form.y + 8);
+                
+                // Form name
+                combatCtx.fillStyle = '#f5f5dc';
+                combatCtx.font = '12px Arial';
+                combatCtx.fillText(form.form, form.x, form.y + 55);
+                
+                // Abilities
+                combatCtx.font = '9px Arial';
+                form.abilities.forEach((ability, abilityIndex) => {
+                    combatCtx.fillText(ability, form.x, form.y + 70 + (abilityIndex * 10));
+                });
+                
+                // Transformation arrows
+                if (index < forms.length - 1) {
+                    combatCtx.strokeStyle = '#ff6b6b';
+                    combatCtx.lineWidth = 3;
+                    combatCtx.beginPath();
+                    combatCtx.moveTo(form.x + 40, form.y);
+                    combatCtx.lineTo(forms[index + 1].x - 40, forms[index + 1].y);
+                    combatCtx.stroke();
+                    
+                    // Arrow head
+                    combatCtx.beginPath();
+                    combatCtx.moveTo(forms[index + 1].x - 45, forms[index + 1].y - 5);
+                    combatCtx.lineTo(forms[index + 1].x - 40, forms[index + 1].y);
+                    combatCtx.lineTo(forms[index + 1].x - 45, forms[index + 1].y + 5);
+                    combatCtx.stroke();
+                }
+            });
+            
+            combatCtx.fillStyle = '#ff6b6b';
+            combatCtx.font = '16px Arial';
+            combatCtx.textAlign = 'center';
+            combatCtx.fillText('Knight Lycanthrope: Honor vs. Beast Combat Forms', 300, 30);
+            combatCtx.textAlign = 'left';
+        }
+        
+        drawKnightCombat();
+        
+        // Interactive Knight Battlefield
+        const battlefieldGrid = document.getElementById('lunar_battlefield');
+        const terrainEffects = document.getElementById('terrain_effects');
+        let battlefieldState = [];
+        
+        // Initialize battlefield
+        for (let i = 0; i < 80; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'lunar-cell';
+            
+            // Generate terrain
+            const terrainType = Math.random();
+            if (terrainType < 0.15) {
+                cell.className += ' moonlight';
+                cell.textContent = '🌙';
+                battlefieldState.push('moonlight');
+            } else if (terrainType < 0.3) {
+                cell.className += ' shadow';
+                cell.textContent = '🌑';
+                battlefieldState.push('shadow');
+            } else if (terrainType < 0.45) {
+                cell.className += ' cursed-ground';
+                cell.textContent = '💜';
+                battlefieldState.push('cursed');
+            } else {
+                cell.className += ' normal-terrain';
+                cell.textContent = '🌍';
+                battlefieldState.push('normal');
+            }
+            
+            cell.addEventListener('click', () => analyzeKnightTerrainEffect(i));
+            battlefieldGrid.appendChild(cell);
+        }
+        
+        // Add knight positions
+        battlefieldGrid.children[25].className = 'lunar-cell knight-form';
+        battlefieldGrid.children[25].textContent = '⚔️';
+        battlefieldState[25] = 'knight';
+        
+        battlefieldGrid.children[35].className = 'lunar-cell human-form';
+        battlefieldGrid.children[35].textContent = '👤';
+        battlefieldState[35] = 'human';
+        
+        battlefieldGrid.children[55].className = 'lunar-cell beast-form';
+        battlefieldGrid.children[55].textContent = '🐺';
+        battlefieldState[55] = 'beast';
+        
+        function analyzeKnightTerrainEffect(index) {
+            const terrain = battlefieldState[index];
+            let analysis = '';
+            
+            switch(terrain) {
+                case 'moonlight':
+                    analysis = 'Direct moonlight exposure. Forces transformation, heavy armor becomes liability. +50% beast power, divine favor weakened.';
+                    break;
+                case 'shadow':
+                    analysis = 'Shadowed area. Provides some protection from lunar influence. Honor code functions normally, equipment effective.';
+                    break;
+                case 'cursed':
+                    analysis = 'Cursed ground. Ancient evil energy conflicts with chivalric oaths. Transformation risk increased, holy symbols may burn.';
+                    break;
+                case 'normal':
+                    analysis = 'Normal terrain. Standard chivalric effectiveness. Moon phase determines lycanthropic influence level.';
+                    break;
+                case 'knight':
+                    analysis = 'Knight in full armor. Maximum defensive capability but transformation restriction. Leadership bonuses active for party.';
+                    break;
+                case 'human':
+                    analysis = 'Knight in human form. Balanced combat effectiveness. Can use all equipment and maintain honor code fully.';
+                    break;
+                case 'beast':
+                    analysis = 'Knight in beast form. Maximum physical power but honor code suppressed. Natural weapons, fear effects active.';
+                    break;
+                default:
+                    analysis = 'Unknown terrain type.';
+            }
+            
+            terrainEffects.innerHTML = `<strong>Knight Environmental Effects:</strong> ${analysis}`;
+        }
+        
+        // Chivalry vs Beast Conflict Visualization
+        const chivalryCanvas = document.getElementById('chivalry_conflict_canvas');
+        const chivalryCtx = chivalryCanvas.getContext('2d');
+        
+        function drawChivalryConflict() {
+            chivalryCtx.clearRect(0, 0, chivalryCanvas.width, chivalryCanvas.height);
+            
+            // Background
+            chivalryCtx.fillStyle = '#000011';
+            chivalryCtx.fillRect(0, 0, chivalryCanvas.width, chivalryCanvas.height);
+            
+            // Draw chivalric code vs beast instincts
+            const conflicts = [
+                {
+                    x: 150, y: 80,
+                    chivalry: 'Protect Innocent',
+                    beast: 'Hunt Weak',
+                    symbol: '🛡️',
+                    beastSymbol: '🩸',
+                    resolution: 'Channel Protection'
+                },
+                {
+                    x: 450, y: 80,
+                    chivalry: 'Honor in Combat',
+                    beast: 'Savage Victory',
+                    symbol: '⚔️',
+                    beastSymbol: '🦷',
+                    resolution: 'Controlled Aggression'
+                },
+                {
+                    x: 150, y: 220,
+                    chivalry: 'Loyalty to Allies',
+                    beast: 'Pack Hierarchy',
+                    symbol: '🤝',
+                    beastSymbol: '👥',
+                    resolution: 'Lead the Pack'
+                },
+                {
+                    x: 450, y: 220,
+                    chivalry: 'Divine Service',
+                    beast: 'Lunar Worship',
+                    symbol: '🙏',
+                    beastSymbol: '🌙',
+                    resolution: 'Sacred Purpose'
+                }
+            ];
+            
+            conflicts.forEach(conflict => {
+                // Chivalry side (left)
+                chivalryCtx.fillStyle = '#1e40af';
+                chivalryCtx.beginPath();
+                chivalryCtx.arc(conflict.x - 30, conflict.y, 25, 0, Math.PI * 2);
+                chivalryCtx.fill();
+                
+                chivalryCtx.fillStyle = '#fff';
+                chivalryCtx.font = '16px Arial';
+                chivalryCtx.textAlign = 'center';
+                chivalryCtx.fillText(conflict.symbol, conflict.x - 30, conflict.y + 5);
+                
+                // Beast side (right)
+                chivalryCtx.fillStyle = '#dc2626';
+                chivalryCtx.beginPath();
+                chivalryCtx.arc(conflict.x + 30, conflict.y, 25, 0, Math.PI * 2);
+                chivalryCtx.fill();
+                
+                chivalryCtx.fillStyle = '#fff';
+                chivalryCtx.fillText(conflict.beastSymbol, conflict.x + 30, conflict.y + 5);
+                
+                // Conflict arrows
+                chivalryCtx.strokeStyle = '#ff6b6b';
+                chivalryCtx.lineWidth = 3;
+                chivalryCtx.beginPath();
+                chivalryCtx.moveTo(conflict.x - 5, conflict.y);
+                chivalryCtx.lineTo(conflict.x + 5, conflict.y);
+                chivalryCtx.stroke();
+                
+                // Labels
+                chivalryCtx.fillStyle = '#60a5fa';
+                chivalryCtx.font = '10px Arial';
+                chivalryCtx.fillText(conflict.chivalry, conflict.x - 30, conflict.y + 40);
+                
+                chivalryCtx.fillStyle = '#f87171';
+                chivalryCtx.fillText(conflict.beast, conflict.x + 30, conflict.y + 40);
+                
+                // Resolution
+                chivalryCtx.fillStyle = '#fbbf24';
+                chivalryCtx.font = '9px Arial';
+                chivalryCtx.fillText(conflict.resolution, conflict.x, conflict.y + 55);
+            });
+            
+            // Central title
+            chivalryCtx.fillStyle = '#fbbf24';
+            chivalryCtx.font = '18px Arial';
+            chivalryCtx.textAlign = 'center';
+            chivalryCtx.fillText('Knight\'s Honor vs. Beast Instincts', 300, 30);
+            
+            chivalryCtx.fillStyle = '#60a5fa';
+            chivalryCtx.font = '12px Arial';
+            chivalryCtx.fillText('Chivalric Code', 150, 320);
+            
+            chivalryCtx.fillStyle = '#f87171';
+            chivalryCtx.fillText('Beast Instincts', 450, 320);
+            
+            chivalryCtx.textAlign = 'left';
+        }
+        
+        drawChivalryConflict();
+    </script>
+</body>
+</html>

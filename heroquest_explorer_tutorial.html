@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Explorer Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #8B4513;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #D2691E, #CD853F);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #654321;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #FFF8DC;
+            border-left: 5px solid #D2691E;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .survival-mastery {
+            background: #F0F8FF;
+            border: 2px solid #4682B4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #87CEEB;
+        }
+        .exploration-skills {
+            background: #F5FFFA;
+            border: 2px solid #00CED1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .wilderness-craft {
+            background: #FDF5E6;
+            border: 2px solid #DEB887;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .pathfinding-expert {
+            background: #F0FFF0;
+            border: 2px solid #228B22;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .discovery-hunter {
+            background: #FFFACD;
+            border: 2px solid #DAA520;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .frontier-wisdom {
+            background: #E6E6FA;
+            border: 2px solid #9370DB;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🗺️ The Explorer Hero: Master of the Unknown</h1>
+        <p><em>Welcome, seeker of hidden paths! Today we explore the keen senses and wilderness expertise of HeroQuest's most adaptable adventurer.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Explorer</h2>
+            <p>The Explorer is HeroQuest's embodiment of curiosity, adaptability, and wilderness mastery - imagine a combination of Indiana Jones, a master scout, and a Renaissance cartographer who thrives in the unknown territories beyond civilization's reach. Where other heroes excel in specific combat or magical roles, the Explorer's strength lies in discovering secrets, navigating treacherous terrain, and finding solutions to environmental challenges that would stymie more specialized adventurers.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Adaptable Specialist</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 2 combat dice</div>
+            <div class="stat-display">Defend: 2 combat dice</div>
+            <div class="stat-display">Body Points: 7</div>
+            <div class="stat-display">Mind Points: 4</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were tools, the Explorer would be a high-quality multi-tool - not the most specialized implement for any single task, but incredibly versatile and reliable in diverse situations. Like a Swiss Army knife that's equally useful for opening locks, cutting rope, or starting fires, the Explorer provides practical solutions to whatever challenges the wilderness presents.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Explorer Stats: The Versatile Profile</h3>
+                <canvas id="explorerStatsCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="survival-mastery">
+                <h3>🎯 Balanced Specialist Analysis</h3>
+                <p><strong>Moderate Combat:</strong> 2/2/7 provides reliable but not exceptional fighting capability</p>
+                <p><strong>Tactical Intelligence:</strong> 4 Mind Points enable problem-solving and limited spellcasting</p>
+                <p><strong>Resilient Survivability:</strong> 7 Body Points offer good endurance for extended expeditions</p>
+                <p><strong>Universal Competence:</strong> No critical weaknesses that would prevent functioning in any role</p>
+                <p><strong>Specialization Bonus:</strong> Unique abilities that amplify effectiveness in exploration scenarios</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Exploration Mastery: The Art of Discovery</h2>
+            
+            <p>The Explorer's signature ability is enhanced discovery and navigation in unknown territories. They excel at finding hidden passages, secret treasures, and optimal routes through dangerous terrain.</p>
+
+            <div class="exploration-skills">
+                <h3>🔍 Advanced Discovery Abilities</h3>
+                <p><strong>Secret Detection:</strong> Enhanced ability to find hidden doors, passages, and compartments</p>
+                <p><strong>Treasure Hunting:</strong> Superior success rates when searching for valuable items</p>
+                <p><strong>Pathfinding:</strong> Navigate complex terrain and find optimal routes through wilderness</p>
+                <p><strong>Environmental Reading:</strong> Understand natural signs and predict environmental hazards</p>
+                <p><strong>Cartographic Memory:</strong> Perfect recall of explored areas and ability to create accurate maps</p>
+                <p><strong>Resource Location:</strong> Find water, food, shelter, and materials in hostile environments</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Discovery Success Rate Comparison</h3>
+                <canvas id="discoveryRatesCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="pathfinding-expert">
+                <h3>Navigation and Mapping Excellence</h3>
+                <p><strong>Terrain Mastery:</strong> Move efficiently through forests, mountains, swamps, and deserts</p>
+                <p><strong>Hazard Avoidance:</strong> Detect and circumvent natural dangers before they become threats</p>
+                <p><strong>Route Optimization:</strong> Find the fastest, safest, or most tactically advantageous paths</p>
+                <p><strong>Landmark Recognition:</strong> Use natural and artificial markers for navigation and orientation</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Survival Expertise: Living off the Land</h2>
+            
+            <p>Beyond exploration, the Explorer possesses comprehensive wilderness survival skills that benefit the entire party during extended adventures in hostile environments.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Wilderness Challenge] --> B{Explorer Assessment}
+                    B --> C{Environmental Hazard?}
+                    C -->|Yes| D[Apply Survival Skills]
+                    C -->|No| E{Resource Needed?}
+                    E -->|Yes| F[Locate and Gather Resources]
+                    E -->|No| G{Navigation Required?}
+                    G -->|Yes| H[Pathfinding and Route Planning]
+                    G -->|No| I{Secrets to Discover?}
+                    I -->|Yes| J[Systematic Search and Exploration]
+                    I -->|No| K[Environmental Monitoring]
+                    D --> L[Apply Solution]
+                    F --> L
+                    H --> L
+                    J --> L
+                    K --> L
+                    L --> M[Share Knowledge with Party]
+            </mermaid>
+
+            <div class="wilderness-craft">
+                <h3>🏕️ Comprehensive Survival Skills</h3>
+                <p><strong>Shelter Construction:</strong> Build weatherproof camps using natural materials</p>
+                <p><strong>Food Procurement:</strong> Hunt, fish, forage, and prepare wilderness sustenance</p>
+                <p><strong>Water Location:</strong> Find clean water sources and purify contaminated supplies</p>
+                <p><strong>Fire Mastery:</strong> Start fires in any weather conditions using minimal materials</p>
+                <p><strong>Weather Prediction:</strong> Read natural signs to anticipate storms and climate changes</p>
+                <p><strong>First Aid:</strong> Treat injuries and illnesses using natural remedies and field medicine</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Survival Skill Effectiveness</h3>
+                <canvas id="survivalSkillsCanvas" width="500" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Combat Applications: The Practical Fighter</h2>
+            
+            <p>While not a combat specialist, the Explorer's tactical thinking and environmental awareness create unique combat advantages that complement their 2/2/7 base combat statistics.</p>
+
+            <div class="survival-mastery">
+                <h3>⚔️ Tactical Combat Approach</h3>
+                <p><strong>Environmental Exploitation:</strong> Use terrain features as weapons and advantages</p>
+                <p><strong>Guerrilla Tactics:</strong> Hit-and-run strategies utilizing superior mobility and terrain knowledge</p>
+                <p><strong>Trap Setting:</strong> Create improvised hazards using wilderness materials</p>
+                <p><strong>Ambush Mastery:</strong> Use stealth and positioning for surprise attacks</p>
+                <p><strong>Retreat Expertise:</strong> Know when and how to disengage from unfavorable fights</p>
+                <p><strong>Resource Improvisation:</strong> Create weapons and tools from environmental materials</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Combat Effectiveness by Environment</h3>
+                <canvas id="combatEnvironmentCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="frontier-wisdom">
+                <h3>Environmental Combat Advantages</h3>
+                <p><strong>Known Terrain:</strong> +25% effectiveness in previously explored areas</p>
+                <p><strong>Natural Hazards:</strong> Lure enemies into environmental dangers</p>
+                <p><strong>Improvised Tools:</strong> Create weapons and traps from surroundings</p>
+                <p><strong>Escape Routes:</strong> Always know multiple withdrawal options</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Philosophy: Tools for Every Situation</h2>
+            
+            <p>Explorer equipment emphasizes versatility, reliability, and multi-functionality over specialization. Every item should serve multiple purposes and be maintainable in wilderness conditions.</p>
+
+            <div class="discovery-hunter">
+                <h3>🎒 Explorer Equipment Principles</h3>
+                <p><strong>Multi-Purpose Tools:</strong> Items that serve multiple functions efficiently</p>
+                <p><strong>Durable Construction:</strong> Gear that withstands harsh environments and heavy use</p>
+                <p><strong>Portable Design:</strong> Lightweight equipment suitable for extended travel</p>
+                <p><strong>Field Maintainable:</strong> Tools that can be repaired using wilderness materials</p>
+                <p><strong>Weather Resistant:</strong> Equipment that functions in all environmental conditions</p>
+                <p><strong>Modular System:</strong> Gear that combines and adapts for different situations</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Versatility Impact</h3>
+                <canvas id="equipmentVersatilityCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="wilderness-craft">
+                <h3>Essential Explorer Gear Categories</h3>
+                <p><strong>Navigation Tools:</strong> Compass, maps, surveying instruments, and celestial guides</p>
+                <p><strong>Survival Kit:</strong> Fire-starting tools, water purification, emergency shelter</p>
+                <p><strong>Exploration Gear:</strong> Rope, grappling hooks, torches, and climbing equipment</p>
+                <p><strong>Detection Tools:</strong> Magnifying glass, probe rods, and measurement devices</p>
+                <p><strong>Recording Materials:</strong> Journal, sketching supplies, and specimen containers</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Party Dynamics: The Enabler and Guide</h2>
+            
+            <p>The Explorer's role in party dynamics is unique - they make dangerous environments navigable and unknown territories explorable, enabling the party to access areas and opportunities that would otherwise be impossible.</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Explorer: Environmental Mastery] --> B[Barbarian: Safe Passage to Combat]
+                    A --> C[Dwarf: Enhanced Resource Discovery]
+                    A --> D[Elf: Wilderness Magic Synergy]
+                    A --> E[Wizard: Protected Research Environment]
+                    A --> F[Knight: Tactical Route Planning]
+                    B --> G[Party Success in Hostile Terrain]
+                    C --> G
+                    D --> G
+                    E --> G
+                    F --> G
+                    H[Environmental Intelligence] --> I[Informed Decision Making]
+                    I --> G
+            </mermaid>
+
+            <div class="pathfinding-expert">
+                <h3>🤝 Party Enhancement Strategies</h3>
+                <p><strong>With Barbarian:</strong> Guide powerful fighter to optimal combat positions</p>
+                <p><strong>With Dwarf:</strong> Combine underground expertise with surface navigation</p>
+                <p><strong>With Elf:</strong> Merge natural magic with wilderness knowledge</p>
+                <p><strong>With Wizard:</strong> Provide safe research environment and specimen collection</p>
+                <p><strong>With Knight:</strong> Offer tactical intelligence and strategic route planning</p>
+                <p><strong>Universal Value:</strong> Every hero benefits from Explorer's environmental mastery</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Party Efficiency with Explorer Guidance</h3>
+                <canvas id="partyEfficiencyCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: Mastering the Unknown</h2>
+            
+            <div class="exploration-skills">
+                <h3>🎯 Advanced Explorer Mastery</h3>
+                <p><strong>Systematic Exploration:</strong> Methodical techniques for complete area coverage</p>
+                <p><strong>Environmental Prediction:</strong> Anticipate hazards and opportunities before encountering them</p>
+                <p><strong>Resource Optimization:</strong> Maximize party efficiency through superior planning</p>
+                <p><strong>Adaptive Navigation:</strong> Adjust routes and strategies based on changing conditions</p>
+                <p><strong>Information Integration:</strong> Combine observations into comprehensive understanding</p>
+            </div>
+
+            <div class="discovery-hunter">
+                <h3>Master-Level Example: The Perfect Scout</h3>
+                <p><strong>Setup:</strong> Party needs to cross dangerous territory to reach objective</p>
+                <p><strong>Phase 1:</strong> Conduct advance reconnaissance to map terrain and hazards</p>
+                <p><strong>Phase 2:</strong> Identify optimal route balancing speed, safety, and tactical advantage</p>
+                <p><strong>Phase 3:</strong> Locate resources and safe rest points along the planned route</p>
+                <p><strong>Phase 4:</strong> Guide party along prepared path while monitoring for changes</p>
+                <p><strong>Result:</strong> What would be a dangerous expedition becomes a managed journey</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Advanced Technique Mastery Progression</h3>
+                <canvas id="advancedTechniquesCanvas" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>When to Choose the Explorer: Optimal Scenarios</h2>
+            
+            <div class="pathfinding-expert">
+                <h3>Perfect Explorer Adventures</h3>
+                <p><strong>Wilderness Expeditions:</strong> Adventures in uncharted or hostile natural environments</p>
+                <p><strong>Discovery Missions:</strong> Quests focused on finding lost locations or hidden treasures</p>
+                <p><strong>Survival Campaigns:</strong> Extended adventures where resource management is critical</p>
+                <p><strong>Exploration Heavy:</strong> Scenarios with complex terrain and environmental challenges</p>
+                <p><strong>Secret-Rich Dungeons:</strong> Adventures with many hidden passages and concealed areas</p>
+                <p><strong>Multi-Environment Quests:</strong> Journeys spanning diverse terrains and climates</p>
+            </div>
+
+            <div class="frontier-wisdom">
+                <h3>Challenging Scenarios for Explorers</h3>
+                <p><strong>Pure Combat Gauntlets:</strong> Adventures focused entirely on fighting with minimal exploration</p>
+                <p><strong>Urban Intrigue:</strong> City-based adventures where wilderness skills provide little advantage</p>
+                <p><strong>Magic-Dependent Quests:</strong> Scenarios requiring extensive spellcasting beyond Explorer capabilities</p>
+                <p><strong>Speed-Critical Missions:</strong> Time-sensitive quests where careful exploration causes delays</p>
+                <p><strong>Known Territory:</strong> Adventures in well-mapped areas where navigation skills are redundant</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Environmental Specialization: Master of All Terrains</h2>
+            
+            <div class="wilderness-craft">
+                <h3>🌍 Terrain-Specific Expertise</h3>
+                <p><strong>Forest Navigation:</strong> Expert pathfinding through dense woodland and jungle</p>
+                <p><strong>Mountain Climbing:</strong> Safe passage through rocky terrain and high altitudes</p>
+                <p><strong>Desert Survival:</strong> Water location and heat management in arid environments</p>
+                <p><strong>Swamp Traversal:</strong> Navigate treacherous wetlands and avoid natural hazards</p>
+                <p><strong>Underground Networks:</strong> Cave systems and subterranean passage navigation</p>
+                <p><strong>Coastal Expertise:</strong> Shore navigation, tide prediction, and marine resource utilization</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Environmental Mastery Effectiveness</h3>
+                <canvas id="environmentalMasteryCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Geographic Analogy:</strong> The Explorer is like a human GPS system combined with a field guide and survival manual - they don't just know where they are and where they're going, but understand the environment so completely that they can predict what they'll find and how to use it to their advantage.
+            </div>
+        </section>
+
+        <section>
+            <h2>Positioning Strategy: The Mobile Intelligence Gatherer</h2>
+            
+            <div class="canvas-container">
+                <h3>Explorer Positioning and Movement Patterns</h3>
+                <canvas id="explorerPositioningCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <div class="survival-mastery">
+                <h3>🗺️ Strategic Positioning Principles</h3>
+                <p><strong>Advanced Scouting:</strong> Move ahead of party to identify threats and opportunities</p>
+                <p><strong>Overwatch Position:</strong> Maintain vantage points for area surveillance</p>
+                <p><strong>Escape Route Management:</strong> Always positioned near multiple withdrawal options</p>
+                <p><strong>Information Relay:</strong> Stay in communication range while gathering intelligence</p>
+                <p><strong>Environmental Integration:</strong> Use terrain features for concealment and advantage</p>
+            </div>
+
+            <div class="exploration-skills">
+                <h3>Movement Pattern Optimization</h3>
+                <p><strong>Spiral Search:</strong> Systematic area coverage for complete exploration</p>
+                <p><strong>Leapfrog Advance:</strong> Alternating forward positions for continuous security</p>
+                <p><strong>Shadow Movement:</strong> Parallel party movement for flanking intelligence</p>
+                <p><strong>Return Circuit:</strong> Regular information sharing and resource distribution</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Information Management: The Knowledge Synthesizer</h2>
+            
+            <div class="frontier-wisdom">
+                <h3>📊 Intelligence Gathering and Analysis</h3>
+                <p><strong>Observational Methods:</strong> Systematic techniques for environmental assessment</p>
+                <p><strong>Data Recording:</strong> Accurate documentation of discoveries and observations</p>
+                <p><strong>Pattern Recognition:</strong> Identify trends and predict likely developments</p>
+                <p><strong>Risk Assessment:</strong> Evaluate threats and opportunities objectively</p>
+                <p><strong>Strategic Planning:</strong> Convert information into actionable tactical advantage</p>
+                <p><strong>Knowledge Distribution:</strong> Share critical information efficiently with party members</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Information Value vs Exploration Time</h3>
+                <canvas id="informationValueCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="discovery-hunter">
+                <h3>Critical Information Categories</h3>
+                <p><strong>Hazard Mapping:</strong> Location and nature of environmental threats</p>
+                <p><strong>Resource Inventory:</strong> Available materials, water, shelter, and food sources</p>
+                <p><strong>Route Analysis:</strong> Comparative assessment of possible travel paths</p>
+                <p><strong>Opportunity Identification:</strong> Hidden passages, secret areas, and valuable discoveries</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Advanced Navigation Techniques:</strong> Professional pathfinding and cartographic methods</li>
+                <li><strong>Wilderness Survival Mastery:</strong> Comprehensive guide to living off the land</li>
+                <li><strong>Environmental Hazard Recognition:</strong> Identifying and avoiding natural dangers</li>
+                <li><strong>Discovery Optimization:</strong> Mathematical approaches to systematic exploration</li>
+                <li><strong>Resource Management Theory:</strong> Efficient allocation of supplies and equipment</li>
+                <li><strong>Terrain-Specific Strategies:</strong> Specialized techniques for different environmental challenges</li>
+                <li><strong>Information Integration Methods:</strong> Combining observations into tactical intelligence</li>
+                <li><strong>Party Coordination Systems:</strong> Communication and leadership in exploration scenarios</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, intrepid pathfinder: Every step into the unknown is a victory over fear and ignorance. While others see only wilderness and danger, you see opportunities and possibilities. Your maps are not just records of where you've been, but promises of where you can lead others. In the vast unexplored reaches beyond civilization's borders, you are the bridge between the known and unknown, the guide who transforms impossible journeys into memorable adventures!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Explorer Stats Analysis
+        const explorerStatsCanvas = document.getElementById('explorerStatsCanvas');
+        const explorerStatsCtx = explorerStatsCanvas.getContext('2d');
+        
+        explorerStatsCtx.clearRect(0, 0, 500, 300);
+        explorerStatsCtx.font = '14px Arial';
+        explorerStatsCtx.textAlign = 'center';
+        
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 2, max: 4, color: '#4ECDC4', label: '2 dice'},
+            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
+            {name: 'Body', value: 7, max: 9, color: '#96CEB4', label: '7 points'},
+            {name: 'Mind', value: 4, max: 6, color: '#FFEAA7', label: '4 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            explorerStatsCtx.fillStyle = stat.color;
+            explorerStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            explorerStatsCtx.fillStyle = 'black';
+            explorerStatsCtx.fillText(stat.label, x, 250);
+            explorerStatsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Discovery Success Rate Comparison
+        const discoveryCanvas = document.getElementById('discoveryRatesCanvas');
+        const discoveryCtx = discoveryCanvas.getContext('2d');
+        
+        discoveryCtx.clearRect(0, 0, 600, 250);
+        discoveryCtx.font = '12px Arial';
+        discoveryCtx.textAlign = 'center';
+        
+        const discoveryTypes = [
+            {type: 'Secret Doors', explorer: 90, dwarf: 70, others: 40, color: '#8B4513'},
+            {type: 'Hidden Treasure', explorer: 85, dwarf: 75, others: 45, color: '#DAA520'},
+            {type: 'Safe Paths', explorer: 95, dwarf: 60, others: 30, color: '#228B22'},
+            {type: 'Resources', explorer: 90, dwarf: 50, others: 35, color: '#4682B4'},
+            {type: 'Escape Routes', explorer: 95, dwarf: 55, others: 25, color: '#DC143C'}
+        ];
+        
+        discoveryTypes.forEach((discovery, i) => {
+            const x = 80 + i * 100;
+            
+            // Explorer rate
+            const explorerHeight = (discovery.explorer / 100) * 120;
+            discoveryCtx.fillStyle = discovery.color;
+            discoveryCtx.fillRect(x - 35, 180 - explorerHeight, 20, explorerHeight);
+            
+            // Dwarf rate
+            const dwarfHeight = (discovery.dwarf / 100) * 120;
+            discoveryCtx.fillStyle = discovery.color;
+            discoveryCtx.globalAlpha = 0.6;
+            discoveryCtx.fillRect(x - 10, 180 - dwarfHeight, 20, dwarfHeight);
+            
+            // Others rate
+            const othersHeight = (discovery.others / 100) * 120;
+            discoveryCtx.fillStyle = discovery.color;
+            discoveryCtx.globalAlpha = 0.3;
+            discoveryCtx.fillRect(x + 15, 180 - othersHeight, 20, othersHeight);
+            discoveryCtx.globalAlpha = 1.0;
+            
+            discoveryCtx.fillStyle = 'black';
+            discoveryCtx.fillText(discovery.explorer + '%', x - 25, 195);
+            discoveryCtx.fillText(discovery.dwarf + '%', x, 195);
+            discoveryCtx.fillText(discovery.others + '%', x + 25, 195);
+            
+            discoveryCtx.save();
+            discoveryCtx.translate(x, 220);
+            discoveryCtx.rotate(-Math.PI / 6);
+            discoveryCtx.fillText(discovery.type, 0, 0);
+            discoveryCtx.restore();
+        });
+        
+        discoveryCtx.fillText('Explorer (Dark) | Dwarf (Med) | Others (Light)', 300, 30);
+
+        // Survival Skills Effectiveness
+        const survivalCanvas = document.getElementById('survivalSkillsCanvas');
+        const survivalCtx = survivalCanvas.getContext('2d');
+        
+        survivalCtx.clearRect(0, 0, 500, 300);
+        survivalCtx.font = '12px Arial';
+        survivalCtx.textAlign = 'center';
+        
+        const survivalSkills = [
+            {skill: 'Shelter', effectiveness: 90, difficulty: 30, color: '#8B4513'},
+            {skill: 'Food', effectiveness: 85, difficulty: 50, color: '#228B22'},
+            {skill: 'Water', effectiveness: 95, difficulty: 20, color: '#4682B4'},
+            {skill: 'Fire', effectiveness: 90, difficulty: 25, color: '#DC143C'},
+            {skill: 'Weather', effectiveness: 80, difficulty: 40, color: '#9370DB'},
+            {skill: 'First Aid', effectiveness: 75, difficulty: 60, color: '#DAA520'}
+        ];
+        
+        survivalSkills.forEach((skill, i) => {
+            const x = 60 + i * 70;
+            
+            // Effectiveness (upward)
+            const effHeight = (skill.effectiveness / 100) * 100;
+            survivalCtx.fillStyle = skill.color;
+            survivalCtx.fillRect(x - 20, 150 - effHeight, 15, effHeight);
+            
+            // Difficulty (downward, inverted - lower is better)
+            const diffHeight = ((100 - skill.difficulty) / 100) * 100;
+            survivalCtx.fillStyle = skill.color;
+            survivalCtx.globalAlpha = 0.5;
+            survivalCtx.fillRect(x + 5, 150 - diffHeight, 15, diffHeight);
+            survivalCtx.globalAlpha = 1.0;
+            
+            survivalCtx.fillStyle = 'black';
+            survivalCtx.fillText(skill.effectiveness + '%', x - 12, 40);
+            survivalCtx.fillText((100 - skill.difficulty) + '%', x + 12, 40);
+            survivalCtx.fillText(skill.skill, x, 180);
+        });
+        
+        survivalCtx.fillText('Effectiveness (Dark) | Ease of Use (Light)', 250, 20);
+
+        // Combat Effectiveness by Environment
+        const combatEnvCanvas = document.getElementById('combatEnvironmentCanvas');
+        const combatEnvCtx = combatEnvCanvas.getContext('2d');
+        
+        combatEnvCtx.clearRect(0, 0, 600, 250);
+        combatEnvCtx.font = '11px Arial';
+        combatEnvCtx.textAlign = 'center';
+        
+        const environments = [
+            {env: 'Forest', known: 85, unknown: 65, urban: 45, color: '#228B22'},
+            {env: 'Mountain', known: 80, unknown: 60, urban: 40, color: '#8B4513'},
+            {env: 'Desert', known: 90, unknown: 70, urban: 35, color: '#DAA520'},
+            {env: 'Swamp', known: 85, unknown: 65, urban: 30, color: '#556B2F'},
+            {env: 'Underground', known: 75, unknown: 55, urban: 50, color: '#696969'}
+        ];
+        
+        environments.forEach((env, i) => {
+            const x = 80 + i * 100;
+            
+            // Known terrain
+            const knownHeight = (env.known / 100) * 100;
+            combatEnvCtx.fillStyle = env.color;
+            combatEnvCtx.fillRect(x - 30, 180 - knownHeight, 18, knownHeight);
+            
+            // Unknown terrain
+            const unknownHeight = (env.unknown / 100) * 100;
+            combatEnvCtx.fillStyle = env.color;
+            combatEnvCtx.globalAlpha = 0.6;
+            combatEnvCtx.fillRect(x - 6, 180 - unknownHeight, 18, unknownHeight);
+            
+            // Urban/artificial
+            const urbanHeight = (env.urban / 100) * 100;
+            combatEnvCtx.fillStyle = env.color;
+            combatEnvCtx.globalAlpha = 0.3;
+            combatEnvCtx.fillRect(x + 18, 180 - urbanHeight, 18, urbanHeight);
+            combatEnvCtx.globalAlpha = 1.0;
+            
+            combatEnvCtx.fillStyle = 'black';
+            combatEnvCtx.fillText(env.known, x - 21, 195);
+            combatEnvCtx.fillText(env.unknown, x + 3, 195);
+            combatEnvCtx.fillText(env.urban, x + 27, 195);
+            combatEnvCtx.fillText(env.env, x, 215);
+        });
+        
+        combatEnvCtx.fillText('Known (Dark) | Unknown (Med) | Urban (Light)', 300, 30);
+
+        // Equipment Versatility Impact
+        const equipCanvas = document.getElementById('equipmentVersatilityCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 300);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        const equipCategories = [
+            {category: 'Navigation', base: 70, versatile: 95, color: '#4682B4'},
+            {category: 'Survival', base: 60, versatile: 85, color: '#228B22'},
+            {category: 'Discovery', base: 75, versatile: 90, color: '#DAA520'},
+            {category: 'Combat', base: 65, versatile: 75, color: '#DC143C'}
+        ];
+        
+        equipCategories.forEach((category, i) => {
+            const x = 80 + i * 90;
+            
+            // Base equipment
+            const baseHeight = (category.base / 100) * 150;
+            equipCtx.fillStyle = '#DDD';
+            equipCtx.fillRect(x - 25, 200 - baseHeight, 20, baseHeight);
+            
+            // Versatile equipment
+            const versHeight = (category.versatile / 100) * 150;
+            equipCtx.fillStyle = category.color;
+            equipCtx.fillRect(x + 5, 200 - versHeight, 20, versHeight);
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(category.base + '%', x - 15, 220);
+            equipCtx.fillText(category.versatile + '%', x + 15, 220);
+            equipCtx.fillText(category.category, x, 240);
+        });
+
+        // Party Efficiency with Explorer
+        const efficiencyCanvas = document.getElementById('partyEfficiencyCanvas');
+        const efficiencyCtx = efficiencyCanvas.getContext('2d');
+        
+        efficiencyCtx.clearRect(0, 0, 500, 250);
+        efficiencyCtx.font = '12px Arial';
+        efficiencyCtx.textAlign = 'center';
+        
+        const scenarios = [
+            {scenario: 'Known Areas', without: 80, with: 90, color: '#4682B4'},
+            {scenario: 'Unknown Terrain', without: 40, with: 85, color: '#228B22'},
+            {scenario: 'Resource Scarce', without: 30, with: 80, color: '#DAA520'},
+            {scenario: 'Hostile Environment', without: 25, with: 75, color: '#DC143C'},
+            {scenario: 'Secret Heavy', without: 35, with: 90, color: '#9370DB'}
+        ];
+        
+        scenarios.forEach((scenario, i) => {
+            const x = 60 + i * 80;
+            
+            // Without Explorer
+            const withoutHeight = (scenario.without / 100) * 120;
+            efficiencyCtx.fillStyle = '#DDD';
+            efficiencyCtx.fillRect(x - 25, 180 - withoutHeight, 20, withoutHeight);
+            
+            // With Explorer
+            const withHeight = (scenario.with / 100) * 120;
+            efficiencyCtx.fillStyle = scenario.color;
+            efficiencyCtx.fillRect(x + 5, 180 - withHeight, 20, withHeight);
+            
+            efficiencyCtx.fillStyle = 'black';
+            efficiencyCtx.fillText(scenario.without + '%', x - 15, 195);
+            efficiencyCtx.fillText(scenario.with + '%', x + 15, 195);
+            
+            efficiencyCtx.save();
+            efficiencyCtx.translate(x, 220);
+            efficiencyCtx.rotate(-Math.PI / 4);
+            efficiencyCtx.fillText(scenario.scenario, 0, 0);
+            efficiencyCtx.restore();
+        });
+
+        // Advanced Techniques Mastery
+        const techCanvas = document.getElementById('advancedTechniquesCanvas');
+        const techCtx = techCanvas.getContext('2d');
+        
+        techCtx.clearRect(0, 0, 600, 300);
+        techCtx.font = '11px Arial';
+        techCtx.textAlign = 'center';
+        
+        const techniques = [
+            {tech: 'Systematic Exploration', complexity: 60, effectiveness: 85, time: 80, color: '#4682B4'},
+            {tech: 'Environmental Prediction', complexity: 80, effectiveness: 90, time: 60, color: '#228B22'},
+            {tech: 'Resource Optimization', complexity: 70, effectiveness: 95, time: 70, color: '#DAA520'},
+            {tech: 'Adaptive Navigation', complexity: 85, effectiveness: 90, time: 50, color: '#DC143C'},
+            {tech: 'Information Integration', complexity: 90, effectiveness: 100, time: 90, color: '#9370DB'}
+        ];
+        
+        techniques.forEach((tech, i) => {
+            const x = 80 + i * 100;
+            
+            // Complexity
+            const complexHeight = (tech.complexity / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.4;
+            techCtx.fillRect(x - 35, 200 - complexHeight, 18, complexHeight);
+            
+            // Effectiveness
+            const effHeight = (tech.effectiveness / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.7;
+            techCtx.fillRect(x - 10, 200 - effHeight, 18, effHeight);
+            
+            // Time efficiency
+            const timeHeight = (tech.time / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 1.0;
+            techCtx.fillRect(x + 15, 200 - timeHeight, 18, timeHeight);
+            
+            techCtx.fillStyle = 'black';
+            techCtx.fillText(tech.complexity, x - 26, 220);
+            techCtx.fillText(tech.effectiveness, x - 1, 220);
+            techCtx.fillText(tech.time, x + 24, 220);
+            
+            techCtx.save();
+            techCtx.translate(x, 250);
+            techCtx.rotate(-Math.PI / 6);
+            techCtx.fillText(tech.tech, 0, 0);
+            techCtx.restore();
+        });
+        
+        techCtx.fillText('Complexity (Light) | Effectiveness (Med) | Time Eff (Dark)', 300, 30);
+
+        // Environmental Mastery Effectiveness
+        const envMasteryCanvas = document.getElementById('environmentalMasteryCanvas');
+        const envMasteryCtx = envMasteryCanvas.getContext('2d');
+        
+        envMasteryCtx.clearRect(0, 0, 600, 250);
+        envMasteryCtx.font = '11px Arial';
+        envMasteryCtx.textAlign = 'center';
+        
+        const terrains = [
+            {terrain: 'Forest', navigation: 95, survival: 90, combat: 80, color: '#228B22'},
+            {terrain: 'Mountain', navigation: 85, survival: 85, combat: 75, color: '#8B4513'},
+            {terrain: 'Desert', navigation: 90, survival: 95, combat: 70, color: '#DAA520'},
+            {terrain: 'Swamp', navigation: 85, survival: 80, combat: 75, color: '#556B2F'},
+            {terrain: 'Coastal', navigation: 80, survival: 85, combat: 65, color: '#4682B4'}
+        ];
+        
+        terrains.forEach((terrain, i) => {
+            const x = 80 + i * 100;
+            
+            // Navigation
+            const navHeight = (terrain.navigation / 100) * 100;
+            envMasteryCtx.fillStyle = terrain.color;
+            envMasteryCtx.fillRect(x - 30, 180 - navHeight, 18, navHeight);
+            
+            // Survival
+            const survHeight = (terrain.survival / 100) * 100;
+            envMasteryCtx.fillStyle = terrain.color;
+            envMasteryCtx.globalAlpha = 0.6;
+            envMasteryCtx.fillRect(x - 6, 180 - survHeight, 18, survHeight);
+            
+            // Combat
+            const combHeight = (terrain.combat / 100) * 100;
+            envMasteryCtx.fillStyle = terrain.color;
+            envMasteryCtx.globalAlpha = 0.3;
+            envMasteryCtx.fillRect(x + 18, 180 - combHeight, 18, combHeight);
+            envMasteryCtx.globalAlpha = 1.0;
+            
+            envMasteryCtx.fillStyle = 'black';
+            envMasteryCtx.fillText(terrain.navigation, x - 21, 195);
+            envMasteryCtx.fillText(terrain.survival, x + 3, 195);
+            envMasteryCtx.fillText(terrain.combat, x + 27, 195);
+            envMasteryCtx.fillText(terrain.terrain, x, 215);
+        });
+        
+        envMasteryCtx.fillText('Navigation (Dark) | Survival (Med) | Combat (Light)', 300, 30);
+
+        // Explorer Positioning and Movement
+        const posCanvas = document.getElementById('explorerPositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw terrain features
+        posCtx.fillStyle = '#654321';
+        posCtx.fillRect(150, 50, 100, 50);   // Rocky outcrop
+        posCtx.fillStyle = '#228B22';
+        posCtx.fillRect(50, 200, 80, 80);    // Forest patch
+        posCtx.fillStyle = '#4682B4';
+        posCtx.fillRect(250, 300, 100, 50);  // Water feature
+        
+        // Draw party main group
+        posCtx.fillStyle = '#666';
+        posCtx.fillRect(175, 175, 20, 20);   // Barbarian
+        posCtx.fillRect(200, 200, 20, 20);   // Knight
+        posCtx.fillRect(150, 200, 20, 20);   // Wizard
+        
+        // Draw Explorer scouting positions
+        posCtx.fillStyle = '#D2691E';
+        posCtx.fillRect(225, 75, 20, 20);    // Overwatch position
+        posCtx.fillRect(75, 125, 20, 20);    // Flank scout
+        posCtx.fillRect(325, 225, 20, 20);   // Forward scout
+        posCtx.fillRect(125, 325, 20, 20);   // Resource search
+        
+        // Draw movement paths
+        posCtx.strokeStyle = '#D2691E';
+        posCtx.setLineDash([3, 3]);
+        posCtx.lineWidth = 2;
+        
+        // Scout routes
+        posCtx.beginPath();
+        posCtx.moveTo(185, 185);
+        posCtx.lineTo(235, 85);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(185, 185);
+        posCtx.lineTo(85, 135);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(185, 185);
+        posCtx.lineTo(335, 235);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(185, 185);
+        posCtx.lineTo(135, 335);
+        posCtx.stroke();
+        
+        // Draw sight lines
+        posCtx.strokeStyle = '#DAA520';
+        posCtx.setLineDash([1, 1]);
+        posCtx.lineWidth = 1;
+        
+        posCtx.beginPath();
+        posCtx.moveTo(235, 85);
+        posCtx.lineTo(350, 200);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(235, 85);
+        posCtx.lineTo(100, 350);
+        posCtx.stroke();
+        
+        posCtx.setLineDash([]);
+        posCtx.lineWidth = 1;
+        
+        // Labels
+        posCtx.fillStyle = 'white';
+        posCtx.font = '8px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('E', 245, 88);   // Explorer positions
+        posCtx.fillText('E', 85, 138);
+        posCtx.fillText('E', 335, 238);
+        posCtx.fillText('E', 135, 338);
+        
+        posCtx.fillText('B', 185, 188);  // Party
+        posCtx.fillText('K', 210, 213);
+        posCtx.fillText('W', 160, 213);
+        
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Explorer: Multi-Position Scouting Pattern', 200, 20);
+        posCtx.fillText('Dashed = Movement, Dotted = Sight Lines', 200, 380);
+
+        // Information Value vs Exploration Time
+        const infoCanvas = document.getElementById('informationValueCanvas');
+        const infoCtx = infoCanvas.getContext('2d');
+        
+        infoCtx.clearRect(0, 0, 500, 250);
+        infoCtx.font = '12px Arial';
+        infoCtx.textAlign = 'center';
+        
+        const infoGathering = [
+            {method: 'Quick Survey', time: 20, value: 40, accuracy: 60, color: '#DC143C'},
+            {method: 'Standard Search', time: 50, value: 70, accuracy: 80, color: '#DAA520'},
+            {method: 'Thorough Exploration', time: 80, value: 90, accuracy: 95, color: '#228B22'},
+            {method: 'Systematic Mapping', time: 100, value: 95, accuracy: 98, color: '#4682B4'}
+        ];
+        
+        infoGathering.forEach((method, i) => {
+            const x = 80 + i * 90;
+            
+            // Time cost (downward)
+            const timeHeight = (method.time / 100) * 60;
+            infoCtx.fillStyle = method.color;
+            infoCtx.globalAlpha = 0.4;
+            infoCtx.fillRect(x - 25, 150, 15, timeHeight);
+            
+            // Information value (upward)
+            const valueHeight = (method.value / 100) * 80;
+            infoCtx.fillStyle = method.color;
+            infoCtx.globalAlpha = 0.7;
+            infoCtx.fillRect(x - 5, 150 - valueHeight, 15, valueHeight);
+            
+            // Accuracy (upward)
+            const accHeight = (method.accuracy / 100) * 80;
+            infoCtx.fillStyle = method.color;
+            infoCtx.globalAlpha = 1.0;
+            infoCtx.fillRect(x + 15, 150 - accHeight, 15, accHeight);
+            
+            infoCtx.fillStyle = 'black';
+            infoCtx.fillText(method.time + '%', x - 17, 225);
+            infoCtx.fillText(method.value + '%', x + 3, 60);
+            infoCtx.fillText(method.accuracy + '%', x + 23, 60);
+            
+            infoCtx.save();
+            infoCtx.translate(x, 240);
+            infoCtx.rotate(-Math.PI / 4);
+            infoCtx.fillText(method.method, 0, 0);
+            infoCtx.restore();
+        });
+        
+        infoCtx.fillText('Time (Down) | Value (Up) | Accuracy (Up)', 250, 30);
+    </script>
+</body>
+</html>

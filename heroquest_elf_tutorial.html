@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Elf Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #228B22;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #32CD32, #9ACD32);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #556B2F;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #F0FFF0;
+            border-left: 5px solid #32CD32;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .combat-example {
+            background: #E6FFE6;
+            border: 2px solid #228B22;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .spell-ability {
+            background: #E6E6FA;
+            border: 2px solid #9370DB;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #9370DB;
+        }
+        .ranged-box {
+            background: #FFF8DC;
+            border: 2px solid #DAA520;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .flexibility-highlight {
+            background: #F0F8FF;
+            border: 2px solid #4169E1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🏹 The Elf Hero: Master of Blade and Spell</h1>
+        <p><em>Welcome, brave adventurer! Today we explore the elegant versatility of HeroQuest's most adaptable warrior-mage.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Elf</h2>
+            <p>The Elf is HeroQuest's embodiment of graceful versatility - imagine a medieval special forces operative who's equally comfortable with sword, bow, and arcane arts. While other heroes excel in specific areas, the Elf thrives through adaptability, switching seamlessly between ranged combat, melee fighting, and spellcasting as the situation demands. They're the tactical Swiss Army knife of your adventuring party.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Balanced Approach</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 2 combat dice</div>
+            <div class="stat-display">Defend: 2 combat dice</div>
+            <div class="stat-display">Body Points: 6</div>
+            <div class="stat-display">Mind Points: 4</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were military units, the Elf would be special forces - not the heaviest armor (6 Body Points) or biggest gun (2 Attack), but exceptional training, versatility, and the ability to operate effectively in any situation. Like a Navy SEAL who can fight, pilot vehicles, handle explosives, and gather intelligence, the Elf brings multiple capabilities to every encounter.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Elf Stats Analysis</h3>
+                <canvas id="elfStatsCanvas" width="500" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Spellcasting Mastery: The Arcane Edge</h2>
+            
+            <p>The Elf's 4 Mind Points enable significant spellcasting ability, making them the secondary magical force in most parties. Unlike the Wizard's pure focus on magic, the Elf uses spells to enhance their combat effectiveness and provide tactical options.</p>
+
+            <div class="spell-ability">
+                <h3>🔮 Elven Magic Capabilities</h3>
+                <p><strong>Spell Access:</strong> Can cast most spells in the HeroQuest arsenal with 4 Mind Points</p>
+                <p><strong>Tactical Flexibility:</strong> Magic supplements combat rather than replacing it</p>
+                <p><strong>Resource Management:</strong> Must balance spell usage with maintaining combat readiness</p>
+                <p><strong>Strategic Value:</strong> Provides magical solutions when the Wizard is unavailable or depleted</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Spell Usage Comparison</h3>
+                <canvas id="spellUsageCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="combat-example">
+                <h3>Spellcasting in Action</h3>
+                <p><strong>Scenario:</strong> Facing multiple enemies in a narrow corridor</p>
+                <p><strong>Option A:</strong> Cast Ball of Flame (1 Mind Point) to hit multiple targets, then engage with sword</p>
+                <p><strong>Option B:</strong> Use Pass Through Rock (2 Mind Points) to flank enemies for tactical advantage</p>
+                <p><strong>Option C:</strong> Save Mind Points and rely on ranged combat with bow</p>
+                <p><strong>Key Insight:</strong> The Elf's strength lies in having multiple viable options for any situation</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Ranged Combat Excellence: The Archer's Art</h2>
+            
+            <p>The Elf's proficiency with bows and crossbows provides crucial ranged capabilities that other heroes lack. This isn't just about damage - it's about tactical positioning, enemy control, and safety through distance.</p>
+
+            <div class="ranged-box">
+                <h3>🏹 Ranged Combat Advantages</h3>
+                <p><strong>Safety Through Distance:</strong> Attack without exposing yourself to counterattack</p>
+                <p><strong>Tactical Positioning:</strong> Control engagement range and force enemy movement</p>
+                <p><strong>Support Fire:</strong> Assist allies in melee while staying protected</p>
+                <p><strong>Monster Kiting:</strong> Damage enemies while they struggle to reach you</p>
+                <p><strong>Crowd Control:</strong> Pick off weak enemies before they can group up</p>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Historical Parallel:</strong> The Elf is like a medieval archer-knight - imagine a English longbowman who's also trained in swordsmanship. They can rain arrows from safety when possible, but switch to melee when necessary, combining the best of both combat styles.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Ranged vs Melee Effectiveness</h3>
+                <canvas id="rangedMeleeCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[Elf Turn Begins] --> B{Enemies in Line of Sight?}
+                    B -->|Yes, at Range| C[Ranged Attack with Bow]
+                    B -->|Yes, Adjacent| D[Melee Attack with Sword]
+                    B -->|No Enemies Visible| E{Spell Opportunity?}
+                    E -->|Yes| F[Cast Tactical Spell]
+                    E -->|No| G[Move to Advantageous Position]
+                    C --> H[Assess Results]
+                    D --> H
+                    F --> H
+                    G --> H
+            </div>
+        </section>
+
+        <section>
+            <h2>Melee Combat: When Grace Meets Steel</h2>
+            
+            <p>With 2 attack and 2 defend dice, the Elf's melee capabilities mirror the Dwarf's, but with a different tactical approach. Where the Dwarf relies on steady reliability, the Elf uses positioning, timing, and combined arms tactics.</p>
+
+            <div class="combat-example">
+                <h3>Melee Combat Analysis</h3>
+                <p><strong>vs Single Enemies:</strong> Reliable performance, enhanced by tactical options</p>
+                <p><strong>vs Multiple Enemies:</strong> Can thin numbers with ranged attacks before engaging</p>
+                <p><strong>vs Heavily Armored Foes:</strong> Magic and positioning overcome raw damage limitations</p>
+                <p><strong>Strategic Advantage:</strong> Multiple engagement options make the Elf unpredictable and dangerous</p>
+            </div>
+
+            <div class="flexibility-highlight">
+                <h3>⚔️ Combat Flexibility Examples</h3>
+                <p><strong>Hit and Run:</strong> Attack with bow, move away, force enemies to chase</p>
+                <p><strong>Spell-Sword Combo:</strong> Weaken enemies with magic, finish with blade</p>
+                <p><strong>Support Fighter:</strong> Provide ranged support while allies engage in melee</p>
+                <p><strong>Emergency Caster:</strong> Switch to spells when physical combat becomes unfavorable</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Movement and Positioning: The Dance of War</h2>
+            
+            <p>The Elf's 2d6 movement, like all heroes, creates opportunities for dynamic positioning. However, the Elf's multiple combat options make movement choices more complex and rewarding than other heroes.</p>
+
+            <div class="analogy-box">
+                <strong>Chess Analogy:</strong> The Elf is like a Queen in chess - not the most powerful piece in any single direction, but the most flexible. A Queen can move like a rook, bishop, or king depending on what the board position requires, just as the Elf can adapt their combat style to the tactical situation.
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[Roll Movement Dice] --> B{High Roll 8-12?}
+                    B -->|Yes| C[Aggressive Positioning Options]
+                    C --> D[Rush to Optimal Ranged Position]
+                    C --> E[Flank for Spell Opportunity]
+                    C --> F[Close for Melee if Advantageous]
+                    B -->|No| G{Medium Roll 5-7?}
+                    G -->|Yes| H[Standard Tactical Movement]
+                    G -->|No| I[Low Roll 2-4: Defensive Positioning]
+                    H --> J[Maintain Range and Options]
+                    I --> K[Focus on Safety and Setup]
+                    D --> L[Execute Chosen Tactic]
+                    E --> L
+                    F --> L
+                    J --> L
+                    K --> L
+            </div>
+
+            <div class="canvas-container">
+                <h3>Elf Positioning Strategies</h3>
+                <canvas id="elfPositioningCanvas" width="400" height="400"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Strategy: Tools for Every Occasion</h2>
+            
+            <p>The Elf's equipment choices are more complex than other heroes because they need to support three different combat modes: melee, ranged, and magical. This creates interesting decisions about specialization versus versatility.</p>
+
+            <div class="flexibility-highlight">
+                <h3>Equipment Philosophy: The Triple Threat</h3>
+                <p><strong>Primary Weapon:</strong> Elven Bow for reliable ranged damage and tactical control</p>
+                <p><strong>Secondary Weapon:</strong> Elven Sword for melee combat when range isn't viable</p>
+                <p><strong>Magical Focus:</strong> Staff or magical items to enhance spellcasting efficiency</p>
+                <p><strong>Protection:</strong> Light armor that doesn't impede movement or spellcasting</p>
+                <p><strong>Utility:</strong> Healing potions and magical components for sustained operations</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Impact Analysis</h3>
+                <canvas id="elfEquipmentCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="ranged-box">
+                <h3>Specialization vs Generalization</h3>
+                <p><strong>Specialist Build:</strong> Focus on bow mastery - crossbow, better arrows, ranged accessories</p>
+                <p><strong>Generalist Build:</strong> Balanced equipment supporting all three combat modes</p>
+                <p><strong>Mage-Warrior Build:</strong> Emphasize magical items and spell components</p>
+                <p><strong>Recommendation:</strong> Generalist approach maximizes the Elf's unique advantages</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Party Dynamics: The Tactical Multiplier</h2>
+            
+            <p>In party composition, the Elf serves as the "tactical multiplier" - they make every other hero more effective by providing flexibility, support, and covering weaknesses that other combinations might leave exposed.</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Elf: Flexible Support] --> B[Barbarian: Enhanced by Ranged Support]
+                    A --> C[Dwarf: Magic Supplements Utility]
+                    A --> D[Wizard: Backup Magical Capability]
+                    B --> E[Tactical Superiority]
+                    C --> E
+                    D --> E
+                    F[Elf Ranged Control] --> G[Party Positioning Advantage]
+                    G --> E
+            </div>
+
+            <div class="spell-ability">
+                <h3>🎯 Party Synergy Strategies</h3>
+                <p><strong>With Barbarian:</strong> Provide ranged support while the tank engages</p>
+                <p><strong>With Dwarf:</strong> Use magic to enhance trap detection and exploration</p>
+                <p><strong>With Wizard:</strong> Share magical responsibilities and provide backup spellcasting</p>
+                <p><strong>Solo Operations:</strong> Self-sufficient enough to handle independent missions</p>
+                <p><strong>Full Party:</strong> The flexible glue that adapts to fill whatever role is needed</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Party Effectiveness with Elf</h3>
+                <canvas id="partySynergyCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: Mastering Elven Warfare</h2>
+            
+            <div class="flexibility-highlight">
+                <h3>⚡ Advanced Tactical Concepts</h3>
+                <p><strong>Resource Cycling:</strong> Alternate between physical and magical attacks to manage Mind Points</p>
+                <p><strong>Range Control:</strong> Use movement and terrain to maintain optimal combat distance</p>
+                <p><strong>Threat Assessment:</strong> Quickly identify which combat mode best counters each enemy type</p>
+                <p><strong>Economy of Force:</strong> Use minimum necessary force, saving resources for critical moments</p>
+                <p><strong>Adaptive Engagement:</strong> Switch combat styles mid-fight based on changing conditions</p>
+            </div>
+
+            <div class="combat-example">
+                <h3>Master-Level Example: The Three-Phase Engagement</h3>
+                <p><strong>Phase 1:</strong> Open with ranged attacks to thin enemy numbers and control positioning</p>
+                <p><strong>Phase 2:</strong> Use spells to create tactical advantages or handle special threats</p>
+                <p><strong>Phase 3:</strong> Close to melee when conditions are optimal or ranged options are exhausted</p>
+                <p><strong>Result:</strong> Maximum efficiency with minimum risk, demonstrating why flexibility trumps specialization</p>
+                <p><strong>Lesson:</strong> The Elf's power comes from sequencing abilities, not just having them</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Combat Mode Effectiveness by Situation</h3>
+                <canvas id="combatModesCanvas" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>When to Choose the Elf: Optimal Scenarios</h2>
+            
+            <div class="ranged-box">
+                <h3>Perfect Elf Missions</h3>
+                <p><strong>Unknown Threats:</strong> When you're not sure what challenges await</p>
+                <p><strong>Mixed Encounters:</strong> Quests with varied enemy types requiring different approaches</p>
+                <p><strong>Solo Adventures:</strong> The Elf's self-sufficiency shines in single-hero scenarios</p>
+                <p><strong>Support Role Needed:</strong> When the party needs flexible assistance rather than specialization</p>
+                <p><strong>Resource Management:</strong> Long adventures where adaptability matters more than raw power</p>
+            </div>
+
+            <div class="combat-example">
+                <h3>Challenging Scenarios for Elfs</h3>
+                <p><strong>Pure Combat Gauntlets:</strong> Scenarios where maximum damage output is required</p>
+                <p><strong>Heavy Magic Requirements:</strong> Quests demanding extensive spellcasting</p>
+                <p><strong>Trap-Focused Dungeons:</strong> Adventures where the Dwarf's specialization is crucial</p>
+                <p><strong>Time-Critical Speed Runs:</strong> When having one perfect tool is better than multiple good ones</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Resource Management: The Elf's Greatest Challenge</h2>
+            
+            <div class="spell-ability">
+                <h3>🧠 Mind Point Economics</h3>
+                <p><strong>The Dilemma:</strong> 4 Mind Points must last the entire quest</p>
+                <p><strong>Conservative Approach:</strong> Save spells for emergencies, rely on physical combat</p>
+                <p><strong>Aggressive Approach:</strong> Use magic early to gain tactical advantages</p>
+                <p><strong>Balanced Approach:</strong> Spend 1-2 Mind Points per major encounter</p>
+                <p><strong>Emergency Reserve:</strong> Always keep 1 Mind Point for healing or escape spells</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Mind Point Usage Strategies</h3>
+                <canvas id="mindPointCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Financial Analogy:</strong> Managing Mind Points is like budgeting for a vacation - you have limited resources that must last the entire trip. Spend too much early and you'll be broke later; spend too little and you miss opportunities. The art is knowing when to splurge and when to save.
+            </div>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Spell Selection Guide:</strong> Which spells maximize Elf effectiveness in different scenarios</li>
+                <li><strong>Archery Mastery:</strong> Advanced ranged combat techniques and equipment synergies</li>
+                <li><strong>Tactical Positioning:</strong> Using terrain and movement to maintain combat advantages</li>
+                <li><strong>Resource Economics:</strong> Optimizing Mind Point usage throughout extended adventures</li>
+                <li><strong>Multi-Role Tactics:</strong> Seamlessly switching between combat modes mid-encounter</li>
+                <li><strong>Equipment Optimization:</strong> Balancing gear for maximum versatility</li>
+                <li><strong>Solo Adventure Strategies:</strong> Self-sufficient techniques for independent operations</li>
+                <li><strong>Support Techniques:</strong> Maximizing party effectiveness through flexible assistance</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, young archer: The Elf's greatest weapon is not the bow, blade, or spell, but the wisdom to know which tool serves best in each moment. In the ever-changing depths of Morcar's domain, adaptability is the truest strength, and flexibility the finest armor!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Elf Stats Analysis Chart
+        const elfStatsCanvas = document.getElementById('elfStatsCanvas');
+        const elfStatsCtx = elfStatsCanvas.getContext('2d');
+        
+        elfStatsCtx.clearRect(0, 0, 500, 300);
+        elfStatsCtx.font = '14px Arial';
+        elfStatsCtx.textAlign = 'center';
+        
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 2, max: 4, color: '#4ECDC4', label: '2 dice'},
+            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
+            {name: 'Body', value: 6, max: 8, color: '#96CEB4', label: '6 points'},
+            {name: 'Mind', value: 4, max: 6, color: '#FFEAA7', label: '4 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            elfStatsCtx.fillStyle = stat.color;
+            elfStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            elfStatsCtx.fillStyle = 'black';
+            elfStatsCtx.fillText(stat.label, x, 250);
+            elfStatsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Spell Usage Comparison
+        const spellCanvas = document.getElementById('spellUsageCanvas');
+        const spellCtx = spellCanvas.getContext('2d');
+        
+        spellCtx.clearRect(0, 0, 600, 250);
+        spellCtx.font = '12px Arial';
+        spellCtx.textAlign = 'center';
+        
+        const spellData = [
+            {hero: 'Wizard', capacity: 6, efficiency: 100, color: '#9370DB'},
+            {hero: 'Elf', capacity: 4, efficiency: 85, color: '#32CD32'},
+            {hero: 'Others', capacity: 2, efficiency: 50, color: '#FF6B6B'}
+        ];
+        
+        spellData.forEach((data, i) => {
+            const x = 120 + i * 150;
+            
+            // Capacity bar
+            const capacityHeight = (data.capacity / 6) * 120;
+            spellCtx.fillStyle = data.color;
+            spellCtx.fillRect(x - 50, 180 - capacityHeight, 40, capacityHeight);
+            
+            // Efficiency bar  
+            const efficiencyHeight = (data.efficiency / 100) * 120;
+            spellCtx.fillStyle = data.color;
+            spellCtx.globalAlpha = 0.6;
+            spellCtx.fillRect(x + 10, 180 - efficiencyHeight, 40, efficiencyHeight);
+            spellCtx.globalAlpha = 1.0;
+            
+            spellCtx.fillStyle = 'black';
+            spellCtx.fillText(data.capacity + ' MP', x - 30, 195);
+            spellCtx.fillText(data.efficiency + '%', x + 30, 195);
+            spellCtx.fillText(data.hero, x, 210);
+        });
+        
+        spellCtx.fillText('Mind Points (Solid) vs Spell Efficiency (Faded)', 300, 30);
+
+        // Ranged vs Melee Effectiveness
+        const rangedCanvas = document.getElementById('rangedMeleeCanvas');
+        const rangedCtx = rangedCanvas.getContext('2d');
+        
+        rangedCtx.clearRect(0, 0, 500, 300);
+        rangedCtx.font = '12px Arial';
+        rangedCtx.textAlign = 'center';
+        
+        const combatScenarios = [
+            {scenario: 'Single Enemy', ranged: 75, melee: 65, magic: 80},
+            {scenario: 'Multiple Enemies', ranged: 85, melee: 45, magic: 90},
+            {scenario: 'Armored Foe', ranged: 55, melee: 60, magic: 75},
+            {scenario: 'Fast Enemy', ranged: 90, melee: 40, magic: 70}
+        ];
+        
+        combatScenarios.forEach((scenario, i) => {
+            const x = 80 + i * 90;
+            
+            // Ranged effectiveness
+            const rangedHeight = (scenario.ranged / 100) * 100;
+            rangedCtx.fillStyle = '#32CD32';
+            rangedCtx.fillRect(x - 30, 200 - rangedHeight, 20, rangedHeight);
+            
+            // Melee effectiveness
+            const meleeHeight = (scenario.melee / 100) * 100;
+            rangedCtx.fillStyle = '#4169E1';
+            rangedCtx.fillRect(x - 5, 200 - meleeHeight, 20, meleeHeight);
+            
+            // Magic effectiveness
+            const magicHeight = (scenario.magic / 100) * 100;
+            rangedCtx.fillStyle = '#9370DB';
+            rangedCtx.fillRect(x + 20, 200 - magicHeight, 20, magicHeight);
+            
+            rangedCtx.fillStyle = 'black';
+            rangedCtx.fillText(scenario.ranged + '%', x - 20, 220);
+            rangedCtx.fillText(scenario.melee + '%', x + 5, 220);
+            rangedCtx.fillText(scenario.magic + '%', x + 30, 220);
+            rangedCtx.fillText(scenario.scenario, x, 240);
+        });
+        
+        rangedCtx.fillText('Ranged (Green) vs Melee (Blue) vs Magic (Purple)', 250, 30);
+
+        // Elf Positioning Strategies
+        const posCanvas = document.getElementById('elfPositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw walls/obstacles
+        posCtx.fillStyle = '#654321';
+        posCtx.fillRect(150, 100, 100, 50);
+        posCtx.fillRect(200, 250, 50, 100);
+        
+        // Draw enemies
+        posCtx.fillStyle = '#FF0000';
+        posCtx.fillRect(75, 175, 25, 25);
+        posCtx.fillRect(325, 125, 25, 25);
+        posCtx.fillRect(275, 275, 25, 25);
+        
+        // Draw Elf positions (optimal ranged spots)
+        posCtx.fillStyle = '#32CD32';
+        posCtx.fillRect(25, 25, 25, 25);
+        posCtx.fillRect(350, 350, 25, 25);
+        posCtx.fillRect(125, 275, 25, 25);
+        
+        // Draw range lines
+        posCtx.strokeStyle = '#32CD32';
+        posCtx.setLineDash([5, 5]);
+        posCtx.lineWidth = 2;
+        
+        // Range lines from elf positions to enemies
+        posCtx.beginPath();
+        posCtx.moveTo(37, 37);
+        posCtx.lineTo(87, 187);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(362, 362);
+        posCtx.lineTo(287, 287);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(137, 287);
+        posCtx.lineTo(337, 137);
+        posCtx.stroke();
+        
+        posCtx.setLineDash([]);
+        posCtx.lineWidth = 1;
+        
+        posCtx.fillStyle = 'white';
+        posCtx.font = '10px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('E', 87, 190);
+        posCtx.fillText('E', 337, 140);
+        posCtx.fillText('E', 287, 290);
+        
+        posCtx.fillText('E', 37, 40);
+        posCtx.fillText('E', 362, 365);
+        posCtx.fillText('E', 137, 290);
+        
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Elf Ranged Positioning: Multiple Firing Positions', 200, 20);
+
+        // Equipment Impact Analysis
+        const equipCanvas = document.getElementById('elfEquipmentCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 300);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        const equipCategories = [
+            {name: 'Ranged', base: 70, equipped: 90, color: '#32CD32'},
+            {name: 'Melee', base: 65, equipped: 80, color: '#4169E1'},
+            {name: 'Magic', base: 75, equipped: 85, color: '#9370DB'},
+            {name: 'Survival', base: 60, equipped: 85, color: '#FF6B6B'}
+        ];
+        
+        equipCategories.forEach((category, i) => {
+            const x = 80 + i * 90;
+            
+            // Base effectiveness
+            const baseHeight = (category.base / 100) * 150;
+            equipCtx.fillStyle = '#DDD';
+            equipCtx.fillRect(x - 25, 200 - baseHeight, 20, baseHeight);
+            
+            // With equipment
+            const equipHeight = (category.equipped / 100) * 150;
+            equipCtx.fillStyle = category.color;
+            equipCtx.fillRect(x + 5, 200 - equipHeight, 20, equipHeight);
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(category.base + '%', x - 15, 220);
+            equipCtx.fillText(category.equipped + '%', x + 15, 220);
+            equipCtx.fillText(category.name, x, 240);
+        });
+        
+        equipCtx.fillText('Base (Gray) vs Equipped (Color) Combat Modes', 250, 30);
+
+        // Party Synergy Canvas
+        const synergyCanvas = document.getElementById('partySynergyCanvas');
+        const synergyCtx = synergyCanvas.getContext('2d');
+        
+        synergyCtx.clearRect(0, 0, 500, 250);
+        synergyCtx.font = '12px Arial';
+        synergyCtx.textAlign = 'center';
+        
+        const partyCombs = [
+            {combo: 'Elf Solo', effectiveness: 75, color: '#32CD32'},
+            {combo: 'Elf + Barbarian', effectiveness: 88, color: '#4ECDC4'},
+            {combo: 'Elf + Dwarf', effectiveness: 82, color: '#96CEB4'},
+            {combo: 'Elf + Wizard', effectiveness: 90, color: '#9370DB'},
+            {combo: 'Full Party', effectiveness: 95, color: '#FFD700'}
+        ];
+        
+        partyCombs.forEach((combo, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (combo.effectiveness / 100) * 150;
+            
+            synergyCtx.fillStyle = combo.color;
+            synergyCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
+            
+            synergyCtx.fillStyle = 'black';
+            synergyCtx.fillText(combo.effectiveness + '%', x, 185 - barHeight);
+            synergyCtx.save();
+            synergyCtx.translate(x, 220);
+            synergyCtx.rotate(-Math.PI / 4);
+            synergyCtx.fillText(combo.combo, 0, 0);
+            synergyCtx.restore();
+        });
+
+        // Combat Modes Effectiveness
+        const modesCanvas = document.getElementById('combatModesCanvas');
+        const modesCtx = modesCanvas.getContext('2d');
+        
+        modesCtx.clearRect(0, 0, 600, 300);
+        modesCtx.font = '11px Arial';
+        modesCtx.textAlign = 'center';
+        
+        const situations = [
+            {name: 'Open Terrain', ranged: 90, melee: 60, magic: 70},
+            {name: 'Narrow Corridor', ranged: 60, melee: 80, magic: 85},
+            {name: 'Multiple Enemies', ranged: 85, melee: 40, magic: 95},
+            {name: 'Single Boss', ranged: 70, melee: 75, magic: 80},
+            {name: 'Emergency Escape', ranged: 50, melee: 30, magic: 90}
+        ];
+        
+        situations.forEach((situation, i) => {
+            const x = 80 + i * 100;
+            
+            // Ranged bar
+            const rangedHeight = (situation.ranged / 100) * 120;
+            modesCtx.fillStyle = '#32CD32';
+            modesCtx.fillRect(x - 30, 200 - rangedHeight, 18, rangedHeight);
+            
+            // Melee bar
+            const meleeHeight = (situation.melee / 100) * 120;
+            modesCtx.fillStyle = '#4169E1';
+            modesCtx.fillRect(x - 6, 200 - meleeHeight, 18, meleeHeight);
+            
+            // Magic bar
+            const magicHeight = (situation.magic / 100) * 120;
+            modesCtx.fillStyle = '#9370DB';
+            modesCtx.fillRect(x + 18, 200 - magicHeight, 18, magicHeight);
+            
+            modesCtx.fillStyle = 'black';
+            modesCtx.fillText(situation.ranged, x - 21, 220);
+            modesCtx.fillText(situation.melee, x + 3, 220);
+            modesCtx.fillText(situation.magic, x + 27, 220);
+            
+            modesCtx.save();
+            modesCtx.translate(x, 240);
+            modesCtx.rotate(-Math.PI / 6);
+            modesCtx.fillText(situation.name, 0, 0);
+            modesCtx.restore();
+        });
+        
+        modesCtx.fillText('Combat Mode Effectiveness by Situation', 300, 30);
+        modesCtx.fillText('Ranged (Green) | Melee (Blue) | Magic (Purple)', 300, 50);
+
+        // Mind Point Usage Strategies
+        const mindCanvas = document.getElementById('mindPointCanvas');
+        const mindCtx = mindCanvas.getContext('2d');
+        
+        mindCtx.clearRect(0, 0, 500, 250);
+        mindCtx.font = '12px Arial';
+        mindCtx.textAlign = 'center';
+        
+        const strategies = [
+            {name: 'Conservative', earlyUse: 25, midUse: 50, lateUse: 25, color: '#4169E1'},
+            {name: 'Balanced', earlyUse: 40, midUse: 40, lateUse: 20, color: '#32CD32'},
+            {name: 'Aggressive', earlyUse: 60, midUse: 30, lateUse: 10, color: '#FF6B6B'}
+        ];
+        
+        strategies.forEach((strategy, i) => {
+            const x = 100 + i * 120;
+            const totalHeight = 120;
+            
+            // Early game usage
+            const earlyHeight = (strategy.earlyUse / 100) * totalHeight;
+            mindCtx.fillStyle = strategy.color;
+            mindCtx.fillRect(x - 30, 180, 60, -earlyHeight);
+            
+            // Mid game usage
+            const midHeight = (strategy.midUse / 100) * totalHeight;
+            mindCtx.fillStyle = strategy.color;
+            mindCtx.globalAlpha = 0.7;
+            mindCtx.fillRect(x - 30, 180 - earlyHeight, 60, -midHeight);
+            
+            // Late game usage
+            const lateHeight = (strategy.lateUse / 100) * totalHeight;
+            mindCtx.fillStyle = strategy.color;
+            mindCtx.globalAlpha = 0.4;
+            mindCtx.fillRect(x - 30, 180 - earlyHeight - midHeight, 60, -lateHeight);
+            mindCtx.globalAlpha = 1.0;
+            
+            mindCtx.fillStyle = 'black';
+            mindCtx.fillText(strategy.name, x, 200);
+            mindCtx.fillText('Early: ' + strategy.earlyUse + '%', x, 220);
+        });
+        
+        mindCtx.fillText('Mind Point Usage Patterns Throughout Quest', 250, 30);
+    </script>
+</body>
+</html>

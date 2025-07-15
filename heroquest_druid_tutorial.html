@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Druid Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #228B22;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #228B22, #32CD32);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #006400;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #F0FFF0;
+            border-left: 5px solid #228B22;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .nature-magic {
+            background: #F5FFFA;
+            border: 2px solid #00FF7F;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #32CD32;
+        }
+        .elemental-power {
+            background: #E0FFFF;
+            border: 2px solid #00CED1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .wild-shape {
+            background: #FFFACD;
+            border: 2px solid #DAA520;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .environmental-control {
+            background: #FFF8DC;
+            border: 2px solid #DEB887;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .natural-harmony {
+            background: #F0F8FF;
+            border: 2px solid #87CEEB;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .primal-wisdom {
+            background: #FDF5E6;
+            border: 2px solid #F4A460;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌿 The Druid Hero: Guardian of Natural Power</h1>
+        <p><em>Welcome, keeper of ancient wisdom! Today we explore the primal magic and elemental mastery of HeroQuest's most nature-attuned hero.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Druid</h2>
+            <p>The Druid is HeroQuest's embodiment of primal natural power - imagine a forest guardian who channels the raw forces of earth, wind, fire, and water while maintaining deep harmony with the living world. Where other heroes rely on crafted weapons or scholarly magic, the Druid draws power directly from nature itself, wielding elemental forces and shapeshifting abilities that make them uniquely adaptable to any environment.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Natural Balance</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 2 combat dice</div>
+            <div class="stat-display">Defend: 2 combat dice</div>
+            <div class="stat-display">Body Points: 6</div>
+            <div class="stat-display">Mind Points: 5</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were ecosystems, the Druid would be an old-growth forest - not the fastest growing (balanced stats) but incredibly resilient, self-sustaining, and capable of adapting to any environmental challenge. Like nature itself, the Druid's strength comes not from specialization but from the ability to find balance and harmony in any situation.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Druid Stats: The Harmony of Balance</h3>
+                <canvas id="druidStatsCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="natural-harmony">
+                <h3>🌱 Natural Balance Philosophy</h3>
+                <p><strong>Physical Grounding:</strong> 2/2/6 combat stats provide solid earthly presence</p>
+                <p><strong>Spiritual Connection:</strong> 5 Mind Points enable substantial communion with natural forces</p>
+                <p><strong>Adaptive Nature:</strong> Balanced capabilities allow response to any challenge</p>
+                <p><strong>Environmental Synergy:</strong> Stats work differently based on natural surroundings</p>
+                <p><strong>Primal Resilience:</strong> Natural magic provides alternatives to conventional limitations</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Nature Magic Mastery: Channeling Elemental Forces</h2>
+            
+            <p>The Druid's 5 Mind Points power a unique form of magic that draws from the four elements and the natural world itself. This isn't scholarly spellcasting - it's primal communion with the fundamental forces of creation.</p>
+
+            <div class="nature-magic">
+                <h3>🌍 Elemental Magic Schools</h3>
+                <p><strong>Earth Magic:</strong> Stone skin, earthquake, plant growth, and terrain manipulation</p>
+                <p><strong>Water Magic:</strong> Healing springs, ice storms, water walking, and purification</p>
+                <p><strong>Fire Magic:</strong> Lightning bolt, flame weapons, forest fire, and purging flame</p>
+                <p><strong>Air Magic:</strong> Wind wall, flying, storm calling, and invisibility through mist</p>
+                <p><strong>Life Magic:</strong> Healing, animal friendship, plant control, and nature's blessing</p>
+                <p><strong>Primal Magic:</strong> Weather control, season change, and fundamental force manipulation</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Elemental Magic Effectiveness</h3>
+                <canvas id="elementalMagicCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="elemental-power">
+                <h3>Signature Druid Spells</h3>
+                <p><strong>Call Lightning (2 MP):</strong> Channel sky-fire through natural conduits</p>
+                <p><strong>Earth Shield (1 MP):</strong> Surround yourself with protective stone and soil</p>
+                <p><strong>Healing Spring (2 MP):</strong> Create a source of natural restoration</p>
+                <p><strong>Thorn Wall (2 MP):</strong> Grow instant barriers of razor-sharp vegetation</p>
+                <p><strong>Animal Form (3 MP):</strong> Transform into creatures suited to current needs</p>
+                <p><strong>Nature's Wrath (3 MP):</strong> Unleash the fury of the natural world</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Wild Shape: The Power of Transformation</h2>
+            
+            <p>Perhaps the Druid's most iconic ability is shapeshifting - the power to take animal forms that provide specialized capabilities for different situations. This isn't just cosmetic; it fundamentally changes how the Druid approaches challenges.</p>
+
+            <div class="wild-shape">
+                <h3>🐺 Animal Form Capabilities</h3>
+                <p><strong>Wolf Form:</strong> Enhanced movement and pack hunting abilities</p>
+                <p><strong>Bear Form:</strong> Increased combat prowess and intimidation power</p>
+                <p><strong>Eagle Form:</strong> Flight capability and aerial reconnaissance</p>
+                <p><strong>Snake Form:</strong> Stealth movement and poison resistance</p>
+                <p><strong>Badger Form:</strong> Burrowing ability and relentless determination</p>
+                <p><strong>Hawk Form:</strong> Superior vision and swift aerial strikes</p>
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[Encounter Challenge] --> B{What Does Situation Require?}
+                    B -->|Combat Power| C[Bear/Wolf Form]
+                    B -->|Mobility/Scouting| D[Eagle/Hawk Form]
+                    B -->|Stealth/Infiltration| E[Snake/Cat Form]
+                    B -->|Utility/Exploration| F[Appropriate Animal Form]
+                    C --> G[Transform and Engage]
+                    D --> H[Aerial Advantage]
+                    E --> I[Silent Approach]
+                    F --> J[Specialized Capability]
+                    G --> K[Assess Form Effectiveness]
+                    H --> K
+                    I --> K
+                    J --> K
+                    K --> L{Need Different Form?}
+                    L -->|Yes| M[Return to Human, Transform Again]
+                    L -->|No| N[Continue Current Strategy]
+            </mermaid>
+
+            <div class="canvas-container">
+                <h3>Animal Form Effectiveness by Situation</h3>
+                <canvas id="animalFormsCanvas" width="600" height="300"></canvas>
+            </div>
+
+            <div class="primal-wisdom">
+                <h3>Transformation Strategy</h3>
+                <p><strong>Situational Adaptation:</strong> Choose forms based on immediate challenges</p>
+                <p><strong>Resource Management:</strong> Balance transformation costs with duration benefits</p>
+                <p><strong>Form Cycling:</strong> Switch between shapes as tactical needs change</p>
+                <p><strong>Emergency Protocols:</strong> Keep reserve Mind Points for crisis transformations</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Environmental Mastery: Working with the World</h2>
+            
+            <p>Unlike other heroes who fight against their environment, the Druid works in harmony with natural surroundings, gaining bonuses in outdoor settings while adapting even underground dungeons to their advantage.</p>
+
+            <div class="environmental-control">
+                <h3>🌲 Environmental Synergies</h3>
+                <p><strong>Forest Bonus:</strong> Enhanced magic and movement in wooded areas</p>
+                <p><strong>Underground Adaptation:</strong> Stone and earth magic work even in dungeons</p>
+                <p><strong>Weather Control:</strong> Influence atmospheric conditions for tactical advantage</p>
+                <p><strong>Terrain Modification:</strong> Alter battlefield geography to favor your party</p>
+                <p><strong>Natural Camouflage:</strong> Blend with surroundings for stealth and ambush</p>
+                <p><strong>Resource Generation:</strong> Create food, water, and shelter from natural materials</p>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Ecological Analogy:</strong> The Druid is like a keystone species in an ecosystem - while other heroes are like apex predators that dominate through individual power, the Druid shapes the entire environment to benefit their "ecological niche" (the adventuring party), making everyone more successful through environmental harmony.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Environmental Effectiveness Modifiers</h3>
+                <canvas id="environmentalCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Combat Philosophy: Nature's Warrior</h2>
+            
+            <p>Druid combat combines elemental magic, animal forms, and environmental manipulation to create a uniquely adaptive fighting style that changes based on circumstances rather than following rigid patterns.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Druid Combat Turn] --> B{Current Form?}
+                    B -->|Human Form| C{Magic Available?}
+                    C -->|Yes 3+ MP| D[Elemental Attack or Transform]
+                    C -->|Limited MP| E[Physical Combat or Cantrips]
+                    B -->|Animal Form| F{Form Appropriate for Threat?}
+                    F -->|Yes| G[Use Animal Abilities]
+                    F -->|No| H[Consider Form Change]
+                    D --> I[Assess Magical Impact]
+                    E --> J[Conserve Resources]
+                    G --> K[Leverage Animal Strengths]
+                    H --> L[Transform if MP Available]
+                    I --> M[Plan Next Action]
+                    J --> M
+                    K --> M
+                    L --> M
+            </mermaid>
+
+            <div class="elemental-power">
+                <h3>⚡ Adaptive Combat Strategies</h3>
+                <p><strong>Elemental Weakness Exploitation:</strong> Use opposing elements against specific enemies</p>
+                <p><strong>Form-Function Matching:</strong> Transform to counter specific threats</p>
+                <p><strong>Environmental Weaponization:</strong> Turn terrain features into combat advantages</p>
+                <p><strong>Multi-Phase Tactics:</strong> Combine different forms and elements in sequence</p>
+                <p><strong>Natural Regeneration:</strong> Use healing magic to sustain prolonged engagements</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Combat Effectiveness by Approach</h3>
+                <canvas id="combatApproachCanvas" width="500" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Positioning Strategy: The Flowing Combatant</h2>
+            
+            <p>Druid positioning is uniquely fluid, changing based on current form, available magic, and environmental opportunities. They can adapt from front-line fighter to rear support to aerial scout as the situation demands.</p>
+
+            <div class="canvas-container">
+                <h3>Druid Positioning Adaptability</h3>
+                <canvas id="druidPositioningCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <div class="natural-harmony">
+                <h3>🌊 Fluid Positioning Principles</h3>
+                <p><strong>Form-Based Movement:</strong> Position according to current animal form capabilities</p>
+                <p><strong>Environmental Exploitation:</strong> Use terrain features for maximum advantage</p>
+                <p><strong>Elemental Considerations:</strong> Position for optimal spell targeting and effects</p>
+                <p><strong>Transformation Zones:</strong> Maintain safe spaces for form changes</p>
+                <p><strong>Multi-Dimensional Thinking:</strong> Consider ground, air, and underground options</p>
+            </div>
+
+            <div class="wild-shape">
+                <h3>Position by Current Form</h3>
+                <p><strong>Human Form:</strong> Medium range for spellcasting with retreat options</p>
+                <p><strong>Bear Form:</strong> Front lines as a secondary tank</p>
+                <p><strong>Wolf Form:</strong> Flanking positions for pack hunting tactics</p>
+                <p><strong>Eagle Form:</strong> Aerial positions for reconnaissance and diving attacks</p>
+                <p><strong>Snake Form:</strong> Hidden positions for ambush and stealth</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Strategy: Tools of the Natural World</h2>
+            
+            <p>Druid equipment emphasizes natural materials and items that enhance their connection to elemental forces. They avoid heavily processed or artificial items that might interfere with natural magic.</p>
+
+            <div class="primal-wisdom">
+                <h3>🪵 Natural Equipment Philosophy</h3>
+                <p><strong>Wooden Weapons:</strong> Quarterstaffs and clubs that channel natural energy</p>
+                <p><strong>Leather Armor:</strong> Protection that doesn't interfere with transformation</p>
+                <p><strong>Natural Focuses:</strong> Crystals, stones, and plants that amplify elemental magic</p>
+                <p><strong>Elemental Tools:</strong> Items attuned to earth, air, fire, and water</p>
+                <p><strong>Living Equipment:</strong> Gear that grows or adapts with the Druid's needs</p>
+                <p><strong>Primitive Simplicity:</strong> Functional items that maintain natural harmony</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Impact on Natural Magic</h3>
+                <canvas id="equipmentImpactCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="environmental-control">
+                <h3>Elemental Equipment Synergies</h3>
+                <p><strong>Earth Items:</strong> Stone weapons and crystal focuses for defensive magic</p>
+                <p><strong>Water Items:</strong> Pearl decorations and shell containers for healing magic</p>
+                <p><strong>Fire Items:</strong> Obsidian blades and ember pouches for combat magic</p>
+                <p><strong>Air Items:</strong> Feather accessories and wind chimes for mobility magic</p>
+                <p><strong>Life Items:</strong> Living wood staffs and herb pouches for nature magic</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Party Dynamics: The Natural Harmonizer</h2>
+            
+            <p>The Druid's role in party dynamics is unique - they serve as the adaptable member who can fill gaps in party composition while providing environmental advantages that benefit everyone.</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Druid: Adaptive Natural Support] --> B[Barbarian: Environmental Buffs]
+                    A --> C[Dwarf: Earth Magic Synergy]
+                    A --> D[Elf: Magical Nature Harmony]
+                    A --> E[Wizard: Elemental Knowledge Sharing]
+                    B --> F[Enhanced Party Effectiveness]
+                    C --> F
+                    D --> F
+                    E --> F
+                    G[Environmental Control] --> H[Tactical Battlefield Advantages]
+                    H --> F
+            </mermaid>
+
+            <div class="natural-harmony">
+                <h3>🤝 Party Role Adaptation</h3>
+                <p><strong>With Barbarian:</strong> Provide magical support while shapeshifting for flanking attacks</p>
+                <p><strong>With Dwarf:</strong> Earth magic complements underground expertise</p>
+                <p><strong>With Elf:</strong> Natural magic harmony and shared environmental awareness</p>
+                <p><strong>With Wizard:</strong> Elemental knowledge exchange and magical theory discussion</p>
+                <p><strong>Gap Filling:</strong> Transform to provide whatever the party currently lacks</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Party Synergy Effectiveness</h3>
+                <canvas id="partySynergyCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: Mastering Natural Harmony</h2>
+            
+            <div class="elemental-power">
+                <h3>🌪️ Advanced Druid Mastery</h3>
+                <p><strong>Elemental Cycling:</strong> Rotate between different elemental focuses for compound effects</p>
+                <p><strong>Form Chaining:</strong> Sequential transformations to handle complex challenges</p>
+                <p><strong>Environmental Preparation:</strong> Modify battlefields before encounters begin</p>
+                <p><strong>Symbiotic Casting:</strong> Combine animal abilities with elemental magic</p>
+                <p><strong>Primal Channeling:</strong> Access raw natural forces beyond individual elements</p>
+            </div>
+
+            <div class="wild-shape">
+                <h3>Master-Level Example: The Elemental Storm Sequence</h3>
+                <p><strong>Setup:</strong> Large enemy group threatening the party in open terrain</p>
+                <p><strong>Phase 1:</strong> Transform to Eagle form for aerial reconnaissance and positioning</p>
+                <p><strong>Phase 2:</strong> Call Lightning (2 MP) while airborne for maximum targeting</p>
+                <p><strong>Phase 3:</strong> Land and transform to Bear form for ground combat</p>
+                <p><strong>Phase 4:</strong> Use Earth Shield (1 MP) while in bear form for enhanced durability</p>
+                <p><strong>Result:</strong> Aerial advantage followed by enhanced ground combat through form/magic synergy</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Advanced Technique Complexity Analysis</h3>
+                <canvas id="advancedTechniquesCanvas" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>When to Choose the Druid: Optimal Scenarios</h2>
+            
+            <div class="environmental-control">
+                <h3>Perfect Druid Adventures</h3>
+                <p><strong>Outdoor Campaigns:</strong> Adventures in forests, mountains, and natural settings</p>
+                <p><strong>Environmental Challenges:</strong> Quests requiring adaptation to varied terrains</p>
+                <p><strong>Flexible Parties:</strong> Groups that need adaptive gap-filling rather than specialization</p>
+                <p><strong>Elemental Themes:</strong> Adventures involving primal forces and natural magic</p>
+                <p><strong>Survival Scenarios:</strong> Extended expeditions requiring resource generation</p>
+                <p><strong>Anti-Undead Campaigns:</strong> Life magic excels against necromantic threats</p>
+            </div>
+
+            <div class="primal-wisdom">
+                <h3>Challenging Scenarios for Druids</h3>
+                <p><strong>Artificial Environments:</strong> Heavily constructed areas with minimal natural elements</p>
+                <p><strong>Anti-Magic Zones:</strong> Areas where natural magic is suppressed or forbidden</p>
+                <p><strong>Speed-Critical Missions:</strong> Quests where transformation time costs precious moments</p>
+                <p><strong>Social Intrigue:</strong> Urban adventures requiring diplomatic skills over natural power</p>
+                <p><strong>Precision Requirements:</strong> Tasks demanding exact outcomes rather than adaptive solutions</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Elemental Mastery: Understanding the Four Forces</h2>
+            
+            <div class="nature-magic">
+                <h3>🔥💧🌍💨 Elemental Synergy Matrix</h3>
+                <p><strong>Fire + Air:</strong> Lightning and storm magic for devastating area effects</p>
+                <p><strong>Earth + Water:</strong> Mud, swamp, and plant growth for battlefield control</p>
+                <p><strong>Fire + Earth:</strong> Lava and volcanic magic for extreme damage</p>
+                <p><strong>Air + Water:</strong> Ice, mist, and weather magic for utility and concealment</p>
+                <p><strong>All Four Elements:</strong> Primal magic that reshapes reality itself</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Elemental Combination Effectiveness</h3>
+                <canvas id="elementalCombosCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Chemical Analogy:</strong> The Druid's elemental magic is like chemistry - individual elements have their properties, but the real power comes from understanding how they combine and react with each other to create entirely new effects that are greater than the sum of their parts.
+            </div>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Elemental Magic Theory:</strong> Deep dive into the four primary magical forces and their interactions</li>
+                <li><strong>Shapeshifting Mastery:</strong> Advanced transformation techniques and animal form optimization</li>
+                <li><strong>Environmental Manipulation:</strong> Comprehensive guide to terrain control and battlefield modification</li>
+                <li><strong>Natural Equipment Crafting:</strong> Creating and enhancing gear using natural materials</li>
+                <li><strong>Seasonal Magic:</strong> How natural cycles affect Druid abilities and spell effectiveness</li>
+                <li><strong>Primal Channeling:</strong> Advanced techniques for accessing raw natural forces</li>
+                <li><strong>Ecosystem Integration:</strong> Working with natural environments as tactical advantages</li>
+                <li><strong>Anti-Unnatural Combat:</strong> Specialized techniques for fighting aberrations and undead</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, guardian of the green world: You are not separate from nature - you ARE nature, given consciousness and will. The forests speak through your voice, the storms answer your call, and the very earth rises to your aid. In the depths of Morcar's twisted realm, you carry the pure power of the natural world, untainted by artifice or corruption. Let the elements flow through you, and become the force that restores balance to a world gone wrong!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Druid Stats Analysis
+        const druidStatsCanvas = document.getElementById('druidStatsCanvas');
+        const druidStatsCtx = druidStatsCanvas.getContext('2d');
+        
+        druidStatsCtx.clearRect(0, 0, 500, 300);
+        druidStatsCtx.font = '14px Arial';
+        druidStatsCtx.textAlign = 'center';
+        
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 2, max: 4, color: '#4ECDC4', label: '2 dice'},
+            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
+            {name: 'Body', value: 6, max: 8, color: '#96CEB4', label: '6 points'},
+            {name: 'Mind', value: 5, max: 6, color: '#32CD32', label: '5 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            druidStatsCtx.fillStyle = stat.color;
+            druidStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            druidStatsCtx.fillStyle = 'black';
+            druidStatsCtx.fillText(stat.label, x, 250);
+            druidStatsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Elemental Magic Effectiveness
+        const elementalCanvas = document.getElementById('elementalMagicCanvas');
+        const elementalCtx = elementalCanvas.getContext('2d');
+        
+        elementalCtx.clearRect(0, 0, 600, 250);
+        elementalCtx.font = '12px Arial';
+        elementalCtx.textAlign = 'center';
+        
+        const elements = [
+            {element: 'Earth', offense: 70, defense: 90, utility: 85, color: '#8B4513'},
+            {element: 'Water', offense: 60, defense: 70, utility: 95, color: '#4169E1'},
+            {element: 'Fire', offense: 95, defense: 50, utility: 60, color: '#FF4500'},
+            {element: 'Air', offense: 80, defense: 60, utility: 90, color: '#87CEEB'},
+            {element: 'Life', offense: 40, defense: 85, utility: 100, color: '#32CD32'}
+        ];
+        
+        elements.forEach((element, i) => {
+            const x = 80 + i * 100;
+            
+            // Offense
+            const offHeight = (element.offense / 100) * 80;
+            elementalCtx.fillStyle = element.color;
+            elementalCtx.fillRect(x - 35, 180 - offHeight, 20, offHeight);
+            
+            // Defense
+            const defHeight = (element.defense / 100) * 80;
+            elementalCtx.fillStyle = element.color;
+            elementalCtx.globalAlpha = 0.7;
+            elementalCtx.fillRect(x - 10, 180 - defHeight, 20, defHeight);
+            
+            // Utility
+            const utilHeight = (element.utility / 100) * 80;
+            elementalCtx.fillStyle = element.color;
+            elementalCtx.globalAlpha = 0.4;
+            elementalCtx.fillRect(x + 15, 180 - utilHeight, 20, utilHeight);
+            elementalCtx.globalAlpha = 1.0;
+            
+            elementalCtx.fillStyle = 'black';
+            elementalCtx.fillText(element.offense, x - 25, 200);
+            elementalCtx.fillText(element.defense, x, 200);
+            elementalCtx.fillText(element.utility, x + 25, 200);
+            elementalCtx.fillText(element.element, x, 220);
+        });
+        
+        elementalCtx.fillText('Offense (Dark) | Defense (Medium) | Utility (Light)', 300, 30);
+
+        // Animal Forms Effectiveness
+        const animalCanvas = document.getElementById('animalFormsCanvas');
+        const animalCtx = animalCanvas.getContext('2d');
+        
+        animalCtx.clearRect(0, 0, 600, 300);
+        animalCtx.font = '11px Arial';
+        animalCtx.textAlign = 'center';
+        
+        const situations = [
+            {situation: 'Combat', wolf: 80, bear: 95, eagle: 60, snake: 40},
+            {situation: 'Scouting', wolf: 70, bear: 30, eagle: 95, snake: 85},
+            {situation: 'Stealth', wolf: 60, bear: 20, eagle: 70, snake: 95},
+            {situation: 'Mobility', wolf: 85, bear: 40, eagle: 100, snake: 60},
+            {situation: 'Survival', wolf: 75, bear: 90, eagle: 50, snake: 70}
+        ];
+        
+        situations.forEach((situation, i) => {
+            const x = 80 + i * 100;
+            
+            // Wolf
+            const wolfHeight = (situation.wolf / 100) * 120;
+            animalCtx.fillStyle = '#8B4513';
+            animalCtx.fillRect(x - 40, 220 - wolfHeight, 15, wolfHeight);
+            
+            // Bear
+            const bearHeight = (situation.bear / 100) * 120;
+            animalCtx.fillStyle = '#654321';
+            animalCtx.fillRect(x - 20, 220 - bearHeight, 15, bearHeight);
+            
+            // Eagle
+            const eagleHeight = (situation.eagle / 100) * 120;
+            animalCtx.fillStyle = '#4169E1';
+            animalCtx.fillRect(x + 5, 220 - eagleHeight, 15, eagleHeight);
+            
+            // Snake
+            const snakeHeight = (situation.snake / 100) * 120;
+            animalCtx.fillStyle = '#228B22';
+            animalCtx.fillRect(x + 25, 220 - snakeHeight, 15, snakeHeight);
+            
+            animalCtx.fillStyle = 'black';
+            animalCtx.fillText(situation.wolf, x - 32, 240);
+            animalCtx.fillText(situation.bear, x - 12, 240);
+            animalCtx.fillText(situation.eagle, x + 12, 240);
+            animalCtx.fillText(situation.snake, x + 32, 240);
+            animalCtx.fillText(situation.situation, x, 260);
+        });
+        
+        animalCtx.fillText('Wolf (Brown) | Bear (Dark) | Eagle (Blue) | Snake (Green)', 300, 30);
+
+        // Environmental Effectiveness
+        const envCanvas = document.getElementById('environmentalCanvas');
+        const envCtx = envCanvas.getContext('2d');
+        
+        envCtx.clearRect(0, 0, 500, 250);
+        envCtx.font = '12px Arial';
+        envCtx.textAlign = 'center';
+        
+        const environments = [
+            {env: 'Forest', bonus: 120, color: '#228B22'},
+            {env: 'Mountains', bonus: 110, color: '#8B4513'},
+            {env: 'Plains', bonus: 105, color: '#32CD32'},
+            {env: 'Underground', bonus: 90, color: '#696969'},
+            {env: 'Urban', bonus: 70, color: '#A9A9A9'}
+        ];
+        
+        environments.forEach((environment, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (environment.bonus / 130) * 150;
+            
+            envCtx.fillStyle = environment.color;
+            envCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
+            
+            envCtx.fillStyle = 'black';
+            envCtx.fillText(environment.bonus + '%', x, 185 - barHeight);
+            envCtx.save();
+            envCtx.translate(x, 220);
+            envCtx.rotate(-Math.PI / 4);
+            envCtx.fillText(environment.env, 0, 0);
+            envCtx.restore();
+        });
+
+        // Combat Approach Effectiveness
+        const combatCanvas = document.getElementById('combatApproachCanvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        combatCtx.clearRect(0, 0, 500, 300);
+        combatCtx.font = '12px Arial';
+        combatCtx.textAlign = 'center';
+        
+        const approaches = [
+            {approach: 'Pure Magic', effectiveness: 75, risk: 40, color: '#9370DB'},
+            {approach: 'Animal Form', effectiveness: 80, risk: 60, color: '#8B4513'},
+            {approach: 'Hybrid Casting', effectiveness: 90, risk: 50, color: '#32CD32'},
+            {approach: 'Environmental', effectiveness: 85, risk: 30, color: '#4169E1'}
+        ];
+        
+        approaches.forEach((approach, i) => {
+            const x = 80 + i * 90;
+            
+            // Effectiveness (upward)
+            const effHeight = (approach.effectiveness / 100) * 100;
+            combatCtx.fillStyle = approach.color;
+            combatCtx.fillRect(x - 25, 150 - effHeight, 20, effHeight);
+            
+            // Risk (downward)
+            const riskHeight = (approach.risk / 100) * 80;
+            combatCtx.fillStyle = approach.color;
+            combatCtx.globalAlpha = 0.6;
+            combatCtx.fillRect(x + 5, 150, 20, riskHeight);
+            combatCtx.globalAlpha = 1.0;
+            
+            combatCtx.fillStyle = 'black';
+            combatCtx.fillText(approach.effectiveness + '%', x - 15, 40);
+            combatCtx.fillText(approach.risk + '%', x + 15, 240);
+            combatCtx.fillText(approach.approach, x, 260);
+        });
+        
+        combatCtx.fillText('Effectiveness (Up) vs Risk (Down)', 250, 20);
+
+        // Druid Positioning Adaptability
+        const posCanvas = document.getElementById('druidPositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw terrain features
+        posCtx.fillStyle = '#8B4513';
+        posCtx.fillRect(100, 100, 100, 50);  // Rock formation
+        
+        posCtx.fillStyle = '#4169E1';
+        posCtx.fillRect(250, 200, 50, 100); // Water feature
+        
+        posCtx.fillStyle = '#228B22';
+        posCtx.fillRect(50, 300, 150, 50);  // Forest area
+        
+        // Draw enemies
+        posCtx.fillStyle = '#FF0000';
+        posCtx.fillRect(325, 75, 25, 25);
+        posCtx.fillRect(300, 275, 25, 25);
+        
+        // Draw different Druid positions for different forms
+        // Human form position (spellcasting)
+        posCtx.fillStyle = '#32CD32';
+        posCtx.fillRect(175, 175, 25, 25);
+        
+        // Bear form position (front line)
+        posCtx.fillStyle = '#654321';
+        posCtx.fillRect(275, 125, 20, 20);
+        
+        // Eagle form position (aerial)
+        posCtx.fillStyle = '#4169E1';
+        posCtx.fillRect(225, 50, 15, 15);
+        
+        // Snake form position (stealth)
+        posCtx.fillStyle = '#228B22';
+        posCtx.fillRect(125, 325, 15, 15);
+        
+        // Draw movement paths between positions
+        posCtx.strokeStyle = '#32CD32';
+        posCtx.setLineDash([3, 3]);
+        posCtx.lineWidth = 2;
+        
+        // Transformation paths
+        posCtx.beginPath();
+        posCtx.moveTo(187, 187);
+        posCtx.lineTo(285, 135);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(187, 187);
+        posCtx.lineTo(232, 57);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(187, 187);
+        posCtx.lineTo(132, 332);
+        posCtx.stroke();
+        
+        posCtx.setLineDash([]);
+        posCtx.lineWidth = 1;
+        
+        // Labels
+        posCtx.fillStyle = 'white';
+        posCtx.font = '8px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('H', 187, 190);  // Human
+        posCtx.fillText('B', 285, 138);  // Bear
+        posCtx.fillText('E', 232, 60);   // Eagle
+        posCtx.fillText('S', 132, 335);  // Snake
+        
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Druid Multi-Form Positioning Strategy', 200, 20);
+
+        // Equipment Impact on Natural Magic
+        const equipCanvas = document.getElementById('equipmentImpactCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 300);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        const equipTypes = [
+            {type: 'Natural Focus', base: 70, equipped: 95, color: '#32CD32'},
+            {type: 'Elemental Tools', base: 75, equipped: 90, color: '#4169E1'},
+            {type: 'Living Equipment', base: 80, equipped: 100, color: '#228B22'},
+            {type: 'Transformation Aid', base: 65, equipped: 85, color: '#8B4513'}
+        ];
+        
+        equipTypes.forEach((equip, i) => {
+            const x = 80 + i * 90;
+            
+            // Base
+            const baseHeight = (equip.base / 100) * 150;
+            equipCtx.fillStyle = '#DDD';
+            equipCtx.fillRect(x - 25, 200 - baseHeight, 20, baseHeight);
+            
+            // Equipped
+            const equipHeight = (equip.equipped / 100) * 150;
+            equipCtx.fillStyle = equip.color;
+            equipCtx.fillRect(x + 5, 200 - equipHeight, 20, equipHeight);
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(equip.base + '%', x - 15, 220);
+            equipCtx.fillText(equip.equipped + '%', x + 15, 220);
+            equipCtx.fillText(equip.type, x, 240);
+        });
+
+        // Party Synergy Effectiveness
+        const synergyCanvas = document.getElementById('partySynergyCanvas');
+        const synergyCtx = synergyCanvas.getContext('2d');
+        
+        synergyCtx.clearRect(0, 0, 500, 250);
+        synergyCtx.font = '12px Arial';
+        synergyCtx.textAlign = 'center';
+        
+        const partyCombs = [
+            {combo: 'Druid Solo', effectiveness: 70, color: '#32CD32'},
+            {combo: 'Druid + Barbarian', effectiveness: 85, color: '#8B4513'},
+            {combo: 'Druid + Dwarf', effectiveness: 88, color: '#696969'},
+            {combo: 'Druid + Elf', effectiveness: 90, color: '#228B22'},
+            {combo: 'Full Party', effectiveness: 95, color: '#FFD700'}
+        ];
+        
+        partyCombs.forEach((combo, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (combo.effectiveness / 100) * 150;
+            
+            synergyCtx.fillStyle = combo.color;
+            synergyCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
+            
+            synergyCtx.fillStyle = 'black';
+            synergyCtx.fillText(combo.effectiveness + '%', x, 185 - barHeight);
+            synergyCtx.save();
+            synergyCtx.translate(x, 220);
+            synergyCtx.rotate(-Math.PI / 4);
+            synergyCtx.fillText(combo.combo, 0, 0);
+            synergyCtx.restore();
+        });
+
+        // Advanced Techniques Complexity
+        const techCanvas = document.getElementById('advancedTechniquesCanvas');
+        const techCtx = techCanvas.getContext('2d');
+        
+        techCtx.clearRect(0, 0, 600, 300);
+        techCtx.font = '11px Arial';
+        techCtx.textAlign = 'center';
+        
+        const techniques = [
+            {tech: 'Elemental Cycling', complexity: 70, power: 85, versatility: 90, color: '#9370DB'},
+            {tech: 'Form Chaining', complexity: 85, power: 80, versatility: 95, color: '#8B4513'},
+            {tech: 'Environmental Prep', complexity: 60, power: 90, versatility: 70, color: '#4169E1'},
+            {tech: 'Symbiotic Casting', complexity: 95, power: 100, versatility: 85, color: '#32CD32'},
+            {tech: 'Primal Channeling', complexity: 100, power: 95, versatility: 80, color: '#FF4500'}
+        ];
+        
+        techniques.forEach((tech, i) => {
+            const x = 80 + i * 100;
+            
+            // Complexity
+            const complexHeight = (tech.complexity / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.4;
+            techCtx.fillRect(x - 35, 200 - complexHeight, 20, complexHeight);
+            
+            // Power
+            const powerHeight = (tech.power / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.7;
+            techCtx.fillRect(x - 10, 200 - powerHeight, 20, powerHeight);
+            
+            // Versatility
+            const versHeight = (tech.versatility / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 1.0;
+            techCtx.fillRect(x + 15, 200 - versHeight, 20, versHeight);
+            
+            techCtx.fillStyle = 'black';
+            techCtx.fillText(tech.complexity, x - 25, 220);
+            techCtx.fillText(tech.power, x, 220);
+            techCtx.fillText(tech.versatility, x + 25, 220);
+            
+            techCtx.save();
+            techCtx.translate(x, 250);
+            techCtx.rotate(-Math.PI / 6);
+            techCtx.fillText(tech.tech, 0, 0);
+            techCtx.restore();
+        });
+        
+        techCtx.fillText('Complexity (Light) | Power (Medium) | Versatility (Dark)', 300, 30);
+
+        // Elemental Combinations
+        const comboCanvas = document.getElementById('elementalCombosCanvas');
+        const comboCtx = comboCanvas.getContext('2d');
+        
+        comboCtx.clearRect(0, 0, 500, 250);
+        comboCtx.font = '12px Arial';
+        comboCtx.textAlign = 'center';
+        
+        const combos = [
+            {combo: 'Fire + Air', effectiveness: 90, cost: 3, color: '#FF6347'},
+            {combo: 'Earth + Water', effectiveness: 85, cost: 3, color: '#8B4513'},
+            {combo: 'Fire + Earth', effectiveness: 95, cost: 4, color: '#FF4500'},
+            {combo: 'Air + Water', effectiveness: 80, cost: 3, color: '#87CEEB'},
+            {combo: 'All Four', effectiveness: 100, cost: 5, color: '#9370DB'}
+        ];
+        
+        combos.forEach((combo, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (combo.effectiveness / 100) * 120;
+            
+            comboCtx.fillStyle = combo.color;
+            comboCtx.fillRect(x - 25, 180 - barHeight, 50, barHeight);
+            
+            // Cost indicator
+            comboCtx.fillStyle = 'black';
+            comboCtx.fillRect(x - 30, 185, 8, combo.cost * 8);
+            
+            comboCtx.fillStyle = 'black';
+            comboCtx.fillText(combo.effectiveness + '%', x, 165 - barHeight);
+            comboCtx.fillText(combo.cost + ' MP', x + 20, 200);
+            comboCtx.save();
+            comboCtx.translate(x, 220);
+            comboCtx.rotate(-Math.PI / 4);
+            comboCtx.fillText(combo.combo, 0, 0);
+            comboCtx.restore();
+        });
+        
+        comboCtx.fillText('Elemental Combination Power and Cost', 250, 30);
+    </script>
+</body>
+</html>

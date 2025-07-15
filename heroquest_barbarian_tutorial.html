@@ -1,0 +1,441 @@
+            <div class="canvas-container">
+                <h3>Movement Probability Distribution</h3>
+                <canvas id="movementProbabilityCanvas" width="500" height="250"></canvas>
+            </div><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Barbarian Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #8B4513;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #D2691E, #CD853F);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #654321;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #FFF8DC;
+            border-left: 5px solid #DAA520;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .combat-example {
+            background: #FFE4E1;
+            border: 2px solid #DC143C;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🪓 The Barbarian Hero: Master of Might and Fury</h1>
+        <p><em>Welcome, brave adventurer! Today we explore the raw power and primal strength of HeroQuest's most formidable warrior.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Barbarian</h2>
+            <p>The Barbarian is HeroQuest's embodiment of pure physical prowess - imagine a Viking warrior crossed with Conan the Barbarian, wielding ancient fury in the depths of Morcar's dungeons. This hero doesn't rely on magic or fancy tricks; instead, they crush enemies with overwhelming force and shrug off damage that would fell lesser heroes.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Foundation of Power</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 3 combat dice</div>
+            <div class="stat-display">Defend: 2 combat dice</div>
+            <div class="stat-display">Body Points: 8</div>
+            <div class="stat-display">Mind Points: 2</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were cars, the Barbarian would be a heavy-duty pickup truck. Movement varies with the dice (like traffic conditions affecting speed), but incredibly powerful (Attack 3), tough (8 Body Points), and built to haul heavy loads through rough terrain. The low Mind Points (2) represent focusing all energy on physical prowess rather than mental agility.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Barbarian Stats Visualization</h3>
+                <canvas id="barbarianStatsCanvas" width="500" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>The Art of Combat: Where Barbarians Shine</h2>
+            
+            <p>The Barbarian's 3 attack dice make them the most reliable damage dealer in standard HeroQuest. While other heroes might cast spells or use ranged attacks, the Barbarian's strategy is beautifully simple: get close and hit hard.</p>
+
+            <div class="combat-example">
+                <h3>Combat Example: Facing an Orc</h3>
+                <p><strong>Scenario:</strong> Your Barbarian encounters an Orc (1 attack die, 1 defend die, 1 Body Point)</p>
+                <p><strong>Barbarian rolls:</strong> 3 attack dice vs Orc's 1 defend die</p>
+                <p><strong>Likely outcome:</strong> With 3 dice, you're almost guaranteed to roll at least one skull (combat success), while the Orc needs to roll a black shield to defend. The odds heavily favor the Barbarian!</p>
+                <p><strong>Real-world parallel:</strong> It's like a professional boxer fighting an untrained opponent - the skill and power difference makes the outcome almost certain.</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Combat Probability Demonstration</h3>
+                <canvas id="combatProbabilityCanvas" width="600" height="200"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Movement Strategy: Embracing the Dice</h2>
+            
+            <p>All heroes in HeroQuest roll 2d6 for movement each turn, giving a range of 2-12 squares with an average of 7. This creates exciting variability - sometimes you'll roll a 12 and sprint across the dungeon, other times a 2 will leave you crawling forward. The key is adapting your strategy to these rolls rather than fighting them.</p>
+
+            <div class="analogy-box">
+                <strong>Traffic Analogy:</strong> Movement in HeroQuest is like driving in varying traffic conditions. Sometimes you hit green lights all the way (high roll), sometimes you're stuck in gridlock (low roll). Smart drivers (players) plan for both scenarios and have backup routes ready.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Movement Probability Distribution</h3>
+                <canvas id="movementProbabilityCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[Roll 2d6 for Movement] --> B{High Roll 8-12?}
+                    B -->|Yes| C[Aggressive Positioning - Rush to Combat/Objectives]
+                    B -->|No| D{Medium Roll 5-7?}
+                    D -->|Yes| E[Standard Movement - Steady Progress]
+                    D -->|No| F[Low Roll 2-4 - Defensive Positioning]
+                    C --> G[End Turn]
+                    E --> G
+                    F --> G
+            </div>
+
+            <div class="combat-example">
+                <h3>Movement Examples in Practice</h3>
+                <p><strong>High Roll (10-12):</strong> Perfect opportunity to charge into combat or reach distant treasure/switches</p>
+                <p><strong>Average Roll (6-8):</strong> Reliable movement for steady dungeon exploration and positioning</p>
+                <p><strong>Low Roll (2-4):</strong> Focus on careful positioning, maybe just peek around corners or secure your current area</p>
+                <p><strong>Strategic Insight:</strong> Never assume you'll get the movement you need - always have a backup plan for low rolls!</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Defensive Capabilities: The Immovable Object</h2>
+            
+            <p>With 8 Body Points and 2 defend dice, the Barbarian can absorb tremendous punishment. This makes them perfect for:</p>
+            
+            <ul>
+                <li><strong>Tanking damage</strong> - Drawing enemy attacks away from frailer allies</li>
+                <li><strong>Holding chokepoints</strong> - Blocking narrow passages while others support</li>
+                <li><strong>Surviving traps</strong> - Many dungeon hazards become manageable with 8 Body Points</li>
+            </ul>
+
+            <div class="analogy-box">
+                <strong>Football Comparison:</strong> The Barbarian is like an offensive lineman - not glamorous, but absolutely essential. They create space for the team's "skill players" (Wizard, Elf) to operate safely.
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Synergy: Maximizing Barbarian Potential</h2>
+            
+            <p>The Barbarian's equipment choices should amplify their natural strengths:</p>
+            
+            <div class="combat-example">
+                <h3>Optimal Equipment Priority</h3>
+                <p><strong>Weapons:</strong> Broad Sword (+1 attack die) turns 3 dice into 4 - devastating!</p>
+                <p><strong>Armor:</strong> Chain Mail (+1 defend die) makes you nearly untouchable</p>
+                <p><strong>Accessories:</strong> Healing Potions leverage your high Body Point pool</p>
+                <p><strong>Why this works:</strong> You're already strong at combat and defense, so enhancing these strengths creates exponential improvement rather than trying to patch weaknesses.</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Impact Visualization</h3>
+                <canvas id="equipmentImpactCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Team Dynamics: The Barbarian's Role</h2>
+            
+            <p>In a typical four-hero party, the Barbarian serves as the anchor - the reliable foundation that allows others to take risks:</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Barbarian: Tank & Primary DPS] --> B[Wizard: Support & AOE]
+                    A --> C[Elf: Flexible Damage]
+                    A --> D[Dwarf: Trap Detection & Backup Tank]
+                    B --> E[Team Success]
+                    C --> E
+                    D --> E
+            </div>
+
+            <div class="analogy-box">
+                <strong>MMO Gaming Parallel:</strong> If you've played online games, the Barbarian fills the classic "warrior tank" role - high health, high threat generation, positioned at the front of every engagement to protect the more fragile damage dealers and support characters.
+            </div>
+        </section>
+
+        <section>
+            <h2>Tactical Applications: When to Choose Barbarian</h2>
+            
+            <div class="combat-example">
+                <h3>Ideal Scenarios for Barbarian Selection</h3>
+                <p><strong>New Players:</strong> Forgiving high health and straightforward combat mechanics</p>
+                <p><strong>Combat-Heavy Quests:</strong> Quests with lots of monsters favor direct combat approach</p>
+                <p><strong>Team Support:</strong> When your group needs a reliable front-line fighter</p>
+                <p><strong>Equipment Rich:</strong> Scenarios where good weapons/armor are available early</p>
+            </div>
+
+            <div class="combat-example">
+                <h3>Challenging Scenarios</h3>
+                <p><strong>Puzzle-Heavy Quests:</strong> Low Mind Points limit spell usage and problem-solving</p>
+                <p><strong>Speed-Critical Missions:</strong> Slow movement can be a liability in time-sensitive scenarios</p>
+                <p><strong>Ranged-Heavy Encounters:</strong> Some quests favor heroes who can attack at distance</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: Mastering the Barbarian</h2>
+            
+            <p>Once you understand the basics, these advanced concepts will elevate your Barbarian play:</p>
+            
+            <div class="canvas-container">
+                <h3>Advanced Positioning Example</h3>
+                <canvas id="advancedPositioningCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <ul>
+                <li><strong>Doorway Control:</strong> Position yourself in doorways to force enemies into single combat</li>
+                <li><strong>Body Point Management:</strong> Use your high health as a resource - trade damage for tactical advantage</li>
+                <li><strong>Threat Assessment:</strong> Target the most dangerous enemies first, using your reliable damage</li>
+                <li><strong>Movement Efficiency:</strong> Plan routes 3-4 turns ahead to overcome movement limitations</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Combat Mechanics Deep Dive:</strong> Understanding dice probabilities and optimal attack strategies</li>
+                <li><strong>Equipment Guide:</strong> Comprehensive analysis of weapons and armor for each hero type</li>
+                <li><strong>Party Composition:</strong> How different hero combinations affect quest success rates</li>
+                <li><strong>Quest-Specific Strategies:</strong> Adapting Barbarian tactics to different dungeon types</li>
+                <li><strong>Morcar's Monster Manual:</strong> Understanding enemy capabilities to inform combat decisions</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, young hero: The Barbarian's greatest strength isn't just in their mighty thews, but in their reliability. While others may falter, the Barbarian endures, ensuring your party can face whatever horrors lurk in Morcar's dungeons!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Barbarian Stats Radar Chart
+        const statsCanvas = document.getElementById('barbarianStatsCanvas');
+        const statsCtx = statsCanvas.getContext('2d');
+        
+        // Draw stats comparison
+        statsCtx.clearRect(0, 0, 500, 300);
+        statsCtx.font = '14px Arial';
+        statsCtx.textAlign = 'center';
+        
+        // Draw bars for each stat
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 3, max: 4, color: '#4ECDC4', label: '3 dice'},
+            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
+            {name: 'Body', value: 8, max: 8, color: '#96CEB4', label: '8 points'},
+            {name: 'Mind', value: 2, max: 4, color: '#FFEAA7', label: '2 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            // Draw bar
+            statsCtx.fillStyle = stat.color;
+            statsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            // Draw value
+            statsCtx.fillStyle = 'black';
+            statsCtx.fillText(stat.label, x, 250);
+            statsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Combat Probability Visualization
+        const combatCanvas = document.getElementById('combatProbabilityCanvas');
+        const combatCtx = combatCanvas.getContext('2d');
+        
+        combatCtx.clearRect(0, 0, 600, 200);
+        combatCtx.font = '12px Arial';
+        
+        // Draw probability bars
+        const scenarios = [
+            {name: 'vs Goblin (1 die)', success: 89, color: '#4ECDC4'},
+            {name: 'vs Orc (1 die)', success: 89, color: '#4ECDC4'},
+            {name: 'vs Fimir (2 dice)', success: 70, color: '#96CEB4'},
+            {name: 'vs Chaos Warrior (3 dice)', success: 42, color: '#FFEAA7'}
+        ];
+        
+        scenarios.forEach((scenario, i) => {
+            const x = 50 + i * 130;
+            const barHeight = (scenario.success / 100) * 120;
+            
+            combatCtx.fillStyle = scenario.color;
+            combatCtx.fillRect(x, 150 - barHeight, 60, barHeight);
+            
+            combatCtx.fillStyle = 'black';
+            combatCtx.fillText(scenario.success + '%', x + 30, 140 - barHeight);
+            combatCtx.save();
+            combatCtx.translate(x + 30, 170);
+            combatCtx.rotate(-Math.PI / 4);
+            combatCtx.fillText(scenario.name, 0, 0);
+            combatCtx.restore();
+        });
+
+        // Equipment Impact Chart
+        const equipCanvas = document.getElementById('equipmentImpactCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 250);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        // Base vs Enhanced stats
+        const baseStats = [3, 2, 8]; // Attack, Defend, Body
+        const enhancedStats = [4, 3, 8]; // With Broad Sword + Chain Mail
+        const labels = ['Attack Dice', 'Defend Dice', 'Body Points'];
+        
+        labels.forEach((label, i) => {
+            const x = 100 + i * 120;
+            
+            // Base stat bar
+            equipCtx.fillStyle = '#DDD';
+            equipCtx.fillRect(x - 30, 200 - baseStats[i] * 20, 25, baseStats[i] * 20);
+            
+            // Enhanced stat bar
+            equipCtx.fillStyle = '#4ECDC4';
+            equipCtx.fillRect(x + 5, 200 - enhancedStats[i] * 20, 25, enhancedStats[i] * 20);
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(label, x, 230);
+            equipCtx.fillText('Base', x - 17, 220);
+            equipCtx.fillText('Enhanced', x + 17, 220);
+        });
+
+        // Advanced Positioning Grid
+        const posCanvas = document.getElementById('advancedPositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw walls (doorway)
+        posCtx.fillStyle = '#654321';
+        posCtx.fillRect(150, 0, 50, 100);
+        posCtx.fillRect(200, 0, 50, 100);
+        posCtx.fillRect(150, 150, 50, 50);
+        posCtx.fillRect(200, 150, 50, 50);
+        
+        // Draw Barbarian
+        posCtx.fillStyle = '#FF6B6B';
+        posCtx.fillRect(175, 125, 25, 25);
+        posCtx.fillStyle = 'white';
+        posCtx.font = '10px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('B', 187, 140);
+        
+        // Draw enemies
+        posCtx.fillStyle = '#000';
+        posCtx.fillRect(125, 75, 20, 20);
+        posCtx.fillRect(225, 75, 20, 20);
+        posCtx.fillRect(175, 50, 20, 20);
+        
+        posCtx.fillStyle = 'white';
+        posCtx.fillText('O', 135, 88);
+        posCtx.fillText('O', 235, 88);
+        posCtx.fillText('O', 185, 63);
+        
+        // Add labels
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Doorway Control: Force 1v1 Combat', 200, 20);
+        
+        // Add movement probability chart
+        const movementCanvas = document.getElementById('movementProbabilityCanvas');
+        const movementCtx = movementCanvas.getContext('2d');
+        
+        movementCtx.clearRect(0, 0, 500, 250);
+        movementCtx.font = '12px Arial';
+        movementCtx.textAlign = 'center';
+        
+        // Movement probabilities for 2d6
+        const movementData = [
+            {roll: 2, prob: 2.8, squares: 2},
+            {roll: 3, prob: 5.6, squares: 3},
+            {roll: 4, prob: 8.3, squares: 4},
+            {roll: 5, prob: 11.1, squares: 5},
+            {roll: 6, prob: 13.9, squares: 6},
+            {roll: 7, prob: 16.7, squares: 7},
+            {roll: 8, prob: 13.9, squares: 8},
+            {roll: 9, prob: 11.1, squares: 9},
+            {roll: 10, prob: 8.3, squares: 10},
+            {roll: 11, prob: 5.6, squares: 11},
+            {roll: 12, prob: 2.8, squares: 12}
+        ];
+        
+        movementData.forEach((data, i) => {
+            const x = 30 + i * 40;
+            const barHeight = (data.prob / 16.7) * 150; // Scale to max probability
+            
+            // Color coding: red for low, yellow for medium, green for high
+            let color = '#FF6B6B'; // Low movement (2-4)
+            if (data.roll >= 5 && data.roll <= 9) color = '#FFEAA7'; // Medium (5-9)
+            if (data.roll >= 10) color = '#96CEB4'; // High (10-12)
+            
+            movementCtx.fillStyle = color;
+            movementCtx.fillRect(x - 15, 200 - barHeight, 30, barHeight);
+            
+            movementCtx.fillStyle = 'black';
+            movementCtx.fillText(data.roll, x, 220);
+            movementCtx.fillText(data.prob.toFixed(1) + '%', x, 240);
+        });
+        
+        movementCtx.fillText('Movement Roll Probabilities (2d6)', 250, 20);
+        movementCtx.fillText('Dice Roll', 250, 230);
+        movementCtx.fillText('Probability %', 250, 250);
+    </script>
+</body>
+</html>

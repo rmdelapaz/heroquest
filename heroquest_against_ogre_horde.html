@@ -35,54 +35,167 @@
     }
 
     /* Main heading with warfare theme */
+    h1 {
+        color: #fef3c7;
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 32px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+        background: linear-gradient(45deg, #d4af37, #fbbf24, #d4af37);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: warfare-glow 3s ease-in-out infinite;
+    }
+    
+    @keyframes warfare-glow {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    h2 {
+        color: #fef3c7;
+        font-size: 1.8rem;
+        margin: 32px 0 20px 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        border-bottom: 3px solid #d4af37;
+        padding-bottom: 8px;
+    }
+    
+    h3 {
+        color: #fef3c7;
+        font-size: 1.4rem;
+        margin: 24px 0 16px 0;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    h4 {
+        color: #fef3c7;
+        font-size: 1.2rem;
+        margin: 20px 0 12px 0;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    }
+    
+    p, li {
+        color: #f1f5f9;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        margin-bottom: 12px;
+        line-height: 1.7;
+    }
   
     /* Warfare principle boxes */
     .warfare-principle {
-        background: linear-gradient(135deg, #78350f, #92400e);
-        border: 2px solid #b45309;
+        background: linear-gradient(135deg, rgba(120, 53, 15, 0.9), rgba(146, 64, 14, 0.9));
+        border: 3px solid #b45309;
         border-radius: 12px;
         padding: 32px;
         margin: 32px 0;
         border-left: 6px solid #d4af37;
-        box-shadow: 0 4px 16px rgba(180, 83, 9, 0.2);
+        box-shadow: 0 4px 16px rgba(180, 83, 9, 0.3);
+        backdrop-filter: blur(5px);
     }
 
     /* Army cards */
     .army-card {
-        background: linear-gradient(135deg, #92400e, #a16207);
-        border: 2px solid #d97706;
+        background: linear-gradient(135deg, rgba(146, 64, 14, 0.9), rgba(161, 98, 7, 0.9));
+        border: 3px solid #d97706;
         border-radius: 12px;
         padding: 20px;
         margin: 16px;
         display: inline-block;
         min-width: 320px;
         vertical-align: top;
-        box-shadow: 0 2px 8px rgba(217, 119, 6, 0.2);
+        box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);
         transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
     }
 
     .army-card:hover {
-        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
         transform: translateY(-2px);
+    }
+
+    /* Druid-specific styling */
+    .druid-card {
+        background: linear-gradient(135deg, rgba(34, 139, 34, 0.9), rgba(46, 125, 50, 0.9));
+        border: 3px solid #4caf50;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 16px;
+        display: inline-block;
+        min-width: 320px;
+        vertical-align: top;
+        box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
+    }
+
+    .druid-card:hover {
+        box-shadow: 0 8px 24px rgba(76, 175, 80, 0.5);
+        transform: translateY(-2px);
+    }
+
+    .druid-section {
+        background: linear-gradient(135deg, rgba(34, 139, 34, 0.2), rgba(15, 23, 42, 0.9));
+        border: 3px solid #4caf50;
+        border-radius: 12px;
+        padding: 32px;
+        margin: 32px 0;
+        border-left: 6px solid #66bb6a;
+        box-shadow: 0 4px 16px rgba(76, 175, 80, 0.3);
+        backdrop-filter: blur(5px);
+    }
+
+    .druid-portrait {
+        width: 280px;
+        height: 320px;
+        background: radial-gradient(ellipse, #4caf50, #2e7d32, #1b5e20);
+        border: 3px solid #66bb6a;
+        border-radius: 20px;
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 90px;
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
+        animation: nature-pulse 4s ease-in-out infinite;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(76, 175, 80, 0.6);
+        color: #ffffff;
+    }
+
+    @keyframes nature-pulse {
+        0%, 100% { 
+            box-shadow: 0 0 35px rgba(76, 175, 80, 0.7);
+            transform: scale(1);
+        }
+        50% { 
+            box-shadow: 0 0 55px rgba(102, 187, 106, 1);
+            transform: scale(1.02);
+        }
     }
 
     /* Tactical and strategy boxes */
     .tactical-box {
-        background: rgba(212, 175, 55, 0.15);
-        border: 2px solid #d4af37;
+        background: rgba(212, 175, 55, 0.2);
+        border: 3px solid #d4af37;
         border-radius: 12px;
         padding: 24px;
         margin: 24px 0;
         border-left: 4px solid #b45309;
+        backdrop-filter: blur(5px);
     }
 
     .strategy-analysis {
-        background: rgba(251, 191, 36, 0.15);
-        border: 2px solid #fbbf24;
+        background: rgba(251, 191, 36, 0.2);
+        border: 3px solid #fbbf24;
         border-radius: 12px;
         padding: 24px;
         margin: 24px 0;
         border-left: 4px solid #d4af37;
+        backdrop-filter: blur(5px);
     }
 
     /* Horde counter display */
@@ -93,20 +206,22 @@
         margin: 32px 0;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         padding: 24px;
-        background: rgba(120, 53, 15, 0.3);
+        background: rgba(120, 53, 15, 0.4);
         border-radius: 12px;
-        border: 2px solid #92400e;
+        border: 3px solid #92400e;
+        backdrop-filter: blur(5px);
     }
 
     /* Mass combat demonstration */
     .mass-combat-demo {
-        background: rgba(212, 175, 55, 0.15);
-        border: 2px solid #d4af37;
+        background: rgba(212, 175, 55, 0.2);
+        border: 3px solid #d4af37;
         border-radius: 12px;
         padding: 24px;
         margin: 24px 0;
         text-align: center;
         border-left: 4px solid #b45309;
+        backdrop-filter: blur(5px);
     }
 
     /* Engagement scale */
@@ -114,7 +229,7 @@
         width: 100%;
         height: 28px;
         background: linear-gradient(to right, #22c55e, #fbbf24, #f59e0b, #dc2626);
-        border: 2px solid #d4af37;
+        border: 3px solid #d4af37;
         border-radius: 14px;
         margin: 16px 0;
         position: relative;
@@ -123,14 +238,14 @@
 
     .scale-indicator {
         position: absolute;
-        top: -2px;
+        top: -3px;
         width: 4px;
-        height: 32px;
+        height: 34px;
         background: white;
         border: 1px solid #1e293b;
         border-radius: 2px;
         transition: left 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
     }
 
     /* Battle formation grid */
@@ -145,13 +260,13 @@
         padding: 12px;
         width: fit-content;
         border-radius: 8px;
-        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
     }
 
     .formation-cell {
         width: 42px;
         height: 42px;
-        border: 1px solid #78350f;
+        border: 2px solid #78350f;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -159,21 +274,25 @@
         cursor: pointer;
         transition: all 0.2s ease;
         border-radius: 2px;
+        color: #ffffff;
     }
 
     .formation-cell:hover {
         transform: scale(1.1);
         z-index: 10;
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);
     }
 
     /* Formation cell types with better contrast */
     .hero-unit { background-color: #3b82f6; color: white; }
+    .druid-unit { background-color: #4caf50; color: white; }
     .ogre-unit { background-color: #92400e; color: white; }
     .goblin-unit { background-color: #16a34a; color: white; }
+    .beast-unit { background-color: #795548; color: white; }
     .empty-field { background-color: #374151; color: #d1d5db; }
     .battlefield { background-color: #78350f; color: #fef3c7; }
     .fortification { background-color: #6b7280; color: white; }
+    .nature-barrier { background-color: #2e7d32; color: white; }
 
     /* Army display */
     .army-display {
@@ -184,30 +303,31 @@
     }
 
     .unit-showcase {
-        background: rgba(146, 64, 14, 0.4);
-        border: 2px solid #d97706;
+        background: rgba(146, 64, 14, 0.5);
+        border: 3px solid #d97706;
         border-radius: 12px;
         padding: 24px;
         margin: 12px;
         min-width: 200px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.2);
+        box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
         transition: all 0.2s ease;
+        backdrop-filter: blur(5px);
     }
 
     .unit-showcase:hover {
         transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.3);
+        box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
     }
 
     /* Canvas elements */
     canvas {
-        border: 2px solid #d4af37;
+        border: 3px solid #d4af37;
         border-radius: 12px;
-        background: #0f172a;
+        background: #000000;
         display: block;
         margin: 24px auto;
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     }
 
     /* Command structure display */
@@ -219,46 +339,54 @@
     }
 
     .command-card {
-        background: linear-gradient(135deg, #78350f, #92400e);
-        border: 2px solid #b45309;
+        background: linear-gradient(135deg, rgba(120, 53, 15, 0.9), rgba(146, 64, 14, 0.9));
+        border: 3px solid #b45309;
         border-radius: 8px;
         padding: 20px;
         text-align: center;
         transition: all 0.2s ease;
         border-left: 4px solid #d4af37;
+        backdrop-filter: blur(5px);
     }
 
     .command-card:hover {
-        background: linear-gradient(135deg, #92400e, #a16207);
+        background: linear-gradient(135deg, rgba(146, 64, 14, 0.9), rgba(161, 98, 7, 0.9));
         transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.4);
     }
 
     /* Victory objectives */
     .victory-objectives {
-        background: rgba(34, 197, 94, 0.1);
-        border: 2px solid #22c55e;
+        background: rgba(34, 197, 94, 0.15);
+        border: 3px solid #22c55e;
         border-radius: 12px;
         padding: 24px;
         margin: 24px 0;
         border-left: 4px solid #16a34a;
+        backdrop-filter: blur(5px);
     }
 
     /* Text improvements */
-    p {
-        margin-bottom: 16px;
-        line-height: 1.7;
-        color: #f1f5f9;
-    }
-
     strong {
         color: #fbbf24;
         font-weight: 600;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+
+    .druid-card strong {
+        color: #ffffff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
     }
 
     em {
         color: #e2e8f0;
         font-style: italic;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    }
+
+    .druid-card em {
+        color: #e8f5e8;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     }
 
     /* Lists */
@@ -269,162 +397,41 @@
 
     li {
         margin-bottom: 8px;
-        color: #e2e8f0;
         line-height: 1.6;
     }
 
-    /* Links */
-    a {
-        color: #d4af37;
-        text-decoration: none;
-        font-weight: 500;
-        border-bottom: 1px solid transparent;
-        transition: all 0.2s ease;
+    /* Nature effects for Druid sections */
+    .nature-effects {
+        position: absolute;
+        color: #4caf50;
+        font-size: 18px;
+        animation: nature-drift 6s ease-in-out infinite;
+        opacity: 0.8;
+        pointer-events: none;
+        z-index: 1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
 
-    a:hover {
-        color: #fbbf24;
-        border-bottom-color: #fbbf24;
+    @keyframes nature-drift {
+        0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.4; }
+        25% { transform: translateY(-20px) translateX(10px) rotate(90deg); opacity: 0.9; }
+        50% { transform: translateY(-10px) translateX(-15px) rotate(180deg); opacity: 0.6; }
+        75% { transform: translateY(-25px) translateX(20px) rotate(270deg); opacity: 1; }
     }
 
-    /* Code elements */
-    code {
-        background: #78350f;
-        color: #fed7aa;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-        font-size: 0.9em;
-        border: 1px solid #92400e;
+    /* Focus accessibility */
+    :focus {
+        outline: 2px solid #d4af37;
+        outline-offset: 2px;
     }
 
-    /* Tables */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 24px 0;
-        background: rgba(15, 23, 42, 0.8);
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    th, td {
-        padding: 12px 16px;
-        text-align: left;
-        border-bottom: 1px solid #78350f;
-    }
-
-    th {
-        background: #92400e;
-        font-weight: 600;
-        color: #fbbf24;
-    }
-
-    /* Mermaid diagrams */
-    .mermaid {
-        background: rgba(120, 53, 15, 0.3) !important;
-        border: 2px solid #d4af37 !important;
-        border-radius: 12px !important;
-        padding: 24px !important;
-        margin: 24px auto !important;
-    }
-
-    /* Blockquotes */
-    blockquote {
-        background: rgba(146, 64, 14, 0.3);
-        border-left: 4px solid #d4af37;
-        padding: 16px 24px;
-        margin: 24px 0;
-        border-radius: 0 8px 8px 0;
-        font-style: italic;
-        color: #f1f5f9;
-    }
-
-    /* Interactive elements */
-    button, .btn {
-        background: linear-gradient(135deg, #a16207, #92400e);
-        color: white;
-        border: 2px solid #d4af37;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-    button:hover, .btn:hover {
-        background: linear-gradient(135deg, #92400e, #78350f);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
-    }
-
-    /* Warfare statistics */
-    .warfare-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 16px;
-        margin: 24px 0;
-    }
-
-    .warfare-stat {
-        background: rgba(120, 53, 15, 0.5);
-        border: 2px solid #b45309;
-        border-radius: 8px;
-        padding: 16px;
-        text-align: center;
-        transition: all 0.2s ease;
-    }
-
-    .warfare-stat:hover {
-        background: rgba(146, 64, 14, 0.7);
-        transform: scale(1.05);
-    }
-
-    .stat-number {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #d4af37;
-        margin-bottom: 8px;
-    }
-
-    .stat-label {
-        color: #fbbf24;
-        font-weight: 500;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    /* Strategic elements */
-    .strategic-note {
-        background: rgba(212, 175, 55, 0.1);
-        border: 1px solid #fbbf24;
-        border-radius: 6px;
-        padding: 12px;
-        margin: 12px 0;
-        font-size: 0.95em;
-        border-left: 3px solid #d4af37;
-    }
-
-    .tactical-advantage {
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid #4ade80;
-        border-radius: 6px;
-        padding: 12px;
-        margin: 12px 0;
-        border-left: 3px solid #22c55e;
-    }
-
-    .tactical-disadvantage {
-        background: rgba(239, 68, 68, 0.1);
-        border: 1px solid #f87171;
-        border-radius: 6px;
-        padding: 12px;
-        margin: 12px 0;
-        border-left: 3px solid #dc2626;
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
     }
 
     /* Responsive design */
@@ -456,7 +463,7 @@
             font-size: 12px;
         }
         
-        .army-card {
+        .army-card, .druid-card {
             min-width: 280px;
             margin: 12px 0;
             display: block;
@@ -471,25 +478,14 @@
             min-width: 280px;
             margin: 12px 0;
         }
-        
-        .warfare-stats {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        }
     }
 
-    /* Focus accessibility */
-    :focus {
-        outline: 2px solid #d4af37;
-        outline-offset: 2px;
-    }
-
-    /* Reduced motion accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
+    .mermaid {
+        background: rgba(120, 53, 15, 0.3) !important;
+        border: 3px solid #d4af37 !important;
+        border-radius: 12px !important;
+        padding: 24px !important;
+        margin: 24px auto !important;
     }
 </style>
 </head>
@@ -508,12 +504,93 @@
             🏗️ ASSEMBLING THE HORDE... 🏗️
         </div>
 
+        <h2>🌿 The Druid: Nature's Warden in Mass Combat</h2>
+        
+        <div class="druid-portrait">
+            🌳
+            <div style="font-size: 16px; margin-top: 10px;">The Druid</div>
+            <div style="font-size: 12px; opacity: 0.8;">Master of Wild Forces</div>
+        </div>
+
+        <div class="druid-section">
+            <h3>🍃 The Perfect Commander for Environmental Warfare</h3>
+            <p><strong>The Druid represents the ultimate fusion of nature magic and tactical genius, uniquely suited for Against the Ogre Horde:</strong></p>
+            
+            <p><strong>🌳 Living Battlefield Control:</strong> Unlike other heroes who fight on the terrain, the Druid commands the terrain itself. Trees become barriers, vines become traps, and the very ground becomes an ally in mass combat.</p>
+            
+            <p><strong>🐺 Army Multiplication:</strong> Where other heroes lead human soldiers, the Druid summons entire ecosystems. Wolves, bears, eagles, and even awakened trees join the battle as loyal allies.</p>
+            
+            <p><strong>⚡ Force of Nature:</strong> In mass combat, the Druid doesn't just cast spells - they unleash the fury of nature itself. Lightning storms, earthquakes, and tidal waves become weapons of war.</p>
+        </div>
+
+        <h2>🌿 Druid's Mass Combat Abilities</h2>
+        
+        <div class="druid-card">
+            <h3>🌳 Summon Beast Army</h3>
+            <p><strong>The Wild Host</strong></p>
+            <p><strong>Effect:</strong> Summons multiple animal allies simultaneously</p>
+            <p><strong>Units:</strong> Wolves, bears, eagles, dire creatures</p>
+            <p><strong>Tactical Use:</strong> Instant reinforcements when outnumbered</p>
+            <p><strong>Strategy:</strong> Creates flanking opportunities and divides enemy attention</p>
+            <p><em>"The forest itself rises to defend the innocent"</em></p>
+        </div>
+
+        <div class="druid-card">
+            <h3>🌊 Call Lightning Storm</h3>
+            <p><strong>The Wrath of Sky</strong></p>
+            <p><strong>Effect:</strong> Area attack hitting multiple enemy units</p>
+            <p><strong>Range:</strong> Covers entire battlefield sections</p>
+            <p><strong>Power:</strong> Devastating damage to clusters of enemies</p>
+            <p><strong>Limitation:</strong> Cannot target specific individuals precisely</p>
+            <p><em>"When nature speaks, even ogres listen"</em></p>
+        </div>
+
+        <div class="druid-card">
+            <h3>🌿 Entangling Battlefield</h3>
+            <p><strong>The Living Maze</strong></p>
+            <p><strong>Effect:</strong> Creates barriers and chokepoints with plant growth</p>
+            <p><strong>Tactical Value:</strong> Controls enemy movement and positioning</p>
+            <p><strong>Duration:</strong> Permanent until dispelled or destroyed</p>
+            <p><strong>Strategy:</strong> Forces enemies into kill zones and defensive positions</p>
+            <p><em>"The very ground rebels against invaders"</em></p>
+        </div>
+
+        <div class="druid-card">
+            <h3>🦅 Eyes of the Wild</h3>
+            <p><strong>The All-Seeing Network</strong></p>
+            <p><strong>Effect:</strong> Uses animals as scouts and intelligence network</p>
+            <p><strong>Information:</strong> Enemy positions, numbers, and movement</p>
+            <p><strong>Range:</strong> Covers vast areas beyond normal sight</p>
+            <p><strong>Advantage:</strong> Perfect tactical awareness in mass combat</p>
+            <p><em>"Every creature becomes an ally in the fight for survival"</em></p>
+        </div>
+
+        <div class="druid-card">
+            <h3>🌍 Earthquake</h3>
+            <p><strong>The Ground's Fury</strong></p>
+            <p><strong>Effect:</strong> Disrupts enemy formations and fortifications</p>
+            <p><strong>Area:</strong> Affects large sections of battlefield</p>
+            <p><strong>Tactical Use:</strong> Breaks enemy lines and creates new terrain</p>
+            <p><strong>Risk:</strong> May affect allies if not carefully targeted</p>
+            <p><em>"The earth itself shakes with righteous anger"</em></p>
+        </div>
+
+        <div class="druid-card">
+            <h3>🌱 Regenerative Sanctuary</h3>
+            <p><strong>The Healing Grove</strong></p>
+            <p><strong>Effect:</strong> Creates zones of accelerated healing for allies</p>
+            <p><strong>Benefit:</strong> Wounded allies recover during battle</p>
+            <p><strong>Strategy:</strong> Establishes field hospitals in safe areas</p>
+            <p><strong>Limitation:</strong> Stationary effect requiring area control</p>
+            <p><em>"In nature's embrace, even mortal wounds fade"</em></p>
+        </div>
+
         <h2>📊 The Scale Revolution: Numbers That Matter</h2>
         
         <div class="engagement-scale">
             <div class="scale-indicator" id="scale_indicator" style="left: 80%;"></div>
         </div>
-        <p style="text-align: center;"><em>Combat Scale: <span id="scale_level">EPIC WARFARE</span></em></p>
+        <p style="text-align: center; color: #fef3c7;"><em>Combat Scale: <span id="scale_level">EPIC WARFARE</span></em></p>
         
         <div class="mermaid">
             graph TD
@@ -538,11 +615,19 @@
                 E --> E2[Resource Management]
                 E --> E3[Long-term Planning]
                 
-                style A fill:#d4af37,stroke:#333,stroke-width:3px
-                style B fill:#daa520,stroke:#333,stroke-width:2px
-                style C fill:#daa520,stroke:#333,stroke-width:2px
-                style D fill:#daa520,stroke:#333,stroke-width:2px
-                style E fill:#daa520,stroke:#333,stroke-width:2px
+                F[Druid's Role] --> G[Environmental Control]
+                F --> H[Beast Summoning]
+                F --> I[Natural Fortification]
+                
+                style A fill:#d4af37,stroke:#fff,stroke-width:3px,color:#000
+                style B fill:#daa520,stroke:#fff,stroke-width:2px,color:#000
+                style C fill:#daa520,stroke:#fff,stroke-width:2px,color:#000
+                style D fill:#daa520,stroke:#fff,stroke-width:2px,color:#000
+                style E fill:#daa520,stroke:#fff,stroke-width:2px,color:#000
+                style F fill:#4caf50,stroke:#fff,stroke-width:3px,color:#000
+                style G fill:#66bb6a,stroke:#fff,stroke-width:2px,color:#000
+                style H fill:#66bb6a,stroke:#fff,stroke-width:2px,color:#000
+                style I fill:#66bb6a,stroke:#fff,stroke-width:2px,color:#000
         </div>
 
         <h2>🏰 The Enemy Arsenal: Meet the Horde</h2>
@@ -556,6 +641,7 @@
                 <p><strong>Role:</strong> Frontline assault troops</p>
                 <p><strong>Strength:</strong> High damage, tough armor</p>
                 <p><strong>Weakness:</strong> Slow movement, predictable</p>
+                <p><strong>Druid Counter:</strong> Entangling roots slow them further</p>
                 <p><strong>Real-world analogy:</strong> Medieval knights in full plate</p>
             </div>
             
@@ -565,6 +651,7 @@
                 <p><strong>Role:</strong> Fast harassment, overwhelming numbers</p>
                 <p><strong>Strength:</strong> Speed, quantity, coordination</p>
                 <p><strong>Weakness:</strong> Low individual power</p>
+                <p><strong>Druid Counter:</strong> Lightning storms devastate clusters</p>
                 <p><strong>Real-world analogy:</strong> Viking berserker raids</p>
             </div>
             
@@ -574,6 +661,7 @@
                 <p><strong>Role:</strong> Long-range suppression</p>
                 <p><strong>Strength:</strong> Distance attacks, area denial</p>
                 <p><strong>Weakness:</strong> Vulnerable in melee</p>
+                <p><strong>Druid Counter:</strong> Eagle scouts reveal positions</p>
                 <p><strong>Real-world analogy:</strong> English longbowmen</p>
             </div>
             
@@ -583,6 +671,7 @@
                 <p><strong>Role:</strong> Magical support, buffs, debuffs</p>
                 <p><strong>Strength:</strong> Tactical flexibility, surprise</p>
                 <p><strong>Weakness:</strong> Fragile, limited uses</p>
+                <p><strong>Druid Counter:</strong> Natural magic disrupts chaos spells</p>
                 <p><strong>Real-world analogy:</strong> Modern artillery commanders</p>
             </div>
         </div>
@@ -593,14 +682,14 @@
         
         <div class="tactical-box">
             <h3>🎯 Revolutionary Combat Concepts</h3>
-            <p><strong>The Ogre Horde introduced mechanics that felt impossible in the original game:</strong></p>
+            <p><strong>The Ogre Horde introduced mechanics that felt impossible in the original game, and the Druid perfects them:</strong></p>
             
             <p><strong>🌊 Wave Attacks:</strong> Like ocean tides against a seawall</p>
             <ul>
                 <li>Multiple enemies attack simultaneously</li>
                 <li>Heroes must prioritize targets intelligently</li>
                 <li>Overwhelming numbers create real pressure</li>
-                <li>Retreat becomes a viable tactical option</li>
+                <li><strong>Druid Advantage:</strong> Beast allies create counter-waves</li>
             </ul>
             
             <p><strong>🏰 Defensive Positioning:</strong> Like medieval castle siege warfare</p>
@@ -608,7 +697,7 @@
                 <li>Terrain advantages become critical</li>
                 <li>Chokepoints multiply hero effectiveness</li>
                 <li>High ground provides combat bonuses</li>
-                <li>Cover mechanics protect from ranged attacks</li>
+                <li><strong>Druid Mastery:</strong> Creates new terrain and chokepoints</li>
             </ul>
             
             <p><strong>⚡ Area of Effect Combat:</strong> Like artillery bombardments</p>
@@ -616,7 +705,7 @@
                 <li>Single attacks can affect multiple enemies</li>
                 <li>Positioning becomes three-dimensional thinking</li>
                 <li>Friendly fire becomes a real concern</li>
-                <li>Spell targeting requires careful calculation</li>
+                <li><strong>Druid Specialty:</strong> Natural disasters as weapons</li>
             </ul>
         </div>
 
@@ -629,9 +718,9 @@
                 <!-- Grid will be populated by JavaScript -->
             </div>
             
-            <p><strong>Legend:</strong> 🛡️ Heroes | 👹 Ogres | 👺 Goblins | 🏹 Archers | ⬛ Fortifications</p>
+            <p><strong>Legend:</strong> 🛡️ Heroes | 🌳 Druid | 👹 Ogres | 👺 Goblins | 🏹 Archers | 🐺 Beasts | 🌿 Nature Barriers</p>
             
-            <div id="formation_analysis" style="margin-top: 20px; padding: 15px; background: rgba(212, 175, 55, 0.1); border-radius: 10px;">
+            <div id="formation_analysis" style="margin-top: 20px; padding: 15px; background: rgba(212, 175, 55, 0.2); border: 3px solid #d4af37; border-radius: 10px; backdrop-filter: blur(5px);">
                 <strong>Tactical Analysis:</strong> Position your forces to see strategic evaluation!
             </div>
         </div>
@@ -642,14 +731,14 @@
         
         <div class="strategy-analysis">
             <h3>🎯 The General's Mindset</h3>
-            <p><strong>Mass combat requires thinking like Alexander the Great, not like individual warriors:</strong></p>
+            <p><strong>Mass combat requires thinking like Alexander the Great, and the Druid adds Hannibal's environmental mastery:</strong></p>
             
             <p><strong>📊 Resource Management:</strong></p>
             <ul>
                 <li>Ammunition and spell slots become precious</li>
                 <li>Hero fatigue over multiple engagements</li>
                 <li>Equipment degradation and replacement</li>
-                <li>Time pressure from advancing hordes</li>
+                <li><strong>Druid Advantage:</strong> Nature provides unlimited resources</li>
             </ul>
             
             <p><strong>🎪 Force Multiplication:</strong></p>
@@ -657,7 +746,7 @@
                 <li>One hero controlling multiple allied units</li>
                 <li>Environmental advantages (bridges, walls, towers)</li>
                 <li>Psychological warfare and morale effects</li>
-                <li>Information warfare and scouting</li>
+                <li><strong>Druid Mastery:</strong> Creates new environmental advantages</li>
             </ul>
             
             <p><strong>⚖️ Risk vs. Reward Calculation:</strong></p>
@@ -665,7 +754,36 @@
                 <li>When to commit reserves vs. hold back</li>
                 <li>Trading space for time in fighting retreats</li>
                 <li>Sacrificing pieces for strategic advantage</li>
-                <li>Knowing when victory is impossible</li>
+                <li><strong>Druid Wisdom:</strong> Nature always provides alternatives</li>
+            </ul>
+        </div>
+
+        <div class="druid-section">
+            <h3>🌍 Environmental Warfare Mastery</h3>
+            <p><strong>The Druid transforms mass combat from fighting on the battlefield to commanding the battlefield itself:</strong></p>
+            
+            <p><strong>🌳 Terrain Sculpting:</strong></p>
+            <ul>
+                <li>Create hills for archer advantage</li>
+                <li>Grow forests for concealment and ambush</li>
+                <li>Open chasms to block enemy advance</li>
+                <li>Raise stone barriers for instant fortification</li>
+            </ul>
+            
+            <p><strong>🐺 Living Army:</strong></p>
+            <ul>
+                <li>Wolves for fast strikes and harassment</li>
+                <li>Bears for heavy assault and line-breaking</li>
+                <li>Eagles for reconnaissance and aerial attacks</li>
+                <li>Awakened trees as mobile siege engines</li>
+            </ul>
+            
+            <p><strong>⚡ Weather Warfare:</strong></p>
+            <ul>
+                <li>Fog to conceal troop movements</li>
+                <li>Storms to disrupt enemy formations</li>
+                <li>Drought to deny enemy water supplies</li>
+                <li>Floods to force enemy repositioning</li>
             </ul>
         </div>
 
@@ -673,14 +791,14 @@
         
         <div class="warfare-principle">
             <h3>⚔️ The Castle Defense Philosophy</h3>
-            <p><strong>Against the Ogre Horde pioneered the concept of defensive gameplay that actually felt heroic:</strong></p>
+            <p><strong>Against the Ogre Horde pioneered defensive gameplay, and the Druid makes every battlefield a fortress:</strong></p>
             
             <p><strong>🏗️ Fortification Strategy:</strong> Like medieval castle architects</p>
             <ul>
                 <li>Build killing fields for maximum damage</li>
                 <li>Create overlapping fields of fire</li>
                 <li>Design fallback positions for tactical retreat</li>
-                <li>Control access points and chokepoints</li>
+                <li><strong>Druid Innovation:</strong> Living fortifications that grow stronger over time</li>
             </ul>
             
             <p><strong>⏰ Time Management:</strong> Like emergency room triage</p>
@@ -688,7 +806,7 @@
                 <li>Prioritize immediate threats over distant ones</li>
                 <li>Allocate limited resources efficiently</li>
                 <li>Coordinate simultaneous defensive actions</li>
-                <li>Plan for worst-case scenario escalation</li>
+                <li><strong>Druid Advantage:</strong> Nature provides infinite patience and endurance</li>
             </ul>
         </div>
 
@@ -703,6 +821,7 @@
             <p><strong>New Abilities:</strong> Intimidation, battle cry, shield wall</p>
             <p><strong>Strategic Value:</strong> Anchor point for defensive formations</p>
             <p><strong>Leadership Style:</strong> "Follow me!" - leads from the front</p>
+            <p><strong>Druid Synergy:</strong> Beast allies protect flanks while Barbarian holds center</p>
         </div>
 
         <div class="army-card">
@@ -712,6 +831,7 @@
             <p><strong>New Abilities:</strong> Multi-target archery, battlefield awareness</p>
             <p><strong>Strategic Value:</strong> Intelligence gathering and target priority</p>
             <p><strong>Leadership Style:</strong> "Strike here!" - tactical precision</p>
+            <p><strong>Druid Synergy:</strong> Eagle scouts provide perfect targeting information</p>
         </div>
 
         <div class="army-card">
@@ -721,6 +841,7 @@
             <p><strong>New Abilities:</strong> Mass buffs, environmental manipulation</p>
             <p><strong>Strategic Value:</strong> Changes entire battlefield dynamics</p>
             <p><strong>Leadership Style:</strong> "Let magic decide!" - overwhelming power</p>
+            <p><strong>Druid Synergy:</strong> Combines arcane and natural magic for devastating effects</p>
         </div>
 
         <div class="army-card">
@@ -730,36 +851,47 @@
             <p><strong>New Abilities:</strong> Battlefield engineering, equipment mastery</p>
             <p><strong>Strategic Value:</strong> Creates tactical advantages</p>
             <p><strong>Leadership Style:</strong> "Hold this position!" - defensive mastery</p>
+            <p><strong>Druid Synergy:</strong> Stone and plant fortifications create impregnable defenses</p>
+        </div>
+
+        <div class="druid-card">
+            <h3>🌳 The Druid: Environmental General</h3>
+            <p><strong>From Nature Guardian to Battlefield Master</strong></p>
+            <p><strong>Mass Combat Role:</strong> Terrain control, summoned army commander</p>
+            <p><strong>New Abilities:</strong> Mass summons, weather control, terrain shaping</p>
+            <p><strong>Strategic Value:</strong> Multiplies army size and controls battlefield conditions</p>
+            <p><strong>Leadership Style:</strong> "Nature itself fights with us!" - environmental warfare</p>
+            <p><strong>Unique Position:</strong> Only hero who can increase army size during battle</p>
         </div>
 
         <h2>🎪 Advanced Tactical Formations</h2>
         
         <div class="tactical-box">
             <h3>⚔️ The Art of War: Formation Fighting</h3>
-            <p><strong>Mass combat requires formations that would make Napoleon proud:</strong></p>
+            <p><strong>Mass combat requires formations that would make Napoleon proud, enhanced by Druid nature magic:</strong></p>
             
-            <p><strong>🛡️ The Phalanx:</strong> Spears forward, shields locked</p>
+            <p><strong>🛡️ The Living Phalanx:</strong> Nature-enhanced spear wall</p>
             <ul>
                 <li>Barbarian and Dwarf form impenetrable front line</li>
-                <li>Elf and Wizard provide ranged support from behind</li>
-                <li>Perfect for narrow passages and chokepoints</li>
-                <li>Weakness: vulnerable to flanking and magic</li>
+                <li>Druid summons thorn barriers between shields</li>
+                <li>Bears and wolves protect the flanks</li>
+                <li>Perfect for narrow passages with natural chokepoints</li>
             </ul>
             
-            <p><strong>🏹 The Crescent:</strong> Enveloping wings of death</p>
+            <p><strong>🌿 The Verdant Crescent:</strong> Nature's embrace</p>
             <ul>
-                <li>Heroes spread wide to surround enemy forces</li>
-                <li>Ranged heroes on flanks, melee in center</li>
-                <li>Excellent for open battlefield combat</li>
-                <li>Weakness: requires superior numbers or positioning</li>
+                <li>Heroes spread wide with beast allies filling gaps</li>
+                <li>Druid creates concealing vegetation for flanking forces</li>
+                <li>Eagles provide aerial reconnaissance and strikes</li>
+                <li>Excellent for forest and natural terrain combat</li>
             </ul>
             
-            <p><strong>⚡ The Hammer and Anvil:</strong> Classical battlefield tactics</p>
+            <p><strong>⚡ The Elemental Hammer:</strong> Storm and stone tactics</p>
             <ul>
                 <li>Tank heroes hold enemy in place (anvil)</li>
-                <li>Fast heroes strike from behind (hammer)</li>
-                <li>Devastating when executed correctly</li>
-                <li>Weakness: requires perfect timing and coordination</li>
+                <li>Druid calls lightning to weaken enemy center</li>
+                <li>Fast heroes and beast allies strike from behind (hammer)</li>
+                <li>Devastating when weather conditions favor the Druid</li>
             </ul>
         </div>
 
@@ -768,23 +900,23 @@
         <canvas id="psychological_warfare_canvas" width="600" height="250"></canvas>
         
         <div class="strategy-analysis">
-            <h3>🧠 The Mind of the Horde</h3>
-            <p><strong>Against the Ogre Horde introduced the concept that enemies have psychology too:</strong></p>
+            <h3>🧠 The Mind of the Horde vs. Nature's Will</h3>
+            <p><strong>Against the Ogre Horde introduced psychological mechanics, and the Druid weaponizes primal fear:</strong></p>
             
             <p><strong>😨 Morale Mechanics:</strong></p>
             <ul>
                 <li>Enemies flee when their leaders are defeated</li>
                 <li>Dramatic victories can cause mass routs</li>
                 <li>Heroes become legendary through repeated victories</li>
-                <li>Fear becomes a weapon as powerful as steel</li>
+                <li><strong>Druid Terror:</strong> Supernatural fear of nature's wrath</li>
             </ul>
             
-            <p><strong>🎭 Intimidation Tactics:</strong></p>
+            <p><strong>🐺 Primal Intimidation:</strong></p>
             <ul>
-                <li>Display of overwhelming force prevents conflicts</li>
-                <li>Reputation precedes heroes into battle</li>
-                <li>Psychological pressure forces tactical mistakes</li>
-                <li>Sometimes the threat of force is better than force itself</li>
+                <li>Beast roars and howls create psychological pressure</li>
+                <li>Environmental effects suggest divine displeasure</li>
+                <li>Awakened forests feel unnatural and threatening</li>
+                <li>Weather changes on command demonstrate power over nature</li>
             </ul>
         </div>
 
@@ -792,14 +924,14 @@
         
         <div class="warfare-principle">
             <h3>🎯 The Objectives of War</h3>
-            <p><strong>Mass combat introduced victory conditions that felt like real military campaigns:</strong></p>
+            <p><strong>Mass combat introduced victory conditions that felt like real military campaigns, enhanced by Druid objectives:</strong></p>
             
             <p><strong>🏰 Defensive Victories:</strong></p>
             <ul>
                 <li>Survive a set number of waves</li>
                 <li>Protect specific locations or NPCs</li>
                 <li>Hold strategic positions until reinforcements arrive</li>
-                <li>Minimize civilian casualties during evacuation</li>
+                <li><strong>Druid Goal:</strong> Preserve sacred groves and natural sites</li>
             </ul>
             
             <p><strong>⚔️ Offensive Victories:</strong></p>
@@ -807,15 +939,15 @@
                 <li>Eliminate enemy leadership structure</li>
                 <li>Capture strategic objectives</li>
                 <li>Break enemy morale through decisive action</li>
-                <li>Destroy key enemy resources or equipment</li>
+                <li><strong>Druid Mission:</strong> Cleanse corrupted lands and restore natural balance</li>
             </ul>
             
-            <p><strong>🎪 Strategic Victories:</strong></p>
+            <p><strong>🌿 Environmental Victories:</strong></p>
             <ul>
-                <li>Achieve objectives with minimal losses</li>
-                <li>Complete missions within time constraints</li>
-                <li>Maintain ally relationships and morale</li>
-                <li>Set up favorable conditions for future campaigns</li>
+                <li>Restore natural balance to corrupted areas</li>
+                <li>Establish permanent nature sanctuaries</li>
+                <li>Convert enemies to respect for natural order</li>
+                <li>Achieve harmony between civilization and wilderness</li>
             </ul>
         </div>
 
@@ -823,13 +955,15 @@
         
         <div class="tactical-box">
             <h3>🏛️ Learning from the Masters</h3>
-            <p><strong>The expansion drew inspiration from history's greatest military minds:</strong></p>
+            <p><strong>The expansion drew inspiration from history's greatest military minds, with the Druid adding nature's wisdom:</strong></p>
             
             <p><strong>🏰 Medieval Siege Warfare:</strong> Castle design and defensive tactics</p>
             <p><strong>⚔️ Roman Legions:</strong> Disciplined formations and unit coordination</p>
             <p><strong>🏹 English Longbowmen:</strong> Ranged superiority and positioning</p>
             <p><strong>🌟 Napoleonic Tactics:</strong> Artillery, cavalry, and combined arms</p>
             <p><strong>⚡ Modern Military:</strong> Command and control, intelligence, logistics</p>
+            <p><strong>🌿 Guerrilla Warfare:</strong> Using terrain and environment as weapons</p>
+            <p><strong>🐺 Animal Warfare:</strong> Historical use of war elephants, cavalry, and hunting animals</p>
         </div>
 
         <h2>🎯 Mastery Challenges: Advanced Scenarios</h2>
@@ -843,30 +977,99 @@
             <p><strong>🎯 The Precision Strike:</strong> Eliminate only enemy leaders, spare troops</p>
             <p><strong>👥 The Outnumbered:</strong> Win against overwhelming numerical odds</p>
             <p><strong>🔄 The Endurance Test:</strong> Survive multiple consecutive battles</p>
+            <p><strong>🌿 The Green Victory:</strong> Win using only summoned creatures and environmental magic</p>
+            <p><strong>🐺 The Pack Leader:</strong> Coordinate complex multi-species beast army tactics</p>
+            <p><strong>⚡ The Storm Master:</strong> Victory through weather control and natural disasters</p>
         </div>
 
         <h2>🌟 Legacy and Influence</h2>
         
         <div class="warfare-principle">
             <h3>🏛️ How Mass Combat Changed Gaming Forever</h3>
-            <p><strong>Against the Ogre Horde innovations became the foundation of modern warfare games:</strong></p>
+            <p><strong>Against the Ogre Horde innovations became the foundation of modern warfare games, with the Druid pioneering environmental strategy:</strong></p>
             
-            <p><strong>🎮 Video Game Influence:</strong> RTS games, tactical RPGs, tower defense mechanics</p>
-            <p><strong>🎲 Tabletop Evolution:</strong> Miniature wargaming, army builders, mass combat systems</p>
-            <p><strong>🎬 Media Impact:</strong> Epic battle scenes, military strategy storytelling</p>
-            <p><strong>🎪 Modern Gaming:</strong> Command mechanics, unit management, strategic thinking</p>
+            <p><strong>🎮 Video Game Influence:</strong> RTS games, tactical RPGs, tower defense mechanics, environmental destruction</p>
+            <p><strong>🎲 Tabletop Evolution:</strong> Miniature wargaming, army builders, mass combat systems, summoning mechanics</p>
+            <p><strong>🎬 Media Impact:</strong> Epic battle scenes, military strategy storytelling, nature as character</p>
+            <p><strong>🎪 Modern Gaming:</strong> Command mechanics, unit management, strategic thinking, environmental interaction</p>
+            <p><strong>🌿 Environmental Gaming:</strong> Terrain manipulation, weather systems, ecosystem simulation</p>
         </div>
 
         <h2>🌟 Next Adventure Preview</h2>
         
-        <p>In our next lecture, we'll explore <strong>"The Frozen Horror"</strong> - Arctica survival and ice-themed mosters. Environmental hazards and extreme weather mechanics.</p>
+        <p style="color: #fef3c7;">In our next lecture, we'll explore <strong>"The Frozen Horror"</strong> - Arctic survival and ice-themed monsters. Environmental hazards and extreme weather mechanics.</p>
         
         <div class="warfare-principle">
-            <p><strong>Remember:</strong> Against the Ogre Horde wasn't just about fighting more enemies - it was about thinking bigger, planning deeper, and feeling the weight of command. Every tactical decision echoes across the battlefield, every formation choice can mean victory or defeat, and every hero becomes a general responsible for the fate of entire armies. This is HeroQuest at its most epic scale!</p>
+            <p><strong>Remember:</strong> Against the Ogre Horde wasn't just about fighting more enemies - it was about thinking bigger, planning deeper, and feeling the weight of command. The Druid adds another dimension: thinking like nature itself, where every battlefield becomes a living ecosystem, every ally includes the beasts of the wild, and every victory means restoring the natural balance. This is HeroQuest at its most epic scale, where heroes become generals and the very forces of nature join the fight!</p>
         </div>
     </div>
 
     <script>
+        // Add nature effects for atmospheric enhancement
+        function createNatureEffects() {
+            const effects = ['🌿', '🍃', '🌳', '🌲', '🦋', '🐦', '🌺'];
+            for (let i = 0; i < 10; i++) {
+                const effect = document.createElement('div');
+                effect.className = 'nature-effects';
+                effect.textContent = effects[Math.floor(Math.random() * effects.length)];
+                effect.style.left = Math.random() * 100 + '%';
+                effect.style.top = Math.random() * 100 + '%';
+                effect.style.animationDelay = Math.random() * 6 + 's';
+                effect.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                document.querySelector('.container').appendChild(effect);
+            }
+        }
+        
+        createNatureEffects();
+        
+        // Interactive Druid portrait for nature magic
+        function addDruidMagicInteraction() {
+            const druidPortrait = document.querySelector('.druid-portrait');
+            
+            if (druidPortrait) {
+                druidPortrait.addEventListener('click', () => {
+                    // Nature magic effect
+                    druidPortrait.style.transform = 'scale(1.1)';
+                    druidPortrait.style.boxShadow = '0 0 40px rgba(76, 175, 80, 1)';
+                    
+                    // Create nature magic effects
+                    const natureMagic = ['🌿', '🍃', '✨', '🌟', '💚'];
+                    for (let i = 0; i < 8; i++) {
+                        const effect = document.createElement('div');
+                        effect.style.position = 'absolute';
+                        effect.style.left = '50%';
+                        effect.style.top = '50%';
+                        effect.style.fontSize = '24px';
+                        effect.style.color = '#4caf50';
+                        effect.style.animation = `nature-drift ${2 + Math.random()}s ease-out forwards`;
+                        effect.style.pointerEvents = 'none';
+                        effect.style.zIndex = '1000';
+                        effect.textContent = natureMagic[Math.floor(Math.random() * natureMagic.length)];
+                        effect.style.transform = `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-60px)`;
+                        
+                        druidPortrait.style.position = 'relative';
+                        druidPortrait.appendChild(effect);
+                        
+                        setTimeout(() => {
+                            if (effect.parentNode) {
+                                effect.parentNode.removeChild(effect);
+                            }
+                        }, 2000);
+                    }
+                    
+                    setTimeout(() => {
+                        druidPortrait.style.transform = 'scale(1)';
+                        druidPortrait.style.boxShadow = '0 10px 30px rgba(76, 175, 80, 0.6)';
+                    }, 300);
+                });
+                
+                druidPortrait.title = 'Click to channel the power of nature!';
+                druidPortrait.style.cursor = 'pointer';
+            }
+        }
+        
+        addDruidMagicInteraction();
+        
         // Animated horde counter
         let hordeCount = 0;
         const maxHorde = 47; // Epic number for demonstration
@@ -892,7 +1095,7 @@
             hordeCtx.clearRect(0, 0, hordeCanvas.width, hordeCanvas.height);
             
             // Background
-            hordeCtx.fillStyle = '#3e2723';
+            hordeCtx.fillStyle = '#000000';
             hordeCtx.fillRect(0, 0, hordeCanvas.width, hordeCanvas.height);
             
             // Draw army composition pie chart
@@ -922,7 +1125,7 @@
                 hordeCtx.closePath();
                 hordeCtx.fill();
                 
-                hordeCtx.strokeStyle = '#fff8dc';
+                hordeCtx.strokeStyle = '#ffffff';
                 hordeCtx.lineWidth = 2;
                 hordeCtx.stroke();
                 
@@ -931,7 +1134,7 @@
                 const labelX = centerX + Math.cos(labelAngle) * (radius + 30);
                 const labelY = centerY + Math.sin(labelAngle) * (radius + 30);
                 
-                hordeCtx.fillStyle = '#fff8dc';
+                hordeCtx.fillStyle = '#ffffff';
                 hordeCtx.font = '12px Arial';
                 hordeCtx.textAlign = 'center';
                 hordeCtx.fillText(`${unit.name}`, labelX, labelY);
@@ -949,7 +1152,7 @@
         
         drawHordeComposition();
         
-        // Mass Combat Mechanics Visualization
+        // Mass Combat Mechanics Visualization with Druid
         const combatCanvas = document.getElementById('mass_combat_mechanics_canvas');
         const combatCtx = combatCanvas.getContext('2d');
         
@@ -957,7 +1160,7 @@
             combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
             
             // Background
-            combatCtx.fillStyle = '#3e2723';
+            combatCtx.fillStyle = '#000000';
             combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
             
             // Draw battlefield with multiple enemies
@@ -966,10 +1169,10 @@
             for (let i = 0; i <= 15; i++) {
                 combatCtx.beginPath();
                 combatCtx.moveTo(50 + i * 30, 50);
-                combatCtx.lineTo(50 + i * 30, 300);
+                combatCtx.lineTo(50 + i * 30, 320);
                 combatCtx.stroke();
             }
-            for (let i = 0; i <= 8; i++) {
+            for (let i = 0; i <= 9; i++) {
                 combatCtx.beginPath();
                 combatCtx.moveTo(50, 50 + i * 30);
                 combatCtx.lineTo(500, 50 + i * 30);
@@ -981,7 +1184,8 @@
                 {x: 140, y: 200, symbol: '🛡️', color: '#4a90e2'},
                 {x: 170, y: 230, symbol: '🏹', color: '#32cd32'},
                 {x: 110, y: 230, symbol: '🔮', color: '#9370db'},
-                {x: 140, y: 260, symbol: '🗡️', color: '#cd853f'}
+                {x: 140, y: 260, symbol: '🗡️', color: '#cd853f'},
+                {x: 200, y: 200, symbol: '🌳', color: '#4caf50'} // Druid
             ];
             
             heroes.forEach(hero => {
@@ -991,6 +1195,23 @@
                 combatCtx.font = '14px Arial';
                 combatCtx.textAlign = 'center';
                 combatCtx.fillText(hero.symbol, hero.x, hero.y + 4);
+            });
+            
+            // Draw summoned beasts from Druid
+            const beasts = [
+                {x: 80, y: 170, symbol: '🐺'},
+                {x: 80, y: 290, symbol: '🐻'},
+                {x: 230, y: 170, symbol: '🦅'},
+                {x: 230, y: 290, symbol: '🐺'}
+            ];
+            
+            beasts.forEach(beast => {
+                combatCtx.fillStyle = '#795548';
+                combatCtx.fillRect(beast.x - 10, beast.y - 10, 20, 20);
+                combatCtx.fillStyle = '#fff';
+                combatCtx.font = '12px Arial';
+                combatCtx.textAlign = 'center';
+                combatCtx.fillText(beast.symbol, beast.x, beast.y + 3);
             });
             
             // Draw enemy horde (wave formation)
@@ -1021,33 +1242,57 @@
                 combatCtx.fillText(enemy.symbol, enemy.x, enemy.y + 4);
             });
             
-            // Draw area effect spell
-            combatCtx.strokeStyle = '#ff6b35';
-            combatCtx.lineWidth = 3;
-            combatCtx.setLineDash([5, 5]);
-            combatCtx.beginPath();
-            combatCtx.arc(380, 200, 50, 0, Math.PI * 2);
-            combatCtx.stroke();
+            // Draw lightning storm from Druid
+            combatCtx.strokeStyle = '#ffeb3b';
+            combatCtx.lineWidth = 4;
             combatCtx.setLineDash([]);
             
-            combatCtx.fillStyle = 'rgba(255, 107, 53, 0.3)';
-            combatCtx.beginPath();
-            combatCtx.arc(380, 200, 50, 0, Math.PI * 2);
-            combatCtx.fill();
+            // Lightning bolts
+            const lightning = [
+                {x: 380, y: 80, endX: 375, endY: 160},
+                {x: 400, y: 80, endX: 405, endY: 160},
+                {x: 360, y: 80, endX: 355, endY: 160}
+            ];
+            
+            lightning.forEach(bolt => {
+                combatCtx.beginPath();
+                combatCtx.moveTo(bolt.x, bolt.y);
+                combatCtx.lineTo(bolt.endX, bolt.endY);
+                combatCtx.stroke();
+                
+                // Add jagged lightning effect
+                combatCtx.beginPath();
+                combatCtx.moveTo(bolt.x, bolt.y);
+                combatCtx.lineTo(bolt.x + 5, bolt.y + 20);
+                combatCtx.lineTo(bolt.x - 3, bolt.y + 40);
+                combatCtx.lineTo(bolt.x + 7, bolt.y + 60);
+                combatCtx.lineTo(bolt.endX, bolt.endY);
+                combatCtx.stroke();
+            });
+            
+            // Nature barriers
+            combatCtx.fillStyle = '#4caf50';
+            combatCtx.fillRect(260, 180, 60, 20);
+            combatCtx.fillRect(260, 220, 60, 20);
+            
+            combatCtx.fillStyle = '#ffffff';
+            combatCtx.font = '12px Arial';
+            combatCtx.textAlign = 'center';
+            combatCtx.fillText('🌿🌿🌿', 290, 195);
+            combatCtx.fillText('🌿🌿🌿', 290, 235);
             
             combatCtx.fillStyle = '#d4af37';
             combatCtx.font = '16px Arial';
-            combatCtx.textAlign = 'center';
-            combatCtx.fillText('Mass Combat: Heroes vs. The Horde', 300, 30);
-            combatCtx.fillStyle = '#fff8dc';
+            combatCtx.fillText('Mass Combat: Heroes + Druid vs. The Horde', 300, 30);
+            combatCtx.fillStyle = '#ffffff';
             combatCtx.font = '12px Arial';
-            combatCtx.fillText('Area spells affect multiple enemies simultaneously', 300, 330);
+            combatCtx.fillText('Druid summons beasts and controls weather while allies fight', 300, 340);
             combatCtx.textAlign = 'left';
         }
         
         drawMassCombatMechanics();
         
-        // Interactive Battle Formation
+        // Interactive Battle Formation with Druid
         const formationGrid = document.getElementById('battle_formation');
         const analysisDiv = document.getElementById('formation_analysis');
         let gridState = [];
@@ -1062,9 +1307,9 @@
             gridState.push('empty');
         }
         
-        const cellTypes = ['empty', 'hero', 'ogre', 'goblin', 'archer', 'fortification'];
-        const cellSymbols = ['', '🛡️', '👹', '👺', '🏹', '⬛'];
-        const cellClasses = ['empty-field', 'hero-unit', 'ogre-unit', 'goblin-unit', 'goblin-unit', 'fortification'];
+        const cellTypes = ['empty', 'hero', 'druid', 'ogre', 'goblin', 'archer', 'beast', 'nature-barrier'];
+        const cellSymbols = ['', '🛡️', '🌳', '👹', '👺', '🏹', '🐺', '🌿'];
+        const cellClasses = ['empty-field', 'hero-unit', 'druid-unit', 'ogre-unit', 'goblin-unit', 'goblin-unit', 'beast-unit', 'nature-barrier'];
         let currentCellType = 0;
         
         function toggleFormationCell(index) {
@@ -1080,26 +1325,38 @@
         
         function analyzeFormation() {
             const heroes = gridState.filter(cell => cell === 'hero').length;
+            const druids = gridState.filter(cell => cell === 'druid').length;
             const enemies = gridState.filter(cell => cell.includes('ogre') || cell.includes('goblin') || cell.includes('archer')).length;
-            const fortifications = gridState.filter(cell => cell === 'fortification').length;
+            const beasts = gridState.filter(cell => cell === 'beast').length;
+            const barriers = gridState.filter(cell => cell === 'nature-barrier').length;
             
-            let analysis = `Forces: ${heroes} Heroes, ${enemies} Enemies, ${fortifications} Fortifications. `;
+            const totalAllies = heroes + druids + beasts;
             
-            if (heroes > 0 && enemies > 0) {
-                const ratio = enemies / heroes;
-                if (ratio > 3) {
-                    analysis += "Overwhelming enemy numbers! Defensive tactics recommended. ";
-                } else if (ratio > 1.5) {
-                    analysis += "Outnumbered but manageable. Use terrain advantages. ";
+            let analysis = `Forces: ${heroes} Heroes, ${druids} Druids, ${beasts} Beasts, ${enemies} Enemies, ${barriers} Nature Barriers. `;
+            
+            if (totalAllies > 0 && enemies > 0) {
+                const ratio = enemies / totalAllies;
+                if (ratio > 2) {
+                    analysis += "Overwhelming enemy numbers! Use Druid's environmental advantages. ";
+                } else if (ratio > 1) {
+                    analysis += "Outnumbered but manageable with beast allies. ";
                 } else {
-                    analysis += "Favorable odds. Consider aggressive tactics. ";
+                    analysis += "Favorable odds! Consider aggressive tactics. ";
                 }
                 
-                if (fortifications > 0) {
-                    analysis += "Fortifications provide tactical advantages! ";
+                if (druids > 0) {
+                    analysis += "Druid presence provides tactical flexibility and reinforcements! ";
                 }
-            } else if (heroes === 0) {
-                analysis += "Deploy heroes to begin tactical analysis!";
+                
+                if (barriers > 0) {
+                    analysis += "Nature barriers create chokepoints and defensive advantages! ";
+                }
+                
+                if (beasts > 0) {
+                    analysis += `${beasts} Beast allies provide flanking and harassment options! `;
+                }
+            } else if (totalAllies === 0) {
+                analysis += "Deploy forces to begin tactical analysis!";
             } else if (enemies === 0) {
                 analysis += "Add enemy forces to create a battle scenario!";
             }
@@ -1115,16 +1372,19 @@
             strategyCtx.clearRect(0, 0, strategyCanvas.width, strategyCanvas.height);
             
             // Background
-            strategyCtx.fillStyle = '#3e2723';
+            strategyCtx.fillStyle = '#000000';
             strategyCtx.fillRect(0, 0, strategyCanvas.width, strategyCanvas.height);
             
-            // Draw strategic decision tree
+            // Draw strategic decision tree with Druid options
             const decisions = [
                 {x: 300, y: 50, text: 'Enemy Horde\nApproaches', color: '#8b0000'},
                 {x: 150, y: 120, text: 'Defend\nPosition', color: '#4a90e2'},
+                {x: 300, y: 120, text: 'Druid\nStrategy', color: '#4caf50'},
                 {x: 450, y: 120, text: 'Attack\nFirst', color: '#ff6b35'},
                 {x: 100, y: 200, text: 'Fortify\nChokepoint', color: '#32cd32'},
                 {x: 200, y: 200, text: 'Mobile\nDefense', color: '#ffd700'},
+                {x: 250, y: 200, text: 'Summon\nBeasts', color: '#795548'},
+                {x: 350, y: 200, text: 'Weather\nControl', color: '#00bcd4'},
                 {x: 400, y: 200, text: 'Flanking\nManeuver', color: '#9370db'},
                 {x: 500, y: 200, text: 'Direct\nAssault', color: '#ff1744'}
             ];
@@ -1136,12 +1396,12 @@
                 strategyCtx.arc(decision.x, decision.y, 25, 0, Math.PI * 2);
                 strategyCtx.fill();
                 
-                strategyCtx.strokeStyle = '#fff8dc';
+                strategyCtx.strokeStyle = '#ffffff';
                 strategyCtx.lineWidth = 2;
                 strategyCtx.stroke();
                 
                 // Draw decision text
-                strategyCtx.fillStyle = '#fff8dc';
+                strategyCtx.fillStyle = '#ffffff';
                 strategyCtx.font = '10px Arial';
                 strategyCtx.textAlign = 'center';
                 const lines = decision.text.split('\n');
@@ -1155,47 +1415,30 @@
             strategyCtx.lineWidth = 2;
             
             // Root to main branches
-            strategyCtx.beginPath();
-            strategyCtx.moveTo(300, 75);
-            strategyCtx.lineTo(150, 95);
-            strategyCtx.stroke();
+            const connections = [
+                {from: 0, to: 1}, {from: 0, to: 2}, {from: 0, to: 3},
+                {from: 1, to: 4}, {from: 1, to: 5},
+                {from: 2, to: 6}, {from: 2, to: 7},
+                {from: 3, to: 8}, {from: 3, to: 9}
+            ];
             
-            strategyCtx.beginPath();
-            strategyCtx.moveTo(300, 75);
-            strategyCtx.lineTo(450, 95);
-            strategyCtx.stroke();
-            
-            // Main branches to tactics
-            strategyCtx.beginPath();
-            strategyCtx.moveTo(150, 145);
-            strategyCtx.lineTo(100, 175);
-            strategyCtx.stroke();
-            
-            strategyCtx.beginPath();
-            strategyCtx.moveTo(150, 145);
-            strategyCtx.lineTo(200, 175);
-            strategyCtx.stroke();
-            
-            strategyCtx.beginPath();
-            strategyCtx.moveTo(450, 145);
-            strategyCtx.lineTo(400, 175);
-            strategyCtx.stroke();
-            
-            strategyCtx.beginPath();
-            strategyCtx.moveTo(450, 145);
-            strategyCtx.lineTo(500, 175);
-            strategyCtx.stroke();
+            connections.forEach(conn => {
+                strategyCtx.beginPath();
+                strategyCtx.moveTo(decisions[conn.from].x, decisions[conn.from].y + 25);
+                strategyCtx.lineTo(decisions[conn.to].x, decisions[conn.to].y - 25);
+                strategyCtx.stroke();
+            });
             
             strategyCtx.fillStyle = '#d4af37';
             strategyCtx.font = '16px Arial';
             strategyCtx.textAlign = 'center';
-            strategyCtx.fillText('Strategic Decision Tree: From Tactics to Victory', 300, 280);
+            strategyCtx.fillText('Strategic Decision Tree: Enhanced with Druid Nature Magic', 300, 280);
             strategyCtx.textAlign = 'left';
         }
         
         drawStrategicThinking();
         
-        // Heroic Roles Visualization
+        // Heroic Roles Visualization with Druid
         const rolesCanvas = document.getElementById('heroic_roles_canvas');
         const rolesCtx = rolesCanvas.getContext('2d');
         
@@ -1203,17 +1446,18 @@
             rolesCtx.clearRect(0, 0, rolesCanvas.width, rolesCanvas.height);
             
             // Background
-            rolesCtx.fillStyle = '#3e2723';
+            rolesCtx.fillStyle = '#000000';
             rolesCtx.fillRect(0, 0, rolesCanvas.width, rolesCanvas.height);
             
-            // Draw command structure
-            const commander = {x: 300, y: 100, symbol: '👑', name: 'Field Commander'};
+            // Draw command structure with Druid
+            const commander = {x: 300, y: 80, symbol: '👑', name: 'Field Commander'};
             
             const heroes = [
-                {x: 150, y: 200, symbol: '🛡️', name: 'Barbarian\nFrontline', color: '#4a90e2'},
-                {x: 250, y: 250, symbol: '🏹', name: 'Elf\nTactician', color: '#32cd32'},
-                {x: 350, y: 250, symbol: '🔮', name: 'Wizard\nSupport', color: '#9370db'},
-                {x: 450, y: 200, symbol: '🗡️', name: 'Dwarf\nEngineer', color: '#cd853f'}
+                {x: 120, y: 180, symbol: '🛡️', name: 'Barbarian\nFrontline', color: '#4a90e2'},
+                {x: 210, y: 220, symbol: '🏹', name: 'Elf\nTactician', color: '#32cd32'},
+                {x: 300, y: 180, symbol: '🌳', name: 'Druid\nEnvironment', color: '#4caf50'},
+                {x: 390, y: 220, symbol: '🔮', name: 'Wizard\nSupport', color: '#9370db'},
+                {x: 480, y: 180, symbol: '🗡️', name: 'Dwarf\nEngineer', color: '#cd853f'}
             ];
             
             // Draw command lines
@@ -1247,7 +1491,7 @@
                 rolesCtx.font = '20px Arial';
                 rolesCtx.fillText(hero.symbol, hero.x, hero.y + 7);
                 
-                rolesCtx.fillStyle = '#fff8dc';
+                rolesCtx.fillStyle = '#ffffff';
                 rolesCtx.font = '10px Arial';
                 const lines = hero.name.split('\n');
                 lines.forEach((line, index) => {
@@ -1255,10 +1499,39 @@
                 });
             });
             
+            // Draw beast allies around Druid
+            const beasts = [
+                {x: 270, y: 150, symbol: '🐺'},
+                {x: 330, y: 150, symbol: '🐻'},
+                {x: 270, y: 210, symbol: '🦅'},
+                {x: 330, y: 210, symbol: '🌲'}
+            ];
+            
+            beasts.forEach(beast => {
+                rolesCtx.fillStyle = '#795548';
+                rolesCtx.beginPath();
+                rolesCtx.arc(beast.x, beast.y, 15, 0, Math.PI * 2);
+                rolesCtx.fill();
+                
+                rolesCtx.fillStyle = '#fff';
+                rolesCtx.font = '12px Arial';
+                rolesCtx.fillText(beast.symbol, beast.x, beast.y + 4);
+                
+                // Connection to Druid
+                rolesCtx.strokeStyle = '#4caf50';
+                rolesCtx.lineWidth = 1;
+                rolesCtx.setLineDash([3, 3]);
+                rolesCtx.beginPath();
+                rolesCtx.moveTo(beast.x, beast.y);
+                rolesCtx.lineTo(300, 180);
+                rolesCtx.stroke();
+                rolesCtx.setLineDash([]);
+            });
+            
             rolesCtx.fillStyle = '#d4af37';
             rolesCtx.font = '16px Arial';
             rolesCtx.textAlign = 'center';
-            rolesCtx.fillText('Mass Combat Command Structure', 300, 30);
+            rolesCtx.fillText('Mass Combat Command Structure with Druid Nature Army', 300, 30);
             rolesCtx.textAlign = 'left';
         }
         
@@ -1272,12 +1545,12 @@
             psychCtx.clearRect(0, 0, psychCanvas.width, psychCanvas.height);
             
             // Background
-            psychCtx.fillStyle = '#3e2723';
+            psychCtx.fillStyle = '#000000';
             psychCtx.fillRect(0, 0, psychCanvas.width, psychCanvas.height);
             
             // Draw morale meters for both sides
-            const heroes = {x: 150, morale: 85, color: '#4a90e2', name: 'Hero Forces'};
-            const enemies = {x: 450, morale: 45, color: '#8b0000', name: 'Ogre Horde'};
+            const heroes = {x: 150, morale: 90, color: '#4a90e2', name: 'Hero Forces'};
+            const enemies = {x: 450, morale: 35, color: '#8b0000', name: 'Ogre Horde'};
             
             [heroes, enemies].forEach(side => {
                 // Draw morale bar background
@@ -1289,12 +1562,12 @@
                 psychCtx.fillRect(side.x - 50, 150, side.morale, 20);
                 
                 // Draw border
-                psychCtx.strokeStyle = '#fff8dc';
+                psychCtx.strokeStyle = '#ffffff';
                 psychCtx.lineWidth = 2;
                 psychCtx.strokeRect(side.x - 50, 150, 100, 20);
                 
                 // Draw morale percentage
-                psychCtx.fillStyle = '#fff8dc';
+                psychCtx.fillStyle = '#ffffff';
                 psychCtx.font = '12px Arial';
                 psychCtx.textAlign = 'center';
                 psychCtx.fillText(side.morale + '%', side.x, 185);
@@ -1305,30 +1578,83 @@
                 psychCtx.fillText(side === heroes ? '🛡️' : '👹', side.x, 130);
             });
             
-            // Draw psychological effects
-            const effects = [
-                {x: 300, y: 80, text: 'Intimidation', effect: '😨'},
-                {x: 300, y: 120, text: 'Reputation', effect: '⭐'},
-                {x: 300, y: 220, text: 'Leadership', effect: '👑'}
+            // Draw Druid's nature effects on morale
+            psychCtx.fillStyle = '#4caf50';
+            psychCtx.font = '20px Arial';
+            psychCtx.textAlign = 'center';
+            psychCtx.fillText('🌳', 300, 100);
+            
+            // Nature intimidation effects
+            const natureEffects = [
+                {x: 250, y: 120, text: 'Beast Roars', effect: '🐺'},
+                {x: 350, y: 120, text: 'Storm Fear', effect: '⚡'},
+                {x: 300, y: 180, text: 'Living Forest', effect: '🌲'}
             ];
             
-            effects.forEach(effect => {
-                psychCtx.fillStyle = '#daa520';
-                psychCtx.font = '20px Arial';
-                psychCtx.textAlign = 'center';
+            natureEffects.forEach(effect => {
+                psychCtx.fillStyle = '#4caf50';
+                psychCtx.font = '16px Arial';
                 psychCtx.fillText(effect.effect, effect.x, effect.y);
-                psychCtx.fillStyle = '#fff8dc';
-                psychCtx.font = '10px Arial';
-                psychCtx.fillText(effect.text, effect.x, effect.y + 20);
+                psychCtx.fillStyle = '#ffffff';
+                psychCtx.font = '8px Arial';
+                psychCtx.fillText(effect.text, effect.x, effect.y + 15);
             });
+            
+            // Draw fear arrows toward enemy morale
+            psychCtx.strokeStyle = '#ff6b35';
+            psychCtx.lineWidth = 3;
+            psychCtx.setLineDash([5, 5]);
+            psychCtx.beginPath();
+            psychCtx.moveTo(350, 120);
+            psychCtx.lineTo(420, 140);
+            psychCtx.stroke();
+            psychCtx.setLineDash([]);
             
             psychCtx.fillStyle = '#d4af37';
             psychCtx.font = '16px Arial';
-            psychCtx.fillText('Psychological Warfare: The Battle for Morale', 200, 30);
+            psychCtx.fillText('Psychological Warfare: Nature\'s Primal Terror', 200, 30);
             psychCtx.textAlign = 'left';
         }
         
         drawPsychologicalWarfare();
+        
+        // Enhanced nature effect hover for Druid cards
+        function addDruidCardEffects() {
+            const druidCards = document.querySelectorAll('.druid-card');
+            
+            druidCards.forEach((card, index) => {
+                card.addEventListener('mouseenter', () => {
+                    // Create floating nature effects
+                    for (let i = 0; i < 4; i++) {
+                        const effect = document.createElement('div');
+                        effect.style.position = 'absolute';
+                        effect.style.left = (Math.random() * 60 + 20) + '%';
+                        effect.style.top = (Math.random() * 60 + 20) + '%';
+                        effect.style.fontSize = '20px';
+                        effect.style.color = '#4caf50';
+                        effect.style.animation = 'nature-drift 2s ease-out forwards';
+                        effect.style.pointerEvents = 'none';
+                        effect.style.zIndex = '1000';
+                        effect.textContent = ['🌿', '🍃', '✨', '🌟', '🐺', '🦅', '⚡'][Math.floor(Math.random() * 7)];
+                        
+                        card.style.position = 'relative';
+                        card.appendChild(effect);
+                        
+                        setTimeout(() => {
+                            if (effect.parentNode) {
+                                effect.parentNode.removeChild(effect);
+                            }
+                        }, 2000);
+                    }
+                });
+            });
+        }
+        
+        addDruidCardEffects();
+        
+        console.log('Against the Ogre Horde with Druid Hero enhancement loaded successfully!');
+        console.log('🌳 The Druid brings nature\'s fury to mass combat!');
+        console.log('🐺 Click the Druid portrait to channel the power of the wild!');
     </script>
 </body>
 </html>

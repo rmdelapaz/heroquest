@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rogue Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #2F4F4F;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #2F4F4F, #708090);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #36454F;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #F8F8FF;
+            border-left: 5px solid #2F4F4F;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .stealth-mastery {
+            background: #F0F8FF;
+            border: 2px solid #4682B4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #87CEEB;
+        }
+        .thievery-skills {
+            background: #2F2F2F;
+            color: #C0C0C0;
+            border: 2px solid #696969;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .cunning-tactics {
+            background: #FDF5E6;
+            border: 2px solid #DEB887;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .shadow-craft {
+            background: #1C1C1C;
+            color: #D3D3D3;
+            border: 2px solid #2F4F4F;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .opportunist-nature {
+            background: #FFFACD;
+            border: 2px solid #DAA520;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .criminal-expertise {
+            background: #F5F5DC;
+            border: 2px solid #A0522D;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🗡️ The Rogue Hero: Master of Shadows and Schemes</h1>
+        <p><em>Welcome, child of the shadows! Today we explore the cunning intellect and deadly precision of HeroQuest's most versatile infiltrator.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Rogue</h2>
+            <p>The Rogue is HeroQuest's embodiment of cunning, adaptability, and surgical precision - imagine a master thief crossed with a spy, an assassin, and a con artist who thrives in the spaces between heroism and villainy. Where other heroes face challenges head-on, the Rogue finds the hidden path, the secret weakness, the unexpected angle that turns impossible odds into calculated advantages. They are the shadow that moves unseen, the whisper that reveals secrets, and the blade that strikes from nowhere.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Surgical Specialist</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 2 combat dice</div>
+            <div class="stat-display">Defend: 2 combat dice</div>
+            <div class="stat-display">Body Points: 5</div>
+            <div class="stat-display">Mind Points: 4</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were surgical instruments, the Rogue would be a precision scalpel - not the heaviest or most robust tool, but capable of achieving results impossible with blunter instruments. Like a master surgeon who accomplishes through skill what others attempt through force, the Rogue's true power lies in knowing exactly where and when to apply pressure for maximum effect.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Rogue Stats: The Precision Profile</h3>
+                <canvas id="rogueStatsCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="stealth-mastery">
+                <h3>🎯 Specialist Analysis</h3>
+                <p><strong>Balanced Combat:</strong> 2/2 provides reliable but not exceptional fighting capability</p>
+                <p><strong>Minimal Endurance:</strong> 5 Body Points demand careful risk management</p>
+                <p><strong>Tactical Intelligence:</strong> 4 Mind Points enable complex planning and skill usage</p>
+                <p><strong>Efficiency Focus:</strong> Success through precision rather than overwhelming force</p>
+                <p><strong>Situational Amplification:</strong> Unique abilities multiply effectiveness in specific circumstances</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Stealth Mastery: The Art of Invisibility</h2>
+            
+            <p>The Rogue's signature ability is moving unseen and unheard through environments where other heroes would be immediately detected. This isn't just sneaking - it's becoming one with shadows and silence.</p>
+
+            <div class="shadow-craft">
+                <h3>👤 Stealth Capabilities</h3>
+                <p><strong>Silent Movement:</strong> Move without making detectable noise</p>
+                <p><strong>Shadow Blending:</strong> Become nearly invisible in dim lighting</p>
+                <p><strong>Distraction Mastery:</strong> Redirect attention away from your activities</p>
+                <p><strong>Environmental Camouflage:</strong> Use surroundings to break up silhouette</p>
+                <p><strong>Presence Suppression:</strong> Minimize detectable aura and magical signature</p>
+                <p><strong>Quick Concealment:</strong> Rapidly find hiding spots in any environment</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Stealth Success Rates by Environment</h3>
+                <canvas id="stealthSuccessCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="thievery-skills">
+                <h3>Advanced Infiltration Techniques</h3>
+                <p><strong>Lock Manipulation:</strong> Open mechanical and magical locks through skill</p>
+                <p><strong>Trap Detection:</strong> Spot hidden dangers before they trigger</p>
+                <p><strong>Silent Entry:</strong> Access secured areas without leaving evidence</p>
+                <p><strong>Information Gathering:</strong> Eavesdrop on conversations and observe secrets</p>
+                <p><strong>Quick Escape:</strong> Vanish from dangerous situations before discovery</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Backstab Mastery: The Deadly Surprise</h2>
+            
+            <p>When stealth combines with combat, the Rogue becomes devastatingly lethal through backstab attacks that deal massive damage to unaware enemies. This represents the perfect fusion of positioning, timing, and precision.</p>
+
+            <div class="mermaid">
+                graph TD
+                    A[Rogue Combat Opportunity] --> B{Enemy Aware of Rogue?}
+                    B -->|No| C[Backstab Conditions Met]
+                    B -->|Yes| D{Can Achieve Stealth?}
+                    D -->|Yes| E[Re-enter Stealth Mode]
+                    D -->|No| F[Standard Combat or Retreat]
+                    C --> G[Position for Optimal Strike]
+                    E --> H[Wait for Backstab Opportunity]
+                    G --> I[Execute Precision Attack]
+                    H --> I
+                    I --> J{Backstab Successful?}
+                    J -->|Yes| K[Massive Damage + Special Effects]
+                    J -->|No| L[Standard Damage + Exposed Position]
+                    F --> M[Tactical Combat]
+                    K --> N[Assess Next Action]
+                    L --> O[Emergency Response]
+                    M --> P[Seek Stealth Opportunity]
+            </mermaid>
+
+            <div class="shadow-craft">
+                <h3>🗡️ Backstab Mechanics</h3>
+                <p><strong>Damage Multiplier:</strong> Successful backstabs deal significantly more damage than normal attacks</p>
+                <p><strong>Critical Targeting:</strong> Aim for vital organs and weak points in armor</p>
+                <p><strong>Status Effects:</strong> Inflict stunning, bleeding, or disabling conditions</p>
+                <p><strong>Silent Takedown:</strong> Eliminate enemies without alerting others nearby</p>
+                <p><strong>Positioning Bonus:</strong> Attack from behind or flanking positions for maximum effect</p>
+                <p><strong>Weapon Synergy:</strong> Certain weapons provide additional backstab bonuses</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Backstab Damage vs Standard Combat</h3>
+                <canvas id="backstabDamageCanvas" width="500" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Thievery Expertise: The Criminal Arts</h2>
+            
+            <p>Beyond combat applications, the Rogue possesses comprehensive criminal skills that provide unique solutions to obstacles that would stymie more conventional heroes.</p>
+
+            <div class="thievery-skills">
+                <h3>🔓 Professional Criminal Skills</h3>
+                <p><strong>Lock Picking:</strong> Open doors, chests, and containers without keys</p>
+                <p><strong>Trap Disarmament:</strong> Safely disable mechanical and magical hazards</p>
+                <p><strong>Pickpocketing:</strong> Steal items from people without detection</p>
+                <p><strong>Sleight of Hand:</strong> Manipulate objects with supernatural dexterity</p>
+                <p><strong>Forgery:</strong> Create false documents and counterfeit items</p>
+                <p><strong>Fence Networks:</strong> Buy and sell illegal or stolen goods</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Thievery Skill Success Rates</h3>
+                <canvas id="thieverySkillsCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="criminal-expertise">
+                <h3>Criminal Underworld Connections</h3>
+                <p><strong>Information Brokers:</strong> Purchase valuable intelligence about targets and locations</p>
+                <p><strong>Safe Houses:</strong> Access to hidden refuges and emergency supplies</p>
+                <p><strong>Black Market:</strong> Acquire rare, illegal, or restricted equipment</p>
+                <p><strong>Professional Contacts:</strong> Hire specialists for specific jobs</p>
+                <p><strong>Underworld Reputation:</strong> Gain respect and fear in criminal circles</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Cunning Tactics: The Thinking Fighter</h2>
+            
+            <p>With only moderate combat statistics, the Rogue must rely on intelligence, preparation, and tactical advantages to succeed in direct confrontations. Every fight becomes a chess match of positioning and timing.</p>
+
+            <div class="cunning-tactics">
+                <h3>🧠 Tactical Combat Philosophy</h3>
+                <p><strong>Information Advantage:</strong> Study enemies before engaging to identify weaknesses</p>
+                <p><strong>Environmental Exploitation:</strong> Use terrain, traps, and obstacles as weapons</p>
+                <p><strong>Timing Mastery:</strong> Strike when enemies are distracted or vulnerable</p>
+                <p><strong>Hit and Run:</strong> Deal damage then withdraw before counterattack</p>
+                <p><strong>Psychological Warfare:</strong> Use fear and uncertainty to unbalance opponents</p>
+                <p><strong>Resource Management:</strong> Conserve health through superior strategy</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Tactical Approach Effectiveness</h3>
+                <canvas id="tacticalApproachCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="opportunist-nature">
+                <h3>Opportunistic Combat Strategies</h3>
+                <p><strong>Ambush Tactics:</strong> Set up encounters on favorable terms</p>
+                <p><strong>Distraction Creation:</strong> Use noise, illusions, or allies to misdirect attention</p>
+                <p><strong>Weak Point Targeting:</strong> Focus attacks on vulnerable areas for maximum impact</p>
+                <p><strong>Equipment Manipulation:</strong> Disable enemy weapons or armor through sabotage</p>
+                <p><strong>Exit Strategies:</strong> Always plan escape routes before engaging</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Philosophy: Tools of the Trade</h2>
+            
+            <p>Rogue equipment emphasizes versatility, concealment, and specialized functionality over raw power. Every item serves multiple purposes and can be easily hidden or disguised.</p>
+
+            <div class="criminal-expertise">
+                <h3>🛠️ Essential Rogue Equipment</h3>
+                <p><strong>Thieves' Tools:</strong> Lockpicks, trap detection gear, and manipulation instruments</p>
+                <p><strong>Concealed Weapons:</strong> Hidden blades, throwing knives, and disguised armaments</p>
+                <p><strong>Stealth Gear:</strong> Dark clothing, sound dampening materials, and visual camouflage</p>
+                <p><strong>Utility Items:</strong> Rope, grappling hooks, glass cutters, and climbing equipment</p>
+                <p><strong>Information Tools:</strong> Spy glasses, listening devices, and recording materials</p>
+                <p><strong>Emergency Supplies:</strong> Smoke bombs, flash powder, and escape aids</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Specialization Impact</h3>
+                <canvas id="equipmentSpecializationCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="shadow-craft">
+                <h3>Concealment and Disguise Mastery</h3>
+                <p><strong>Hidden Storage:</strong> Conceal tools and weapons in clothing and accessories</p>
+                <p><strong>False Identity:</strong> Maintain cover identities with appropriate equipment</p>
+                <p><strong>Quick Change:</strong> Rapidly alter appearance to avoid recognition</p>
+                <p><strong>Social Engineering:</strong> Use props and costumes to manipulate social interactions</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Party Dynamics: The Shadow Support</h2>
+            
+            <p>The Rogue's relationship with party members is complex - they provide unique capabilities that enable new strategies while requiring protection during direct confrontations.</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Rogue: Intelligence & Infiltration] --> B[Barbarian: Distraction & Protection]
+                    A --> C[Dwarf: Trap Expertise Synergy]
+                    A --> D[Elf: Stealth Magic Coordination]
+                    A --> E[Wizard: Information Sharing]
+                    A --> F[Knight: Moral Tension/Protection]
+                    B --> G[Enhanced Party Capabilities]
+                    C --> G
+                    D --> G
+                    E --> G
+                    F --> G
+                    H[Reconnaissance Intelligence] --> I[Informed Party Decisions]
+                    I --> G
+            </mermaid>
+
+            <div class="cunning-tactics">
+                <h3>🤝 Party Role Integration</h3>
+                <p><strong>With Barbarian:</strong> Provide intelligence while Barbarian creates diversions</p>
+                <p><strong>With Dwarf:</strong> Combine expertise to handle all types of traps and locks</p>
+                <p><strong>With Elf:</strong> Coordinate stealth with magical concealment for ultimate infiltration</p>
+                <p><strong>With Wizard:</strong> Share gathered intelligence to enhance magical research</p>
+                <p><strong>With Knight:</strong> Navigate moral complexities while benefiting from protection</p>
+                <p><strong>Information Provider:</strong> Scout ahead and report on threats and opportunities</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Party Mission Success with Rogue Support</h3>
+                <canvas id="partySupportCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: Mastering the Shadows</h2>
+            
+            <div class="shadow-craft">
+                <h3>⚡ Advanced Rogue Mastery</h3>
+                <p><strong>Perfect Infiltration:</strong> Enter and exit secured areas without leaving any trace</p>
+                <p><strong>Social Invisibility:</strong> Blend into crowds and social situations unnoticed</p>
+                <p><strong>Information Networking:</strong> Build and maintain extensive intelligence networks</p>
+                <p><strong>Assassination Techniques:</strong> Eliminate targets silently and without evidence</p>
+                <p><strong>Master Thievery:</strong> Steal objects thought to be impossible to take</p>
+            </div>
+
+            <div class="thievery-skills">
+                <h3>Master-Level Example: The Impossible Heist</h3>
+                <p><strong>Setup:</strong> Retrieve valuable item from heavily guarded, trapped location</p>
+                <p><strong>Phase 1:</strong> Gather intelligence on guards, schedules, and security measures</p>
+                <p><strong>Phase 2:</strong> Create diversion using party members or environmental manipulation</p>
+                <p><strong>Phase 3:</strong> Infiltrate using optimal route identified during reconnaissance</p>
+                <p><strong>Phase 4:</strong> Disable traps and locks while maintaining stealth</p>
+                <p><strong>Phase 5:</strong> Extract target item and escape without triggering alarms</p>
+                <p><strong>Result:</strong> Achieve objective thought impossible through perfect planning and execution</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Advanced Technique Complexity Analysis</h3>
+                <canvas id="advancedTechniquesCanvas" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>When to Choose the Rogue: Optimal Scenarios</h2>
+            
+            <div class="opportunist-nature">
+                <h3>Perfect Rogue Adventures</h3>
+                <p><strong>Stealth-Heavy Missions:</strong> Adventures requiring infiltration and covert operations</p>
+                <p><strong>Investigation Scenarios:</strong> Mysteries requiring information gathering and discovery</p>
+                <p><strong>Heist Adventures:</strong> Quests focused on stealing specific items or information</p>
+                <p><strong>Urban Campaigns:</strong> City-based adventures with social interaction and intrigue</p>
+                <p><strong>Trap-Heavy Dungeons:</strong> Locations where disarmament skills are frequently needed</p>
+                <p><strong>Information Warfare:</strong> Scenarios where intelligence provides decisive advantages</p>
+            </div>
+
+            <div class="criminal-expertise">
+                <h3>Challenging Scenarios for Rogues</h3>
+                <p><strong>Pure Combat Gauntlets:</strong> Extended fighting without stealth opportunities</p>
+                <p><strong>Open Wilderness:</strong> Environments with limited hiding spots and infiltration options</p>
+                <p><strong>High Magic Settings:</strong> Areas where magical detection negates stealth advantages</p>
+                <p><strong>Honorable Quests:</strong> Adventures where criminal methods conflict with party morals</p>
+                <p><strong>Time-Critical Missions:</strong> Scenarios where careful planning causes dangerous delays</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Positioning Strategy: The Mobile Opportunist</h2>
+            
+            <div class="canvas-container">
+                <h3>Rogue Positioning and Movement Patterns</h3>
+                <canvas id="roguePositioningCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <div class="stealth-mastery">
+                <h3>🗺️ Strategic Positioning Principles</h3>
+                <p><strong>Perimeter Operations:</strong> Work around edges of encounters rather than center</p>
+                <p><strong>Cover Utilization:</strong> Maximize use of concealment and line-of-sight breaks</p>
+                <p><strong>Flanking Routes:</strong> Identify and use paths that lead to enemy rear positions</p>
+                <p><strong>Escape Planning:</strong> Always maintain multiple withdrawal options</p>
+                <p><strong>Observation Posts:</strong> Position for maximum information gathering</p>
+            </div>
+
+            <div class="cunning-tactics">
+                <h3>Dynamic Movement Philosophy</h3>
+                <p><strong>Constant Motion:</strong> Never remain in one position for extended periods</p>
+                <p><strong>Unpredictable Patterns:</strong> Avoid establishing detectable movement routines</p>
+                <p><strong>Environmental Integration:</strong> Use terrain features to enhance stealth and mobility</p>
+                <p><strong>Opportunistic Positioning:</strong> Move to exploit emerging tactical advantages</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Information Warfare: The Knowledge Advantage</h2>
+            
+            <div class="criminal-expertise">
+                <h3>📊 Intelligence Gathering Methods</h3>
+                <p><strong>Reconnaissance:</strong> Direct observation of targets and locations</p>
+                <p><strong>Social Engineering:</strong> Extract information through conversation and manipulation</p>
+                <p><strong>Document Theft:</strong> Steal written records and correspondence</p>
+                <p><strong>Eavesdropping:</strong> Overhear private conversations and meetings</p>
+                <p><strong>Network Infiltration:</strong> Gain access to enemy communications</p>
+                <p><strong>Bribery and Coercion:</strong> Purchase or force information from sources</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Information Value vs Collection Risk</h3>
+                <canvas id="informationValueCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Intelligence Analogy:</strong> The Rogue operates like a master spy agency - gathering information from multiple sources, analyzing patterns, and converting raw intelligence into actionable tactical advantages. Their greatest weapon isn't their blade but their knowledge of enemy weaknesses and hidden opportunities.
+            </div>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Stealth Mastery Guide:</strong> Advanced techniques for movement, concealment, and detection avoidance</li>
+                <li><strong>Criminal Skills Development:</strong> Systematic progression of thievery and infiltration abilities</li>
+                <li><strong>Information Network Building:</strong> Creating and maintaining intelligence gathering systems</li>
+                <li><strong>Social Engineering Tactics:</strong> Psychological manipulation and deception techniques</li>
+                <li><strong>Equipment Specialization:</strong> Advanced tools and weapons for professional operations</li>
+                <li><strong>Urban Adventure Strategies:</strong> Navigating city-based campaigns and social intrigue</li>
+                <li><strong>Moral Flexibility:</strong> Balancing criminal methods with heroic objectives</li>
+                <li><strong>Partnership Dynamics:</strong> Working with honorable heroes while maintaining effectiveness</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, master of shadows: Information is the sharpest blade, timing the strongest armor, and cunning the greatest magic. While others announce their presence with fanfare, you achieve victory before the battle begins. In the depths of Morcar's domain, where honest heroes may falter, you find the hidden paths, the secret weaknesses, and the overlooked opportunities that turn certain defeat into unexpected triumph. Trust in your skills, rely on your wits, and remember - the best heist is the one nobody knows happened!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Rogue Stats Analysis
+        const rogueStatsCanvas = document.getElementById('rogueStatsCanvas');
+        const rogueStatsCtx = rogueStatsCanvas.getContext('2d');
+        
+        rogueStatsCtx.clearRect(0, 0, 500, 300);
+        rogueStatsCtx.font = '14px Arial';
+        rogueStatsCtx.textAlign = 'center';
+        
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 2, max: 4, color: '#4ECDC4', label: '2 dice'},
+            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
+            {name: 'Body', value: 5, max: 9, color: '#96CEB4', label: '5 points'},
+            {name: 'Mind', value: 4, max: 6, color: '#708090', label: '4 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            rogueStatsCtx.fillStyle = stat.color;
+            rogueStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            rogueStatsCtx.fillStyle = 'black';
+            rogueStatsCtx.fillText(stat.label, x, 250);
+            rogueStatsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Stealth Success Rates by Environment
+        const stealthCanvas = document.getElementById('stealthSuccessCanvas');
+        const stealthCtx = stealthCanvas.getContext('2d');
+        
+        stealthCtx.clearRect(0, 0, 600, 250);
+        stealthCtx.font = '12px Arial';
+        stealthCtx.textAlign = 'center';
+        
+        const environments = [
+            {env: 'Urban Night', rogue: 95, others: 30, color: '#2F4F4F'},
+            {env: 'Dungeon Shadows', rogue: 90, others: 25, color: '#36454F'},
+            {env: 'Forest Cover', rogue: 85, others: 45, color: '#228B22'},
+            {env: 'Crowded Areas', rogue: 80, others: 60, color: '#8B4513'},
+            {env: 'Open Daylight', rogue: 40, others: 10, color: '#DAA520'}
+        ];
+        
+        environments.forEach((env, i) => {
+            const x = 80 + i * 100;
+            
+            // Rogue stealth
+            const rogueHeight = (env.rogue / 100) * 120;
+            stealthCtx.fillStyle = env.color;
+            stealthCtx.fillRect(x - 30, 180 - rogueHeight, 25, rogueHeight);
+            
+            // Other heroes
+            const othersHeight = (env.others / 100) * 120;
+            stealthCtx.fillStyle = env.color;
+            stealthCtx.globalAlpha = 0.4;
+            stealthCtx.fillRect(x + 5, 180 - othersHeight, 25, othersHeight);
+            stealthCtx.globalAlpha = 1.0;
+            
+            stealthCtx.fillStyle = 'black';
+            stealthCtx.fillText(env.rogue + '%', x - 17, 195);
+            stealthCtx.fillText(env.others + '%', x + 17, 195);
+            
+            stealthCtx.save();
+            stealthCtx.translate(x, 220);
+            stealthCtx.rotate(-Math.PI / 6);
+            stealthCtx.fillText(env.env, 0, 0);
+            stealthCtx.restore();
+        });
+        
+        stealthCtx.fillText('Rogue (Dark) vs Others (Light)', 300, 30);
+
+        // Backstab Damage vs Standard Combat
+        const backstabCanvas = document.getElementById('backstabDamageCanvas');
+        const backstabCtx = backstabCanvas.getContext('2d');
+        
+        backstabCtx.clearRect(0, 0, 500, 300);
+        backstabCtx.font = '12px Arial';
+        backstabCtx.textAlign = 'center';
+        
+        const combatTypes = [
+            {type: 'Standard Attack', damage: 100, accuracy: 70, color: '#4169E1'},
+            {type: 'Flanking Attack', damage: 150, accuracy: 75, color: '#32CD32'},
+            {type: 'Backstab Attack', damage: 250, accuracy: 85, color: '#2F4F4F'},
+            {type: 'Assassination', damage: 400, accuracy: 60, color: '#8B0000'}
+        ];
+        
+        combatTypes.forEach((combat, i) => {
+            const x = 80 + i * 90;
+            
+            // Damage potential
+            const damageHeight = (combat.damage / 400) * 120;
+            backstabCtx.fillStyle = combat.color;
+            backstabCtx.fillRect(x - 25, 200 - damageHeight, 20, damageHeight);
+            
+            // Accuracy rate
+            const accuracyHeight = (combat.accuracy / 100) * 120;
+            backstabCtx.fillStyle = combat.color;
+            backstabCtx.globalAlpha = 0.5;
+            backstabCtx.fillRect(x + 5, 200 - accuracyHeight, 20, accuracyHeight);
+            backstabCtx.globalAlpha = 1.0;
+            
+            backstabCtx.fillStyle = 'black';
+            backstabCtx.fillText(combat.damage + '%', x - 15, 220);
+            backstabCtx.fillText(combat.accuracy + '%', x + 15, 220);
+            
+            backstabCtx.save();
+            backstabCtx.translate(x, 250);
+            backstabCtx.rotate(-Math.PI / 6);
+            backstabCtx.fillText(combat.type, 0, 0);
+            backstabCtx.restore();
+        });
+        
+        backstabCtx.fillText('Damage (Dark) vs Accuracy (Light)', 250, 30);
+
+        // Thievery Skills Success Rates
+        const thieveryCanvas = document.getElementById('thieverySkillsCanvas');
+        const thieveryCtx = thieveryCanvas.getContext('2d');
+        
+        thieveryCtx.clearRect(0, 0, 600, 250);
+        thieveryCtx.font = '11px Arial';
+        thieveryCtx.textAlign = 'center';
+        
+        const skills = [
+            {skill: 'Lock Picking', novice: 60, expert: 90, master: 98, color: '#DAA520'},
+            {skill: 'Trap Disarm', novice: 55, expert: 85, master: 95, color: '#DC143C'},
+            {skill: 'Pickpocket', novice: 65, expert: 88, master: 97, color: '#2F4F4F'},
+            {skill: 'Stealth Move', novice: 70, expert: 90, master: 99, color: '#36454F'},
+            {skill: 'Information', novice: 75, expert: 92, master: 98, color: '#708090'}
+        ];
+        
+        skills.forEach((skill, i) => {
+            const x = 80 + i * 100;
+            
+            // Novice level
+            const noviceHeight = (skill.novice / 100) * 100;
+            thieveryCtx.fillStyle = skill.color;
+            thieveryCtx.globalAlpha = 0.4;
+            thieveryCtx.fillRect(x - 30, 180 - noviceHeight, 18, noviceHeight);
+            
+            // Expert level
+            const expertHeight = (skill.expert / 100) * 100;
+            thieveryCtx.fillStyle = skill.color;
+            thieveryCtx.globalAlpha = 0.7;
+            thieveryCtx.fillRect(x - 6, 180 - expertHeight, 18, expertHeight);
+            
+            // Master level
+            const masterHeight = (skill.master / 100) * 100;
+            thieveryCtx.fillStyle = skill.color;
+            thieveryCtx.globalAlpha = 1.0;
+            thieveryCtx.fillRect(x + 18, 180 - masterHeight, 18, masterHeight);
+            
+            thieveryCtx.fillStyle = 'black';
+            thieveryCtx.fillText(skill.novice + '%', x - 21, 195);
+            thieveryCtx.fillText(skill.expert + '%', x + 3, 195);
+            thieveryCtx.fillText(skill.master + '%', x + 27, 195);
+            
+            thieveryCtx.save();
+            thieveryCtx.translate(x, 220);
+            thieveryCtx.rotate(-Math.PI / 6);
+            thieveryCtx.fillText(skill.skill, 0, 0);
+            thieveryCtx.restore();
+        });
+        
+        thieveryCtx.fillText('Novice (Light) | Expert (Med) | Master (Dark)', 300, 30);
+
+        // Tactical Approach Effectiveness
+        const tacticalCanvas = document.getElementById('tacticalApproachCanvas');
+        const tacticalCtx = tacticalCanvas.getContext('2d');
+        
+        tacticalCtx.clearRect(0, 0, 500, 300);
+        tacticalCtx.font = '12px Arial';
+        tacticalCtx.textAlign = 'center';
+        
+        const approaches = [
+            {approach: 'Direct Combat', effectiveness: 50, survivability: 40, efficiency: 30, color: '#DC143C'},
+            {approach: 'Stealth Approach', effectiveness: 85, survivability: 80, efficiency: 90, color: '#2F4F4F'},
+            {approach: 'Information First', effectiveness: 90, survivability: 85, efficiency: 95, color: '#36454F'},
+            {approach: 'Environmental', effectiveness: 75, survivability: 70, efficiency: 80, color: '#708090'}
+        ];
+        
+        approaches.forEach((approach, i) => {
+            const x = 80 + i * 90;
+            
+            // Effectiveness
+            const effHeight = (approach.effectiveness / 100) * 100;
+            tacticalCtx.fillStyle = approach.color;
+            tacticalCtx.fillRect(x - 30, 200 - effHeight, 18, effHeight);
+            
+            // Survivability
+            const survHeight = (approach.survivability / 100) * 100;
+            tacticalCtx.fillStyle = approach.color;
+            tacticalCtx.globalAlpha = 0.6;
+            tacticalCtx.fillRect(x - 6, 200 - survHeight, 18, survHeight);
+            
+            // Efficiency
+            const efficiencyHeight = (approach.efficiency / 100) * 100;
+            tacticalCtx.fillStyle = approach.color;
+            tacticalCtx.globalAlpha = 0.3;
+            tacticalCtx.fillRect(x + 18, 200 - efficiencyHeight, 18, efficiencyHeight);
+            tacticalCtx.globalAlpha = 1.0;
+            
+            tacticalCtx.fillStyle = 'black';
+            tacticalCtx.fillText(approach.effectiveness, x - 21, 220);
+            tacticalCtx.fillText(approach.survivability, x + 3, 220);
+            tacticalCtx.fillText(approach.efficiency, x + 27, 220);
+            
+            tacticalCtx.save();
+            tacticalCtx.translate(x, 250);
+            tacticalCtx.rotate(-Math.PI / 6);
+            tacticalCtx.fillText(approach.approach, 0, 0);
+            tacticalCtx.restore();
+        });
+        
+        tacticalCtx.fillText('Effectiveness (Dark) | Survivability (Med) | Efficiency (Light)', 250, 30);
+
+        // Equipment Specialization Impact
+        const equipCanvas = document.getElementById('equipmentSpecializationCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 300);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        const equipTypes = [
+            {type: 'Stealth Gear', base: 70, specialized: 95, color: '#2F4F4F'},
+            {type: 'Thievery Tools', base: 60, specialized: 90, color: '#DAA520'},
+            {type: 'Combat Equipment', base: 65, specialized: 75, color: '#DC143C'},
+            {type: 'Information Gear', base: 50, specialized: 85, color: '#708090'}
+        ];
+        
+        equipTypes.forEach((equip, i) => {
+            const x = 80 + i * 90;
+            
+            // Base equipment
+            const baseHeight = (equip.base / 100) * 150;
+            equipCtx.fillStyle = '#DDD';
+            equipCtx.fillRect(x - 25, 200 - baseHeight, 20, baseHeight);
+            
+            // Specialized equipment
+            const specHeight = (equip.specialized / 100) * 150;
+            equipCtx.fillStyle = equip.color;
+            equipCtx.fillRect(x + 5, 200 - specHeight, 20, specHeight);
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(equip.base + '%', x - 15, 220);
+            equipCtx.fillText(equip.specialized + '%', x + 15, 220);
+            equipCtx.fillText(equip.type, x, 240);
+        });
+
+        // Party Mission Success with Rogue Support
+        const supportCanvas = document.getElementById('partySupportCanvas');
+        const supportCtx = supportCanvas.getContext('2d');
+        
+        supportCtx.clearRect(0, 0, 500, 250);
+        supportCtx.font = '12px Arial';
+        supportCtx.textAlign = 'center';
+        
+        const missionTypes = [
+            {mission: 'Infiltration', without: 30, with: 90, color: '#2F4F4F'},
+            {mission: 'Investigation', without: 40, with: 85, color: '#708090'},
+            {mission: 'Heist Operations', without: 20, with: 95, color: '#36454F'},
+            {mission: 'Standard Combat', without: 80, with: 85, color: '#4169E1'},
+            {mission: 'Information War', without: 35, with: 88, color: '#8B4513'}
+        ];
+        
+        missionTypes.forEach((mission, i) => {
+            const x = 60 + i * 80;
+            
+            // Without Rogue
+            const withoutHeight = (mission.without / 100) * 120;
+            supportCtx.fillStyle = '#DDD';
+            supportCtx.fillRect(x - 25, 180 - withoutHeight, 20, withoutHeight);
+            
+            // With Rogue
+            const withHeight = (mission.with / 100) * 120;
+            supportCtx.fillStyle = mission.color;
+            supportCtx.fillRect(x + 5, 180 - withHeight, 20, withHeight);
+            
+            supportCtx.fillStyle = 'black';
+            supportCtx.fillText(mission.without + '%', x - 15, 195);
+            supportCtx.fillText(mission.with + '%', x + 15, 195);
+            
+            supportCtx.save();
+            supportCtx.translate(x, 220);
+            supportCtx.rotate(-Math.PI / 4);
+            supportCtx.fillText(mission.mission, 0, 0);
+            supportCtx.restore();
+        });
+
+        // Advanced Techniques Complexity Analysis
+        const techCanvas = document.getElementById('advancedTechniquesCanvas');
+        const techCtx = techCanvas.getContext('2d');
+        
+        techCtx.clearRect(0, 0, 600, 300);
+        techCtx.font = '11px Arial';
+        techCtx.textAlign = 'center';
+        
+        const techniques = [
+            {tech: 'Perfect Infiltration', complexity: 85, reward: 95, risk: 30, color: '#2F4F4F'},
+            {tech: 'Social Invisibility', complexity: 70, reward: 80, risk: 40, color: '#708090'},
+            {tech: 'Info Networking', complexity: 90, reward: 100, risk: 60, color: '#36454F'},
+            {tech: 'Assassination', complexity: 95, reward: 90, risk: 80, color: '#8B0000'},
+            {tech: 'Master Thievery', complexity: 80, reward: 85, risk: 50, color: '#DAA520'}
+        ];
+        
+        techniques.forEach((tech, i) => {
+            const x = 80 + i * 100;
+            
+            // Complexity
+            const complexHeight = (tech.complexity / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.4;
+            techCtx.fillRect(x - 35, 200 - complexHeight, 18, complexHeight);
+            
+            // Reward
+            const rewardHeight = (tech.reward / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.7;
+            techCtx.fillRect(x - 10, 200 - rewardHeight, 18, rewardHeight);
+            
+            // Risk (downward)
+            const riskHeight = (tech.risk / 100) * 80;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 1.0;
+            techCtx.fillRect(x + 15, 200, 18, riskHeight);
+            
+            techCtx.fillStyle = 'black';
+            techCtx.fillText(tech.complexity, x - 26, 220);
+            techCtx.fillText(tech.reward, x - 1, 220);
+            techCtx.fillText(tech.risk, x + 24, 290);
+            
+            techCtx.save();
+            techCtx.translate(x, 250);
+            techCtx.rotate(-Math.PI / 6);
+            techCtx.fillText(tech.tech, 0, 0);
+            techCtx.restore();
+        });
+        
+        techCtx.fillText('Complexity (Light) | Reward (Med) | Risk (Dark Down)', 300, 30);
+
+        // Rogue Positioning and Movement Patterns
+        const posCanvas = document.getElementById('roguePositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw room layout with cover
+        posCtx.fillStyle = '#654321';
+        posCtx.fillRect(100, 50, 50, 100);   // Pillar
+        posCtx.fillRect(250, 100, 50, 100);  // Pillar
+        posCtx.fillRect(150, 250, 100, 50);  // Low wall
+        
+        // Draw enemies in center formation
+        posCtx.fillStyle = '#FF0000';
+        posCtx.fillRect(175, 150, 20, 20);
+        posCtx.fillRect(200, 175, 20, 20);
+        posCtx.fillRect(225, 150, 20, 20);
+        
+        // Draw party members in defensive positions
+        posCtx.fillStyle = '#4169E1';
+        posCtx.fillRect(75, 325, 20, 20);    // Barbarian
+        posCtx.fillRect(325, 325, 20, 20);   // Knight
+        posCtx.fillRect(200, 350, 20, 20);   // Wizard
+        
+        // Draw Rogue movement pattern (perimeter)
+        posCtx.strokeStyle = '#2F4F4F';
+        posCtx.setLineDash([3, 3]);
+        posCtx.lineWidth = 3;
+        
+        // Stealth approach path
+        posCtx.beginPath();
+        posCtx.moveTo(50, 25);
+        posCtx.lineTo(125, 75);
+        posCtx.lineTo(175, 100);
+        posCtx.lineTo(225, 125);
+        posCtx.lineTo(275, 75);
+        posCtx.lineTo(350, 25);
+        posCtx.stroke();
+        
+        // Current Rogue positions
+        posCtx.fillStyle = '#2F4F4F';
+        posCtx.fillRect(125, 75, 15, 15);    // Behind cover
+        posCtx.fillRect(275, 75, 15, 15);    // Flanking position
+        posCtx.fillRect(50, 25, 15, 15);     // Escape route
+        
+        // Draw sight lines
+        posCtx.strokeStyle = '#708090';
+        posCtx.setLineDash([1, 1]);
+        posCtx.lineWidth = 1;
+        
+        // Vision lines from cover positions
+        posCtx.beginPath();
+        posCtx.moveTo(132, 82);
+        posCtx.lineTo(185, 160);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(282, 82);
+        posCtx.lineTo(235, 160);
+        posCtx.stroke();
+        
+        // Backstab opportunity lines
+        posCtx.strokeStyle = '#8B0000';
+        posCtx.setLineDash([2, 2]);
+        posCtx.lineWidth = 2;
+        
+        posCtx.beginPath();
+        posCtx.moveTo(282, 82);
+        posCtx.lineTo(210, 175);
+        posCtx.stroke();
+        
+        posCtx.setLineDash([]);
+        posCtx.lineWidth = 1;
+        
+        // Labels
+        posCtx.fillStyle = 'white';
+        posCtx.font = '8px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('R', 132, 85);   // Rogue positions
+        posCtx.fillText('R', 282, 85);
+        posCtx.fillText('R', 57, 35);
+        
+        posCtx.fillText('E', 185, 163);  // Enemies
+        posCtx.fillText('E', 210, 188);
+        posCtx.fillText('E', 235, 163);
+        
+        posCtx.fillText('B', 85, 338);   // Party
+        posCtx.fillText('K', 335, 338);
+        posCtx.fillText('W', 210, 363);
+        
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Rogue: Perimeter Movement & Flanking Positions', 200, 20);
+        posCtx.fillText('Dashed = Movement, Dotted = Sight, Red = Backstab', 200, 380);
+
+        // Information Value vs Collection Risk
+        const infoCanvas = document.getElementById('informationValueCanvas');
+        const infoCtx = infoCanvas.getContext('2d');
+        
+        infoCtx.clearRect(0, 0, 500, 250);
+        infoCtx.font = '12px Arial';
+        infoCtx.textAlign = 'center';
+        
+        const infoTypes = [
+            {type: 'Casual Observation', value: 30, risk: 10, color: '#32CD32'},
+            {type: 'Eavesdropping', value: 60, risk: 30, color: '#DAA520'},
+            {type: 'Document Theft', value: 80, risk: 60, color: '#DC143C'},
+            {type: 'Infiltration', value: 90, risk: 70, color: '#2F4F4F'},
+            {type: 'Network Access', value: 100, risk: 85, color: '#8B0000'}
+        ];
+        
+        infoTypes.forEach((info, i) => {
+            const x = 60 + i * 80;
+            
+            // Information value (upward)
+            const valueHeight = (info.value / 100) * 80;
+            infoCtx.fillStyle = info.color;
+            infoCtx.fillRect(x - 25, 150 - valueHeight, 20, valueHeight);
+            
+            // Collection risk (downward)
+            const riskHeight = (info.risk / 100) * 60;
+            infoCtx.fillStyle = info.color;
+            infoCtx.globalAlpha = 0.6;
+            infoCtx.fillRect(x + 5, 150, 20, riskHeight);
+            infoCtx.globalAlpha = 1.0;
+            
+            infoCtx.fillStyle = 'black';
+            infoCtx.fillText(info.value + '%', x - 15, 60);
+            infoCtx.fillText(info.risk + '%', x + 15, 225);
+            
+            infoCtx.save();
+            infoCtx.translate(x, 240);
+            infoCtx.rotate(-Math.PI / 4);
+            infoCtx.fillText(info.type, 0, 0);
+            infoCtx.restore();
+        });
+        
+        infoCtx.fillText('Information Value (Up) vs Collection Risk (Down)', 250, 30);
+    </script>
+</body>
+</html>

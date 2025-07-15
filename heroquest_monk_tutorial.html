@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Monk Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #8B4513;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #CD853F, #DEB887);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #A0522D;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #FFF8DC;
+            border-left: 5px solid #CD853F;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .martial-arts {
+            background: #F0F8FF;
+            border: 2px solid #4682B4;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #87CEEB;
+        }
+        .inner-peace {
+            background: #F5FFFA;
+            border: 2px solid #00CED1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .spiritual-power {
+            background: #E6E6FA;
+            border: 2px solid #9370DB;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .chi-mastery {
+            background: #FFFACD;
+            border: 2px solid #DAA520;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .enlightened-combat {
+            background: #2F4F4F;
+            color: #F0F8FF;
+            border: 2px solid #708090;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .monastic-wisdom {
+            background: #FDF5E6;
+            border: 2px solid #DEB887;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>☯️ The Monk Hero: Master of Body, Mind, and Spirit</h1>
+        <p><em>Welcome, seeker of inner truth! Today we explore the disciplined mastery and spiritual power of HeroQuest's most enlightened warrior.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Monk</h2>
+            <p>The Monk is HeroQuest's embodiment of spiritual discipline and martial perfection - imagine a fusion of Bruce Lee's physical mastery, a Zen master's mental clarity, and a mystic's spiritual power who has transcended the need for external weapons through years of rigorous training. Where other heroes rely on equipment and raw ability, the Monk achieves greatness through perfect harmony of body, mind, and spirit, becoming a living weapon guided by inner peace and cosmic understanding.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Harmonious Balance</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 2 combat dice</div>
+            <div class="stat-display">Defend: 3 combat dice</div>
+            <div class="stat-display">Body Points: 6</div>
+            <div class="stat-display">Mind Points: 5</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were martial arts styles, the Monk would be Aikido - not about overwhelming force but perfect technique, using an opponent's strength against them while maintaining inner calm. Like a master who can defeat armed opponents bare-handed through superior training and spiritual discipline, the Monk transcends conventional limitations through enlightened practice.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Monk Stats: The Enlightened Profile</h3>
+                <canvas id="monkStatsCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="inner-peace">
+                <h3>🧘 Spiritual Balance Analysis</h3>
+                <p><strong>Moderate Offense:</strong> 2 Attack dice represent focused precision over brute force</p>
+                <p><strong>Superior Defense:</strong> 3 Defend dice showcase masterful protective techniques</p>
+                <p><strong>Balanced Endurance:</strong> 6 Body Points reflect physical conditioning and pain tolerance</p>
+                <p><strong>Elevated Consciousness:</strong> 5 Mind Points enable spiritual abilities and mental clarity</p>
+                <p><strong>Transcendent Growth:</strong> Statistics improve through spiritual advancement and training</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Martial Arts Mastery: The Weaponless Warrior</h2>
+            
+            <p>The Monk's signature ability is unarmed combat mastery, achieving through decades of training what others accomplish with magical weapons. Their body becomes a perfectly honed instrument of controlled destruction.</p>
+
+            <div class="martial-arts">
+                <h3>✋ Unarmed Combat Supremacy</h3>
+                <p><strong>Bare-Handed Fighting:</strong> Fists and feet become as deadly as any weapon</p>
+                <p><strong>Stunning Strikes:</strong> Precise blows that incapacitate rather than just damage</p>
+                <p><strong>Pressure Point Attacks:</strong> Target vital areas for maximum effect with minimal force</p>
+                <p><strong>Defensive Counters:</strong> Turn enemy attacks into counterattack opportunities</p>
+                <p><strong>Mobility Combat:</strong> Fight effectively while moving and dodging</p>
+                <p><strong>Multiple Opponent Techniques:</strong> Engage several enemies simultaneously through positioning</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Unarmed vs Armed Combat Effectiveness</h3>
+                <canvas id="unarmedCombatCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="enlightened-combat">
+                <h3>Advanced Martial Techniques</h3>
+                <p><strong>Flowing Water Style:</strong> Redirect enemy force rather than meeting it directly</p>
+                <p><strong>Iron Palm Method:</strong> Devastating striking power through chi concentration</p>
+                <p><strong>Shadow Step Technique:</strong> Enhanced mobility and evasion capabilities</p>
+                <p><strong>Vital Point Mastery:</strong> Target specific anatomical weaknesses for maximum impact</p>
+                <p><strong>Breath Control:</strong> Regulate physical and spiritual energy for sustained combat</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Chi Manipulation: The Inner Energy</h2>
+            
+            <p>Beyond physical training, Monks harness chi - the spiritual energy that flows through all living beings. This internal power source provides abilities that transcend normal human limitations.</p>
+
+            <div class="chi-mastery">
+                <h3>⚡ Chi Energy Applications</h3>
+                <p><strong>Healing Chi:</strong> Accelerate natural healing and cure ailments through energy manipulation</p>
+                <p><strong>Iron Body:</strong> Temporarily increase physical resistance and damage absorption</p>
+                <p><strong>Lightning Speed:</strong> Brief bursts of supernatural quickness and reflexes</p>
+                <p><strong>Inner Sight:</strong> Perceive hidden truths and see through illusions</p>
+                <p><strong>Chi Strike:</strong> Channel internal energy into devastating attacks</p>
+                <p><strong>Spiritual Shield:</strong> Protect against mental and magical attacks through willpower</p>
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[Monk's Chi Pool] --> B{Combat Situation}
+                    B -->|Physical Threat| C[Enhanced Combat Techniques]
+                    B -->|Injury Sustained| D[Healing Chi Application]
+                    B -->|Mental Challenge| E[Spiritual Focus Powers]
+                    B -->|Multiple Enemies| F[Area Control Abilities]
+                    C --> G[Iron Body or Chi Strike]
+                    D --> H[Accelerated Recovery]
+                    E --> I[Inner Sight or Mental Shield]
+                    F --> J[Lightning Speed Movement]
+                    G --> K[Assess Chi Reserves]
+                    H --> K
+                    I --> K
+                    J --> K
+                    K --> L{Continue Chi Use?}
+                    L -->|Yes| M[Advanced Techniques]
+                    L -->|No| N[Conserve Energy]
+            </mermaid>
+
+            <div class="canvas-container">
+                <h3>Chi Energy Allocation Strategies</h3>
+                <canvas id="chiEnergyCanvas" width="500" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Spiritual Disciplines: The Path of Enlightenment</h2>
+            
+            <p>The Monk's 5 Mind Points represent not just intelligence but spiritual development, providing access to enlightened abilities that combine mental clarity with mystical insight.</p>
+
+            <div class="spiritual-power">
+                <h3>🕉️ Enlightenment Abilities</h3>
+                <p><strong>Meditation Mastery:</strong> Rapid recovery of chi and mental energy through focused meditation</p>
+                <p><strong>Karmic Insight:</strong> Understand the true nature of situations and people</p>
+                <p><strong>Harmonic Resonance:</strong> Attune to natural and magical energies around you</p>
+                <p><strong>Spiritual Communication:</strong> Limited telepathy and empathic connection</p>
+                <p><strong>Transcendent Awareness:</strong> Perceive threats and opportunities beyond normal senses</p>
+                <p><strong>Inner Peace:</strong> Immunity to fear, charm, and other mental manipulation</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Spiritual Ability Success Rates</h3>
+                <canvas id="spiritualAbilitiesCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="monastic-wisdom">
+                <h3>The Eightfold Path of Combat</h3>
+                <p><strong>Right Understanding:</strong> Comprehend the true nature of conflict and resolution</p>
+                <p><strong>Right Intention:</strong> Fight only when necessary, seek peaceful solutions first</p>
+                <p><strong>Right Speech:</strong> Use words to de-escalate before resorting to violence</p>
+                <p><strong>Right Action:</strong> Employ minimal force necessary to achieve just outcomes</p>
+                <p><strong>Right Livelihood:</strong> Protect innocents and oppose evil without hatred</p>
+                <p><strong>Right Effort:</strong> Train constantly but without attachment to outcomes</p>
+                <p><strong>Right Mindfulness:</strong> Remain present and aware in all situations</p>
+                <p><strong>Right Concentration:</strong> Focus completely on the task at hand</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Defensive Mastery: The Unassailable Sage</h2>
+            
+            <p>The Monk's 3 defend dice represent more than just defensive training - they showcase a holistic approach to protection that combines physical technique, spiritual energy, and tactical wisdom.</p>
+
+            <div class="martial-arts">
+                <h3>🛡️ Transcendent Defense Techniques</h3>
+                <p><strong>Flowing Deflection:</strong> Redirect attacks rather than absorbing their full force</p>
+                <p><strong>Evasive Mastery:</strong> Avoid damage through superior positioning and timing</p>
+                <p><strong>Counter-Defense:</strong> Turn successful defenses into immediate counterattacks</p>
+                <p><strong>Chi Barrier:</strong> Use internal energy to reinforce physical defenses</p>
+                <p><strong>Spiritual Protection:</strong> Resistance to magical and mental attacks</p>
+                <p><strong>Group Defense:</strong> Protect nearby allies through tactical positioning</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Defensive Technique Effectiveness</h3>
+                <canvas id="defensiveTechniquesCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="inner-peace">
+                <h3>Defense Philosophy: The Immovable Center</h3>
+                <p><strong>Physical Centeredness:</strong> Maintain perfect balance and stability in all situations</p>
+                <p><strong>Mental Clarity:</strong> Clear mind enables optimal defensive reactions</p>
+                <p><strong>Spiritual Grounding:</strong> Inner peace provides resistance to all forms of attack</p>
+                <p><strong>Tactical Awareness:</strong> Understand battlefield geometry for optimal positioning</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Philosophy: Simplicity and Self-Reliance</h2>
+            
+            <p>Monks maintain a minimalist approach to equipment, preferring items that enhance their natural abilities rather than replacing them. True strength comes from within, not from external tools.</p>
+
+            <div class="monastic-wisdom">
+                <h3>🎒 Monastic Equipment Principles</h3>
+                <p><strong>Minimal Possessions:</strong> Carry only what is absolutely necessary</p>
+                <p><strong>Natural Materials:</strong> Prefer items made from wood, cloth, and stone over metal</p>
+                <p><strong>Spiritual Enhancement:</strong> Select items that amplify inner abilities rather than provide new ones</p>
+                <p><strong>Practical Utility:</strong> Multi-purpose items that serve meditation and survival needs</p>
+                <p><strong>Symbolic Significance:</strong> Equipment that reminds of spiritual principles and goals</p>
+                <p><strong>Self-Maintenance:</strong> Tools that can be maintained through personal skill</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Impact on Monk Abilities</h3>
+                <canvas id="equipmentImpactCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="chi-mastery">
+                <h3>Sacred Items and Their Functions</h3>
+                <p><strong>Meditation Beads:</strong> Focus tools for chi cultivation and spiritual practice</p>
+                <p><strong>Wooden Staff:</strong> Simple weapon that extends reach without violating principles</p>
+                <p><strong>Prayer Scroll:</strong> Written mantras and techniques for emergency spiritual aid</p>
+                <p><strong>Herbal Pouch:</strong> Natural medicines and healing supplies</p>
+                <p><strong>Water Gourd:</strong> Essential survival item and symbolic purity reminder</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Party Dynamics: The Spiritual Guide</h2>
+            
+            <p>The Monk's role in party dynamics extends beyond combat to provide moral guidance, spiritual support, and philosophical balance to more worldly adventurers.</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Monk: Spiritual Wisdom] --> B[Barbarian: Anger Management]
+                    A --> C[Dwarf: Patience Teaching]
+                    A --> D[Elf: Harmony Amplification]
+                    A --> E[Wizard: Philosophical Dialogue]
+                    A --> F[Knight: Honor Reinforcement]
+                    B --> G[Balanced Party Dynamics]
+                    C --> G
+                    D --> G
+                    E --> G
+                    F --> G
+                    H[Inner Peace Influence] --> I[Reduced Party Conflict]
+                    I --> G
+            </mermaid>
+
+            <div class="spiritual-power">
+                <h3>🤝 Monastic Party Leadership</h3>
+                <p><strong>With Barbarian:</strong> Provide emotional balance and rage management techniques</p>
+                <p><strong>With Dwarf:</strong> Share patience and methodical approaches to challenges</p>
+                <p><strong>With Elf:</strong> Enhance natural harmony and magical understanding</p>
+                <p><strong>With Wizard:</strong> Engage in philosophical discussions about magic and reality</p>
+                <p><strong>With Knight:</strong> Reinforce concepts of honor and justice through spiritual wisdom</p>
+                <p><strong>Universal Influence:</strong> Promote party unity through spiritual example</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Party Harmony with Monk Presence</h3>
+                <canvas id="partyHarmonyCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: The Master's Path</h2>
+            
+            <div class="enlightened-combat">
+                <h3>⚡ Advanced Monastic Mastery</h3>
+                <p><strong>Perfect Stillness:</strong> Achieve total mental calm even in chaotic combat</p>
+                <p><strong>Simultaneous Motion:</strong> Attack and defend in the same fluid movement</p>
+                <p><strong>Chi Harmony:</strong> Synchronize personal energy with environmental forces</p>
+                <p><strong>Karmic Justice:</strong> Channel righteous anger into enhanced combat effectiveness</p>
+                <p><strong>Transcendent Speed:</strong> Move faster than conscious thought allows</p>
+            </div>
+
+            <div class="chi-mastery">
+                <h3>Master-Level Example: The Thousand Strikes Technique</h3>
+                <p><strong>Setup:</strong> Surrounded by multiple enemies with no escape route</p>
+                <p><strong>Phase 1:</strong> Enter deep meditation state to center chi energy</p>
+                <p><strong>Phase 2:</strong> Channel all accumulated chi into Lightning Speed enhancement</p>
+                <p><strong>Phase 3:</strong> Execute flowing combination of strikes, blocks, and movements</p>
+                <p><strong>Phase 4:</strong> Each successful technique generates momentum for the next</p>
+                <p><strong>Result:</strong> Defeat multiple opponents through perfect technique and spiritual focus</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Advanced Technique Mastery Requirements</h3>
+                <canvas id="advancedTechniquesCanvas" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>When to Choose the Monk: Optimal Scenarios</h2>
+            
+            <div class="spiritual-power">
+                <h3>Perfect Monk Adventures</h3>
+                <p><strong>Philosophical Quests:</strong> Adventures exploring themes of good, evil, and justice</p>
+                <p><strong>Spiritual Challenges:</strong> Encounters with supernatural entities requiring inner strength</p>
+                <p><strong>Equipment-Limited Scenarios:</strong> Situations where external tools are unavailable</p>
+                <p><strong>Mental/Emotional Conflicts:</strong> Challenges requiring psychological resilience</p>
+                <p><strong>Peaceful Resolution Opportunities:</strong> Situations where violence can be avoided through wisdom</p>
+                <p><strong>Long-Term Character Development:</strong> Campaigns allowing gradual spiritual advancement</p>
+            </div>
+
+            <div class="monastic-wisdom">
+                <h3>Challenging Scenarios for Monks</h3>
+                <p><strong>Equipment-Dependent Quests:</strong> Adventures requiring specific magical items or weapons</p>
+                <p><strong>Time-Critical Missions:</strong> Scenarios where meditation and reflection cause delays</p>
+                <p><strong>Morally Ambiguous Situations:</strong> Adventures requiring ethically questionable actions</p>
+                <p><strong>High-Magic Environments:</strong> Settings where spiritual abilities are overshadowed</p>
+                <p><strong>Solo Combat Gauntlets:</strong> Pure fighting scenarios without philosophical depth</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Meditation and Recovery: The Healing Arts</h2>
+            
+            <div class="inner-peace">
+                <h3>🧘 Advanced Meditation Techniques</h3>
+                <p><strong>Combat Meditation:</strong> Maintain meditative state even during active fighting</p>
+                <p><strong>Rapid Recovery:</strong> Quickly restore chi and mental energy between encounters</p>
+                <p><strong>Healing Trance:</strong> Accelerate natural healing through focused spiritual energy</p>
+                <p><strong>Group Meditation:</strong> Lead party members in collective spiritual restoration</p>
+                <p><strong>Environmental Harmony:</strong> Attune to local spiritual energies for enhanced recovery</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Meditation Effectiveness vs Time Investment</h3>
+                <canvas id="meditationEffectivenessCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Technology Analogy:</strong> The Monk is like a self-maintaining, solar-powered device - while other heroes are like powerful machines that require constant fuel and maintenance, the Monk generates their own energy and repairs themselves through internal processes, becoming more efficient over time.
+            </div>
+        </section>
+
+        <section>
+            <h2>Positioning Strategy: The Flowing Combatant</h2>
+            
+            <div class="canvas-container">
+                <h3>Monk Combat Positioning and Flow</h3>
+                <canvas id="monkPositioningCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <div class="martial-arts">
+                <h3>🌊 Flow Combat Positioning</h3>
+                <p><strong>Central Mobility:</strong> Position for maximum movement options in all directions</p>
+                <p><strong>Energy Circulation:</strong> Move in patterns that build and conserve chi</p>
+                <p><strong>Defensive Circles:</strong> Maintain optimal distance from multiple threats</p>
+                <p><strong>Spiritual Grounding:</strong> Stay connected to environmental energy sources</p>
+                <p><strong>Escape Preparation:</strong> Always maintain withdrawal options for meditation</p>
+            </div>
+
+            <div class="enlightened-combat">
+                <h3>Advanced Positioning Philosophy</h3>
+                <p><strong>Water Path:</strong> Flow around obstacles rather than confronting them directly</p>
+                <p><strong>Mountain Stance:</strong> Become immovable when defense is required</p>
+                <p><strong>Wind Movement:</strong> Strike quickly and withdraw before counterattack</p>
+                <p><strong>Fire Approach:</strong> Concentrate force at decisive moments</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Chi Cultivation Methods:</strong> Advanced techniques for developing and controlling internal energy</li>
+                <li><strong>Martial Arts Progression:</strong> Systematic development of unarmed combat mastery</li>
+                <li><strong>Spiritual Philosophy:</strong> Understanding the metaphysical principles underlying Monk abilities</li>
+                <li><strong>Meditation Mastery:</strong> Comprehensive guide to contemplative practices and their benefits</li>
+                <li><strong>Defensive Arts:</strong> Advanced techniques for protection without aggression</li>
+                <li><strong>Monastic Traditions:</strong> Different schools of Monk training and their specializations</li>
+                <li><strong>Mind-Body Integration:</strong> Achieving perfect harmony between physical and spiritual development</li>
+                <li><strong>Karmic Combat Ethics:</strong> Moral framework for righteous violence and peaceful resolution</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, seeker of the Way: True strength flows not from what you can destroy, but from what you can preserve. Your greatest victory is the battle you win without fighting, your mightiest weapon the peace you carry within. In the depths of Morcar's domain where hatred and violence reign, you are the calm eye of the storm, the still point around which chaos transforms into order. Let your example be a teaching, your presence a blessing, and your actions a testament to the power of enlightened discipline!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Monk Stats Analysis
+        const monkStatsCanvas = document.getElementById('monkStatsCanvas');
+        const monkStatsCtx = monkStatsCanvas.getContext('2d');
+        
+        monkStatsCtx.clearRect(0, 0, 500, 300);
+        monkStatsCtx.font = '14px Arial';
+        monkStatsCtx.textAlign = 'center';
+        
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 2, max: 4, color: '#4ECDC4', label: '2 dice'},
+            {name: 'Defend', value: 3, max: 3, color: '#45B7D1', label: '3 dice'},
+            {name: 'Body', value: 6, max: 9, color: '#96CEB4', label: '6 points'},
+            {name: 'Mind', value: 5, max: 6, color: '#DEB887', label: '5 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            monkStatsCtx.fillStyle = stat.color;
+            monkStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            monkStatsCtx.fillStyle = 'black';
+            monkStatsCtx.fillText(stat.label, x, 250);
+            monkStatsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Unarmed vs Armed Combat Effectiveness
+        const unarmedCanvas = document.getElementById('unarmedCombatCanvas');
+        const unarmedCtx = unarmedCanvas.getContext('2d');
+        
+        unarmedCtx.clearRect(0, 0, 600, 250);
+        unarmedCtx.font = '12px Arial';
+        unarmedCtx.textAlign = 'center';
+        
+        const combatTypes = [
+            {opponent: 'Unarmored', unarmed: 85, armed: 70, weapon: 60, color: '#CD853F'},
+            {opponent: 'Light Armor', unarmed: 75, armed: 80, weapon: 85, color: '#DEB887'},
+            {opponent: 'Heavy Armor', unarmed: 60, armed: 85, weapon: 90, color: '#A0522D'},
+            {opponent: 'Multiple Foes', unarmed: 90, armed: 70, weapon: 50, color: '#8B4513'},
+            {opponent: 'Magic Users', unarmed: 70, armed: 65, weapon: 60, color: '#D2691E'}
+        ];
+        
+        combatTypes.forEach((combat, i) => {
+            const x = 80 + i * 100;
+            
+            // Unarmed Monk
+            const unarmedHeight = (combat.unarmed / 100) * 120;
+            unarmedCtx.fillStyle = combat.color;
+            unarmedCtx.fillRect(x - 35, 180 - unarmedHeight, 20, unarmedHeight);
+            
+            // Armed Fighter
+            const armedHeight = (combat.armed / 100) * 120;
+            unarmedCtx.fillStyle = combat.color;
+            unarmedCtx.globalAlpha = 0.6;
+            unarmedCtx.fillRect(x - 10, 180 - armedHeight, 20, armedHeight);
+            
+            // Weapon Specialist
+            const weaponHeight = (combat.weapon / 100) * 120;
+            unarmedCtx.fillStyle = combat.color;
+            unarmedCtx.globalAlpha = 0.3;
+            unarmedCtx.fillRect(x + 15, 180 - weaponHeight, 20, weaponHeight);
+            unarmedCtx.globalAlpha = 1.0;
+            
+            unarmedCtx.fillStyle = 'black';
+            unarmedCtx.fillText(combat.unarmed + '%', x - 25, 195);
+            unarmedCtx.fillText(combat.armed + '%', x, 195);
+            unarmedCtx.fillText(combat.weapon + '%', x + 25, 195);
+            
+            unarmedCtx.save();
+            unarmedCtx.translate(x, 220);
+            unarmedCtx.rotate(-Math.PI / 6);
+            unarmedCtx.fillText(combat.opponent, 0, 0);
+            unarmedCtx.restore();
+        });
+        
+        unarmedCtx.fillText('Unarmed Monk (Dark) | Armed Fighter (Med) | Weapon Master (Light)', 300, 30);
+
+        // Chi Energy Allocation Strategies
+        const chiCanvas = document.getElementById('chiEnergyCanvas');
+        const chiCtx = chiCanvas.getContext('2d');
+        
+        chiCtx.clearRect(0, 0, 500, 300);
+        chiCtx.font = '12px Arial';
+        chiCtx.textAlign = 'center';
+        
+        const chiStrategies = [
+            {strategy: 'Defensive', healing: 50, enhancement: 20, special: 30, color: '#4682B4'},
+            {strategy: 'Balanced', healing: 30, enhancement: 40, special: 30, color: '#32CD32'},
+            {strategy: 'Aggressive', healing: 20, enhancement: 50, special: 30, color: '#DC143C'},
+            {strategy: 'Mystic', healing: 25, enhancement: 25, special: 50, color: '#9370DB'}
+        ];
+        
+        chiStrategies.forEach((strategy, i) => {
+            const x = 80 + i * 90;
+            const totalHeight = 150;
+            
+            // Healing allocation
+            const healHeight = (strategy.healing / 100) * totalHeight;
+            chiCtx.fillStyle = '#32CD32';
+            chiCtx.fillRect(x - 30, 200, 60, -healHeight);
+            
+            // Enhancement allocation
+            const enhanceHeight = (strategy.enhancement / 100) * totalHeight;
+            chiCtx.fillStyle = '#DC143C';
+            chiCtx.fillRect(x - 30, 200 - healHeight, 60, -enhanceHeight);
+            
+            // Special abilities allocation
+            const specialHeight = (strategy.special / 100) * totalHeight;
+            chiCtx.fillStyle = '#9370DB';
+            chiCtx.fillRect(x - 30, 200 - healHeight - enhanceHeight, 60, -specialHeight);
+            
+            chiCtx.fillStyle = 'black';
+            chiCtx.fillText(strategy.strategy, x, 220);
+            chiCtx.fillText(`${strategy.healing}/${strategy.enhancement}/${strategy.special}`, x, 240);
+        });
+        
+        chiCtx.fillText('Chi Allocation: Healing (Green) | Enhancement (Red) | Special (Purple)', 250, 30);
+
+        // Spiritual Abilities Success Rates
+        const spiritualCanvas = document.getElementById('spiritualAbilitiesCanvas');
+        const spiritualCtx = spiritualCanvas.getContext('2d');
+        
+        spiritualCtx.clearRect(0, 0, 600, 250);
+        spiritualCtx.font = '11px Arial';
+        spiritualCtx.textAlign = 'center';
+        
+        const spiritualAbilities = [
+            {ability: 'Meditation', novice: 60, adept: 80, master: 95, color: '#4682B4'},
+            {ability: 'Insight', novice: 50, adept: 75, master: 90, color: '#32CD32'},
+            {ability: 'Harmony', novice: 70, adept: 85, master: 95, color: '#DEB887'},
+            {ability: 'Communication', novice: 40, adept: 70, master: 85, color: '#9370DB'},
+            {ability: 'Awareness', novice: 65, adept: 80, master: 95, color: '#DC143C'}
+        ];
+        
+        spiritualAbilities.forEach((ability, i) => {
+            const x = 80 + i * 100;
+            
+            // Novice level
+            const noviceHeight = (ability.novice / 100) * 100;
+            spiritualCtx.fillStyle = ability.color;
+            spiritualCtx.globalAlpha = 0.4;
+            spiritualCtx.fillRect(x - 30, 180 - noviceHeight, 18, noviceHeight);
+            
+            // Adept level
+            const adeptHeight = (ability.adept / 100) * 100;
+            spiritualCtx.fillStyle = ability.color;
+            spiritualCtx.globalAlpha = 0.7;
+            spiritualCtx.fillRect(x - 6, 180 - adeptHeight, 18, adeptHeight);
+            
+            // Master level
+            const masterHeight = (ability.master / 100) * 100;
+            spiritualCtx.fillStyle = ability.color;
+            spiritualCtx.globalAlpha = 1.0;
+            spiritualCtx.fillRect(x + 18, 180 - masterHeight, 18, masterHeight);
+            
+            spiritualCtx.fillStyle = 'black';
+            spiritualCtx.fillText(ability.novice + '%', x - 21, 195);
+            spiritualCtx.fillText(ability.adept + '%', x + 3, 195);
+            spiritualCtx.fillText(ability.master + '%', x + 27, 195);
+            spiritualCtx.fillText(ability.ability, x, 215);
+        });
+        
+        spiritualCtx.fillText('Novice (Light) | Adept (Med) | Master (Dark)', 300, 30);
+
+        // Defensive Techniques Effectiveness
+        const defenseCanvas = document.getElementById('defensiveTechniquesCanvas');
+        const defenseCtx = defenseCanvas.getContext('2d');
+        
+        defenseCtx.clearRect(0, 0, 500, 300);
+        defenseCtx.font = '12px Arial';
+        defenseCtx.textAlign = 'center';
+        
+        const defenseTypes = [
+            {type: 'Deflection', physical: 90, magical: 60, mental: 70, color: '#4682B4'},
+            {type: 'Evasion', physical: 85, magical: 70, mental: 50, color: '#32CD32'},
+            {type: 'Chi Shield', physical: 75, magical: 85, mental: 90, color: '#DEB887'},
+            {type: 'Counter', physical: 80, magical: 40, mental: 60, color: '#DC143C'}
+        ];
+        
+        defenseTypes.forEach((defense, i) => {
+            const x = 80 + i * 90;
+            
+            // Physical defense
+            const physHeight = (defense.physical / 100) * 120;
+            defenseCtx.fillStyle = defense.color;
+            defenseCtx.fillRect(x - 30, 200 - physHeight, 18, physHeight);
+            
+            // Magical defense
+            const magHeight = (defense.magical / 100) * 120;
+            defenseCtx.fillStyle = defense.color;
+            defenseCtx.globalAlpha = 0.6;
+            defenseCtx.fillRect(x - 6, 200 - magHeight, 18, magHeight);
+            
+            // Mental defense
+            const mentHeight = (defense.mental / 100) * 120;
+            defenseCtx.fillStyle = defense.color;
+            defenseCtx.globalAlpha = 0.3;
+            defenseCtx.fillRect(x + 18, 200 - mentHeight, 18, mentHeight);
+            defenseCtx.globalAlpha = 1.0;
+            
+            defenseCtx.fillStyle = 'black';
+            defenseCtx.fillText(defense.physical, x - 21, 220);
+            defenseCtx.fillText(defense.magical, x + 3, 220);
+            defenseCtx.fillText(defense.mental, x + 27, 220);
+            defenseCtx.fillText(defense.type, x, 240);
+        });
+        
+        defenseCtx.fillText('Physical (Dark) | Magical (Med) | Mental (Light)', 250, 30);
+
+        // Equipment Impact on Monk Abilities
+        const equipCanvas = document.getElementById('equipmentImpactCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 300);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        const equipCategories = [
+            {category: 'Combat', minimal: 80, enhanced: 85, encumbered: 70, color: '#DC143C'},
+            {category: 'Spiritual', minimal: 90, enhanced: 95, encumbered: 60, color: '#9370DB'},
+            {category: 'Mobility', minimal: 95, enhanced: 90, encumbered: 50, color: '#32CD32'},
+            {category: 'Chi Flow', minimal: 85, enhanced: 90, encumbered: 40, color: '#DEB887'}
+        ];
+        
+        equipCategories.forEach((category, i) => {
+            const x = 80 + i * 90;
+            
+            // Minimal equipment
+            const minHeight = (category.minimal / 100) * 120;
+            equipCtx.fillStyle = category.color;
+            equipCtx.fillRect(x - 30, 200 - minHeight, 18, minHeight);
+            
+            // Enhanced spiritual items
+            const enhHeight = (category.enhanced / 100) * 120;
+            equipCtx.fillStyle = category.color;
+            equipCtx.globalAlpha = 0.6;
+            equipCtx.fillRect(x - 6, 200 - enhHeight, 18, enhHeight);
+            
+            // Encumbered with gear
+            const encHeight = (category.encumbered / 100) * 120;
+            equipCtx.fillStyle = category.color;
+            equipCtx.globalAlpha = 0.3;
+            equipCtx.fillRect(x + 18, 200 - encHeight, 18, encHeight);
+            equipCtx.globalAlpha = 1.0;
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(category.minimal, x - 21, 220);
+            equipCtx.fillText(category.enhanced, x + 3, 220);
+            equipCtx.fillText(category.encumbered, x + 27, 220);
+            equipCtx.fillText(category.category, x, 240);
+        });
+        
+        equipCtx.fillText('Minimal (Dark) | Enhanced (Med) | Encumbered (Light)', 250, 30);
+
+        // Party Harmony with Monk Presence
+        const harmonyCanvas = document.getElementById('partyHarmonyCanvas');
+        const harmonyCtx = harmonyCanvas.getContext('2d');
+        
+        harmonyCtx.clearRect(0, 0, 500, 250);
+        harmonyCtx.font = '12px Arial';
+        harmonyCtx.textAlign = 'center';
+        
+        const harmonyAspects = [
+            {aspect: 'Conflict Resolution', without: 40, with: 85, color: '#4682B4'},
+            {aspect: 'Stress Management', without: 50, with: 90, color: '#32CD32'},
+            {aspect: 'Decision Making', without: 60, with: 80, color: '#DEB887'},
+            {aspect: 'Morale Stability', without: 55, with: 95, color: '#9370DB'},
+            {aspect: 'Team Unity', without: 45, with: 88, color: '#DC143C'}
+        ];
+        
+        harmonyAspects.forEach((aspect, i) => {
+            const x = 60 + i * 80;
+            
+            // Without Monk
+            const withoutHeight = (aspect.without / 100) * 120;
+            harmonyCtx.fillStyle = '#DDD';
+            harmonyCtx.fillRect(x - 25, 180 - withoutHeight, 20, withoutHeight);
+            
+            // With Monk
+            const withHeight = (aspect.with / 100) * 120;
+            harmonyCtx.fillStyle = aspect.color;
+            harmonyCtx.fillRect(x + 5, 180 - withHeight, 20, withHeight);
+            
+            harmonyCtx.fillStyle = 'black';
+            harmonyCtx.fillText(aspect.without + '%', x - 15, 195);
+            harmonyCtx.fillText(aspect.with + '%', x + 15, 195);
+            
+            harmonyCtx.save();
+            harmonyCtx.translate(x, 220);
+            harmonyCtx.rotate(-Math.PI / 4);
+            harmonyCtx.fillText(aspect.aspect, 0, 0);
+            harmonyCtx.restore();
+        });
+
+        // Advanced Techniques Mastery Requirements
+        const techCanvas = document.getElementById('advancedTechniquesCanvas');
+        const techCtx = techCanvas.getContext('2d');
+        
+        techCtx.clearRect(0, 0, 600, 300);
+        techCtx.font = '11px Arial';
+        techCtx.textAlign = 'center';
+        
+        const techniques = [
+            {tech: 'Perfect Stillness', training: 60, discipline: 80, enlightenment: 70, color: '#4682B4'},
+            {tech: 'Simultaneous Motion', training: 85, discipline: 70, enlightenment: 60, color: '#32CD32'},
+            {tech: 'Chi Harmony', training: 70, discipline: 90, enlightenment: 85, color: '#DEB887'},
+            {tech: 'Karmic Justice', training: 80, discipline: 95, enlightenment: 90, color: '#9370DB'},
+            {tech: 'Transcendent Speed', training: 95, discipline: 85, enlightenment: 95, color: '#DC143C'}
+        ];
+        
+        techniques.forEach((tech, i) => {
+            const x = 80 + i * 100;
+            
+            // Training requirement
+            const trainHeight = (tech.training / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.4;
+            techCtx.fillRect(x - 35, 200 - trainHeight, 20, trainHeight);
+            
+            // Discipline requirement
+            const discHeight = (tech.discipline / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 0.7;
+            techCtx.fillRect(x - 10, 200 - discHeight, 20, discHeight);
+            
+            // Enlightenment requirement
+            const enlighHeight = (tech.enlightenment / 100) * 100;
+            techCtx.fillStyle = tech.color;
+            techCtx.globalAlpha = 1.0;
+            techCtx.fillRect(x + 15, 200 - enlighHeight, 20, enlighHeight);
+            
+            techCtx.fillStyle = 'black';
+            techCtx.fillText(tech.training, x - 25, 220);
+            techCtx.fillText(tech.discipline, x, 220);
+            techCtx.fillText(tech.enlightenment, x + 25, 220);
+            
+            techCtx.save();
+            techCtx.translate(x, 250);
+            techCtx.rotate(-Math.PI / 6);
+            techCtx.fillText(tech.tech, 0, 0);
+            techCtx.restore();
+        });
+        
+        techCtx.fillText('Training (Light) | Discipline (Med) | Enlightenment (Dark)', 300, 30);
+
+        // Meditation Effectiveness vs Time
+        const meditationCanvas = document.getElementById('meditationEffectivenessCanvas');
+        const meditationCtx = meditationCanvas.getContext('2d');
+        
+        meditationCtx.clearRect(0, 0, 500, 250);
+        meditationCtx.font = '12px Arial';
+        meditationCtx.textAlign = 'center';
+        
+        const meditationTypes = [
+            {type: 'Quick Center', time: 10, recovery: 30, focus: 40, color: '#DC143C'},
+            {type: 'Standard Med', time: 30, recovery: 60, focus: 70, color: '#DEB887'},
+            {type: 'Deep Trance', time: 60, recovery: 85, focus: 90, color: '#4682B4'},
+            {type: 'Enlightened State', time: 100, recovery: 95, focus: 100, color: '#9370DB'}
+        ];
+        
+        meditationTypes.forEach((med, i) => {
+            const x = 80 + i * 90;
+            
+            // Time investment (downward)
+            const timeHeight = (med.time / 100) * 60;
+            meditationCtx.fillStyle = med.color;
+            meditationCtx.globalAlpha = 0.4;
+            meditationCtx.fillRect(x - 25, 150, 15, timeHeight);
+            
+            // Recovery benefit (upward)
+            const recovHeight = (med.recovery / 100) * 80;
+            meditationCtx.fillStyle = med.color;
+            meditationCtx.globalAlpha = 0.7;
+            meditationCtx.fillRect(x - 5, 150 - recovHeight, 15, recovHeight);
+            
+            // Focus benefit (upward)
+            const focusHeight = (med.focus / 100) * 80;
+            meditationCtx.fillStyle = med.color;
+            meditationCtx.globalAlpha = 1.0;
+            meditationCtx.fillRect(x + 15, 150 - focusHeight, 15, focusHeight);
+            
+            meditationCtx.fillStyle = 'black';
+            meditationCtx.fillText(med.time + '%', x - 17, 225);
+            meditationCtx.fillText(med.recovery + '%', x + 3, 60);
+            meditationCtx.fillText(med.focus + '%', x + 23, 60);
+            meditationCtx.fillText(med.type, x, 240);
+        });
+        
+        meditationCtx.fillText('Time (Down) | Recovery (Up) | Focus (Up)', 250, 30);
+
+        // Monk Combat Positioning and Flow
+        const posCanvas = document.getElementById('monkPositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw enemies at cardinal positions
+        posCtx.fillStyle = '#FF0000';
+        posCtx.fillRect(175, 50, 25, 25);   // North
+        posCtx.fillRect(325, 175, 25, 25);  // East
+        posCtx.fillRect(175, 325, 25, 25);  // South
+        posCtx.fillRect(50, 175, 25, 25);   // West
+        
+        // Draw Monk's central position
+        posCtx.fillStyle = '#CD853F';
+        posCtx.fillRect(187, 187, 25, 25);
+        
+        // Draw movement flow patterns
+        posCtx.strokeStyle = '#DEB887';
+        posCtx.setLineDash([3, 3]);
+        posCtx.lineWidth = 3;
+        
+        // Circular flow pattern
+        posCtx.beginPath();
+        posCtx.arc(200, 200, 60, 0, 2 * Math.PI);
+        posCtx.stroke();
+        
+        // Defensive positioning arcs
+        posCtx.strokeStyle = '#8B4513';
+        posCtx.setLineDash([2, 2]);
+        posCtx.lineWidth = 2;
+        
+        // Protection zones
+        posCtx.beginPath();
+        posCtx.arc(200, 200, 40, 0, 2 * Math.PI);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.arc(200, 200, 80, 0, 2 * Math.PI);
+        posCtx.stroke();
+        
+        // Strike lines to enemies
+        posCtx.strokeStyle = '#A0522D';
+        posCtx.setLineDash([1, 1]);
+        posCtx.lineWidth = 1;
+        
+        posCtx.beginPath();
+        posCtx.moveTo(200, 200);
+        posCtx.lineTo(187, 75);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(200, 200);
+        posCtx.lineTo(337, 187);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(200, 200);
+        posCtx.lineTo(187, 337);
+        posCtx.stroke();
+        
+        posCtx.beginPath();
+        posCtx.moveTo(200, 200);
+        posCtx.lineTo(62, 187);
+        posCtx.stroke();
+        
+        posCtx.setLineDash([]);
+        posCtx.lineWidth = 1;
+        
+        // Labels
+        posCtx.fillStyle = 'white';
+        posCtx.font = '10px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('M', 200, 202);     // Monk
+        posCtx.fillText('E', 187, 65);      // Enemies
+        posCtx.fillText('E', 337, 190);
+        posCtx.fillText('E', 187, 340);
+        posCtx.fillText('E', 62, 190);
+        
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Monk: Central Flow Combat Positioning', 200, 20);
+        posCtx.fillText('Circles = Movement Flow, Lines = Strike Paths', 200, 380);
+    </script>
+</body>
+</html>

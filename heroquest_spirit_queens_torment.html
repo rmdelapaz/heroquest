@@ -13,39 +13,88 @@
 
 <style>
     body {
-        font-family: 'Tahoma', 'Times New Roman', serif;
+        font-family: 'Segoe UI', 'Arial', sans-serif;
         line-height: 1.8;
         max-width: 1400px;
         margin: 0 auto;
         padding: 30px;
-        background: linear-gradient(135deg, #1a0033 0%, #2d1b69 20%, #4a148c 40%, #6a1b9a 60%, #8e24aa 80%, #9c27b0 100%);
-        color: #f3e5f5;
+        background: linear-gradient(135deg, #0a0a23 0%, #1a0033 20%, #2d1b69 40%, #4a148c 60%, #6a1b9a 80%, #8e24aa 100%);
+        color: #ffffff;
         font-size: 16px;
+        min-height: 100vh;
     }
     
     .container {
-        background: rgba(26, 0, 51, 0.92);
+        background: rgba(10, 10, 35, 0.95);
         padding: 40px;
         border-radius: 20px;
-        box-shadow: 0 15px 40px rgba(156, 39, 176, 0.7);
-        border: 2px solid #ce93d8;
+        box-shadow: 0 15px 40px rgba(156, 39, 176, 0.8);
+        border: 3px solid #ce93d8;
+        backdrop-filter: blur(10px);
     }
     
- 
+    h1 {
+        color: #ffffff;
+        text-align: center;
+        font-size: 2.5em;
+        margin-bottom: 30px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+        background: linear-gradient(45deg, #ce93d8, #ff8f00, #ce93d8);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: gradient-shift 3s ease-in-out infinite;
+    }
+    
+    @keyframes gradient-shift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+    
+    h2 {
+        color: #ffffff;
+        font-size: 1.8em;
+        margin: 40px 0 20px 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        border-bottom: 3px solid #ce93d8;
+        padding-bottom: 10px;
+    }
+    
+    h3 {
+        color: #ffffff;
+        font-size: 1.4em;
+        margin: 25px 0 15px 0;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+    
+    h4 {
+        color: #ffffff;
+        font-size: 1.2em;
+        margin: 20px 0 10px 0;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    }
+    
+    p, li {
+        color: #ffffff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        margin-bottom: 15px;
+    }
     
     .ethereal-principle {
-        background: linear-gradient(135deg, #1a0033 0%, #4a148c 100%);
-        border: 2px solid #ce93d8;
+        background: linear-gradient(135deg, rgba(26, 0, 51, 0.9) 0%, rgba(74, 20, 140, 0.9) 100%);
+        border: 3px solid #ce93d8;
         border-radius: 15px;
         padding: 30px;
         margin: 30px 0;
         border-left: 6px solid #e1bee7;
-        box-shadow: 0 8px 20px rgba(206, 147, 216, 0.3);
+        box-shadow: 0 8px 20px rgba(206, 147, 216, 0.4);
+        backdrop-filter: blur(5px);
     }
     
     .spectral-card {
-        background: linear-gradient(135deg, #4a148c 0%, #1a0033 100%);
-        border: 2px solid #9c27b0;
+        background: linear-gradient(135deg, rgba(74, 20, 140, 0.9) 0%, rgba(26, 0, 51, 0.9) 100%);
+        border: 3px solid #9c27b0;
         border-radius: 15px;
         padding: 25px;
         margin: 20px;
@@ -53,40 +102,88 @@
         min-width: 360px;
         max-width: 420px;
         vertical-align: top;
-        box-shadow: 0 8px 20px rgba(156, 39, 176, 0.4);
+        box-shadow: 0 8px 20px rgba(156, 39, 176, 0.5);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
+        backdrop-filter: blur(5px);
     }
     
     .spectral-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(156, 39, 176, 0.6);
+        box-shadow: 0 12px 30px rgba(156, 39, 176, 0.7);
+    }
+    
+    .bard-card {
+        background: linear-gradient(135deg, rgba(255, 143, 0, 0.95) 0%, rgba(255, 111, 0, 0.95) 50%, rgba(255, 160, 0, 0.95) 100%);
+        border: 3px solid #ffb74d;
+        border-radius: 15px;
+        padding: 25px;
+        margin: 20px;
+        display: inline-block;
+        min-width: 360px;
+        max-width: 420px;
+        vertical-align: top;
+        box-shadow: 0 8px 20px rgba(255, 183, 77, 0.5);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: #000000;
+        backdrop-filter: blur(5px);
+    }
+    
+    .bard-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(255, 183, 77, 0.7);
+    }
+    
+    .bard-card h3,
+    .bard-card p,
+    .bard-card li {
+        color: #000000;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
+    }
+    
+    .bard-card strong,
+    .bard-card em {
+        color: #000000;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+    }
+    
+    .bard-section {
+        background: linear-gradient(135deg, rgba(255, 143, 0, 0.2) 0%, rgba(26, 0, 51, 0.9) 100%);
+        border: 3px solid #ffb74d;
+        border-radius: 15px;
+        padding: 30px;
+        margin: 30px 0;
+        border-left: 6px solid #ffc107;
+        box-shadow: 0 8px 20px rgba(255, 183, 77, 0.4);
+        backdrop-filter: blur(5px);
     }
     
     .torment-box {
-        background: rgba(206, 147, 216, 0.15);
-        border: 2px solid #ce93d8;
+        background: rgba(206, 147, 216, 0.2);
+        border: 3px solid #ce93d8;
         border-radius: 15px;
         padding: 30px;
         margin: 30px 0;
-        box-shadow: inset 0 2px 10px rgba(206, 147, 216, 0.2);
+        box-shadow: inset 0 2px 10px rgba(206, 147, 216, 0.3);
+        backdrop-filter: blur(5px);
     }
     
     .horror-analysis {
-        background: rgba(225, 190, 231, 0.15);
-        border: 2px solid #e1bee7;
+        background: rgba(225, 190, 231, 0.2);
+        border: 3px solid #e1bee7;
         border-radius: 15px;
         padding: 30px;
         margin: 30px 0;
-        box-shadow: inset 0 2px 10px rgba(225, 190, 231, 0.2);
+        box-shadow: inset 0 2px 10px rgba(225, 190, 231, 0.3);
+        backdrop-filter: blur(5px);
     }
     
     canvas {
         border: 3px solid #ce93d8;
         border-radius: 15px;
-        background: #0a0015;
+        background: #000000;
         display: block;
         margin: 30px auto;
-        box-shadow: 0 8px 25px rgba(206, 147, 216, 0.4);
+        box-shadow: 0 8px 25px rgba(206, 147, 216, 0.5);
     }
     
     .sanity-meter {
@@ -97,7 +194,7 @@
         border-radius: 20px;
         margin: 20px 0;
         position: relative;
-        box-shadow: 0 4px 12px rgba(206, 147, 216, 0.3);
+        box-shadow: 0 4px 12px rgba(206, 147, 216, 0.4);
     }
     
     .sanity-indicator {
@@ -105,10 +202,10 @@
         top: -3px;
         width: 8px;
         height: 41px;
-        background: #fff;
+        background: #ffffff;
         border-radius: 4px;
         transition: left 0.8s ease;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     }
     
     .spirit-queen-portrait {
@@ -123,19 +220,56 @@
         align-items: center;
         justify-content: center;
         font-size: 90px;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
         animation: spectral-presence 4s ease-in-out infinite;
         position: relative;
-        box-shadow: 0 10px 30px rgba(206, 147, 216, 0.5);
+        box-shadow: 0 10px 30px rgba(206, 147, 216, 0.6);
+        color: #ffffff;
+    }
+    
+    .bard-portrait {
+        width: 280px;
+        height: 320px;
+        background: radial-gradient(ellipse, #ff8f00, #ff6f00, #e65100);
+        border: 3px solid #ffb74d;
+        border-radius: 20px;
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 90px;
+        text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.9);
+        animation: musical-aura 3s ease-in-out infinite;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(255, 183, 77, 0.6);
+        color: #000000;
+    }
+    
+    .spirit-queen-portrait div,
+    .bard-portrait div {
+        color: inherit;
+        text-shadow: inherit;
     }
     
     @keyframes spectral-presence {
         0%, 100% { 
-            box-shadow: 0 0 35px rgba(206, 147, 216, 0.6);
+            box-shadow: 0 0 35px rgba(206, 147, 216, 0.7);
             transform: scale(1);
         }
         50% { 
             box-shadow: 0 0 55px rgba(156, 39, 176, 1);
+            transform: scale(1.02);
+        }
+    }
+    
+    @keyframes musical-aura {
+        0%, 100% { 
+            box-shadow: 0 0 35px rgba(255, 183, 77, 0.7);
+            transform: scale(1);
+        }
+        50% { 
+            box-shadow: 0 0 55px rgba(255, 152, 0, 1);
             transform: scale(1.02);
         }
     }
@@ -148,18 +282,19 @@
     }
     
     .creature-manifestation {
-        background: rgba(74, 20, 140, 0.25);
-        border: 2px solid #9c27b0;
+        background: rgba(74, 20, 140, 0.3);
+        border: 3px solid #9c27b0;
         border-radius: 15px;
         padding: 25px;
         text-align: center;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
+        backdrop-filter: blur(5px);
     }
     
     .creature-manifestation:hover {
         transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(156, 39, 176, 0.5);
+        box-shadow: 0 8px 20px rgba(156, 39, 176, 0.6);
     }
     
     .torment-tracker {
@@ -168,16 +303,17 @@
         align-items: center;
         margin: 30px 0;
         padding: 30px;
-        background: rgba(206, 147, 216, 0.15);
+        background: rgba(206, 147, 216, 0.2);
         border-radius: 15px;
-        border: 2px solid #ce93d8;
+        border: 3px solid #ce93d8;
         flex-wrap: wrap;
         gap: 15px;
+        backdrop-filter: blur(5px);
     }
     
     .torment-stage {
         background: linear-gradient(135deg, #9c27b0, #ce93d8);
-        border: 2px solid #e1bee7;
+        border: 3px solid #e1bee7;
         border-radius: 50%;
         width: 90px;
         height: 90px;
@@ -186,10 +322,10 @@
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        color: #1a0033;
+        color: #000000;
         text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
         font-size: 12px;
-        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
         transition: transform 0.3s ease;
     }
     
@@ -204,17 +340,17 @@
         gap: 3px;
         margin: 30px auto;
         border: 3px solid #ce93d8;
-        background: #0a0015;
+        background: #000000;
         padding: 15px;
         width: fit-content;
         border-radius: 10px;
-        box-shadow: 0 8px 20px rgba(206, 147, 216, 0.4);
+        box-shadow: 0 8px 20px rgba(206, 147, 216, 0.5);
     }
     
     .ethereal-cell {
         width: 40px;
         height: 40px;
-        border: 1px solid #9c27b0;
+        border: 2px solid #9c27b0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -222,36 +358,43 @@
         cursor: pointer;
         transition: all 0.3s ease;
         border-radius: 4px;
+        color: #ffffff;
     }
     
     .ethereal-cell:hover {
         transform: scale(1.1);
-        box-shadow: 0 2px 8px rgba(206, 147, 216, 0.6);
+        box-shadow: 0 2px 8px rgba(206, 147, 216, 0.7);
     }
     
     .spirit-realm-tile { 
         background-color: #4a148c; 
-        box-shadow: inset 0 0 10px rgba(206, 147, 216, 0.3);
+        box-shadow: inset 0 0 10px rgba(206, 147, 216, 0.4);
     }
     .material-realm-tile { 
         background-color: #1a0033; 
-        box-shadow: inset 0 0 10px rgba(156, 39, 176, 0.2);
+        box-shadow: inset 0 0 10px rgba(156, 39, 176, 0.3);
     }
     .ethereal-barrier { 
         background-color: #6a1b9a; 
-        box-shadow: inset 0 0 10px rgba(225, 190, 231, 0.3);
+        box-shadow: inset 0 0 10px rgba(225, 190, 231, 0.4);
     }
     .spectral-hero { 
         background-color: #00bcd4; 
-        box-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+        box-shadow: 0 0 10px rgba(0, 188, 212, 0.7);
+    }
+    .bard-hero { 
+        background-color: #ff8f00; 
+        box-shadow: 0 0 10px rgba(255, 143, 0, 0.7);
+        color: #000000;
     }
     .spirit-enemy { 
         background-color: #e91e63; 
-        box-shadow: 0 0 10px rgba(233, 30, 99, 0.6);
+        box-shadow: 0 0 10px rgba(233, 30, 99, 0.7);
     }
     .veil-tear { 
         background-color: #ffeb3b; 
         box-shadow: 0 0 10px rgba(255, 235, 59, 0.8);
+        color: #000000;
     }
     
     .sanity-levels {
@@ -260,67 +403,113 @@
         align-items: center;
         margin: 30px 0;
         padding: 30px;
-        background: rgba(206, 147, 216, 0.15);
+        background: rgba(206, 147, 216, 0.2);
         border-radius: 15px;
-        border: 2px solid #ce93d8;
+        border: 3px solid #ce93d8;
         flex-wrap: wrap;
         gap: 15px;
+        backdrop-filter: blur(5px);
     }
     
     .sanity-state {
         background: linear-gradient(135deg, #9c27b0, #ce93d8);
-        border: 2px solid #e1bee7;
+        border: 3px solid #e1bee7;
         border-radius: 15px;
         padding: 20px;
         text-align: center;
         font-weight: bold;
-        color: #1a0033;
+        color: #000000;
         min-width: 130px;
-        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);
+        box-shadow: 0 4px 12px rgba(156, 39, 176, 0.4);
         transition: transform 0.3s ease;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
     }
     
     .sanity-state:hover {
         transform: translateY(-3px);
     }
     
+    .musical-notation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin: 20px 0;
+        font-size: 24px;
+        animation: musical-flow 4s ease-in-out infinite;
+        color: #ffc107;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    @keyframes musical-flow {
+        0%, 100% { transform: translateY(0px); }
+        25% { transform: translateY(-3px); }
+        50% { transform: translateY(0px); }
+        75% { transform: translateY(3px); }
+    }
+    
     strong {
-        color: #f3e5f5;
+        color: #ffffff;
         font-weight: 600;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    }
+    
+    .bard-card strong {
+        color: #000000;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
     }
     
     em {
         color: #e1bee7;
         font-style: italic;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    }
+    
+    .bard-card em {
+        color: #4a148c;
+        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.6);
+    }
+    
+    ul {
+        padding-left: 20px;
+    }
+    
+    li {
+        margin-bottom: 8px;
     }
     
     /* Enhanced text contrast and spacing */
     .ethereal-principle p,
     .spectral-card p,
+    .bard-card p,
     .torment-box p,
-    .horror-analysis p {
+    .horror-analysis p,
+    .bard-section p {
         line-height: 1.8;
         margin-bottom: 15px;
     }
     
     .spectral-card h3,
+    .bard-card h3,
     .creature-manifestation h4 {
         font-size: 1.3em;
         margin-bottom: 15px;
-        color: #f3e5f5;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
     
     /* Results display enhancement */
     div[id*="analysis"],
     div[id*="result"] {
-        background: rgba(206, 147, 216, 0.2);
-        border: 2px solid #ce93d8;
+        background: rgba(206, 147, 216, 0.25);
+        border: 3px solid #ce93d8;
         border-radius: 10px;
         padding: 20px;
         margin-top: 25px;
         min-height: 80px;
         line-height: 1.6;
+        backdrop-filter: blur(5px);
+        color: #ffffff;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
     }
     
     /* Atmospheric enhancement */
@@ -336,6 +525,19 @@
         animation: ethereal-drift 6s ease-in-out infinite;
         opacity: 0.8;
         pointer-events: none;
+        z-index: 1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    .musical-note {
+        position: absolute;
+        color: #ff8f00;
+        font-size: 16px;
+        animation: musical-drift 5s ease-in-out infinite;
+        opacity: 0.9;
+        pointer-events: none;
+        z-index: 1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
     
     @keyframes ethereal-drift {
@@ -343,6 +545,29 @@
         25% { transform: translateY(-25px) translateX(15px) rotate(90deg); opacity: 0.9; }
         50% { transform: translateY(-15px) translateX(-20px) rotate(180deg); opacity: 0.6; }
         75% { transform: translateY(-35px) translateX(25px) rotate(270deg); opacity: 1; }
+    }
+    
+    @keyframes musical-drift {
+        0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.5; }
+        25% { transform: translateY(-20px) translateX(10px) scale(1.1); opacity: 1; }
+        50% { transform: translateY(-10px) translateX(-15px) scale(0.9); opacity: 0.7; }
+        75% { transform: translateY(-30px) translateX(20px) scale(1.2); opacity: 0.9; }
+    }
+    
+    .phase-connector {
+        color: #ce93d8;
+        font-size: 20px;
+        font-weight: bold;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Mermaid diagram styling for dark background */
+    .mermaid {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin: 20px 0;
+        border: 2px solid #ce93d8;
     }
 </style>
 <body>
@@ -365,7 +590,92 @@
         <div class="sanity-meter">
             <div class="sanity-indicator" id="sanity_indicator" style="left: 25%;"></div>
         </div>
-        <p style="text-align: center;"><em>Sanity Level: <span id="sanity_level">PSYCHOLOGICAL STRAIN</span></em></p>
+        <p style="text-align: center; color: #ffffff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);"><em>Sanity Level: <span id="sanity_level">PSYCHOLOGICAL STRAIN</span></em></p>
+
+        <h2>🎵 The Bard: Master of Hearts and Harmonies</h2>
+        
+        <div class="bard-portrait">
+            🎼
+            <div style="font-size: 16px; margin-top: 10px;">The Bard</div>
+            <div style="font-size: 12px; opacity: 0.8;">Melody of Hope & Despair</div>
+        </div>
+
+        <div class="bard-section">
+            <h3>🎭 The Perfect Hero for Supernatural Horror</h3>
+            <p><strong>The Bard represents the ultimate fusion of artist and warrior, uniquely suited for Spirit Queen's Torment:</strong></p>
+            
+            <p><strong>🎵 Emotional Resonance:</strong> Unlike other heroes who fight with sword and spell, the Bard fights with feeling itself. Music has always been humanity's way of processing deep emotion, making the Bard the perfect conduit for healing spiritual wounds.</p>
+            
+            <p><strong>💫 Dual Nature:</strong> Just as spirits exist between life and death, the Bard exists between warrior and healer, between logic and emotion, between individual hero and team support. This duality makes them naturally attuned to the liminal spaces where spirits dwell.</p>
+            
+            <p><strong>🌟 The Power of Story:</strong> Every tormented spirit has a story of tragedy. The Bard, as a keeper of tales and songs, can understand these narratives and potentially rewrite their endings from despair to peace.</p>
+        </div>
+
+        <div class="musical-notation">
+            🎵 ♪ ♫ ♬ 🎶 ♭ ♩ ♪ 🎵
+        </div>
+
+        <h2>🎼 Bard's Supernatural Abilities</h2>
+        
+        <div class="bard-card">
+            <h3>🎵 Song of Soothing</h3>
+            <p><strong>The Calming Melody</strong></p>
+            <p><strong>Effect:</strong> Reduces sanity loss for all party members</p>
+            <p><strong>Range:</strong> All heroes within hearing distance</p>
+            <p><strong>Duration:</strong> As long as the Bard maintains concentration</p>
+            <p><strong>Tactical Use:</strong> Essential for surviving prolonged supernatural encounters</p>
+            <p><em>"Music has charms to soothe the savage beast - and the tormented soul"</em></p>
+        </div>
+
+        <div class="bard-card">
+            <h3>👻 Lament of the Lost</h3>
+            <p><strong>The Empathetic Connection</strong></p>
+            <p><strong>Effect:</strong> Communicates directly with tormented spirits</p>
+            <p><strong>Risk:</strong> Bard takes on some of the spirit's emotional pain</p>
+            <p><strong>Reward:</strong> May learn spirit's true needs and how to grant peace</p>
+            <p><strong>Strategy:</strong> High risk, high reward approach to conflict resolution</p>
+            <p><em>"To heal the dead, one must first understand their suffering"</em></p>
+        </div>
+
+        <div class="bard-card">
+            <h3>⚔️ War Song</h3>
+            <p><strong>The Battle Hymn</strong></p>
+            <p><strong>Effect:</strong> Boosts all allies' combat effectiveness</p>
+            <p><strong>Bonus:</strong> Extra damage and accuracy for physical attacks</p>
+            <p><strong>Special:</strong> Even affects supernatural combat</p>
+            <p><strong>Limitation:</strong> Bard cannot attack while singing</p>
+            <p><em>"Sometimes the only way to peace is through righteous battle"</em></p>
+        </div>
+
+        <div class="bard-card">
+            <h3>🕊️ Requiem of Release</h3>
+            <p><strong>The Final Rest</strong></p>
+            <p><strong>Effect:</strong> Helps tormented spirits find eternal peace</p>
+            <p><strong>Requirement:</strong> Must understand spirit's specific trauma</p>
+            <p><strong>Success:</strong> Spirit departs peacefully, grants blessing</p>
+            <p><strong>Failure:</strong> Spirit becomes more hostile, attacks with greater fury</p>
+            <p><em>"The most beautiful songs are written in the key of redemption"</em></p>
+        </div>
+
+        <div class="bard-card">
+            <h3>🌟 Healing Harmony</h3>
+            <p><strong>The Restoration Melody</strong></p>
+            <p><strong>Effect:</strong> Restores both health and sanity to all allies</p>
+            <p><strong>Power:</strong> More effective than traditional healing</p>
+            <p><strong>Cost:</strong> Requires significant rest and preparation</p>
+            <p><strong>Limitation:</strong> Limited uses per adventure</p>
+            <p><em>"Music heals wounds that medicine cannot touch"</em></p>
+        </div>
+
+        <div class="bard-card">
+            <h3>🎭 Inspiring Tale</h3>
+            <p><strong>The Courage Saga</strong></p>
+            <p><strong>Effect:</strong> Removes fear effects and boosts resistance</p>
+            <p><strong>Method:</strong> Tells stories of heroic deeds and triumph</p>
+            <p><strong>Bonus:</strong> Heroes gain temporary immunity to despair</p>
+            <p><strong>Tactical:</strong> Essential counter to supernatural fear attacks</p>
+            <p><em>"A hero's greatest weapon is the knowledge that others have faced darkness and won"</em></p>
+        </div>
 
         <h2>🌙 The Three Realms: Reality's Fractured Layers</h2>
         
@@ -387,10 +697,47 @@
                 D --> D2[Reality Tears]
                 D --> D3[Dimensional Bleeding]
                 
-                style A fill:#ce93d8,stroke:#333,stroke-width:3px
-                style B fill:#e1bee7,stroke:#333,stroke-width:2px
-                style C fill:#e1bee7,stroke:#333,stroke-width:2px
-                style D fill:#e1bee7,stroke:#333,stroke-width:2px
+                E[Bard's Role] --> F[Bridge Between Realms]
+                E --> G[Emotional Translator]
+                E --> H[Harmony Restoration]
+                
+                style A fill:#ce93d8,stroke:#fff,stroke-width:3px,color:#000
+                style B fill:#e1bee7,stroke:#fff,stroke-width:2px,color:#000
+                style C fill:#e1bee7,stroke:#fff,stroke-width:2px,color:#000
+                style D fill:#e1bee7,stroke:#fff,stroke-width:2px,color:#000
+                style E fill:#ff8f00,stroke:#fff,stroke-width:3px,color:#000
+                style F fill:#ffb74d,stroke:#fff,stroke-width:2px,color:#000
+                style G fill:#ffb74d,stroke:#fff,stroke-width:2px,color:#000
+                style H fill:#ffb74d,stroke:#fff,stroke-width:2px,color:#000
+        </div>
+
+        <div class="bard-section">
+            <h3>🎼 The Bard as Dimensional Bridge</h3>
+            <p><strong>The Bard's unique abilities make them especially effective in navigating the three realms:</strong></p>
+            
+            <p><strong>🌍 Material Realm Mastery:</strong></p>
+            <ul>
+                <li>War songs enhance physical combat effectiveness</li>
+                <li>Inspiring tales boost morale and coordination</li>
+                <li>Healing harmonies restore health and stamina</li>
+                <li>Musical memory aids in solving material puzzles</li>
+            </ul>
+            
+            <p><strong>👻 Spirit Realm Navigation:</strong></p>
+            <ul>
+                <li>Laments create emotional connections with spirits</li>
+                <li>Requiems offer peaceful resolution to hauntings</li>
+                <li>Songs of soothing calm aggressive spirits</li>
+                <li>Musical empathy reveals spirits' true desires</li>
+            </ul>
+            
+            <p><strong>🌫️ Veil Between Mastery:</strong></p>
+            <ul>
+                <li>Music transcends dimensional boundaries</li>
+                <li>Harmonies can stabilize reality tears</li>
+                <li>Songs create safe passages between realms</li>
+                <li>Emotional resonance bridges understanding gaps</li>
+            </ul>
         </div>
 
         <h2>💀 The Torment Progression: Stages of Spiritual Anguish</h2>
@@ -427,20 +774,31 @@
             </div>
         </div>
 
+        <div class="bard-section">
+            <h3>🎵 Musical Intervention at Each Stage</h3>
+            <p><strong>The Bard can intervene at any stage of spiritual torment with appropriate musical responses:</strong></p>
+            
+            <p><strong>😔 Sorrow Stage:</strong> Gentle lullabies and songs of comfort can prevent escalation</p>
+            <p><strong>😡 Anger Stage:</strong> Powerful anthems and songs of justice help process rage constructively</p>
+            <p><strong>😰 Despair Stage:</strong> Hymns of hope and melodies of renewal combat hopelessness</p>
+            <p><strong>👹 Rage Stage:</strong> Complex battle songs that acknowledge pain while redirecting energy</p>
+            <p><strong>🌟 Release Stage:</strong> Sacred requiems that honor memory while enabling peaceful departure</p>
+        </div>
+
         <h2>👻 Ethereal Combat: Fighting the Incorporeal</h2>
         
         <canvas id="ethereal_combat_canvas" width="600" height="300"></canvas>
         
         <div class="torment-box">
             <h3>⚔️ New Rules for Supernatural Warfare</h3>
-            <p><strong>Fighting spirits requires completely different tactics than physical combat:</strong></p>
+            <p><strong>Fighting spirits requires completely different tactics than physical combat, and the Bard brings unique advantages:</strong></p>
             
             <p><strong>🌫️ Incorporeal Movement:</strong></p>
             <ul>
                 <li>Spirits can phase through solid walls and barriers</li>
                 <li>Traditional positioning becomes meaningless</li>
                 <li>Heroes must think three-dimensionally</li>
-                <li>Chokepoints and defensive positions fail</li>
+                <li><strong>Bard Advantage:</strong> Music affects spirits regardless of physical barriers</li>
             </ul>
             
             <p><strong>⚡ Supernatural Immunities:</strong></p>
@@ -448,7 +806,7 @@
                 <li>Physical weapons pass harmlessly through spirits</li>
                 <li>Only blessed, magical, or silver weapons affect them</li>
                 <li>Environmental hazards may not apply</li>
-                <li>Traditional healing methods are less effective</li>
+                <li><strong>Bard Advantage:</strong> Sound and emotion always affect spirits</li>
             </ul>
             
             <p><strong>🧠 Psychological Attacks:</strong></p>
@@ -456,7 +814,7 @@
                 <li>Spirits attack sanity as well as body</li>
                 <li>Fear effects can paralyze heroes completely</li>
                 <li>Memory manipulation and illusions</li>
-                <li>Emotional trauma becomes a weapon</li>
+                <li><strong>Bard Counter:</strong> Songs can dispel illusions and restore mental clarity</li>
             </ul>
         </div>
 
@@ -493,8 +851,8 @@
         </div>
 
         <div class="horror-analysis">
-            <h3>🧠 The Psychology of Terror</h3>
-            <p><strong>Sanity becomes as important as health, creating a dual-resource management system:</strong></p>
+            <h3>🧠 The Psychology of Terror and Musical Healing</h3>
+            <p><strong>Sanity becomes as important as health, and the Bard serves as the party's psychological anchor:</strong></p>
             
             <p><strong>😱 Sanity Loss Triggers:</strong></p>
             <ul>
@@ -505,13 +863,13 @@
                 <li>Being exposed to raw spiritual anguish</li>
             </ul>
             
-            <p><strong>🌟 Sanity Recovery Methods:</strong></p>
+            <p><strong>🌟 Bard's Sanity Recovery Methods:</strong></p>
             <ul>
-                <li>Successfully helping tormented spirits find peace</li>
-                <li>Performing acts of compassion and mercy</li>
-                <li>Using blessed items and protective rituals</li>
-                <li>Teamwork and mutual support between heroes</li>
-                <li>Discovering hope in seemingly hopeless situations</li>
+                <li><strong>Song of Soothing:</strong> Continuous sanity protection for the party</li>
+                <li><strong>Healing Harmony:</strong> Direct sanity restoration through music</li>
+                <li><strong>Inspiring Tales:</strong> Boost morale and mental resilience</li>
+                <li><strong>Shared Laments:</strong> Process trauma collectively through song</li>
+                <li><strong>Victory Ballads:</strong> Reinforce positive outcomes and hope</li>
             </ul>
         </div>
 
@@ -524,6 +882,7 @@
                 <p><strong>Origin:</strong> Souls who died in overwhelming grief</p>
                 <p><strong>Attack:</strong> Emotional overwhelm, despair projection</p>
                 <p><strong>Weakness:</strong> Compassion and understanding</p>
+                <p><strong>Bard Strategy:</strong> Laments of sympathy followed by songs of comfort</p>
                 <p><em>"Their tears freeze the living heart"</em></p>
             </div>
             
@@ -533,6 +892,7 @@
                 <p><strong>Origin:</strong> Souls consumed by unresolved anger</p>
                 <p><strong>Attack:</strong> Fury manifestation, berserker possession</p>
                 <p><strong>Weakness:</strong> Justice and closure</p>
+                <p><strong>Bard Strategy:</strong> War songs to match their energy, then justice ballads</p>
                 <p><em>"Anger given supernatural form"</em></p>
             </div>
             
@@ -542,6 +902,7 @@
                 <p><strong>Origin:</strong> Traumatic events replaying eternally</p>
                 <p><strong>Attack:</strong> Forced reliving of worst memories</p>
                 <p><strong>Weakness:</strong> Acceptance and forgiveness</p>
+                <p><strong>Bard Strategy:</strong> Songs that reframe memories in new contexts</p>
                 <p><em>"The past refuses to stay buried"</em></p>
             </div>
             
@@ -551,6 +912,7 @@
                 <p><strong>Origin:</strong> Souls punishing themselves for perceived sins</p>
                 <p><strong>Attack:</strong> Shame projection, self-doubt amplification</p>
                 <p><strong>Weakness:</strong> Redemption and absolution</p>
+                <p><strong>Bard Strategy:</strong> Hymns of forgiveness and redemption songs</p>
                 <p><em>"They make heroes question everything"</em></p>
             </div>
         </div>
@@ -564,9 +926,9 @@
                 <!-- Grid will be populated by JavaScript -->
             </div>
             
-            <p><strong>Realm Legend:</strong> 🌫️ Spirit Realm | 🌑 Material Realm | ⚡ Barrier | 👻 Heroes | 💀 Spirits | ✨ Veil Tears</p>
+            <p><strong>Realm Legend:</strong> 🌫️ Spirit Realm | 🌑 Material Realm | ⚡ Barrier | 👻 Heroes | 🎼 Bard | 💀 Spirits | ✨ Veil Tears</p>
             
-            <div id="realm_analysis" style="margin-top: 20px; padding: 15px; background: rgba(206, 147, 216, 0.1); border-radius: 10px;">
+            <div id="realm_analysis" style="margin-top: 20px; padding: 15px; background: rgba(206, 147, 216, 0.25); border: 3px solid #ce93d8; border-radius: 10px; backdrop-filter: blur(5px);">
                 <strong>Ethereal Status:</strong> Navigate between realms to analyze supernatural conditions!
             </div>
         </div>
@@ -581,6 +943,7 @@
             <p><strong>Effect:</strong> Damages spirits, creates safe zones</p>
             <p><strong>Uses:</strong> Limited supply, precious resource</p>
             <p><strong>Strategy:</strong> Save for most dangerous encounters</p>
+            <p><strong>Bard Synergy:</strong> Blessed songs make holy water more effective</p>
             <p><strong>Lore:</strong> "Blessed by priests who gave their lives to consecrate it"</p>
         </div>
 
@@ -590,6 +953,7 @@
             <p><strong>Effect:</strong> Can harm incorporeal beings</p>
             <p><strong>Limitation:</strong> Less effective against physical enemies</p>
             <p><strong>Strategy:</strong> Specialized tools for supernatural threats</p>
+            <p><strong>Bard Synergy:</strong> War songs enhance silver weapon damage</p>
             <p><strong>Lore:</strong> "Forged in moonlight and quenched in tears"</p>
         </div>
 
@@ -599,7 +963,38 @@
             <p><strong>Effect:</strong> Reduces sanity loss, wards off possession</p>
             <p><strong>Duration:</strong> Permanent but can be overwhelmed</p>
             <p><strong>Strategy:</strong> Essential for survival in spirit realm</p>
+            <p><strong>Bard Synergy:</strong> Musical charging strengthens protective power</p>
             <p><strong>Lore:</strong> "Each carved with prayers of the desperate"</p>
+        </div>
+
+        <div class="bard-card">
+            <h3>🎻 Ethereal Lute</h3>
+            <p><strong>The Bard's Sacred Instrument</strong></p>
+            <p><strong>Effect:</strong> Amplifies all musical abilities significantly</p>
+            <p><strong>Special:</strong> Can be heard in all three realms simultaneously</p>
+            <p><strong>Power:</strong> Songs become area effects rather than single target</p>
+            <p><strong>Risk:</strong> Attracts both spirits and attention from Spirit Queen</p>
+            <p><strong>Lore:</strong> "Carved from wood that grew in ancient graveyards"</p>
+        </div>
+
+        <div class="bard-card">
+            <h3>📜 Song Scrolls</h3>
+            <p><strong>The Recorded Melodies</strong></p>
+            <p><strong>Effect:</strong> Store powerful songs for later use</p>
+            <p><strong>Limitation:</strong> Single use, require preparation time</p>
+            <p><strong>Advantage:</strong> Allow multiple songs to be "active" simultaneously</p>
+            <p><strong>Strategy:</strong> Pre-loaded defenses for dangerous encounters</p>
+            <p><strong>Lore:</strong> "Written in ink made from phoenix tears"</p>
+        </div>
+
+        <div class="bard-card">
+            <h3>🔔 Spirit Bells</h3>
+            <p><strong>The Dimensional Anchors</strong></p>
+            <p><strong>Effect:</strong> Create stable zones between realms</p>
+            <p><strong>Use:</strong> Enable safe communication with spirits</p>
+            <p><strong>Limitation:</strong> Stationary, can be disrupted by violence</p>
+            <p><strong>Strategy:</strong> Essential for negotiation attempts</p>
+            <p><strong>Lore:</strong> "Their pure tone reminds spirits of their mortal lives"</p>
         </div>
 
         <h2>🌟 The Spirit Queen's Tragic Backstory</h2>
@@ -635,11 +1030,22 @@
             </ul>
         </div>
 
+        <div class="bard-section">
+            <h3>🎼 The Bard's Understanding of the Queen</h3>
+            <p><strong>The Bard recognizes the Spirit Queen's torment as the ultimate tragedy requiring the ultimate song:</strong></p>
+            
+            <p><strong>🎭 Shared Artistic Soul:</strong> The Queen was once a patron of arts and culture, making her potentially receptive to musical intervention</p>
+            
+            <p><strong>💔 The Unfinished Symphony:</strong> Her life was cut short before she could complete her greatest works - perhaps the Bard can help finish what she started</p>
+            
+            <p><strong>🌟 The Redemption Aria:</strong> Only a song that acknowledges her pain while offering genuine hope for resolution can reach her tortured spirit</p>
+        </div>
+
         <h2>🕊️ Redemption vs. Destruction: The Moral Choice</h2>
         
         <div class="horror-analysis">
             <h3>⚖️ The Ultimate Ethical Dilemma</h3>
-            <p><strong>The expansion presents a profound choice that challenges traditional heroic narratives:</strong></p>
+            <p><strong>The expansion presents a profound choice that challenges traditional heroic narratives, and the Bard offers a unique third path:</strong></p>
             
             <p><strong>⚔️ The Warrior's Path (Destroy):</strong></p>
             <ul>
@@ -657,12 +1063,12 @@
                 <li>Risk: Greater danger but possibility of true resolution</li>
             </ul>
             
-            <p><strong>⚖️ The Judge's Path (Balance):</strong></p>
+            <p><strong>🎵 The Bard's Path (Harmony):</strong></p>
             <ul>
-                <li>Seek justice for both the Queen and her victims</li>
-                <li>Create conditions for natural spiritual resolution</li>
-                <li>Address systemic issues that created the tragedy</li>
-                <li>Risk: Complex solution requiring perfect execution</li>
+                <li>Use music to rewrite the Queen's tragic story</li>
+                <li>Create a new ending that honors both pain and hope</li>
+                <li>Transform torment into art, suffering into beauty</li>
+                <li>Risk: Requires perfect understanding and performance</li>
             </ul>
         </div>
 
@@ -672,30 +1078,30 @@
         
         <div class="torment-box">
             <h3>💭 The Battlefield of the Heart</h3>
-            <p><strong>Combat becomes as much about emotional intelligence as tactical skill:</strong></p>
+            <p><strong>Combat becomes as much about emotional intelligence as tactical skill, and the Bard excels at emotional warfare:</strong></p>
             
             <p><strong>😔 Sorrow Attacks:</strong></p>
             <ul>
                 <li>Heroes experience overwhelming sadness</li>
                 <li>Actions become sluggish, motivation decreases</li>
-                <li>Counter: Acts of hope and joy, sharing positive memories</li>
-                <li>Team support becomes crucial for recovery</li>
+                <li><strong>Bard Counter:</strong> Songs of joy and hope restore enthusiasm</li>
+                <li>Team support amplified by musical encouragement</li>
             </ul>
             
             <p><strong>😡 Rage Possession:</strong></p>
             <ul>
                 <li>Heroes lose control, attack randomly</li>
                 <li>Strength increases but strategy disappears</li>
-                <li>Counter: Calming influences, meditation, patience</li>
-                <li>Other heroes must restrain without causing harm</li>
+                <li><strong>Bard Counter:</strong> Calming lullabies and peaceful melodies</li>
+                <li>Musical restraint prevents harmful actions</li>
             </ul>
             
             <p><strong>😰 Fear Paralysis:</strong></p>
             <ul>
                 <li>Heroes become unable to act due to terror</li>
                 <li>Worst fears manifest as hallucinations</li>
-                <li>Counter: Courage from teammates, facing fears directly</li>
-                <li>Sometimes retreat is the wise choice</li>
+                <li><strong>Bard Counter:</strong> Inspiring anthems and courage ballads</li>
+                <li>Music dispels illusions and restores clarity</li>
             </ul>
         </div>
 
@@ -720,12 +1126,40 @@
                 <li>Risk personal sanity for greater good</li>
             </ul>
             
-            <p><strong>⚖️ The Judge Approach:</strong></p>
+            <p><strong>🎵 The Bard's Approach (Musical Mastery):</strong></p>
             <ul>
-                <li>Investigate the truth behind hauntings</li>
-                <li>Deliver justice for past wrongs</li>
-                <li>Create conditions for natural resolution</li>
-                <li>Balance mercy with accountability</li>
+                <li>Use music as universal language between realms</li>
+                <li>Transform negative emotions into positive energy</li>
+                <li>Create harmony between conflicting forces</li>
+                <li>Build bridges of understanding through shared melody</li>
+            </ul>
+        </div>
+
+        <div class="bard-section">
+            <h3>🎼 Advanced Bard Techniques</h3>
+            
+            <p><strong>🌟 The Perfect Performance:</strong></p>
+            <ul>
+                <li>Combine multiple songs into complex harmonies</li>
+                <li>Layer healing, protection, and inspiration simultaneously</li>
+                <li>Requires master-level skill and perfect timing</li>
+                <li>Can resolve entire encounters without violence</li>
+            </ul>
+            
+            <p><strong>👻 Spirit Duets:</strong></p>
+            <ul>
+                <li>Invite friendly spirits to join in musical performances</li>
+                <li>Create powerful collaborative effects</li>
+                <li>Risk: Malevolent spirits may attempt to corrupt the music</li>
+                <li>Reward: Unprecedented magical power when successful</li>
+            </ul>
+            
+            <p><strong>🌈 Emotional Alchemy:</strong></p>
+            <ul>
+                <li>Transform negative emotions into positive ones through music</li>
+                <li>Turn an enemy's rage into protective fury for allies</li>
+                <li>Convert sorrow into healing compassion</li>
+                <li>Master technique requiring deep empathy and skill</li>
             </ul>
         </div>
 
@@ -733,12 +1167,12 @@
         
         <div class="horror-analysis">
             <h3>🌟 How Spirit Queen's Torment Changed Horror Gaming</h3>
-            <p><strong>This expansion pioneered psychological horror mechanics that became industry standards:</strong></p>
+            <p><strong>This expansion pioneered psychological horror mechanics that became industry standards, with the Bard representing the evolution of support classes:</strong></p>
             
-            <p><strong>🎮 Video Game Influence:</strong> Sanity mechanics, moral choice systems, psychological horror</p>
-            <p><strong>🎲 Tabletop Evolution:</strong> Emotional combat, redemption narratives, trauma-informed storytelling</p>
-            <p><strong>🎬 Media Impact:</strong> Sympathetic antagonists, grief-driven horror, therapeutic narratives</p>
-            <p><strong>🎪 Modern Gaming:</strong> Mental health awareness, empathy mechanics, ethical complexity</p>
+            <p><strong>🎮 Video Game Influence:</strong> Sanity mechanics, moral choice systems, psychological horror, musical healing systems</p>
+            <p><strong>🎲 Tabletop Evolution:</strong> Emotional combat, redemption narratives, trauma-informed storytelling, music-based magic</p>
+            <p><strong>🎬 Media Impact:</strong> Sympathetic antagonists, grief-driven horror, therapeutic narratives, art as healing</p>
+            <p><strong>🎪 Modern Gaming:</strong> Mental health awareness, empathy mechanics, ethical complexity, creative problem-solving</p>
         </div>
 
         <h2>🎯 Mastery Challenges: Supernatural Trials</h2>
@@ -752,19 +1186,21 @@
             <p><strong>💔 The Empathetic Hero:</strong> Understand and address each spirit's specific trauma</p>
             <p><strong>⚖️ The Just Arbiter:</strong> Achieve perfect balance between mercy and justice</p>
             <p><strong>🌟 The Soul Healer:</strong> Transform the Spirit Queen from enemy to ally</p>
+            <p><strong>🎵 The Perfect Performer:</strong> Solve every encounter using only musical abilities</p>
+            <p><strong>🎭 The Harmony Maker:</strong> Create lasting peace between all conflicting parties</p>
         </div>
 
         <h2>🌟 Next Adventure Preview</h2>
         
-        <p>In our next lecture, we'll explore <strong>"Against the Ogre Horde"</strong> - Mass combat system and arena-style gameplay. Taccticcal warfare and resource management.</p>
+        <p style="color: #ffffff; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">In our next lecture, we'll explore <strong>"Against the Ogre Horde"</strong> - Mass combat system and arena-style gameplay. Tactical warfare and resource management.</p>
         
         <div class="ethereal-principle">
-            <p><strong>Remember:</strong> Spirit Queen's Torment taught us that the most powerful enemies aren't always those with the sharpest claws or strongest magic - they're those whose pain resonates with our own. Sometimes the greatest heroism isn't in defeating monsters, but in healing the wounds that created them. True victory comes not from destroying our enemies, but from understanding them deeply enough to transform pain into peace!</p>
+            <p><strong>Remember:</strong> Spirit Queen's Torment taught us that the most powerful enemies aren't always those with the sharpest claws or strongest magic - they're those whose pain resonates with our own. The Bard reminds us that sometimes the greatest heroism isn't in defeating monsters, but in healing the wounds that created them. True victory comes not from destroying our enemies, but from understanding them deeply enough to transform pain into peace through the universal language of music and art!</p>
         </div>
     </div>
 
     <script>
-        // Add ethereal wisps for atmospheric effect
+        // Add ethereal wisps and musical notes for atmospheric effect
         function createEtherealWisps() {
             for (let i = 0; i < 12; i++) {
                 const wisp = document.createElement('div');
@@ -778,7 +1214,22 @@
             }
         }
         
+        function createMusicalNotes() {
+            const notes = ['♪', '♫', '♬', '🎵', '🎶'];
+            for (let i = 0; i < 8; i++) {
+                const note = document.createElement('div');
+                note.className = 'musical-note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.top = Math.random() * 100 + '%';
+                note.style.animationDelay = Math.random() * 5 + 's';
+                note.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.querySelector('.spirit-realm').appendChild(note);
+            }
+        }
+        
         createEtherealWisps();
+        createMusicalNotes();
         
         // Sanity level animation
         let currentSanity = 25;
@@ -810,7 +1261,7 @@
             etherealCtx.clearRect(0, 0, etherealCanvas.width, etherealCanvas.height);
             
             // Background
-            etherealCtx.fillStyle = '#0a0015';
+            etherealCtx.fillStyle = '#000000';
             etherealCtx.fillRect(0, 0, etherealCanvas.width, etherealCanvas.height);
             
             // Draw phasing demonstration
@@ -838,7 +1289,7 @@
                 etherealCtx.fillText('👻', phase.x, phase.y + 8);
                 
                 // Phase label
-                etherealCtx.fillStyle = '#e1bee7';
+                etherealCtx.fillStyle = '#ffffff';
                 etherealCtx.font = '12px Arial';
                 etherealCtx.fillText(phase.label, phase.x, phase.y + 60);
                 
@@ -860,32 +1311,41 @@
                 }
             });
             
-            // Draw hero attempting to attack
-            etherealCtx.fillStyle = '#00bcd4';
+            // Draw bard with musical attack
+            etherealCtx.fillStyle = '#ff8f00';
             etherealCtx.fillRect(100, 200, 30, 30);
-            etherealCtx.fillStyle = '#fff';
+            etherealCtx.fillStyle = '#000000';
             etherealCtx.font = '16px Arial';
-            etherealCtx.fillText('🗡️', 115, 220);
+            etherealCtx.fillText('🎼', 115, 220);
             
-            // Draw ineffective attack
-            etherealCtx.strokeStyle = '#f44336';
+            // Draw musical attack (effective against spirits)
+            etherealCtx.strokeStyle = '#ff8f00';
             etherealCtx.lineWidth = 3;
-            etherealCtx.setLineDash([5, 5]);
+            etherealCtx.setLineDash([]);
             etherealCtx.beginPath();
             etherealCtx.moveTo(130, 215);
             etherealCtx.lineTo(270, 150);
             etherealCtx.stroke();
-            etherealCtx.setLineDash([]);
             
-            // "No Effect" text
-            etherealCtx.fillStyle = '#f44336';
+            // Musical notes along the attack line
+            const notes = ['♪', '♫', '♬'];
+            for (let i = 0; i < 3; i++) {
+                const x = 130 + (140 * i / 3);
+                const y = 215 - (65 * i / 3);
+                etherealCtx.fillStyle = '#ffc107';
+                etherealCtx.font = '14px Arial';
+                etherealCtx.fillText(notes[i], x, y);
+            }
+            
+            // "Effective!" text
+            etherealCtx.fillStyle = '#4caf50';
             etherealCtx.font = '14px Arial';
-            etherealCtx.fillText('No Effect!', 200, 180);
+            etherealCtx.fillText('Musical Attack Effective!', 180, 180);
             
-            etherealCtx.fillStyle = '#ce93d8';
+            etherealCtx.fillStyle = '#ffffff';
             etherealCtx.font = '16px Arial';
             etherealCtx.textAlign = 'center';
-            etherealCtx.fillText('Ethereal Phasing: Physical Attacks Pass Through Spirits', 300, 30);
+            etherealCtx.fillText('Bard\'s Music Transcends Physical Barriers', 300, 30);
             etherealCtx.textAlign = 'left';
         }
         
@@ -899,7 +1359,7 @@
             sanityCtx.clearRect(0, 0, sanityCanvas.width, sanityCanvas.height);
             
             // Background
-            sanityCtx.fillStyle = '#0a0015';
+            sanityCtx.fillStyle = '#000000';
             sanityCtx.fillRect(0, 0, sanityCanvas.width, sanityCanvas.height);
             
             // Draw mind visualization
@@ -937,7 +1397,7 @@
                 const labelX = mindX + Math.cos(labelAngle) * (zone.size + 20);
                 const labelY = mindY + Math.sin(labelAngle) * (zone.size + 20);
                 
-                sanityCtx.fillStyle = '#e1bee7';
+                sanityCtx.fillStyle = '#ffffff';
                 sanityCtx.font = '10px Arial';
                 sanityCtx.textAlign = 'center';
                 sanityCtx.fillText(zone.label, labelX, labelY);
@@ -974,15 +1434,45 @@
                 sanityCtx.setLineDash([]);
                 
                 // Attack label
-                sanityCtx.fillStyle = '#e1bee7';
+                sanityCtx.fillStyle = '#ffffff';
                 sanityCtx.font = '10px Arial';
                 sanityCtx.fillText(attack.type, attack.x, attack.y + 35);
             });
             
-            sanityCtx.fillStyle = '#ce93d8';
+            // Draw Bard's protective song
+            sanityCtx.fillStyle = '#ff8f00';
+            sanityCtx.beginPath();
+            sanityCtx.arc(mindX, mindY - 120, 25, 0, Math.PI * 2);
+            sanityCtx.fill();
+            
+            sanityCtx.fillStyle = '#000000';
+            sanityCtx.font = '20px Arial';
+            sanityCtx.textAlign = 'center';
+            sanityCtx.fillText('🎼', mindX, mindY - 112);
+            
+            // Protective musical barrier
+            sanityCtx.strokeStyle = '#ffc107';
+            sanityCtx.lineWidth = 4;
+            sanityCtx.beginPath();
+            sanityCtx.arc(mindX, mindY, 90, 0, Math.PI * 2);
+            sanityCtx.stroke();
+            
+            // Musical notes around the barrier
+            const musicalNotes = ['♪', '♫', '♬', '🎵'];
+            for (let i = 0; i < 8; i++) {
+                const angle = (i * 45) * (Math.PI / 180);
+                const noteX = mindX + Math.cos(angle) * 95;
+                const noteY = mindY + Math.sin(angle) * 95;
+                
+                sanityCtx.fillStyle = '#ffc107';
+                sanityCtx.font = '14px Arial';
+                sanityCtx.fillText(musicalNotes[i % musicalNotes.length], noteX, noteY);
+            }
+            
+            sanityCtx.fillStyle = '#ffffff';
             sanityCtx.font = '16px Arial';
             sanityCtx.textAlign = 'center';
-            sanityCtx.fillText('Sanity Under Assault: Psychological Combat Mechanics', 300, 30);
+            sanityCtx.fillText('Bard\'s Song of Soothing: Musical Protection Against Psychological Attacks', 300, 30);
             sanityCtx.textAlign = 'left';
         }
         
@@ -1018,6 +1508,10 @@
         battlefieldGrid.children[10].textContent = '👻';
         battlefieldState[10] = 'hero';
         
+        battlefieldGrid.children[12].className = 'ethereal-cell bard-hero';
+        battlefieldGrid.children[12].textContent = '🎼';
+        battlefieldState[12] = 'bard';
+        
         battlefieldGrid.children[35].className = 'ethereal-cell spirit-enemy';
         battlefieldGrid.children[35].textContent = '💀';
         battlefieldState[35] = 'spirit';
@@ -1025,6 +1519,11 @@
         function toggleRealm(index) {
             const cell = battlefieldGrid.children[index];
             const currentState = battlefieldState[index];
+            
+            // Don't change entity tiles
+            if (currentState === 'hero' || currentState === 'bard' || currentState === 'spirit') {
+                return;
+            }
             
             if (currentState === 'spirit-realm') {
                 cell.className = 'ethereal-cell material-realm-tile';
@@ -1051,17 +1550,19 @@
             let analysis = `Reality Status: ${spiritTiles} Spirit Realm, ${materialTiles} Material Realm, ${veilTears} Veil Tears. `;
             
             if (veilTears > 5) {
-                analysis += "Reality is severely unstable! High risk of dimensional collapse.";
+                analysis += "Reality is severely unstable! The Bard's harmony songs can help stabilize dimensional tears.";
             } else if (spiritTiles > materialTiles * 2) {
-                analysis += "Spirit realm dominance. Ethereal beings gain power here.";
+                analysis += "Spirit realm dominance. Bard's spiritual songs are especially powerful here.";
             } else if (materialTiles > spiritTiles * 2) {
-                analysis += "Material realm stability. Physical laws apply normally.";
+                analysis += "Material realm stability. Bard's war songs and physical support shine here.";
             } else {
-                analysis += "Balanced dimensional presence. Expect unpredictable interactions.";
+                analysis += "Balanced dimensional presence. Perfect conditions for the Bard's versatile abilities.";
             }
             
             realmAnalysis.innerHTML = `<strong>Ethereal Status:</strong> ${analysis}`;
         }
+        
+        analyzeRealm();
         
         // Sacred Artifacts Visualization
         const artifactsCanvas = document.getElementById('sacred_artifacts_canvas');
@@ -1071,54 +1572,56 @@
             artifactsCtx.clearRect(0, 0, artifactsCanvas.width, artifactsCanvas.height);
             
             // Background
-            artifactsCtx.fillStyle = '#0a0015';
+            artifactsCtx.fillStyle = '#000000';
             artifactsCtx.fillRect(0, 0, artifactsCanvas.width, artifactsCanvas.height);
             
             // Draw artifacts with protective auras
             const artifacts = [
-                {x: 150, y: 150, name: 'Holy Water', symbol: '💧', aura: '#87ceeb'},
-                {x: 300, y: 150, name: 'Silver Sword', symbol: '🗡️', aura: '#c0c0c0'},
-                {x: 450, y: 150, name: 'Protection Amulet', symbol: '📿', aura: '#ffd700'}
+                {x: 120, y: 150, name: 'Holy Water', symbol: '💧', aura: '#87ceeb'},
+                {x: 240, y: 150, name: 'Silver Sword', symbol: '🗡️', aura: '#c0c0c0'},
+                {x: 360, y: 150, name: 'Protection Amulet', symbol: '📿', aura: '#ffd700'},
+                {x: 480, y: 150, name: 'Ethereal Lute', symbol: '🎻', aura: '#ff8f00'}
             ];
             
             artifacts.forEach(artifact => {
                 // Protective aura
-                const gradient = artifactsCtx.createRadialGradient(artifact.x, artifact.y, 0, artifact.x, artifact.y, 60);
+                const gradient = artifactsCtx.createRadialGradient(artifact.x, artifact.y, 0, artifact.x, artifact.y, 50);
                 gradient.addColorStop(0, artifact.aura + '80');
                 gradient.addColorStop(0.5, artifact.aura + '40');
                 gradient.addColorStop(1, artifact.aura + '10');
                 
                 artifactsCtx.fillStyle = gradient;
                 artifactsCtx.beginPath();
-                artifactsCtx.arc(artifact.x, artifact.y, 60, 0, Math.PI * 2);
+                artifactsCtx.arc(artifact.x, artifact.y, 50, 0, Math.PI * 2);
                 artifactsCtx.fill();
                 
                 // Artifact core
                 artifactsCtx.fillStyle = artifact.aura;
                 artifactsCtx.beginPath();
-                artifactsCtx.arc(artifact.x, artifact.y, 25, 0, Math.PI * 2);
+                artifactsCtx.arc(artifact.x, artifact.y, 20, 0, Math.PI * 2);
                 artifactsCtx.fill();
                 
                 // Artifact symbol
-                artifactsCtx.fillStyle = '#1a0033';
-                artifactsCtx.font = '20px Arial';
+                artifactsCtx.fillStyle = artifact.name === 'Ethereal Lute' ? '#000000' : '#000000';
+                artifactsCtx.font = '16px Arial';
                 artifactsCtx.textAlign = 'center';
-                artifactsCtx.fillText(artifact.symbol, artifact.x, artifact.y + 7);
+                artifactsCtx.fillText(artifact.symbol, artifact.x, artifact.y + 5);
                 
                 // Artifact name
-                artifactsCtx.fillStyle = '#e1bee7';
-                artifactsCtx.font = '12px Arial';
-                artifactsCtx.fillText(artifact.name, artifact.x, artifact.y + 50);
+                artifactsCtx.fillStyle = '#ffffff';
+                artifactsCtx.font = '10px Arial';
+                artifactsCtx.fillText(artifact.name, artifact.x, artifact.y + 40);
             });
             
             // Draw spirit being repelled
             artifactsCtx.fillStyle = 'rgba(156, 39, 176, 0.5)';
             artifactsCtx.beginPath();
-            artifactsCtx.arc(300, 80, 30, 0, Math.PI * 2);
+            artifactsCtx.arc(300, 80, 25, 0, Math.PI * 2);
             artifactsCtx.fill();
             
-            artifactsCtx.fillStyle = '#e1bee7';
-            artifactsCtx.font = '24px Arial';
+            artifactsCtx.fillStyle = '#ffffff';
+            artifactsCtx.font = '20px Arial';
+            artifactsCtx.textAlign = 'center';
             artifactsCtx.fillText('👻', 300, 88);
             
             // Repulsion lines
@@ -1127,16 +1630,25 @@
             artifactsCtx.setLineDash([5, 5]);
             artifacts.forEach(artifact => {
                 artifactsCtx.beginPath();
-                artifactsCtx.moveTo(artifact.x, artifact.y - 25);
-                artifactsCtx.lineTo(300, 110);
+                artifactsCtx.moveTo(artifact.x, artifact.y - 20);
+                artifactsCtx.lineTo(300, 105);
                 artifactsCtx.stroke();
             });
             artifactsCtx.setLineDash([]);
             
-            artifactsCtx.fillStyle = '#ce93d8';
+            // Special musical waves from the Ethereal Lute
+            artifactsCtx.strokeStyle = '#ffc107';
+            artifactsCtx.lineWidth = 3;
+            for (let i = 1; i <= 3; i++) {
+                artifactsCtx.beginPath();
+                artifactsCtx.arc(480, 150, 50 + (i * 15), 0, Math.PI * 2);
+                artifactsCtx.stroke();
+            }
+            
+            artifactsCtx.fillStyle = '#ffffff';
             artifactsCtx.font = '16px Arial';
             artifactsCtx.textAlign = 'center';
-            artifactsCtx.fillText('Sacred Artifacts: Spiritual Protection and Offense', 300, 30);
+            artifactsCtx.fillText('Sacred Artifacts Enhanced by Bard\'s Musical Power', 300, 30);
             artifactsCtx.textAlign = 'left';
         }
         
@@ -1150,15 +1662,16 @@
             backstoryCtx.clearRect(0, 0, backstoryCanvas.width, backstoryCanvas.height);
             
             // Background
-            backstoryCtx.fillStyle = '#0a0015';
+            backstoryCtx.fillStyle = '#000000';
             backstoryCtx.fillRect(0, 0, backstoryCanvas.width, backstoryCanvas.height);
             
             // Draw transformation timeline
             const stages = [
-                {x: 120, y: 200, stage: 'Mortal Queen', symbol: '👑', color: '#ffd700'},
-                {x: 240, y: 170, stage: 'Betrayal', symbol: '💔', color: '#ff5722'},
-                {x: 360, y: 140, stage: 'Death', symbol: '💀', color: '#9e9e9e'},
-                {x: 480, y: 110, stage: 'Spirit Queen', symbol: '👻', color: '#9c27b0'}
+                {x: 100, y: 200, stage: 'Mortal Queen', symbol: '👑', color: '#ffd700'},
+                {x: 200, y: 170, stage: 'Betrayal', symbol: '💔', color: '#ff5722'},
+                {x: 300, y: 140, stage: 'Death', symbol: '💀', color: '#9e9e9e'},
+                {x: 400, y: 110, stage: 'Spirit Queen', symbol: '👻', color: '#9c27b0'},
+                {x: 500, y: 140, stage: 'Redemption?', symbol: '🌟', color: '#ff8f00'}
             ];
             
             // Draw transformation path
@@ -1167,9 +1680,19 @@
             backstoryCtx.beginPath();
             stages.forEach((stage, index) => {
                 if (index === 0) backstoryCtx.moveTo(stage.x, stage.y);
-                else backstoryCtx.lineTo(stage.x, stage.y);
+                else if (index < 4) backstoryCtx.lineTo(stage.x, stage.y);
             });
             backstoryCtx.stroke();
+            
+            // Draw potential redemption path (dashed)
+            backstoryCtx.strokeStyle = '#ff8f00';
+            backstoryCtx.lineWidth = 3;
+            backstoryCtx.setLineDash([10, 5]);
+            backstoryCtx.beginPath();
+            backstoryCtx.moveTo(stages[3].x, stages[3].y);
+            backstoryCtx.lineTo(stages[4].x, stages[4].y);
+            backstoryCtx.stroke();
+            backstoryCtx.setLineDash([]);
             
             // Draw stages
             stages.forEach((stage, index) => {
@@ -1177,28 +1700,28 @@
                 const intensity = (index + 1) / stages.length;
                 backstoryCtx.fillStyle = stage.color + '40';
                 backstoryCtx.beginPath();
-                backstoryCtx.arc(stage.x, stage.y, 30 + index * 5, 0, Math.PI * 2);
+                backstoryCtx.arc(stage.x, stage.y, 25 + index * 3, 0, Math.PI * 2);
                 backstoryCtx.fill();
                 
                 // Stage core
                 backstoryCtx.fillStyle = stage.color;
                 backstoryCtx.beginPath();
-                backstoryCtx.arc(stage.x, stage.y, 25, 0, Math.PI * 2);
+                backstoryCtx.arc(stage.x, stage.y, 20, 0, Math.PI * 2);
                 backstoryCtx.fill();
                 
                 // Stage symbol
-                backstoryCtx.fillStyle = index < 2 ? '#000' : '#fff';
-                backstoryCtx.font = '20px Arial';
+                backstoryCtx.fillStyle = index < 2 || index === 4 ? '#000000' : '#ffffff';
+                backstoryCtx.font = '16px Arial';
                 backstoryCtx.textAlign = 'center';
-                backstoryCtx.fillText(stage.symbol, stage.x, stage.y + 7);
+                backstoryCtx.fillText(stage.symbol, stage.x, stage.y + 5);
                 
                 // Stage name
-                backstoryCtx.fillStyle = '#e1bee7';
-                backstoryCtx.font = '12px Arial';
-                backstoryCtx.fillText(stage.stage, stage.x, stage.y + 50);
+                backstoryCtx.fillStyle = '#ffffff';
+                backstoryCtx.font = '10px Arial';
+                backstoryCtx.fillText(stage.stage, stage.x, stage.y + 40);
                 
                 // Transformation arrows
-                if (index < stages.length - 1) {
+                if (index < stages.length - 2) {
                     const nextStage = stages[index + 1];
                     const midX = (stage.x + nextStage.x) / 2;
                     const midY = (stage.y + nextStage.y) / 2;
@@ -1206,29 +1729,38 @@
                     backstoryCtx.fillStyle = '#ce93d8';
                     backstoryCtx.font = '16px Arial';
                     backstoryCtx.fillText('→', midX, midY);
+                } else if (index === 3) {
+                    backstoryCtx.fillStyle = '#ff8f00';
+                    backstoryCtx.font = '16px Arial';
+                    backstoryCtx.fillText('♪?', 450, 125);
                 }
             });
             
-            // Draw corruption spreading
-            backstoryCtx.strokeStyle = '#9c27b0';
-            backstoryCtx.lineWidth = 2;
-            for (let i = 0; i < 6; i++) {
-                const angle = (i * 60) * (Math.PI / 180);
-                const startX = 480 + Math.cos(angle) * 35;
-                const startY = 110 + Math.sin(angle) * 35;
-                const endX = 480 + Math.cos(angle) * 70;
-                const endY = 110 + Math.sin(angle) * 70;
-                
-                backstoryCtx.beginPath();
-                backstoryCtx.moveTo(startX, startY);
-                backstoryCtx.lineTo(endX, endY);
-                backstoryCtx.stroke();
-            }
+            // Draw Bard offering redemption
+            backstoryCtx.fillStyle = '#ff8f00';
+            backstoryCtx.beginPath();
+            backstoryCtx.arc(300, 280, 25, 0, Math.PI * 2);
+            backstoryCtx.fill();
             
-            backstoryCtx.fillStyle = '#ce93d8';
+            backstoryCtx.fillStyle = '#000000';
+            backstoryCtx.font = '20px Arial';
+            backstoryCtx.textAlign = 'center';
+            backstoryCtx.fillText('🎼', 300, 288);
+            
+            // Musical connection to redemption
+            backstoryCtx.strokeStyle = '#ffc107';
+            backstoryCtx.lineWidth = 2;
+            backstoryCtx.setLineDash([5, 5]);
+            backstoryCtx.beginPath();
+            backstoryCtx.moveTo(300, 255);
+            backstoryCtx.lineTo(500, 165);
+            backstoryCtx.stroke();
+            backstoryCtx.setLineDash([]);
+            
+            backstoryCtx.fillStyle = '#ffffff';
             backstoryCtx.font = '16px Arial';
             backstoryCtx.textAlign = 'center';
-            backstoryCtx.fillText('The Queen\'s Tragic Transformation: From Light to Torment', 300, 30);
+            backstoryCtx.fillText('The Queen\'s Journey: From Tragedy to Possible Redemption Through Music', 300, 30);
             backstoryCtx.textAlign = 'left';
         }
         
@@ -1242,11 +1774,11 @@
             emotionalCtx.clearRect(0, 0, emotionalCanvas.width, emotionalCanvas.height);
             
             // Background
-            emotionalCtx.fillStyle = '#0a0015';
+            emotionalCtx.fillStyle = '#000000';
             emotionalCtx.fillRect(0, 0, emotionalCanvas.width, emotionalCanvas.height);
             
             // Draw emotional battlefield
-            const hero = {x: 150, y: 150};
+            const bard = {x: 150, y: 150};
             const emotions = [
                 {x: 350, y: 100, type: 'Sorrow', symbol: '😢', color: '#2196f3'},
                 {x: 450, y: 150, type: 'Rage', symbol: '😡', color: '#f44336'},
@@ -1254,77 +1786,183 @@
                 {x: 300, y: 220, type: 'Guilt', symbol: '😔', color: '#795548'}
             ];
             
-            // Draw hero
-            emotionalCtx.fillStyle = '#00bcd4';
+            // Draw bard
+            emotionalCtx.fillStyle = '#ff8f00';
             emotionalCtx.beginPath();
-            emotionalCtx.arc(hero.x, hero.y, 25, 0, Math.PI * 2);
+            emotionalCtx.arc(bard.x, bard.y, 25, 0, Math.PI * 2);
             emotionalCtx.fill();
             
-            emotionalCtx.fillStyle = '#fff';
+            emotionalCtx.fillStyle = '#000000';
             emotionalCtx.font = '20px Arial';
             emotionalCtx.textAlign = 'center';
-            emotionalCtx.fillText('🛡️', hero.x, hero.y + 7);
+            emotionalCtx.fillText('🎼', bard.x, bard.y + 7);
             
-            // Draw emotional attacks
-            emotions.forEach(emotion => {
+            // Draw musical counter-attacks
+            emotions.forEach((emotion, index) => {
                 // Emotion source
                 emotionalCtx.fillStyle = emotion.color;
                 emotionalCtx.beginPath();
                 emotionalCtx.arc(emotion.x, emotion.y, 20, 0, Math.PI * 2);
                 emotionalCtx.fill();
                 
-                emotionalCtx.fillStyle = '#fff';
+                emotionalCtx.fillStyle = '#ffffff';
                 emotionalCtx.font = '16px Arial';
                 emotionalCtx.fillText(emotion.symbol, emotion.x, emotion.y + 5);
                 
-                // Attack wave
+                // Emotional attack wave
                 emotionalCtx.strokeStyle = emotion.color;
                 emotionalCtx.lineWidth = 3;
                 emotionalCtx.setLineDash([10, 5]);
                 emotionalCtx.beginPath();
                 emotionalCtx.moveTo(emotion.x, emotion.y);
-                emotionalCtx.lineTo(hero.x, hero.y);
+                emotionalCtx.lineTo(bard.x, bard.y);
                 emotionalCtx.stroke();
                 emotionalCtx.setLineDash([]);
                 
+                // Musical counter-attack
+                emotionalCtx.strokeStyle = '#ffc107';
+                emotionalCtx.lineWidth = 4;
+                emotionalCtx.beginPath();
+                emotionalCtx.moveTo(bard.x, bard.y);
+                emotionalCtx.lineTo(emotion.x, emotion.y);
+                emotionalCtx.stroke();
+                
+                // Musical notes along counter-attack
+                const notes = ['♪', '♫', '♬', '🎵'];
+                const midX = (bard.x + emotion.x) / 2;
+                const midY = (bard.y + emotion.y) / 2;
+                
+                emotionalCtx.fillStyle = '#ffc107';
+                emotionalCtx.font = '14px Arial';
+                emotionalCtx.fillText(notes[index], midX, midY);
+                
                 // Emotion label
-                emotionalCtx.fillStyle = '#e1bee7';
+                emotionalCtx.fillStyle = '#ffffff';
                 emotionalCtx.font = '10px Arial';
                 emotionalCtx.fillText(emotion.type, emotion.x, emotion.y + 35);
             });
             
-            // Draw defensive measures
-            const defenses = [
-                {x: 100, y: 100, name: 'Hope', symbol: '🌟'},
-                {x: 200, y: 100, name: 'Courage', symbol: '💪'},
-                {x: 100, y: 200, name: 'Love', symbol: '❤️'},
-                {x: 200, y: 200, name: 'Faith', symbol: '🕊️'}
+            // Draw musical defenses
+            const musicalDefenses = [
+                {x: 100, y: 100, name: 'Joy', symbol: '🌟', song: 'Hope Song'},
+                {x: 200, y: 100, name: 'Courage', symbol: '💪', song: 'War Ballad'},
+                {x: 100, y: 200, name: 'Love', symbol: '❤️', song: 'Harmony'},
+                {x: 200, y: 200, name: 'Peace', symbol: '🕊️', song: 'Lullaby'}
             ];
             
-            defenses.forEach(defense => {
+            musicalDefenses.forEach(defense => {
                 emotionalCtx.fillStyle = '#4caf50';
                 emotionalCtx.beginPath();
-                emotionalCtx.arc(defense.x, defense.y, 15, 0, Math.PI * 2);
+                emotionalCtx.arc(defense.x, defense.y, 12, 0, Math.PI * 2);
                 emotionalCtx.fill();
                 
-                emotionalCtx.fillStyle = '#fff';
-                emotionalCtx.font = '12px Arial';
+                emotionalCtx.fillStyle = '#ffffff';
+                emotionalCtx.font = '10px Arial';
                 emotionalCtx.textAlign = 'center';
-                emotionalCtx.fillText(defense.symbol, defense.x, defense.y + 4);
+                emotionalCtx.fillText(defense.symbol, defense.x, defense.y + 3);
                 
-                emotionalCtx.fillStyle = '#e1bee7';
+                emotionalCtx.fillStyle = '#ffffff';
                 emotionalCtx.font = '8px Arial';
-                emotionalCtx.fillText(defense.name, defense.x, defense.y + 25);
+                emotionalCtx.fillText(defense.song, defense.x, defense.y + 20);
             });
             
-            emotionalCtx.fillStyle = '#ce93d8';
+            emotionalCtx.fillStyle = '#ffffff';
             emotionalCtx.font = '16px Arial';
             emotionalCtx.textAlign = 'center';
-            emotionalCtx.fillText('Emotional Combat: Fighting Feelings with Heart', 300, 30);
+            emotionalCtx.fillText('Bard\'s Emotional Combat: Music Heals Hearts and Minds', 300, 30);
             emotionalCtx.textAlign = 'left';
         }
         
         drawEmotionalCombat();
+        
+        // Add dynamic musical harmony visualization
+        function createMusicalHarmonyEffect() {
+            const bardCards = document.querySelectorAll('.bard-card');
+            
+            bardCards.forEach((card, index) => {
+                card.addEventListener('mouseenter', () => {
+                    // Create floating musical notes
+                    for (let i = 0; i < 5; i++) {
+                        const note = document.createElement('div');
+                        note.style.position = 'absolute';
+                        note.style.left = (Math.random() * 50 + 25) + '%';
+                        note.style.top = (Math.random() * 50 + 25) + '%';
+                        note.style.fontSize = '20px';
+                        note.style.color = '#ffc107';
+                        note.style.animation = 'musical-drift 2s ease-out forwards';
+                        note.style.pointerEvents = 'none';
+                        note.style.zIndex = '1000';
+                        note.textContent = ['♪', '♫', '♬', '🎵', '🎶'][Math.floor(Math.random() * 5)];
+                        
+                        card.style.position = 'relative';
+                        card.appendChild(note);
+                        
+                        setTimeout(() => {
+                            if (note.parentNode) {
+                                note.parentNode.removeChild(note);
+                            }
+                        }, 2000);
+                    }
+                });
+            });
+        }
+        
+        // Add interactive sanity restoration through music
+        function addMusicalSanityHealing() {
+            const bardPortrait = document.querySelector('.bard-portrait');
+            
+            if (bardPortrait) {
+                bardPortrait.addEventListener('click', () => {
+                    // Healing effect
+                    currentSanity = Math.min(95, currentSanity + 20);
+                    
+                    // Visual feedback
+                    bardPortrait.style.transform = 'scale(1.1)';
+                    bardPortrait.style.boxShadow = '0 0 40px rgba(255, 193, 7, 1)';
+                    
+                    // Create healing musical notes
+                    for (let i = 0; i < 8; i++) {
+                        const note = document.createElement('div');
+                        note.style.position = 'absolute';
+                        note.style.left = '50%';
+                        note.style.top = '50%';
+                        note.style.fontSize = '24px';
+                        note.style.color = '#4caf50';
+                        note.style.animation = `musical-drift ${2 + Math.random()}s ease-out forwards`;
+                        note.style.pointerEvents = 'none';
+                        note.style.zIndex = '1000';
+                        note.textContent = '🎵';
+                        note.style.transform = `translate(-50%, -50%) rotate(${i * 45}deg) translateY(-60px)`;
+                        
+                        bardPortrait.style.position = 'relative';
+                        bardPortrait.appendChild(note);
+                        
+                        setTimeout(() => {
+                            if (note.parentNode) {
+                                note.parentNode.removeChild(note);
+                            }
+                        }, 2000);
+                    }
+                    
+                    setTimeout(() => {
+                        bardPortrait.style.transform = 'scale(1)';
+                        bardPortrait.style.boxShadow = '0 10px 30px rgba(255, 183, 77, 0.6)';
+                    }, 300);
+                });
+                
+                // Add tooltip
+                bardPortrait.title = 'Click to cast Healing Harmony - Restore sanity through the power of music!';
+                bardPortrait.style.cursor = 'pointer';
+            }
+        }
+        
+        // Initialize all effects
+        createMusicalHarmonyEffect();
+        addMusicalSanityHealing();
+        
+        console.log('Spirit Queen\'s Torment with Bard Hero enhancement loaded successfully!');
+        console.log('🎼 The Bard brings musical magic to supernatural horror!');
+        console.log('🌟 Click the Bard portrait to experience healing harmonies!');
     </script>
 </body>
 </html>

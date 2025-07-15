@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wizard Hero - HeroQuest Tutorial</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        .hero-card {
+            border: 3px solid #4B0082;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: linear-gradient(135deg, #8A2BE2, #9370DB);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+        }
+        .stat-display {
+            display: inline-block;
+            background: #483D8B;
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .canvas-container {
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f5f5dc;
+            border-radius: 10px;
+        }
+        .analogy-box {
+            background: #F8F8FF;
+            border-left: 5px solid #8A2BE2;
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .spell-mastery {
+            background: #E6E6FA;
+            border: 2px solid #9370DB;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border-left: 5px solid #9370DB;
+        }
+        .vulnerability-warning {
+            background: #FFE4E1;
+            border: 2px solid #DC143C;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .tactical-box {
+            background: #F0F8FF;
+            border: 2px solid #4169E1;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .spell-list {
+            background: #FFFACD;
+            border: 2px solid #DAA520;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+        .positioning-critical {
+            background: #FFE4B5;
+            border: 2px solid #FF8C00;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔮 The Wizard Hero: Master of Arcane Power</h1>
+        <p><em>Welcome, seeker of knowledge! Today we explore the mystical arts and devastating power of HeroQuest's ultimate magical specialist.</em></p>
+    </header>
+
+    <main>
+        <section class="hero-card">
+            <h2>Meet the Wizard</h2>
+            <p>The Wizard is HeroQuest's embodiment of pure magical power - imagine Gandalf crossed with a medieval artillery unit, wielding reality-bending spells while being as fragile as ancient parchment. This hero represents the ultimate high-risk, high-reward playstyle: capable of devastating entire groups of enemies or solving impossible problems with magic, but requiring constant protection and careful resource management to survive.</p>
+        </section>
+
+        <section>
+            <h2>Core Statistics: The Glass Cannon</h2>
+            
+            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
+            <div class="stat-display">Attack: 1 combat die</div>
+            <div class="stat-display">Defend: 2 combat dice</div>
+            <div class="stat-display">Body Points: 4</div>
+            <div class="stat-display">Mind Points: 6</div>
+
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> If heroes were military units, the Wizard would be a mobile artillery platform - devastating firepower (6 Mind Points) but extremely vulnerable (4 Body Points, 1 Attack). Like a howitzer that can level buildings but needs infantry protection, the Wizard can reshape battles but crumbles under direct assault.
+            </div>
+
+            <div class="canvas-container">
+                <h3>Wizard Stats Analysis: The Extremes</h3>
+                <canvas id="wizardStatsCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="vulnerability-warning">
+                <h3>⚠️ Critical Vulnerability Assessment</h3>
+                <p><strong>Physical Frailty:</strong> 4 Body Points means 2-3 good hits can eliminate the Wizard</p>
+                <p><strong>Combat Weakness:</strong> 1 Attack die makes physical combat nearly suicidal</p>
+                <p><strong>Dependency:</strong> Requires constant party protection and positioning support</p>
+                <p><strong>Resource Finite:</strong> Once Mind Points are spent, capabilities severely diminish</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Spellcasting Supremacy: The Wizard's Domain</h2>
+            
+            <p>With 6 Mind Points, the Wizard has unmatched magical capability in HeroQuest. This isn't just about having more spells - it's about fundamentally different tactical options that can change the nature of encounters entirely.</p>
+
+            <div class="spell-mastery">
+                <h3>🌟 Magical Supremacy Features</h3>
+                <p><strong>Maximum Spell Access:</strong> Can cast any spell in the game multiple times per quest</p>
+                <p><strong>Sustained Casting:</strong> Enough Mind Points for extended magical campaigns</p>
+                <p><strong>Spell Combinations:</strong> Can layer multiple magical effects in single encounters</p>
+                <p><strong>Emergency Reserves:</strong> Has magical solutions for unexpected crises</p>
+                <p><strong>Quest-Changing Power:</strong> Some spells can bypass entire encounter types</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Spell Capacity Comparison</h3>
+                <canvas id="spellCapacityCanvas" width="600" height="250"></canvas>
+            </div>
+
+            <div class="spell-list">
+                <h3>📜 Essential Wizard Spells</h3>
+                <p><strong>Ball of Flame (1 MP):</strong> Area damage - perfect for grouped enemies</p>
+                <p><strong>Lightning Bolt (2 MP):</strong> Line attack - handles corridors and tough foes</p>
+                <p><strong>Heal Body (1 MP):</strong> Keep yourself and allies fighting</p>
+                <p><strong>Pass Through Rock (2 MP):</strong> Ultimate positioning and escape tool</p>
+                <p><strong>Teleport (1 MP):</strong> Emergency repositioning and tactical surprise</p>
+                <p><strong>Sleep (2 MP):</strong> Crowd control for overwhelming situations</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Combat Philosophy: Redefining Engagement</h2>
+            
+            <p>The Wizard doesn't fight in the traditional sense - they reshape the battlefield. Understanding this fundamental difference is crucial to mastering Wizard play.</p>
+
+            <div class="analogy-box">
+                <strong>Chess Analogy:</strong> The Wizard is like having an extra Queen on the chessboard, but one that can only move once per turn and dies if anything touches it. When used correctly, it dominates the game; when exposed, it's instantly eliminated.
+            </div>
+
+            <div class="mermaid">
+                graph TD
+                    A[Wizard Turn Begins] --> B{Immediate Threats?}
+                    B -->|Yes| C{Can Escape?}
+                    C -->|Yes| D[Teleport/Pass Through Rock]
+                    C -->|No| E[Defensive Spell + Call for Help]
+                    B -->|No| F{Multiple Enemies Clustered?}
+                    F -->|Yes| G[Ball of Flame for Area Damage]
+                    F -->|No| H{Single Tough Enemy?}
+                    H -->|Yes| I[Lightning Bolt for High Damage]
+                    H -->|No| J[Heal/Support Spells]
+                    D --> K[Reassess from Safety]
+                    E --> L[Pray for Rescue]
+                    G --> M[Evaluate Results]
+                    I --> M
+                    J --> M
+            </div>
+
+            <div class="tactical-box">
+                <h3>🎯 Combat Engagement Principles</h3>
+                <p><strong>Never Engage Directly:</strong> Use spells to avoid physical combat entirely</p>
+                <p><strong>Area Denial:</strong> Control space through magical effects</p>
+                <p><strong>Force Multiplication:</strong> Make the party more effective rather than fighting yourself</p>
+                <p><strong>Problem Solving:</strong> Use magic to bypass challenges rather than overcome them</p>
+                <p><strong>Strategic Patience:</strong> Wait for optimal spell targets rather than acting immediately</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Positioning: The Art of Magical Warfare</h2>
+            
+            <p>Wizard positioning is perhaps the most complex aspect of the class. You must balance spell range, escape routes, party protection, and tactical opportunities while remaining far from any physical threat.</p>
+
+            <div class="positioning-critical">
+                <h3>🗺️ Positioning Principles</h3>
+                <p><strong>Maximum Range:</strong> Stay at the edge of spell range whenever possible</p>
+                <p><strong>Cover and Concealment:</strong> Use walls and corners to break line of sight</p>
+                <p><strong>Escape Routes:</strong> Always have multiple withdrawal options planned</p>
+                <p><strong>Party Coordination:</strong> Position where allies can protect you</p>
+                <p><strong>Chokepoint Control:</strong> Use narrow passages to limit enemy approach angles</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Wizard Positioning Strategy</h3>
+                <canvas id="wizardPositioningCanvas" width="400" height="400"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Medieval Warfare Parallel:</strong> The Wizard is like a siege engineer operating a trebuchet - devastatingly effective at range, but if cavalry reaches the engine, the crew is doomed. Success depends on maintaining distance and having infantry protection.
+            </div>
+        </section>
+
+        <section>
+            <h2>Resource Management: The Mind Point Economy</h2>
+            
+            <p>Managing 6 Mind Points throughout an entire quest is a complex strategic challenge. Unlike other heroes who can fall back on physical capabilities, the Wizard's effectiveness directly correlates with remaining magical resources.</p>
+
+            <div class="spell-mastery">
+                <h3>💎 Mind Point Economics</h3>
+                <p><strong>Opening Gambit:</strong> Use 2-3 Mind Points early to establish dominance</p>
+                <p><strong>Sustained Operations:</strong> Spend 1-2 per major encounter during mid-quest</p>
+                <p><strong>Emergency Reserve:</strong> Always keep 2 Mind Points for escape/healing</p>
+                <p><strong>Efficiency Focus:</strong> Maximize damage per Mind Point spent</p>
+                <p><strong>Situational Awareness:</strong> Save high-cost spells for optimal moments</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Mind Point Usage Strategies</h3>
+                <canvas id="mindPointUsageCanvas" width="500" height="300"></canvas>
+            </div>
+
+            <div class="vulnerability-warning">
+                <h3>Resource Depletion Crisis</h3>
+                <p><strong>The Problem:</strong> A Wizard with 0 Mind Points is nearly useless</p>
+                <p><strong>Early Warning Signs:</strong> Down to 2 Mind Points with significant quest remaining</p>
+                <p><strong>Emergency Protocols:</strong> Extreme defensive play, rely entirely on party protection</p>
+                <p><strong>Prevention:</strong> Conservative early spending, efficient spell selection</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Party Dynamics: The Force Multiplier</h2>
+            
+            <p>The Wizard's relationship with the party is unique among heroes - they're simultaneously the most powerful and most dependent member. This creates fascinating tactical dynamics.</p>
+
+            <div class="mermaid">
+                graph LR
+                    A[Wizard: Magical Artillery] --> B[Barbarian: Primary Protector]
+                    A --> C[Dwarf: Trap Clearing & Secondary Protection]
+                    A --> D[Elf: Flexible Support & Backup]
+                    B --> E[Tactical Dominance]
+                    C --> E
+                    D --> E
+                    F[Wizard Area Spells] --> G[Enemy Formation Disruption]
+                    G --> H[Party Tactical Advantage]
+                    H --> E
+            </div>
+
+            <div class="tactical-box">
+                <h3>🤝 Party Synergy Strategies</h3>
+                <p><strong>With Barbarian:</strong> Tank protects while Wizard provides devastating support fire</p>
+                <p><strong>With Dwarf:</strong> Safe passage through trapped areas enables optimal positioning</p>
+                <p><strong>With Elf:</strong> Flexible support and backup magical capability</p>
+                <p><strong>Communication Critical:</strong> Party must coordinate around Wizard's needs and capabilities</p>
+                <p><strong>Bodyguard Protocol:</strong> At least one party member always positioned to intercept threats</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Party Effectiveness with Wizard</h3>
+                <canvas id="partyEffectivenessCanvas" width="500" height="250"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>Equipment Strategy: Tools for the Scholar-Warrior</h2>
+            
+            <p>Wizard equipment choices focus on survival and magical enhancement rather than combat effectiveness. Every item must contribute to keeping the Wizard alive and casting spells.</p>
+
+            <div class="spell-list">
+                <h3>🎒 Optimal Wizard Loadout</h3>
+                <p><strong>Staff of Power:</strong> Additional spell damage and magical focus</p>
+                <p><strong>Robes of Protection:</strong> Extra defense without mobility penalties</p>
+                <p><strong>Healing Potions:</strong> Emergency health restoration when allies can't help</p>
+                <p><strong>Dagger:</strong> Last resort weapon - hopefully never used</p>
+                <p><strong>Spell Components:</strong> Extended magical capability for longer quests</p>
+                <p><strong>Rope/Tools:</strong> Utility items for problem-solving</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Equipment Impact on Wizard Survival</h3>
+                <canvas id="wizardEquipmentCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="positioning-critical">
+                <h3>Equipment Philosophy: Survival Over Power</h3>
+                <p><strong>Priority One:</strong> Items that increase survivability</p>
+                <p><strong>Priority Two:</strong> Magical enhancement and efficiency</p>
+                <p><strong>Priority Three:</strong> Utility items for problem-solving</p>
+                <p><strong>Avoid:</strong> Heavy armor (movement penalties) and melee weapons (false confidence)</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Advanced Techniques: Mastering the Arcane Arts</h2>
+            
+            <div class="spell-mastery">
+                <h3>⚡ Advanced Wizard Tactics</h3>
+                <p><strong>Spell Sequencing:</strong> Chain spells for maximum effect - Sleep enemies, then Ball of Flame</p>
+                <p><strong>Battlefield Control:</strong> Use Pass Through Rock to appear behind enemy lines</p>
+                <p><strong>Resource Cycling:</strong> Alternate high and low cost spells to manage Mind Points</p>
+                <p><strong>Predictive Casting:</strong> Cast spells based on enemy movement patterns</p>
+                <p><strong>Emergency Protocols:</strong> Pre-planned escape sequences using Teleport and healing</p>
+            </div>
+
+            <div class="vulnerability-warning">
+                <h3>Master-Level Example: The Corridor Gambit</h3>
+                <p><strong>Setup:</strong> Multiple enemies advancing through narrow passage</p>
+                <p><strong>Phase 1:</strong> Position at maximum Lightning Bolt range</p>
+                <p><strong>Phase 2:</strong> Cast Lightning Bolt down corridor (2 MP) hitting multiple targets</p>
+                <p><strong>Phase 3:</strong> If enemies survive, cast Sleep (2 MP) to halt advance</p>
+                <p><strong>Phase 4:</strong> Party moves in to finish helpless enemies</p>
+                <p><strong>Result:</strong> 4 Mind Points eliminate entire enemy group with minimal party risk</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Advanced Spell Combination Effects</h3>
+                <canvas id="spellCombosCanvas" width="600" height="300"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <h2>When to Choose the Wizard: Perfect Scenarios</h2>
+            
+            <div class="tactical-box">
+                <h3>Ideal Wizard Missions</h3>
+                <p><strong>Large Enemy Groups:</strong> Area spells shine against multiple foes</p>
+                <p><strong>Puzzle-Heavy Quests:</strong> Magical solutions for complex challenges</p>
+                <p><strong>Experienced Parties:</strong> Teams that understand protection requirements</p>
+                <p><strong>Long Adventures:</strong> Extended quests where 6 Mind Points provide sustained advantage</p>
+                <p><strong>Defensive Scenarios:</strong> Situations where controlling enemy movement is crucial</p>
+            </div>
+
+            <div class="vulnerability-warning">
+                <h3>Challenging Scenarios for Wizards</h3>
+                <p><strong>Solo Play:</strong> No protection means rapid elimination</p>
+                <p><strong>Ambush-Heavy Dungeons:</strong> Surprise attacks often prove fatal</p>
+                <p><strong>Speed Runs:</strong> Careful positioning slows party movement</p>
+                <p><strong>Combat Gauntlets:</strong> Sustained fighting exhausts Mind Points quickly</p>
+                <p><strong>New Player Groups:</strong> Inexperienced parties struggle with protection coordination</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Crisis Management: When Things Go Wrong</h2>
+            
+            <div class="positioning-critical">
+                <h3>🚨 Emergency Protocols</h3>
+                <p><strong>Surrounded:</strong> Teleport to safety, call for rescue</p>
+                <p><strong>Low Health:</strong> Heal Body immediately, then defensive positioning</p>
+                <p><strong>Mind Points Depleted:</strong> Maximum defensive play, rely on party entirely</p>
+                <p><strong>Party Separated:</strong> Use Pass Through Rock to rejoin or escape</p>
+                <p><strong>Overwhelming Enemies:</strong> Sleep spell to buy time for retreat</p>
+            </div>
+
+            <div class="canvas-container">
+                <h3>Wizard Survival Rates by Scenario</h3>
+                <canvas id="survivalRatesCanvas" width="500" height="250"></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Aviation Analogy:</strong> Flying a fighter jet requires different skills than driving a tank. The Wizard is like piloting an F-16 - incredible capability, but one mistake and you're shot down. Success requires completely different thinking than ground-based combat.
+            </div>
+        </section>
+
+        <section>
+            <h2>Related Topics for Further Exploration</h2>
+            
+            <ul>
+                <li><strong>Spell Mastery Guide:</strong> Detailed analysis of every spell and optimal usage scenarios</li>
+                <li><strong>Positioning Theory:</strong> Advanced battlefield geometry and safe casting positions</li>
+                <li><strong>Party Communication:</strong> Coordination protocols for protecting magical assets</li>
+                <li><strong>Resource Economics:</strong> Mathematical analysis of Mind Point efficiency</li>
+                <li><strong>Crisis Management:</strong> Emergency procedures for Wizard survival</li>
+                <li><strong>Magical Equipment:</strong> Comprehensive guide to magical items and their synergies</li>
+                <li><strong>Encounter Analysis:</strong> Adapting spell selection to different enemy types</li>
+                <li><strong>Quest Planning:</strong> Long-term resource management for extended adventures</li>
+            </ul>
+        </section>
+
+        <footer>
+            <p><em>Remember, young scholar: Magic is not merely power - it is responsibility, wisdom, and above all, timing. The greatest Wizard is not the one who casts the most spells, but the one who casts the right spell at the perfect moment. In the depths of Morcar's domain, knowledge and caution are your truest armor!</em></p>
+        </footer>
+    </main>
+
+    <script>
+        // Wizard Stats Analysis Chart
+        const wizardStatsCanvas = document.getElementById('wizardStatsCanvas');
+        const wizardStatsCtx = wizardStatsCanvas.getContext('2d');
+        
+        wizardStatsCtx.clearRect(0, 0, 500, 300);
+        wizardStatsCtx.font = '14px Arial';
+        wizardStatsCtx.textAlign = 'center';
+        
+        const stats = [
+            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
+            {name: 'Attack', value: 1, max: 4, color: '#DC143C', label: '1 die'},
+            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
+            {name: 'Body', value: 4, max: 8, color: '#FF6B6B', label: '4 points'},
+            {name: 'Mind', value: 6, max: 6, color: '#9370DB', label: '6 points'}
+        ];
+        
+        stats.forEach((stat, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (stat.value / stat.max) * 180;
+            
+            wizardStatsCtx.fillStyle = stat.color;
+            wizardStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
+            
+            wizardStatsCtx.fillStyle = 'black';
+            wizardStatsCtx.fillText(stat.label, x, 250);
+            wizardStatsCtx.fillText(stat.name, x, 270);
+        });
+
+        // Spell Capacity Comparison
+        const spellCanvas = document.getElementById('spellCapacityCanvas');
+        const spellCtx = spellCanvas.getContext('2d');
+        
+        spellCtx.clearRect(0, 0, 600, 250);
+        spellCtx.font = '12px Arial';
+        spellCtx.textAlign = 'center';
+        
+        const heroes = [
+            {name: 'Wizard', mindPoints: 6, efficiency: 100, color: '#9370DB'},
+            {name: 'Elf', mindPoints: 4, efficiency: 80, color: '#32CD32'},
+            {name: 'Others', mindPoints: 2, efficiency: 50, color: '#FF6B6B'}
+        ];
+        
+        heroes.forEach((hero, i) => {
+            const x = 120 + i * 150;
+            
+            // Mind Points bar
+            const mpHeight = (hero.mindPoints / 6) * 150;
+            spellCtx.fillStyle = hero.color;
+            spellCtx.fillRect(x - 50, 200 - mpHeight, 40, mpHeight);
+            
+            // Efficiency bar
+            const effHeight = (hero.efficiency / 100) * 150;
+            spellCtx.fillStyle = hero.color;
+            spellCtx.globalAlpha = 0.6;
+            spellCtx.fillRect(x + 10, 200 - effHeight, 40, effHeight);
+            spellCtx.globalAlpha = 1.0;
+            
+            spellCtx.fillStyle = 'black';
+            spellCtx.fillText(hero.mindPoints + ' MP', x - 30, 215);
+            spellCtx.fillText(hero.efficiency + '%', x + 30, 215);
+            spellCtx.fillText(hero.name, x, 235);
+        });
+        
+        spellCtx.fillText('Mind Points (Solid) vs Magical Efficiency (Faded)', 300, 30);
+
+        // Wizard Positioning Strategy
+        const posCanvas = document.getElementById('wizardPositioningCanvas');
+        const posCtx = posCanvas.getContext('2d');
+        
+        posCtx.clearRect(0, 0, 400, 400);
+        
+        // Draw grid
+        for(let i = 0; i <= 8; i++) {
+            posCtx.strokeStyle = '#CCC';
+            posCtx.beginPath();
+            posCtx.moveTo(i * 50, 0);
+            posCtx.lineTo(i * 50, 400);
+            posCtx.stroke();
+            
+            posCtx.beginPath();
+            posCtx.moveTo(0, i * 50);
+            posCtx.lineTo(400, i * 50);
+            posCtx.stroke();
+        }
+        
+        // Draw walls
+        posCtx.fillStyle = '#654321';
+        posCtx.fillRect(150, 0, 50, 200);
+        posCtx.fillRect(200, 150, 50, 250);
+        posCtx.fillRect(50, 250, 150, 50);
+        
+        // Draw enemies (red)
+        posCtx.fillStyle = '#FF0000';
+        posCtx.fillRect(275, 75, 25, 25);
+        posCtx.fillRect(325, 125, 25, 25);
+        posCtx.fillRect(225, 275, 25, 25);
+        
+        // Draw party members (allies)
+        posCtx.fillStyle = '#4169E1';
+        posCtx.fillRect(225, 125, 25, 25);
+        posCtx.fillRect(125, 175, 25, 25);
+        posCtx.fillRect(275, 225, 25, 25);
+        
+        // Draw Wizard (safe position)
+        posCtx.fillStyle = '#9370DB';
+        posCtx.fillRect(75, 75, 25, 25);
+        
+        // Draw spell effect areas
+        posCtx.strokeStyle = '#FFD700';
+        posCtx.setLineDash([3, 3]);
+        posCtx.lineWidth = 2;
+        
+        // Lightning bolt line
+        posCtx.beginPath();
+        posCtx.moveTo(87, 87);
+        posCtx.lineTo(287, 87);
+        posCtx.stroke();
+        
+        // Ball of flame area
+        posCtx.beginPath();
+        posCtx.arc(337, 137, 30, 0, 2 * Math.PI);
+        posCtx.stroke();
+        
+        posCtx.setLineDash([]);
+        posCtx.lineWidth = 1;
+        
+        // Labels
+        posCtx.fillStyle = 'white';
+        posCtx.font = '10px Arial';
+        posCtx.textAlign = 'center';
+        posCtx.fillText('W', 87, 90);
+        posCtx.fillText('B', 237, 140);
+        posCtx.fillText('D', 137, 190);
+        posCtx.fillText('E', 287, 240);
+        
+        posCtx.fillText('E', 287, 90);
+        posCtx.fillText('E', 337, 140);
+        posCtx.fillText('E', 237, 290);
+        
+        posCtx.fillStyle = 'black';
+        posCtx.font = '12px Arial';
+        posCtx.fillText('Wizard Positioning: Maximum Range, Multiple Escape Routes', 200, 20);
+        posCtx.fillText('Gold Lines = Spell Effects', 200, 380);
+
+        // Mind Point Usage Strategies
+        const mpCanvas = document.getElementById('mindPointUsageCanvas');
+        const mpCtx = mpCanvas.getContext('2d');
+        
+        mpCtx.clearRect(0, 0, 500, 300);
+        mpCtx.font = '12px Arial';
+        mpCtx.textAlign = 'center';
+        
+        const strategies = [
+            {name: 'Conservative', early: 1, mid: 3, late: 2, color: '#4169E1'},
+            {name: 'Balanced', early: 2, mid: 3, late: 1, color: '#32CD32'},
+            {name: 'Aggressive', early: 3, mid: 2, late: 1, color: '#FF6B6B'},
+            {name: 'Burst', early: 4, mid: 2, late: 0, color: '#9370DB'}
+        ];
+        
+        strategies.forEach((strategy, i) => {
+            const x = 80 + i * 90;
+            const totalMind = 6;
+            const unitHeight = 200 / totalMind;
+            
+            // Early game
+            mpCtx.fillStyle = strategy.color;
+            mpCtx.fillRect(x - 30, 250 - (strategy.early * unitHeight), 60, strategy.early * unitHeight);
+            
+            // Mid game
+            mpCtx.fillStyle = strategy.color;
+            mpCtx.globalAlpha = 0.7;
+            mpCtx.fillRect(x - 30, 250 - ((strategy.early + strategy.mid) * unitHeight), 60, strategy.mid * unitHeight);
+            
+            // Late game
+            mpCtx.fillStyle = strategy.color;
+            mpCtx.globalAlpha = 0.4;
+            mpCtx.fillRect(x - 30, 250 - ((strategy.early + strategy.mid + strategy.late) * unitHeight), 60, strategy.late * unitHeight);
+            mpCtx.globalAlpha = 1.0;
+            
+            mpCtx.fillStyle = 'black';
+            mpCtx.fillText(strategy.name, x, 270);
+            mpCtx.fillText(`${strategy.early}/${strategy.mid}/${strategy.late}`, x, 285);
+        });
+        
+        mpCtx.fillText('Mind Point Usage: Early/Mid/Late Game Distribution', 250, 30);
+
+        // Party Effectiveness with Wizard
+        const partyCanvas = document.getElementById('partyEffectivenessCanvas');
+        const partyCtx = partyCanvas.getContext('2d');
+        
+        partyCtx.clearRect(0, 0, 500, 250);
+        partyCtx.font = '12px Arial';
+        partyCtx.textAlign = 'center';
+        
+        const partyCombs = [
+            {combo: 'Wizard Solo', effectiveness: 30, color: '#FF6B6B'},
+            {combo: 'Wizard + Barbarian', effectiveness: 90, color: '#4ECDC4'},
+            {combo: 'Wizard + Dwarf', effectiveness: 75, color: '#96CEB4'},
+            {combo: 'Wizard + Elf', effectiveness: 85, color: '#32CD32'},
+            {combo: 'Full Party', effectiveness: 100, color: '#FFD700'}
+        ];
+        
+        partyCombs.forEach((combo, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (combo.effectiveness / 100) * 150;
+            
+            partyCtx.fillStyle = combo.color;
+            partyCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
+            
+            partyCtx.fillStyle = 'black';
+            partyCtx.fillText(combo.effectiveness + '%', x, 185 - barHeight);
+            partyCtx.save();
+            partyCtx.translate(x, 220);
+            partyCtx.rotate(-Math.PI / 4);
+            partyCtx.fillText(combo.combo, 0, 0);
+            partyCtx.restore();
+        });
+
+        // Equipment Impact on Wizard Survival
+        const equipCanvas = document.getElementById('wizardEquipmentCanvas');
+        const equipCtx = equipCanvas.getContext('2d');
+        
+        equipCtx.clearRect(0, 0, 500, 250);
+        equipCtx.font = '12px Arial';
+        equipCtx.textAlign = 'center';
+        
+        const equipCategories = [
+            {name: 'Defense', base: 30, equipped: 60, color: '#4169E1'},
+            {name: 'Mobility', base: 70, equipped: 85, color: '#32CD32'},
+            {name: 'Spell Power', base: 80, equipped: 95, color: '#9370DB'},
+            {name: 'Survival', base: 25, equipped: 70, color: '#FF6B6B'}
+        ];
+        
+        equipCategories.forEach((category, i) => {
+            const x = 80 + i * 90;
+            
+            // Base
+            const baseHeight = (category.base / 100) * 120;
+            equipCtx.fillStyle = '#DDD';
+            equipCtx.fillRect(x - 25, 180 - baseHeight, 20, baseHeight);
+            
+            // Equipped
+            const equipHeight = (category.equipped / 100) * 120;
+            equipCtx.fillStyle = category.color;
+            equipCtx.fillRect(x + 5, 180 - equipHeight, 20, equipHeight);
+            
+            equipCtx.fillStyle = 'black';
+            equipCtx.fillText(category.base + '%', x - 15, 195);
+            equipCtx.fillText(category.equipped + '%', x + 15, 195);
+            equipCtx.fillText(category.name, x, 215);
+        });
+        
+        equipCtx.fillText('Base (Gray) vs Equipped (Color) Capabilities', 250, 30);
+
+        // Advanced Spell Combination Effects
+        const comboCanvas = document.getElementById('spellCombosCanvas');
+        const comboCtx = comboCanvas.getContext('2d');
+        
+        comboCtx.clearRect(0, 0, 600, 300);
+        comboCtx.font = '11px Arial';
+        comboCtx.textAlign = 'center';
+        
+        const spellCombos = [
+            {name: 'Sleep + Ball of Flame', cost: 3, effectiveness: 95, color: '#9370DB'},
+            {name: 'Lightning + Teleport', cost: 3, effectiveness: 85, color: '#FFD700'},
+            {name: 'Pass Rock + Lightning', cost: 4, effectiveness: 90, color: '#4169E1'},
+            {name: 'Heal + Teleport', cost: 2, effectiveness: 70, color: '#32CD32'},
+            {name: 'Ball + Ball + Ball', cost: 3, effectiveness: 80, color: '#FF6B6B'}
+        ];
+        
+        spellCombos.forEach((combo, i) => {
+            const x = 80 + i * 100;
+            
+            // Effectiveness bar
+            const effHeight = (combo.effectiveness / 100) * 150;
+            comboCtx.fillStyle = combo.color;
+            comboCtx.fillRect(x - 30, 220 - effHeight, 60, effHeight);
+            
+            // Cost indicator
+            comboCtx.fillStyle = 'black';
+            comboCtx.fillRect(x - 35, 225, 10, combo.cost * 8);
+            
+            comboCtx.fillStyle = 'black';
+            comboCtx.fillText(combo.effectiveness + '%', x, 205 - effHeight);
+            comboCtx.fillText(combo.cost + ' MP', x - 30, 250);
+            
+            comboCtx.save();
+            comboCtx.translate(x, 270);
+            comboCtx.rotate(-Math.PI / 6);
+            comboCtx.fillText(combo.name, 0, 0);
+            comboCtx.restore();
+        });
+        
+        comboCtx.fillText('Spell Combination Effectiveness', 300, 30);
+        comboCtx.fillText('Black bars show Mind Point cost', 300, 50);
+
+        // Survival Rates by Scenario
+        const survivalCanvas = document.getElementById('survivalRatesCanvas');
+        const survivalCtx = survivalCanvas.getContext('2d');
+        
+        survivalCtx.clearRect(0, 0, 500, 250);
+        survivalCtx.font = '12px Arial';
+        survivalCtx.textAlign = 'center';
+        
+        const scenarios = [
+            {name: 'Protected by Party', rate: 85, color: '#32CD32'},
+            {name: 'Good Positioning', rate: 70, color: '#96CEB4'},
+            {name: 'Average Situation', rate: 55, color: '#FFEAA7'},
+            {name: 'Exposed/Isolated', rate: 25, color: '#FF6B6B'},
+            {name: 'Ambushed', rate: 10, color: '#DC143C'}
+        ];
+        
+        scenarios.forEach((scenario, i) => {
+            const x = 60 + i * 80;
+            const barHeight = (scenario.rate / 100) * 150;
+            
+            survivalCtx.fillStyle = scenario.color;
+            survivalCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
+            
+            survivalCtx.fillStyle = 'black';
+            survivalCtx.fillText(scenario.rate + '%', x, 185 - barHeight);
+            survivalCtx.save();
+            survivalCtx.translate(x, 220);
+            survivalCtx.rotate(-Math.PI / 4);
+            survivalCtx.fillText(scenario.name, 0, 0);
+            survivalCtx.restore();
+        });
+        
+        survivalCtx.fillText('Wizard Survival Rates by Tactical Situation', 250, 30);
+    </script>
+</body>
+</html>
