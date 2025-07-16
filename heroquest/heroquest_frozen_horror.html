@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest The Frozen Horror</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>The Frozen Horror</h1>
+
+  <p><strong>The Frozen Horror</strong>, also known as the Barbarian Quest Pack, was released in 1992 and marked a shift in scale and difficulty. This time, the Barbarian is the central character—facing harsh icy landscapes, new monsters, and a legendary evil buried deep in the north. It introduced solo quests, making it one of the most unique expansions in the series.</p>
+
+  <h2>Story Overview</h2>
+
+  <p>The Frozen North is under siege. A powerful demon-like entity known only as the <strong>Frozen Horror</strong> has awakened, and the Barbarian is summoned to stop the encroaching evil before it spreads south. He must first survive a series of <strong>solo trials</strong> to prove his strength, before being joined by his allies in a brutal 10-quest campaign to defeat the ancient terror.</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Barbarian Called North] --> B[3 Solo Quests]
+      B --> C[Allies Join]
+      C --> D[Explore Ice Caverns]
+      D --> E[Face Frozen Horror]
+      E --> F[Seal Ancient Evil]
+  </div>
+
+  <h2>What's Included</h2>
+
+  <ul>
+    <li>Quest Book with 10 group quests and 3 solo quests</li>
+    <li>New miniatures: Frozen Horror, Yetis, Ice Gremlins, Polar Warbears</li>
+    <li>New tiles: Ice caverns, frozen doors, magical traps</li>
+    <li>New equipment cards and potions</li>
+  </ul>
+
+  <h2>Unique Gameplay Elements</h2>
+
+  <p>This expansion introduced several firsts:</p>
+
+  <ul>
+    <li><strong>Solo play</strong>: The Barbarian must prove himself alone, adding difficulty and narrative focus</li>
+    <li><strong>New hero gear</strong>: The barbarian gains new exclusive weapons and armor</li>
+    <li><strong>Brutal enemies</strong>: The Frozen Horror can summon minions and unleash deadly magic</li>
+    <li><strong>Environmental hazards</strong>: Slippery floors, collapsing tiles, and cold-themed traps</li>
+  </ul>
+
+  <canvas id="frozenHorrorCanvas" width="500" height="180" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('frozenHorrorCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("🧊 Enemies of the Frozen North", 20, 30);
+    ctx.fillText("- 🐻 Polar Warbears: Dual attack each turn", 40, 60);
+    ctx.fillText("- 👹 Frozen Horror: Ice demon with high stats", 40, 80);
+    ctx.fillText("- 🧊 Ice Gremlins: Steal weapons and vanish", 40, 100);
+    ctx.fillText("- 🦍 Yetis: Charge attacks that knock heroes down", 40, 120);
+    ctx.fillText("- ❄️ Ice Traps: Freeze heroes in place", 40, 150);
+  </script>
+
+  <h2>Hero Spotlight: The Barbarian</h2>
+
+  <p>This expansion elevates the Barbarian from brawler to protagonist. His solo quests are perilous but offer powerful rewards—magic weapons, armor, and runes that enhance his survivability in the icy war ahead.</p>
+
+  <svg width="500" height="150" style="border:1px solid #ccc; margin-top:1rem;">
+    <rect x="30" y="30" width="200" height="100" fill="#223344" stroke="#ccc"/>
+    <text x="40" y="60" font-size="14" fill="#fff">Name: Hrakkar the Barbarian</text>
+    <text x="40" y="85" font-size="14" fill="#fff">Weapon: Battle Axe of Ice</text>
+    <text x="40" y="110" font-size="14" fill="#fff">Armor: Horned Helm, Ice Shield</text>
+  </svg>
+
+  <h2>Real-World Analogy: A Norse Saga</h2>
+
+  <p>This expansion feels like a Viking epic. The Barbarian journeys into a hostile frozen world to battle ancient evil—alone at first, then with comrades. It's the HeroQuest version of <em>Beowulf</em> or a snowy <em>God of War</em>.</p>
+
+  <h2>Design Highlights</h2>
+
+  <ul>
+    <li>Solo quests allow deep roleplay and character development</li>
+    <li>Frozen environments introduce thematic mechanics</li>
+    <li>Unique enemy behaviors add challenge and strategy</li>
+    <li>Epic final battle includes summoning mechanics and terrain-based hazards</li>
+  </ul>
+
+  <h2>Summary</h2>
+
+  <p><strong>The Frozen Horror</strong> expands HeroQuest into colder, harsher terrain and makes the Barbarian the narrative focus. It adds dramatic solo play, chilling new foes, and one of the most formidable bosses in the franchise.</p>
+
+  <p>Next up: The <strong>Elf Quest Pack – The Mage of the Mirror</strong>, where the Elf hero becomes the lead and treks through enchanted forests, elven cities, and sinister magical domains.</p>
+
+</body>
+</html>

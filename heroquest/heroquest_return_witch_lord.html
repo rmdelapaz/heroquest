@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Return of the Witch Lord</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>Return of the Witch Lord</h1>
+
+  <p>Where <em>Kellar’s Keep</em> was about physical danger and narrow escapes, <strong>Return of the Witch Lord</strong> is about dread, decay, and undeath. This second expansion pivots from brute force to psychological and magical horror. The dark necromancer—the Witch Lord—has returned, and he’s raising armies of the dead to conquer the realm.</p>
+
+  <h2>The Story So Far</h2>
+
+  <p>Though believed vanquished, the Witch Lord survived the previous war. He now gathers strength in the ancient Catacombs of Kalos. Mentor sends the heroes to strike before he completes his undead legions and unleashes terror on the surface world.</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Witch Lord Defeated Before] --> B[Escapes into Kalos]
+      B --> C[Raises Undead Army]
+      C --> D[Mentor Sends Heroes]
+      D --> E[Catacomb Quests Begin]
+      E --> F[Final Confrontation with the Witch Lord]
+  </div>
+
+  <h2>What’s in the Box</h2>
+
+  <ul>
+    <li>Quest Book with 10 new missions</li>
+    <li>New tiles: tombs, crypts, trapdoors</li>
+    <li>New undead enemies: skeletons, mummies, zombies, and the Witch Lord himself</li>
+    <li>No new hero characters introduced</li>
+  </ul>
+
+  <h2>Visual: Tomb-Like Dungeon Layout</h2>
+
+  <canvas id="witchLordCanvas" width="500" height="160" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('witchLordCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("🧟 Catacombs of Kalos", 20, 30);
+    ctx.fillText("- Dimly lit stone corridors", 40, 60);
+    ctx.fillText("- Sarcophagi and tombs", 40, 80);
+    ctx.fillText("- Skeleton ambush points", 40, 100);
+    ctx.fillText("- Trapdoors and hidden switches", 40, 120);
+    ctx.fillText("- Witch Lord's Throne Room", 40, 140);
+  </script>
+
+  <h2>Gameplay Themes</h2>
+
+  <p>This expansion changes the pace. Instead of hordes of orcs, players face carefully positioned undead with unique behaviors. Skeletons often attack in swarms. Mummies are slow but strong. Zombies rise after defeat unless finished off decisively.</p>
+
+  <ul>
+    <li>Increased reliance on mind points—some spells and effects target sanity</li>
+    <li>Greater use of magical resistance and spell counters</li>
+    <li>Final boss battle requires clever positioning and teamwork</li>
+  </ul>
+
+  <h2>Hero Participation and Strategy</h2>
+
+  <p>The four original heroes return—Barbarian, Dwarf, Elf, and Wizard—but now the <strong>Wizard</strong> becomes especially critical. Many of the Witch Lord’s forces are resistant to normal weapons, so magic and spell selection matter deeply.</p>
+
+  <svg width="500" height="130" style="border:1px solid #ccc; margin-top:1rem;">
+    <rect x="30" y="30" width="160" height="80" fill="#2e2e2e" stroke="#999"/>
+    <text x="40" y="60" font-size="14" fill="#ccc">Witch Lord: 6 Mind Points</text>
+    <text x="40" y="80" font-size="14" fill="#ccc">Immune to non-magical attacks</text>
+    <text x="40" y="100" font-size="14" fill="#ccc">Can summon undead each round</text>
+  </svg>
+
+  <h2>Real-World Analogy: Haunted Dungeon Crawl</h2>
+
+  <p>If Kellar’s Keep was like <em>The Mines of Moria</em> from <em>Lord of the Rings</em>, Return of the Witch Lord is like <em>Dracula’s Castle</em>. You’re not just exploring a ruin—you’re walking into a cursed lair of necromancy and forbidden power.</p>
+
+  <h2>Design Highlights</h2>
+
+  <ul>
+    <li>Final boss includes cutscene-like scripted moments</li>
+    <li>Some monsters reanimate if not slain with magic</li>
+    <li>Recurring undead threats force tactical retreat decisions</li>
+    <li>End-of-quest reveals and cliffhangers build dramatic tension</li>
+  </ul>
+
+  <h2>Summary</h2>
+
+  <p><strong>Return of the Witch Lord</strong> adds horror, strategy, and story depth to HeroQuest. It’s a gothic sequel that feels like a chilling chapter in a growing epic. Success depends less on brute strength and more on insight, planning, and arcane mastery.</p>
+
+  <p>Next up: The <strong>Barbarian Quest Pack – The Frozen Horror</strong>, featuring an entirely new northern setting and the introduction of new hero characters and challenges.</p>
+
+</body>
+</html>

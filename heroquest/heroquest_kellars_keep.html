@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Kellar's Keep Quest Pack</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>Kellar's Keep Quest Pack</h1>
+
+  <p><strong>Kellar's Keep</strong> was the first official expansion released for the HeroQuest board game. It continued the campaign and introduced a new underground setting—Dwarven tunnels and ancient fortresses hidden deep beneath the mountains. The stakes were high, and the dungeons tighter and more dangerous.</p>
+
+  <h2>Story and Setting</h2>
+
+  <p>Kingdom forces loyal to Mentor are trapped in the depths of the ancient stronghold known as Kellar’s Keep. Zargon has blocked their way to freedom with orcs, abominations, and traps. It’s up to the four classic heroes to carve a path through 10 new quests and save the King's army before they're lost forever.</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Surface Kingdom] --> B[Zargon Collapses Passages]
+      B --> C[Trapped Forces in Kellar's Keep]
+      C --> D[Heroes Descend to Rescue Them]
+      D --> E[10 Underground Quests]
+      E --> F[Escape Route to Freedom]
+  </div>
+
+  <h2>What’s Included in the Box</h2>
+
+  <ul>
+    <li>Quest Book with 10 new missions</li>
+    <li>New game tiles (collapsed bridges, traps, stairways)</li>
+    <li>Additional monsters (extra orcs, goblins, fimir/abominations)</li>
+    <li>No new characters were added in this expansion</li>
+  </ul>
+
+  <p>This expansion focuses on challenge escalation—more monsters, more narrow hallways, and tighter combat. Heroes will need smart positioning and teamwork to survive.</p>
+
+  <h2>Real-World Analogy: Rescue Mission in a Collapsing Mine</h2>
+
+  <p>Imagine being part of a mountain rescue team after an earthquake. You must explore unstable tunnels, fight off dangers, and find trapped survivors before time runs out. That’s the emotional and mechanical tension Kellar’s Keep creates.</p>
+
+  <h2>Gameplay Highlights</h2>
+
+  <ul>
+    <li>Multi-level dungeons (sometimes with stair tiles to simulate verticality)</li>
+    <li>Destructive trap layouts to force alternate paths</li>
+    <li>Combat-heavy design, testing gear and magic resources</li>
+    <li>More frequent use of secret doors and blocked passageways</li>
+  </ul>
+
+  <canvas id="kellarsKeepCanvas" width="500" height="160" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('kellarsKeepCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("🗺️ Key Locations in Kellar's Keep:", 20, 30);
+    ctx.fillText("- Dwarven Hallways (maze-like paths)", 40, 60);
+    ctx.fillText("- Ancient War Chambers", 40, 80);
+    ctx.fillText("- Subterranean Bridges", 40, 100);
+    ctx.fillText("- Trap-laden tunnels", 40, 120);
+    ctx.fillText("- Final showdown: Forge Gate", 40, 140);
+  </script>
+
+  <h2>Hero Participation</h2>
+
+  <p>The same core heroes—Barbarian, Dwarf, Elf, and Wizard—return in this expansion. No new characters are introduced, but the dwarven themes of the setting give the <strong>Dwarf hero</strong> more narrative relevance. He becomes a thematic leader in the quest to reclaim and liberate his ancestral halls.</p>
+
+  <h2>Summary</h2>
+
+  <p><strong>Kellar’s Keep</strong> is the next chapter in the HeroQuest saga. It raises the stakes, pushes teamwork, and expands the world deeper—literally and narratively. It’s ideal for players who enjoyed the base game and want a heavier challenge with continuity.</p>
+
+  <p>Next up: the <strong>Return of the Witch Lord</strong>, an undead-themed expansion full of tombs, necromancy, and horror elements.</p>
+
+</body>
+</html>

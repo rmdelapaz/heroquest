@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest the boardgame</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>HeroQuest the boardgame</h1>
+
+  <p>Imagine diving into a dungeon with your friends—one of you becomes the evil Zargon, the others are mighty heroes: a wizard, a barbarian, an elf, and a dwarf. Welcome to <strong>HeroQuest</strong>, the tabletop game of cooperative exploration, danger, and treasure.</p>
+
+  <h2>What is HeroQuest?</h2>
+
+  <p>HeroQuest is a dungeon-crawling board game originally released in the late 1980s by Milton Bradley and Games Workshop. It blends the strategy of roleplaying games like Dungeons & Dragons with the accessibility and tactile charm of board games. One player becomes the Game Master—called <strong>Zargon</strong>—while the rest are heroes adventuring together through a series of quests.</p>
+
+  <p>Think of it like a fantasy movie come to life on your table—every room explored is a scene, every enemy a cinematic battle. It's collaborative storytelling through dice, miniatures, and imagination.</p>
+
+  <h2>Roles in HeroQuest</h2>
+
+  <p>There are five key roles in HeroQuest: Zargon (the villainous game master), and four heroes: Barbarian, Dwarf, Elf, and Wizard. Each has strengths and weaknesses—like characters in a video game RPG.</p>
+
+  <div class="mermaid">
+    graph TD
+      Zargon[Zargon - Game Master]
+      Barbarian -->|High attack| Combat[Combat-Oriented]
+      Dwarf -->|Trap disarming| Utility
+      Elf -->|Magic + combat| Hybrid
+      Wizard -->|Powerful spells| Support
+      Zargon -->|Creates traps, monsters| Heroes
+  </div>
+
+  <h2>Exploring the Dungeon: Real-World Analogy</h2>
+
+  <p>Picture HeroQuest like exploring an escape room—but the room is magical, filled with goblins, and you have a sword. Zargon is the designer, creating secret puzzles and revealing them only when players make choices. The dungeon map begins hidden and is revealed room by room.</p>
+
+  <svg width="400" height="200" style="border:1px solid #ccc; margin: 1rem 0;">
+    <rect x="50" y="50" width="50" height="50" fill="#ddd" stroke="#333" />
+    <rect x="100" y="50" width="50" height="50" fill="#aaa" stroke="#333" />
+    <rect x="150" y="50" width="50" height="50" fill="#666" stroke="#333" />
+    <text x="55" y="75" fill="#000" font-size="10">Start</text>
+    <text x="105" y="75" fill="#000" font-size="10">Trap</text>
+    <text x="155" y="75" fill="#fff" font-size="10">Orc</text>
+  </svg>
+
+  <p>Each square in the dungeon represents a moment of choice. Will you walk forward and trigger a trap? Will a monster be hiding behind that door?</p>
+
+  <h2>Dice Mechanics and Movement</h2>
+
+  <p>HeroQuest uses custom dice and movement rules. You roll two six-sided dice to determine how many squares you can move. This randomness is similar to rolling a die in Monopoly, but here it creates tension—can you reach the treasure chest before the orc does?</p>
+
+  <canvas id="movementCanvas" width="400" height="100" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('movementCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = "#000";
+    ctx.font = "16px sans-serif";
+    ctx.fillText("Roll 2 dice to move (2–12 spaces)", 10, 30);
+    ctx.strokeRect(10, 50, 20, 20);
+    ctx.strokeRect(40, 50, 20, 20);
+    ctx.fillText("Each die is 1–6", 70, 65);
+  </script>
+
+  <h2>Why It’s Still Popular</h2>
+
+  <p>HeroQuest isn’t just nostalgic—it’s a gateway game. It teaches you storytelling, cooperation, tactics, and creativity. It paved the way for modern board games like Gloomhaven, Descent, and Dungeons & Dragons board game series.</p>
+
+  <p>Much like LEGO lets you build anything, HeroQuest lets you build stories. The pieces may be plastic, but the adventures are real.</p>
+
+  <h2>Summary Metaphor: Dungeon Crawling as Movie Directing</h2>
+
+  <p>Think of HeroQuest like being in a fantasy film:</p>
+  <ul>
+    <li><strong>Zargon</strong> is the director and scriptwriter.</li>
+    <li><strong>The players</strong> are the actors improvising scenes.</li>
+    <li><strong>The board</strong> is the stage, set one room at a time.</li>
+    <li><strong>Dice</strong> are the element of chance—your special effects budget.</li>
+  </ul>
+
+  <p>This is only the beginning of your HeroQuest journey. Next, we’ll dive into how to set up the game, understand the rules, and craft your first dungeon crawl.</p>
+
+</body>
+</html>

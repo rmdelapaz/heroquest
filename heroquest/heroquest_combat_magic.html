@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Combat and Magic Systems</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>HeroQuest Combat and Magic Systems</h1>
+
+  <p>Combat in HeroQuest is like a turn-based video game—players act in sequence, enemies respond, and dice determine fate. But the joy is tactile. There's nothing quite like physically rolling those chunky combat dice and shouting “critical hit!”</p>
+
+  <h2>Understanding Combat Dice</h2>
+
+  <p>HeroQuest uses custom six-sided dice with three skulls (attack), two white shields (hero defense), and one black shield (monster defense). This keeps the odds simple and the pace fast.</p>
+
+  <canvas id="combatDiceCanvas" width="500" height="120" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('combatDiceCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("⚔️ Combat Dice Faces:", 20, 30);
+    ctx.fillText("⚔️ ⚔️ ⚔️ – Skulls (Hits)", 40, 55);
+    ctx.fillText("🛡️ 🛡️ – White Shields (Hero Defense)", 40, 75);
+    ctx.fillText("🛡️ – Black Shield (Monster Defense)", 40, 95);
+  </script>
+
+  <p>If an attacker rolls more skulls than the defender rolls shields, the difference is how many hits the target takes. No math-heavy mechanics—just fast, visceral action.</p>
+
+  <h2>Real-World Analogy: Dueling Swords</h2>
+
+  <p>Think of combat like fencing. Both players strike and defend at the same time. The attacker swings (rolls dice), and the defender parries (rolls defense dice). Sometimes the attacker breaks through. Sometimes the defender deflects everything. Each clash is a story beat.</p>
+
+  <h2>Hero Attacks vs. Monster Attacks</h2>
+
+  <p>Each hero has a starting weapon with a set number of attack dice. A sword might roll 2 dice, while a battle axe rolls 3. The stronger the weapon, the more chances to roll skulls.</p>
+
+<div class="mermaid">
+  graph TD
+    A[Hero Attacks] --> B[Roll Attack Dice]
+    B --> C[Count Skulls]
+    C --> D[Monster Defends]
+    D --> E[Roll Defense Dice]
+    E --> F[Count Black Shields]
+    F --> G[Apply Damage]
+</div>
+
+
+
+  <p>Monsters work the same way, except they only defend with black shields, giving them a statistical disadvantage against heroes.</p>
+
+  <h2>Spellcasting: The Wizard’s Arsenal</h2>
+
+  <p>Magic in HeroQuest is like a toolbox of single-use powers. Wizards and Elves have access to spell cards, each with a unique one-time effect per quest. Once used, they’re discarded until the next adventure.</p>
+
+  <ul>
+    <li><strong>Fire spells</strong> – attack-based (Ball of Flame)</li>
+    <li><strong>Water spells</strong> – healing and utility (Water of Healing)</li>
+    <li><strong>Air spells</strong> – mobility and escape (Swift Wind)</li>
+    <li><strong>Earth spells</strong> – defense and disruption (Rock Skin)</li>
+  </ul>
+
+  <h2>Spellcasting Metaphor: Magic as Chess Tactics</h2>
+
+  <p>Magic isn’t about brute force—it’s about timing. Like chess, you must decide when to use your most powerful move. Cast too early, and you waste it. Cast too late, and it’s useless. The key is reading the board and acting at the right moment.</p>
+
+  <svg width="500" height="150" style="border:1px solid #ccc; margin-top:1rem;">
+    <rect x="50" y="50" width="100" height="40" fill="#cc4444" stroke="#000" />
+    <text x="60" y="75" fill="#fff" font-size="14">🔥 Ball of Flame</text>
+    <rect x="200" y="50" width="100" height="40" fill="#4499cc" stroke="#000" />
+    <text x="210" y="75" fill="#fff" font-size="14">💧 Water of Healing</text>
+    <rect x="350" y="50" width="100" height="40" fill="#77cc77" stroke="#000" />
+    <text x="360" y="75" fill="#fff" font-size="14">🌪️ Swift Wind</text>
+  </svg>
+
+  <p>Each card represents a unique move—a surprise tool in a climactic scene. Unlike endless mana systems in video games, HeroQuest makes each spell precious.</p>
+
+  <h2>Special Combat Actions</h2>
+
+  <p>As players progress, they gain access to equipment that introduces nuance—crossbows allow ranged attacks, plate armor slows movement but boosts defense, and potions offer one-time survival boosts.</p>
+
+  <p>Combat decisions are shaped by items as much as dice—positioning, preparation, and teamwork win the battle.</p>
+
+  <h2>Summary: Combat as Theater</h2>
+
+  <p>In HeroQuest, combat is theatrical. It’s less about cold efficiency and more about story beats. A critical hit isn't just numbers—it's the Barbarian cleaving an orc in two. A missed spell is a dramatic failure. A successful defense is a cinematic slow-motion dodge.</p>
+
+  <p>Next up: Campaign progression, upgrading characters, and how stories unfold across the quest book.</p>
+
+</body>
+</html>

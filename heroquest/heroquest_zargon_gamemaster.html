@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Zargon and Game Mastering Techniques</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>Zargon and Game Mastering Techniques</h1>
+
+  <p>Every great story needs a narrator, a mastermind behind the curtain. In HeroQuest, that role belongs to <strong>Zargon</strong>—the Game Master. Part storyteller, part villain, part stage manager, Zargon controls the dungeon and breathes life into the game world.</p>
+
+  <h2>The Role of Zargon</h2>
+
+  <p>Zargon is the guide and the obstacle. Think of Zargon as the director of a play where the actors don't have the full script. As the players explore, Zargon reveals each room, describes its contents, places traps, controls monsters, and reads narrative passages.</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Zargon] --> B[Reveals Rooms]
+      A --> C[Controls Monsters]
+      A --> D[Sets Traps]
+      A --> E[Narrates Story]
+      A --> F[Manages Pacing]
+  </div>
+
+  <p>This role is not about “winning.” It’s about creating a memorable experience. A great Zargon knows when to be ruthless—and when to let the story shine.</p>
+
+  <h2>Real-World Analogy: Dungeon Master as Director</h2>
+
+  <p>Imagine a stage director in a theater. The actors (heroes) improvise, but the director controls lighting, sets, timing, and side characters. That’s Zargon—unseen, yet essential. You orchestrate drama, tension, and surprise.</p>
+
+  <h2>Best Practices for New Zargons</h2>
+
+  <ul>
+    <li><strong>Be fair</strong> – You’re not an opponent. You’re a storyteller.</li>
+    <li><strong>Be consistent</strong> – If a rule was applied one way last quest, use it the same way now.</li>
+    <li><strong>Use suspense</strong> – Reveal slowly. Let the players imagine what’s behind each door.</li>
+    <li><strong>React to players</strong> – Improvise. If a player does something unexpected, roll with it.</li>
+    <li><strong>Read flavor text with flair</strong> – Add drama! It’s not just mechanics—it’s a performance.</li>
+  </ul>
+
+  <h2>Tools of the Zargon Trade</h2>
+
+  <p>Zargon’s tools include the Quest Book (maps and setups), monster stats, trap info, and narrative blocks. Many Zargons also keep notes—how the players responded, what monsters they struggled with, and ideas for custom twists.</p>
+
+  <canvas id="zargonToolsCanvas" width="500" height="160" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('zargonToolsCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("Zargon's Toolkit:", 20, 30);
+    ctx.fillText("- Quest Book (maps, objectives)", 40, 60);
+    ctx.fillText("- Monster Stats (HP, attack dice)", 40, 80);
+    ctx.fillText("- Trap Locations", 40, 100);
+    ctx.fillText("- Narrative Flavor Text", 40, 120);
+    ctx.fillText("- Improvisation Notes", 40, 140);
+  </script>
+
+  <h2>Balancing Challenge and Fun</h2>
+
+  <p>Being Zargon is like cooking a meal. Too bland, and players are bored. Too spicy, and they burn out. The right mix of pressure and reward keeps the table engaged. Consider easing up on early quests, then turning up the heat in later dungeons.</p>
+
+  <p>Let your players feel clever for finding hidden doors. Let them gasp when a Chaos Warrior ambushes them. Let them groan when the last chest is just a wandering monster.</p>
+
+  <h2>Improvising and Adding Flair</h2>
+
+  <p>Though HeroQuest provides a structured story, great Zargons often add personal flair. Give the orc leader a voice. Let the dwarf’s actions affect the next room. Reward creative problem-solving with bonus gold or story detours.</p>
+
+  <svg width="500" height="150" style="border:1px solid #ccc; margin-top:1rem;">
+    <rect x="40" y="30" width="420" height="100" fill="#eef2f3" stroke="#999"/>
+    <text x="60" y="60" font-size="14" fill="#333">"As you open the door, a foul stench fills the air...</text>
+    <text x="60" y="80" font-size="14" fill="#333">a Chaos Warrior, eyes glowing red, snarls 'You're too late.'</text>
+    <text x="60" y="100" font-size="14" fill="#333">Roll for initiative!"</text>
+  </svg>
+
+  <p>When Zargon becomes a character—not just a referee—the game becomes a show.</p>
+
+  <h2>Summary: Zargon as the Hidden Hero</h2>
+
+  <p>Players may be the stars, but Zargon is the director behind the magic. You control pacing, tension, and plot twists. You’re not just revealing rooms—you’re revealing stories. When done well, being Zargon is one of the most rewarding roles in gaming.</p>
+
+  <p>In the next part, we’ll explore <strong>custom quest design and expanding HeroQuest beyond the core game</strong>.</p>
+
+</body>
+</html>

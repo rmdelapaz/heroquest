@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Mage of the Mirror</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>The Mage of the Mirror</h1>
+
+  <p><strong>The Mage of the Mirror</strong> is the Elf Quest Pack, originally released in 1992 alongside The Frozen Horror. Like its counterpart, it placed one classic Hero in the spotlight — this time, the <strong>Elf</strong>. A tale of magical corruption, royal kidnapping, and mirror-travel unfolds across icy peaks, enchanted cities, and fae-glimmering forests.</p>
+
+  <h2>Story Overview</h2>
+
+  <p>All is not well in the elven kingdom of Elethorn. The rightful princess has been kidnapped, and a powerful High Mage has usurped her identity using forbidden mirror magic. The Elf hero must travel alone at first to uncover the truth, reclaim the princess, and stop the spreading dark enchantment.</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Princess Vanishes] --> B[Evil Mage Takes Her Place]
+      B --> C[Elf Undertakes Solo Quests]
+      C --> D[Allies Join After Rescue]
+      D --> E[Journey to Mirror Gate]
+      E --> F[Confrontation in Enchanted Castle]
+  </div>
+
+  <h2>What's in the Box</h2>
+
+  <ul>
+    <li>Quest Book with 10 multiplayer quests + 3 Elf solo quests</li>
+    <li>New monsters: Elven Archers, Ogres, Giant Wolves</li>
+    <li>New tiles: mirrors, ice walls, magical portals, fae terrain</li>
+    <li>New elf-specific equipment and spells</li>
+  </ul>
+
+  <h2>Unique Gameplay Features</h2>
+
+  <ul>
+    <li><strong>Solo quests</strong>: The Elf begins the story alone, deepening character immersion</li>
+    <li><strong>Portal-based maps</strong>: Players must use magical mirrors to navigate key areas</li>
+    <li><strong>Magical puzzles</strong>: More emphasis on thought over brute force</li>
+    <li><strong>Ogre Enemies</strong>: Large, high-damage brutes require careful tactics</li>
+  </ul>
+
+  <canvas id="mageMirrorCanvas" width="500" height="180" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('mageMirrorCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("🪞 Arcane Threats in Mage of the Mirror", 20, 30);
+    ctx.fillText("- 🧝‍♂️ Elven Archers: Ranged precision attackers", 40, 60);
+    ctx.fillText("- 🧌 Ogres: Massive brute-force enemies", 40, 80);
+    ctx.fillText("- 🪞 Mirror Mages: Teleport and reflect attacks", 40, 100);
+    ctx.fillText("- 🐺 Giant Wolves: Fast flanking enemies", 40, 120);
+    ctx.fillText("- ✨ Puzzle Rooms: Unlock with spell triggers", 40, 150);
+  </script>
+
+  <h2>Hero Spotlight: The Elf</h2>
+
+  <p>The Elf, often balanced between sword and sorcery, takes the stage here as a full protagonist. She gains access to new elven artifacts, magical items, and lore unique to the questline. Her ability to combine melee and magic becomes essential against puzzle-based obstacles and enemies that resist standard attacks.</p>
+
+  <svg width="500" height="150" style="border:1px solid #ccc; margin-top:1rem;">
+    <rect x="30" y="30" width="200" height="100" fill="#344e5c" stroke="#ccc"/>
+    <text x="40" y="60" font-size="14" fill="#fff">Name: Elenion the Elf</text>
+    <text x="40" y="85" font-size="14" fill="#fff">Weapon: Elven Bow</text>
+    <text x="40" y="110" font-size="14" fill="#fff">Spells: Dispel, Mirror Break, Nature’s Grace</text>
+  </svg>
+
+  <h2>Real-World Analogy: High Fantasy & Intrigue</h2>
+
+  <p>If <em>The Frozen Horror</em> is a Norse saga, then <strong>Mage of the Mirror</strong> is an elven court drama meets magical mystery. Think <em>Labyrinth</em> crossed with <em>Princess Mononoke</em> — beauty, betrayal, and brain-teasers wrapped in high fantasy.</p>
+
+  <h2>Design Highlights</h2>
+
+  <ul>
+    <li>Solo quests build narrative agency and personal connection</li>
+    <li>Mirrors and portals redefine how rooms are explored</li>
+    <li>Encounters vary between logic, ranged duels, and brute-force battles</li>
+    <li>Final battle includes multi-phase mechanics</li>
+  </ul>
+
+  <h2>Summary</h2>
+
+  <p><strong>The Mage of the Mirror</strong> is an elegant, challenging quest pack that elevates the Elf hero and introduces more intellectual and magical depth. It completes the classic cycle of hero-focused adventures while offering a satisfying blend of puzzles, beauty, and dark magic.</p>
+
+  <p>Next up: we transition into modern-era HeroQuest expansions, beginning with <strong>Prophecy of Telor</strong>, a brand-new questline written by the original HeroQuest designer himself — Stephen Baker.</p>
+
+</body>
+</html>

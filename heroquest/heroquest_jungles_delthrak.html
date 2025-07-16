@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Jungles of Delthrak</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>Jungles of Delthrak</h1>
+
+  <p><strong>Jungles of Delthrak</strong> is a bold new HeroQuest quest pack announced for release in 2025. It takes adventurers deep into a lost dwarven civilization swallowed by vines, beasts, and time. Traps are everywhere. Civilization is long gone. But treasure, secrets, and terror remain. For the first time, the game introduces two brand-new playable heroes designed specifically for jungle exploration and brutal survival: the <strong>Berserker</strong> and the <strong>Explorer</strong>.</p>
+
+  <h2>Story Overview</h2>
+
+  <p>Delthrak was once a dwarven kingdom built in harmony with the surrounding jungle. But long ago, the capital fell to a curse. Now the jungle has grown wild, and creatures corrupted by ancient magic guard the ruins. Zargon seeks to awaken something buried beneath the roots. The heroes must journey into the green hell to stop him and uncover the truth of Delthrak’s fall.</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Lost Dwarven Kingdom: Delthrak] --> B[Jungle Overtakes the Land]
+      B --> C[Zargon Searches for Buried Power]
+      C --> D[Berserker and Explorer Join Expedition]
+      D --> E[Heroes Traverse Temple Ruins]
+      E --> F[Final Confrontation Beneath the Jungle]
+  </div>
+
+  <h2>What’s in the Box</h2>
+
+  <ul>
+    <li>Quest Book with 15 new missions</li>
+    <li>Jungle terrain tiles: vines, rivers, quicksand, stone temples</li>
+    <li>New monsters: Jungle Serpents, Cursebound, Temple Guardians, Primordial Horrors</li>
+    <li><strong>2 New Playable Heroes</strong>: The Berserker and the Explorer</li>
+  </ul>
+
+  <h2>The Berserker</h2>
+
+  <p>The <strong>Berserker</strong> is a raw melee force who trades defense for massive damage. He thrives on chaos and frenzy. The more he's hurt, the stronger he becomes.</p>
+
+  <svg width="500" height="160" style="border:1px solid #ccc; margin-bottom: 1rem;">
+    <rect x="30" y="30" width="220" height="110" fill="#5a2e2e" stroke="#ccc"/>
+    <text x="40" y="60" font-size="14" fill="#fff">Class: Berserker</text>
+    <text x="40" y="80" font-size="14" fill="#fff">Weapon: Twin Axes</text>
+    <text x="40" y="100" font-size="14" fill="#fff">Ability: Gains dice when wounded</text>
+    <text x="40" y="120" font-size="14" fill="#fff">Weakness: Low defense, reckless</text>
+  </svg>
+
+  <ul>
+    <li>Best used as a front-line disruptor</li>
+    <li>Can ignore fear or magical illusions</li>
+    <li>Cannot wear heavy armor — favors mobility and rage</li>
+  </ul>
+
+  <h2>The Explorer</h2>
+
+  <p>The <strong>Explorer</strong> is a savvy, agile adventurer who excels at finding hidden paths, avoiding danger, and navigating terrain. She is perfect for jungle environments full of hazards and lost treasures.</p>
+
+  <svg width="500" height="160" style="border:1px solid #ccc;">
+    <rect x="30" y="30" width="220" height="110" fill="#336633" stroke="#ccc"/>
+    <text x="40" y="60" font-size="14" fill="#fff">Class: Explorer</text>
+    <text x="40" y="80" font-size="14" fill="#fff">Gear: Machete, Climbing Rope</text>
+    <text x="40" y="100" font-size="14" fill="#fff">Skill: Auto-detect traps, double move</text>
+    <text x="40" y="120" font-size="14" fill="#fff">Special: Can find secret areas easily</text>
+  </svg>
+
+  <ul>
+    <li>Excels in trap-heavy and labyrinthine areas</li>
+    <li>Useful for bypassing enemies or flanking</li>
+    <li>Low attack power but high agility</li>
+  </ul>
+
+  <h2>Jungle Threats and Hazards</h2>
+
+  <canvas id="delthrakCanvas" width="500" height="180" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('delthrakCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("🌿 Dangers in the Jungle of Delthrak", 20, 30);
+    ctx.fillText("- 🐍 Jungle Serpents: Poison bites and stealth", 40, 60);
+    ctx.fillText("- 💀 Cursebound: Undead that drain gear abilities", 40, 80);
+    ctx.fillText("- 🗿 Stone Guardians: Immune to basic weapons", 40, 100);
+    ctx.fillText("- 🪤 Quicksand & Vines: Movement restrictions", 40, 120);
+    ctx.fillText("- 🌑 Primordial Horror: Ancient boss beneath temple", 40, 150);
+  </script>
+
+  <h2>Design and Narrative Highlights</h2>
+
+  <ul>
+    <li>Quests emphasize environmental navigation and danger</li>
+    <li>Branching paths: some areas can only be reached by the Explorer</li>
+    <li>Berserker unlocks alternate fight paths with brute force</li>
+    <li>Final battle includes terrain collapse and moving hazards</li>
+  </ul>
+
+  <h2>Real-World Analogy: Indiana Jones Meets Conan the Barbarian</h2>
+
+  <p>Imagine <em>Tomb Raider</em> or <em>Uncharted</em> mashed up with <em>Jungle Book</em> and <em>Conan</em>. This campaign is all about lost civilizations, raw combat, deadly plants, and ancient traps. It's sweaty, vine-draped, and packed with forgotten horrors and glittering artifacts.</p>
+
+  <h2>Summary</h2>
+
+  <p><strong>Jungles of Delthrak</strong> reinvents HeroQuest as an environmental survival experience. With the addition of the <strong>Berserker</strong> and <strong>Explorer</strong>, parties can tackle challenges with new playstyles and adapt to traps, twists, and jungle terrain. It’s a wild, dangerous, and richly thematic expansion.</p>
+
+</body>
+</html>

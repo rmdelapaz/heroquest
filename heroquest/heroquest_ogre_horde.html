@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Against the Ogre Horde</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>Against the Ogre Horde</h1>
+
+  <p><strong>Against the Ogre Horde</strong> is a powerful reimagining of the classic European-exclusive expansion from the 1990s. Released in modern form by Avalon Hill, it revives the story of monstrous ogres seeking revenge on the Empire—and introduces a brand-new playable hero: the <strong>Druid</strong>.</p>
+
+  <h2>Story Overview</h2>
+
+  <p>Once imprisoned in the dark north, the ogres have broken free. Led by a brutal Warlord, their horde is growing fast. Villages burn. The Emperor’s border defenses falter. Heroes must venture into ogre-held strongholds and battle the horde before the Empire falls. Nature itself has sent an answer: the Druid joins the fight, wielding the ancient power of balance and transformation.</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Ogres Return from Exile] --> B[Warlord Unites the Tribes]
+      B --> C[Empire Fortresses Fall]
+      C --> D[Heroes Ride North]
+      D --> E[Druid Joins the Battle]
+      E --> F[Final Arena Clash Against the Warlord]
+  </div>
+
+  <h2>What’s in the Box</h2>
+
+  <ul>
+    <li>Quest Book with 10 intense missions</li>
+    <li>Miniatures: Ogre Warriors, Ogre Chieftains, Ogre Warlock</li>
+    <li>Tiles: Throne Room, Guard Cells, Siege Walls</li>
+    <li>New Spell Cards and Chaos Enhancements</li>
+    <li><strong>New Playable Hero: The Druid</strong></li>
+  </ul>
+
+  <h2>Meet the Druid Hero</h2>
+
+  <p>The <strong>Druid</strong> is a versatile nature-bound hero introduced in this expansion. Unlike the Wizard or Elf, the Druid uses nature magic and transformation abilities. Their spells are tied to the environment, flora, and beastial force.</p>
+
+  <svg width="500" height="160" style="border:1px solid #ccc; margin-bottom: 1rem;">
+    <rect x="30" y="30" width="220" height="110" fill="#2e5939" stroke="#ccc"/>
+    <text x="40" y="60" font-size="14" fill="#fff">Class: Druid of the Wild Path</text>
+    <text x="40" y="80" font-size="14" fill="#fff">Gear: Oak Staff, Thorn Cloak</text>
+    <text x="40" y="100" font-size="14" fill="#fff">Specialty: Nature Magic, Shape-Shifting</text>
+    <text x="40" y="120" font-size="14" fill="#fff">Unique Deck: Animal and Plant spells</text>
+  </svg>
+
+  <ul>
+    <li>Can shift between humanoid and beast form</li>
+    <li>Summons roots, vines, or animal spirits to trap or damage enemies</li>
+    <li>Has moderate Body and Mind Points—balanced hero class</li>
+    <li>Perfect for countering powerful Ogres and healing the party</li>
+  </ul>
+
+  <h2>Ogre Horde Threats</h2>
+
+  <canvas id="ogreCanvas" width="500" height="180" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('ogreCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("💥 Ogre Horde Forces", 20, 30);
+    ctx.fillText("- 🪓 Ogre Warrior: 3 attack dice, 5 Body Points", 40, 60);
+    ctx.fillText("- 👑 Ogre Chieftain: 4 attack dice, 7 Body Points", 40, 80);
+    ctx.fillText("- 🔥 Ogre Warlock: Casts chaos spells, buff allies", 40, 100);
+    ctx.fillText("- 🛡️ Horde Trait: Group bonuses if adjacent", 40, 120);
+    ctx.fillText("- ❌ Weakness: Vulnerable to magic and mind attacks", 40, 150);
+  </script>
+
+  <h2>Gameplay Highlights</h2>
+
+  <ul>
+    <li>Ogre enemies act in groups, overwhelming lone heroes</li>
+    <li>Siege maps, arena fights, and war room stand-offs</li>
+    <li>Druid can turn terrain to the party's advantage</li>
+    <li>Final boss includes summoning waves of ogres and magical reinforcements</li>
+  </ul>
+
+  <h2>Strategy and Synergy</h2>
+
+  <ul>
+    <li><strong>Barbarian & Knight</strong>: Soak ogre melee damage</li>
+    <li><strong>Druid</strong>: Lock down choke points with vines and heals</li>
+    <li><strong>Wizard</strong>: AoE spells shine against grouped ogres</li>
+    <li><strong>Elf/Rogue</strong>: Hit and retreat, scout map features</li>
+  </ul>
+
+  <h2>Real-World Analogy: Warhammer Meets Earth Day</h2>
+
+  <p><strong>Against the Ogre Horde</strong> is brutal fantasy—gladiator arenas, military invasions, ogre war drums—and the Druid’s presence brings a sharp contrast. Nature is not peaceful here—it’s weaponized. This expansion is like <em>300</em> meets <em>Princess Mononoke</em> — savage strength versus spiritual wrath.</p>
+
+  <h2>Summary</h2>
+
+  <p><strong>Against the Ogre Horde</strong> is one of the most intense combat-focused HeroQuest expansions ever made. It adds tactical weight, brutal enemies, and a surprisingly thoughtful hero in the Druid. If you want a campaign that balances destruction with healing, strength with spirit—this is the one to play.</p>
+
+</body>
+</html>

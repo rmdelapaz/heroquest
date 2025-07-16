@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Game Setup and First Quest Walkthrough</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>HeroQuest Game Setup and First Quest Walkthrough</h1>
+
+  <p>Think of HeroQuest setup like preparing for a live stage performance: you have a script, a cast, and a stage. Everything must be placed just right to deliver the right dramatic impact. Here's how to prepare your dungeon stage for the opening act.</p>
+
+  <h2>Unboxing and Game Pieces</h2>
+
+  <p>Imagine opening a toolbox before fixing a machine. Each piece in HeroQuest serves a purpose: doors, miniatures, furniture, cards, dice, and the game board. Like a mechanic with parts laid out before an engine rebuild, a good HeroQuest setup starts with sorting.</p>
+
+  <ul>
+    <li><strong>Game board</strong> - the dungeon layout with rooms and corridors</li>
+    <li><strong>Miniatures</strong> - heroes, monsters, and Zargon's minions</li>
+    <li><strong>Furniture</strong> - bookcases, chests, altars, tables (adds narrative and obstacles)</li>
+    <li><strong>Cards</strong> - spells, equipment, treasure, and monsters</li>
+    <li><strong>Dice</strong> - special combat dice and movement dice</li>
+  </ul>
+
+  <h2>Setting the Stage with the Game Board</h2>
+
+  <p>The board is like a blank film set—Zargon populates it with actors and props depending on the quest. The heroes only see one room at a time, so the board remains mostly empty at the start. As they move through doors, Zargon reveals what's inside.</p>
+
+  <svg width="500" height="120" style="border:1px solid #ccc; margin: 1rem 0;">
+    <rect x="20" y="40" width="60" height="60" fill="#e0e0e0" stroke="#000" />
+    <text x="30" y="75" font-size="12" fill="#000">Starting Room</text>
+    <line x1="80" y1="70" x2="140" y2="70" stroke="#555" stroke-dasharray="5,5"/>
+    <rect x="140" y="40" width="60" height="60" fill="#aaa" stroke="#000" />
+    <text x="150" y="75" font-size="12" fill="#fff">Room 2</text>
+  </svg>
+
+  <p>The dotted line above represents unexplored corridors. Players don’t know what lies ahead until they "open the door."</p>
+
+  <h2>Starting a Quest: The Adventure Begins</h2>
+
+  <p>The first quest, “The Trial,” is like a training mission in a video game. It introduces all core mechanics: moving, attacking, searching for treasure, and casting spells.</p>
+
+  <p>Let’s break it down like a movie scene:</p>
+
+  <div class="mermaid">
+    sequenceDiagram
+      participant Barbarian
+      participant Dwarf
+      participant Zargon
+      Barbarian->>Zargon: I open the door
+      Zargon->>Barbarian: Reveals orc and chest
+      Barbarian->>Orc: Attacks with sword
+      Dwarf->>Room: Searches for traps
+      Zargon->>Room: Reveals pit trap
+  </div>
+
+  <p>Every turn includes:</p>
+  <ul>
+    <li>Moving (rolling 2d6)</li>
+    <li>Attacking an enemy (rolling combat dice)</li>
+    <li>Optional action: searching for traps, doors, or treasure</li>
+  </ul>
+
+  <h2>Hero Stats Breakdown</h2>
+
+  <p>Each hero has their own "RPG-style character sheet." Think of it like choosing a Pokémon or RPG class—some are tanky, some are squishy spellcasters, some are fast and clever.</p>
+
+  <canvas id="heroStatsCanvas" width="500" height="150" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('heroStatsCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("Barbarian: High attack, low defense", 20, 30);
+    ctx.fillText("Dwarf: Moderate attack, trap skills", 20, 60);
+    ctx.fillText("Elf: Balanced attack & magic", 20, 90);
+    ctx.fillText("Wizard: Low attack, high magic", 20, 120);
+  </script>
+
+  <h2>Quest Objective</h2>
+
+  <p>In “The Trial,” the heroes must explore the dungeon, defeat monsters, avoid traps, and find a route to safety. There is no single boss—just a gauntlet of challenges. It’s like a pilot episode where the heroes learn to work together.</p>
+
+  <p>Along the way, they’ll face:</p>
+  <ul>
+    <li><strong>Orcs</strong> – basic fighters</li>
+    <li><strong>Goblins</strong> – weak but fast</li>
+    <li><strong>Fimir</strong> – tougher foes</li>
+    <li><strong>Traps</strong> – pit traps, spear traps</li>
+    <li><strong>Treasure</strong> – gold, potions, gear upgrades</li>
+  </ul>
+
+  <h2>Player Actions: A Turn-by-Turn Metaphor</h2>
+
+  <p>Think of each hero’s turn like a chess move. You don’t just go forward—you plan for what might be revealed. Will you block a hallway and protect your wizard? Will you check for traps before opening that treasure chest?</p>
+
+  <p>Every decision is like a page in a storybook: irreversible and impactful. Teamwork makes the dungeon crawl successful, not just brute strength.</p>
+
+  <h2>Ending the First Quest</h2>
+
+  <p>Once the heroes complete the objective or escape, they record their loot, update character sheets, and prepare for the next quest. Like finishing a level in a game, you keep your progress and move to the next chapter.</p>
+
+  <p>This wraps up the setup and first quest walkthrough. You’ve set the stage, introduced your cast, and begun the journey. Next up: Combat and Magic Systems—how spells, attacks, and dice mechanics bring HeroQuest to life.</p>
+
+</body>
+</html>

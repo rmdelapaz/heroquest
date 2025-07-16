@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Digital Dice Roller and Toolkit</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>HeroQuest Digital Dice Roller and Toolkit</h1>
+
+  <p>This toolkit provides a digital assistant for HeroQuest play. Whether you’re a solo player, Zargon managing a virtual campaign, or a group using digital aids, this page brings movement rolls, combat dice, turn tracking, and more to your fingertips.</p>
+
+  <h2>🎲 Combat Dice Roller</h2>
+  <p>HeroQuest combat dice include 3 skulls (⚔️), 2 white shields (🛡️), and 1 black shield (🛡️).</p>
+
+  <label for="combatCount"># of Combat Dice:</label>
+  <input type="number" id="combatCount" value="3" min="1" max="10" />
+  <button onclick="rollCombatDice()">Roll Combat Dice</button>
+  <p id="combatResult">Result: —</p>
+
+  <h2>👣 Movement Dice Roller (2d6)</h2>
+  <button onclick="rollMovementDice()">Roll Movement</button>
+  <p id="moveResult">Result: —</p>
+
+  <h2>🗓️ Turn Tracker</h2>
+  <button onclick="nextTurn()">Next Turn</button>
+  <p id="turnCounter">Current Turn: 1</p>
+
+  <h2>💰 Treasure Card Draw (Demo)</h2>
+  <p>(For actual card randomization, use a physical deck or import your own list)</p>
+  <button onclick="drawTreasure()">Draw Sample Treasure</button>
+  <p id="treasureResult">Result: —</p>
+
+  <canvas id="diceCanvas" width="500" height="100" style="border:1px solid #ccc; margin-top:1rem;"></canvas>
+
+  <script>
+    const combatFaces = ['⚔️','⚔️','⚔️','🛡️','🛡️','🛡️ (Black)'];
+    const treasureCards = ['💰 50 Gold Coins', '🧪 Potion of Healing', '💣 Wandering Monster!', '📜 Scroll of Protection'];
+
+    function rollCombatDice() {
+      const count = parseInt(document.getElementById('combatCount').value);
+      let result = '';
+      for (let i = 0; i < count; i++) {
+        const roll = Math.floor(Math.random() * 6);
+        result += combatFaces[roll] + ' ';
+      }
+      document.getElementById('combatResult').innerText = 'Result: ' + result.trim();
+      drawDice(result.trim().split(' '));
+    }
+
+    function rollMovementDice() {
+      const die1 = Math.ceil(Math.random() * 6);
+      const die2 = Math.ceil(Math.random() * 6);
+      document.getElementById('moveResult').innerText = `Result: ${die1} + ${die2} = ${die1 + die2}`;
+    }
+
+    let currentTurn = 1;
+    function nextTurn() {
+      currentTurn += 1;
+      document.getElementById('turnCounter').innerText = 'Current Turn: ' + currentTurn;
+    }
+
+    function drawTreasure() {
+      const index = Math.floor(Math.random() * treasureCards.length);
+      document.getElementById('treasureResult').innerText = 'Result: ' + treasureCards[index];
+    }
+
+    function drawDice(symbols) {
+      const canvas = document.getElementById('diceCanvas');
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.font = "24px sans-serif";
+      for (let i = 0; i < symbols.length; i++) {
+        ctx.fillText(symbols[i], 30 + i * 50, 60);
+      }
+    }
+  </script>
+
+  <h2>💡 Suggestions for Expanded Use</h2>
+  <ul>
+    <li>Add your own treasure card list by replacing the <code>treasureCards</code> array</li>
+    <li>Use the movement roller for initiative-style gameplay variants</li>
+    <li>Integrate this tool into virtual tabletops (VTTs) or projector-based campaigns</li>
+  </ul>
+
+  <h2>Summary</h2>
+  <p>This HeroQuest digital toolkit provides a quick and flexible way to enhance tabletop gameplay. Whether you’re a daring Barbarian or the watchful eye of Zargon, these tools save time and make game night smoother, especially with hybrid physical/digital groups.</p>
+
+</body>
+</html>

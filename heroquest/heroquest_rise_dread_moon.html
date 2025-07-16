@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Rise of the Dread Moon</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>Rise of the Dread Moon</h1>
+
+  <p><strong>Rise of the Dread Moon</strong> is a modern HeroQuest quest pack released in 2024, and it significantly evolves the gameplay with warfare, betrayal, political tension—and the debut of a brand-new hero: the <strong>Knight</strong>. The questline takes place in the crumbling kingdom of Andor as rebellion stirs and the Dread Moon rises in secret shadows.</p>
+
+  <h2>Story Overview</h2>
+
+  <p>The kingdom teeters on the brink of civil war. Zargon manipulates the secretive <strong>Crescent Rebellion</strong>, and its leader—the enigmatic Dread Moon—seeks to plunge the realm into chaos. The heroes must uncover the conspiracy, expose traitors, and stop the rebellion before the moon rises in blood.</p>
+
+  <div class="mermaid">
+    graph TD
+      A[Crescent Rebellion Rises] --> B[Dread Moon Gains Power]
+      B --> C[Assassinations & Coup Plots]
+      C --> D[Andor in Crisis]
+      D --> E[Heroes Investigate Rebellion]
+      E --> F[Knight Joins the Party]
+      F --> G[Final Confrontation in the Capitol]
+  </div>
+
+  <h2>What’s in the Box</h2>
+
+  <ul>
+    <li>Quest Book with 14 missions</li>
+    <li>New miniatures: Moon Guard, Elven Assassins, Royal Defenders</li>
+    <li>Terrain tiles for castles, gates, walls, banners</li>
+    <li><strong>New playable Hero: The Knight</strong></li>
+  </ul>
+
+  <h2>The Knight Hero</h2>
+
+  <p>The <strong>Knight</strong> is a brand-new hero class introduced in this expansion. A defensive powerhouse with unparalleled survivability, the Knight excels at holding the line, defending allies, and absorbing punishment.</p>
+
+  <svg width="500" height="160" style="border:1px solid #ccc; margin-top:1rem;">
+    <rect x="30" y="30" width="220" height="110" fill="#3a3a4a" stroke="#ccc"/>
+    <text x="40" y="60" font-size="14" fill="#fff">Class: Knight</text>
+    <text x="40" y="80" font-size="14" fill="#fff">Gear: Longsword, Plate Armor, Shield</text>
+    <text x="40" y="100" font-size="14" fill="#fff">Specialty: High defense, no spells</text>
+    <text x="40" y="120" font-size="14" fill="#fff">Ideal for: Guarding casters & chokepoints</text>
+  </svg>
+
+  <h2>Gameplay Themes</h2>
+
+  <ul>
+    <li><strong>City-based tactics</strong>: You’ll explore fortified structures, royal courts, and rebel bases</li>
+    <li><strong>Boss-style enemies</strong>: Named foes with high stats and unique powers</li>
+    <li><strong>Siege mechanics</strong>: Fortresses may have destructible gates or trigger reinforcements</li>
+    <li><strong>Political flavor</strong>: Clues, diplomacy, and deception are part of the journey</li>
+  </ul>
+
+  <canvas id="dreadMoonCanvas" width="500" height="180" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('dreadMoonCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("⚔️ Enemies of the Dread Moon", 20, 30);
+    ctx.fillText("- 🗡️ Crescent Assassins: Swift and stealthy", 40, 60);
+    ctx.fillText("- 🧝‍♀️ Elven Rebels: Agile and coordinated", 40, 80);
+    ctx.fillText("- 🛡️ Moon Guard: Elite with counterattacks", 40, 100);
+    ctx.fillText("- 🌙 Dread Moon: Commanding final boss", 40, 120);
+    ctx.fillText("- 🎭 False Allies: Appear friendly... until revealed", 40, 150);
+  </script>
+
+  <h2>Hero Synergy</h2>
+
+  <p>With the addition of the Knight, party balance improves dramatically. Here’s how the team functions in high-stakes combat:</p>
+
+  <ul>
+    <li><strong>Knight</strong>: Soaks damage and protects the rear line</li>
+    <li><strong>Dwarf</strong>: Navigates traps and breaches gates</li>
+    <li><strong>Elf</strong>: Agile and tactically versatile, useful in urban maps</li>
+    <li><strong>Wizard</strong>: Controls crowds, solves puzzles, and weakens enemies</li>
+  </ul>
+
+  <h2>Real-World Analogy: Fantasy Counter-Insurgency</h2>
+
+  <p>This campaign plays like a fantasy-themed <em>Bourne Identity</em> or <em>Kingdom of Heaven</em>. You're not just reacting to monsters—you’re dismantling a rebellion. The stakes are geopolitical, and every room may hold an ambush or a key political figure.</p>
+
+  <h2>Design Highlights</h2>
+
+  <ul>
+    <li>Final quests span multiple maps and feature moral decisions</li>
+    <li>Side-objectives include protecting innocents and uncovering hidden traitors</li>
+    <li>Many quests adapt based on whether players discover secret intel</li>
+    <li>Strong integration of lore and tactical gameplay</li>
+  </ul>
+
+  <h2>Summary</h2>
+
+  <p><strong>Rise of the Dread Moon</strong> introduces not just new quests—but a new way to play. With the Knight hero, players gain a powerful frontline option. With intrigue and strategy, the expansion offers new depth. This isn’t just another dungeon crawl—it’s a kingdom-saving campaign.</p>
+
+  <p>Next up: <strong>Path of the Wandering Monk</strong>, a focused hero expansion introducing spiritual martial arts, inner strength mechanics, and a tranquil yet deadly warrior to the world of HeroQuest.</p>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HeroQuest Wandering Monk and Rogue of Elethorn</title>
+  <link rel="stylesheet" href="/styles/main.css" />
+  <link rel="icon" href="/favicon.png" />
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+
+  <h1>The Wandering Monk and Rogue of Elethorn</h1>
+
+  <p>As HeroQuest evolves, new hero characters allow players to experience the game in fresh and inventive ways. Two standout additions to the roster are the <strong>Wandering Monk</strong> and the <strong>Rogue of Elethorn</strong>. These heroes break the mold of classic fantasy archetypes, offering unique playstyles and backstories grounded in stealth, wisdom, and inner strength.</p>
+
+  <h2>The Wandering Monk</h2>
+
+  <p>The <strong>Wandering Monk</strong> is a disciplined warrior who channels spiritual energy through martial skill. Rather than relying on armor or heavy weapons, the Monk uses fists, staves, and deep focus to overcome enemies and avoid harm.</p>
+
+  <svg width="500" height="160" style="border:1px solid #ccc; margin-bottom: 1rem;">
+    <rect x="30" y="30" width="220" height="110" fill="#556b2f" stroke="#ccc"/>
+    <text x="40" y="60" font-size="14" fill="#fff">Class: Wandering Monk</text>
+    <text x="40" y="80" font-size="14" fill="#fff">Gear: Staff, Meditation Beads</text>
+    <text x="40" y="100" font-size="14" fill="#fff">Style: Dodge, Focus, Counter</text>
+    <text x="40" y="120" font-size="14" fill="#fff">Special: Chi abilities instead of spells</text>
+  </svg>
+
+  <ul>
+    <li>Can negate damage through focus instead of shields</li>
+    <li>Chi powers allow for healing, knockbacks, and stunning foes</li>
+    <li>High mobility but limited ranged capability</li>
+  </ul>
+
+  <p>The Monk offers a meditative approach to combat. Think <em>Shaolin warrior</em> meets <em>Avatar: The Last Airbender</em>. Strategy and placement are more important than brute force.</p>
+
+  <h2>The Rogue of Elethorn</h2>
+
+  <p>The <strong>Rogue of Elethorn</strong> is a master of misdirection, traps, and agile attacks. Drawing on the secretive traditions of the elven city of Elethorn, this hero can move swiftly, disable threats, and land precise blows where others can’t.</p>
+
+  <svg width="500" height="160" style="border:1px solid #ccc;">
+    <rect x="30" y="30" width="220" height="110" fill="#4b3a57" stroke="#ccc"/>
+    <text x="40" y="60" font-size="14" fill="#fff">Class: Rogue of Elethorn</text>
+    <text x="40" y="80" font-size="14" fill="#fff">Gear: Dual Daggers, Trap Toolkit</text>
+    <text x="40" y="100" font-size="14" fill="#fff">Style: Stealth, Critical Hits</text>
+    <text x="40" y="120" font-size="14" fill="#fff">Special: Ignores first trap per quest</text>
+  </svg>
+
+  <ul>
+    <li>Can disarm traps without rolling (once per quest)</li>
+    <li>Backstab ability deals extra damage from behind</li>
+    <li>Low defense but high critical potential</li>
+  </ul>
+
+  <p>The Rogue thrives on deception and agility. Perfect for players who love precision tactics, scouting, and setting the pace in trap-heavy dungeons. Think <em>Legolas meets a fantasy thief</em>.</p>
+
+  <h2>Comparison Table</h2>
+
+  <canvas id="heroCompareCanvas" width="500" height="180" style="border:1px solid #ccc;"></canvas>
+  <script>
+    const canvas = document.getElementById('heroCompareCanvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = "14px sans-serif";
+    ctx.fillText("🧙 Hero Role Comparison", 20, 30);
+    ctx.fillText("Class           | Offense | Defense | Utility | Movement", 20, 60);
+    ctx.fillText("Wandering Monk  |  Medium |  Medium |  High   |  High", 20, 90);
+    ctx.fillText("Rogue of Elethorn | High  |  Low    |  High   |  High", 20, 120);
+    ctx.fillText("Wizard          |  Low   |  Low    |  Very High | Medium", 20, 150);
+  </script>
+
+  <h2>Team Synergy</h2>
+
+  <ul>
+    <li>The Monk can act as a secondary tank or flanker when paired with the Knight or Barbarian</li>
+    <li>The Rogue pairs beautifully with ranged or magic heroes—scouting ahead or slipping past threats</li>
+    <li>Both bring fresh playstyles that suit experienced players seeking nuance</li>
+  </ul>
+
+  <h2>Summary</h2>
+
+  <p>The <strong>Wandering Monk</strong> and <strong>Rogue of Elethorn</strong> expand HeroQuest’s tactical diversity. They aren’t replacements for classic roles—but rather, elegant evolutions. The Monk brings discipline and harmony; the Rogue brings cunning and risk. Together, they invite players to see old dungeons through new eyes.</p>
+
+</body>
+</html>
