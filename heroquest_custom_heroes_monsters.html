@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"="width=device-width, initial-scale=1.0">
+    <title>Custom Heroes and Monsters: Forging Your Own Legends</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <script type="module">
+      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      mermaid.initialize({ startOnLoad: true });
+    </script>
+    <style>
+        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #4b0082, #663399, #8a2be2); color: #f4f1e8; }
+        .container { max-width: 1200px; margin: 0 auto; background: rgba(0,0,0,0.9); padding: 30px; border-radius: 15px; box-shadow: 0 0 80px rgba(138,43,226,0.4); border: 3px solid #8a2be2; }
+        h1 { color: #dda0dd; text-align: center; font-size: 2.8em; text-shadow: 3px 3px 8px #000, 0 0 20px #dda0dd; margin-bottom: 30px; }
+        h2 { color: #e6e6fa; border-bottom: 3px solid #e6e6fa; padding-bottom: 10px; margin-top: 40px; text-shadow: 2px 2px 4px #000; }
+        h3 { color: #f0e68c; margin-top: 30px; text-shadow: 1px 1px 2px #000; }
+        .quest-card { background: linear-gradient(145deg, #2f1b69, #1a1a1a); border: 3px solid; border-radius: 15px; padding: 25px; margin: 25px 0; position: relative; box-shadow: 0 15px 30px rgba(0,0,0,0.8); overflow: hidden; }
+        .quest-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, transparent, rgba(138,43,226,0.7), transparent); animation: creationShimmer 7s infinite; }
+        @keyframes creationShimmer { 0%, 100% { transform: translateX(-150%); } 50% { transform: translateX(150%); } }
+        .hero-creation { border-color: #4169e1; }
+        .monster-design { border-color: #dc143c; }
+        .conversion-guide { border-color: #ffa500; }
+        .stat-reference { border-color: #32cd32; }
+        .balance-tips { border-color: #ffd700; }
+        .card-type { position: absolute; top: -15px; left: 20px; padding: 8px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+        .hero-creation .card-type { background: #4169e1; color: white; }
+        .monster-design .card-type { background: #dc143c; color: white; }
+        .conversion-guide .card-type { background: #ffa500; color: white; }
+        .stat-reference .card-type { background: #32cd32; color: white; }
+        .balance-tips .card-type { background: #ffd700; color: black; }
+        .creation-chronicle { background: rgba(138,43,226,0.4); border: 3px solid #8a2be2; border-radius: 10px; padding: 20px; margin: 20px 0; position: relative; }
+        .creation-chronicle::before { content: "⚡"; position: absolute; top: -12px; left: 15px; font-size: 2.2em; background: rgba(0,0,0,0.9); padding: 5px; border-radius: 50%; }
+        .design-brief { background: rgba(255,165,0,0.9); border-left: 5px solid #ffa500; padding: 15px; margin: 15px 0; color: #000; }
+        .balance-warning { background: rgba(255,192,203,0.9); border: 2px dashed #dc143c; border-radius: 10px; padding: 15px; margin: 15px 0; color: #000; }
+        .creation-tag { display: inline-block; background: rgba(138,43,226,0.5); border: 1px solid #8a2be2; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; font-weight: bold; color: #dda0dd; }
+        .power-tag { display: inline-block; background: rgba(220,20,60,0.5); border: 1px solid #dc143c; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; color: #ff6b6b; }
+        .balance-tag { display: inline-block; background: rgba(255,215,0,0.4); border: 1px solid #ffd700; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; color: #ffd700; }
+        #creationCanvasElement { border: 3px solid #8a2be2; border-radius: 15px; background: radial-gradient(ellipse at center, #2f1b69, #1a1a1a); }
+        .mermaid { background: rgba(138,43,226,0.2); border-radius: 10px; padding: 20px; margin: 20px 0; }
+        .stat-block { background: rgba(240,240,240,0.95); border: 2px solid #8a2be2; border-radius: 10px; padding: 15px; margin: 15px 0; font-family: monospace; color: #000; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0; }
+        .stat-card { background: rgba(230,230,250,0.95); border: 2px solid #8a2be2; border-radius: 10px; padding: 15px; text-align: center; color: #000; }
+        .conversion-table { background: rgba(230,230,250,0.95); border: 2px solid #4b0082; border-radius: 10px; padding: 20px; margin: 20px 0; overflow-x: auto; color: #000; }
+        .example-hero { background: rgba(173,216,230,0.95); border: 2px solid #4169e1; border-radius: 10px; padding: 20px; margin: 20px 0; color: #000; }
+        .example-monster { background: rgba(255,182,193,0.95); border: 2px solid #dc143c; border-radius: 10px; padding: 20px; margin: 20px 0; color: #000; }
+        .power-scale { background: #333; border-radius: 10px; height: 25px; margin: 8px 0; overflow: hidden; position: relative; border: 2px solid #8a2be2; }
+        .power-fill { height: 100%; border-radius: 8px; transition: width 0.5s ease; position: relative; }
+        .power-label { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: #000; font-weight: bold; font-size: 0.85em; text-shadow: 1px 1px 2px #fff; z-index: 10; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #8a2be2; padding: 8px; text-align: left; background: rgba(240,240,240,0.95); color: #000; }
+        th { background: rgba(230,230,250,0.95); font-weight: bold; color: #000; }
+        .formula-box { background: rgba(255,255,224,0.95); border: 2px solid #ffd700; border-radius: 10px; padding: 15px; margin: 15px 0; font-family: monospace; color: #000; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ Custom Heroes and Monsters: Forging Your Own Legends ⚡</h1>
+        
+        <div class="creation-chronicle">
+            <p><em>"In the grand tapestry of heroic adventure, the greatest stories are often those that spring from the imagination of the storyteller, characters and creatures born not from official supplements but from the creative fire that burns within every true Game Master. The art of creating custom heroes and monsters is like being a deity of small worlds—breathing life into concepts, balancing power with vulnerability, and crafting experiences that will live forever in the memories of those who encounter them..."</em></p>
+        </div>
+
+        <h2>The Art of Character Creation</h2>
+        <p>Creating custom heroes and monsters for HeroQuest is both a science and an art, requiring a delicate balance between mechanical functionality and narrative appeal. Unlike video games where balance can be adjusted with patches, tabletop creations must be carefully considered from the start, as they'll become permanent parts of your gaming world. The goal isn't just to create something powerful or interesting, but to craft characters and creatures that enhance the storytelling experience for everyone at the table.</p>
+
+        <p>The secret to successful custom creation lies in understanding that HeroQuest's elegance comes from its simplicity. While other systems might have dozens of attributes and complex formulas, HeroQuest distills character essence into a handful of meaningful statistics. This constraint isn't a limitation—it's a creative challenge that forces you to capture a character's entire identity in just a few carefully chosen numbers and abilities.</p>
+
+        <h2>The Creation Laboratory</h2>
+        <canvas id="creationCanvasElement" width="1000" height="500"></canvas>
+        
+        <script>
+            const creationCanvas = document.getElementById('creationCanvasElement');
+            const creationCtx = creationCanvas.getContext('2d');
+            let creationFrame = 0;
+            
+            function drawCreationLab() {
+                creationCtx.clearRect(0, 0, 1000, 500);
+                creationFrame++;
+                
+                // Laboratory background with mystical energy
+                const energyPulse = Math.sin(creationFrame * 0.04) * 0.3 + 0.7;
+                creationCtx.fillStyle = `rgba(138, 43, 226, ${energyPulse * 0.2})`;
+                creationCtx.fillRect(0, 0, 1000, 500);
+                
+                // Workshop tables and creation stations
+                const stations = [
+                    {x: 150, y: 200, name: 'Hero Forge', color: '#4169e1', type: 'hero'},
+                    {x: 500, y: 180, name: 'Monster Lab', color: '#dc143c', type: 'monster'},
+                    {x: 850, y: 220, name: 'Balance Scale', color: '#ffd700', type: 'balance'}
+                ];
+                
+                stations.forEach((station, index) => {
+                    const stationGlow = Math.sin(creationFrame * 0.03 + index * 2) * 0.4 + 0.8;
+                    
+                    // Station base
+                    creationCtx.fillStyle = `rgba(47, 27, 105, ${stationGlow})`;
+                    creationCtx.fillRect(station.x - 40, station.y, 80, 120);
+                    
+                    // Station glow effect
+                    creationCtx.shadowColor = station.color;
+                    creationCtx.shadowBlur = 20 * stationGlow;
+                    creationCtx.fillStyle = station.color;
+                    creationCtx.fillRect(station.x - 35, station.y + 5, 70, 30);
+                    creationCtx.shadowBlur = 0;
+                    
+                    // Station tools and implements
+                    if (station.type === 'hero') {
+                        // Hero creation tools - sword and shield icons
+                        creationCtx.fillStyle = '#c0c0c0';
+                        creationCtx.fillRect(station.x - 20, station.y + 50, 4, 40);
+                        creationCtx.fillRect(station.x - 10, station.y + 40, 20, 4);
+                        creationCtx.beginPath();
+                        creationCtx.arc(station.x + 10, station.y + 60, 15, 0, Math.PI * 2);
+                        creationCtx.fill();
+                    } else if (station.type === 'monster') {
+                        // Monster creation tools - claws and fangs
+                        creationCtx.fillStyle = '#8b0000';
+                        for (let i = 0; i < 5; i++) {
+                            const clawX = station.x - 20 + i * 8;
+                            const clawY = station.y + 50 + Math.sin(creationFrame * 0.1 + i) * 5;
+                            creationCtx.beginPath();
+                            creationCtx.moveTo(clawX, clawY);
+                            creationCtx.lineTo(clawX + 3, clawY + 20);
+                            creationCtx.lineTo(clawX - 3, clawY + 20);
+                            creationCtx.fill();
+                        }
+                    } else if (station.type === 'balance') {
+                        // Balance tools - scales
+                        creationCtx.strokeStyle = '#ffd700';
+                        creationCtx.lineWidth = 3;
+                        creationCtx.beginPath();
+                        creationCtx.moveTo(station.x, station.y + 50);
+                        creationCtx.lineTo(station.x, station.y + 80);
+                        creationCtx.moveTo(station.x - 20, station.y + 65);
+                        creationCtx.lineTo(station.x + 20, station.y + 65);
+                        creationCtx.stroke();
+                        
+                        // Scale pans
+                        creationCtx.beginPath();
+                        creationCtx.arc(station.x - 20, station.y + 70, 8, 0, Math.PI * 2);
+                        creationCtx.arc(station.x + 20, station.y + 70, 8, 0, Math.PI * 2);
+                        creationCtx.stroke();
+                    }
+                    
+                    // Station label
+                    creationCtx.fillStyle = station.color;
+                    creationCtx.font = '14px serif';
+                    creationCtx.textAlign = 'center';
+                    creationCtx.fillText(station.name, station.x, station.y + 140);
+                });
+                
+                // Floating stat bubbles representing different attributes
+                const stats = ['Body', 'Mind', 'Movement', 'Attack', 'Defend'];
+                stats.forEach((stat, index) => {
+                    const t = creationFrame * 0.02 + index * 1.2;
+                    const x = 300 + Math.sin(t) * 150;
+                    const y = 100 + Math.cos(t * 0.8) * 50 + index * 15;
+                    const size = 8 + Math.sin(t * 3) * 3;
+                    
+                    // Stat bubble
+                    const alpha = 0.6 + Math.sin(t * 2) * 0.3;
+                    creationCtx.fillStyle = `rgba(221, 160, 221, ${alpha})`;
+                    creationCtx.beginPath();
+                    creationCtx.arc(x, y, size, 0, Math.PI * 2);
+                    creationCtx.fill();
+                    
+                    // Stat label
+                    if (size > 9) {
+                        creationCtx.fillStyle = '#4b0082';
+                        creationCtx.font = '10px serif';
+                        creationCtx.textAlign = 'center';
+                        creationCtx.fillText(stat, x, y + 3);
+                    }
+                });
+                
+                // Creation energy streams connecting stations
+                const connections = [
+                    {start: stations[0], end: stations[1]},
+                    {start: stations[1], end: stations[2]},
+                    {start: stations[2], end: stations[0]}
+                ];
+                
+                connections.forEach((conn, index) => {
+                    const energy = Math.sin(creationFrame * 0.05 + index * 2) * 0.5 + 0.5;
+                    creationCtx.strokeStyle = `rgba(138, 43, 226, ${energy * 0.8})`;
+                    creationCtx.lineWidth = 3;
+                    creationCtx.setLineDash([10, 10]);
+                    creationCtx.beginPath();
+                    creationCtx.moveTo(conn.start.x, conn.start.y + 60);
+                    creationCtx.lineTo(conn.end.x, conn.end.y + 60);
+                    creationCtx.stroke();
+                    creationCtx.setLineDash([]);
+                });
+                
+                // Magical formulae floating in the background
+                const formulae = ['BP = (B+M+Mo)/3', 'CR = A×D÷2', 'XP = Level²×100'];
+                formulae.forEach((formula, index) => {
+                    const t = creationFrame * 0.01 + index;
+                    const x = 100 + Math.sin(t) * 800;
+                    const y = 350 + Math.cos(t * 1.3) * 80;
+                    const alpha = (Math.sin(t * 4) + 1) * 0.3;
+                    
+                    creationCtx.fillStyle = `rgba(240, 230, 140, ${alpha})`;
+                    creationCtx.font = '12px monospace';
+                    creationCtx.textAlign = 'center';
+                    creationCtx.fillText(formula, x, y);
+                });
+                
+                // Inspiration sparks
+                for (let i = 0; i < 20; i++) {
+                    const sparkTime = (creationFrame + i * 25) * 0.03;
+                    const x = 50 + Math.random() * 900;
+                    const y = 50 + Math.sin(sparkTime + i) * 200 + 150;
+                    const brightness = Math.random() * 0.8 + 0.2;
+                    
+                    creationCtx.fillStyle = `rgba(255, 255, 255, ${brightness})`;
+                    creationCtx.beginPath();
+                    creationCtx.arc(x, y, 1 + Math.random() * 2, 0, Math.PI * 2);
+                    creationCtx.fill();
+                }
+            }
+            
+            setInterval(drawCreationLab, 50);
+        </script>
+
+        <h2>Hero Creation Fundamentals</h2>
+
+        <div class="quest-card hero-creation">
+            <div class="card-type">Hero Creation</div>
+            <h3>🛡️ Building Legendary Champions</h3>
+            
+            <div class="design-brief">
+                <h4>The Foundation of Character</h4>
+                <p>Every great hero begins with a concept—not a collection of statistics, but a vision of who this character is and what role they'll play in your stories. Are they the grizzled veteran whose experience makes up for declining reflexes? The naive prodigy whose raw talent compensates for lack of wisdom? The balanced everyman who excels at nothing but can handle anything? Start with the story, then build the numbers to support that narrative vision.</p>
+                
+                <p>The key to HeroQuest hero creation is understanding that each statistic tells part of the character's story. Body Points aren't just hit points—they represent toughness, determination, and the will to keep fighting. Mind Points reflect not just intelligence but wisdom, intuition, and magical aptitude. Movement doesn't just govern speed but agility, reflexes, and the ability to adapt to changing situations. Every number should reinforce the character concept you've envisioned.</p>
+            </div>
+            
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <h4>🏃 Movement</h4>
+                    <p>Base human: 2d6 roll<br>
+                    Modifiers: +/-1 to roll<br>
+                    Represents agility and speed</p>
+                </div>
+                <div class="stat-card">
+                    <h4>⚔️ Attack Dice</h4>
+                    <p>Base human: 2 dice<br>
+                    Range: 1-5 dice<br>
+                    Combat effectiveness</p>
+                </div>
+                <div class="stat-card">
+                    <h4>🛡️ Defend Dice</h4>
+                    <p>Base human: 2 dice<br>
+                    Range: 1-4 dice<br>
+                    Protective capability</p>
+                </div>
+                <div class="stat-card">
+                    <h4>💪 Body Points</h4>
+                    <p>Base human: Variable<br>
+                    Range: 1-8 points<br>
+                    Physical resilience</p>
+                </div>
+                <div class="stat-card">
+                    <h4>🧠 Mind Points</h4>
+                    <p>Base human: Variable<br>
+                    Range: 1-6 points<br>
+                    Mental fortitude & magic</p>
+                </div>
+            </div>
+            
+            <div class="example-hero">
+                <h4>Example: The Shadowdancer</h4>
+                <div class="stat-block">
+                    <strong>Movement:</strong> 2d6+1 (Enhanced agility)<br>
+                    <strong>Attack Dice:</strong> 2 (Precise rather than brutal)<br>
+                    <strong>Defend Dice:</strong> 3 (Evasion and parrying)<br>
+                    <strong>Body Points:</strong> 2 (Lightly built)<br>
+                    <strong>Mind Points:</strong> 3 (Tactical awareness)<br>
+                    <strong>Special Ability:</strong> Once per quest, may move through enemies without triggering attacks<br>
+                    <strong>Equipment:</strong> Twin daggers, leather armor, smoke bombs<br>
+                    <strong>Weakness:</strong> Cannot wear heavy armor (reduces Movement to 2d6-1)
+                </div>
+                <p><em>Concept: A nimble fighter who relies on speed and positioning rather than brute force, perfect for players who enjoy tactical movement and clever solutions.</em></p>
+            </div>
+            
+            <span class="creation-tag">🎭 Character Concept</span>
+            <span class="creation-tag">📊 Balanced Stats</span>
+            <span class="creation-tag">⚡ Unique Abilities</span>
+            <span class="balance-tag">🎯 Clear Role</span>
+        </div>
+
+        <div class="quest-card conversion-guide">
+            <div class="card-type">Conversion Guide</div>
+            <h3>🔄 Converting From Other Systems</h3>
+            
+            <div class="conversion-table">
+                <h4>Universal Conversion Principles</h4>
+                <p>Converting characters from other game systems into HeroQuest requires understanding the philosophical differences between systems. D&D characters might have 18 in Strength, but HeroQuest doesn't use that scale. Instead, focus on the relative power level and role the character fills. A D&D Fighter isn't just "strong"—they're tough, skilled with weapons, and reliable in combat. Translate the essence, not the numbers.</p>
+                
+                <table>
+                    <tr>
+                        <th>Source System</th>
+                        <th>Key Translation</th>
+                        <th>HeroQuest Equivalent</th>
+                        <th>Notes</th>
+                    </tr>
+                    <tr>
+                        <td>D&D 5e Fighter</td>
+                        <td>High HP, Good Attack</td>
+                        <td>Body 4-6, Attack 3-4</td>
+                        <td>Focus on survival and reliability</td>
+                    </tr>
+                    <tr>
+                        <td>D&D 5e Wizard</td>
+                        <td>Low HP, High Intelligence</td>
+                        <td>Body 1-2, Mind 4-6</td>
+                        <td>Emphasize spell knowledge</td>
+                    </tr>
+                    <tr>
+                        <td>D&D 5e Rogue</td>
+                        <td>High Dex, Sneak Attack</td>
+                        <td>Movement 2d6+1, Special abilities</td>
+                        <td>Speed and positioning matter</td>
+                    </tr>
+                    <tr>
+                        <td>Warhammer Dwarf</td>
+                        <td>Tough, Slow, Resolute</td>
+                        <td>Body 5-6, Movement 2d6-1, high Defend</td>
+                        <td>Durable but methodical</td>
+                    </tr>
+                    <tr>
+                        <td>40K Space Marine</td>
+                        <td>Elite, Well-Rounded</td>
+                        <td>All stats 3-4, power armor</td>
+                        <td>Superior in every way</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <div class="formula-box">
+                <h4>Quick Conversion Formulas</h4>
+                <strong>Body Points:</strong> (Constitution + Class HD) ÷ 4 (minimum 1)<br>
+                <strong>Mind Points:</strong> (Intelligence + Wisdom) ÷ 6 (minimum 1)<br>
+                <strong>Attack Dice:</strong> Base Attack Bonus ÷ 3 + 1 (maximum 5)<br>
+                <strong>Defend Dice:</strong> AC bonus ÷ 3 + 1 (maximum 4)<br>
+                <strong>Movement:</strong> For heroes use 2d6 base with modifiers. For monsters use fixed squares based on creature type and threat level
+            </div>
+            
+            <span class="creation-tag">🔄 System Translation</span>
+            <span class="creation-tag">📐 Mathematical Balance</span>
+            <span class="balance-tag">🎯 Preserve Essence</span>
+            <span class="balance-tag">⚖️ Maintain Simplicity</span>
+        </div>
+
+        <div class="mermaid">
+            graph TD
+                A[Character Concept] --> B[Define Role]
+                A --> C[Choose Archetype]
+                A --> D[Identify Strengths]
+                A --> E[Plan Weaknesses]
+                
+                B --> F[Tank/Damage/Support/Utility]
+                C --> G[Warrior/Mage/Rogue/Hybrid]
+                D --> H[Primary Stats 3-4]
+                E --> I[Weak Stats 1-2]
+                
+                F --> J[Assign Base Stats]
+                G --> J
+                H --> J
+                I --> J
+                
+                J --> K[Add Special Abilities]
+                J --> L[Choose Equipment]
+                J --> M[Define Limitations]
+                
+                K --> N[Playtesting]
+                L --> N
+                M --> N
+                
+                N --> O[Balance Adjustments]
+                O --> P[Final Character]
+                
+                style A fill:#8a2be2
+                style J fill:#4169e1
+                style N fill:#ffa500
+                style P fill:#32cd32
+        </div>
+
+        <div class="quest-card monster-design">
+            <div class="card-type">Monster Design</div>
+            <h3>👹 Crafting Memorable Adversaries</h3>
+            
+            <div class="design-brief">
+                <h4>Understanding Movement Systems</h4>
+                <p>HeroQuest uses two different movement systems that serve distinct gameplay purposes. Heroes roll 2d6 for movement each turn, creating unpredictability and tension—sometimes you'll roll high and reach that treasure chest, other times you'll roll low and get caught by pursuing monsters. This randomness adds excitement and prevents perfect tactical planning.</p>
+                
+                <p>Monsters, conversely, have fixed movement values that create reliable tactical challenges. A Mummy's 4-square movement means heroes know exactly how much distance they need to stay safe, while an Orc's 8-square movement creates constant pressure. This predictability allows players to make informed strategic decisions while the monster's behavior patterns provide the tactical complexity.</p>
+            </div>
+            
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <h4>🐀 Minion (CR 1/4)</h4>
+                    <p>Body: 1, Mind: 1<br>
+                    Attack: 1, Defend: 1<br>
+                    Movement: 4-6 squares</p>
+                </div>
+                <div class="stat-card">
+                    <h4>⚔️ Soldier (CR 1/2)</h4>
+                    <p>Body: 2-3, Mind: 1<br>
+                    Attack: 2, Defend: 2<br>
+                    Movement: 6-8 squares</p>
+                </div>
+                <div class="stat-card">
+                    <h4>🛡️ Elite (CR 1)</h4>
+                    <p>Body: 3-4, Mind: 2<br>
+                    Attack: 3, Defend: 2-3<br>
+                    Movement: 7-8 squares</p>
+                </div>
+                <div class="stat-card">
+                    <h4>👑 Champion (CR 2)</h4>
+                    <p>Body: 5-6, Mind: 3<br>
+                    Attack: 4, Defend: 3<br>
+                    Movement: 8-10 squares</p>
+                </div>
+                <div class="stat-card">
+                    <h4>🐉 Boss (CR 3+)</h4>
+                    <p>Body: 7+, Mind: 4+<br>
+                    Attack: 4+, Defend: 3+<br>
+                    Movement: 10+ squares</p>
+                </div>
+            </div>
+            
+            <div class="example-monster">
+                <h4>Example: Crystal Wraith</h4>
+                <div class="stat-block">
+                    <strong>Body Points:</strong> 3<br>
+                    <strong>Mind Points:</strong> 4<br>
+                    <strong>Movement:</strong> 6 squares (can pass through walls)<br>
+                    <strong>Attack Dice:</strong> 2 (touch drains 1 Mind Point)<br>
+                    <strong>Defend Dice:</strong> 3 (physical weapons do half damage)<br>
+                    <strong>Special:</strong> Becomes invisible when not moving<br>
+                    <strong>Weakness:</strong> Takes double damage from magic weapons<br>
+                    <strong>Treasure:</strong> Crystal shard worth 50 gold coins
+                </div>
+                <p><em>Behavior: Stalks heroes using invisibility, strikes lone targets, retreats if badly wounded. Forces party to stay together and value magical weapons.</em></p>
+            </div>
+            
+            <div class="balance-warning">
+                <h4>Monster Movement Reference</h4>
+                <p><strong>Official Monster Examples:</strong><br>
+                • Mummies: 4 squares (slow, shambling undead)<br>
+                • Zombies: 5 squares (slightly faster undead)<br>
+                • Skeletons: 6 squares (nimble undead)<br>
+                • Dread Warriors: 7 squares (elite undead)<br>
+                • Orcs: 8 squares (aggressive living creatures)</p>
+                
+                <p><strong>Design Principle:</strong> Slower monsters (4-5) are typically tougher or have special abilities, while faster monsters (8+) rely on mobility and numbers. Medium speed (6-7) represents balanced threats.</p>
+            </div>
+            
+            <span class="power-tag">👹 Behavioral Patterns</span>
+            <span class="power-tag">⚔️ Tactical Depth</span>
+            <span class="creation-tag">🎭 Personality Traits</span>
+            <span class="balance-tag">⚖️ Fair Challenge</span>
+        </div>
+
+        <div class="quest-card stat-reference">
+            <div class="card-type">Stat Reference</div>
+            <h3>📊 Power Level Guidelines</h3>
+            
+            <div class="design-brief">
+                <h4>Understanding the Scale</h4>
+                <p>HeroQuest uses a deliberately compressed power scale compared to other RPGs. While D&D characters might progress from 1st to 20th level with vast power increases, HeroQuest heroes grow more subtly, gaining equipment, spells, and special abilities rather than dramatically increased statistics. This creates a different feel—heroes become more versatile and experienced rather than simply more powerful.</p>
+            </div>
+            
+            <div class="power-scale">
+                <div class="power-fill" style="width: 20%; background: linear-gradient(90deg, #8b0000, #ff4500);">
+                    <div class="power-label">Novice Heroes (Starting Level)</div>
+                </div>
+            </div>
+            <div class="power-scale">
+                <div class="power-fill" style="width: 40%; background: linear-gradient(90deg, #4169e1, #1e90ff);">
+                    <div class="power-label">Experienced Heroes (5+ Quests)</div>
+                </div>
+            </div>
+            <div class="power-scale">
+                <div class="power-fill" style="width: 60%; background: linear-gradient(90deg, #32cd32, #90ee90);">
+                    <div class="power-label">Veteran Heroes (10+ Quests)</div>
+                </div>
+            </div>
+            <div class="power-scale">
+                <div class="power-fill" style="width: 80%; background: linear-gradient(90deg, #ffd700, #ffff99);">
+                    <div class="power-label">Legendary Heroes (20+ Quests)</div>
+                </div>
+            </div>
+            <div class="power-scale">
+                <div class="power-fill" style="width: 95%; background: linear-gradient(90deg, #8a2be2, #dda0dd);">
+                    <div class="power-label">Epic Heroes (Campaign Climax)</div>
+                </div>
+            </div>
+            
+            <div class="conversion-table">
+                <h4>Relative Power Comparison</h4>
+                <table>
+                    <tr>
+                        <th>HeroQuest Level</th>
+                        <th>D&D 5e Equivalent</th>
+                        <th>Typical Stats</th>
+                        <th>Challenge Rating</th>
+                    </tr>
+                    <tr>
+                        <td>Starting Hero</td>
+                        <td>1st-2nd Level</td>
+                        <td>Stats 1-3, few items</td>
+                        <td>Can handle CR 1/4 groups</td>
+                    </tr>
+                    <tr>
+                        <td>Experienced Hero</td>
+                        <td>3rd-5th Level</td>
+                        <td>Stats 2-4, magic items</td>
+                        <td>Can handle CR 1/2 groups</td>
+                    </tr>
+                    <tr>
+                        <td>Veteran Hero</td>
+                        <td>6th-10th Level</td>
+                        <td>Stats 3-5, powerful gear</td>
+                        <td>Can handle CR 1-2 enemies</td>
+                    </tr>
+                    <tr>
+                        <td>Legendary Hero</td>
+                        <td>11th-15th Level</td>
+                        <td>Stats 4-6, artifacts</td>
+                        <td>Can handle CR 3-5 enemies</td>
+                    </tr>
+                    <tr>
+                        <td>Epic Hero</td>
+                        <td>16th+ Level</td>
+                        <td>Stats 5-7, unique abilities</td>
+                        <td>Can handle ancient dragons</td>
+                    </tr>
+                </table>
+            </div>
+            
+            <span class="balance-tag">📊 Power Scaling</span>
+            <span class="balance-tag">📈 Progression Curves</span>
+            <span class="creation-tag">🎯 Appropriate Challenges</span>
+            <span class="balance-tag">⚖️ System Harmony</span>
+        </div>
+
+        <div class="quest-card balance-tips">
+            <div class="card-type">Balance Tips</div>
+            <h3>⚖️ Maintaining Game Balance</h3>
+            
+            <div class="design-brief">
+                <h4>The Art of Fair Challenge</h4>
+                <p>Game balance in HeroQuest isn't about mathematical perfection—it's about ensuring that every player has opportunities to contribute meaningfully to the group's success. A perfectly balanced game isn't one where every character is equally powerful, but one where every character is equally important. The warrior's strength should matter as much as the wizard's knowledge and the elf's agility.</p>
+            </div>
+            
+            <div class="balance-warning">
+                <h4>Common Balance Mistakes</h4>
+                <p><strong>Power Creep:</strong> Each new creation being slightly stronger than existing options leads to an arms race that breaks the game's power scale.</p>
+                
+                <p><strong>Single Solution Design:</strong> Creating challenges that only one character type can overcome makes other players feel useless during those encounters.</p>
+                
+                <p><strong>No Clear Weaknesses:</strong> Characters without meaningful limitations become dominant and overshadow other party members.</p>
+                
+                <p><strong>Ignoring Equipment:</strong> Creating characters without considering how they interact with HeroQuest's equipment system can create unexpected power combinations.</p>
+            </div>
+            
+            <div class="formula-box">
+                <h4>Balance Testing Checklist</h4>
+                <strong>✓ Power Budget:</strong> Does this character trade strength for weakness somewhere?<br>
+                <strong>✓ Party Role:</strong> Does this fill a unique niche without overlapping too much?<br>
+                <strong>✓ Equipment Scaling:</strong> How does this interact with magical items?<br>
+                <strong>✓ Encounter Design:</strong> Can this character contribute to most quest types?<br>
+                <strong>✓ Player Agency:</strong> Does this give the player interesting choices to make?<br>
+                <strong>✓ Narrative Fit:</strong> Does this feel like it belongs in the HeroQuest world?
+            </div>
+            
+            <div class="conversion-table">
+                <h4>Playtesting Guidelines</h4>
+                <p><strong>Test Duration:</strong> Run at least 3 different quest types with the new character/monster before finalizing.</p>
+                
+                <p><strong>Player Feedback:</strong> Ask if the character feels fun to play, not just if it's balanced. Boring but balanced is worse than slightly overpowered but exciting.</p>
+                
+                <p><strong>Comparative Analysis:</strong> How does this option compare to existing choices? Is it clearly better, clearly worse, or different but equivalent?</p>
+                
+                <p><strong>Edge Case Review:</strong> What happens when this character gets the best possible equipment? The worst possible luck? Faces their perfect counter?</p>
+            </div>
+            
+            <span class="balance-tag">⚖️ Fair Challenges</span>
+            <span class="balance-tag">🎯 Clear Purposes</span>
+            <span class="balance-tag">🧪 Thorough Testing</span>
+            <span class="creation-tag">🎮 Player Enjoyment</span>
+        </div>
+
+        <h2>Advanced Creation Techniques</h2>
+        
+        <div class="design-brief">
+            <h3>Environmental Storytelling</h3>
+            <p>The most memorable custom creations tell stories not just through their statistics but through their implied history and environmental context. A monster's damage pattern suggests how it hunts, its defensive abilities hint at what threatens it, and its treasure reveals what it values. When creating custom content, consider what each mechanical choice reveals about the character's place in the world.</p>
+            
+            <p>For example, a monster with high Body Points but low Mind Points might be a brutish creature that relies on physical toughness rather than cunning. If it also has low Attack dice but special abilities triggered by taking damage, it suggests a defensive creature that becomes more dangerous when cornered—perhaps a territorial beast protecting young, or a guardian created to test heroes' persistence rather than their combat skills.</p>
+        </div>
+
+        <div class="creation-chronicle">
+            <h3>The Living Game</h3>
+            <p>Remember that your custom heroes and monsters will become part of your gaming world's ongoing story. Unlike published content that remains static, your creations can evolve based on player interactions and campaign developments. That minor villain who escaped the heroes' first encounter might return more powerful and cunning, having learned from previous defeats. A custom hero class might develop new abilities as players discover innovative uses for their existing powers.</p>
+            
+            <p>The greatest custom creations are those that inspire players to think differently about the game, to approach challenges from new angles, and to tell stories that couldn't be told with standard options alone. They become catalysts for creativity, opening up new narrative possibilities that enrich the entire gaming experience for everyone at the table.</p>
+        </div>
+
+        <div class="creation-chronicle">
+            <p><em>"In the end, the art of creating custom heroes and monsters is really the art of creating possibilities—new ways for players to express their creativity, new challenges that test different aspects of heroism, and new stories that could only exist in the unique world you've crafted together. Each custom creation is a gift to your players, an invitation to explore uncharted territories of imagination and discover what legends they might forge in the crucible of adventure..."</em></p>
+        </div>
+    </div>
+</body>
+</html>

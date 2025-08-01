@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HeroQuest Lore Overview</title>
+
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="icon" href="/favicon.png">
+
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body>
+  <h1>HeroQuest Lore Overview</h1>
+
+  <h2>World at a Glance</h2>
+  <p>
+    Avalonia—often called “the Realm”—is a tapestry of rugged frontiers, dwarven
+    mountain holds, elven highlands, and shadow‑veiled wastelands.
+    Think continental Europe mashed with high‑fantasy Middle‑earth:
+    forests echo with elven ballads while distant volcanoes glow with Chaos.
+  </p>
+
+  <h2>Key Factions &amp; Figures</h2>
+  <ul>
+    <li><strong>Mentor (formerly Rogar):</strong> Sage of the Order, guiding heroes from his tower.</li>
+    <li><strong>Zargon (a.k.a. Morcar):</strong> Fallen apprentice turned dark overlord scheming from the Northlands.</li>
+    <li><strong>Emperor:</strong> Human monarch of the Eastern Empire; besieged in Kellar’s Keep.</li>
+    <li><strong>Witch Lord:</strong> Undying necromancer raising armies from Kaleth’s crypts.</li>
+    <li><strong>Frozen Horror:</strong> Yeti‑god entombed beneath polar ice, now awakened.</li>
+    <li><strong>Sinestra:</strong> Mirror mage manipulating elven politics.</li>
+    <li><strong>Gurbash the Cruel:</strong> Ogre warlord leading frontier raids.</li>
+  </ul>
+
+  <h2>Major Locations</h2>
+  <ul>
+    <li><strong>Karak Varn Mountains:</strong> Dwarven citadels and the besieged fortress Kellar’s Keep.</li>
+    <li><strong>Kaleth:</strong> Haunted city of mausoleums where the Witch Lord stirs.</li>
+    <li><strong>Northlands:</strong> Frozen tundra home to ice caverns and mercenary outposts.</li>
+    <li><strong>Elven Kingdom of Elethorn:</strong> Verdant woods hiding mirror portals and rogue assassins.</li>
+    <li><strong>Delthrak Jungle:</strong> Overgrown ruins concealing lost dwarven forges and reptilian tribes.</li>
+    <li><strong>Andor:</strong> Human frontier threatened by Dread Moon cultists.</li>
+  </ul>
+
+  <h2>Timeline of Notable Events</h2>
+<div class="mermaid">
+timeline
+    title Ages of HeroQuest
+    1500 BCE : Founding of the Four Schools of Magic
+    1400 BCE : Rise of the Ogre Empire
+    900  BCE : Dwarf and Ogre Wars — Ogre Horde shattered
+    500  BCE : Witch Lord first reign and fall
+    Year 0   : Mentor defeats Zargon at Firetop Mountain
+    Year 5   : Core Game Quests — Heroes Gather
+    Year 6   : Siege of Kellar Keep
+    Year 7   : Return of the Witch Lord
+    Year 8   : Awakening of the Frozen Horror
+    Year 9   : Mage of the Mirror crisis
+    Year 10  : Prophecy of Telor time fracture
+    Year 11  : Rise of the Dread Moon eclipse
+    Year 12  : Jungles of Delthrak expedition
+    Year 13  : Spirit Queen Torment serenade
+    Year 14  : Ogre Horde resurgence thwarted
+</div>
+
+
+
+
+
+  <h2>Interactive Map Sketch</h2>
+  <p>Click regions to highlight where each quest pack unfolds.</p>
+  <canvas id="loreMapCanvas" width="360" height="200" style="border:1px solid #444;"></canvas>
+  <script>
+    const mapCanvas = document.getElementById('loreMapCanvas');
+    const mCtx = mapCanvas.getContext('2d');
+    const regions = [
+      {name:'Karak Varn',x:60,y:60,r:22,color:'#8d6e63'},
+      {name:'Kaleth',x:220,y:70,r:20,color:'#9c27b0'},
+      {name:'Northlands',x:300,y:30,r:25,color:'#03a9f4'},
+      {name:'Elethorn',x:260,y:140,r:22,color:'#4caf50'},
+      {name:'Delthrak',x:110,y:140,r:24,color:'#8bc34a'},
+      {name:'Andor',x:180,y:30,r:18,color:'#ff7043'}
+    ];
+    function drawMap(){
+      mCtx.clearRect(0,0,360,200);
+      // base landmass (stylized blob)
+      mCtx.fillStyle='#c5e1a5';
+      mCtx.beginPath();
+      mCtx.moveTo(30,30);mCtx.lineTo(330,20);mCtx.lineTo(340,180);mCtx.lineTo(20,190);mCtx.closePath();mCtx.fill();
+      regions.forEach(reg=>{
+        mCtx.fillStyle=reg.highlight?reg.color:'rgba(0,0,0,0.2)';
+        mCtx.beginPath();mCtx.arc(reg.x,reg.y,reg.r,0,Math.PI*2);mCtx.fill();
+        mCtx.fillStyle='#000';mCtx.font='10px sans-serif';mCtx.textAlign='center';mCtx.textBaseline='middle';
+        mCtx.fillText(reg.name,reg.x,reg.y);
+      });
+    }
+    mapCanvas.addEventListener('click',e=>{
+      const rect=mapCanvas.getBoundingClientRect();
+      const x=e.clientX-rect.left;
+      const y=e.clientY-rect.top;
+      regions.forEach(r=>{
+        const d=Math.hypot(x-r.x,y-r.y);
+        if(d<=r.r){
+          r.highlight=!r.highlight;
+        }
+      });
+      drawMap();
+    });
+    drawMap();
+  </script>
+
+  <h2>Villain Motivations</h2>
+  <p>
+    • <strong>Zargon/Morcar:</strong> Seeks revenge on Mentor and mastery of Chaos magic.<br>
+    • <strong>Witch Lord:</strong> Believes undeath is the path to eternal power.<br>
+    • <strong>Frozen Horror:</strong> Primal force of entropy—wants the world encased in ice.<br>
+    • <strong>Sinestra:</strong> Desires to shatter elven society via identity manipulation.<br>
+    • <strong>Dread Moon Cult:</strong> Worship cosmic entities behind the red eclipse.<br>
+    • <strong>Gurbash:</strong> Ogrelike hunger for conquest and glory.
+  </p>
+
+  <h2>Cross‑Curricular Hooks</h2>
+  <p>
+    Use the timeline to teach chronology and cause‑effect, the map for geography skills,
+    and villain motivations for character studies in literature classes. Students can
+    write in‑character journals to practice creative writing.
+  </p>
+
+  <h2>The Story Continues</h2>
+  <p>
+    With lore at your fingertips, weave custom quests that slot seamlessly into the
+    existing chronology—or rewrite history entirely. The realm awaits your pen.
+  </p>
+</body>
+</html>
