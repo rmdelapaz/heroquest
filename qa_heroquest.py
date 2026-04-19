@@ -46,6 +46,7 @@ NAV_PAGES = [
     "heroquest_rogue_tutorial.html",
     "heroquest_druid_tutorial.html",
     "heroquest_digital_toolkit.html",
+    "heroquest_character_sheet.html",
     "heroquest_custom_heroes_monsters.html",
     "heroquest_legendary_heroes.html",
     "heroquest_online_play.html",

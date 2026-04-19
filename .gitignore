@@ -4,3 +4,4 @@ screenshots/
 # Utility scripts (can be regenerated)
 qa_heroquest.py
 screenshot_matrix.py
+fix_canvas_wrap.py

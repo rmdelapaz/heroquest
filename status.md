@@ -166,11 +166,13 @@
   - `heroquest_digital_toolkit.html` — `rgba(83,52,131,0.3)` → `var(--accent-muted)`, `#7209b7` → `var(--accent, #7209b7)`
   - `heroquest_spirit_queens_torment.html` — 2× `color: #ffffff; text-shadow:...` → `color: var(--text)` (white text invisible on light mode)
   - `heroquest_legendary_heroes.html` — Knight hero-title `color: #000` on `background: #ffd700` confirmed as acceptable self-colored decorative pair (false positive)
-- Screenshot review via `screenshots/review.html` contact sheet — **IN PROGRESS**
+- ~~Screenshot review via `screenshots/review.html` contact sheet~~ ✅
 - Screenshots: 50 pages × 3 viewports (960/768/480) × 2 themes (light/dark) = 300 PNGs
 - Review tool features: search filter, viewport/theme toggles, click-to-expand, shift+click lightbox
 - `.gitignore` added to exclude `screenshots/`, `qa_heroquest.py`, `screenshot_matrix.py`
 - Old utility scripts deleted: `audit_critical.py`, `find_text_colors.py`, `dark_mode_audit.py`
+- ~~Canvas container wrapper fix (`fix_canvas_wrap.py`) — sitewide scan and auto-fix~~ ✅
+- Remaining: final visual spot-check, then deploy
 
 ### ~~6. Potential Further Improvements~~ ✅ DONE (Session 7)
 - ~~Simplify redundant dark mode overrides in main.css~~ ✅
@@ -238,6 +240,48 @@ Directive: Read each page, identify sections where a diagram/illustration/chart 
 
 **Task 7 is now COMPLETE.** All 49 content pages have been evaluated. The original status.md significantly overstated the need for SVG additions — most pages were already visually well-served by their existing canvases, mermaid diagrams, and interactive HTML elements.
 
+### Session 9 — QA Pass, Character Sheet, Advanced Combat Fixes (April 2026)
+
+**QA Automation:**
+- Built `qa_heroquest.py` — 8-check automated QA script (nav file existence, orphan files, broken links, HTML structure, missing resources, hardcoded colors, nav.js sync, main.css/nav.js references)
+- Ran QA and fixed 9 issues across 3 files:
+  - `heroquest_online_play.html` — `</mermaid>` → `</div>` (unclosed div)
+  - `heroquest_digital_toolkit.html` — hardcoded `rgba()` and `#7209b7` → CSS variables
+  - `heroquest_spirit_queens_torment.html` — 2× white text invisible on light mode → `var(--text)`
+
+**Playwright Screenshot Matrix:**
+- Built `screenshot_matrix.py` — captures 50 pages × 3 viewports × 2 themes = 300 screenshots via headless Chromium
+- Built `screenshots/review.html` — interactive contact sheet with search, viewport/theme filters, click-to-expand, lightbox
+- Added `.gitignore` to exclude `screenshots/`, QA scripts
+
+**Character Sheet (`heroquest_character_sheet.html`):**
+- New fillable/printable/saveable character sheet modeled after ICRPG character cards
+- Hero mode: name, class dropdown (all 12 classes), Attack/Defend/Body/Mind dice, Movement, Current BP/MP, Weapons & Armor, Gold, Items & Treasure, Quest Notes
+- Monster mode (Zargon’s Forces): name, type dropdown (13 monster types), same dice stats, Threat Level, Attacks & Actions, Special Abilities, Loot Drops, Zargon Notes
+- Class auto-fill: selecting a class populates all stats and starting weapon from tutorial page data
+- All 12 classes mapped: Barbarian (3/2/8/2, Broadsword), Dwarf (2/2/7/3, Shortsword), Elf (2/2/6/4, Shortsword), Wizard (1/2/4/6, Dagger), Warlock (1/2/5/5, Dagger), Bard (2/2/6/4, Shortsword), Knight (3/3/8/3, Broadsword), Berserker (3/1/9/2, Broadsword), Explorer (2/2/7/4, Shortsword), Monk (2/3/6/5, Staff), Rogue (2/2/5/4, Dagger), Druid (1/2/6/4, Dagger)
+- Spells section removed — spells are physical cards in HeroQuest, not tracked on paper
+- Card dimensions: 3.75” × 5” (matches original HeroQuest sheet size of ~95mm × 145mm)
+- Print layout: always 4 cards per letter page (2×2 flexbox grid), blank hero cards pad to fill any partial page
+- Landscape mode removed (not needed for HeroQuest)
+- All textarea sections capped at 4 visible lines with `overflow: hidden`
+- Features: auto-save, Save/Load/Delete/Duplicate, Print single/all/blank, Export/Import JSON
+- Parchment aesthetic: MedievalSharp + Just Another Hand fonts, warm earth tones, dark mode support
+- Added to `nav.js` between Digital Toolkit and Custom & Advanced (now 50 nav entries)
+
+**Advanced Combat Page Fixes (`heroquest_advanced_combat.html`):**
+- Interactive Formation Trainer — restored missing CSS stripped in Session 3:
+  - Added `<style>` block with `.battlefield-grid` (8-col CSS grid), `.grid-cell` (aspect-ratio, cursor, transitions), wall/door/hero/monster color variants, dark mode support, mobile responsive
+- Formation Trainer JS bug fix: `currentType` was a global counter → each cell now independently cycles via `cellTypes.indexOf(gridState[index])`
+- Formation analysis rewritten — old version had bugs (self-adjacency, blanket "Good tactical setup!"):
+  - New checks: solo hero warning, mutual support count with isolated hero reporting, outnumbered detection (favorable/outnumbered/heavily outnumbered), door/chokepoint control, flanking detection (monsters adjacent to 2+ heroes), exposure warning (heroes adjacent to 2+ monsters)
+- Wrapped 3 unwrapped canvases in `.canvas-container`: `positioning_tactics_canvas`, `battlefield_analysis_canvas`, `spell_tactics_canvas`
+
+**Sitewide Canvas Container Fix:**
+- Built `fix_canvas_wrap.py` — scans all HTML files for `<canvas>` not wrapped in `.canvas-container`, auto-wraps with container + auto-generated `<h3>` title
+- Dry run mode (default) reports issues; `--fix` flag applies changes
+- Run sitewide and fixed all unwrapped canvases across the project
+
 ### Session 7 — main.css Cleanup + Canvas Helper + Shared Components (April 2026)
 
 **main.css Redundant Dark Override Removal:**
@@ -289,7 +333,7 @@ Session 6 used a Python script (`strip_styles.py`) run locally in WSL to batch-s
 - `index.html` uses scoped inline styles (card grid layout, gradient hero, stats counters); NOT targeted for cleanup — it's already modern and self-contained
 - `main.css` has CSS variables for light/dark mode, responsive breakpoints at 768px and 480px
 - `canvas-helper.js` provides opt-in dark mode support for canvas elements (MutationObserver + color palette)
-- Navigation: 49 entries in `nav.js` grouped by: Foundation (6) → Hero Classes (12) → Digital Tools (1) → Custom & Advanced (3) → Expansions (10) → Lore (17)
+- Navigation: 50 entries in `nav.js` grouped by: Foundation (6) → Hero Classes (12) → Digital Tools (1) → Character Sheet (1) → Custom & Advanced (3) → Expansions (10) → Lore (17)
 - `nav.js` matcher uses `normalize()` to strip `.html` for Netlify pretty URL support
 - `main.css` `.container` class: max-width 960px, centered, card-bg background, 48px padding, rounded corners, shadow, border
 - `dark_mode_audit.py` — v2 audit script scanning all 49 HTML + CSS for hardcoded colors; categorizes as text/decorative/canvas; run with `python3 dark_mode_audit.py`
@@ -297,3 +341,5 @@ Session 6 used a Python script (`strip_styles.py`) run locally in WSL to batch-s
 - QA tools (`qa_heroquest.py`, `screenshot_matrix.py`) — gitignored, deletable after visual QA pass
 - `screenshots/` folder — gitignored, ~300 PNGs + `review.html` contact sheet for visual QA
 - `.gitignore` — excludes screenshots/ and QA utility scripts
+- `heroquest_character_sheet.html` — fillable/printable/saveable character sheet (hero + monster modes), localStorage save/load, auto-fill stats by class, JSON export/import, 4-up print layout at 3.75"×5" per card
+- `fix_canvas_wrap.py` — sitewide scanner that finds `<canvas>` elements not wrapped in `.canvas-container` and wraps them; run with `--fix` to apply
