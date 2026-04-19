@@ -158,12 +158,19 @@
 - 341 canvas colors are informational — canvases paint own dark backgrounds with fillRect; canvas-helper.js adoption remains opt-in
 - Run locally: `python3 dark_mode_audit.py` from project root
 
-### 5. Visual QA Pass
-- After all inline styles are stripped, visual QA in browser
-- Check all pages in light/dark mode
-- Check responsive at 768px and 480px breakpoints
-- Verify nav prev/next working on all 49 pages
-- Canvas/SVG dark mode audit
+### 5. Visual QA Pass — IN PROGRESS (Session 9)
+- ~~Automated QA script (`qa_heroquest.py`) — 8 checks across all 50 HTML files~~ ✅
+- ~~Playwright screenshot matrix (`screenshot_matrix.py`) — 300 screenshots captured~~ ✅
+- ~~Bugs found and fixed by QA script:~~ ✅
+  - `heroquest_online_play.html` — `</mermaid>` → `</div>` (unclosed div)
+  - `heroquest_digital_toolkit.html` — `rgba(83,52,131,0.3)` → `var(--accent-muted)`, `#7209b7` → `var(--accent, #7209b7)`
+  - `heroquest_spirit_queens_torment.html` — 2× `color: #ffffff; text-shadow:...` → `color: var(--text)` (white text invisible on light mode)
+  - `heroquest_legendary_heroes.html` — Knight hero-title `color: #000` on `background: #ffd700` confirmed as acceptable self-colored decorative pair (false positive)
+- Screenshot review via `screenshots/review.html` contact sheet — **IN PROGRESS**
+- Screenshots: 50 pages × 3 viewports (960/768/480) × 2 themes (light/dark) = 300 PNGs
+- Review tool features: search filter, viewport/theme toggles, click-to-expand, shift+click lightbox
+- `.gitignore` added to exclude `screenshots/`, `qa_heroquest.py`, `screenshot_matrix.py`
+- Old utility scripts deleted: `audit_critical.py`, `find_text_colors.py`, `dark_mode_audit.py`
 
 ### ~~6. Potential Further Improvements~~ ✅ DONE (Session 7)
 - ~~Simplify redundant dark mode overrides in main.css~~ ✅
@@ -286,4 +293,7 @@ Session 6 used a Python script (`strip_styles.py`) run locally in WSL to batch-s
 - `nav.js` matcher uses `normalize()` to strip `.html` for Netlify pretty URL support
 - `main.css` `.container` class: max-width 960px, centered, card-bg background, 48px padding, rounded corners, shadow, border
 - `dark_mode_audit.py` — v2 audit script scanning all 49 HTML + CSS for hardcoded colors; categorizes as text/decorative/canvas; run with `python3 dark_mode_audit.py`
-- Utility scripts (`find_text_colors.py`, `audit_critical.py`, `strip_styles.py`) can be deleted after use
+- Utility scripts (`find_text_colors.py`, `audit_critical.py`, `strip_styles.py`) — deleted after use
+- QA tools (`qa_heroquest.py`, `screenshot_matrix.py`) — gitignored, deletable after visual QA pass
+- `screenshots/` folder — gitignored, ~300 PNGs + `review.html` contact sheet for visual QA
+- `.gitignore` — excludes screenshots/ and QA utility scripts

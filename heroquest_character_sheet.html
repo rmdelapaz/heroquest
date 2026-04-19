@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeroQuest Character Sheet — Fillable, Printable, Saveable</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Just+Another+Hand&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CARD TOOL CONTROLS ===== */
+        .card-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .card-controls select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 2px solid #8b7355;
+            font-size: 0.95rem;
+            background: #fdf6e3;
+            color: #3e2c1a;
+            min-width: 180px;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        .card-controls button {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        .card-controls button:active { transform: scale(0.97); }
+        .btn-new { background: #4a7c3f; color: white; }
+        .btn-new:hover { background: #3d6834; }
+        .btn-save { background: #2d5aa0; color: white; }
+        .btn-save:hover { background: #244a85; }
+        .btn-delete { background: #a0392d; color: white; }
+        .btn-delete:hover { background: #852e24; }
+        .btn-print { background: #6b4e9e; color: white; }
+        .btn-print:hover { background: #5a4085; }
+        .btn-duplicate { background: #b8860b; color: white; }
+        .btn-duplicate:hover { background: #9a7209; }
+        .btn-print-all { background: #2e8b8b; color: white; }
+        .btn-print-all:hover { background: #257272; }
+        .btn-mode { background: #8b2252; color: white; }
+        .btn-mode:hover { background: #721b43; }
+        .btn-export { background: #2e7d32; color: white; }
+        .btn-export:hover { background: #256527; }
+        .btn-import { background: #6a1b9a; color: white; }
+        .btn-import:hover { background: #561580; }
+        .btn-blank { background: #6d5e4e; color: white; }
+        .btn-blank:hover { background: #5a4e40; }
+        #importFile { display: none; }
+
+        [data-theme="dark"] .card-controls select {
+            background: #2a2218;
+            color: #d4c5a9;
+            border-color: #5a4a35;
+        }
+
+        /* ===== HERO SHEET CARD ===== */
+        .hero-sheet {
+            width: 3.75in;
+            height: 5in;
+            background: #fdf6e3;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(139,115,85,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(139,115,85,0.04) 0%, transparent 50%);
+            border: 3px solid #8b7355;
+            border-radius: 4px;
+            margin: 20px auto;
+            padding: 0.12in;
+            font-family: 'Just Another Hand', cursive;
+            font-size: 12pt;
+            color: #2c1810;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 2px 3px 10px rgba(0,0,0,0.25), inset 0 0 30px rgba(139,115,85,0.08);
+        }
+
+        [data-theme="dark"] .hero-sheet {
+            background: #1e1a14;
+            background-image:
+                radial-gradient(ellipse at 20% 50%, rgba(139,115,85,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 30%, rgba(139,115,85,0.05) 0%, transparent 50%);
+            border-color: #6b5a42;
+            color: #d4c5a9;
+            box-shadow: 2px 3px 10px rgba(0,0,0,0.5), inset 0 0 30px rgba(139,115,85,0.05);
+        }
+
+        /* ===== NAME ROW ===== */
+        .sheet-name-row {
+            display: flex;
+            gap: 8px;
+            align-items: baseline;
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 4px;
+            margin-bottom: 4px;
+        }
+        [data-theme="dark"] .sheet-name-row { border-color: #6b5a42; }
+
+        .sheet-name-row input[name="heroName"],
+        .sheet-name-row input[name="monsterName"] {
+            flex: 1;
+            font-size: 16pt;
+            font-family: 'MedievalSharp', cursive;
+        }
+        .sheet-name-row select {
+            width: 80px;
+            font-size: 10pt;
+        }
+
+        /* ===== FIELD LABELS ===== */
+        .stat-cell label, .vital-cell label, .dice-cell label, .sheet-section-label {
+            display: block;
+            font-size: 7pt;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8b7355;
+            margin-bottom: 0;
+        }
+        .dice-cell label {
+            font-size: 6.5pt;
+            line-height: 1.2;
+        }
+        .sheet-section-label {
+            letter-spacing: 1.5px;
+            margin-top: 3px;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 8pt;
+            color: #6b4e2e;
+        }
+        [data-theme="dark"] .stat-cell label,
+        [data-theme="dark"] .vital-cell label,
+        [data-theme="dark"] .dice-cell label { color: #8a7a60; }
+        [data-theme="dark"] .sheet-section-label { color: #a08860; }
+
+        /* ===== STAT GRIDS ===== */
+        .sheet-dice-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+            margin: 3px 0;
+            text-align: center;
+        }
+        .dice-cell input {
+            width: 100%;
+            text-align: center;
+            font-size: 14pt;
+        }
+        .dice-cell {
+            background: rgba(139,115,85,0.06);
+            border-radius: 4px;
+            padding: 2px;
+        }
+        [data-theme="dark"] .dice-cell {
+            background: rgba(139,115,85,0.08);
+        }
+
+        .sheet-vitals {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 6px;
+            margin: 2px 0;
+            text-align: center;
+            border-top: 1px solid #b8a88a;
+            border-bottom: 1px solid #b8a88a;
+            padding: 3px 0;
+        }
+        [data-theme="dark"] .sheet-vitals { border-color: #5a4a35; }
+        .vital-cell input {
+            width: 100%;
+            text-align: center;
+            font-size: 13pt;
+        }
+
+        /* Monster-specific: 2-col vitals */
+        .sheet-vitals-monster {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 6px;
+            margin: 2px 0;
+            text-align: center;
+            border-top: 1px solid #b8a88a;
+            border-bottom: 1px solid #b8a88a;
+            padding: 3px 0;
+        }
+        [data-theme="dark"] .sheet-vitals-monster { border-color: #5a4a35; }
+
+        /* ===== TEXT SECTIONS ===== */
+        .sheet-equipment, .sheet-notes, .sheet-gold,
+        .sheet-attacks, .sheet-specials, .sheet-loot-drops, .sheet-monster-notes {
+            min-height: 0;
+        }
+
+        .hero-sheet textarea {
+            width: 100%;
+            height: calc(4 * 10pt * 1.2);
+            font-size: 10pt;
+            line-height: 1.2;
+            resize: none;
+            overflow: hidden;
+        }
+
+        /* Gold row: inline */
+        .gold-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-top: 1px solid #b8a88a;
+            padding-top: 2px;
+            margin-top: 2px;
+        }
+        [data-theme="dark"] .gold-row { border-color: #5a4a35; }
+        .gold-row label {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 8pt;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #b8860b;
+            white-space: nowrap;
+        }
+        .gold-row input {
+            flex: 1;
+            font-size: 12pt;
+        }
+
+        /* ===== ALL INPUTS ON CARD ===== */
+        .hero-sheet input,
+        .hero-sheet select,
+        .hero-sheet textarea {
+            background: transparent;
+            border: none;
+            border-bottom: 1px dotted #c9b89a;
+            color: inherit;
+            outline: none;
+            padding: 1px 3px;
+            border-radius: 0;
+            font-family: 'Just Another Hand', cursive;
+        }
+        .hero-sheet input:focus,
+        .hero-sheet select:focus,
+        .hero-sheet textarea:focus {
+            background: rgba(139,115,85,0.08);
+            border-bottom-color: #8b7355;
+        }
+        [data-theme="dark"] .hero-sheet input:focus,
+        [data-theme="dark"] .hero-sheet select:focus,
+        [data-theme="dark"] .hero-sheet textarea:focus {
+            background: rgba(139,115,85,0.12);
+        }
+        [data-theme="dark"] .hero-sheet input,
+        [data-theme="dark"] .hero-sheet select,
+        [data-theme="dark"] .hero-sheet textarea {
+            border-bottom-color: #4a3e2e;
+        }
+        .hero-sheet textarea { border-bottom: none; }
+        .hero-sheet select { cursor: pointer; }
+        [data-theme="dark"] .hero-sheet select option {
+            background: #1e1a14;
+            color: #d4c5a9;
+        }
+
+        /* ===== MODE VISIBILITY ===== */
+        .hero-fields, .monster-fields {
+            display: contents;
+        }
+        .monster-fields { display: none; }
+        .hero-sheet.mode-monster .hero-fields { display: none; }
+        .hero-sheet.mode-monster .monster-fields { display: contents; }
+
+        /* ===== SHIELD DECORATION ===== */
+        .sheet-crest {
+            text-align: center;
+            font-size: 10pt;
+            font-family: 'MedievalSharp', cursive;
+            color: #8b7355;
+            letter-spacing: 2px;
+            margin-bottom: 2px;
+        }
+        [data-theme="dark"] .sheet-crest { color: #6b5a42; }
+
+        /* ===== STATUS TOAST ===== */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #2c1810;
+            color: #fdf6e3;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 9999;
+            pointer-events: none;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* ===== PRINT CONTAINER ===== */
+        .print-container { display: none; }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            #hq-topnav, header, .card-controls, .hq-page-nav,
+            footer, .toast, .card-help, #heroSheet { display: none !important; }
+
+            body { background: white !important; margin: 0 !important; padding: 0 !important; }
+            .container { margin: 0 !important; padding: 0 !important; max-width: none !important;
+                background: none !important; border: none !important; box-shadow: none !important; }
+
+            .print-container { display: block !important; }
+
+            @page { size: letter portrait; margin: 0.4in; }
+
+            .print-card {
+                width: var(--card-w, 3.75in);
+                height: var(--card-h, 5in);
+                border: 2px solid #5a4a35;
+                border-radius: 3px;
+                padding: 0.12in;
+                font-family: 'Just Another Hand', cursive;
+                font-size: 12pt;
+                color: #2c1810;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+                margin: 0 auto 0.2in auto;
+                page-break-inside: avoid;
+                box-sizing: border-box;
+            }
+            .print-card:nth-child(2n) { margin-bottom: 0; }
+            .print-card:nth-child(4n) { page-break-after: always; }
+            .print-card:last-child { page-break-after: auto; }
+
+            /* 2x2 grid layout for 4 cards per page */
+            .print-container {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.15in;
+                align-content: flex-start;
+            }
+
+            .print-card .sheet-crest {
+                text-align: center; font-size: 10pt;
+                font-family: 'MedievalSharp', cursive;
+                color: #8b7355; letter-spacing: 2px; margin-bottom: 2px;
+            }
+            .print-card .sheet-name-row {
+                border-bottom: 2px solid #8b7355;
+                padding-bottom: 4px; margin-bottom: 4px;
+                display: flex; gap: 8px; align-items: baseline;
+            }
+            .print-card .char-name { flex: 1; font-size: 16pt; font-family: 'MedievalSharp', cursive; }
+            .print-card .char-type { font-size: 10pt; font-family: 'MedievalSharp', cursive; text-transform: uppercase; letter-spacing: 1px; }
+            .print-card .sheet-dice-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 3px 0; text-align: center; }
+            .print-card .sheet-vitals, .print-card .sheet-vitals-monster {
+                display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin: 2px 0;
+                text-align: center; border-top: 1px solid #b8a88a; border-bottom: 1px solid #b8a88a; padding: 3px 0;
+            }
+            .print-card .dice-cell { background: rgba(139,115,85,0.06); border-radius: 4px; padding: 2px; }
+            .print-card .stat-cell label, .print-card .vital-cell label, .print-card .dice-cell label {
+                display: block; font-size: 7pt; font-family: Arial, sans-serif; font-weight: bold;
+                text-transform: uppercase; letter-spacing: 1px; color: #8b7355;
+            }
+            .print-card .dice-cell label { font-size: 6.5pt; line-height: 1.2; }
+            .print-card .stat-val { font-size: 14pt; font-family: 'Just Another Hand', cursive; }
+            .print-card .vital-val { font-size: 13pt; font-family: 'Just Another Hand', cursive; }
+            .print-card .sheet-section-label {
+                font-size: 8pt; font-family: 'MedievalSharp', cursive; font-weight: bold;
+                text-transform: uppercase; letter-spacing: 1.5px; color: #6b4e2e; margin-top: 3px;
+            }
+            .print-card .section-text {
+                font-family: 'Just Another Hand', cursive; font-size: 10pt; line-height: 1.2;
+                white-space: pre-wrap; min-height: 0; overflow: hidden;
+                height: calc(4 * 10pt * 1.2);
+            }
+            .print-card .gold-row {
+                display: flex; align-items: center; gap: 6px;
+                border-top: 1px solid #b8a88a; padding-top: 2px; margin-top: 2px;
+            }
+            .print-card .gold-row label {
+                font-family: 'MedievalSharp', cursive; font-size: 8pt; font-weight: bold;
+                text-transform: uppercase; letter-spacing: 1.5px; color: #b8860b;
+            }
+            .print-card .gold-val { font-family: 'Just Another Hand', cursive; font-size: 12pt; }
+        }
+
+        /* ===== HELP TEXT ===== */
+        .card-help {
+            max-width: 700px;
+            margin: 10px auto 0;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #94a3b8;
+        }
+        [data-theme="dark"] .card-help { color: #64748b; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .hero-sheet {
+                width: 100%;
+                height: auto;
+                min-height: 5in;
+                padding: 12px;
+            }
+            .card-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .card-controls select { min-width: 100%; }
+        }
+    </style>
+    <script src="/nav.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>📜 HeroQuest Character Sheet</h1>
+
+        <div class="card-controls">
+            <select id="cardSelect" aria-label="Saved sheets">
+                <option value="">— Select Sheet —</option>
+            </select>
+            <button class="btn-mode" onclick="toggleMode()" id="modeBtn">👹 Monster</button>
+            <button class="btn-new" onclick="newCard()">✨ New</button>
+            <button class="btn-save" onclick="saveCard()">💾 Save</button>
+            <button class="btn-duplicate" onclick="duplicateCard()">📋 Copy</button>
+            <button class="btn-delete" onclick="deleteCard()">🗑️ Delete</button>
+            <button class="btn-print" onclick="printCard()">🖨️ Print</button>
+            <button class="btn-print-all" onclick="printAllCards()">🖨️ Print All</button>
+            <button class="btn-blank" onclick="printBlankCards()">📄 Print Blank</button>
+            <button class="btn-export" onclick="exportCards()">📤 Export</button>
+            <button class="btn-import" onclick="document.getElementById('importFile').click()">📥 Import</button>
+            <input type="file" id="importFile" accept=".json" onchange="importCards(event)">
+        </div>
+
+        <div class="hero-sheet" id="heroSheet">
+            <!-- ===== HERO MODE ===== -->
+            <div class="hero-fields">
+                <div class="sheet-crest">⚔️ HEROQUEST ⚔️</div>
+                <div class="sheet-name-row">
+                    <input type="text" name="heroName" placeholder="Hero Name" aria-label="Hero name">
+                    <select name="heroClass" aria-label="Hero class">
+                        <option value="">Class</option>
+                        <option value="BARBARIAN">Barbarian</option>
+                        <option value="DWARF">Dwarf</option>
+                        <option value="ELF">Elf</option>
+                        <option value="WIZARD">Wizard</option>
+                        <option value="WARLOCK">Warlock</option>
+                        <option value="BARD">Bard</option>
+                        <option value="KNIGHT">Knight</option>
+                        <option value="BERSERKER">Berserker</option>
+                        <option value="EXPLORER">Explorer</option>
+                        <option value="MONK">Monk</option>
+                        <option value="ROGUE">Rogue</option>
+                        <option value="DRUID">Druid</option>
+                        <option value="CUSTOM">Custom</option>
+                    </select>
+                </div>
+
+                <div class="sheet-dice-row">
+                    <div class="dice-cell"><label>Attack Dice</label><input type="text" name="attackDice" placeholder="2"></div>
+                    <div class="dice-cell"><label>Defend Dice</label><input type="text" name="defendDice" placeholder="2"></div>
+                    <div class="dice-cell"><label>Body Points</label><input type="text" name="bodyPoints" placeholder="8"></div>
+                    <div class="dice-cell"><label>Mind Points</label><input type="text" name="mindPoints" placeholder="2"></div>
+                </div>
+
+                <div class="sheet-vitals">
+                    <div class="vital-cell"><label>Movement</label><input type="text" name="movement" placeholder="2d6"></div>
+                    <div class="vital-cell"><label>Current BP</label><input type="text" name="currentBP" placeholder="8"></div>
+                    <div class="vital-cell"><label>Current MP</label><input type="text" name="currentMP" placeholder="2"></div>
+                </div>
+
+                <div class="sheet-section-label">Weapons & Armor</div>
+                <div class="sheet-equipment">
+                    <textarea name="equipment" rows="4" placeholder="Broadsword (3 Attack Dice)&#10;Shield (+1 Defend Die)&#10;Helmet (+1 Defend Die)&#10;Chainmail (+1 Defend Die)" aria-label="Weapons and armor"></textarea>
+                </div>
+
+                <div class="gold-row">
+                    <label>💰 Gold</label>
+                    <input type="text" name="gold" placeholder="0" aria-label="Gold">
+                </div>
+
+                <div class="sheet-section-label">Items & Treasure</div>
+                <div class="sheet-notes">
+                    <textarea name="items" rows="4" placeholder="Potion of Healing&#10;Heroic Brew&#10;Toolkit&#10;Scroll" aria-label="Items and treasure"></textarea>
+                </div>
+
+                <div class="sheet-section-label">Quest Notes</div>
+                <div class="sheet-notes">
+                    <textarea name="heroNotes" rows="4" placeholder="Quest name&#10;Objective&#10;Allies&#10;Notes" aria-label="Quest notes"></textarea>
+                </div>
+            </div>
+
+            <!-- ===== MONSTER / NPC MODE ===== -->
+            <div class="monster-fields">
+                <div class="sheet-crest">💀 ZARGON'S FORCES 💀</div>
+                <div class="sheet-name-row">
+                    <input type="text" name="monsterName" placeholder="Monster / NPC Name" aria-label="Monster name">
+                    <select name="monsterType" aria-label="Monster type">
+                        <option value="">Type</option>
+                        <option value="GOBLIN">Goblin</option>
+                        <option value="ORC">Orc</option>
+                        <option value="FIMIR">Fimir</option>
+                        <option value="SKELETON">Skeleton</option>
+                        <option value="ZOMBIE">Zombie</option>
+                        <option value="MUMMY">Mummy</option>
+                        <option value="CHAOS_WARRIOR">Chaos Warrior</option>
+                        <option value="GARGOYLE">Gargoyle</option>
+                        <option value="OGRE">Ogre</option>
+                        <option value="WITCH_LORD">Witch Lord</option>
+                        <option value="BOSS">Boss</option>
+                        <option value="NPC">NPC</option>
+                        <option value="CUSTOM">Custom</option>
+                    </select>
+                </div>
+
+                <div class="sheet-dice-row">
+                    <div class="dice-cell"><label>Attack Dice</label><input type="text" name="mAttackDice" placeholder="2"></div>
+                    <div class="dice-cell"><label>Defend Dice</label><input type="text" name="mDefendDice" placeholder="2"></div>
+                    <div class="dice-cell"><label>Body Points</label><input type="text" name="mBodyPoints" placeholder="1"></div>
+                    <div class="dice-cell"><label>Mind Points</label><input type="text" name="mMindPoints" placeholder="0"></div>
+                </div>
+
+                <div class="sheet-vitals-monster">
+                    <div class="vital-cell"><label>Movement</label><input type="text" name="mMovement" placeholder="6"></div>
+                    <div class="vital-cell"><label>Current BP</label><input type="text" name="mCurrentBP" placeholder="1"></div>
+                    <div class="vital-cell"><label>Threat Level</label><input type="text" name="threatLevel" placeholder="Minion"></div>
+                </div>
+
+                <div class="sheet-section-label">Attacks & Actions</div>
+                <div class="sheet-attacks">
+                    <textarea name="attacks" rows="4" placeholder="Melee: 2 Attack Dice&#10;Ranged: 1 Attack Die&#10;Special: Fear Aura&#10;Charge: +1 Attack Die" aria-label="Attacks and actions"></textarea>
+                </div>
+
+                <div class="sheet-section-label">Special Abilities</div>
+                <div class="sheet-specials">
+                    <textarea name="specials" rows="4" placeholder="Undead: Immune to Mind spells&#10;Regeneration: Recover 1 BP/turn&#10;Magic Resistance&#10;Fear Aura" aria-label="Special abilities"></textarea>
+                </div>
+
+                <div class="sheet-section-label">Loot Drops</div>
+                <div class="sheet-loot-drops">
+                    <textarea name="lootDrops" rows="4" placeholder="25 Gold&#10;Potion of Healing&#10;Treasure card draw&#10;Enchanted weapon" aria-label="Loot drops"></textarea>
+                </div>
+
+                <div class="sheet-section-label">Zargon Notes</div>
+                <div class="sheet-monster-notes">
+                    <textarea name="monsterNotes" rows="4" placeholder="Patrol route&#10;Trigger conditions&#10;Tactics&#10;Quest role" aria-label="Zargon notes"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <p class="card-help">Cards auto-save as you type. <strong>Export</strong> downloads all sheets as a JSON file. <strong>Import</strong> merges sheets from a JSON file. <strong>Print Blank</strong> prints empty templates. All data stays in your browser.</p>
+
+        <div class="print-container" id="printContainer"></div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const STORAGE_KEY = 'heroquest-character-sheets';
+        const sheet = document.getElementById('heroSheet');
+        const cardSelect = document.getElementById('cardSelect');
+
+        const HERO_FIELDS = [
+            'heroName','heroClass',
+            'attackDice','defendDice','bodyPoints','mindPoints',
+            'movement','currentBP','currentMP',
+            'equipment','gold','items','heroNotes'
+        ];
+
+        const MONSTER_FIELDS = [
+            'monsterName','monsterType',
+            'mAttackDice','mDefendDice','mBodyPoints','mMindPoints',
+            'mMovement','mCurrentBP','threatLevel',
+            'attacks','specials','lootDrops','monsterNotes'
+        ];
+
+        const ALL_FIELDS = [...new Set([...HERO_FIELDS, ...MONSTER_FIELDS])];
+
+        let cardMode = 'hero'; // or 'monster'
+
+        function getCards() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+            catch { return {}; }
+        }
+        function setCards(cards) { localStorage.setItem(STORAGE_KEY, JSON.stringify(cards)); }
+
+        function getFieldValue(name) {
+            const el = sheet.querySelector('[name="' + name + '"]');
+            return el ? el.value : '';
+        }
+        function setFieldValue(name, val) {
+            const el = sheet.querySelector('[name="' + name + '"]');
+            if (el) el.value = val || '';
+        }
+
+        function activeFields() { return cardMode === 'monster' ? MONSTER_FIELDS : HERO_FIELDS; }
+
+        function readCard() {
+            const data = { cardMode };
+            activeFields().forEach(f => data[f] = getFieldValue(f));
+            return data;
+        }
+
+        function loadCard(data) {
+            if (data.cardMode && data.cardMode !== cardMode) {
+                cardMode = data.cardMode;
+                applyMode();
+            }
+            activeFields().forEach(f => setFieldValue(f, data[f]));
+        }
+
+        function clearCard() {
+            ALL_FIELDS.forEach(f => setFieldValue(f, ''));
+        }
+
+        function currentName() {
+            return cardMode === 'monster' ? getFieldValue('monsterName') : getFieldValue('heroName');
+        }
+
+        function applyMode() {
+            sheet.classList.toggle('mode-monster', cardMode === 'monster');
+            document.getElementById('modeBtn').textContent = cardMode === 'monster' ? '🛡️ Hero' : '👹 Monster';
+        }
+
+        function toggleMode() {
+            cardMode = cardMode === 'monster' ? 'hero' : 'monster';
+            applyMode();
+            clearCard();
+            cardSelect.value = '';
+            showToast('Switched to ' + cardMode + ' mode');
+        }
+
+        function refreshSelect(selectName) {
+            const cards = getCards();
+            const names = Object.keys(cards).sort();
+            cardSelect.innerHTML = '<option value="">— Select Sheet —</option>';
+            names.forEach(n => {
+                const opt = document.createElement('option');
+                opt.value = n;
+                const icon = cards[n].cardMode === 'monster' ? '💀' : '🛡️';
+                opt.textContent = icon + ' ' + n;
+                if (n === selectName) opt.selected = true;
+                cardSelect.appendChild(opt);
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        function newCard() {
+            clearCard();
+            cardSelect.value = '';
+            const nameField = cardMode === 'monster' ? 'monsterName' : 'heroName';
+            sheet.querySelector('[name="' + nameField + '"]').focus();
+            showToast('New sheet ready');
+        }
+
+        function saveCard() {
+            const data = readCard();
+            const name = currentName().trim();
+            if (!name) {
+                showToast('Enter a name first');
+                const nameField = cardMode === 'monster' ? 'monsterName' : 'heroName';
+                sheet.querySelector('[name="' + nameField + '"]').focus();
+                return;
+            }
+            const cards = getCards();
+            cards[name] = data;
+            setCards(cards);
+            refreshSelect(name);
+            showToast('Saved "' + name + '"');
+        }
+
+        function deleteCard() {
+            const name = cardSelect.value;
+            if (!name) { showToast('Select a sheet to delete'); return; }
+            if (!confirm('Delete "' + name + '"?')) return;
+            const cards = getCards();
+            delete cards[name];
+            setCards(cards);
+            clearCard();
+            refreshSelect('');
+            showToast('Deleted "' + name + '"');
+        }
+
+        function duplicateCard() {
+            const data = readCard();
+            const baseName = currentName().trim();
+            if (!baseName) { showToast('Enter a name first'); return; }
+            const cards = getCards();
+            let copyName = baseName + ' (copy)';
+            let i = 2;
+            while (cards[copyName]) { copyName = baseName + ' (copy ' + (i++) + ')'; }
+            if (cardMode === 'monster') data.monsterName = copyName;
+            else data.heroName = copyName;
+            cards[copyName] = data;
+            setCards(cards);
+            loadCard(data);
+            refreshSelect(copyName);
+            showToast('Duplicated as "' + copyName + '"');
+        }
+
+        // ===== PRINT BUILDERS =====
+        function esc(s) { return (s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+        function buildHeroPrintCard(data) {
+            return '<div class="print-card">' +
+                '<div class="sheet-crest">\u2694\uFE0F HEROQUEST \u2694\uFE0F</div>' +
+                '<div class="sheet-name-row">' +
+                    '<span class="char-name">' + esc(data.heroName) + '</span>' +
+                    '<span class="char-type">' + esc(data.heroClass) + '</span>' +
+                '</div>' +
+                '<div class="sheet-dice-row">' +
+                    '<div class="dice-cell"><label>ATTACK DICE</label><span class="stat-val">' + esc(data.attackDice) + '</span></div>' +
+                    '<div class="dice-cell"><label>DEFEND DICE</label><span class="stat-val">' + esc(data.defendDice) + '</span></div>' +
+                    '<div class="dice-cell"><label>BODY POINTS</label><span class="stat-val">' + esc(data.bodyPoints) + '</span></div>' +
+                    '<div class="dice-cell"><label>MIND POINTS</label><span class="stat-val">' + esc(data.mindPoints) + '</span></div>' +
+                '</div>' +
+                '<div class="sheet-vitals">' +
+                    '<div class="vital-cell"><label>Movement</label><span class="vital-val">' + esc(data.movement) + '</span></div>' +
+                    '<div class="vital-cell"><label>Current BP</label><span class="vital-val">' + esc(data.currentBP) + '</span></div>' +
+                    '<div class="vital-cell"><label>Current MP</label><span class="vital-val">' + esc(data.currentMP) + '</span></div>' +
+                '</div>' +
+                '<div class="sheet-section-label">Weapons &amp; Armor</div>' +
+                '<div class="section-text section-equipment">' + esc(data.equipment) + '</div>' +
+                '<div class="gold-row"><label>\uD83D\uDCB0 Gold</label><span class="gold-val">' + esc(data.gold) + '</span></div>' +
+                '<div class="sheet-section-label">Items &amp; Treasure</div>' +
+                '<div class="section-text section-notes">' + esc(data.items) + '</div>' +
+                '<div class="sheet-section-label">Quest Notes</div>' +
+                '<div class="section-text section-notes">' + esc(data.heroNotes) + '</div>' +
+            '</div>';
+        }
+
+        function buildMonsterPrintCard(data) {
+            return '<div class="print-card">' +
+                '<div class="sheet-crest">\uD83D\uDC80 ZARGON\'S FORCES \uD83D\uDC80</div>' +
+                '<div class="sheet-name-row">' +
+                    '<span class="char-name">' + esc(data.monsterName) + '</span>' +
+                    '<span class="char-type">' + esc(data.monsterType) + '</span>' +
+                '</div>' +
+                '<div class="sheet-dice-row">' +
+                    '<div class="dice-cell"><label>ATTACK DICE</label><span class="stat-val">' + esc(data.mAttackDice) + '</span></div>' +
+                    '<div class="dice-cell"><label>DEFEND DICE</label><span class="stat-val">' + esc(data.mDefendDice) + '</span></div>' +
+                    '<div class="dice-cell"><label>BODY POINTS</label><span class="stat-val">' + esc(data.mBodyPoints) + '</span></div>' +
+                    '<div class="dice-cell"><label>MIND POINTS</label><span class="stat-val">' + esc(data.mMindPoints) + '</span></div>' +
+                '</div>' +
+                '<div class="sheet-vitals-monster">' +
+                    '<div class="vital-cell"><label>Movement</label><span class="vital-val">' + esc(data.mMovement) + '</span></div>' +
+                    '<div class="vital-cell"><label>Current BP</label><span class="vital-val">' + esc(data.mCurrentBP) + '</span></div>' +
+                    '<div class="vital-cell"><label>Threat Level</label><span class="vital-val">' + esc(data.threatLevel) + '</span></div>' +
+                '</div>' +
+                '<div class="sheet-section-label">Attacks &amp; Actions</div>' +
+                '<div class="section-text section-attacks">' + esc(data.attacks) + '</div>' +
+                '<div class="sheet-section-label">Special Abilities</div>' +
+                '<div class="section-text section-specials">' + esc(data.specials) + '</div>' +
+                '<div class="sheet-section-label">Loot Drops</div>' +
+                '<div class="section-text section-loot-drops">' + esc(data.lootDrops) + '</div>' +
+                '<div class="sheet-section-label">Zargon Notes</div>' +
+                '<div class="section-text section-monster-notes">' + esc(data.monsterNotes) + '</div>' +
+            '</div>';
+        }
+
+        function buildPrintCard(data) {
+            return data.cardMode === 'monster' ? buildMonsterPrintCard(data) : buildHeroPrintCard(data);
+        }
+
+        // ===== PRINT =====
+        function padToFourMultiple(html, count) {
+            const remainder = count % 4;
+            if (remainder === 0) return html;
+            const blanks = 4 - remainder;
+            for (let i = 0; i < blanks; i++) html += buildBlankHeroCard();
+            return html;
+        }
+
+        function printCard() {
+            const name = currentName().trim();
+            if (!name) { showToast('Enter a name first'); return; }
+            const container = document.getElementById('printContainer');
+            container.innerHTML = padToFourMultiple(buildPrintCard(readCard()), 1);
+            window.print();
+            container.innerHTML = '';
+        }
+
+        function printAllCards() {
+            const cards = getCards();
+            const names = Object.keys(cards).sort();
+            if (names.length === 0) { showToast('No saved sheets to print'); return; }
+            const container = document.getElementById('printContainer');
+            const html = names.map(n => buildPrintCard(cards[n])).join('');
+            container.innerHTML = padToFourMultiple(html, names.length);
+            window.print();
+            container.innerHTML = '';
+        }
+
+        // ===== LOAD SELECTED =====
+        cardSelect.addEventListener('change', function() {
+            const name = cardSelect.value;
+            if (!name) { clearCard(); return; }
+            const cards = getCards();
+            if (cards[name]) loadCard(cards[name]);
+        });
+
+        // ===== EXPORT / IMPORT =====
+        function exportCards() {
+            const cards = getCards();
+            const names = Object.keys(cards);
+            if (names.length === 0) { showToast('No sheets to export'); return; }
+            const blob = new Blob([JSON.stringify(cards, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'heroquest-sheets.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Exported ' + names.length + ' sheet(s)');
+        }
+
+        function importCards(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (typeof imported !== 'object' || Array.isArray(imported)) {
+                        showToast('Invalid file format');
+                        return;
+                    }
+                    const cards = getCards();
+                    let count = 0;
+                    for (const [name, data] of Object.entries(imported)) {
+                        if (data && typeof data === 'object' && (data.heroName || data.monsterName)) {
+                            cards[name] = data;
+                            count++;
+                        }
+                    }
+                    setCards(cards);
+                    refreshSelect('');
+                    showToast('Imported ' + count + ' sheet(s)');
+                } catch {
+                    showToast('Error reading file');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        // ===== PRINT BLANK TEMPLATES =====
+        function buildBlankHeroCard() {
+            const data = { cardMode: 'hero', heroName: '', heroClass: '',
+                attackDice: '', defendDice: '', bodyPoints: '', mindPoints: '',
+                movement: '', currentBP: '', currentMP: '',
+                equipment: '', gold: '', items: '', heroNotes: '' };
+            return buildHeroPrintCard(data);
+        }
+
+        function buildBlankMonsterCard() {
+            const data = { cardMode: 'monster', monsterName: '', monsterType: '',
+                mAttackDice: '', mDefendDice: '', mBodyPoints: '', mMindPoints: '',
+                mMovement: '', mCurrentBP: '', threatLevel: '',
+                attacks: '', specials: '', lootDrops: '', monsterNotes: '' };
+            return buildMonsterPrintCard(data);
+        }
+
+        function printBlankCards() {
+            const container = document.getElementById('printContainer');
+            container.innerHTML = buildBlankHeroCard() + buildBlankHeroCard()
+                + buildBlankHeroCard() + buildBlankHeroCard();
+            window.print();
+            container.innerHTML = '';
+        }
+
+        // ===== AUTO-SAVE (debounced) =====
+        let autoSaveTimer = null;
+        function handleAutoSave() {
+            const name = currentName().trim();
+            if (!name) return;
+            clearTimeout(autoSaveTimer);
+            autoSaveTimer = setTimeout(function() {
+                const data = readCard();
+                const cards = getCards();
+                cards[name] = data;
+                setCards(cards);
+                refreshSelect(name);
+            }, 800);
+        }
+
+        sheet.addEventListener('input', handleAutoSave);
+        sheet.addEventListener('change', handleAutoSave);
+
+        // ===== CLASS AUTO-FILL =====
+        const CLASS_DATA = {
+            BARBARIAN:  { attackDice: '3', defendDice: '2', bodyPoints: '8', mindPoints: '2', movement: '2d6', equipment: 'Broadsword (3 Attack Dice)' },
+            DWARF:      { attackDice: '2', defendDice: '2', bodyPoints: '7', mindPoints: '3', movement: '2d6', equipment: 'Shortsword (2 Attack Dice)' },
+            ELF:        { attackDice: '2', defendDice: '2', bodyPoints: '6', mindPoints: '4', movement: '2d6', equipment: 'Shortsword (2 Attack Dice)' },
+            WIZARD:     { attackDice: '1', defendDice: '2', bodyPoints: '4', mindPoints: '6', movement: '2d6', equipment: 'Dagger (1 Attack Die)' },
+            WARLOCK:    { attackDice: '1', defendDice: '2', bodyPoints: '5', mindPoints: '5', movement: '2d6', equipment: 'Dagger (1 Attack Die)' },
+            BARD:       { attackDice: '2', defendDice: '2', bodyPoints: '6', mindPoints: '4', movement: '2d6', equipment: 'Shortsword (2 Attack Dice)' },
+            KNIGHT:     { attackDice: '3', defendDice: '3', bodyPoints: '8', mindPoints: '3', movement: '2d6', equipment: 'Broadsword (3 Attack Dice)' },
+            BERSERKER:  { attackDice: '3', defendDice: '1', bodyPoints: '9', mindPoints: '2', movement: '2d6', equipment: 'Broadsword (3 Attack Dice)' },
+            EXPLORER:   { attackDice: '2', defendDice: '2', bodyPoints: '7', mindPoints: '4', movement: '2d6', equipment: 'Shortsword (2 Attack Dice)' },
+            MONK:       { attackDice: '2', defendDice: '3', bodyPoints: '6', mindPoints: '5', movement: '2d6', equipment: 'Staff (1 Attack Die)' },
+            ROGUE:      { attackDice: '2', defendDice: '2', bodyPoints: '5', mindPoints: '4', movement: '2d6', equipment: 'Dagger (1 Attack Die)' },
+            DRUID:      { attackDice: '1', defendDice: '2', bodyPoints: '6', mindPoints: '4', movement: '2d6', equipment: 'Dagger (1 Attack Die)' },
+        };
+
+        sheet.querySelector('[name="heroClass"]').addEventListener('change', function() {
+            const cls = this.value;
+            const data = CLASS_DATA[cls];
+            if (!data) return;
+            setFieldValue('attackDice', data.attackDice);
+            setFieldValue('defendDice', data.defendDice);
+            setFieldValue('bodyPoints', data.bodyPoints);
+            setFieldValue('mindPoints', data.mindPoints);
+            setFieldValue('movement', data.movement);
+            setFieldValue('currentBP', data.bodyPoints);
+            setFieldValue('currentMP', data.mindPoints);
+            setFieldValue('equipment', data.equipment);
+        });
+
+        // ===== INIT =====
+        applyMode();
+        refreshSelect('');
+    </script>
+</body>
+</html>

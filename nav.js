@@ -25,6 +25,7 @@
     { file: 'heroquest_druid_tutorial.html', title: 'Druid', icon: '🌿' },
     // Digital Tools
     { file: 'heroquest_digital_toolkit.html', title: 'Digital Toolkit', icon: '🛠️' },
+    { file: 'heroquest_character_sheet.html', title: 'Character Sheet', icon: '📜' },
     // Custom & Advanced
     { file: 'heroquest_custom_heroes_monsters.html', title: 'Custom Heroes & Monsters', icon: '🦸' },
     { file: 'heroquest_legendary_heroes.html', title: 'Legendary Heroes', icon: '🏆' },
