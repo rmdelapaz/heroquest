@@ -694,46 +694,90 @@
         }
         
         function analyzeFormation() {
-            const heroes = gridState.filter(cell => cell.includes('hero')).length;
-            const monsters = gridState.filter(cell => cell === 'monster').length;
+            const heroPositions = [];
+            const monsterPositions = [];
             
-            let analysis = `Heroes: ${heroes}, Monsters: ${monsters}. `;
+            gridState.forEach((cell, index) => {
+                if (cell.includes('hero')) heroPositions.push(index);
+                if (cell === 'monster') monsterPositions.push(index);
+            });
             
-            if (heroes > 0 && monsters > 0) {
-                analysis += "Good tactical setup! ";
-                
-                // Check for formation principles
-                const heroPositions = [];
-                const monsterPositions = [];
-                
-                gridState.forEach((cell, index) => {
-                    if (cell.includes('hero')) heroPositions.push(index);
-                    if (cell === 'monster') monsterPositions.push(index);
-                });
-                
-                // Check if heroes are grouped
-                const heroesGrouped = heroPositions.some(pos1 => 
-                    heroPositions.some(pos2 => Math.abs(pos1 - pos2) <= 1 || Math.abs(pos1 - pos2) === 8)
-                );
-                
-                if (heroesGrouped) {
-                    analysis += "Heroes are supporting each other! ";
-                } else {
-                    analysis += "Consider grouping heroes for mutual support. ";
-                }
-                
-                // Check door control
-                const doorControl = heroPositions.some(pos => pos === 11 || pos === 12);
-                if (doorControl) {
-                    analysis += "Good door control! ";
-                }
-            } else if (heroes === 0) {
-                analysis += "Add some heroes to see tactical analysis!";
-            } else if (monsters === 0) {
-                analysis += "Add some monsters to create a combat scenario!";
+            const heroes = heroPositions.length;
+            const monsters = monsterPositions.length;
+            const tips = [];
+            
+            if (heroes === 0 && monsters === 0) {
+                analysisDiv.innerHTML = '<strong>Formation Analysis:</strong> Click cells to place heroes and monsters!';
+                return;
+            }
+            if (heroes === 0) {
+                analysisDiv.innerHTML = '<strong>Formation Analysis:</strong> Add some heroes to see tactical analysis!';
+                return;
+            }
+            if (monsters === 0) {
+                analysisDiv.innerHTML = '<strong>Formation Analysis:</strong> ' + heroes + ' hero(es) placed. Add monsters to create a combat scenario!';
+                return;
             }
             
-            analysisDiv.innerHTML = `<strong>Formation Analysis:</strong> ${analysis}`;
+            // Adjacency helper (8-col grid)
+            function isAdjacent(a, b) {
+                if (a === b) return false;
+                var rowA = Math.floor(a / 8), colA = a % 8;
+                var rowB = Math.floor(b / 8), colB = b % 8;
+                return Math.abs(rowA - rowB) <= 1 && Math.abs(colA - colB) <= 1;
+            }
+            
+            // Hero mutual support
+            if (heroes === 1) {
+                tips.push('\u26a0\ufe0f Solo hero — no mutual support. Consider adding allies.');
+            } else {
+                var supportedHeroes = 0;
+                heroPositions.forEach(function(h) {
+                    if (heroPositions.some(function(h2) { return isAdjacent(h, h2); })) supportedHeroes++;
+                });
+                if (supportedHeroes === heroes) {
+                    tips.push('\u2705 All heroes are supporting each other!');
+                } else if (supportedHeroes > 0) {
+                    tips.push('\u26a0\ufe0f ' + (heroes - supportedHeroes) + ' hero(es) isolated — move closer for mutual support.');
+                } else {
+                    tips.push('\u274c Heroes are scattered — group up for mutual defense!');
+                }
+            }
+            
+            // Outnumbered check
+            if (monsters > heroes * 2) {
+                tips.push('\u274c Heavily outnumbered (' + heroes + ' vs ' + monsters + ')! Use chokepoints and doorways.');
+            } else if (monsters > heroes) {
+                tips.push('\u26a0\ufe0f Outnumbered ' + heroes + ' vs ' + monsters + ' — positioning is critical.');
+            } else {
+                tips.push('\u2705 Favorable numbers (' + heroes + ' vs ' + monsters + ').');
+            }
+            
+            // Door/chokepoint control (cells near doors at index 3,4)
+            var doorControl = heroPositions.some(function(pos) {
+                return isAdjacent(pos, 3) || isAdjacent(pos, 4) || pos === 11 || pos === 12;
+            });
+            if (doorControl) {
+                tips.push('\u2705 Good door control — funneling enemies through chokepoints.');
+            }
+            
+            // Flanking detection — any monster adjacent to 2+ heroes?
+            var flankedMonsters = monsterPositions.filter(function(m) {
+                return heroPositions.filter(function(h) { return isAdjacent(m, h); }).length >= 2;
+            }).length;
+            if (flankedMonsters > 0) {
+                tips.push('\u2705 ' + flankedMonsters + ' monster(s) flanked by multiple heroes!');
+            }
+            
+            // Exposed heroes — adjacent to 2+ monsters
+            var exposedHeroes = heroPositions.filter(function(h) {
+                return monsterPositions.filter(function(m) { return isAdjacent(h, m); }).length >= 2;
+            }).length;
+            if (exposedHeroes > 0) {
+                tips.push('\u274c ' + exposedHeroes + ' hero(es) exposed to multiple enemies — reposition!');
+            }
+            
+            analysisDiv.innerHTML = '<strong>Formation Analysis:</strong><br>' + tips.join('<br>');
         }
         
         // Battlefield Analysis Canvas
