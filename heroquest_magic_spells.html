@@ -11,6 +11,72 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
+    <style>
+    /* ── Callout boxes (page-specific, not in main.css) ── */
+    .magic-principle, .mystical-box, .grimoire-entry {
+      background: var(--accent-muted);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+
+    /* ── Spell matrix grid ── */
+    .spell-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+      gap: 12px;
+      margin: 1rem 0;
+    }
+
+    /* ── Spell rune buttons ── */
+    .spell-rune {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto;
+      font-size: 28px;
+      background: rgba(75, 0, 130, 0.4);
+      border: 2px solid #9370db;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      user-select: none;
+    }
+    .spell-rune:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 14px rgba(147, 112, 219, 0.6);
+      background: rgba(75, 0, 130, 0.7);
+    }
+    .spell-rune.active {
+      transform: scale(1.3);
+      box-shadow: 0 0 22px rgba(221, 160, 221, 0.9);
+      background: rgba(138, 43, 226, 0.8);
+    }
+    .spell-rune.spent {
+      opacity: 0.3;
+      border-color: #555;
+      background: rgba(50, 50, 50, 0.4);
+      cursor: not-allowed;
+      transform: scale(0.9);
+      box-shadow: none;
+      filter: grayscale(1);
+    }
+    .spell-rune.spent:hover {
+      transform: scale(0.9);
+      box-shadow: none;
+      background: rgba(50, 50, 50, 0.4);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .spell-matrix { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+      .spell-rune { width: 50px; height: 50px; font-size: 22px; }
+    }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -86,20 +152,19 @@
         <h2>🧙‍♂️ Interactive Spell Laboratory</h2>
         
         <div class="mystical-box">
-            <p><strong>Practice your magical timing!</strong> Click the runes to cast spells and watch your mana levels.</p>
+            <p><strong>Practice your magical timing!</strong> In HeroQuest, each spell is a one-use card — once you cast it, it's gone for the rest of the quest. Click a spell card to cast it and watch your options shrink. Choose wisely!</p>
             
-            <div class="mana-bar">
-                <div class="mana-indicator" id="mana_indicator" style="width: 100%;"></div>
-            </div>
-            <p style="text-align: center;"><em>Mystical Energy: <span id="mana_level">100</span>%</em></p>
+            <p style="text-align: center;"><strong>Spell Cards Remaining: <span id="spells_remaining">8</span> / 8</strong></p>
             
             <div class="spell-matrix" id="spell_matrix">
-                <!-- Spell runes will be populated by JavaScript -->
+                <!-- Spell cards will be populated by JavaScript -->
             </div>
             
             <div id="spell_result" style="margin-top: 20px; padding: 15px; background: rgba(138, 43, 226, 0.1); border-radius: 10px; min-height: 60px;">
-                <strong>Magical Resonance:</strong> Select spells to see their mystical effects!
+                <strong>Spell Cards Ready:</strong> Choose a spell to cast — but remember, each card can only be used once per quest!
             </div>
+
+            <button id="new_quest_btn" style="display:block; margin:1rem auto 0; padding:10px 24px; background:#9370db; color:#fff; border:none; border-radius:8px; font-size:1rem; cursor:pointer; transition: background 0.2s;">🏰 New Quest (Reset Spells)</button>
         </div>
 
         <h2>🎪 The Art of Spell Timing</h2>
@@ -316,81 +381,78 @@
     </div>
 
     <script>
-        // Spell Laboratory Interactive System
+        // Spell Laboratory Interactive System — card-based (matches real HeroQuest)
         const spells = [
-            {symbol: '⚡', name: 'Lightning', cost: 30, effect: 'Strikes enemies with electrical fury!'},
-            {symbol: '🔥', name: 'Fireball', cost: 25, effect: 'Engulfs foes in burning flames!'},
-            {symbol: '🌟', name: 'Heal', cost: 20, effect: 'Restores life force and vitality!'},
-            {symbol: '💨', name: 'Wind', cost: 15, effect: 'Swift movement through mystical air!'},
-            {symbol: '💎', name: 'Stone Skin', cost: 35, effect: 'Hardens flesh like living rock!'},
-            {symbol: '❄️', name: 'Frost', cost: 22, effect: 'Freezes enemies in icy bonds!'},
-            {symbol: '✨', name: 'Magic Weapon', cost: 18, effect: 'Enchants blade with arcane power!'},
-            {symbol: '🛡️', name: 'Protect', cost: 28, effect: 'Creates mystical barriers!'}
+            {symbol: '🔥', name: 'Ball of Flame', effect: 'Hurls a ball of fire at a monster — roll 3 combat dice for damage!', cast: false},
+            {symbol: '💨', name: 'Wind of Magic', effect: 'Move through the dungeon without triggering wandering monsters!', cast: false},
+            {symbol: '💎', name: 'Rock Skin', effect: 'Your skin hardens like stone — gain +1 defend die for the rest of the quest!', cast: false},
+            {symbol: '🌟', name: 'Healing', effect: 'Golden light restores lost Body Points — roll 1d6 to heal!', cast: false},
+            {symbol: '⚡', name: 'Tempest', effect: 'Lightning arcs through the corridor — roll 2 combat dice against every adjacent monster!', cast: false},
+            {symbol: '❄️', name: 'Sleep', effect: 'The monster\'s eyes grow heavy — it cannot attack or defend this turn!', cast: false},
+            {symbol: '✨', name: 'Courage', effect: 'A hero\'s resolve strengthens — ignore the next trap encountered!', cast: false},
+            {symbol: '🛡️', name: 'Water of Healing', effect: 'A blessed spring appears — restore one hero to full Body Points!', cast: false}
         ];
         
-        let currentMana = 100;
         const spellMatrix = document.getElementById('spell_matrix');
-        const manaIndicator = document.getElementById('mana_indicator');
-        const manaLevel = document.getElementById('mana_level');
         const spellResult = document.getElementById('spell_result');
+        const spellsRemaining = document.getElementById('spells_remaining');
         
-        // Initialize spell matrix
-        spells.forEach((spell, index) => {
-            const rune = document.createElement('div');
-            rune.className = 'spell-rune';
-            rune.textContent = spell.symbol;
-            rune.title = `${spell.name} (${spell.cost} mana)`;
-            rune.addEventListener('click', () => castSpell(index));
-            spellMatrix.appendChild(rune);
-        });
+        function initSpellLab() {
+            spellMatrix.innerHTML = '';
+            spells.forEach((spell, index) => {
+                spell.cast = false;
+                const card = document.createElement('div');
+                card.className = 'spell-rune';
+                card.textContent = spell.symbol;
+                card.title = spell.name;
+                card.addEventListener('click', () => castSpell(index));
+                spellMatrix.appendChild(card);
+            });
+            updateRemaining();
+            spellResult.innerHTML = '<strong>Spell Cards Ready:</strong> Choose a spell to cast — but remember, each card can only be used once per quest!';
+        }
         
         function castSpell(index) {
             const spell = spells[index];
+            const card = spellMatrix.children[index];
             
-            if (currentMana >= spell.cost) {
-                currentMana -= spell.cost;
-                updateManaDisplay();
-                
-                // Visual feedback
-                const rune = spellMatrix.children[index];
-                rune.classList.add('active');
-                setTimeout(() => rune.classList.remove('active'), 500);
-                
-                // Display spell effect
+            if (spell.cast) {
                 spellResult.innerHTML = `
-                    <strong>🌟 ${spell.name} Cast Successfully!</strong><br>
-                    ${spell.effect}<br>
-                    <em>Mana consumed: ${spell.cost} points</em>
+                    <strong>⚠️ ${spell.name} — Already Cast!</strong><br>
+                    This spell card has already been used this quest. In HeroQuest, each spell card can only be cast once per quest.<br>
+                    <em>Choose a different spell, or start a New Quest to get your cards back.</em>
                 `;
-                
-                // Regenerate mana slowly
-                setTimeout(() => {
-                    if (currentMana < 100) {
-                        currentMana = Math.min(100, currentMana + 5);
-                        updateManaDisplay();
-                    }
-                }, 2000);
-            } else {
-                spellResult.innerHTML = `
-                    <strong>⚠️ Insufficient Mystical Energy!</strong><br>
-                    ${spell.name} requires ${spell.cost} mana, but you only have ${currentMana} mana.<br>
-                    <em>Wait for your magical energy to regenerate...</em>
-                `;
+                return;
+            }
+            
+            spell.cast = true;
+            card.classList.add('spent');
+            
+            // Brief flash before going spent
+            card.classList.add('active');
+            setTimeout(() => card.classList.remove('active'), 400);
+            
+            updateRemaining();
+            
+            const remaining = spells.filter(s => !s.cast).length;
+            
+            spellResult.innerHTML = `
+                <strong>🌟 ${spell.name} Cast!</strong><br>
+                ${spell.effect}<br>
+                <em>${remaining} spell card${remaining !== 1 ? 's' : ''} remaining this quest.</em>
+            `;
+            
+            if (remaining === 0) {
+                spellResult.innerHTML += '<br><strong>All spell cards spent!</strong> You\'ll need to rely on steel and wits for the rest of this quest — or start a New Quest to reset.';
             }
         }
         
-        function updateManaDisplay() {
-            manaIndicator.style.width = currentMana + '%';
-            manaLevel.textContent = currentMana;
-            
-            if (currentMana < 30) {
-                manaIndicator.style.background = 'linear-gradient(to right, #ff4500, #ff6347)';
-            } else if (currentMana < 60) {
-                manaIndicator.style.background = 'linear-gradient(to right, #ffa500, #ffd700)';
-            } else {
-                manaIndicator.style.background = 'linear-gradient(to right, #ffd700, #ffff00)';
-            }
+        function updateRemaining() {
+            spellsRemaining.textContent = spells.filter(s => !s.cast).length;
         }
+        
+        document.getElementById('new_quest_btn').addEventListener('click', initSpellLab);
+        initSpellLab();
         
         // Spell Timing Visualization
         const timingCanvas = document.getElementById('spell_timing_canvas');
@@ -473,14 +535,6 @@
             synergyCtx.fillStyle = '#1a0d4d';
             synergyCtx.fillRect(0, 0, synergyCanvas.width, synergyCanvas.height);
             
-            // Draw central wizard
-            synergyCtx.fillStyle = '#9370db';
-            synergyCtx.fillRect(275, 150, 50, 50);
-            synergyCtx.fillStyle = '#fff';
-            synergyCtx.font = '20px Arial';
-            synergyCtx.textAlign = 'center';
-            synergyCtx.fillText('🧙‍♂️', 300, 180);
-            
             // Draw spell combinations
             const combos = [
                 {x: 150, y: 100, spells: ['🔥', '💨'], effect: 'Flame Storm'},
@@ -489,6 +543,27 @@
                 {x: 450, y: 250, spells: ['⚡', '❄️'], effect: 'Elemental Fury'}
             ];
             
+            // Draw connection lines FIRST (behind everything)
+            synergyCtx.strokeStyle = '#8a2be2';
+            synergyCtx.lineWidth = 2;
+            synergyCtx.setLineDash([5, 5]);
+            combos.forEach(combo => {
+                synergyCtx.beginPath();
+                synergyCtx.moveTo(combo.x, combo.y);
+                synergyCtx.lineTo(300, 175);
+                synergyCtx.stroke();
+            });
+            synergyCtx.setLineDash([]);
+            
+            // Draw central wizard (on top of lines)
+            synergyCtx.fillStyle = '#9370db';
+            synergyCtx.fillRect(275, 150, 50, 50);
+            synergyCtx.fillStyle = '#fff';
+            synergyCtx.font = '20px Arial';
+            synergyCtx.textAlign = 'center';
+            synergyCtx.fillText('🧙‍♂️', 300, 180);
+            
+            // Draw combo circles, symbols, and labels (on top of lines)
             combos.forEach(combo => {
                 // Draw combination circle
                 synergyCtx.fillStyle = '#4b0082';
@@ -503,6 +578,7 @@
                 // Draw spell symbols
                 synergyCtx.fillStyle = '#fff';
                 synergyCtx.font = '16px Arial';
+                synergyCtx.textAlign = 'center';
                 synergyCtx.fillText(combo.spells[0], combo.x - 10, combo.y);
                 synergyCtx.fillText(combo.spells[1], combo.x + 10, combo.y);
                 
@@ -510,18 +586,9 @@
                 synergyCtx.fillStyle = '#dda0dd';
                 synergyCtx.font = '10px Arial';
                 synergyCtx.fillText(combo.effect, combo.x, combo.y + 55);
-                
-                // Draw connection to wizard
-                synergyCtx.strokeStyle = '#8a2be2';
-                synergyCtx.lineWidth = 2;
-                synergyCtx.setLineDash([5, 5]);
-                synergyCtx.beginPath();
-                synergyCtx.moveTo(combo.x, combo.y);
-                synergyCtx.lineTo(300, 175);
-                synergyCtx.stroke();
-                synergyCtx.setLineDash([]);
             });
             
+            // Title (on top of everything)
             synergyCtx.fillStyle = '#dda0dd';
             synergyCtx.font = '16px Arial';
             synergyCtx.textAlign = 'center';

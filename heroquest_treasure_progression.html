@@ -11,6 +11,133 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
+    <style>
+    /* ── Callout boxes (page-specific, not in main.css) ── */
+    .treasure-principle, .progression-box, .equipment-card, .reward-system {
+      background: var(--accent-muted);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+
+    /* ── Treasure chests ── */
+    .chest-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin: 1.25rem 0;
+    }
+    .treasure-chest {
+      width: 64px;
+      height: 64px;
+      font-size: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(139, 69, 19, 0.3);
+      border: 2px solid #daa520;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      user-select: none;
+    }
+    .treasure-chest:hover:not(.opened) {
+      transform: scale(1.12);
+      box-shadow: 0 0 14px rgba(218, 165, 32, 0.5);
+      background: rgba(139, 69, 19, 0.5);
+    }
+    .treasure-chest.opened {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: scale(0.9);
+      filter: grayscale(0.6);
+      border-color: #777;
+    }
+
+    /* ── Character sheet ── */
+    .character-sheet {
+      background: rgba(139, 69, 19, 0.15);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 1rem 0;
+    }
+    .stat-row-sim {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 8px 0;
+    }
+    .stat-row-sim .stat-name {
+      width: 110px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .stat-row-sim .dice-display {
+      display: flex;
+      gap: 4px;
+    }
+    .stat-row-sim .die-icon {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background: rgba(218, 165, 32, 0.25);
+      border: 1px solid #daa520;
+      border-radius: 5px;
+      transition: all 0.3s;
+    }
+    .stat-row-sim .die-icon.bonus {
+      background: rgba(50, 205, 50, 0.3);
+      border-color: #32cd32;
+      animation: dicePopIn 0.4s ease;
+    }
+    @keyframes dicePopIn {
+      0% { transform: scale(0); opacity: 0; }
+      60% { transform: scale(1.3); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .stat-row-sim .bp-display {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      min-width: 50px;
+    }
+
+    /* ── Equipment inventory ── */
+    .equip-inventory {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .equip-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: rgba(218, 165, 32, 0.2);
+      border: 1px solid #daa520;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: var(--text);
+      animation: dicePopIn 0.4s ease;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .chest-row { gap: 10px; }
+      .treasure-chest { width: 52px; height: 52px; font-size: 28px; }
+      .stat-row-sim { flex-wrap: wrap; }
+      .stat-row-sim .stat-name { width: 100%; }
+    }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -86,39 +213,41 @@
         <h2>🎮 Interactive Character Progression Simulator</h2>
         
         <div class="progression-box">
-            <p><strong>Watch your hero grow!</strong> Click treasure chests to gain equipment and see how it affects your character's capabilities.</p>
+            <p><strong>Watch your hero grow!</strong> In HeroQuest, treasure chests contain equipment from the Armoury. Each piece of gear adds dice or Body Points to your hero. Click chests in any order to see how equipment changes your capabilities.</p>
             
-            <div style="text-align: center; margin: 20px 0;">
-                <div class="treasure-chest" onclick="openTreasure(0)"></div>
-                <div class="treasure-chest" onclick="openTreasure(1)"></div>
-                <div class="treasure-chest" onclick="openTreasure(2)"></div>
-                <div class="treasure-chest" onclick="openTreasure(3)"></div>
-                <div class="treasure-chest" onclick="openTreasure(4)"></div>
+            <div class="chest-row" id="chest_row">
+                <!-- Populated by JS -->
             </div>
             
             <div class="character-sheet">
-                <h4>🛡️ Hero Status</h4>
-                <p><strong>Attack Power:</strong></p>
-                <div class="stat-bar"><div class="stat-fill" id="attack_bar" style="width: 30%;"></div></div>
-                <p><strong>Defense:</strong></p>
-                <div class="stat-bar"><div class="stat-fill" id="defense_bar" style="width: 25%;"></div></div>
-                <p><strong>Health:</strong></p>
-                <div class="stat-bar"><div class="stat-fill" id="health_bar" style="width: 40%;"></div></div>
-                <p><strong>Utility:</strong></p>
-                <div class="stat-bar"><div class="stat-fill" id="utility_bar" style="width: 20%;"></div></div>
-                
-                <div id="equipment_display" style="margin-top: 15px;">
-                    <p><strong>Equipment:</strong></p>
-                    <div class="equipment-slot" title="Weapon">⚔️</div>
-                    <div class="equipment-slot" title="Armor">🛡️</div>
-                    <div class="equipment-slot" title="Accessory">💍</div>
-                    <div class="equipment-slot" title="Potion">🧪</div>
+                <h4>🛡️ Barbarian — Starting Stats</h4>
+                <div class="stat-row-sim">
+                    <span class="stat-name">⚔️ Attack Dice</span>
+                    <div class="dice-display" id="attack_dice"></div>
+                </div>
+                <div class="stat-row-sim">
+                    <span class="stat-name">🛡️ Defend Dice</span>
+                    <div class="dice-display" id="defend_dice"></div>
+                </div>
+                <div class="stat-row-sim">
+                    <span class="stat-name">❤️ Body Points</span>
+                    <span class="bp-display" id="body_points"></span>
+                </div>
+                <div class="stat-row-sim">
+                    <span class="stat-name">🧠 Mind Points</span>
+                    <span class="bp-display" id="mind_points"></span>
+                </div>
+                <p><strong>Equipment Found:</strong></p>
+                <div class="equip-inventory" id="equip_inventory">
+                    <span style="color:var(--text-muted);font-size:0.85rem;">None yet — open some chests!</span>
                 </div>
             </div>
             
             <div id="progression_feedback" style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
-                <strong>Character Progress:</strong> Your adventure begins! Find treasure to grow stronger.
+                <strong>Your Quest Begins!</strong> Search the dungeon chests to find equipment from the Armoury. Each piece of gear improves your hero's combat dice or survivability.
             </div>
+
+            <button id="new_quest_btn" style="display:block; margin:1rem auto 0; padding:10px 24px; background:#8b4513; color:#fff; border:2px solid #daa520; border-radius:8px; font-size:1rem; cursor:pointer; transition: background 0.2s;">🏰 New Quest (Reset)</button>
         </div>
 
         <h2>⚖️ The Art of Balanced Rewards</h2>
@@ -318,62 +447,125 @@
     </div>
 
     <script>
-        // Character Progression Simulator
-        let characterStats = {
-            attack: 30,
-            defense: 25,
-            health: 40,
-            utility: 20
-        };
+        // Character Progression Simulator — HeroQuest Armoury system
+        // Barbarian starting stats: 3 Attack, 2 Defend, 8 Body, 2 Mind
+        const baseStats = { attack: 3, defend: 2, body: 8, mind: 2 };
+        let heroStats = { ...baseStats };
         
-        let treasuresFound = 0;
-        const treasures = [
-            {name: 'Iron Sword', attack: 15, feedback: 'A sturdy blade increases your combat prowess!'},
-            {name: 'Leather Armor', defense: 20, feedback: 'Protective gear makes you more confident in battle!'},
-            {name: 'Health Potion', health: 25, feedback: 'Healing magic strengthens your vitality!'},
-            {name: 'Magic Ring', utility: 30, feedback: 'Mystical powers expand your capabilities!'},
-            {name: 'Hero\'s Cloak', attack: 10, defense: 15, health: 15, utility: 20, feedback: 'Legendary equipment transforms you into a true hero!'}
+        // Real HeroQuest Armoury equipment with actual game effects
+        const treasurePool = [
+            { name: 'Shield', icon: '🛡️', stat: 'defend', bonus: 1,
+              feedback: 'A sturdy shield! +1 Defend die — blocks are more likely now.' },
+            { name: 'Helmet', icon: '⛑️', stat: 'defend', bonus: 1,
+              feedback: 'A steel helmet! +1 Defend die — your head is well protected.' },
+            { name: 'Chain Mail', icon: '🧷', stat: 'defend', bonus: 1,
+              feedback: 'Chain mail armor! +1 Defend die — attacks now glance off your linked rings.' },
+            { name: 'Broadsword', icon: '⚔️', stat: 'attack', bonus: 1,
+              feedback: 'A finely forged broadsword! +1 Attack die — you strike harder now.' },
+            { name: 'Battle Axe', icon: '🪓', stat: 'attack', bonus: 1,
+              feedback: 'A fearsome battle axe! +1 Attack die — monsters beware!' },
+            { name: 'Healing Potion', icon: '🧪', stat: 'body', bonus: 4,
+              feedback: 'A healing potion! +4 Body Points restored — saved from the brink!' },
+            { name: 'Plate Mail', icon: '🛡️', stat: 'defend', bonus: 1,
+              feedback: 'Plate mail! +1 Defend die — but it\'s heavy. Worth the trade-off for survivability.' },
+            { name: 'Crossbow', icon: '🏹', stat: 'attack', bonus: 1,
+              feedback: 'A crossbow! +1 Attack die — now you can strike from range.' },
         ];
         
+        let questTreasures = [];  // 5 items drawn for this quest
+        let openedChests = [];    // track which are opened
+        
+        function shuffleAndDraw() {
+            const shuffled = [...treasurePool].sort(() => Math.random() - 0.5);
+            return shuffled.slice(0, 5);
+        }
+        
+        function initSimulator() {
+            heroStats = { ...baseStats };
+            questTreasures = shuffleAndDraw();
+            openedChests = [false, false, false, false, false];
+            
+            // Build chests
+            const chestRow = document.getElementById('chest_row');
+            chestRow.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const chest = document.createElement('div');
+                chest.className = 'treasure-chest';
+                chest.textContent = '🧰';
+                chest.addEventListener('click', () => openTreasure(i));
+                chestRow.appendChild(chest);
+            }
+            
+            renderStats();
+            document.getElementById('equip_inventory').innerHTML =
+                '<span style="color:var(--text-muted);font-size:0.85rem;">None yet — open some chests!</span>';
+            document.getElementById('progression_feedback').innerHTML =
+                '<strong>Your Quest Begins!</strong> Search the dungeon chests to find equipment from the Armoury. Each piece of gear improves your hero\'s combat dice or survivability.';
+        }
+        
         function openTreasure(index) {
-            if (index >= treasuresFound) {
-                const treasure = treasures[index];
-                const chests = document.querySelectorAll('.treasure-chest');
-                chests[index].classList.add('opened');
-                
-                if (treasure.attack) characterStats.attack += treasure.attack;
-                if (treasure.defense) characterStats.defense += treasure.defense;
-                if (treasure.health) characterStats.health += treasure.health;
-                if (treasure.utility) characterStats.utility += treasure.utility;
-                
-                updateStatBars();
-                
-                const equipmentSlots = document.querySelectorAll('.equipment-slot');
-                if (index < equipmentSlots.length) {
-                    equipmentSlots[index].classList.add('equipped');
-                }
-                
-                document.getElementById('progression_feedback').innerHTML = 
-                    `<strong>🎉 ${treasure.name} Found!</strong><br>${treasure.feedback}`;
-                
-                treasuresFound++;
-                
-                if (treasuresFound === treasures.length) {
-                    setTimeout(() => {
-                        document.getElementById('progression_feedback').innerHTML = 
-                            `<strong>🏆 Hero's Journey Complete!</strong><br>You have become a legendary warrior, feared by monsters and celebrated by the innocent!`;
-                    }, 2000);
-                }
+            if (openedChests[index]) return;
+            openedChests[index] = true;
+            
+            const chests = document.querySelectorAll('.treasure-chest');
+            chests[index].classList.add('opened');
+            chests[index].textContent = '✅';
+            
+            const treasure = questTreasures[index];
+            heroStats[treasure.stat] += treasure.bonus;
+            renderStats();
+            
+            // Add equipment tag
+            const inventory = document.getElementById('equip_inventory');
+            if (openedChests.filter(Boolean).length === 1) inventory.innerHTML = '';
+            const tag = document.createElement('span');
+            tag.className = 'equip-tag';
+            tag.textContent = `${treasure.icon} ${treasure.name}`;
+            inventory.appendChild(tag);
+            
+            // Feedback
+            const opened = openedChests.filter(Boolean).length;
+            document.getElementById('progression_feedback').innerHTML =
+                `<strong>🌟 ${treasure.name} Found!</strong><br>${treasure.feedback}<br>` +
+                `<em>${5 - opened} chest${5 - opened !== 1 ? 's' : ''} remaining.</em>`;
+            
+            if (opened === 5) {
+                setTimeout(() => {
+                    document.getElementById('progression_feedback').innerHTML +=
+                        '<br><br><strong>🏆 All Chests Searched!</strong> Look at how much stronger your Barbarian has become with real Armoury gear. ' +
+                        'In HeroQuest, choosing which equipment to buy — and who gets it — is a huge part of the strategy between quests.';
+                }, 1500);
             }
         }
         
-        function updateStatBars() {
-            const maxStat = 100;
-            document.getElementById('attack_bar').style.width = Math.min(characterStats.attack, maxStat) + '%';
-            document.getElementById('defense_bar').style.width = Math.min(characterStats.defense, maxStat) + '%';
-            document.getElementById('health_bar').style.width = Math.min(characterStats.health, maxStat) + '%';
-            document.getElementById('utility_bar').style.width = Math.min(characterStats.utility, maxStat) + '%';
+        function renderStats() {
+            // Attack dice
+            const attackDiv = document.getElementById('attack_dice');
+            attackDiv.innerHTML = '';
+            for (let i = 0; i < heroStats.attack; i++) {
+                const die = document.createElement('span');
+                die.className = 'die-icon' + (i >= baseStats.attack ? ' bonus' : '');
+                die.textContent = '🎲';
+                attackDiv.appendChild(die);
+            }
+            
+            // Defend dice
+            const defendDiv = document.getElementById('defend_dice');
+            defendDiv.innerHTML = '';
+            for (let i = 0; i < heroStats.defend; i++) {
+                const die = document.createElement('span');
+                die.className = 'die-icon' + (i >= baseStats.defend ? ' bonus' : '');
+                die.textContent = '🎲';
+                defendDiv.appendChild(die);
+            }
+            
+            // Body & Mind points
+            document.getElementById('body_points').textContent = `${heroStats.body} / ${heroStats.body}`;
+            document.getElementById('mind_points').textContent = `${heroStats.mind} / ${heroStats.mind}`;
         }
+        
+        document.getElementById('new_quest_btn').addEventListener('click', initSimulator);
+        initSimulator();
         
         // Reward Balance Visualization
         const balanceCanvas = document.getElementById('reward_balance_canvas');
@@ -439,6 +631,23 @@
             ];
             
             builds.forEach(build => {
+                // Draw connection lines FIRST (behind items)
+                build.items.forEach((item, index) => {
+                    const angle = (index * 120) * (Math.PI / 180);
+                    const itemX = build.x + Math.cos(angle) * 60;
+                    const itemY = build.y + Math.sin(angle) * 60;
+                    
+                    synergyCtx.strokeStyle = build.color;
+                    synergyCtx.lineWidth = 2;
+                    synergyCtx.beginPath();
+                    synergyCtx.moveTo(build.x, build.y);
+                    synergyCtx.lineTo(itemX, itemY);
+                    synergyCtx.stroke();
+                });
+            });
+            
+            // Pass 2: circles and item boxes (on top of lines)
+            builds.forEach(build => {
                 synergyCtx.fillStyle = build.color;
                 synergyCtx.beginPath();
                 synergyCtx.arc(build.x, build.y, 40, 0, Math.PI * 2);
@@ -451,19 +660,24 @@
                     
                     synergyCtx.fillStyle = '#daa520';
                     synergyCtx.fillRect(itemX - 15, itemY - 15, 30, 30);
+                });
+            });
+            
+            // Pass 3: ALL text drawn last (on top of everything)
+            synergyCtx.textAlign = 'center';
+            builds.forEach(build => {
+                // Item emoji text
+                build.items.forEach((item, index) => {
+                    const angle = (index * 120) * (Math.PI / 180);
+                    const itemX = build.x + Math.cos(angle) * 60;
+                    const itemY = build.y + Math.sin(angle) * 60;
+                    
                     synergyCtx.fillStyle = '#000';
                     synergyCtx.font = '16px Arial';
-                    synergyCtx.textAlign = 'center';
                     synergyCtx.fillText(item, itemX, itemY + 5);
-                    
-                    synergyCtx.strokeStyle = build.color;
-                    synergyCtx.lineWidth = 2;
-                    synergyCtx.beginPath();
-                    synergyCtx.moveTo(build.x, build.y);
-                    synergyCtx.lineTo(itemX, itemY);
-                    synergyCtx.stroke();
                 });
                 
+                // Build name
                 synergyCtx.fillStyle = '#f4e4bc';
                 synergyCtx.font = '12px Arial';
                 synergyCtx.fillText(build.name, build.x, build.y + 70);
@@ -486,13 +700,6 @@
             tradingCtx.fillStyle = '#2f1b14';
             tradingCtx.fillRect(0, 0, tradingCanvas.width, tradingCanvas.height);
             
-            tradingCtx.fillStyle = '#8b4513';
-            tradingCtx.fillRect(200, 100, 200, 100);
-            tradingCtx.fillStyle = '#f4e4bc';
-            tradingCtx.font = '14px Arial';
-            tradingCtx.textAlign = 'center';
-            tradingCtx.fillText('🏪 Marketplace', 300, 130);
-            
             const traders = [
                 {x: 100, y: 150, name: 'Weapons', item: '⚔️'},
                 {x: 500, y: 150, name: 'Armor', item: '🛡️'},
@@ -500,21 +707,35 @@
                 {x: 450, y: 50, name: 'Supplies', item: '🧪'}
             ];
             
+            // Draw connection lines FIRST (behind boxes)
             traders.forEach(trader => {
-                tradingCtx.fillStyle = '#daa520';
-                tradingCtx.fillRect(trader.x - 25, trader.y - 25, 50, 50);
-                tradingCtx.fillStyle = '#000';
-                tradingCtx.font = '20px Arial';
-                tradingCtx.fillText(trader.item, trader.x, trader.y + 5);
-                tradingCtx.fillStyle = '#f4e4bc';
-                tradingCtx.font = '10px Arial';
-                tradingCtx.fillText(trader.name, trader.x, trader.y + 45);
                 tradingCtx.strokeStyle = '#cd853f';
                 tradingCtx.lineWidth = 2;
                 tradingCtx.beginPath();
                 tradingCtx.moveTo(trader.x, trader.y);
                 tradingCtx.lineTo(300, 150);
                 tradingCtx.stroke();
+            });
+            
+            // Draw marketplace (on top of lines)
+            tradingCtx.fillStyle = '#8b4513';
+            tradingCtx.fillRect(200, 100, 200, 100);
+            tradingCtx.fillStyle = '#f4e4bc';
+            tradingCtx.font = '14px Arial';
+            tradingCtx.textAlign = 'center';
+            tradingCtx.fillText('🏪 Marketplace', 300, 130);
+            
+            // Draw trader boxes (on top of lines)
+            traders.forEach(trader => {
+                tradingCtx.fillStyle = '#daa520';
+                tradingCtx.fillRect(trader.x - 25, trader.y - 25, 50, 50);
+                tradingCtx.fillStyle = '#000';
+                tradingCtx.font = '20px Arial';
+                tradingCtx.textAlign = 'center';
+                tradingCtx.fillText(trader.item, trader.x, trader.y + 5);
+                tradingCtx.fillStyle = '#f4e4bc';
+                tradingCtx.font = '10px Arial';
+                tradingCtx.fillText(trader.name, trader.x, trader.y + 45);
             });
             
             tradingCtx.fillStyle = '#ffd700';

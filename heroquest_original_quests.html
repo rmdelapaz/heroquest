@@ -11,6 +11,77 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
+    <style>
+    /* ── Callout boxes (page-specific, not in main.css) ── */
+    .quest-principle, .strategy-box, .design-analysis {
+      background: var(--accent-muted);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+
+    /* ── Quest selector button row ── */
+    .quest-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 1rem 0;
+    }
+    .quest-button {
+      padding: 8px 14px;
+      background: rgba(79, 195, 247, 0.15);
+      border: 2px solid #4fc3f7;
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      user-select: none;
+    }
+    .quest-button:hover {
+      background: rgba(79, 195, 247, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 3px 8px rgba(79, 195, 247, 0.3);
+    }
+    .quest-button.active {
+      background: #4fc3f7;
+      color: #000;
+      border-color: #039be5;
+      box-shadow: 0 2px 10px rgba(79, 195, 247, 0.5);
+    }
+
+    /* ── Difficulty meter ── */
+    .difficulty-meter {
+      position: relative;
+      width: 100%;
+      height: 24px;
+      background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336);
+      border-radius: 12px;
+      margin: 0.75rem 0;
+      border: 2px solid var(--border);
+    }
+    .difficulty-indicator {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border: 3px solid #333;
+      border-radius: 50%;
+      transition: left 0.4s ease;
+      box-shadow: 0 0 6px rgba(0,0,0,0.4);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .quest-selector { gap: 6px; }
+      .quest-button { padding: 6px 10px; font-size: 0.8rem; }
+    }
+    </style>
 </head>
 <body>
     <div class="container">

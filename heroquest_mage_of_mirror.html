@@ -11,6 +11,191 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
+    <style>
+    /* ── Page wrapper ── */
+    .mirror-realm { position: relative; overflow: hidden; }
+
+    /* ── Callout boxes ── */
+    .mirror-principle, .reality-box, .arcane-analysis {
+      background: var(--accent-muted);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+
+    /* ── Mirror portal ── */
+    .mirror-portal {
+      text-align: center;
+      font-size: 64px;
+      margin: 1.5rem 0;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(173,97,216,0.15), rgba(206,147,216,0.1));
+      border: 2px solid #ce93d8;
+      border-radius: 12px;
+    }
+
+    /* ── Reality meter ── */
+    .reality-meter {
+      position: relative;
+      width: 100%;
+      height: 24px;
+      background: linear-gradient(to right, #4caf50, #8bc34a, #ffeb3b, #ff9800, #9c27b0);
+      border-radius: 12px;
+      margin: 0.75rem 0;
+      border: 2px solid var(--border);
+    }
+    .reality-indicator {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border: 3px solid #333;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(173,97,216,0.6);
+    }
+
+    /* ── Dimensional layer selector ── */
+    .dimensional-layers {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .layer-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      background: var(--accent-muted);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 24px;
+      transition: background 0.2s, transform 0.15s, border-color 0.2s;
+      color: var(--text);
+      user-select: none;
+    }
+    .layer-node:hover { transform: translateY(-3px); border-color: #ce93d8; }
+    .layer-node.active {
+      background: #9c27b0;
+      color: #fff;
+      border-color: #7b1fa2;
+      box-shadow: 0 2px 10px rgba(156,39,176,0.4);
+    }
+
+    /* ── Dimensional magic / spell reflection grid ── */
+    .dimensional-magic {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 1rem 0;
+    }
+    .spell-reflection {
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      color: var(--text);
+    }
+
+    /* ── Dimensional cards ── */
+    .dimensional-card {
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+
+    /* ── Interactive spell matrix grid ── */
+    .spell-matrix {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      margin: 1rem 0;
+    }
+    .matrix-spell {
+      background: var(--accent-muted);
+      border: 2px solid #ce93d8;
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      color: var(--text);
+      user-select: none;
+    }
+    .matrix-spell:hover {
+      background: rgba(156,39,176,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 3px 10px rgba(206,147,216,0.4);
+    }
+    .matrix-spell.active {
+      background: #9c27b0;
+      color: #fff;
+      border-color: #7b1fa2;
+    }
+
+    /* ── Interactive mirror battlefield grid ── */
+    .mirror-battlefield {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 2px;
+      margin: 1rem 0;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .mirror-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      user-select: none;
+    }
+    .mirror-cell:hover { transform: scale(1.1); z-index: 1; }
+    .mirror-cell.prime-reality { background: rgba(76,175,80,0.2); }
+    .mirror-cell.mirror-reality { background: rgba(173,97,216,0.25); }
+    .mirror-cell.dimensional-rift { background: rgba(255,215,0,0.25); }
+    .mirror-cell.stable-ground { background: rgba(100,100,100,0.15); }
+    .mirror-cell.mage-position { background: rgba(156,39,176,0.35); cursor: default; }
+    .mirror-cell.hero-position { background: rgba(74,144,226,0.3); cursor: default; }
+
+    /* ── Floating reality fragments ── */
+    .reality-fragment {
+      position: absolute;
+      font-size: 18px;
+      opacity: 0.1;
+      pointer-events: none;
+      animation: fragmentDrift 7s ease-in-out infinite alternate;
+    }
+    @keyframes fragmentDrift {
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.05; }
+      50% { opacity: 0.12; }
+      100% { transform: translateY(-20px) rotate(15deg) scale(1.1); opacity: 0.05; }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .layer-node { width: 52px; height: 52px; font-size: 20px; }
+      .dimensional-magic { grid-template-columns: 1fr; }
+      .spell-matrix { grid-template-columns: repeat(2, 1fr); }
+      .mirror-battlefield { grid-template-columns: repeat(6, 1fr); }
+    }
+    </style>
 </head>
 <body>
     <div class="container mirror-realm">

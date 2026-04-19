@@ -11,6 +11,240 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
+    <style>
+    /* ── Callout boxes ── */
+    .lunar-principle, .knight-principle, .transformation-box, .moon-analysis {
+      background: var(--accent-muted);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+
+    /* ── Dread moon portal ── */
+    .dread-moon-portal {
+      text-align: center;
+      font-size: 64px;
+      margin: 1.5rem 0;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(255,167,38,0.12), rgba(30,30,60,0.2));
+      border: 2px solid #ffa726;
+      border-radius: 12px;
+    }
+
+    /* ── Night sky decoration ── */
+    .night-sky {
+      position: relative;
+      overflow: hidden;
+      min-height: 40px;
+    }
+    .star {
+      position: absolute;
+      font-size: 10px;
+      opacity: 0.4;
+      pointer-events: none;
+      animation: twinkle 3s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.2; transform: scale(1); }
+      100% { opacity: 0.6; transform: scale(1.3); }
+    }
+
+    /* ── Moon phase meter ── */
+    .moon-phase-meter {
+      position: relative;
+      width: 100%;
+      height: 24px;
+      background: linear-gradient(to right, #1a1a2e, #3a3a5e, #ffa726, #3a3a5e, #1a1a2e);
+      border-radius: 12px;
+      margin: 0.75rem 0;
+      border: 2px solid var(--border);
+    }
+    .moon-indicator {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border: 3px solid #333;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(255,167,38,0.6);
+    }
+
+    /* ── Curse meter ── */
+    .curse-meter {
+      position: relative;
+      width: 100%;
+      height: 24px;
+      background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336, #4a0000);
+      border-radius: 12px;
+      margin: 0.75rem 0;
+      border: 2px solid var(--border);
+    }
+    .curse-indicator {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      background: #fff;
+      border: 3px solid #333;
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(244,67,54,0.6);
+    }
+
+    /* ── Moon cycles — horizontal phase selector ── */
+    .moon-cycles {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .moon-phase {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+      background: var(--accent-muted);
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 22px;
+      transition: background 0.2s, transform 0.15s, border-color 0.2s;
+      color: var(--text);
+      user-select: none;
+    }
+    .moon-phase:hover { transform: scale(1.12); border-color: #ffa726; }
+    .moon-phase.active {
+      background: #ffa726;
+      color: #000;
+      border-color: #e65100;
+      box-shadow: 0 0 12px rgba(255,167,38,0.5);
+    }
+
+    /* ── Transformation tracker — horizontal flow ── */
+    .transformation-tracker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+      padding: 16px;
+      background: var(--accent-muted);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .transform-stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 68px;
+      height: 68px;
+      background: #e65100;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.7rem;
+      line-height: 1.2;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      box-shadow: 0 2px 8px rgba(255,167,38,0.3);
+    }
+
+    /* ── Interactive lunar battlefield ── */
+    .lunar-battlefield {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 2px;
+      margin: 1rem 0;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .lunar-cell {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      user-select: none;
+    }
+    .lunar-cell:hover { transform: scale(1.1); z-index: 1; }
+    .lunar-cell.moonlight { background: rgba(255,167,38,0.2); }
+    .lunar-cell.shadow { background: rgba(30,30,60,0.35); }
+    .lunar-cell.cursed-ground { background: rgba(244,67,54,0.25); }
+    .lunar-cell.normal-terrain { background: rgba(100,100,100,0.15); }
+    .lunar-cell.human-form { background: rgba(74,144,226,0.3); cursor: default; }
+    .lunar-cell.beast-form { background: rgba(255,87,34,0.35); cursor: default; }
+    .lunar-cell.selected { outline: 2px solid #ffa726; box-shadow: 0 0 8px rgba(255,167,38,0.5); }
+
+    /* ── Beast forms grid ── */
+    .beast-forms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 1rem 0;
+    }
+    .beast-showcase {
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      color: var(--text);
+    }
+
+    /* ── Knight/beast comparison ── */
+    .knight-beast-comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 1rem 0;
+    }
+    .knight-form, .beast-form {
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      color: var(--text);
+    }
+    .knight-form { border-left: 4px solid #42a5f5; }
+    .beast-form { border-left: 4px solid #ff5722; }
+
+    /* ── Knight equipment grid ── */
+    .knight-equipment {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin: 1rem 0;
+    }
+    .equipment-item {
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      color: var(--text);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .moon-phase { width: 44px; height: 44px; font-size: 18px; }
+      .transform-stage { width: 54px; height: 54px; font-size: 0.6rem; }
+      .knight-beast-comparison { grid-template-columns: 1fr; }
+      .beast-forms, .knight-equipment { grid-template-columns: 1fr; }
+      .lunar-battlefield { grid-template-columns: repeat(6, 1fr); }
+    }
+    </style>
 </head>
 <body>
     <div class="container night-sky">

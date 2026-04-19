@@ -119,6 +119,61 @@
 - `heroquest_rise_dread_moon_knight.html` — stripped ~69 rules
 - **All inline style stripping is now complete across all 49 content pages.** Only `index.html` retains scoped inline styles (by design).
 
+### Session 10 — Interactive Component Layout Restoration + Combat Simulator Rebuild (April 2026)
+
+**Problem:** Session 6's batch style-stripping removed layout CSS (flex, grid, position) from interactive components on 3 pages, causing elements meant to be horizontal/grid to stack vertically as unstyled block divs.
+
+**heroquest_rise_dread_moon_knight.html — Scoped `<style>` block added (~180 lines):**
+- `.moon-cycles` / `.moon-phase` — `display: flex` horizontal row for 8 moon phase emoji icons, hover/active states
+- `.transformation-tracker` / `.transform-stage` — `display: flex` horizontal row for 5-stage transformation cycle with arrow separators
+- `.lunar-battlefield` / `.lunar-cell` + 7 terrain variants — `display: grid; grid-template-columns: repeat(8, 1fr)` for 8×10 interactive terrain grid with `aspect-ratio: 1` cells
+- `.knight-beast-comparison` / `.knight-form` / `.beast-form` — `grid-template-columns: 1fr 1fr` side-by-side comparison (stacks on mobile)
+- `.knight-equipment` / `.equipment-item` — `auto-fit` grid with `minmax(260px, 1fr)` for 6 equipment cards
+- `.moon-phase-meter` / `.chivalry-meter` / `.curse-meter` + indicators — `position: relative/absolute` gradient bars with sliding dot indicators
+- `.knight-principle` / `.lunar-principle` / `.transformation-box` / `.moon-analysis` — callout boxes with accent borders
+- `.night-sky` / `.star` / `.dread-moon-portal` — decorative night sky with twinkling star animation + moon glow
+- Responsive breakpoints at 768px and 480px
+- **Battlefield click feedback fix:** Added `.lunar-cell.selected` class (orange outline + glow), selection toggle in `analyzeKnightTerrainEffect()`, `scrollIntoView({ behavior: 'smooth', block: 'nearest' })` on terrain effects div
+
+**heroquest_jungles_delthrak.html — Scoped `<style>` block added (~320 lines):**
+- `.hero-selector` / `.hero-button` — `display: flex` horizontal hero choice buttons with active state
+- `.hero-stats` / `.stat-item` — `display: flex` horizontal stat row (Body/Mind/Attack/Defend)
+- `.hero-abilities` / `.ability-card` — CSS grid `auto-fit minmax(220px, 1fr)` for ability cards
+- `.weather-system` / `.weather-node` — `display: flex` horizontal weather selector with active state
+- `.survival-grid` / `.wilderness-skill` — CSS grid `auto-fit minmax(220px, 1fr)` for skill cards
+- `.jungle-map` / `.jungle-cell` + 8 terrain variants — `display: grid; repeat(8, 1fr)` for 8×10 jungle navigation grid
+- `.skill-matrix` / `.matrix-skill` — CSS grid `auto-fit minmax(140px, 1fr)` for 8 clickable survival skill buttons
+- `.environment-layers` / `.layer-node` — `display: flex` horizontal season selector
+- `.danger-level` + 4 severity variants — `display: flex` centered threat level bar with color-coded border/background states
+- `.survival-meter` / `.survival-indicator` — gradient bar with sliding dot
+- `.wilderness-card` — predator info cards
+- `.jungle-principle` / `.survival-box` / `.environment-analysis` — callout boxes
+- `.jungle-realm` / `.nature-element` — floating emoji decoration with `floatAcross` animation
+- Responsive breakpoints at 768px and 480px
+- **Jungle map click feedback fix:** Added `.jungle-cell.selected` class (green outline + glow), selection toggle in `analyzeTerrainEffect()`, `scrollIntoView` on terrain analysis div
+- **Skill matrix click feedback fix:** Added `.matrix-skill.selected` class, selection toggle in `useSurvivalSkill()`, `scrollIntoView` on skill result div (both success and insufficient energy)
+
+**heroquest_basics.html — Interactive Combat Simulator rebuild:**
+- Replaced static canvas illustration (Barbarian vs Goblin with "VS" text, zero interactivity) with full HTML-based interactive combat simulator
+- Added scoped `<style>` block (~130 lines) for combat arena components
+- **Combat UI components:**
+  - `.combat-arena` — dark dungeon-themed container
+  - `.fighter-card` (hero/monster) — stat display with animated HP bars (green → yellow → red), `.defeated` fade state
+  - `.dice-tray` / `.die` — flex row of color-coded dice (`.skull` red, `.shield` blue, `.blank` gray) with `.rolling` animation
+  - `.combat-btn` — context-aware button (red attack, blue defend, purple reset) with hover/active transforms
+  - `.combat-log` — narrated combat log explaining each step
+  - `.step-indicator` — yellow step label tracking combat flow
+  - `.damage-flash` — large damage/block result text
+- **Combat flow (state machine via `combat.phase`):**
+  - `hero_attack` → roll 3 dice with 800ms animation → if 0 skulls: skip defense, show "MISS!", proceed to goblin counter-attack
+  - `monster_defend` → roll 1 die → show attack vs defense side by side → calculate damage (skulls − shields) → update HP → victory check
+  - `monster_attack` → roll 1 die → if 0 skulls: skip defense, show "Goblin missed!", advance round
+  - `hero_defend` → roll 2 dice → calculate damage → update HP → defeat check → advance round
+  - `reset` → restore all HP, round counter, UI state
+- **Dice distribution:** 2 skulls, 2 shields, 2 blanks per d6 (~33% each) — matches real HeroQuest dice
+- **Rule accuracy:** 0-skull attacks skip the defense roll entirely (no need to block nothing)
+- Responsive at 480px (fighters stack vertically, smaller dice)
+
 ## What Still Needs Doing
 
 ### ~~1. Hero Tutorial Page Inline Style Stripping — 12 files~~ ✅ DONE (Session 4)
@@ -158,7 +213,7 @@
 - 341 canvas colors are informational — canvases paint own dark backgrounds with fillRect; canvas-helper.js adoption remains opt-in
 - Run locally: `python3 dark_mode_audit.py` from project root
 
-### 5. Visual QA Pass — IN PROGRESS (Session 9)
+### 5. Visual QA Pass — IN PROGRESS (Sessions 9–10)
 - ~~Automated QA script (`qa_heroquest.py`) — 8 checks across all 50 HTML files~~ ✅
 - ~~Playwright screenshot matrix (`screenshot_matrix.py`) — 300 screenshots captured~~ ✅
 - ~~Bugs found and fixed by QA script:~~ ✅
@@ -172,7 +227,8 @@
 - `.gitignore` added to exclude `screenshots/`, `qa_heroquest.py`, `screenshot_matrix.py`
 - Old utility scripts deleted: `audit_critical.py`, `find_text_colors.py`, `dark_mode_audit.py`
 - ~~Canvas container wrapper fix (`fix_canvas_wrap.py`) — sitewide scan and auto-fix~~ ✅
-- Remaining: final visual spot-check, then deploy
+- **Session 10:** Restored interactive component layout CSS on 3 pages (knight, delthrak, basics); rebuilt basics combat simulator; added click feedback (selected highlights + scrollIntoView) to all interactive grids
+- Remaining: spot-check other expansion pages for similar interactive layout issues (rise_dread_moon, frozen_horror, mage_of_mirror, spirit_queens_torment, against_ogre_horde, etc.), then deploy
 
 ### ~~6. Potential Further Improvements~~ ✅ DONE (Session 7)
 - ~~Simplify redundant dark mode overrides in main.css~~ ✅

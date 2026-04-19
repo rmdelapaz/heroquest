@@ -525,15 +525,6 @@
             voiceCtx.fillStyle = '#1a0d26';
             voiceCtx.fillRect(0, 0, voiceCanvas.width, voiceCanvas.height);
             
-            // Draw DM in center
-            voiceCtx.fillStyle = '#9d4edd';
-            voiceCtx.fillRect(275, 175, 50, 50);
-            voiceCtx.fillStyle = '#fff';
-            voiceCtx.font = '12px Arial';
-            voiceCtx.textAlign = 'center';
-            voiceCtx.fillText('DM', 300, 205);
-            
-            // Draw voice bubbles for different NPCs
             const npcs = [
                 {x: 100, y: 100, text: 'Mentor', color: '#4a90e2'},
                 {x: 500, y: 100, text: 'Monster', color: '#ff6b35'},
@@ -541,24 +532,38 @@
                 {x: 500, y: 300, text: 'Comic', color: '#ffd700'}
             ];
             
+            // Draw connection lines FIRST (behind everything)
+            voiceCtx.strokeStyle = '#c77dff';
+            voiceCtx.lineWidth = 2;
             npcs.forEach(npc => {
-                // Draw NPC
-                voiceCtx.fillStyle = npc.color;
-                voiceCtx.fillRect(npc.x - 25, npc.y - 25, 50, 50);
-                voiceCtx.fillStyle = '#fff';
-                voiceCtx.fillText(npc.text, npc.x, npc.y + 5);
-                
-                // Draw connection to DM
-                voiceCtx.strokeStyle = '#c77dff';
-                voiceCtx.lineWidth = 2;
                 voiceCtx.beginPath();
                 voiceCtx.moveTo(npc.x, npc.y);
                 voiceCtx.lineTo(300, 200);
                 voiceCtx.stroke();
             });
             
+            // Draw DM in center (on top of lines)
+            voiceCtx.fillStyle = '#9d4edd';
+            voiceCtx.fillRect(275, 175, 50, 50);
+            voiceCtx.fillStyle = '#fff';
+            voiceCtx.font = '12px Arial';
+            voiceCtx.textAlign = 'center';
+            voiceCtx.fillText('DM', 300, 205);
+            
+            // Draw NPC boxes and text (on top of lines)
+            npcs.forEach(npc => {
+                voiceCtx.fillStyle = npc.color;
+                voiceCtx.fillRect(npc.x - 25, npc.y - 25, 50, 50);
+                voiceCtx.fillStyle = '#fff';
+                voiceCtx.font = '12px Arial';
+                voiceCtx.textAlign = 'center';
+                voiceCtx.fillText(npc.text, npc.x, npc.y + 5);
+            });
+            
+            // Title (on top of everything)
             voiceCtx.fillStyle = '#e6d6f7';
             voiceCtx.font = '16px Arial';
+            voiceCtx.textAlign = 'center';
             voiceCtx.fillText('DM Voice Acting: One Person, Many Characters', 300, 30);
             voiceCtx.textAlign = 'left';
         }

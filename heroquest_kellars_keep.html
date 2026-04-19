@@ -12,6 +12,100 @@
     </script>
 
 
+    <style>
+    /* ── Callout boxes (page-specific, not in main.css) ── */
+    .expansion-principle, .feature-analysis, .strategy-box {
+      background: var(--accent-muted);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+
+    /* ── Character showcase grid ── */
+    .character-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 1rem 0;
+    }
+    .character-portrait {
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      color: var(--text);
+    }
+
+    /* ── Monster gallery grid ── */
+    .monster-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 1rem 0;
+    }
+    .monster-card {
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      color: var(--text);
+    }
+
+    /* ── Innovation cards ── */
+    .innovation-card {
+      background: var(--accent-muted);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 1rem 0;
+      color: var(--text);
+    }
+
+    /* ── Quest progression — horizontal flow ── */
+    .quest-progression {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+      padding: 20px;
+      background: var(--accent-muted);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .quest-node {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 72px;
+      height: 72px;
+      background: var(--accent, #7cb342);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      border-radius: 50%;
+      border: 3px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .quest-arrow {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      user-select: none;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .quest-node { width: 58px; height: 58px; font-size: 0.75rem; }
+      .quest-arrow { font-size: 1.2rem; }
+      .character-showcase, .monster-gallery { grid-template-columns: 1fr; }
+    }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -615,6 +709,25 @@
             ];
             
             tools.forEach(tool => {
+                // Draw connection lines FIRST (behind boxes)
+                dmCtx.strokeStyle = '#689f38';
+                dmCtx.lineWidth = 2;
+                dmCtx.beginPath();
+                dmCtx.moveTo(tool.x, tool.y);
+                dmCtx.lineTo(300, 150);
+                dmCtx.stroke();
+            });
+            
+            // Draw DM in center (on top of lines)
+            dmCtx.fillStyle = '#7cb342';
+            dmCtx.fillRect(275, 125, 50, 50);
+            dmCtx.fillStyle = '#000';
+            dmCtx.font = '20px Arial';
+            dmCtx.textAlign = 'center';
+            dmCtx.fillText('🧙‍♂️', 300, 155);
+            
+            // Draw tool boxes and text (on top of lines)
+            tools.forEach(tool => {
                 dmCtx.fillStyle = '#2d5016';
                 dmCtx.fillRect(tool.x - 30, tool.y - 30, 60, 60);
                 dmCtx.strokeStyle = '#8bc34a';
@@ -623,6 +736,7 @@
                 
                 dmCtx.fillStyle = '#fff';
                 dmCtx.font = '20px Arial';
+                dmCtx.textAlign = 'center';
                 dmCtx.fillText(tool.icon, tool.x, tool.y + 5);
                 
                 dmCtx.fillStyle = '#e8f5e8';
@@ -631,14 +745,6 @@
                 lines.forEach((line, index) => {
                     dmCtx.fillText(line, tool.x, tool.y + 45 + (index * 12));
                 });
-                
-                // Draw connection to DM
-                dmCtx.strokeStyle = '#689f38';
-                dmCtx.lineWidth = 2;
-                dmCtx.beginPath();
-                dmCtx.moveTo(tool.x, tool.y);
-                dmCtx.lineTo(300, 150);
-                dmCtx.stroke();
             });
             
             dmCtx.fillStyle = '#7cb342';

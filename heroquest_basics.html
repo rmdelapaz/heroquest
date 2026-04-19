@@ -10,6 +10,145 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
+    <style>
+        /* ── Interactive Combat Simulator ── */
+        .combat-arena {
+            background: #2c1810;
+            border-radius: 10px;
+            padding: 24px;
+            margin: 1rem 0;
+            color: #f5f5dc;
+        }
+        .combat-fighters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .fighter-card {
+            text-align: center;
+            padding: 16px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 140px;
+        }
+        .fighter-card.hero-fighter { background: rgba(74, 144, 226, 0.2); border: 2px solid #4a90e2; }
+        .fighter-card.monster-fighter { background: rgba(139, 69, 19, 0.2); border: 2px solid #8b4513; }
+        .fighter-card.defeated { opacity: 0.4; }
+        .fighter-icon { font-size: 48px; margin-bottom: 8px; }
+        .fighter-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; }
+        .fighter-stats { font-size: 0.85rem; color: #ccc; }
+        .hp-bar {
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .hp-fill {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+            background: #22c55e;
+        }
+        .hp-fill.low { background: #f59e0b; }
+        .hp-fill.critical { background: #ef4444; }
+        .combat-vs {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ff6b35;
+            flex-shrink: 0;
+        }
+        .combat-log {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 12px 0;
+            min-height: 60px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .dice-tray {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin: 12px 0;
+            min-height: 56px;
+            align-items: center;
+        }
+        .die {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            border: 2px solid #555;
+            background: #1e293b;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .die.skull { background: #7f1d1d; border-color: #ef4444; }
+        .die.shield { background: #1e3a5f; border-color: #3b82f6; }
+        .die.blank { background: #333; border-color: #555; }
+        .die.rolling {
+            animation: dieRoll 0.12s ease-in-out infinite alternate;
+        }
+        @keyframes dieRoll {
+            from { transform: rotate(-8deg) scale(1.05); }
+            to   { transform: rotate(8deg) scale(0.95); }
+        }
+        .combat-btn {
+            display: block;
+            margin: 16px auto 0;
+            padding: 14px 36px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #fff;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+        .combat-btn:hover { transform: scale(1.05); }
+        .combat-btn:active { transform: scale(0.97); }
+        .combat-btn.attack { background: #ef4444; box-shadow: 0 0 12px rgba(239,68,68,0.4); }
+        .combat-btn.defend { background: #3b82f6; box-shadow: 0 0 12px rgba(59,130,246,0.4); }
+        .combat-btn.reset  { background: #8b5cf6; box-shadow: 0 0 12px rgba(139,92,246,0.4); }
+        .combat-btn:disabled {
+            opacity: 0.4;
+            cursor: default;
+            transform: none;
+        }
+        .step-indicator {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #fbbf24;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .dice-label {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 4px;
+        }
+        .damage-flash {
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin: 8px 0;
+            min-height: 36px;
+        }
+        @media (max-width: 480px) {
+            .combat-fighters { flex-direction: column; }
+            .combat-vs { font-size: 1.5rem; }
+            .die { width: 40px; height: 40px; font-size: 20px; }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -332,9 +471,38 @@
 
         <h2>🎮 Interactive Combat Simulator</h2>
         
-        <div class="canvas-container">
-            <h3>Combat Simulator</h3>
-            <canvas id="combat_simulator_canvas" width="600" height="400"></canvas>
+        <div class="combat-arena" id="combat_arena">
+            <div class="combat-fighters">
+                <div class="fighter-card hero-fighter" id="hero_card">
+                    <div class="fighter-icon">⚔️</div>
+                    <div class="fighter-name">Barbarian</div>
+                    <div class="fighter-stats">ATK: 3 • DEF: 2</div>
+                    <div class="fighter-stats">Body: <span id="hero_hp">8</span> / 8</div>
+                    <div class="hp-bar"><div class="hp-fill" id="hero_hp_bar" style="width:100%"></div></div>
+                </div>
+                <div class="combat-vs">VS</div>
+                <div class="fighter-card monster-fighter" id="monster_card">
+                    <div class="fighter-icon">👹</div>
+                    <div class="fighter-name">Goblin</div>
+                    <div class="fighter-stats">ATK: 1 • DEF: 1</div>
+                    <div class="fighter-stats">Body: <span id="monster_hp">1</span> / 1</div>
+                    <div class="hp-bar"><div class="hp-fill" id="monster_hp_bar" style="width:100%"></div></div>
+                </div>
+            </div>
+
+            <div class="step-indicator" id="step_indicator">Step 1: Roll your Attack dice!</div>
+
+            <div class="dice-label" id="dice_label">Your Attack Dice (3 dice)</div>
+            <div class="dice-tray" id="dice_tray"></div>
+
+            <div class="damage-flash" id="damage_flash"></div>
+
+            <div class="combat-log" id="combat_log">
+                🗡️ You're a <strong>Barbarian</strong> facing a <strong>Goblin</strong> in a narrow corridor!<br>
+                Click the button below to roll your attack dice. Each 💀 Skull = 1 hit!
+            </div>
+
+            <button class="combat-btn attack" id="combat_btn" onclick="combatStep()">🎲 Roll Attack! (3 dice)</button>
         </div>
         
         <div class="practice-box">
@@ -431,71 +599,322 @@
         
         drawDice();
         
-        // Combat Simulator
-        const combatCanvas = document.getElementById('combat_simulator_canvas');
-        const combatCtx = combatCanvas.getContext('2d');
-        
-        function drawCombatScene() {
-            combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
-            
-            // Draw background
-            combatCtx.fillStyle = '#2c1810';
-            combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
-            
-            // Draw hero (Barbarian)
-            combatCtx.fillStyle = '#4a90e2';
-            combatCtx.fillRect(50, 150, 80, 100);
-            combatCtx.fillStyle = '#fff';
-            combatCtx.font = '14px Arial';
-            combatCtx.fillText('Barbarian', 60, 140);
-            combatCtx.fillText('ATK: 3, DEF: 2', 45, 270);
-            combatCtx.fillText('Body: 8', 65, 290);
-            
-            // Draw monster (Goblin)
-            combatCtx.fillStyle = '#8b4513';
-            combatCtx.fillRect(470, 150, 80, 100);
-            combatCtx.fillStyle = '#fff';
-            combatCtx.fillText('Goblin', 490, 140);
-            combatCtx.fillText('ATK: 1, DEF: 1', 475, 270);
-            combatCtx.fillText('Body: 1', 500, 290);
-            
-            // Draw VS in the middle
-            combatCtx.fillStyle = '#ff6b35';
-            combatCtx.font = '36px Arial';
-            combatCtx.textAlign = 'center';
-            combatCtx.fillText('VS', 300, 200);
-            
-            // Draw combat arrows
-            combatCtx.strokeStyle = '#ffd700';
-            combatCtx.lineWidth = 3;
-            combatCtx.beginPath();
-            combatCtx.moveTo(130, 200);
-            combatCtx.lineTo(230, 200);
-            combatCtx.stroke();
-            
-            combatCtx.beginPath();
-            combatCtx.moveTo(370, 200);
-            combatCtx.lineTo(470, 200);
-            combatCtx.stroke();
-            
-            // Draw arrow heads
-            combatCtx.beginPath();
-            combatCtx.moveTo(225, 195);
-            combatCtx.lineTo(230, 200);
-            combatCtx.lineTo(225, 205);
-            combatCtx.stroke();
-            
-            combatCtx.beginPath();
-            combatCtx.moveTo(375, 195);
-            combatCtx.lineTo(370, 200);
-            combatCtx.lineTo(375, 205);
-            combatCtx.stroke();
-            
-            // Reset text alignment
-            combatCtx.textAlign = 'left';
+        // Combat Simulator — Interactive step-by-step
+        const DICE_FACES = [
+            { symbol: '💀', type: 'skull',  label: 'Skull' },   // ~33% hit
+            { symbol: '💀', type: 'skull',  label: 'Skull' },
+            { symbol: '🛡️', type: 'shield', label: 'Shield' },  // ~33% block
+            { symbol: '🛡️', type: 'shield', label: 'Shield' },
+            { symbol: '—',  type: 'blank',  label: 'Blank' },   // ~33% miss
+            { symbol: '—',  type: 'blank',  label: 'Blank' }
+        ];
+
+        let combat = {
+            phase: 'hero_attack',     // hero_attack → hero_attack_result → monster_defend → resolve_hero
+                                      // → monster_attack → monster_attack_result → hero_defend → resolve_monster → check_end
+            heroHP: 8, heroMaxHP: 8,
+            monsterHP: 1, monsterMaxHP: 1,
+            heroAttack: 3, heroDefend: 2,
+            monsterAttack: 1, monsterDefend: 1,
+            round: 1,
+            attackRolls: [],
+            defendRolls: []
+        };
+
+        function rollDie() {
+            return DICE_FACES[Math.floor(Math.random() * 6)];
         }
-        
-        drawCombatScene();
+
+        function rollDice(count) {
+            const results = [];
+            for (let i = 0; i < count; i++) results.push(rollDie());
+            return results;
+        }
+
+        function countType(rolls, type) {
+            return rolls.filter(r => r.type === type).length;
+        }
+
+        function renderDice(rolls, tray) {
+            tray.innerHTML = '';
+            rolls.forEach(r => {
+                const d = document.createElement('div');
+                d.className = 'die ' + r.type;
+                d.textContent = r.symbol;
+                tray.appendChild(d);
+            });
+        }
+
+        function showRolling(count, tray) {
+            tray.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const d = document.createElement('div');
+                d.className = 'die rolling';
+                d.textContent = '🎲';
+                tray.appendChild(d);
+            }
+        }
+
+        function updateHP() {
+            const heroEl = document.getElementById('hero_hp');
+            const heroBar = document.getElementById('hero_hp_bar');
+            const monsterEl = document.getElementById('monster_hp');
+            const monsterBar = document.getElementById('monster_hp_bar');
+            const heroCard = document.getElementById('hero_card');
+            const monsterCard = document.getElementById('monster_card');
+
+            heroEl.textContent = Math.max(0, combat.heroHP);
+            const heroPct = (Math.max(0, combat.heroHP) / combat.heroMaxHP) * 100;
+            heroBar.style.width = heroPct + '%';
+            heroBar.className = 'hp-fill' + (heroPct <= 25 ? ' critical' : heroPct <= 50 ? ' low' : '');
+            heroCard.classList.toggle('defeated', combat.heroHP <= 0);
+
+            monsterEl.textContent = Math.max(0, combat.monsterHP);
+            const monPct = (Math.max(0, combat.monsterHP) / combat.monsterMaxHP) * 100;
+            monsterBar.style.width = monPct + '%';
+            monsterBar.className = 'hp-fill' + (monPct <= 25 ? ' critical' : monPct <= 50 ? ' low' : '');
+            monsterCard.classList.toggle('defeated', combat.monsterHP <= 0);
+        }
+
+        function combatStep() {
+            const btn = document.getElementById('combat_btn');
+            const log = document.getElementById('combat_log');
+            const tray = document.getElementById('dice_tray');
+            const label = document.getElementById('dice_label');
+            const step = document.getElementById('step_indicator');
+            const flash = document.getElementById('damage_flash');
+
+            btn.disabled = true;
+
+            switch (combat.phase) {
+
+                // ── HERO ATTACKS ──
+                case 'hero_attack': {
+                    flash.textContent = '';
+                    label.textContent = 'Your Attack Dice (' + combat.heroAttack + ' dice)';
+                    showRolling(combat.heroAttack, tray);
+                    step.textContent = 'Step 1: Rolling your Attack dice...';
+
+                    setTimeout(() => {
+                        combat.attackRolls = rollDice(combat.heroAttack);
+                        renderDice(combat.attackRolls, tray);
+                        const skulls = countType(combat.attackRolls, 'skull');
+
+                        if (skulls === 0) {
+                            // Complete miss — no defense roll needed
+                            flash.innerHTML = `<span style="color:#64748b">💨 MISS!</span>`;
+                            log.innerHTML = `🎲 <strong>You rolled ${combat.heroAttack} attack dice!</strong><br>
+                                Result: ${combat.attackRolls.map(r => r.symbol).join(' ')} — <strong>0 skulls!</strong> Complete miss.<br>
+                                No damage dealt. The Goblin doesn't even need to defend!<br>
+                                Now the Goblin counter-attacks...`;
+                            step.textContent = 'Step 2: Goblin attacks back!';
+                            btn.textContent = '👹 Goblin Attacks! (1 die)';
+                            btn.className = 'combat-btn attack';
+                            combat.phase = 'monster_attack';
+                        } else {
+                            log.innerHTML = `🎲 <strong>You rolled ${combat.heroAttack} attack dice!</strong><br>
+                                Result: ${combat.attackRolls.map(r => r.symbol).join(' ')} — <strong>${skulls} skull${skulls !== 1 ? 's' : ''}</strong> (hit${skulls !== 1 ? 's' : ''})<br>
+                                Now the Goblin rolls defense...`;
+                            step.textContent = 'Step 2: Goblin rolls Defense!';
+                            btn.textContent = '🛡️ Roll Goblin Defense! (' + combat.monsterDefend + ' die)';
+                            btn.className = 'combat-btn defend';
+                            combat.phase = 'monster_defend';
+                        }
+                        btn.disabled = false;
+                    }, 800);
+                    break;
+                }
+
+                case 'monster_defend': {
+                    label.textContent = 'Goblin Defense Dice (' + combat.monsterDefend + ' die)';
+                    showRolling(combat.monsterDefend, tray);
+                    step.textContent = 'Step 2: Rolling Goblin defense...';
+
+                    setTimeout(() => {
+                        combat.defendRolls = rollDice(combat.monsterDefend);
+                        renderDice([...combat.attackRolls, { symbol: 'vs', type: 'blank' }, ...combat.defendRolls].filter(r => r.symbol !== 'vs'), tray);
+                        // Show attack dice + defense dice side by side
+                        tray.innerHTML = '';
+                        combat.attackRolls.forEach(r => {
+                            const d = document.createElement('div');
+                            d.className = 'die ' + r.type;
+                            d.textContent = r.symbol;
+                            tray.appendChild(d);
+                        });
+                        const sep = document.createElement('div');
+                        sep.style.cssText = 'font-size:24px;font-weight:900;color:#ff6b35;padding:0 4px';
+                        sep.textContent = 'vs';
+                        tray.appendChild(sep);
+                        combat.defendRolls.forEach(r => {
+                            const d = document.createElement('div');
+                            d.className = 'die ' + r.type;
+                            d.textContent = r.symbol;
+                            tray.appendChild(d);
+                        });
+
+                        const skulls = countType(combat.attackRolls, 'skull');
+                        const shields = countType(combat.defendRolls, 'shield');
+                        const damage = Math.max(0, skulls - shields);
+
+                        combat.monsterHP = Math.max(0, combat.monsterHP - damage);
+                        updateHP();
+
+                        let dmgText = '';
+                        if (damage > 0) {
+                            flash.innerHTML = `<span style="color:#ef4444">💥 ${damage} DAMAGE!</span>`;
+                            dmgText = `<span style="color:#ef4444">${skulls} skull${skulls!==1?'s':''} − ${shields} shield${shields!==1?'s':''} = <strong>${damage} damage!</strong></span>`;
+                        } else {
+                            flash.innerHTML = `<span style="color:#3b82f6">🛡️ BLOCKED!</span>`;
+                            dmgText = `${skulls} skull${skulls!==1?'s':''} − ${shields} shield${shields!==1?'s':''} = <strong>0 damage — blocked!</strong>`;
+                        }
+
+                        if (combat.monsterHP <= 0) {
+                            log.innerHTML = `⚔️ <strong>Attack result:</strong> ${dmgText}<br>
+                                🌟 <strong>VICTORY!</strong> The Goblin is defeated! You struck it down in round ${combat.round}!<br>
+                                Great job — that's how HeroQuest combat works!`;
+                            step.textContent = '🏆 Victory! Goblin defeated!';
+                            btn.textContent = '🔄 New Battle';
+                            btn.className = 'combat-btn reset';
+                            combat.phase = 'reset';
+                        } else {
+                            log.innerHTML = `⚔️ <strong>Attack result:</strong> ${dmgText}<br>
+                                Goblin survives with ${combat.monsterHP} Body Point${combat.monsterHP!==1?'s':''}!<br>
+                                Now the Goblin counter-attacks you...`;
+                            step.textContent = 'Step 3: Goblin attacks back!';
+                            btn.textContent = '👹 Goblin Attacks! (1 die)';
+                            btn.className = 'combat-btn attack';
+                            combat.phase = 'monster_attack';
+                        }
+                        btn.disabled = false;
+                    }, 800);
+                    break;
+                }
+
+                // ── GOBLIN COUNTER-ATTACK ──
+                case 'monster_attack': {
+                    flash.textContent = '';
+                    label.textContent = 'Goblin Attack Dice (' + combat.monsterAttack + ' die)';
+                    showRolling(combat.monsterAttack, tray);
+                    step.textContent = 'Step 3: Goblin rolls attack...';
+
+                    setTimeout(() => {
+                        combat.attackRolls = rollDice(combat.monsterAttack);
+                        renderDice(combat.attackRolls, tray);
+                        const skulls = countType(combat.attackRolls, 'skull');
+
+                        if (skulls === 0) {
+                            // Goblin missed — no defense roll needed
+                            combat.round++;
+                            flash.innerHTML = `<span style="color:#22c55e">💨 Goblin missed!</span>`;
+                            log.innerHTML = `👹 <strong>Goblin attacks!</strong> Rolled ${combat.monsterAttack} die.<br>
+                                Result: ${combat.attackRolls.map(r => r.symbol).join(' ')} — <strong>0 skulls!</strong> Complete miss.<br>
+                                The Goblin whiffs! You don't even need to defend.<br>
+                                Round ${combat.round} — your turn to attack again!`;
+                            step.textContent = 'Round ' + combat.round + ': Your turn to attack!';
+                            btn.textContent = '🎲 Roll Attack! (' + combat.heroAttack + ' dice)';
+                            btn.className = 'combat-btn attack';
+                            combat.phase = 'hero_attack';
+                        } else {
+                            log.innerHTML = `👹 <strong>Goblin attacks!</strong> Rolled ${combat.monsterAttack} die.<br>
+                                Result: ${combat.attackRolls.map(r => r.symbol).join(' ')} — <strong>${skulls} skull${skulls !== 1 ? 's' : ''}</strong><br>
+                                Now you roll defense!`;
+                            step.textContent = 'Step 4: Roll your Defense!';
+                            btn.textContent = '🛡️ Roll Your Defense! (' + combat.heroDefend + ' dice)';
+                            btn.className = 'combat-btn defend';
+                            combat.phase = 'hero_defend';
+                        }
+                        btn.disabled = false;
+                    }, 800);
+                    break;
+                }
+
+                case 'hero_defend': {
+                    label.textContent = 'Your Defense Dice (' + combat.heroDefend + ' dice)';
+                    showRolling(combat.heroDefend, tray);
+                    step.textContent = 'Step 4: Rolling your defense...';
+
+                    setTimeout(() => {
+                        combat.defendRolls = rollDice(combat.heroDefend);
+                        // Show attack + defense
+                        tray.innerHTML = '';
+                        combat.attackRolls.forEach(r => {
+                            const d = document.createElement('div');
+                            d.className = 'die ' + r.type;
+                            d.textContent = r.symbol;
+                            tray.appendChild(d);
+                        });
+                        const sep = document.createElement('div');
+                        sep.style.cssText = 'font-size:24px;font-weight:900;color:#ff6b35;padding:0 4px';
+                        sep.textContent = 'vs';
+                        tray.appendChild(sep);
+                        combat.defendRolls.forEach(r => {
+                            const d = document.createElement('div');
+                            d.className = 'die ' + r.type;
+                            d.textContent = r.symbol;
+                            tray.appendChild(d);
+                        });
+
+                        const skulls = countType(combat.attackRolls, 'skull');
+                        const shields = countType(combat.defendRolls, 'shield');
+                        const damage = Math.max(0, skulls - shields);
+
+                        combat.heroHP = Math.max(0, combat.heroHP - damage);
+                        updateHP();
+
+                        let dmgText = '';
+                        if (damage > 0) {
+                            flash.innerHTML = `<span style="color:#ef4444">💥 You take ${damage} DAMAGE!</span>`;
+                            dmgText = `<span style="color:#ef4444">${skulls} skull${skulls!==1?'s':''} − ${shields} shield${shields!==1?'s':''} = <strong>${damage} damage to you!</strong></span>`;
+                        } else {
+                            flash.innerHTML = `<span style="color:#22c55e">🛡️ You blocked it!</span>`;
+                            dmgText = `${skulls} skull${skulls!==1?'s':''} − ${shields} shield${shields!==1?'s':''} = <strong>0 damage — blocked!</strong>`;
+                        }
+
+                        if (combat.heroHP <= 0) {
+                            log.innerHTML = `🛡️ <strong>Defense result:</strong> ${dmgText}<br>
+                                💀 <strong>DEFEATED!</strong> The Goblin got lucky! You fell in round ${combat.round}.<br>
+                                Don't worry — try again!`;
+                            step.textContent = '💀 Defeated! Try again?';
+                            btn.textContent = '🔄 New Battle';
+                            btn.className = 'combat-btn reset';
+                            combat.phase = 'reset';
+                        } else {
+                            combat.round++;
+                            log.innerHTML = `🛡️ <strong>Defense result:</strong> ${dmgText}<br>
+                                You have <strong>${combat.heroHP}</strong> Body Point${combat.heroHP!==1?'s':''} remaining.<br>
+                                Round ${combat.round} — your turn to attack again!`;
+                            step.textContent = 'Round ' + combat.round + ': Your turn to attack!';
+                            btn.textContent = '🎲 Roll Attack! (' + combat.heroAttack + ' dice)';
+                            btn.className = 'combat-btn attack';
+                            combat.phase = 'hero_attack';
+                        }
+                        btn.disabled = false;
+                    }, 800);
+                    break;
+                }
+
+                // ── RESET ──
+                case 'reset': {
+                    combat.heroHP = combat.heroMaxHP;
+                    combat.monsterHP = combat.monsterMaxHP;
+                    combat.round = 1;
+                    combat.phase = 'hero_attack';
+                    combat.attackRolls = [];
+                    combat.defendRolls = [];
+                    updateHP();
+                    tray.innerHTML = '';
+                    flash.textContent = '';
+                    label.textContent = 'Your Attack Dice (' + combat.heroAttack + ' dice)';
+                    step.textContent = 'Step 1: Roll your Attack dice!';
+                    log.innerHTML = `🗡️ You're a <strong>Barbarian</strong> facing a <strong>Goblin</strong> in a narrow corridor!<br>
+                        Click the button below to roll your attack dice. Each 💀 Skull = 1 hit!`;
+                    btn.textContent = '🎲 Roll Attack! (' + combat.heroAttack + ' dice)';
+                    btn.className = 'combat-btn attack';
+                    btn.disabled = false;
+                    break;
+                }
+            }
+        }
     </script>
 <script src="/nav.js"></script>
 </body>

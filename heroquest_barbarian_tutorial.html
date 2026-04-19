@@ -294,20 +294,22 @@
         const labels = ['Attack Dice', 'Defend Dice', 'Body Points'];
         
         labels.forEach((label, i) => {
-            const x = 100 + i * 120;
+            const x = 80 + i * 150;
             
             // Base stat bar
             equipCtx.fillStyle = '#DDD';
-            equipCtx.fillRect(x - 30, 200 - baseStats[i] * 20, 25, baseStats[i] * 20);
+            equipCtx.fillRect(x - 30, 180 - baseStats[i] * 20, 25, baseStats[i] * 20);
             
             // Enhanced stat bar
             equipCtx.fillStyle = '#4ECDC4';
-            equipCtx.fillRect(x + 5, 200 - enhancedStats[i] * 20, 25, enhancedStats[i] * 20);
+            equipCtx.fillRect(x + 5, 180 - enhancedStats[i] * 20, 25, enhancedStats[i] * 20);
             
             equipCtx.fillStyle = 'black';
-            equipCtx.fillText(label, x, 230);
-            equipCtx.fillText('Base', x - 17, 220);
-            equipCtx.fillText('Enhanced', x + 17, 220);
+            equipCtx.fillText(label, x, 200);
+            equipCtx.font = '10px Arial';
+            equipCtx.fillText('Base', x - 17, 215);
+            equipCtx.fillText('+Equip', x + 17, 215);
+            equipCtx.font = '12px Arial';
         });
 
         // Advanced Positioning Grid

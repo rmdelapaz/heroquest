@@ -623,9 +623,13 @@
             comboCtx.fillStyle = 'black';
             comboCtx.fillRect(x - 35, 225, 10, combo.cost * 8);
             
+            // Cost label — to the right of the black bar
             comboCtx.fillStyle = 'black';
+            comboCtx.textAlign = 'left';
+            comboCtx.fillText(combo.cost + ' MP', x - 23, 225 + (combo.cost * 8) / 2 + 4);
+            comboCtx.textAlign = 'center';
+            
             comboCtx.fillText(combo.effectiveness + '%', x, 205 - effHeight);
-            comboCtx.fillText(combo.cost + ' MP', x - 30, 250);
             
             comboCtx.save();
             comboCtx.translate(x, 270);
