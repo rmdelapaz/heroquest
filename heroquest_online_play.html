@@ -10,48 +10,7 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
-        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #191970, #4169e1, #1e90ff); color: #f4f1e8; }
-        .container { max-width: 1200px; margin: 0 auto; background: rgba(0,0,0,0.9); padding: 30px; border-radius: 15px; box-shadow: 0 0 80px rgba(30,144,255,0.4); border: 3px solid #1e90ff; }
-        h1 { color: #87ceeb; text-align: center; font-size: 2.8em; text-shadow: 3px 3px 8px #000, 0 0 20px #87ceeb; margin-bottom: 30px; }
-        h2 { color: #b0e0e6; border-bottom: 3px solid #b0e0e6; padding-bottom: 10px; margin-top: 40px; text-shadow: 2px 2px 4px #000; }
-        h3 { color: #add8e6; margin-top: 30px; text-shadow: 1px 1px 2px #000; }
-        .quest-card { background: linear-gradient(145deg, #2f3b69, #1a1a1a); border: 3px solid; border-radius: 15px; padding: 25px; margin: 25px 0; position: relative; box-shadow: 0 15px 30px rgba(0,0,0,0.8); overflow: hidden; }
-        .quest-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, transparent, rgba(30,144,255,0.7), transparent); animation: digitalShimmer 6s infinite; }
-        @keyframes digitalShimmer { 0%, 100% { transform: translateX(-150%); } 50% { transform: translateX(150%); } }
-        .platform-guide { border-color: #4169e1; }
-        .tech-setup { border-color: #32cd32; }
-        .dm-tools { border-color: #ffa500; }
-        .player-tips { border-color: #ff69b4; }
-        .troubleshooting { border-color: #dc143c; }
-        .card-type { position: absolute; top: -15px; left: 20px; padding: 8px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
-        .platform-guide .card-type { background: #4169e1; color: white; }
-        .tech-setup .card-type { background: #32cd32; color: white; }
-        .dm-tools .card-type { background: #ffa500; color: white; }
-        .player-tips .card-type { background: #ff69b4; color: white; }
-        .troubleshooting .card-type { background: #dc143c; color: white; }
-        .digital-chronicle { background: rgba(30,144,255,0.4); border: 3px solid #1e90ff; border-radius: 10px; padding: 20px; margin: 20px 0; position: relative; }
-        .digital-chronicle::before { content: "💻"; position: absolute; top: -12px; left: 15px; font-size: 2.2em; background: rgba(0,0,0,0.9); padding: 5px; border-radius: 50%; }
-        .setup-brief { background: rgba(255,255,224,0.95); border-left: 5px solid #32cd32; padding: 15px; margin: 15px 0; color: #000; }
-        .tech-warning { background: rgba(255,192,203,0.95); border: 2px dashed #dc143c; border-radius: 10px; padding: 15px; margin: 15px 0; color: #000; }
-        .digital-tag { display: inline-block; background: rgba(30,144,255,0.5); border: 1px solid #1e90ff; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; font-weight: bold; color: #87ceeb; }
-        .platform-tag { display: inline-block; background: rgba(50,205,50,0.5); border: 1px solid #32cd32; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; color: #90ee90; }
-        .tool-tag { display: inline-block; background: rgba(255,165,0,0.5); border: 1px solid #ffa500; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; color: #ffd700; }
-        #onlineSetupCanvas { border: 3px solid #1e90ff; border-radius: 15px; background: radial-gradient(ellipse at center, #2f3b69, #1a1a1a); }
-        .mermaid { background: rgba(30,144,255,0.2); border-radius: 10px; padding: 20px; margin: 20px 0; }
-        .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-        .platform-card { background: rgba(230,230,250,0.95); border: 2px solid #4169e1; border-radius: 10px; padding: 20px; text-align: center; color: #000; }
-        .feature-comparison { background: rgba(240,248,255,0.95); border: 2px solid #1e90ff; border-radius: 10px; padding: 20px; margin: 20px 0; color: #000; overflow-x: auto; }
-        .setup-steps { background: rgba(255,255,224,0.95); border: 2px solid #32cd32; border-radius: 10px; padding: 20px; margin: 20px 0; color: #000; }
-        .pro-tip { background: rgba(255,182,193,0.95); border: 2px solid #ff69b4; border-radius: 10px; padding: 15px; margin: 15px 0; color: #000; }
-        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
-        th, td { border: 1px solid #1e90ff; padding: 8px; text-align: left; background: rgba(240,240,240,0.95); color: #000; }
-        th { background: rgba(173,216,230,0.95); font-weight: bold; color: #000; }
-        .cost-indicator { display: inline-block; padding: 3px 8px; border-radius: 15px; font-size: 0.8em; font-weight: bold; margin-left: 5px; }
-        .free { background: #90ee90; color: #000; }
-        .paid { background: #ffb6c1; color: #000; }
-        .freemium { background: #ffd700; color: #000; }
-    </style>
+    
 </head>
 <body>
     <div class="container">

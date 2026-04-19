@@ -11,298 +11,6 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
-<style>
-    body {
-        font-family: 'Tahoma', 'Times New Roman', serif;
-        line-height: 1.8;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 30px;
-        background: linear-gradient(135deg, #8b4513 0%, #2f1b14 50%, #ffd700 100%);
-        color: #f4e4bc;
-        font-size: 16px;
-    }
-    
-    .container {
-        background: rgba(0, 0, 0, 0.88);
-        padding: 40px;
-        border-radius: 20px;
-        box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
-        border: 2px solid #daa520;
-    }
-    
-
-    
-
-    
-
-    
-   
-    
-
-    
-    .treasure-principle {
-        background: linear-gradient(135deg, #8b4513 0%, #daa520 100%);
-        border: 2px solid #ffd700;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 30px 0;
-        border-left: 6px solid #ffff00;
-        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
-    }
-    
-    .equipment-card {
-        background: linear-gradient(135deg, #2f1b14 0%, #8b4513 100%);
-        border: 2px solid #cd853f;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 20px;
-        display: inline-block;
-        min-width: 320px;
-        max-width: 380px;
-        vertical-align: top;
-        box-shadow: 0 8px 20px rgba(205, 133, 63, 0.4);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .equipment-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 30px rgba(205, 133, 63, 0.6);
-    }
-    
-    .progression-box {
-        background: rgba(255, 215, 0, 0.15);
-        border: 2px solid #ffd700;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 30px 0;
-        box-shadow: inset 0 2px 10px rgba(255, 215, 0, 0.2);
-    }
-    
-    .reward-system {
-        background: rgba(218, 165, 32, 0.15);
-        border: 2px solid #daa520;
-        border-radius: 15px;
-        padding: 30px;
-        margin: 30px 0;
-        box-shadow: inset 0 2px 10px rgba(218, 165, 32, 0.2);
-    }
-    
-    canvas {
-        border: 3px solid #ffd700;
-        border-radius: 15px;
-        background: #000;
-        display: block;
-        margin: 30px auto;
-        box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
-    }
-    
-    .treasure-chest {
-        width: 140px;
-        height: 90px;
-        background: linear-gradient(135deg, #8b4513, #cd853f);
-        border: 3px solid #ffd700;
-        border-radius: 15px;
-        margin: 15px;
-        display: inline-block;
-        position: relative;
-        cursor: pointer;
-        transition: all 0.4s ease;
-        box-shadow: 0 4px 12px rgba(139, 69, 19, 0.4);
-    }
-    
-    .treasure-chest:hover {
-        transform: scale(1.08);
-        box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
-        border-color: #ffff00;
-    }
-    
-    .treasure-chest::before {
-        content: '💰';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 28px;
-        transition: all 0.3s ease;
-    }
-    
-    .treasure-chest.opened {
-        background: linear-gradient(135deg, #daa520, #ffd700);
-        box-shadow: 0 0 30px rgba(255, 215, 0, 1);
-    }
-    
-    .treasure-chest.opened::before {
-        content: '✨';
-        font-size: 32px;
-    }
-    
-    .character-sheet {
-        background: rgba(139, 69, 19, 0.35);
-        border: 2px solid #cd853f;
-        border-radius: 15px;
-        padding: 25px;
-        margin: 20px;
-        min-width: 280px;
-        display: inline-block;
-        vertical-align: top;
-        box-shadow: 0 6px 15px rgba(139, 69, 19, 0.3);
-    }
-    
-    .stat-bar {
-        width: 100%;
-        height: 24px;
-        background: #2f1b14;
-        border: 2px solid #8b4513;
-        border-radius: 12px;
-        margin: 8px 0;
-        overflow: hidden;
-        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-    
-    .stat-fill {
-        height: 100%;
-        background: linear-gradient(to right, #cd853f, #ffd700);
-        border-radius: 10px;
-        transition: width 0.8s ease;
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    }
-    
-    .equipment-slot {
-        width: 70px;
-        height: 70px;
-        border: 2px solid #8b4513;
-        border-radius: 12px;
-        display: inline-block;
-        margin: 8px;
-        background: #2f1b14;
-        text-align: center;
-        line-height: 66px;
-        font-size: 24px;
-        cursor: pointer;
-        transition: all 0.4s ease;
-        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-    
-    .equipment-slot:hover {
-        border-color: #ffd700;
-        background: #8b4513;
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-    }
-    
-    .equipment-slot.equipped {
-        background: linear-gradient(135deg, #daa520, #ffd700);
-        border-color: #ffff00;
-        color: #000;
-        font-weight: bold;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
-    }
-    
-    strong {
-        color: #fff8dc;
-        font-weight: 600;
-    }
-    
-    em {
-        color: #f0e68c;
-        font-style: italic;
-    }
-    
-    /* Enhanced text contrast and spacing */
-    .treasure-principle p,
-    .equipment-card p,
-    .progression-box p,
-    .reward-system p {
-        line-height: 1.8;
-        margin-bottom: 15px;
-    }
-    
-    .equipment-card h3 {
-        font-size: 1.3em;
-        margin-bottom: 15px;
-        color: #fff8dc;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
-    }
-    
-    /* Interactive elements enhancement */
-    .character-sheet h4 {
-        text-align: center;
-        margin-bottom: 20px;
-        color: #ffd700;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
-    }
-    
-    /* Results display enhancement */
-    div[id*="feedback"],
-    div[id*="display"] {
-        background: rgba(255, 215, 0, 0.2);
-        border: 2px solid #ffd700;
-        border-radius: 10px;
-        padding: 20px;
-        margin-top: 25px;
-        min-height: 80px;
-        line-height: 1.6;
-    }
-    
-    /* Stat labels enhancement */
-    .character-sheet p {
-        margin-bottom: 5px;
-        font-weight: 600;
-        color: #f0e68c;
-        font-size: 14px;
-    }
-    
-    /* Treasure chest container */
-    .treasure-chest-container {
-        text-align: center;
-        margin: 30px 0;
-        padding: 20px;
-        background: rgba(139, 69, 19, 0.2);
-        border-radius: 15px;
-        border: 1px solid #8b4513;
-    }
-    
-    /* Enhanced progression feedback */
-    #progression_feedback {
-        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(218, 165, 32, 0.15));
-        border: 2px solid #ffd700;
-        border-radius: 12px;
-        padding: 25px;
-        margin-top: 25px;
-        min-height: 100px;
-        line-height: 1.7;
-        font-size: 16px;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-    }
-    
-    /* Responsive design improvements */
-    @media (max-width: 768px) {
-        .equipment-card {
-            min-width: 280px;
-            margin: 15px 5px;
-        }
-        
-        .character-sheet {
-            min-width: 260px;
-            margin: 15px 5px;
-        }
-        
-        .treasure-chest {
-            width: 120px;
-            height: 80px;
-            margin: 10px 5px;
-        }
-        
-        .equipment-slot {
-            width: 60px;
-            height: 60px;
-            margin: 5px;
-            font-size: 20px;
-        }
-    }
-</style>
 </head>
 <body>
     <div class="container">
@@ -621,22 +329,18 @@
                 const chests = document.querySelectorAll('.treasure-chest');
                 chests[index].classList.add('opened');
                 
-                // Update stats
                 if (treasure.attack) characterStats.attack += treasure.attack;
                 if (treasure.defense) characterStats.defense += treasure.defense;
                 if (treasure.health) characterStats.health += treasure.health;
                 if (treasure.utility) characterStats.utility += treasure.utility;
                 
-                // Update visual bars
                 updateStatBars();
                 
-                // Update equipment display
                 const equipmentSlots = document.querySelectorAll('.equipment-slot');
                 if (index < equipmentSlots.length) {
                     equipmentSlots[index].classList.add('equipped');
                 }
                 
-                // Update feedback
                 document.getElementById('progression_feedback').innerHTML = 
                     `<strong>🎉 ${treasure.name} Found!</strong><br>${treasure.feedback}`;
                 
@@ -665,28 +369,20 @@
         
         function drawRewardBalance() {
             balanceCtx.clearRect(0, 0, balanceCanvas.width, balanceCanvas.height);
-            
-            // Background
             balanceCtx.fillStyle = '#2f1b14';
             balanceCtx.fillRect(0, 0, balanceCanvas.width, balanceCanvas.height);
             
-            // Draw balance scale
             balanceCtx.strokeStyle = '#daa520';
             balanceCtx.lineWidth = 4;
-            
-            // Scale base
             balanceCtx.beginPath();
             balanceCtx.moveTo(300, 250);
             balanceCtx.lineTo(300, 100);
             balanceCtx.stroke();
-            
-            // Scale arms
             balanceCtx.beginPath();
             balanceCtx.moveTo(150, 150);
             balanceCtx.lineTo(450, 150);
             balanceCtx.stroke();
             
-            // Left pan (Too Little)
             balanceCtx.fillStyle = '#8b4513';
             balanceCtx.fillRect(100, 140, 100, 60);
             balanceCtx.fillStyle = '#f4e4bc';
@@ -695,13 +391,11 @@
             balanceCtx.fillText('Too Little', 150, 165);
             balanceCtx.fillText('Boring', 150, 180);
             
-            // Right pan (Too Much)
             balanceCtx.fillStyle = '#8b4513';
             balanceCtx.fillRect(400, 160, 100, 60);
             balanceCtx.fillText('Too Much', 450, 185);
             balanceCtx.fillText('Overwhelming', 450, 200);
             
-            // Perfect balance indicator
             balanceCtx.fillStyle = '#ffd700';
             balanceCtx.beginPath();
             balanceCtx.arc(300, 120, 15, 0, Math.PI * 2);
@@ -714,7 +408,6 @@
             balanceCtx.fillText('The Balance of Meaningful Rewards', 300, 30);
             balanceCtx.textAlign = 'left';
         }
-        
         drawRewardBalance();
         
         // Equipment Synergy Visualization
@@ -723,12 +416,9 @@
         
         function drawEquipmentSynergy() {
             synergyCtx.clearRect(0, 0, synergyCanvas.width, synergyCanvas.height);
-            
-            // Background
             synergyCtx.fillStyle = '#2f1b14';
             synergyCtx.fillRect(0, 0, synergyCanvas.width, synergyCanvas.height);
             
-            // Draw character types
             const builds = [
                 {x: 150, y: 150, name: 'Tank Build', items: ['🛡️', '⚔️', '🧪'], color: '#4a90e2'},
                 {x: 450, y: 150, name: 'DPS Build', items: ['🗡️', '🏹', '⚡'], color: '#ff4500'},
@@ -737,13 +427,11 @@
             ];
             
             builds.forEach(build => {
-                // Draw character circle
                 synergyCtx.fillStyle = build.color;
                 synergyCtx.beginPath();
                 synergyCtx.arc(build.x, build.y, 40, 0, Math.PI * 2);
                 synergyCtx.fill();
                 
-                // Draw equipment around character
                 build.items.forEach((item, index) => {
                     const angle = (index * 120) * (Math.PI / 180);
                     const itemX = build.x + Math.cos(angle) * 60;
@@ -756,7 +444,6 @@
                     synergyCtx.textAlign = 'center';
                     synergyCtx.fillText(item, itemX, itemY + 5);
                     
-                    // Draw connection line
                     synergyCtx.strokeStyle = build.color;
                     synergyCtx.lineWidth = 2;
                     synergyCtx.beginPath();
@@ -765,7 +452,6 @@
                     synergyCtx.stroke();
                 });
                 
-                // Draw build name
                 synergyCtx.fillStyle = '#f4e4bc';
                 synergyCtx.font = '12px Arial';
                 synergyCtx.fillText(build.name, build.x, build.y + 70);
@@ -777,7 +463,6 @@
             synergyCtx.fillText('Equipment Synergy: Building Specialized Characters', 300, 30);
             synergyCtx.textAlign = 'left';
         }
-        
         drawEquipmentSynergy();
         
         // Trading System Visualization
@@ -786,12 +471,9 @@
         
         function drawTradingSystem() {
             tradingCtx.clearRect(0, 0, tradingCanvas.width, tradingCanvas.height);
-            
-            // Background
             tradingCtx.fillStyle = '#2f1b14';
             tradingCtx.fillRect(0, 0, tradingCanvas.width, tradingCanvas.height);
             
-            // Draw marketplace
             tradingCtx.fillStyle = '#8b4513';
             tradingCtx.fillRect(200, 100, 200, 100);
             tradingCtx.fillStyle = '#f4e4bc';
@@ -799,7 +481,6 @@
             tradingCtx.textAlign = 'center';
             tradingCtx.fillText('🏪 Marketplace', 300, 130);
             
-            // Draw traders
             const traders = [
                 {x: 100, y: 150, name: 'Weapons', item: '⚔️'},
                 {x: 500, y: 150, name: 'Armor', item: '🛡️'},
@@ -813,12 +494,9 @@
                 tradingCtx.fillStyle = '#000';
                 tradingCtx.font = '20px Arial';
                 tradingCtx.fillText(trader.item, trader.x, trader.y + 5);
-                
                 tradingCtx.fillStyle = '#f4e4bc';
                 tradingCtx.font = '10px Arial';
                 tradingCtx.fillText(trader.name, trader.x, trader.y + 45);
-                
-                // Draw connection to marketplace
                 tradingCtx.strokeStyle = '#cd853f';
                 tradingCtx.lineWidth = 2;
                 tradingCtx.beginPath();
@@ -833,7 +511,6 @@
             tradingCtx.fillText('Equipment Trading Network', 300, 20);
             tradingCtx.textAlign = 'left';
         }
-        
         drawTradingSystem();
         
         // Progression Pacing Visualization
@@ -842,12 +519,9 @@
         
         function drawPacingStrategy() {
             pacingCtx.clearRect(0, 0, pacingCanvas.width, pacingCanvas.height);
-            
-            // Background
             pacingCtx.fillStyle = '#2f1b14';
             pacingCtx.fillRect(0, 0, pacingCanvas.width, pacingCanvas.height);
             
-            // Draw progression curve
             pacingCtx.strokeStyle = '#ffd700';
             pacingCtx.lineWidth = 3;
             pacingCtx.beginPath();
@@ -858,13 +532,11 @@
                 const t = i / 20;
                 const y = 250 - (50 + 30 * Math.sin(t) + 20 * Math.sin(t * 2) + 10 * Math.sin(t * 3));
                 points.push({x, y});
-                
                 if (i === 0) pacingCtx.moveTo(x, y);
                 else pacingCtx.lineTo(x, y);
             }
             pacingCtx.stroke();
             
-            // Mark major reward points
             const majorRewards = [20, 40, 60, 80, 95];
             majorRewards.forEach(point => {
                 const {x, y} = points[point];
@@ -872,7 +544,6 @@
                 pacingCtx.beginPath();
                 pacingCtx.arc(x, y, 6, 0, Math.PI * 2);
                 pacingCtx.fill();
-                
                 pacingCtx.fillStyle = '#f4e4bc';
                 pacingCtx.font = '10px Arial';
                 pacingCtx.textAlign = 'center';
@@ -883,18 +554,11 @@
             pacingCtx.fillStyle = '#ffd700';
             pacingCtx.font = '16px Arial';
             pacingCtx.fillText('Reward Pacing: Peaks and Valleys', 200, 30);
-            
             pacingCtx.fillStyle = '#f4e4bc';
             pacingCtx.font = '12px Arial';
             pacingCtx.fillText('Adventure Progress', 250, 280);
-            pacingCtx.save();
-            pacingCtx.translate(20, 200);
-            pacingCtx.rotate(-Math.PI / 2);
-            pacingCtx.fillText('Excitement Level', 0, 0);
-            pacingCtx.restore();
             pacingCtx.textAlign = 'left';
         }
-        
         drawPacingStrategy();
     </script>
 <script src="/nav.js"></script>

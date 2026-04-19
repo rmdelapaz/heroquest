@@ -10,37 +10,7 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
-        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #2c1810, #4a2c2a, #1a1a3a); color: #f4f1e8; }
-        .container { max-width: 1100px; margin: 0 auto; background: rgba(0,0,0,0.85); padding: 30px; border-radius: 15px; box-shadow: 0 0 40px rgba(255,215,0,0.4); }
-        h1 { color: #ffd700; text-align: center; font-size: 2.8em; text-shadow: 3px 3px 6px #000; margin-bottom: 30px; }
-        h2 { color: #ff6b35; border-bottom: 3px solid #ff6b35; padding-bottom: 10px; margin-top: 40px; }
-        h3 { color: #87ceeb; margin-top: 30px; text-shadow: 1px 1px 2px #000; }
-        .hero-card { background: linear-gradient(145deg, #2f1b14, #1a1a2e); border: 3px solid; border-radius: 15px; padding: 25px; margin: 25px 0; position: relative; box-shadow: 0 10px 20px rgba(0,0,0,0.5); overflow: hidden; }
-        .hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); animation: shimmer 3s infinite; }
-        @keyframes shimmer { 0%, 100% { transform: translateX(-100%); } 50% { transform: translateX(100%); } }
-        .barbarian { border-color: #dc143c; }
-        .dwarf { border-color: #b8860b; }
-        .elf { border-color: #32cd32; }
-        .wizard { border-color: #4169e1; }
-        .hero-title { position: absolute; top: -15px; left: 20px; padding: 8px 20px; border-radius: 25px; font-weight: bold; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
-        .barbarian .hero-title { background: #dc143c; color: white; }
-        .dwarf .hero-title { background: #b8860b; color: white; }
-        .elf .hero-title { background: #32cd32; color: white; }
-        .wizard .hero-title { background: #4169e1; color: white; }
-        .legend-scroll { background: rgba(139,69,19,0.4); border: 3px solid #8b4513; border-radius: 10px; padding: 20px; margin: 20px 0; position: relative; }
-        .legend-scroll::before { content: "📜"; position: absolute; top: -12px; left: 15px; font-size: 2.2em; background: rgba(0,0,0,0.9); padding: 5px; border-radius: 50%; }
-        .skill-showcase { background: rgba(70,130,180,0.2); border: 2px solid #4682b4; border-radius: 10px; padding: 15px; margin: 15px 0; }
-        .backstory-panel { background: rgba(75,0,130,0.2); border-left: 5px solid #9370db; padding: 20px; margin: 20px 0; }
-        .weapon-stats { display: inline-block; background: rgba(255,69,0,0.3); border: 1px solid #ff4500; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; font-weight: bold; }
-        .personality-trait { display: inline-block; background: rgba(60,179,113,0.3); border: 1px solid #3cb371; border-radius: 5px; padding: 3px 8px; margin: 2px; font-size: 0.8em; }
-        #heroLineageCanvas { border: 3px solid #ffd700; border-radius: 15px; background: radial-gradient(ellipse at center, #191970, #000080); }
-        .mermaid { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 20px; margin: 20px 0; }
-        .stat-bar { background: #333; border-radius: 10px; height: 20px; margin: 5px 0; overflow: hidden; position: relative; }
-        .stat-fill { height: 100%; border-radius: 10px; transition: width 0.5s ease; position: relative; }
-        .stat-label { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 0.8em; text-shadow: 1px 1px 2px #000; }
-        .adventure-hook { background: rgba(255,215,0,0.1); border: 2px dashed #ffd700; border-radius: 10px; padding: 20px; margin: 20px 0; }
-    </style>
+    
 </head>
 <body>
     <div class="container">

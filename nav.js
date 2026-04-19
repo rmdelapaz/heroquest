@@ -51,7 +51,7 @@
     { file: 'heroquest_lore_magic_artifacts.html', title: 'Lore: Magic Artifacts', icon: '💎' },
     { file: 'heroquest_lore_kellars_keep.html', title: "Lore: Kellar's Keep", icon: '🏰' },
     { file: 'heroquest_lore_return_witch_lord.html', title: 'Lore: Witch Lord', icon: '👑' },
-    { file: 'heroques_lore_prophecy_telor.html', title: 'Lore: Prophecy of Telor', icon: '🔮' },
+    { file: 'heroquest_lore_prophecy_telor.html', title: 'Lore: Prophecy of Telor', icon: '🔮' },
     { file: 'heroquest_lore_spirit_queens_torment.html', title: "Lore: Spirit Queen's Torment", icon: '⚔️' },
     { file: 'heroquest_lore_against_ogre_horde.html', title: 'Lore: Ogre Horde', icon: '🛡️' },
     { file: 'heroquest_lore_frozen_horror.html', title: 'Lore: Frozen Horror', icon: '❄️' },
@@ -76,7 +76,8 @@
   /* ── Detect current page ── */
   const path = window.location.pathname;
   const currentFile = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
-  const isIndex = currentFile === 'index.html' || currentFile === '';
+  const normalize = (f) => f.replace(/\.html$/, '');
+  const isIndex = currentFile === 'index.html' || currentFile === '' || currentFile === 'index';
 
   /* ── Build top navbar ── */
   const nav = document.createElement('nav');
@@ -105,7 +106,7 @@
 
   /* ── Build prev/next nav (non-index pages only) ── */
   if (!isIndex) {
-    const idx = pages.findIndex(p => p.file === currentFile);
+    const idx = pages.findIndex(p => normalize(p.file) === normalize(currentFile));
     if (idx !== -1) {
       const prev = idx > 0 ? pages[idx - 1] : null;
       const next = idx < pages.length - 1 ? pages[idx + 1] : null;

@@ -11,592 +11,6 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
-<style>
-    /* Base styling with DM/storytelling theme and excellent readability */
-    body {
-        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        line-height: 1.7;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 24px;
-        background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #8b5cf6 100%);
-        color: #f8fafc;
-        font-size: 16px;
-    }
-
-    /* Main container with mystical DM styling */
-    .container {
-        background: rgba(15, 23, 42, 0.95);
-        padding: 48px;
-        border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(88, 28, 135, 0.3);
-        border: 1px solid #7c3aed;
-        backdrop-filter: blur(8px);
-        position: relative;
-    }
-
-    /* Subtle mystical background effect */
-    .container::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, 
-            transparent 40%, 
-            rgba(124, 58, 237, 0.05) 50%, 
-            transparent 60%);
-        border-radius: 12px;
-        pointer-events: none;
-    }
-
-  
-    /* DM tip boxes - key feature for dungeon masters */
-    .dm-tip {
-        background: linear-gradient(135deg, #581c87, #7c3aed);
-        border: 2px solid #a855f7;
-        border-radius: 12px;
-        padding: 32px;
-        margin: 32px 0;
-        border-left: 6px solid #c084fc;
-        box-shadow: 0 4px 16px rgba(168, 85, 247, 0.2);
-        position: relative;
-    }
-
-    .dm-tip::before {
-        content: '🎭';
-        position: absolute;
-        top: 16px;
-        right: 20px;
-        font-size: 24px;
-        opacity: 0.7;
-    }
-
-    /* Scenario boxes for practical examples */
-    .scenario-box {
-        background: rgba(168, 85, 247, 0.15);
-        border: 2px solid #a855f7;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        border-left: 4px solid #7c3aed;
-        position: relative;
-    }
-
-    .scenario-box::before {
-        content: '🎬';
-        position: absolute;
-        top: 16px;
-        right: 20px;
-        font-size: 20px;
-        opacity: 0.7;
-    }
-
-    /* Psychology boxes for player management */
-    .psychology-box {
-        background: rgba(192, 132, 252, 0.15);
-        border: 2px solid #c084fc;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        border-left: 4px solid #a855f7;
-        position: relative;
-    }
-
-    .psychology-box::before {
-        content: '🧠';
-        position: absolute;
-        top: 16px;
-        right: 20px;
-        font-size: 20px;
-        opacity: 0.7;
-    }
-
-    /* Voice guide cards for character portrayal */
-    .voice-guide {
-        background: linear-gradient(135deg, #3730a3, #581c87);
-        border: 2px solid #6366f1;
-        border-radius: 12px;
-        padding: 20px;
-        margin: 16px;
-        display: inline-block;
-        min-width: 280px;
-        vertical-align: top;
-        box-shadow: 0 2px 8px rgba(99, 102, 241, 0.2);
-        transition: all 0.2s ease;
-        border-left: 4px solid #8b5cf6;
-    }
-
-    .voice-guide:hover {
-        box-shadow: 0 8px 24px rgba(168, 85, 247, 0.3);
-        transform: translateY(-2px);
-    }
-
-    /* Storytelling techniques */
-    .storytelling-technique {
-        background: white;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 20px;
-        margin: 16px 0;
-        border-left: 4px solid #a855f7;
-        color: #374151;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .storytelling-technique h4 {
-        color: #7c3aed;
-        margin-top: 0;
-    }
-
-    /* Player management grids */
-    .player-types {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 16px;
-        margin: 24px 0;
-    }
-
-    .player-type-card {
-        background: linear-gradient(135deg, #7c3aed, #a855f7);
-        border: 2px solid #c084fc;
-        border-radius: 8px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.2s ease;
-        color: white;
-    }
-
-    .player-type-card:hover {
-        background: linear-gradient(135deg, #6d28d9, #7c3aed);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
-    }
-
-    .player-type-title {
-        font-weight: 600;
-        font-size: 1.1rem;
-        margin-bottom: 12px;
-        color: #f1f5f9;
-    }
-
-    .player-type-description {
-        font-size: 0.9rem;
-        opacity: 0.9;
-        line-height: 1.5;
-    }
-
-    /* Adventure creation tools */
-    .adventure-builder {
-        background: #f8fafc;
-        border: 2px solid #e2e8f0;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        color: #1e293b;
-    }
-
-    .adventure-builder h3 {
-        color: #7c3aed;
-        margin-top: 0;
-    }
-
-    .adventure-step {
-        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-        border: 1px solid #cbd5e0;
-        border-radius: 6px;
-        padding: 16px;
-        margin: 12px 0;
-        border-left: 4px solid #a855f7;
-        counter-increment: adventure-counter;
-    }
-
-    .adventure-builder {
-        counter-reset: adventure-counter;
-    }
-
-    .adventure-step::before {
-        content: "Step " counter(adventure-counter) ": ";
-        font-weight: 600;
-        color: #7c3aed;
-    }
-
-    /* Pacing and tension meters */
-    .pacing-meter {
-        width: 100%;
-        height: 24px;
-        background: linear-gradient(to right, #22c55e, #fbbf24, #f97316, #dc2626);
-        border: 2px solid #a855f7;
-        border-radius: 12px;
-        margin: 16px 0;
-        position: relative;
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .pacing-indicator {
-        position: absolute;
-        top: -2px;
-        width: 4px;
-        height: 28px;
-        background: white;
-        border: 1px solid #1e293b;
-        border-radius: 2px;
-        transition: left 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    /* NPC management */
-    .npc-gallery {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-        margin: 24px 0;
-    }
-
-    .npc-card {
-        background: linear-gradient(135deg, #581c87, #6d28d9);
-        border: 2px solid #8b5cf6;
-        border-radius: 8px;
-        padding: 16px;
-        text-align: center;
-        transition: all 0.2s ease;
-        color: white;
-    }
-
-    .npc-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-    }
-
-    .npc-name {
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: #ddd6fe;
-    }
-
-    .npc-role {
-        font-size: 0.9rem;
-        opacity: 0.8;
-        margin-bottom: 8px;
-    }
-
-    .npc-trait {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 4px;
-        padding: 4px 8px;
-        font-size: 0.8rem;
-        margin: 4px 2px;
-        display: inline-block;
-    }
-
-    /* Canvas elements */
-    canvas {
-        border: 2px solid #a855f7;
-        border-radius: 12px;
-        background: #0f172a;
-        display: block;
-        margin: 24px auto;
-        box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
-    }
-
-    /* Interactive DM tools */
-    .dm-toolkit {
-        background: white;
-        border: 2px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        color: #1e293b;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .dm-toolkit h3 {
-        color: #7c3aed;
-        margin-top: 0;
-    }
-
-    .tool-button {
-        background: linear-gradient(135deg, #7c3aed, #a855f7);
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        margin: 8px;
-        font-size: 14px;
-    }
-
-    .tool-button:hover {
-        background: linear-gradient(135deg, #6d28d9, #7c3aed);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-    }
-
-    /* Text improvements */
-    p {
-        margin-bottom: 16px;
-        line-height: 1.7;
-        color: #e2e8f0;
-    }
-
-    strong {
-        color: #c084fc;
-        font-weight: 600;
-    }
-
-    em {
-        color: #cbd5e0;
-        font-style: italic;
-    }
-
-    /* Lists */
-    ul, ol {
-        margin: 16px 0;
-        padding-left: 24px;
-    }
-
-    li {
-        margin-bottom: 8px;
-        color: #d1d5db;
-        line-height: 1.6;
-    }
-
-    /* Links */
-    a {
-        color: #a855f7;
-        text-decoration: none;
-        font-weight: 500;
-        border-bottom: 1px solid transparent;
-        transition: all 0.2s ease;
-    }
-
-    a:hover {
-        color: #c084fc;
-        border-bottom-color: #c084fc;
-    }
-
-    /* Code elements */
-    code {
-        background: #581c87;
-        color: #ddd6fe;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-        font-size: 0.9em;
-        border: 1px solid #7c3aed;
-    }
-
-    /* Tables */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 24px 0;
-        background: rgba(15, 23, 42, 0.8);
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    th, td {
-        padding: 12px 16px;
-        text-align: left;
-        border-bottom: 1px solid #581c87;
-    }
-
-    th {
-        background: #7c3aed;
-        font-weight: 600;
-        color: #f1f5f9;
-    }
-
-    /* Mermaid diagrams */
-    .mermaid {
-        background: rgba(88, 28, 135, 0.3) !important;
-        border: 2px solid #a855f7 !important;
-        border-radius: 12px !important;
-        padding: 24px !important;
-        margin: 24px auto !important;
-    }
-
-    /* Blockquotes for dramatic quotes */
-    blockquote {
-        background: rgba(124, 58, 237, 0.2);
-        border-left: 4px solid #a855f7;
-        padding: 16px 24px;
-        margin: 24px 0;
-        border-radius: 0 8px 8px 0;
-        font-style: italic;
-        color: #e2e8f0;
-        position: relative;
-    }
-
-    blockquote::before {
-        content: '"';
-        font-size: 3rem;
-        color: #a855f7;
-        position: absolute;
-        top: -10px;
-        left: 16px;
-        opacity: 0.5;
-    }
-
-    /* Campaign planning tools */
-    .campaign-planner {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 20px;
-        margin: 24px 0;
-    }
-
-    .campaign-element {
-        background: rgba(88, 28, 135, 0.3);
-        border: 2px solid #8b5cf6;
-        border-radius: 8px;
-        padding: 20px;
-        transition: all 0.2s ease;
-    }
-
-    .campaign-element:hover {
-        background: rgba(124, 58, 237, 0.4);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-    }
-
-    .campaign-element h4 {
-        margin-top: 0;
-        color: #ddd6fe;
-    }
-
-    /* Session notes */
-    .session-note {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 6px;
-        padding: 12px;
-        margin: 12px 0;
-        color: #374151;
-        border-left: 3px solid #a855f7;
-        font-size: 0.95em;
-    }
-
-    /* DM cheat sheets */
-    .cheat-sheet {
-        background: white;
-        border: 2px solid #cbd5e0;
-        border-radius: 8px;
-        padding: 16px;
-        margin: 16px 0;
-        color: #1e293b;
-        position: sticky;
-        top: 20px;
-        z-index: 10;
-    }
-
-    .cheat-sheet h4 {
-        margin: 0 0 12px 0;
-        color: #7c3aed;
-        font-size: 1rem;
-    }
-
-    .cheat-sheet ul {
-        margin: 0;
-        padding-left: 16px;
-    }
-
-    .cheat-sheet li {
-        margin-bottom: 4px;
-        font-size: 0.9rem;
-        color: #4b5563;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-        body {
-            padding: 16px;
-        }
-        
-        .container {
-            padding: 24px;
-        }
-        
-        h1 {
-            font-size: 2rem;
-        }
-        
-        .voice-guide {
-            min-width: 240px;
-            margin: 12px 0;
-            display: block;
-        }
-        
-        .player-types {
-            grid-template-columns: 1fr;
-        }
-        
-        .campaign-planner {
-            grid-template-columns: 1fr;
-        }
-        
-        .dm-toolkit {
-            padding: 16px;
-        }
-    }
-
-    /* Focus accessibility */
-    :focus {
-        outline: 2px solid #a855f7;
-        outline-offset: 2px;
-    }
-
-    /* Reduced motion accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
-
-    /* DM-specific utility classes */
-    .dramatic-pause {
-        background: rgba(168, 85, 247, 0.1);
-        border: 1px dashed #a855f7;
-        border-radius: 4px;
-        padding: 8px 12px;
-        margin: 8px 0;
-        font-style: italic;
-        text-align: center;
-    }
-
-    .voice-note {
-        background: rgba(192, 132, 252, 0.1);
-        border: 1px solid #c084fc;
-        border-radius: 6px;
-        padding: 12px;
-        margin: 12px 0;
-        font-size: 0.95em;
-        border-left: 3px solid #a855f7;
-    }
-
-    .tension-level {
-        display: inline-block;
-        background: #7c3aed;
-        color: white;
-        padding: 4px 12px;
-        border-radius: 12px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        margin: 4px;
-    }
-
-    .tension-level.low { background: #22c55e; }
-    .tension-level.medium { background: #f59e0b; }
-    .tension-level.high { background: #ef4444; }
-    .tension-level.climax { background: #dc2626; }
-</style>
 </head>
 <body>
     <div class="container">
@@ -662,6 +76,64 @@
             </div>
         </div>
 
+        <h3>🎭 Player Archetypes at a Glance</h3>
+        <svg id="hq_dm_player_types" viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;margin:1.5rem auto;display:block;">
+          <style>
+            .ptTitle{font:bold 14px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle}
+            .ptDesc{font:11px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
+            .ptIcon{font:32px Arial;text-anchor:middle;dominant-baseline:central}
+            .ptWant{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
+          </style>
+          <!-- Action Hero -->
+          <rect x="20" y="10" width="155" height="150" rx="12" fill="var(--card-bg,#fff)" stroke="#ef4444" stroke-width="2"/>
+          <text x="97" y="50" class="ptIcon">⚔️</text>
+          <text x="97" y="80" class="ptTitle">Action Hero</text>
+          <text x="97" y="98" class="ptDesc">Combat &amp; glory</text>
+          <rect x="47" y="110" width="100" height="20" rx="4" fill="#ef4444"/><text x="97" y="124" class="ptWant">Give epic fights</text>
+          <!-- Detective -->
+          <rect x="195" y="10" width="155" height="150" rx="12" fill="var(--card-bg,#fff)" stroke="#3b82f6" stroke-width="2"/>
+          <text x="272" y="50" class="ptIcon">🕵️</text>
+          <text x="272" y="80" class="ptTitle">Detective</text>
+          <text x="272" y="98" class="ptDesc">Puzzles &amp; secrets</text>
+          <rect x="222" y="110" width="100" height="20" rx="4" fill="#3b82f6"/><text x="272" y="124" class="ptWant">Hide clues</text>
+          <!-- Treasure Hunter -->
+          <rect x="370" y="10" width="155" height="150" rx="12" fill="var(--card-bg,#fff)" stroke="#f59e0b" stroke-width="2"/>
+          <text x="447" y="50" class="ptIcon">💰</text>
+          <text x="447" y="80" class="ptTitle">Treasure Hunter</text>
+          <text x="447" y="98" class="ptDesc">Loot &amp; rewards</text>
+          <rect x="397" y="110" width="100" height="20" rx="4" fill="#f59e0b"/><text x="447" y="124" class="ptWant">Reward often</text>
+          <!-- Role-Player -->
+          <rect x="545" y="10" width="155" height="150" rx="12" fill="var(--card-bg,#fff)" stroke="#a855f7" stroke-width="2"/>
+          <text x="622" y="50" class="ptIcon">🎭</text>
+          <text x="622" y="80" class="ptTitle">Role-Player</text>
+          <text x="622" y="98" class="ptDesc">Story &amp; character</text>
+          <rect x="572" y="110" width="100" height="20" rx="4" fill="#a855f7"/><text x="622" y="124" class="ptWant">Personal stakes</text>
+          <!-- Priority bars -->
+          <text x="20" y="190" style="font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155)">What they prioritize:</text>
+          <!-- Action Hero bars -->
+          <text x="97" y="210" class="ptDesc">Combat</text>
+          <rect x="42" y="216" width="110" height="8" rx="4" fill="#fecaca"/><rect x="42" y="216" width="105" height="8" rx="4" fill="#ef4444"/>
+          <text x="97" y="240" class="ptDesc">Puzzles</text>
+          <rect x="42" y="246" width="110" height="8" rx="4" fill="#fecaca"/><rect x="42" y="246" width="22" height="8" rx="4" fill="#ef4444"/>
+          <!-- Detective bars -->
+          <text x="272" y="210" class="ptDesc">Combat</text>
+          <rect x="217" y="216" width="110" height="8" rx="4" fill="#bfdbfe"/><rect x="217" y="216" width="44" height="8" rx="4" fill="#3b82f6"/>
+          <text x="272" y="240" class="ptDesc">Puzzles</text>
+          <rect x="217" y="246" width="110" height="8" rx="4" fill="#bfdbfe"/><rect x="217" y="246" width="99" height="8" rx="4" fill="#3b82f6"/>
+          <!-- Treasure Hunter bars -->
+          <text x="447" y="210" class="ptDesc">Combat</text>
+          <rect x="392" y="216" width="110" height="8" rx="4" fill="#fef3c7"/><rect x="392" y="216" width="66" height="8" rx="4" fill="#f59e0b"/>
+          <text x="447" y="240" class="ptDesc">Loot</text>
+          <rect x="392" y="246" width="110" height="8" rx="4" fill="#fef3c7"/><rect x="392" y="246" width="105" height="8" rx="4" fill="#f59e0b"/>
+          <!-- Role-Player bars -->
+          <text x="622" y="210" class="ptDesc">Combat</text>
+          <rect x="567" y="216" width="110" height="8" rx="4" fill="#ede9fe"/><rect x="567" y="216" width="33" height="8" rx="4" fill="#a855f7"/>
+          <text x="622" y="240" class="ptDesc">Story</text>
+          <rect x="567" y="246" width="110" height="8" rx="4" fill="#ede9fe"/><rect x="567" y="246" width="105" height="8" rx="4" fill="#a855f7"/>
+          <!-- footer -->
+          <text x="350" y="290" style="font:italic 11px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Great DMs mix encounters to satisfy all player types each session</text>
+        </svg>
+
         <h2>🎯 Managing Tension: The Heart Rate of Adventure</h2>
         
         <p><strong>Adventure pacing is like a good thriller movie</strong> - you need peaks and valleys, tension and relief. Here's how to read and control the "tension meter" of your game:</p>
@@ -691,6 +163,49 @@
                 <li>Humorous NPCs: "The goblin trips over his own feet..."</li>
             </ul>
         </div>
+
+        <h3>🌊 Ideal Adventure Pacing</h3>
+        <svg id="hq_dm_tension_curve" viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;margin:1.5rem auto;display:block;">
+          <style>
+            .tcAxis{stroke:var(--border,#cbd5e1);stroke-width:1}
+            .tcLabel{font:11px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
+            .tcYLabel{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:end}
+            .tcNote{font:bold 10px 'Segoe UI',system-ui,sans-serif;text-anchor:middle}
+            .tcIcon{font:18px Arial;text-anchor:middle}
+          </style>
+          <rect width="700" height="280" fill="var(--card-bg,#fff)" rx="8"/>
+          <!-- axes -->
+          <line x1="60" y1="30" x2="60" y2="230" class="tcAxis"/>
+          <line x1="60" y1="230" x2="670" y2="230" class="tcAxis"/>
+          <!-- Y labels -->
+          <text x="55" y="45" class="tcYLabel">High</text>
+          <text x="55" y="135" class="tcYLabel">Med</text>
+          <text x="55" y="228" class="tcYLabel">Low</text>
+          <!-- X axis label -->
+          <text x="365" y="260" class="tcLabel">Adventure Timeline →</text>
+          <!-- tension zones -->
+          <rect x="60" y="30" width="610" height="40" fill="#fecaca" opacity="0.25" rx="0"/>
+          <rect x="60" y="190" width="610" height="40" fill="#bbf7d0" opacity="0.25" rx="0"/>
+          <text x="690" y="52" style="font:9px 'Segoe UI',sans-serif;fill:#ef4444;text-anchor:end">⚠ Frustration</text>
+          <text x="690" y="218" style="font:9px 'Segoe UI',sans-serif;fill:#22c55e;text-anchor:end">⚠ Boredom</text>
+          <!-- ideal curve path -->
+          <path d="M80,190 C120,190 130,170 160,130 C190,90 200,80 210,80 C230,80 240,140 270,180 C290,200 310,200 330,180 C350,150 360,100 380,60 C400,40 410,40 420,50 C440,80 460,160 490,190 C510,200 520,195 540,160 C560,120 570,60 590,45 C600,40 610,45 620,55 C640,90 650,140 660,170" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round"/>
+          <!-- phase labels -->
+          <text x="130" y="215" class="tcIcon">🚶</text>
+          <text x="130" y="248" class="tcLabel">Explore</text>
+          <text x="210" y="62" class="tcIcon">⚔️</text>
+          <text x="210" y="248" class="tcLabel">Fight</text>
+          <text x="280" y="215" class="tcIcon">💤</text>
+          <text x="280" y="248" class="tcLabel">Rest</text>
+          <text x="380" y="42" class="tcIcon">🐉</text>
+          <text x="380" y="248" class="tcLabel">Boss</text>
+          <text x="490" y="215" class="tcIcon">🎉</text>
+          <text x="490" y="248" class="tcLabel">Reward</text>
+          <text x="590" y="38" class="tcIcon">💥</text>
+          <text x="590" y="248" class="tcLabel">Climax</text>
+          <!-- annotation -->
+          <text x="365" y="22" style="font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Peaks & Valleys: The Rhythm of a Great Session</text>
+        </svg>
 
         <h2>🗣️ The Art of Atmospheric Description</h2>
         
@@ -785,6 +300,55 @@
             
             <p><strong>🗡️ Dwarf Moment:</strong> "This trap mechanism looks complex, but you've seen similar designs before..."</p>
         </div>
+
+        <h3>🔦 Spotlight Rotation</h3>
+        <svg id="hq_dm_spotlight_wheel" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;margin:1.5rem auto;display:block;">
+          <style>
+            .swLabel{font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
+            .swRole{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
+            .swIcon{font:28px Arial;text-anchor:middle;dominant-baseline:central}
+            .swArrow{fill:none;stroke:var(--border,#cbd5e1);stroke-width:1.5;stroke-dasharray:6,3}
+          </style>
+          <rect width="500" height="400" fill="var(--card-bg,#fff)" rx="8"/>
+          <!-- title -->
+          <text x="250" y="24" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Every Hero Gets Their Moment</text>
+          <!-- center DM -->
+          <circle cx="250" cy="200" r="38" fill="#7c3aed" stroke="#a855f7" stroke-width="2"/>
+          <text x="250" y="192" class="swIcon">🧙</text>
+          <text x="250" y="218" class="swLabel">DM</text>
+          <!-- rotation arrow ring -->
+          <circle cx="250" cy="200" r="80" fill="none" stroke="var(--border,#cbd5e1)" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+          <!-- Barbarian (top) -->
+          <line x1="250" y1="162" x2="250" y2="90" class="swArrow"/>
+          <circle cx="250" cy="68" r="30" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
+          <text x="250" y="62" class="swIcon">🛡️</text>
+          <text x="250" y="82" class="swLabel">Barb</text>
+          <text x="250" y="112" class="swRole">Feats of strength</text>
+          <!-- Elf (right) -->
+          <line x1="288" y1="200" x2="360" y2="200" class="swArrow"/>
+          <circle cx="390" cy="200" r="30" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+          <text x="390" y="194" class="swIcon">🏹</text>
+          <text x="390" y="214" class="swLabel">Elf</text>
+          <text x="390" y="244" class="swRole">Traps &amp; ranged</text>
+          <!-- Wizard (bottom) -->
+          <line x1="250" y1="238" x2="250" y2="310" class="swArrow"/>
+          <circle cx="250" cy="340" r="30" fill="#a855f7" stroke="#9333ea" stroke-width="2"/>
+          <text x="250" y="334" class="swIcon">🔮</text>
+          <text x="250" y="354" class="swLabel">Wiz</text>
+          <text x="250" y="384" class="swRole">Runes &amp; magic</text>
+          <!-- Dwarf (left) -->
+          <line x1="212" y1="200" x2="140" y2="200" class="swArrow"/>
+          <circle cx="110" cy="200" r="30" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+          <text x="110" y="194" class="swIcon">🗡️</text>
+          <text x="110" y="214" class="swLabel">Dwf</text>
+          <text x="110" y="244" class="swRole">Traps &amp; locks</text>
+          <!-- curved rotation arrows -->
+          <path d="M280,165 A55,55 0 0,1 285,195" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#swArr)"/>
+          <path d="M280,235 A55,55 0 0,1 255,240" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#swArr)"/>
+          <path d="M220,235 A55,55 0 0,1 215,205" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#swArr)"/>
+          <path d="M220,165 A55,55 0 0,1 245,160" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#swArr)"/>
+          <defs><marker id="swArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#a855f7"/></marker></defs>
+        </svg>
 
         <h2>🎭 Advanced Storytelling Techniques</h2>
         

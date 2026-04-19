@@ -10,549 +10,6 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-<style>
-        body {
-        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        line-height: 1.7;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 24px;
-        background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fdba74 100%);
-        color: #1c1917;
-        font-size: 16px;
-    }
-
-    /* Main container with welcoming styling */
-    .container {
-        background: white;
-        padding: 48px;
-        border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(245, 158, 11, 0.15);
-        border: 1px solid #fed7aa;
-        position: relative;
-    }
-
-    /* Subtle welcoming background effect */
-    .container::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(45deg, 
-            transparent 40%, 
-            rgba(245, 158, 11, 0.02) 50%, 
-            transparent 60%);
-        border-radius: 12px;
-        pointer-events: none;
-    }
-
-    /* Main heading with welcoming theme */
-  
-
-    /* Analogy boxes - key feature for beginners */
-    .analogy-box {
-        background: linear-gradient(135deg, #fef3c7, #fde68a);
-        border: 2px solid #f59e0b;
-        border-radius: 12px;
-        padding: 32px;
-        margin: 32px 0;
-        border-left: 6px solid #d97706;
-        box-shadow: 0 4px 16px rgba(245, 158, 11, 0.1);
-        position: relative;
-    }
-
-    .analogy-box::before {
-        content: '💡';
-        position: absolute;
-        top: 16px;
-        right: 20px;
-        font-size: 24px;
-        opacity: 0.7;
-    }
-
-    /* Practice boxes for hands-on learning */
-    .practice-box {
-        background: linear-gradient(135deg, #ecfdf5, #d1fae5);
-        border: 2px solid #10b981;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        border-left: 4px solid #059669;
-        box-shadow: 0 2px 8px rgba(16, 185, 129, 0.1);
-        position: relative;
-    }
-
-    .practice-box::before {
-        content: '🎯';
-        position: absolute;
-        top: 16px;
-        right: 20px;
-        font-size: 20px;
-        opacity: 0.7;
-    }
-
-    /* Hero cards for character introductions */
-    .hero-card {
-        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-        border: 2px solid #64748b;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 16px;
-        display: inline-block;
-        min-width: 200px;
-        vertical-align: top;
-        box-shadow: 0 2px 8px rgba(100, 116, 139, 0.1);
-        transition: all 0.2s ease;
-        border-left: 4px solid #f59e0b;
-    }
-
-    .hero-card:hover {
-        box-shadow: 0 8px 24px rgba(245, 158, 11, 0.2);
-        transform: translateY(-2px);
-    }
-
-    /* Dice container for interactive elements */
-    .dice-container {
-        text-align: center;
-        margin: 32px 0;
-        padding: 24px;
-        background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
-        border-radius: 12px;
-        border: 2px solid #cbd5e0;
-    }
-
-    /* Interactive elements styling */
-    .dice-button {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-        color: white;
-        border: none;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        margin: 8px;
-        font-size: 16px;
-    }
-
-    .dice-button:hover {
-        background: linear-gradient(135deg, #d97706, #b45309);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
-    }
-
-    .dice-result {
-        background: white;
-        border: 2px solid #f59e0b;
-        border-radius: 8px;
-        padding: 16px;
-        margin: 16px 0;
-        text-align: center;
-        font-size: 18px;
-        font-weight: 600;
-        color: #1c1917;
-        min-height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Tutorial step boxes */
-    .tutorial-step {
-        background: #fef3c7;
-        border: 1px solid #fbbf24;
-        border-radius: 8px;
-        padding: 16px;
-        margin: 16px 0;
-        border-left: 4px solid #f59e0b;
-        counter-increment: step-counter;
-    }
-
-    .tutorial-step::before {
-        content: "Step " counter(step-counter) ": ";
-        font-weight: 600;
-        color: #d97706;
-    }
-
-    .tutorial-steps {
-        counter-reset: step-counter;
-    }
-
-    /* Canvas elements */
-    canvas {
-        border: 2px solid #f59e0b;
-        border-radius: 12px;
-        background: #f8fafc;
-        display: block;
-        margin: 24px auto;
-        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
-    }
-
-    /* Beginner tips and warnings */
-    .beginner-tip {
-        background: linear-gradient(135deg, #dbeafe, #bfdbfe);
-        border: 2px solid #3b82f6;
-        border-radius: 8px;
-        padding: 16px;
-        margin: 16px 0;
-        border-left: 4px solid #1d4ed8;
-        position: relative;
-    }
-
-    .beginner-tip::before {
-        content: '💡 TIP: ';
-        font-weight: 600;
-        color: #1d4ed8;
-    }
-
-    .beginner-warning {
-        background: linear-gradient(135deg, #fef2f2, #fecaca);
-        border: 2px solid #ef4444;
-        border-radius: 8px;
-        padding: 16px;
-        margin: 16px 0;
-        border-left: 4px solid #dc2626;
-        position: relative;
-    }
-
-    .beginner-warning::before {
-        content: '⚠️ WARNING: ';
-        font-weight: 600;
-        color: #dc2626;
-    }
-
-    /* Progress indicators for learning */
-    .progress-tracker {
-        background: white;
-        border: 2px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-    }
-
-    .progress-item {
-        display: flex;
-        align-items: center;
-        padding: 12px 0;
-        border-bottom: 1px solid #f3f4f6;
-    }
-
-    .progress-item:last-child {
-        border-bottom: none;
-    }
-
-    .progress-checkbox {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #f59e0b;
-        margin-right: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 600;
-        font-size: 12px;
-    }
-
-    .progress-checkbox.completed {
-        background: #10b981;
-    }
-
-    .progress-checkbox.completed::before {
-        content: '✓';
-    }
-
-    /* Game flow visualization */
-    .game-flow {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-        margin: 24px 0;
-    }
-
-    .flow-step {
-        background: white;
-        border: 2px solid #fed7aa;
-        border-radius: 8px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.2s ease;
-        border-left: 4px solid #f59e0b;
-    }
-
-    .flow-step:hover {
-        box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
-        transform: translateY(-2px);
-    }
-
-    .flow-number {
-        background: #f59e0b;
-        color: white;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 600;
-        margin: 0 auto 12px auto;
-    }
-
-    /* Text improvements */
-    p {
-        margin-bottom: 16px;
-        line-height: 1.7;
-        color: #374151;
-    }
-
-    strong {
-        color: #b45309;
-        font-weight: 600;
-    }
-
-    em {
-        color: #6b7280;
-        font-style: italic;
-    }
-
-    /* Lists with better spacing */
-    ul, ol {
-        margin: 16px 0;
-        padding-left: 24px;
-    }
-
-    li {
-        margin-bottom: 8px;
-        color: #4b5563;
-        line-height: 1.6;
-    }
-
-    /* Links */
-    a {
-        color: #f59e0b;
-        text-decoration: none;
-        font-weight: 500;
-        border-bottom: 1px solid transparent;
-        transition: all 0.2s ease;
-    }
-
-    a:hover {
-        color: #d97706;
-        border-bottom-color: #d97706;
-    }
-
-    /* Code elements */
-    code {
-        background: #fef3c7;
-        color: #b45309;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-        font-size: 0.9em;
-        border: 1px solid #fed7aa;
-    }
-
-    /* Tables */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 24px 0;
-        background: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    th, td {
-        padding: 12px 16px;
-        text-align: left;
-        border-bottom: 1px solid #fed7aa;
-    }
-
-    th {
-        background: #fef3c7;
-        font-weight: 600;
-        color: #b45309;
-    }
-
-    /* Mermaid diagrams */
-    .mermaid {
-        background: rgba(254, 243, 199, 0.3) !important;
-        border: 2px solid #f59e0b !important;
-        border-radius: 12px !important;
-        padding: 24px !important;
-        margin: 24px auto !important;
-    }
-
-    /* Blockquotes */
-    blockquote {
-        background: linear-gradient(135deg, #fef3c7, #fde68a);
-        border-left: 4px solid #f59e0b;
-        padding: 16px 24px;
-        margin: 24px 0;
-        border-radius: 0 8px 8px 0;
-        font-style: italic;
-        color: #374151;
-    }
-
-    /* Interactive quiz elements */
-    .quiz-question {
-        background: #f1f5f9;
-        border: 2px solid #64748b;
-        border-radius: 8px;
-        padding: 20px;
-        margin: 20px 0;
-    }
-
-    .quiz-options {
-        margin: 16px 0;
-    }
-
-    .quiz-option {
-        background: white;
-        border: 1px solid #cbd5e0;
-        border-radius: 6px;
-        padding: 12px 16px;
-        margin: 8px 0;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .quiz-option:hover {
-        background: #fef3c7;
-        border-color: #f59e0b;
-    }
-
-    .quiz-option.correct {
-        background: #dcfce7;
-        border-color: #22c55e;
-        color: #166534;
-    }
-
-    .quiz-option.incorrect {
-        background: #fef2f2;
-        border-color: #ef4444;
-        color: #991b1b;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-        body {
-            padding: 16px;
-        }
-        
-        .container {
-            padding: 24px;
-        }
-        
-        h1 {
-            font-size: 2rem;
-        }
-        
-        .hero-card {
-            min-width: 180px;
-            margin: 12px 0;
-            display: block;
-        }
-        
-        .game-flow {
-            grid-template-columns: 1fr;
-        }
-        
-        .dice-container {
-            padding: 16px;
-        }
-        
-        .tutorial-step {
-            padding: 12px;
-        }
-    }
-
-    /* Focus accessibility */
-    :focus {
-        outline: 2px solid #f59e0b;
-        outline-offset: 2px;
-    }
-
-    /* Reduced motion accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
-
-    /* Beginner-specific utility classes */
-    .highlight-important {
-        background: linear-gradient(135deg, #fef3c7, #fde68a);
-        border: 1px solid #f59e0b;
-        border-radius: 6px;
-        padding: 12px;
-        margin: 12px 0;
-        border-left: 4px solid #d97706;
-    }
-
-    .example-scenario {
-        background: #f8fafc;
-        border: 2px solid #cbd5e0;
-        border-radius: 8px;
-        padding: 20px;
-        margin: 20px 0;
-        position: relative;
-    }
-
-    .example-scenario::before {
-        content: '📖 EXAMPLE';
-        position: absolute;
-        top: -12px;
-        left: 16px;
-        background: white;
-        padding: 4px 12px;
-        font-size: 12px;
-        font-weight: 600;
-        color: #64748b;
-        border-radius: 4px;
-    }
-
-    .quick-reference {
-        background: white;
-        border: 2px solid #e5e7eb;
-        border-radius: 8px;
-        padding: 16px;
-        margin: 16px 0;
-        position: sticky;
-        top: 20px;
-        z-index: 10;
-    }
-
-    .quick-reference h4 {
-        margin: 0 0 12px 0;
-        color: #374151;
-        font-size: 1rem;
-    }
-
-    .stats-display {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-        gap: 8px;
-        margin: 16px 0;
-    }
-
-    .stat-item {
-        background: #f59e0b;
-        color: white;
-        padding: 8px 12px;
-        border-radius: 6px;
-        text-align: center;
-        font-weight: 600;
-        font-size: 14px;
-    }
-</style>
 </head>
 <body>
     <div class="container">
@@ -611,11 +68,82 @@
             <p><strong>Stats:</strong> Move 2d6, Attack 2, Defend 3, Body 6, Mind 3</p>
         </div>
 
+        <h3>📊 Hero Comparison at a Glance</h3>
+        <svg id="hq_basics_hero_compare" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;margin:1.5rem auto;display:block;">
+          <style>
+            .hcLabel{font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155)}
+            .hcVal{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
+            .hcCat{font:12px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:end}
+          </style>
+          <!-- headers -->
+          <text x="160" y="24" class="hcLabel" text-anchor="middle">🛡️ Barbarian</text>
+          <text x="310" y="24" class="hcLabel" text-anchor="middle">🏹 Elf</text>
+          <text x="460" y="24" class="hcLabel" text-anchor="middle">🔮 Wizard</text>
+          <text x="610" y="24" class="hcLabel" text-anchor="middle">🗡️ Dwarf</text>
+          <!-- row labels -->
+          <text x="90" y="62" class="hcCat">Attack</text>
+          <text x="90" y="122" class="hcCat">Defend</text>
+          <text x="90" y="182" class="hcCat">Body</text>
+          <text x="90" y="242" class="hcCat">Mind</text>
+          <!-- Attack row (max=3) -->
+          <rect x="110" y="44" width="100" height="26" rx="4" fill="#ef4444"/><text x="160" y="62" class="hcVal">3</text>
+          <rect x="260" y="44" width="67"  height="26" rx="4" fill="#ef4444"/><text x="293" y="62" class="hcVal">2</text>
+          <rect x="410" y="44" width="33"  height="26" rx="4" fill="#ef4444"/><text x="427" y="62" class="hcVal">1</text>
+          <rect x="560" y="44" width="67"  height="26" rx="4" fill="#ef4444"/><text x="593" y="62" class="hcVal">2</text>
+          <!-- Defend row (max=3) -->
+          <rect x="110" y="104" width="67"  height="26" rx="4" fill="#3b82f6"/><text x="143" y="122" class="hcVal">2</text>
+          <rect x="260" y="104" width="67"  height="26" rx="4" fill="#3b82f6"/><text x="293" y="122" class="hcVal">2</text>
+          <rect x="410" y="104" width="67"  height="26" rx="4" fill="#3b82f6"/><text x="443" y="122" class="hcVal">2</text>
+          <rect x="560" y="104" width="100" height="26" rx="4" fill="#3b82f6"/><text x="610" y="122" class="hcVal">3</text>
+          <!-- Body row (max=8) -->
+          <rect x="110" y="164" width="100" height="26" rx="4" fill="#22c55e"/><text x="160" y="182" class="hcVal">8</text>
+          <rect x="260" y="164" width="50"  height="26" rx="4" fill="#22c55e"/><text x="285" y="182" class="hcVal">4</text>
+          <rect x="410" y="164" width="50"  height="26" rx="4" fill="#22c55e"/><text x="435" y="182" class="hcVal">4</text>
+          <rect x="560" y="164" width="75"  height="26" rx="4" fill="#22c55e"/><text x="597" y="182" class="hcVal">6</text>
+          <!-- Mind row (max=6) -->
+          <rect x="110" y="224" width="33"  height="26" rx="4" fill="#a855f7"/><text x="127" y="242" class="hcVal">2</text>
+          <rect x="260" y="224" width="67"  height="26" rx="4" fill="#a855f7"/><text x="293" y="242" class="hcVal">4</text>
+          <rect x="410" y="224" width="100" height="26" rx="4" fill="#a855f7"/><text x="460" y="242" class="hcVal">6</text>
+          <rect x="560" y="224" width="50"  height="26" rx="4" fill="#a855f7"/><text x="585" y="242" class="hcVal">3</text>
+          <!-- legend -->
+          <rect x="110" y="278" width="14" height="14" rx="3" fill="#ef4444"/><text x="130" y="290" class="hcCat" text-anchor="start">Attack</text>
+          <rect x="210" y="278" width="14" height="14" rx="3" fill="#3b82f6"/><text x="230" y="290" class="hcCat" text-anchor="start">Defend</text>
+          <rect x="310" y="278" width="14" height="14" rx="3" fill="#22c55e"/><text x="330" y="290" class="hcCat" text-anchor="start">Body</text>
+          <rect x="400" y="278" width="14" height="14" rx="3" fill="#a855f7"/><text x="420" y="290" class="hcCat" text-anchor="start">Mind</text>
+        </svg>
+
         <h2>🎯 The Dice System: Your Digital Destiny</h2>
         
         <div class="dice-container">
             <canvas id="dice_animation_canvas" width="400" height="200"></canvas>
         </div>
+
+        <h3>🎲 The Three Dice Faces</h3>
+        <svg id="hq_basics_dice_faces" viewBox="0 0 660 180" xmlns="http://www.w3.org/2000/svg" style="max-width:660px;margin:1.5rem auto;display:block;">
+          <style>
+            .dfLabel{font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle}
+            .dfDesc{font:11px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
+            .dfIcon{font:36px Arial;text-anchor:middle;dominant-baseline:central}
+          </style>
+          <!-- Skull -->
+          <rect x="30" y="10" width="160" height="160" rx="16" fill="var(--card-bg,#fff)" stroke="var(--border,#e2e8f0)" stroke-width="2"/>
+          <rect x="60" y="30" width="100" height="100" rx="12" fill="#1e293b" stroke="#ffd700" stroke-width="2"/>
+          <text x="110" y="82" class="dfIcon">💀</text>
+          <text x="110" y="148" class="dfLabel">Skull</text>
+          <text x="110" y="166" class="dfDesc">= 1 Hit (Attack)</text>
+          <!-- Shield -->
+          <rect x="250" y="10" width="160" height="160" rx="16" fill="var(--card-bg,#fff)" stroke="var(--border,#e2e8f0)" stroke-width="2"/>
+          <rect x="280" y="30" width="100" height="100" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+          <text x="330" y="82" class="dfIcon">🛡️</text>
+          <text x="330" y="148" class="dfLabel">Shield</text>
+          <text x="330" y="166" class="dfDesc">= 1 Block (Defense)</text>
+          <!-- Blank -->
+          <rect x="470" y="10" width="160" height="160" rx="16" fill="var(--card-bg,#fff)" stroke="var(--border,#e2e8f0)" stroke-width="2"/>
+          <rect x="500" y="30" width="100" height="100" rx="12" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+          <text x="550" y="82" style="font:28px Arial;fill:#64748b;text-anchor:middle;dominant-baseline:central">—</text>
+          <text x="550" y="148" class="dfLabel">Blank</text>
+          <text x="550" y="166" class="dfDesc">= Miss / No Effect</text>
+        </svg>
 
         <div class="analogy-box">
             <p><strong>Combat is like a poker game with dice instead of cards!</strong> You roll dice to attack, your opponent rolls to defend. The difference between your skulls (hits) and their shields (blocks) determines damage.</p>
@@ -640,11 +168,134 @@
                 style F fill:#ff0000,stroke:#333,stroke-width:2px
         </div>
 
+        <h3>🏰 Dungeon Layout: What You'll See</h3>
+        <svg id="hq_basics_dungeon_layout" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
+          <style>
+            .dlWall{fill:#4a3728;stroke:#2c1810;stroke-width:2}
+            .dlFloor{fill:#d4c4a8}
+            .dlDoor{fill:#8b6914;stroke:#5c4a0e;stroke-width:2}
+            .dlTrap{fill:#ff4444;opacity:0.3}
+            .dlLabel{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle}
+            .dlIcon{font:20px Arial;text-anchor:middle;dominant-baseline:central}
+            .dlLeg{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b)}
+          </style>
+          <!-- bg -->
+          <rect width="600" height="400" fill="var(--card-bg,#fff)" rx="8"/>
+          <!-- corridor -->
+          <rect x="30" y="160" width="180" height="80" class="dlFloor"/>
+          <rect x="30" y="150" width="180" height="12" class="dlWall"/>
+          <rect x="30" y="238" width="180" height="12" class="dlWall"/>
+          <!-- door -->
+          <rect x="200" y="172" width="16" height="56" class="dlDoor" rx="2"/>
+          <!-- room 1 -->
+          <rect x="216" y="100" width="180" height="200" class="dlFloor"/>
+          <rect x="216" y="88" width="180" height="14" class="dlWall"/>
+          <rect x="216" y="298" width="180" height="14" class="dlWall"/>
+          <rect x="216" y="100" width="14" height="200" class="dlWall"/>
+          <rect x="382" y="100" width="14" height="72" class="dlWall"/>
+          <rect x="382" y="228" width="14" height="72" class="dlWall"/>
+          <!-- trap in room 1 -->
+          <rect x="260" y="220" width="40" height="40" class="dlTrap" rx="4"/>
+          <line x1="260" y1="220" x2="300" y2="260" stroke="#ff4444" stroke-width="1" opacity="0.5"/>
+          <line x1="300" y1="220" x2="260" y2="260" stroke="#ff4444" stroke-width="1" opacity="0.5"/>
+          <!-- monster in room 1 -->
+          <text x="320" y="170" class="dlIcon">👹</text>
+          <!-- furniture in room 1 -->
+          <rect x="240" y="130" width="30" height="20" rx="3" fill="#8B6914" stroke="#5c4a0e" stroke-width="1"/>
+          <text x="255" y="144" style="font:8px Arial;fill:#fff;text-anchor:middle">📦</text>
+          <!-- secret door -->
+          <rect x="388" y="180" width="16" height="40" fill="#4a3728" stroke="#ffd700" stroke-width="1" stroke-dasharray="4,3" rx="2"/>
+          <!-- room 2 (treasure room) -->
+          <rect x="404" y="130" width="160" height="140" class="dlFloor"/>
+          <rect x="404" y="118" width="160" height="14" class="dlWall"/>
+          <rect x="404" y="268" width="160" height="14" class="dlWall"/>
+          <rect x="550" y="130" width="14" height="140" class="dlWall"/>
+          <!-- treasure -->
+          <text x="484" y="200" style="font:28px Arial;text-anchor:middle">💰</text>
+          <!-- hero -->
+          <text x="100" y="205" class="dlIcon">⚔️</text>
+          <!-- labels -->
+          <text x="100" y="145" class="dlLabel">Corridor</text>
+          <text x="208" y="210" class="dlLabel" style="font-size:9px" transform="rotate(-90,208,210)">Door</text>
+          <text x="306" y="96" class="dlLabel">Room</text>
+          <text x="484" y="116" class="dlLabel">Treasure Room</text>
+          <text x="280" y="278" class="dlLabel" style="fill:#ff4444">Trap!</text>
+          <text x="396" y="218" class="dlLabel" style="font-size:9px;fill:#ffd700" transform="rotate(-90,396,218)">Secret</text>
+          <!-- legend -->
+          <rect x="30" y="330" width="540" height="50" rx="6" fill="var(--card-bg,#fff)" stroke="var(--border,#e2e8f0)" stroke-width="1"/>
+          <rect x="45" y="347" width="16" height="16" fill="#d4c4a8" stroke="#999" stroke-width="1"/><text x="68" y="359" class="dlLeg">Floor</text>
+          <rect x="115" y="347" width="16" height="16" class="dlWall"/><text x="138" y="359" class="dlLeg">Wall</text>
+          <rect x="180" y="347" width="16" height="16" class="dlDoor" rx="2"/><text x="203" y="359" class="dlLeg">Door</text>
+          <rect x="248" y="347" width="16" height="16" class="dlTrap"/><text x="271" y="359" class="dlLeg">Trap</text>
+          <rect x="310" y="347" width="16" height="16" fill="#4a3728" stroke="#ffd700" stroke-width="1" stroke-dasharray="3,2"/><text x="333" y="359" class="dlLeg">Secret Door</text>
+          <text x="420" y="359" class="dlIcon" style="font-size:14px">👹</text><text x="440" y="359" class="dlLeg">Monster</text>
+          <text x="500" y="359" class="dlIcon" style="font-size:14px">⚔️</text><text x="520" y="359" class="dlLeg">Hero</text>
+        </svg>
+
         <p>The board is like a blueprint of a medieval castle. Each square represents about 5 feet of space - imagine each hero as being roughly the size of a chess piece in a real castle!</p>
 
         <h2>🎬 Turn Structure: The Action Movie Formula</h2>
         
         <p>Each turn follows the same pattern as an action movie scene:</p>
+
+        <svg id="hq_basics_turn_flow" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;margin:1.5rem auto;display:block;">
+          <style>
+            .tfBox{rx:10;stroke-width:2}
+            .tfHero{fill:#2563eb;stroke:#1d4ed8}
+            .tfEvil{fill:#dc2626;stroke:#991b1b}
+            .tfText{font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
+            .tfIcon{font:22px Arial;text-anchor:middle}
+            .tfArrow{fill:var(--text-muted,#64748b)}
+            .tfPhase{font:bold 14px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle}
+          </style>
+          <!-- Hero Phase label -->
+          <text x="245" y="20" class="tfPhase">⚔️ Hero Phase</text>
+          <!-- Move -->
+          <rect x="20" y="34" width="100" height="70" class="tfBox tfHero"/>
+          <text x="70" y="62" class="tfIcon">🦶</text>
+          <text x="70" y="90" class="tfText">Move</text>
+          <!-- arrow -->
+          <polygon points="128,69 140,69 140,64 150,72 140,80 140,75 128,75" class="tfArrow"/>
+          <!-- Attack -->
+          <rect x="155" y="34" width="100" height="70" class="tfBox tfHero"/>
+          <text x="205" y="62" class="tfIcon">⚔️</text>
+          <text x="205" y="90" class="tfText">Attack</text>
+          <!-- arrow -->
+          <polygon points="263,69 275,69 275,64 285,72 275,80 275,75 263,75" class="tfArrow"/>
+          <!-- Search -->
+          <rect x="290" y="34" width="100" height="70" class="tfBox tfHero"/>
+          <text x="340" y="62" class="tfIcon">🔍</text>
+          <text x="340" y="90" class="tfText">Search</text>
+          <!-- arrow -->
+          <polygon points="398,69 410,69 410,64 420,72 410,80 410,75 398,75" class="tfArrow"/>
+          <!-- Cast Spell -->
+          <rect x="425" y="34" width="100" height="70" class="tfBox tfHero"/>
+          <text x="475" y="62" class="tfIcon">✨</text>
+          <text x="475" y="90" class="tfText">Cast Spell</text>
+          <!-- divider arrow down -->
+          <polygon points="535,80 545,80 545,108 555,108 540,125 525,108 535,108" class="tfArrow"/>
+          <!-- Evil Wizard Phase label -->
+          <text x="440" y="148" class="tfPhase">🧙‍♂️ Evil Wizard Phase</text>
+          <!-- Move Monsters -->
+          <rect x="290" y="130" width="100" height="60" class="tfBox tfEvil"/>
+          <text x="340" y="154" class="tfIcon">👹</text>
+          <text x="340" y="178" class="tfText">Move</text>
+          <!-- arrow -->
+          <polygon points="278,159 266,159 266,154 256,162 266,170 266,165 278,165" class="tfArrow"/>
+          <!-- Monster Attack -->
+          <rect x="155" y="130" width="100" height="60" class="tfBox tfEvil"/>
+          <text x="205" y="154" class="tfIcon">💥</text>
+          <text x="205" y="178" class="tfText">Attack</text>
+          <!-- arrow -->
+          <polygon points="143,159 131,159 131,154 121,162 131,170 131,165 143,165" class="tfArrow"/>
+          <!-- Spawn -->
+          <rect x="20" y="130" width="100" height="60" class="tfBox tfEvil"/>
+          <text x="70" y="154" class="tfIcon">🌀</text>
+          <text x="70" y="178" class="tfText">Reveal</text>
+          <!-- loop arrow back to top -->
+          <path d="M 20,160 L 8,160 Q 2,160 2,150 L 2,72 Q 2,62 12,62 L 18,62" fill="none" stroke="var(--text-muted,#64748b)" stroke-width="2" stroke-dasharray="5,3"/>
+          <polygon points="16,56 22,62 16,68" class="tfArrow"/>
+        </svg>
         
         <div class="practice-box">
             <h3>🎬 Hero Turn (The Action Scene)</h3>

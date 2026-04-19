@@ -11,317 +11,6 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
-<style>
-  
-    body {
-        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        line-height: 1.7;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 24px;
-        background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f1f5f9 100%);
-        color: #1e293b;
-        font-size: 16px;
-    }
-
-    /* Clean container */
-    .container {
-        background: white;
-        padding: 48px;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-        border: 1px solid #e2e8f0;
-    }
-
-    /* Quest principle boxes with blue theme */
-    .quest-principle {
-        background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-        border: 2px solid #0ea5e9;
-        border-radius: 12px;
-        padding: 32px;
-        margin: 32px 0;
-        border-left: 6px solid #0369a1;
-        box-shadow: 0 2px 8px rgba(14, 165, 233, 0.1);
-    }
-
-    /* Quest cards with improved styling */
-    .quest-card {
-        background: white;
-        border: 2px solid #7dd3fc;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 16px;
-        display: inline-block;
-        min-width: 320px;
-        vertical-align: top;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        transition: all 0.2s ease;
-    }
-
-    .quest-card:hover {
-        box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15);
-        transform: translateY(-2px);
-    }
-
-    /* Strategy and analysis boxes */
-    .strategy-box {
-        background: #f0f9ff;
-        border: 2px solid #38bdf8;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        border-left: 4px solid #0ea5e9;
-    }
-
-    .design-analysis {
-        background: #f0f9ff;
-        border: 2px solid #0ea5e9;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        border-left: 4px solid #0369a1;
-    }
-
-    /* Quest selector buttons */
-    .quest-selector {
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-        margin: 24px 0;
-        flex-wrap: wrap;
-    }
-
-    .quest-button {
-        background: linear-gradient(135deg, #0ea5e9, #0284c7);
-        border: 2px solid #38bdf8;
-        border-radius: 8px;
-        padding: 12px 20px;
-        color: white;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-weight: 600;
-        font-size: 14px;
-    }
-
-    .quest-button:hover {
-        background: linear-gradient(135deg, #0284c7, #0369a1);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
-    }
-
-    .quest-button.active {
-        background: linear-gradient(135deg, #f59e0b, #d97706);
-        border-color: #fbbf24;
-    }
-
-    /* Difficulty meter with improved visibility */
-    .difficulty-meter {
-        width: 100%;
-        height: 24px;
-        background: linear-gradient(to right, #10b981, #f59e0b, #ef4444);
-        border: 2px solid #0ea5e9;
-        border-radius: 12px;
-        margin: 16px 0;
-        position: relative;
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .difficulty-indicator {
-        position: absolute;
-        top: -2px;
-        width: 4px;
-        height: 28px;
-        background: white;
-        border: 1px solid #334155;
-        border-radius: 2px;
-        transition: left 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Canvas elements */
-    canvas {
-        border: 2px solid #0ea5e9;
-        border-radius: 12px;
-        background: #f8fafc;
-        display: block;
-        margin: 24px auto;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Dungeon map grid */
-    .dungeon-map {
-        display: grid;
-        grid-template-columns: repeat(12, 32px);
-        grid-template-rows: repeat(9, 32px);
-        gap: 1px;
-        margin: 24px auto;
-        border: 3px solid #0ea5e9;
-        background: #1e293b;
-        padding: 12px;
-        width: fit-content;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .map-cell {
-        width: 32px;
-        height: 32px;
-        border: 1px solid #475569;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        border-radius: 2px;
-    }
-
-    .map-cell:hover {
-        transform: scale(1.1);
-        z-index: 10;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Map cell types with better contrast */
-    .wall { background-color: #64748b; color: white; }
-    .door { background-color: #92400e; color: white; }
-    .room { background-color: #e2e8f0; color: #1e293b; }
-    .stairs { background-color: #0ea5e9; color: white; }
-    .trap { background-color: #ef4444; color: white; }
-    .treasure { background-color: #f59e0b; color: #1e293b; }
-    .monster { background-color: #dc2626; color: white; }
-    .start { background-color: #10b981; color: white; }
-    .secret { background-color: #8b5cf6; color: white; }
-
-    /* Text improvements */
-    p {
-        margin-bottom: 16px;
-        line-height: 1.7;
-        color: #334155;
-    }
-
-    strong {
-        color: #0c4a6e;
-        font-weight: 600;
-    }
-
-    em {
-        color: #64748b;
-        font-style: italic;
-    }
-
-    /* Lists */
-    ul, ol {
-        margin: 16px 0;
-        padding-left: 24px;
-    }
-
-    li {
-        margin-bottom: 8px;
-        color: #475569;
-        line-height: 1.6;
-    }
-
-    /* Links */
-    a {
-        color: #0ea5e9;
-        text-decoration: none;
-        font-weight: 500;
-        border-bottom: 1px solid transparent;
-        transition: all 0.2s ease;
-    }
-
-    a:hover {
-        color: #0284c7;
-        border-bottom-color: #0284c7;
-    }
-
-    /* Code elements */
-    code {
-        background: #f1f5f9;
-        color: #0c4a6e;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-        font-size: 0.9em;
-        border: 1px solid #cbd5e0;
-    }
-
-    /* Tables */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 24px 0;
-        background: white;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    th, td {
-        padding: 12px 16px;
-        text-align: left;
-        border-bottom: 1px solid #e2e8f0;
-    }
-
-    th {
-        background: #f0f9ff;
-        font-weight: 600;
-        color: #0c4a6e;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-        body {
-            padding: 16px;
-        }
-        
-        .container {
-            padding: 24px;
-        }
-        
-        h1 {
-            font-size: 2rem;
-        }
-        
-        .quest-card {
-            min-width: 280px;
-            margin: 12px 0;
-            display: block;
-        }
-        
-        .quest-selector {
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .dungeon-map {
-            grid-template-columns: repeat(12, 24px);
-            grid-template-rows: repeat(9, 24px);
-        }
-        
-        .map-cell {
-            width: 24px;
-            height: 24px;
-            font-size: 10px;
-        }
-    }
-
-    /* Focus accessibility */
-    :focus {
-        outline: 2px solid #0ea5e9;
-        outline-offset: 2px;
-    }
-
-    /* Reduced motion accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
-</style>
 </head>
 <body>
     <div class="container">
@@ -619,102 +308,28 @@
     </div>
 
     <script>
-        // Quest data for interactive exploration
         const quests = [
-            {
-                name: "The Trial",
-                difficulty: 5,
-                difficultyLabel: "Beginner",
-                purpose: "Introduction to core mechanics",
-                lessons: "Movement, combat, searching, basic tactics",
-                secrets: "The secret door teaches observation skills",
-                strategy: "Send the Barbarian first, keep the Wizard protected",
-                innovation: "Perfect tutorial that never feels like a tutorial"
-            },
-            {
-                name: "The Maze",
-                difficulty: 15,
-                difficultyLabel: "Easy",
-                purpose: "Navigation and mapping skills",
-                lessons: "Spatial awareness, resource management, pathfinding",
-                secrets: "Multiple routes create strategic choices",
-                strategy: "Map everything systematically, avoid backtracking",
-                innovation: "First quest to emphasize exploration over combat"
-            },
-            {
-                name: "Barbarian's Quest",
-                difficulty: 25,
-                difficultyLabel: "Easy-Medium",
-                purpose: "Aggressive combat tactics",
-                lessons: "Risk assessment, melee specialization",
-                secrets: "Hidden armory rewards thorough searching",
-                strategy: "Balance aggression with caution in trapped areas",
-                innovation: "Character-specific challenges and rewards"
-            },
-            {
-                name: "Elf's Quest",
-                difficulty: 35,
-                difficultyLabel: "Medium",
-                purpose: "Ranged combat and magic",
-                lessons: "Positioning, spell usage, versatility",
-                secrets: "Long corridors favor ranged attacks",
-                strategy: "Use architecture to maximize archery advantages",
-                innovation: "Environmental design supports character strengths"
-            },
-            {
-                name: "Wizard's Quest",
-                difficulty: 50,
-                difficultyLabel: "Medium",
-                purpose: "Magical problem solving",
-                lessons: "Spell conservation, puzzle solving",
-                secrets: "Some enemies can only be defeated with magic",
-                strategy: "Think before fighting, magic over muscle",
-                innovation: "First quest where brute force fails"
-            },
-            {
-                name: "Prince Magnus's Gold",
-                difficulty: 70,
-                difficultyLabel: "Medium-Hard",
-                purpose: "Advanced team coordination",
-                lessons: "Complex objectives, time management",
-                secrets: "Multiple treasure locations require splitting up",
-                strategy: "Coordinate team movements, divide and conquer",
-                innovation: "Multi-objective quest structure"
-            },
-            {
-                name: "The Witch Lord",
-                difficulty: 95,
-                difficultyLabel: "Master",
-                purpose: "Ultimate graduation test",
-                lessons: "Everything combined, adaptability under pressure",
-                secrets: "Boss has multiple phases requiring different tactics",
-                strategy: "Perfect execution of all learned skills",
-                innovation: "Dynamic boss fight that changes strategy mid-combat"
-            }
+            {name: "The Trial", difficulty: 5, difficultyLabel: "Beginner", purpose: "Introduction to core mechanics", lessons: "Movement, combat, searching, basic tactics", secrets: "The secret door teaches observation skills", strategy: "Send the Barbarian first, keep the Wizard protected", innovation: "Perfect tutorial that never feels like a tutorial"},
+            {name: "The Maze", difficulty: 15, difficultyLabel: "Easy", purpose: "Navigation and mapping skills", lessons: "Spatial awareness, resource management, pathfinding", secrets: "Multiple routes create strategic choices", strategy: "Map everything systematically, avoid backtracking", innovation: "First quest to emphasize exploration over combat"},
+            {name: "Barbarian's Quest", difficulty: 25, difficultyLabel: "Easy-Medium", purpose: "Aggressive combat tactics", lessons: "Risk assessment, melee specialization", secrets: "Hidden armory rewards thorough searching", strategy: "Balance aggression with caution in trapped areas", innovation: "Character-specific challenges and rewards"},
+            {name: "Elf's Quest", difficulty: 35, difficultyLabel: "Medium", purpose: "Ranged combat and magic", lessons: "Positioning, spell usage, versatility", secrets: "Long corridors favor ranged attacks", strategy: "Use architecture to maximize archery advantages", innovation: "Environmental design supports character strengths"},
+            {name: "Wizard's Quest", difficulty: 50, difficultyLabel: "Medium", purpose: "Magical problem solving", lessons: "Spell conservation, puzzle solving", secrets: "Some enemies can only be defeated with magic", strategy: "Think before fighting, magic over muscle", innovation: "First quest where brute force fails"},
+            {name: "Prince Magnus's Gold", difficulty: 70, difficultyLabel: "Medium-Hard", purpose: "Advanced team coordination", lessons: "Complex objectives, time management", secrets: "Multiple treasure locations require splitting up", strategy: "Coordinate team movements, divide and conquer", innovation: "Multi-objective quest structure"},
+            {name: "The Witch Lord", difficulty: 95, difficultyLabel: "Master", purpose: "Ultimate graduation test", lessons: "Everything combined, adaptability under pressure", secrets: "Boss has multiple phases requiring different tactics", strategy: "Perfect execution of all learned skills", innovation: "Dynamic boss fight that changes strategy mid-combat"}
         ];
         
         let currentQuest = 0;
         
         function selectQuest(index) {
             currentQuest = index;
-            
-            // Update button styles
             const buttons = document.querySelectorAll('.quest-button');
-            buttons.forEach((button, i) => {
-                button.classList.toggle('active', i === index);
-            });
+            buttons.forEach((button, i) => { button.classList.toggle('active', i === index); });
             
-            // Update difficulty indicator
             const quest = quests[index];
-            const indicator = document.getElementById('difficulty_indicator');
-            const difficultyLevel = document.getElementById('difficulty_level');
+            document.getElementById('difficulty_indicator').style.left = quest.difficulty + '%';
+            document.getElementById('difficulty_level').textContent = quest.difficultyLabel;
             
-            indicator.style.left = quest.difficulty + '%';
-            difficultyLevel.textContent = quest.difficultyLabel;
-            
-            // Update quest analysis
-            const analysisDiv = document.getElementById('quest_analysis');
-            analysisDiv.innerHTML = `
+            document.getElementById('quest_analysis').innerHTML = `
                 <h3>🎯 ${quest.name}</h3>
                 <p><strong>Design Purpose:</strong> ${quest.purpose}</p>
                 <p><strong>Key Lessons:</strong> ${quest.lessons}</p>
@@ -730,12 +345,9 @@
         
         function drawQuestDesign() {
             designCtx.clearRect(0, 0, designCanvas.width, designCanvas.height);
-            
-            // Background
             designCtx.fillStyle = '#0f3460';
             designCtx.fillRect(0, 0, designCanvas.width, designCanvas.height);
             
-            // Draw quest structure pyramid
             const levels = [
                 {y: 300, width: 400, label: 'Tutorial Elements', color: '#4caf50'},
                 {y: 250, width: 320, label: 'Exploration Challenges', color: '#ffeb3b'},
@@ -746,28 +358,23 @@
             
             levels.forEach(level => {
                 const x = (designCanvas.width - level.width) / 2;
-                
                 designCtx.fillStyle = level.color;
                 designCtx.fillRect(x, level.y, level.width, 40);
-                
                 designCtx.fillStyle = '#000';
                 designCtx.font = '14px Arial';
                 designCtx.textAlign = 'center';
                 designCtx.fillText(level.label, designCanvas.width / 2, level.y + 25);
             });
             
-            // Draw connecting lines
             designCtx.strokeStyle = '#4fc3f7';
             designCtx.lineWidth = 2;
             for (let i = 0; i < levels.length - 1; i++) {
                 const current = levels[i];
                 const next = levels[i + 1];
-                
                 designCtx.beginPath();
                 designCtx.moveTo((designCanvas.width - current.width) / 2, current.y);
                 designCtx.lineTo((designCanvas.width - next.width) / 2, next.y + 40);
                 designCtx.stroke();
-                
                 designCtx.beginPath();
                 designCtx.moveTo((designCanvas.width + current.width) / 2, current.y);
                 designCtx.lineTo((designCanvas.width + next.width) / 2, next.y + 40);
@@ -779,7 +386,6 @@
             designCtx.fillText('Classic Quest Architecture', designCanvas.width / 2, 30);
             designCtx.textAlign = 'left';
         }
-        
         drawQuestDesign();
         
         // Strategy Patterns Visualization
@@ -788,12 +394,9 @@
         
         function drawStrategyPatterns() {
             strategyCtx.clearRect(0, 0, strategyCanvas.width, strategyCanvas.height);
-            
-            // Background
             strategyCtx.fillStyle = '#0f3460';
             strategyCtx.fillRect(0, 0, strategyCanvas.width, strategyCanvas.height);
             
-            // Draw tactical formations
             const formations = [
                 {x: 120, y: 150, name: 'Diamond Formation', heroes: [{x: 0, y: -30}, {x: -20, y: 0}, {x: 20, y: 0}, {x: 0, y: 30}]},
                 {x: 300, y: 150, name: 'Line Formation', heroes: [{x: -30, y: 0}, {x: -10, y: 0}, {x: 10, y: 0}, {x: 30, y: 0}]},
@@ -801,31 +404,25 @@
             ];
             
             formations.forEach(formation => {
-                // Draw formation background
                 strategyCtx.fillStyle = '#1a1a2e';
                 strategyCtx.beginPath();
                 strategyCtx.arc(formation.x, formation.y, 50, 0, Math.PI * 2);
                 strategyCtx.fill();
-                
                 strategyCtx.strokeStyle = '#4fc3f7';
                 strategyCtx.lineWidth = 2;
                 strategyCtx.stroke();
                 
-                // Draw heroes
+                const colors = ['#4a90e2', '#32cd32', '#9370db', '#cd853f'];
+                const symbols = ['🛡️', '🏹', '🔮', '🗡️'];
                 formation.heroes.forEach((hero, index) => {
-                    const colors = ['#4a90e2', '#32cd32', '#9370db', '#cd853f'];
-                    const symbols = ['🛡️', '🏹', '🔮', '🗡️'];
-                    
                     strategyCtx.fillStyle = colors[index];
                     strategyCtx.fillRect(formation.x + hero.x - 8, formation.y + hero.y - 8, 16, 16);
-                    
                     strategyCtx.fillStyle = '#fff';
                     strategyCtx.font = '12px Arial';
                     strategyCtx.textAlign = 'center';
                     strategyCtx.fillText(symbols[index], formation.x + hero.x, formation.y + hero.y + 4);
                 });
                 
-                // Draw formation name
                 strategyCtx.fillStyle = '#e6f2ff';
                 strategyCtx.font = '12px Arial';
                 strategyCtx.fillText(formation.name, formation.x, formation.y + 80);
@@ -837,7 +434,6 @@
             strategyCtx.fillText('Universal Tactical Formations', 300, 30);
             strategyCtx.textAlign = 'left';
         }
-        
         drawStrategyPatterns();
         
         // Difficulty Progression Chart
@@ -846,12 +442,9 @@
         
         function drawDifficultyProgression() {
             difficultyCtx.clearRect(0, 0, difficultyCanvas.width, difficultyCanvas.height);
-            
-            // Background
             difficultyCtx.fillStyle = '#0f3460';
             difficultyCtx.fillRect(0, 0, difficultyCanvas.width, difficultyCanvas.height);
             
-            // Draw progression curve
             difficultyCtx.strokeStyle = '#4fc3f7';
             difficultyCtx.lineWidth = 3;
             difficultyCtx.beginPath();
@@ -862,17 +455,14 @@
             questDifficulties.forEach((difficulty, index) => {
                 const x = 50 + (index * (difficultyCanvas.width - 100) / (questDifficulties.length - 1));
                 const y = difficultyCanvas.height - 50 - (difficulty * (difficultyCanvas.height - 100) / 100);
-                
                 if (index === 0) difficultyCtx.moveTo(x, y);
                 else difficultyCtx.lineTo(x, y);
                 
-                // Draw quest points
                 difficultyCtx.fillStyle = '#ffd700';
                 difficultyCtx.beginPath();
                 difficultyCtx.arc(x, y, 4, 0, Math.PI * 2);
                 difficultyCtx.fill();
                 
-                // Draw quest names
                 difficultyCtx.fillStyle = '#e6f2ff';
                 difficultyCtx.font = '10px Arial';
                 difficultyCtx.textAlign = 'center';
@@ -889,20 +479,11 @@
             difficultyCtx.font = '16px Arial';
             difficultyCtx.textAlign = 'center';
             difficultyCtx.fillText('Quest Difficulty Progression', 300, 25);
-            
-            // Draw axes labels
             difficultyCtx.fillStyle = '#e6f2ff';
             difficultyCtx.font = '12px Arial';
             difficultyCtx.fillText('Quest Sequence', 300, difficultyCanvas.height - 10);
-            
-            difficultyCtx.save();
-            difficultyCtx.translate(15, difficultyCanvas.height / 2);
-            difficultyCtx.rotate(-Math.PI / 2);
-            difficultyCtx.fillText('Difficulty Level', 0, 0);
-            difficultyCtx.restore();
             difficultyCtx.textAlign = 'left';
         }
-        
         drawDifficultyProgression();
     </script>
 <script src="/nav.js"></script>

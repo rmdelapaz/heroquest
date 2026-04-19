@@ -11,444 +11,6 @@
       mermaid.initialize({ startOnLoad: true });
     </script>
 
-   <style>
-    body {
-        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
-        line-height: 1.7;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 24px;
-        background: linear-gradient(135deg, #dc2626 0%, #991b1b 50%, #7f1d1d 100%);
-        color: #fef2f2;
-        font-size: 16px;
-    }
-
-    /* Main container with tactical styling */
-    .container {
-        background: rgba(15, 23, 42, 0.95);
-        padding: 48px;
-        border-radius: 12px;
-        box-shadow: 0 8px 32px rgba(220, 38, 38, 0.3);
-        border: 1px solid #991b1b;
-        backdrop-filter: blur(8px);
-    }
-
-
-    /* Combat principle boxes */
-    .combat-principle {
-        background: linear-gradient(135deg, #7f1d1d, #991b1b);
-        border: 2px solid #ea580c;
-        border-radius: 12px;
-        padding: 32px;
-        margin: 32px 0;
-        border-left: 6px solid #f97316;
-        box-shadow: 0 4px 16px rgba(239, 68, 68, 0.2);
-    }
-
-    /* Tactics boxes */
-    .tactics-box {
-        background: linear-gradient(135deg, #991b1b, #b91c1c);
-        border: 2px solid #f97316;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        border-left: 4px solid #ea580c;
-        box-shadow: 0 2px 8px rgba(249, 115, 22, 0.2);
-    }
-
-    /* Formation demonstration boxes */
-    .formation-demo {
-        background: rgba(239, 68, 68, 0.15);
-        border: 2px solid #f97316;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        border-left: 4px solid #ea580c;
-    }
-
-    /* Hero role cards */
-    .hero-role {
-        background: linear-gradient(135deg, #7f1d1d, #991b1b);
-        border: 2px solid #c2410c;
-        border-radius: 12px;
-        padding: 20px;
-        margin: 16px;
-        display: inline-block;
-        min-width: 220px;
-        vertical-align: top;
-        box-shadow: 0 2px 8px rgba(194, 65, 12, 0.2);
-        transition: all 0.2s ease;
-    }
-
-    .hero-role:hover {
-        box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
-        transform: translateY(-2px);
-    }
-
-    /* Battlefield grid */
-    .battlefield-grid {
-        display: grid;
-        grid-template-columns: repeat(8, 42px);
-        grid-template-rows: repeat(6, 42px);
-        gap: 2px;
-        margin: 24px auto;
-        border: 3px solid #f97316;
-        background: #0f172a;
-        padding: 12px;
-        width: fit-content;
-        border-radius: 8px;
-        box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
-    }
-
-    .grid-cell {
-        width: 42px;
-        height: 42px;
-        border: 1px solid #475569;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        border-radius: 2px;
-    }
-
-    .grid-cell:hover {
-        transform: scale(1.1);
-        z-index: 10;
-        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
-    }
-
-    /* Grid cell types with better contrast */
-    .hero { background-color: #3b82f6; color: white; }
-    .monster { background-color: #dc2626; color: white; }
-    .wall { background-color: #78716c; color: white; }
-    .door { background-color: #92400e; color: white; }
-    .empty { background-color: #334155; color: #cbd5e0; }
-    .highlight { background-color: #fbbf24 !important; color: #1e293b; }
-
-    /* Canvas elements */
-    canvas {
-        border: 2px solid #f97316;
-        border-radius: 12px;
-        background: #0f172a;
-        display: block;
-        margin: 24px auto;
-        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
-    }
-
-    /* Tactical analysis sections */
-    .tactical-analysis {
-        background: rgba(249, 115, 22, 0.1);
-        border: 2px solid #fb923c;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 24px 0;
-        border-left: 4px solid #f97316;
-    }
-
-    .strategy-highlight {
-        background: rgba(239, 68, 68, 0.1);
-        border: 1px solid #f87171;
-        border-radius: 6px;
-        padding: 12px 16px;
-        margin: 12px 0;
-        border-left: 3px solid #dc2626;
-    }
-
-    /* Combat formation display */
-    .formation-display {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 16px;
-        margin: 24px 0;
-    }
-
-    .formation-card {
-        background: linear-gradient(135deg, #7f1d1d, #991b1b);
-        border: 2px solid #ea580c;
-        border-radius: 8px;
-        padding: 20px;
-        text-align: center;
-        transition: all 0.2s ease;
-        border-left: 4px solid #f97316;
-    }
-
-    .formation-card:hover {
-        background: linear-gradient(135deg, #991b1b, #b91c1c);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
-    }
-
-    /* Role specializations */
-    .role-specialization {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        margin: 24px 0;
-    }
-
-    .specialization-card {
-        background: rgba(127, 29, 29, 0.8);
-        border: 2px solid #c2410c;
-        border-radius: 12px;
-        padding: 24px;
-        margin: 12px;
-        min-width: 200px;
-        text-align: center;
-        box-shadow: 0 4px 12px rgba(194, 65, 12, 0.2);
-        transition: all 0.2s ease;
-    }
-
-    .specialization-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(249, 115, 22, 0.3);
-    }
-
-    /* Text improvements */
-    p {
-        margin-bottom: 16px;
-        line-height: 1.7;
-        color: #f1f5f9;
-    }
-
-    strong {
-        color: #fb923c;
-        font-weight: 600;
-    }
-
-    em {
-        color: #e2e8f0;
-        font-style: italic;
-    }
-
-    /* Lists */
-    ul, ol {
-        margin: 16px 0;
-        padding-left: 24px;
-    }
-
-    li {
-        margin-bottom: 8px;
-        color: #e2e8f0;
-        line-height: 1.6;
-    }
-
-    /* Links */
-    a {
-        color: #f97316;
-        text-decoration: none;
-        font-weight: 500;
-        border-bottom: 1px solid transparent;
-        transition: all 0.2s ease;
-    }
-
-    a:hover {
-        color: #fb923c;
-        border-bottom-color: #fb923c;
-    }
-
-    /* Code elements */
-    code {
-        background: #7f1d1d;
-        color: #fed7aa;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
-        font-size: 0.9em;
-        border: 1px solid #991b1b;
-    }
-
-    /* Tables */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 24px 0;
-        background: rgba(15, 23, 42, 0.8);
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    th, td {
-        padding: 12px 16px;
-        text-align: left;
-        border-bottom: 1px solid #7f1d1d;
-    }
-
-    th {
-        background: #991b1b;
-        font-weight: 600;
-        color: #fb923c;
-    }
-
-    /* Mermaid diagrams */
-    .mermaid {
-        background: rgba(127, 29, 29, 0.3) !important;
-        border: 2px solid #f97316 !important;
-        border-radius: 12px !important;
-        padding: 24px !important;
-        margin: 24px auto !important;
-    }
-
-    /* Blockquotes */
-    blockquote {
-        background: rgba(153, 27, 27, 0.3);
-        border-left: 4px solid #f97316;
-        padding: 16px 24px;
-        margin: 24px 0;
-        border-radius: 0 8px 8px 0;
-        font-style: italic;
-        color: #f1f5f9;
-    }
-
-    /* Interactive elements */
-    button, .btn {
-        background: linear-gradient(135deg, #dc2626, #b91c1c);
-        color: white;
-        border: 2px solid #f97316;
-        padding: 12px 24px;
-        border-radius: 8px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-decoration: none;
-        display: inline-block;
-    }
-
-    button:hover, .btn:hover {
-        background: linear-gradient(135deg, #b91c1c, #991b1b);
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
-    }
-
-    /* Combat statistics */
-    .combat-stats {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 16px;
-        margin: 24px 0;
-    }
-
-    .stat-box {
-        background: rgba(127, 29, 29, 0.5);
-        border: 2px solid #ea580c;
-        border-radius: 8px;
-        padding: 16px;
-        text-align: center;
-        transition: all 0.2s ease;
-    }
-
-    .stat-box:hover {
-        background: rgba(153, 27, 27, 0.7);
-        transform: scale(1.05);
-    }
-
-    .stat-number {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #f97316;
-        margin-bottom: 8px;
-    }
-
-    .stat-label {
-        color: #fb923c;
-        font-weight: 500;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    /* Responsive design */
-    @media (max-width: 768px) {
-        body {
-            padding: 16px;
-        }
-        
-        .container {
-            padding: 24px;
-        }
-        
-        h1 {
-            font-size: 2rem;
-        }
-        
-        .battlefield-grid {
-            grid-template-columns: repeat(8, 32px);
-            grid-template-rows: repeat(6, 32px);
-        }
-        
-        .grid-cell {
-            width: 32px;
-            height: 32px;
-            font-size: 14px;
-        }
-        
-        .hero-role {
-            min-width: 180px;
-            margin: 12px 0;
-            display: block;
-        }
-        
-        .role-specialization {
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .specialization-card {
-            min-width: 280px;
-            margin: 12px 0;
-        }
-        
-        .combat-stats {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-        }
-    }
-
-    /* Focus accessibility */
-    :focus {
-        outline: 2px solid #f97316;
-        outline-offset: 2px;
-    }
-
-    /* Reduced motion accessibility */
-    @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
-
-    /* Combat-specific utility classes */
-    .attack-pattern {
-        background: rgba(220, 38, 38, 0.2);
-        border: 1px dashed #f97316;
-        border-radius: 4px;
-        padding: 8px 12px;
-        margin: 8px 0;
-        font-style: italic;
-    }
-
-    .defense-pattern {
-        background: rgba(59, 130, 246, 0.2);
-        border: 1px dashed #3b82f6;
-        border-radius: 4px;
-        padding: 8px 12px;
-        margin: 8px 0;
-        font-style: italic;
-    }
-
-    .tactical-note {
-        background: rgba(249, 115, 22, 0.1);
-        border: 1px solid #fb923c;
-        border-radius: 6px;
-        padding: 12px;
-        margin: 12px 0;
-        font-size: 0.95em;
-        border-left: 3px solid #f97316;
-    }
-</style>
 </head>
 <body>
     <div class="container">
@@ -555,6 +117,52 @@
             </ul>
         </div>
 
+        <h3>🎼 Formation Overview: Who Goes Where</h3>
+        <svg id="hq_combat_hero_roles" viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
+          <style>
+            .hrLabel{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
+            .hrZone{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
+            .hrIcon{font:22px Arial;text-anchor:middle;dominant-baseline:central}
+          </style>
+          <rect width="600" height="260" fill="var(--card-bg,#fff)" rx="8"/>
+          <text x="300" y="22" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Classic 4-Hero Formation</text>
+          <!-- zones -->
+          <rect x="20" y="35" width="180" height="190" rx="8" fill="#ef4444" opacity="0.08" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="110" y="55" class="hrZone">FRONT LINE</text>
+          <rect x="210" y="35" width="180" height="190" rx="8" fill="#f59e0b" opacity="0.08" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="300" y="55" class="hrZone">MID LINE</text>
+          <rect x="400" y="35" width="180" height="190" rx="8" fill="#3b82f6" opacity="0.08" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="490" y="55" class="hrZone">BACK LINE</text>
+          <!-- enemies (left) -->
+          <rect x="5" y="110" width="10" height="60" rx="2" fill="#64748b" opacity="0.3"/>
+          <text x="10" y="95" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">👹👹👹</text>
+          <!-- Barbarian -->
+          <circle cx="110" cy="130" r="28" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
+          <text x="110" y="124" class="hrIcon">🛡️</text>
+          <text x="110" y="146" class="hrLabel">Barbarian</text>
+          <text x="110" y="175" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Absorb damage</text>
+          <text x="110" y="188" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Block doorways</text>
+          <!-- Dwarf -->
+          <circle cx="260" cy="100" r="24" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+          <text x="260" y="94" class="hrIcon">🗡️</text>
+          <text x="260" y="112" class="hrLabel">Dwarf</text>
+          <text x="260" y="140" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Disarm traps</text>
+          <!-- Elf -->
+          <circle cx="340" cy="170" r="24" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+          <text x="340" y="164" class="hrIcon">🏹</text>
+          <text x="340" y="182" class="hrLabel">Elf</text>
+          <text x="340" y="208" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Flex support</text>
+          <!-- Wizard -->
+          <circle cx="490" cy="130" r="24" fill="#a855f7" stroke="#9333ea" stroke-width="2"/>
+          <text x="490" y="124" class="hrIcon">🔮</text>
+          <text x="490" y="142" class="hrLabel">Wizard</text>
+          <text x="490" y="168" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Spells &amp; heals</text>
+          <!-- arrows showing enemy flow -->
+          <path d="M30,130 L78,130" fill="none" stroke="#ef4444" stroke-width="1.5" marker-end="url(#combArr)" opacity="0.5"/>
+          <defs><marker id="combArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ef4444"/></marker></defs>
+          <text x="300" y="248" style="font:italic 11px 'Segoe UI',sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Tank absorbs hits • Mid handles utility • Back deals damage safely</text>
+        </svg>
+
         <h2>🗺️ Battlefield Positioning: The Chess Game</h2>
         
         <canvas id="positioning_tactics_canvas" width="600" height="400"></canvas>
@@ -607,6 +215,58 @@
             <p><strong>Why it works:</strong> Dead enemies can't fight back - eliminate threats completely rather than weakening many</p>
         </div>
 
+        <h3>🗡️ The Pincer in Action</h3>
+        <svg id="hq_combat_pincer" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
+          <style>
+            .pcLabel{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
+            .pcNote{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
+            .pcIcon{font:20px Arial;text-anchor:middle;dominant-baseline:central}
+          </style>
+          <rect width="600" height="300" fill="var(--card-bg,#fff)" rx="8"/>
+          <text x="300" y="22" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Pincer Movement: Attack From Multiple Angles</text>
+          <!-- room walls -->
+          <rect x="140" y="50" width="320" height="200" rx="4" fill="none" stroke="var(--border,#cbd5e1)" stroke-width="2"/>
+          <!-- door -->
+          <rect x="136" y="130" width="8" height="40" rx="2" fill="#b45309"/>
+          <!-- enemy cluster center -->
+          <circle cx="340" cy="150" r="22" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
+          <text x="340" y="145" class="pcIcon">👹</text>
+          <text x="340" y="162" class="pcLabel" style="font-size:9px">Boss</text>
+          <circle cx="380" cy="120" r="16" fill="#f97316" stroke="#ea580c" stroke-width="1.5"/>
+          <text x="380" y="118" style="font:14px Arial;text-anchor:middle;dominant-baseline:central">👹</text>
+          <circle cx="380" cy="180" r="16" fill="#f97316" stroke="#ea580c" stroke-width="1.5"/>
+          <text x="380" y="178" style="font:14px Arial;text-anchor:middle;dominant-baseline:central">👹</text>
+          <!-- frontal assault: Barbarian -->
+          <circle cx="180" cy="150" r="20" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
+          <text x="180" y="145" class="pcIcon">🛡️</text>
+          <text x="180" y="162" class="pcLabel" style="font-size:9px">Barb</text>
+          <path d="M202,150 L310,150" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#pcArr)" stroke-dasharray="6,3"/>
+          <text x="256" y="142" class="pcNote">Frontal</text>
+          <!-- top flank: Elf -->
+          <circle cx="220" cy="70" r="20" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
+          <text x="220" y="65" class="pcIcon">🏹</text>
+          <text x="220" y="82" class="pcLabel" style="font-size:9px">Elf</text>
+          <path d="M242,75 Q320,60 335,125" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#pcArrG)" stroke-dasharray="6,3"/>
+          <text x="300" y="75" class="pcNote">Top flank</text>
+          <!-- bottom flank: Dwarf -->
+          <circle cx="220" cy="230" r="20" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
+          <text x="220" y="225" class="pcIcon">🗡️</text>
+          <text x="220" y="242" class="pcLabel" style="font-size:9px">Dwarf</text>
+          <path d="M242,225 Q320,240 335,175" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#pcArrY)" stroke-dasharray="6,3"/>
+          <text x="300" y="240" class="pcNote">Bottom flank</text>
+          <!-- Wizard back -->
+          <circle cx="110" cy="150" r="20" fill="#a855f7" stroke="#9333ea" stroke-width="2"/>
+          <text x="110" y="145" class="pcIcon">🔮</text>
+          <text x="110" y="162" class="pcLabel" style="font-size:9px">Wiz</text>
+          <text x="110" y="182" class="pcNote">Spells from safety</text>
+          <defs>
+            <marker id="pcArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ef4444"/></marker>
+            <marker id="pcArrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#22c55e"/></marker>
+            <marker id="pcArrY" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#f59e0b"/></marker>
+          </defs>
+          <text x="300" y="280" style="font:italic 11px 'Segoe UI',sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Enemies can't defend every direction — divide and conquer</text>
+        </svg>
+
         <h2>🧠 Combat Psychology: Reading the Battlefield</h2>
         
         <canvas id="battlefield_analysis_canvas" width="600" height="350"></canvas>
@@ -633,6 +293,47 @@
             
             <p><strong>Real Example:</strong> In a room with 1 Chaos Warrior and 3 Goblins, always kill the Chaos Warrior first - it can kill a hero in one hit, while Goblins are just annoying!</p>
         </div>
+
+        <h3>🚨 Threat Triage at a Glance</h3>
+        <svg id="hq_combat_target_priority" viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
+          <style>
+            .tpLabel{font:bold 12px 'Segoe UI',system-ui,sans-serif;text-anchor:middle}
+            .tpDesc{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
+            .tpIcon{font:22px Arial;text-anchor:middle;dominant-baseline:central}
+            .tpNum{font:bold 18px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
+          </style>
+          <rect width="600" height="240" fill="var(--card-bg,#fff)" rx="8"/>
+          <text x="300" y="22" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Kill Order: Triage Your Targets</text>
+          <!-- Priority 1 -->
+          <circle cx="120" cy="110" r="55" fill="#fecaca" stroke="#ef4444" stroke-width="2"/>
+          <circle cx="120" cy="110" r="35" fill="#ef4444"/>
+          <text x="120" y="100" class="tpNum">1</text>
+          <text x="120" y="118" style="font:bold 9px sans-serif;fill:#fff;text-anchor:middle">KILL FIRST</text>
+          <text x="120" y="182" class="tpLabel" fill="#ef4444">Chaos Warrior</text>
+          <text x="120" y="198" class="tpDesc">High damage, can 1-shot heroes</text>
+          <text x="120" y="78" class="tpIcon">👹</text>
+          <!-- Priority 2 -->
+          <circle cx="300" cy="110" r="45" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+          <circle cx="300" cy="110" r="28" fill="#f59e0b"/>
+          <text x="300" y="100" class="tpNum">2</text>
+          <text x="300" y="116" style="font:bold 8px sans-serif;fill:#fff;text-anchor:middle">NEXT</text>
+          <text x="300" y="172" class="tpLabel" fill="#f59e0b">Fimir / Mummy</text>
+          <text x="300" y="188" class="tpDesc">Force multipliers, summons</text>
+          <text x="300" y="82" class="tpIcon">👾</text>
+          <!-- Priority 3 -->
+          <circle cx="480" cy="110" r="35" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+          <circle cx="480" cy="110" r="22" fill="#22c55e"/>
+          <text x="480" y="102" class="tpNum" style="font-size:14px">3</text>
+          <text x="480" y="116" style="font:bold 7px sans-serif;fill:#fff;text-anchor:middle">LAST</text>
+          <text x="480" y="162" class="tpLabel" fill="#22c55e">Goblins</text>
+          <text x="480" y="178" class="tpDesc">Low threat, distractions</text>
+          <text x="480" y="86" class="tpIcon">👺</text>
+          <!-- arrow flow -->
+          <path d="M180,110 L240,110" fill="none" stroke="var(--border,#cbd5e1)" stroke-width="1.5" marker-end="url(#tpArr)"/>
+          <path d="M350,110 L430,110" fill="none" stroke="var(--border,#cbd5e1)" stroke-width="1.5" marker-end="url(#tpArr)"/>
+          <defs><marker id="tpArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="var(--border,#cbd5e1)"/></marker></defs>
+          <text x="300" y="228" style="font:italic 11px 'Segoe UI',sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Dead enemies deal zero damage — eliminate biggest threats first</text>
+        </svg>
 
         <h2>🌟 Environmental Combat: Use Everything!</h2>
         
@@ -699,6 +400,42 @@
                 <li>Sometimes retreat and heal is better than fighting to the death</li>
             </ul>
         </div>
+
+        <h3>🎲 Skull Probability by Dice Count</h3>
+        <svg id="hq_combat_dice_odds" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
+          <style>
+            .doLabel{font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:end}
+            .doVal{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
+            .doDesc{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b)}
+          </style>
+          <rect width="600" height="220" fill="var(--card-bg,#fff)" rx="8"/>
+          <text x="300" y="22" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Chance of Rolling At Least 1 Skull 💀</text>
+          <!-- 1 die -->
+          <text x="95" y="62" class="doLabel">1 die</text>
+          <rect x="110" y="46" width="400" height="22" rx="4" fill="var(--border,#e2e8f0)"/>
+          <rect x="110" y="46" width="132" height="22" rx="4" fill="#ef4444"/>
+          <text x="176" y="62" class="doVal">33%</text>
+          <text x="520" y="62" class="doDesc">← Risky! Miss 2 out of 3</text>
+          <!-- 2 dice -->
+          <text x="95" y="102" class="doLabel">2 dice</text>
+          <rect x="110" y="86" width="400" height="22" rx="4" fill="var(--border,#e2e8f0)"/>
+          <rect x="110" y="86" width="224" height="22" rx="4" fill="#f59e0b"/>
+          <text x="222" y="102" class="doVal">56%</text>
+          <text x="520" y="102" class="doDesc">← Coin flip territory</text>
+          <!-- 3 dice -->
+          <text x="95" y="142" class="doLabel">3 dice</text>
+          <rect x="110" y="126" width="400" height="22" rx="4" fill="var(--border,#e2e8f0)"/>
+          <rect x="110" y="126" width="280" height="22" rx="4" fill="#22c55e"/>
+          <text x="250" y="142" class="doVal">70%</text>
+          <text x="520" y="142" class="doDesc">← Reliable but not guaranteed</text>
+          <!-- 4 dice -->
+          <text x="95" y="182" class="doLabel">4 dice</text>
+          <rect x="110" y="166" width="400" height="22" rx="4" fill="var(--border,#e2e8f0)"/>
+          <rect x="110" y="166" width="320" height="22" rx="4" fill="#3b82f6"/>
+          <text x="270" y="182" class="doVal">80%</text>
+          <text x="520" y="182" class="doDesc">← Strong odds (w/ weapon bonus)</text>
+          <text x="300" y="210" style="font:italic 11px 'Segoe UI',sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Each HeroQuest die has 3 skulls, 2 shields, 1 blank — P(skull) ≈ ½ per die</text>
+        </svg>
 
         <h2>🚀 Advanced Team Coordination</h2>
         

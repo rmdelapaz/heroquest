@@ -10,47 +10,7 @@
       import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
       mermaid.initialize({ startOnLoad: true });
     </script>
-    <style>
-        body { font-family: 'Georgia', serif; line-height: 1.6; margin: 0; padding: 20px; background: linear-gradient(135deg, #2f1b14, #654321, #8b4513, #a0522d); color: #f4f1e8; }
-        .container { max-width: 1200px; margin: 0 auto; background: rgba(0,0,0,0.9); padding: 30px; border-radius: 15px; box-shadow: 0 0 80px rgba(165,42,42,0.7); border: 3px solid #a52a2a; }
-        h1 { color: #d2691e; text-align: center; font-size: 2.8em; text-shadow: 3px 3px 8px #000, 0 0 30px #a52a2a; margin-bottom: 30px; }
-        h2 { color: #cd853f; border-bottom: 3px solid #cd853f; padding-bottom: 10px; margin-top: 40px; text-shadow: 2px 2px 4px #000; }
-        h3 { color: #daa520; margin-top: 30px; text-shadow: 1px 1px 2px #000; }
-        .ogre-card { background: linear-gradient(145deg, #2f1b14, #1a1a1a); border: 3px solid; border-radius: 15px; padding: 25px; margin: 25px 0; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.8); overflow: hidden; }
-        .ogre-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px; background: linear-gradient(90deg, transparent, rgba(210,105,30,0.8), transparent); animation: savageShimmer 5s infinite; }
-        @keyframes savageShimmer { 0%, 100% { transform: translateX(-200%); } 50% { transform: translateX(200%); } }
-        .horde-nature { border-color: #a52a2a; }
-        .ogre-society { border-color: #8b4513; }
-        .primitive-war { border-color: #654321; }
-        .tribal-leader { border-color: #d2691e; }
-        .savage-quest { border-color: #cd853f; }
-        .card-type { position: absolute; top: -18px; left: 25px; padding: 10px 25px; border-radius: 30px; font-weight: bold; font-size: 1em; text-transform: uppercase; letter-spacing: 1.5px; }
-        .horde-nature .card-type { background: #a52a2a; color: white; }
-        .ogre-society .card-type { background: #8b4513; color: white; }
-        .primitive-war .card-type { background: #654321; color: white; }
-        .tribal-leader .card-type { background: #d2691e; color: white; }
-        .savage-quest .card-type { background: #cd853f; color: black; }
-        .savage-chronicle { background: rgba(165,42,42,0.4); border: 3px solid #a52a2a; border-radius: 10px; padding: 25px; margin: 25px 0; position: relative; }
-        .savage-chronicle::before { content: "🗿"; position: absolute; top: -15px; left: 20px; font-size: 2.5em; background: rgba(0,0,0,0.9); padding: 8px; border-radius: 50%; }
-        .tribal-dynamics { background: rgba(139,69,19,0.3); border: 2px solid #8b4513; border-radius: 10px; padding: 20px; margin: 20px 0; }
-        .war-tactics { background: rgba(101,67,33,0.3); border-left: 5px solid #654321; padding: 20px; margin: 20px 0; }
-        .primal-instinct { background: rgba(210,105,30,0.2); border: 2px dashed #d2691e; border-radius: 10px; padding: 20px; margin: 20px 0; }
-        .brutality-tag { display: inline-block; background: rgba(165,42,42,0.6); border: 1px solid #a52a2a; border-radius: 5px; padding: 4px 10px; margin: 3px; font-size: 0.9em; font-weight: bold; color: #ff6b6b; }
-        .tribal-tag { display: inline-block; background: rgba(139,69,19,0.5); border: 1px solid #8b4513; border-radius: 5px; padding: 4px 10px; margin: 3px; font-size: 0.9em; color: #daa520; }
-        .savage-tag { display: inline-block; background: rgba(101,67,33,0.4); border: 1px solid #654321; border-radius: 5px; padding: 4px 10px; margin: 3px; font-size: 0.9em; color: #cd853f; }
-        #ogreHordeCanvas { border: 3px solid #d2691e; border-radius: 15px; background: radial-gradient(ellipse at center, #2f1b14, #1a1a1a, #000000); }
-        .mermaid { background: rgba(165,42,42,0.2); border-radius: 10px; padding: 20px; margin: 20px 0; }
-        .ferocity-meter { background: #333; border-radius: 12px; height: 28px; margin: 10px 0; overflow: hidden; position: relative; border: 2px solid #a52a2a; }
-        .ferocity-fill { height: 100%; border-radius: 10px; transition: width 0.6s ease; position: relative; }
-        .ferocity-label { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: white; font-weight: bold; font-size: 0.9em; text-shadow: 2px 2px 4px #000; }
-        .ogre-legend { background: rgba(101,67,33,0.4); border: 3px solid #654321; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: inset 0 0 30px rgba(165,42,42,0.3); }
-        .horde-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
-        .horde-member-card { background: rgba(165,42,42,0.3); border: 2px solid #a52a2a; border-radius: 12px; padding: 20px; position: relative; }
-        .tribal-hierarchy { background: rgba(139,69,19,0.4); border: 3px solid #8b4513; border-radius: 10px; padding: 20px; margin: 20px 0; box-shadow: inset 0 0 20px rgba(139,69,19,0.3); }
-        .savage-wisdom { background: rgba(160,82,45,0.3); border: 2px dashed #a0522d; border-radius: 10px; padding: 20px; margin: 20px 0; font-style: italic; }
-        .civilization-clash { background: rgba(210,105,30,0.3); border: 2px solid #d2691e; border-radius: 10px; padding: 20px; margin: 20px 0; }
-        .territorial-expansion { background: rgba(205,133,63,0.2); border: 2px solid #cd853f; border-radius: 10px; padding: 20px; margin: 20px 0; }
-    </style>
+
 </head>
 <body>
     <div class="container">

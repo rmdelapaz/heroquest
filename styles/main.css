@@ -123,63 +123,20 @@ q:after {
   content: "";
   content: none;
 }
-table, td, tr,th {
- border: 1px solid #333333;
+table, td, tr, th {
+  border: 1px solid var(--table-border);
   border-spacing: 0;
- padding: 5px;
- text-align: center;
-}
-sup {font-size: x-small;
-vertical-align: super;}
-sub {font-size: x-small;
-vertical-align: sub;}
-body {
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-  font-size: medium;
-  line-height: 110%;
-  background-color: rgb(248, 250, 252);
-  margin-left: 30px;
-  margin-right: 40px;
-  margin-bottom: 30px;
-  color: rgb(51, 65, 85);
-}
-h1,
-h2,
-h3, h4 {
-  font-weight: bolder;
-  background-color: rgb(59, 130, 246);
-  color: white;
-  margin: 1rem;
-  padding: 1rem;
-  line-height: 120%;
-}
-strong {font-weight: bold;color: rgb(17, 24, 39);}
-h1 {
-  font-size: 2rem;
+  padding: 5px;
   text-align: center;
-  border-bottom-width: 10px #333333 solid;
-  line-height: 120%;
+  color: var(--text);
 }
-
-h2 {
-  font-size: x-large;
-  margin-left: 20px;
-  margin-right: 20px;
+th {
+  background-color: var(--card-bg);
 }
+sup { font-size: x-small; vertical-align: super; }
+sub { font-size: x-small; vertical-align: sub; }
 
-h3 {
-  font-size: large;
-  margin-left: 30px;
-  margin-right: 30px;
-}
-
-h4 {margin-left: 35px;
-margin-right: 35px;}
-
-h5 {margin-left: 35px;}
-
-/* ── Dark mode CSS variables ── */
+/* ── CSS variables (light / dark) ── */
 :root {
   --bg: #f8fafc;
   --card-bg: #ffffff;
@@ -195,6 +152,10 @@ h5 {margin-left: 35px;}
   --nav-bg: #1e293b;
   --nav-border: #3b82f6;
   --table-border: #333333;
+  --accent: #3b82f6;
+  --accent-muted: rgba(59, 130, 246, 0.12);
+  --tag-bg: #e2e8f0;
+  --tag-text: #334155;
   --mermaid-bg: #ffffff;
   --mermaid-border: #e2e8f0;
   --mermaid-node-fill: #f8fafc;
@@ -218,6 +179,10 @@ h5 {margin-left: 35px;}
   --nav-bg: #0f172a;
   --nav-border: #1d4ed8;
   --table-border: #475569;
+  --accent: #60a5fa;
+  --accent-muted: rgba(96, 165, 250, 0.12);
+  --tag-bg: #334155;
+  --tag-text: #cbd5e1;
   --mermaid-bg: #1e293b;
   --mermaid-border: #334155;
   --mermaid-node-fill: #1e293b;
@@ -226,253 +191,443 @@ h5 {margin-left: 35px;}
   --mermaid-edge: #94a3b8;
 }
 
-[data-theme="dark"] body {
+/* ── Global resets & base ── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
   background-color: var(--bg);
+  margin: 0;
+  padding: 24px;
   color: var(--text);
+  -webkit-font-smoothing: antialiased;
 }
-[data-theme="dark"] h1, [data-theme="dark"] h2,
-[data-theme="dark"] h3, [data-theme="dark"] h4 {
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  padding: 48px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-weight: 700;
   background-color: var(--heading-bg);
   color: var(--heading-text);
+  margin: 1rem 0;
+  padding: 1rem;
+  line-height: 1.3;
+  border-radius: 6px;
 }
-[data-theme="dark"] strong { color: #e2e8f0; }
-[data-theme="dark"] code, [data-theme="dark"] pre {
+h1 { font-size: 2rem; text-align: center; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.2rem; }
+h4 { font-size: 1.05rem; }
+
+strong { font-weight: bold; color: var(--text); }
+
+p {
+  margin: 0.75rem 0;
+  padding: 0 0.5rem;
+}
+
+a { color: var(--link-color); transition: color 0.2s; }
+a:hover { opacity: 0.8; }
+h3 a { color: var(--heading-text); }
+
+/* ── Code (consolidated) ── */
+code, pre {
+  margin: 1rem 0;
+  font-family: 'Courier New', Courier, monospace;
   background-color: var(--code-bg);
   color: var(--code-text);
+  padding: 8px 12px;
+  line-height: 1.5;
+  border-radius: 4px;
 }
-[data-theme="dark"] a { color: var(--link-color); }
-[data-theme="dark"] h3 a { color: #e2e8f0; }
-[data-theme="dark"] blockquote {
-  background-color: var(--blockquote-bg);
-  color: var(--text);
+h1 code, h2 code, h3 code, h4 code,
+p code, pre code, li code {
+  margin-left: 0;
+  margin-right: 0;
 }
-[data-theme="dark"] table, [data-theme="dark"] td,
-[data-theme="dark"] tr, [data-theme="dark"] th {
-  border-color: var(--table-border);
-  color: var(--text);
-}
-[data-theme="dark"] th { background-color: var(--card-bg); color: var(--text); }
-[data-theme="dark"] .container {
-  background: var(--card-bg);
-  border-color: var(--border);
-}
-[data-theme="dark"] .mermaid_container,
-[data-theme="dark"] .mermaid-diagram,
-[data-theme="dark"] .mermaid {
-  background-color: var(--mermaid-bg);
-  border-color: var(--mermaid-border);
-}
-[data-theme="dark"] .mermaid .label text,
-[data-theme="dark"] .mermaid text {
-  fill: var(--mermaid-text) !important;
-}
-[data-theme="dark"] .mermaid .node rect,
-[data-theme="dark"] .mermaid .node circle,
-[data-theme="dark"] .mermaid .node ellipse,
-[data-theme="dark"] .mermaid .node polygon {
-  fill: var(--mermaid-node-fill);
-  stroke: var(--mermaid-node-stroke);
-}
-[data-theme="dark"] .mermaid .edgePath .path {
-  stroke: var(--mermaid-edge);
-}
-[data-theme="dark"] img { background-color: var(--card-bg); }
-[data-theme="dark"] .comment-block { border-left-color: #60a5fa; }
-
-table {
-  margin-left: 45px;
-}
-p {
-  margin-top: 10px;
-  margin-left: 45px;
-  margin-bottom: 5px;
-  margin-right: 40px;
-}
-
-h1 code {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-p code {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-
-pre code {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-h4 code { margin-left: 0px; margin-right: 0px;}
-h2 code { margin-left: 0px; margin-right: 0px;}
-h3 code { margin-left: 0px; margin-right: 0px;}
-li code { margin-left: 0px; margin-right: 0px;}
-code, pre {
-  
-  margin-top: 15px;
-  margin-left: 40px;
-  margin-right: 40px;
-  font-family: "Courier New", Courier, monospace;
-  background-color: rgb(248, 250, 252);
-  color: rgb(34, 139, 34);
-
-  padding-top: 5px;
-  padding-left: 2px;
-  line-height: 150%;
-
-}
-
-p code {
- margin-right: 0;
-}
-
-footer {
-  text-align: left;
-}
-ol li {
-  padding-top: 10px;
-  list-style-type:decimal ;
-}
-
-a {color: rgb(59, 130, 246);}
-ul li {
-  list-style-type: disc;
-}
-dl, ol, ul, li {
-  margin-left: 45px;
-  padding-top: 5px;
-}
-
-ul li ul li {
-  margin-left: 0px;
-}
-
-dd
-{
- margin-left: 25px;
- padding-bottom: 10px;
-
-}
-img {background-color: white;
-width:100%}
-
-div img {width:45%;
-text-align: center;}
-
-.center {text-align: center;}
-
-blockquote {margin-left: 150px;
-margin-right: 140px;
-background-color: rgb(226, 232, 240);
-color: rgb(51, 65, 85);
-padding: 12px;}
-
-footer {padding-bottom: 20px;}
-
-#sm-logo {width: 15%;
-height: 15%;}
-
 pre {
-
   padding: 15px;
   border-radius: 5px;
   overflow-x: auto;
 }
+.code-comment {
+  color: #0891b2;
+  font-style: italic;
+}
 
-h3 a { color: white;}
+/* ── Lists ── */
+ol li {
+  padding-top: 10px;
+  list-style-type: decimal;
+}
+ul li {
+  list-style-type: disc;
+}
+dl, ol, ul, li {
+  margin-left: 24px;
+  padding-top: 4px;
+}
+ul li ul li {
+  margin-left: 0;
+}
+dd {
+  margin-left: 25px;
+  padding-bottom: 10px;
+}
 
+/* ── Tables (consolidated) ── */
+table {
+  margin: 1rem auto;
+  border-collapse: collapse;
+}
+.table-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  overflow-x: auto;
+}
 
-        .code-comment {
-            color: #0891b2;
-            font-style: italic;
-        }
-        .comment-block {
-  
-            border-left: 4px solid #1890ff;
-            padding: 10px 15px;
-            margin: 15px 0;
-            border-radius: 0 5px 5px 0;
-        }
+/* ── Blockquotes ── */
+blockquote {
+  margin: 1rem 0;
+  padding: 16px 20px;
+  background-color: var(--blockquote-bg);
+  color: var(--text);
+  border-left: 4px solid var(--link-color);
+  border-radius: 0 8px 8px 0;
+}
 
-        /* Updated mermaid styling for light mode and centering */
-        .mermaid_container, .mermaid-diagram, .mermaid {
-            margin: 25px auto;
-            padding: 20px;
-            background-color: rgb(255, 255, 255);
-            color: rgb(51, 65, 85);
-            border: 1px solid rgb(226, 232, 240);
-            border-radius: 8px;
-            max-width: 90%;
-            text-align: center;
-            display: block;
-        }
+/* ── Comment blocks ── */
+.comment-block {
+  border-left: 4px solid var(--link-color);
+  padding: 10px 15px;
+  margin: 15px 0;
+  border-radius: 0 5px 5px 0;
+}
 
-        /* Style for SVG elements within mermaid diagrams */
-        .mermaid svg {
-            margin: 0 auto;
-            display: block;
-        }
-
-        /* Light theme for mermaid diagram elements */
-        .mermaid .node rect, 
-        .mermaid .node circle, 
-        .mermaid .node ellipse, 
-        .mermaid .node polygon, 
-        .mermaid .node path {
-            fill: rgb(248, 250, 252);
-            stroke: rgb(148, 163, 184);
-        }
-
-        .mermaid .edgePath .path {
-            stroke: rgb(71, 85, 105);
-        }
-
-        .mermaid .label {
-            color: rgb(51, 65, 85);
-            fill: rgb(51, 65, 85);
-        }
-
-        .mermaid .cluster rect {
-            fill: rgb(241, 245, 249);
-            stroke: rgb(148, 163, 184);
-        }
-        
-        /* Ensure text labels are visible in light mode */
-        .mermaid .label text, 
-        .mermaid text {
-            fill: #1f2937 !important;
-        }
-
-        /* Specific styling for mindmap and flowchart text */
-        .mermaid .flowchart-label text,
-        .mermaid .mindmap-node text,
-        .mermaid .mindmap-node .nodeText,
-        .mermaid .nodeLabel {
-            fill: #1f2937 !important;
-            color: #1f2937 !important;
-        }
+/* ── Images & media ── */
+img {
+  max-width: 100%;
+  height: auto;
+  background-color: var(--card-bg);
+}
+div img { max-width: 45%; }
 
 svg {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
+  height: auto;
 }
-
-/* For SVG elements within containers */
+canvas {
+  max-width: 100%;
+  height: auto;
+}
 .svg-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-table {
-  margin-left: auto;
-  margin-right: auto;
-  border-collapse: collapse; /* Optional: removes double borders */
+
+/* ── Canvas container (shared across content pages) ── */
+.canvas-container {
+  text-align: center;
+  margin: 1.5rem 0;
+  padding: 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
 
-/* For responsive tables that might need a container */
-.table-container {
+/* ── Mermaid diagrams (all CSS-variable driven) ── */
+.mermaid_container, .mermaid-diagram, .mermaid {
+  margin: 25px auto;
+  padding: 20px;
+  background-color: var(--mermaid-bg);
+  color: var(--mermaid-text);
+  border: 1px solid var(--mermaid-border);
+  border-radius: 8px;
+  max-width: 90%;
+  text-align: center;
+  display: block;
+}
+.mermaid svg {
+  margin: 0 auto;
+  display: block;
+}
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path {
+  fill: var(--mermaid-node-fill);
+  stroke: var(--mermaid-node-stroke);
+}
+.mermaid .edgePath .path {
+  stroke: var(--mermaid-edge);
+}
+.mermaid .label {
+  color: var(--mermaid-text);
+  fill: var(--mermaid-text);
+}
+.mermaid .cluster rect {
+  fill: var(--mermaid-node-fill);
+  stroke: var(--mermaid-node-stroke);
+}
+.mermaid .label text,
+.mermaid text {
+  fill: var(--mermaid-text) !important;
+}
+.mermaid .flowchart-label text,
+.mermaid .mindmap-node text,
+.mermaid .mindmap-node .nodeText,
+.mermaid .nodeLabel {
+  fill: var(--mermaid-text) !important;
+  color: var(--mermaid-text) !important;
+}
+
+/* ── Footer ── */
+footer {
+  text-align: left;
+  padding-bottom: 20px;
+}
+
+/* ── Misc ── */
+.center { text-align: center; }
+#sm-logo { width: 15%; height: 15%; }
+
+/* ══════════════════════════════════════════════════════
+   Shared component classes
+   (promoted from stripped inline styles — used across
+    multiple content pages as common UI patterns)
+   ══════════════════════════════════════════════════════ */
+
+/* ── Cards (quest, spell, hero, artifact, etc.) ── */
+.quest-card,
+.spell-card,
+.hero-card,
+.artifact-card,
+.villain-card,
+.dungeon-card,
+.kingdom-card,
+.event-card,
+.divine-card,
+.mentor-card,
+.spirit-card,
+.ogre-card,
+.frost-card,
+.mirror-card,
+.witch-card,
+.prophecy-card,
+.tool-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 1rem 0;
+  transition: box-shadow 0.2s;
+}
+.quest-card:hover,
+.spell-card:hover,
+.hero-card:hover,
+.tool-panel:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* ── Stat display ── */
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+.stat-row {
   display: flex;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+.stat-row:last-child { border-bottom: none; }
+.stat-label {
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.stat-value {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 1.1rem;
+}
+
+/* ── Tags / badges ── */
+.impact-tag, .domain-tag, .teaching-tag,
+.ability-tag, .specialty-tag, .motivation-tag,
+.legacy-tag, .influence-tag, .participant-tag,
+.weakness-tag, .settlement-type, .balance-tag,
+.hazard-tag, .mystery-tag, .reward-tag,
+.power-tag, .rarity-tag, .curse-tag,
+.defense-tag, .threat-tag, .creation-tag,
+.digital-tag, .platform-tag, .tool-tag,
+.sorrow-tag, .ethereal-tag, .spirit-tag,
+.brutality-tag, .tribal-tag, .savage-tag,
+.frost-tag, .ice-tag, .cold-tag,
+.reflection-tag, .illusion-tag, .mirror-tag,
+.malice-tag, .corruption-tag,
+.fate-tag, .vision-tag, .oracle-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  margin: 2px 4px;
+}
+
+/* ── Progress / power bars ── */
+.power-fill {
+  height: 8px;
+  border-radius: 4px;
+  background: var(--accent);
+  transition: width 0.4s ease;
+}
+.power-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* ── Callout boxes (analogy, tip, warning, etc.) ── */
+.analogy-box, .practice-box, .beginner-tip,
+.combat-example, .trap-example, .special-ability,
+.treasure-box, .spell-ability, .ranged-box,
+.flexibility-highlight, .spell-mastery,
+.vulnerability-warning, .tactical-box,
+.dark-magic, .balance-warning, .tactical-hybrid,
+.inspiration-power, .support-mastery,
+.versatility-highlight, .team-synergy,
+.chivalric-code, .defensive-mastery,
+.protection-aura, .berserker-rage, .primal-fury,
+.survival-mastery, .exploration-skills,
+.martial-arts, .inner-peace,
+.stealth-mastery, .cunning-tactics,
+.nature-magic, .elemental-power {
+  background: var(--accent-muted);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  margin: 1rem 0;
+  color: var(--text);
+}
+
+/* ── Scrolls / chronicles / tomes (lore flavor) ── */
+.ancient-scroll, .dark-scroll, .legend-scroll,
+.celestial-tome, .arcane-tome, .chronicle-tome,
+.dark-chronicle, .ethereal-chronicle,
+.savage-chronicle, .glacial-chronicle,
+.reflection-chronicle, .mystic-scroll,
+.keep-chronicle, .wisdom-scroll,
+.legend-tome, .prophecy-scroll {
+  background: var(--accent-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--text);
+}
+
+/* ── Quest checklist ── */
+.quest-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.quest-item:last-child { border-bottom: none; }
+.quest-checkbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.quest-checkbox:checked {
+  background: var(--accent);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+}
+.quest-text {
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ── Tool panel titles ── */
+.tool-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--heading-text);
+  background: var(--heading-bg);
+  padding: 8px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+/* ── Modifier buttons (digital toolkit) ── */
+.mod-btn {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--card-bg);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+.mod-btn:hover {
+  background: var(--accent-muted);
+  border-color: var(--accent);
+}
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 768px) {
+  body { padding: 16px; }
+  .container { padding: 24px; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+  h3 { font-size: 1.1rem; }
+  p { padding: 0; }
+  dl, ol, ul, li { margin-left: 16px; }
+  pre { overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; }
+  div img { max-width: 80%; }
+}
+
+@media (max-width: 480px) {
+  body { padding: 8px; }
+  .container { padding: 16px; border-radius: 8px; }
+  h1 { font-size: 1.4rem; padding: 0.75rem; }
+  h2 { font-size: 1.15rem; padding: 0.75rem; }
+  h3 { font-size: 1rem; padding: 0.6rem; }
+  dl, ol, ul, li { margin-left: 12px; }
+  div img { max-width: 100%; }
 }
