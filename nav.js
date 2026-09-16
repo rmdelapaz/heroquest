@@ -86,7 +86,7 @@
   nav.innerHTML = `
     <div class="hq-nav-inner">
       <a href="/index.html" class="hq-nav-brand">⚔️ HeroQuest</a>
-      <button class="hq-nav-hamburger" id="hq-hamburger" aria-label="Toggle menu">☰</button>
+      <button class="hq-nav-hamburger" id="hq-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="hq-nav-links">☰</button>
       <div class="hq-nav-links" id="hq-nav-links">
         <a href="/index.html">🏠 Home</a>
         <a href="https://rays-home.netlify.app/" target="_blank" rel="noopener">🏡 Ray's House of Fun</a>
@@ -99,7 +99,8 @@
 
   /* Hamburger toggle */
   document.getElementById('hq-hamburger').addEventListener('click', function () {
-    document.getElementById('hq-nav-links').classList.toggle('open');
+    const open = document.getElementById('hq-nav-links').classList.toggle('open');
+    this.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
   /* Theme button */
@@ -161,6 +162,14 @@
       border-bottom: none !important; white-space: nowrap;
     }
     .hq-nav-links a:hover { background: rgba(255,255,255,0.1); color: #fff !important; }
+    /* Visible keyboard focus on dark navbar */
+    #hq-topnav a:focus-visible,
+    #hq-topnav button:focus-visible {
+      outline: 3px solid #fff; outline-offset: 2px; border-radius: 6px;
+    }
+    .hq-page-nav a:focus-visible {
+      outline: 3px solid var(--accent, #2563eb); outline-offset: 2px; border-radius: 8px;
+    }
     .hq-theme-btn {
       background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
       color: #cbd5e1; padding: 6px 14px; border-radius: 6px; cursor: pointer;

@@ -142,12 +142,12 @@ sub { font-size: x-small; vertical-align: sub; }
   --card-bg: #ffffff;
   --text: #334155;
   --text-muted: #64748b;
-  --heading-bg: #3b82f6;
+  --heading-bg: #2563eb;
   --heading-text: #ffffff;
   --border: #e2e8f0;
   --code-bg: #f1f5f9;
-  --code-text: #228b22;
-  --link-color: #3b82f6;
+  --code-text: #15803c;
+  --link-color: #2563eb;
   --blockquote-bg: #e2e8f0;
   --nav-bg: #1e293b;
   --nav-border: #3b82f6;
@@ -241,6 +241,35 @@ p {
 a { color: var(--link-color); transition: color 0.2s; }
 a:hover { opacity: 0.8; }
 h3 a { color: var(--heading-text); }
+
+/* ── Accessibility: visible keyboard focus ── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+.mod-btn:focus-visible,
+.quest-checkbox:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+/* Fallback for browsers without :focus-visible */
+a:focus, button:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+a:focus:not(:focus-visible), button:focus:not(:focus-visible) { outline: none; }
+
+/* ── Accessibility: respect reduced-motion preference ── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* ── Code (consolidated) ── */
 code, pre {
@@ -620,6 +649,11 @@ footer {
   dl, ol, ul, li { margin-left: 16px; }
   pre { overflow-x: auto; white-space: pre-wrap; word-wrap: break-word; }
   div img { max-width: 80%; }
+  /* Comfortable touch targets on small screens */
+  .mod-btn { padding: 10px 16px; min-height: 44px; }
+  .quest-checkbox { width: 24px; height: 24px; }
+  /* Prevent long inline strings from forcing horizontal scroll */
+  body { overflow-wrap: break-word; }
 }
 
 @media (max-width: 480px) {
