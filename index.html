@@ -97,6 +97,11 @@ img{max-width:100%;height:auto}
 .card-title{font-size:1.1rem;font-weight:700;margin-bottom:8px}
 .card-title a{color:var(--text)}
 .card-title a:hover{color:var(--accent)}
+/* Make the whole card clickable via the title link (stretched-link pattern) */
+.card:hover{cursor:pointer}
+.card:hover .card-title a{color:var(--accent)}
+.card-title a::after{content:'';position:absolute;inset:0;z-index:1}
+.card-tags,.card-desc{position:relative;z-index:0}
 .card-desc{color:var(--text-2);font-size:.9rem;line-height:1.5;flex:1}
 .card-tags{margin-top:12px;font-size:.8rem;color:var(--text-3)}
 
