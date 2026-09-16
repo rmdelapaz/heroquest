@@ -228,7 +228,8 @@
 - Old utility scripts deleted: `audit_critical.py`, `find_text_colors.py`, `dark_mode_audit.py`
 - ~~Canvas container wrapper fix (`fix_canvas_wrap.py`) — sitewide scan and auto-fix~~ ✅
 - **Session 10:** Restored interactive component layout CSS on 3 pages (knight, delthrak, basics); rebuilt basics combat simulator; added click feedback (selected highlights + scrollIntoView) to all interactive grids
-- Remaining: spot-check other expansion pages for similar interactive layout issues (rise_dread_moon, frozen_horror, mage_of_mirror, spirit_queens_torment, against_ogre_horde, etc.), then deploy
+- **Session 11:** Comprehensive CSS restoration and interactive component fixes across 16 files (see Session 11 notes below)
+- Remaining: deploy to Netlify
 
 ### ~~6. Potential Further Improvements~~ ✅ DONE (Session 7)
 - ~~Simplify redundant dark mode overrides in main.css~~ ✅
@@ -337,6 +338,38 @@ Directive: Read each page, identify sections where a diagram/illustration/chart 
 - Built `fix_canvas_wrap.py` — scans all HTML files for `<canvas>` not wrapped in `.canvas-container`, auto-wraps with container + auto-generated `<h3>` title
 - Dry run mode (default) reports issues; `--fix` flag applies changes
 - Run sitewide and fixed all unwrapped canvases across the project
+
+### Session 11 — CSS Restoration, Interactive Fixes, HQ Accuracy Corrections (April 2026)
+
+**Canvas draw-order fixes (lines behind boxes/text):**
+- `heroquest_dungeon_mastering.html` — Voice Acting canvas: split single forEach into two passes (lines first, then DM box + NPC boxes + text)
+- `heroquest_magic_spells.html` — Spell Synergy canvas: lines first, then wizard box + combo circles + text
+- `heroquest_treasure_progression.html` — Equipment Synergy canvas: three passes (lines → circles + item boxes → all text last); Trading System canvas: lines first, then marketplace + trader boxes
+- `heroquest_kellars_keep.html` — DM Tools canvas: lines first, then DM center + tool boxes + text
+
+**Interactive component rebuilds (HeroQuest accuracy):**
+- `heroquest_magic_spells.html` — Spell Laboratory: removed fake mana bar + regeneration system, replaced with one-use spell card system matching real HeroQuest (each spell cast once per quest, `.spent` greyed-out state, "New Quest" reset button, 8 real HQ spells with accurate effects)
+- `heroquest_treasure_progression.html` — Character Progression Simulator: replaced percentage bars (Attack Power/Defense/Health/Utility) with HQ dice-based stats (Attack Dice/Defend Dice/Body Points/Mind Points as visual 🎲 icons), real Armoury equipment (Shield, Helmet, Chain Mail, Broadsword, Battle Axe, Healing Potion, Plate Mail, Crossbow), randomized 5-of-8 pool per quest, equipment tag inventory, "New Quest" reset
+
+**Scoped CSS restoration — 16 files, page-specific callout boxes + interactive components:**
+- `heroquest_magic_spells.html` — `.magic-principle`, `.mystical-box`, `.grimoire-entry` callouts + `.spell-matrix`/`.spell-rune` (grid + hover/active/spent states)
+- `heroquest_treasure_progression.html` — `.treasure-principle`, `.progression-box`, `.equipment-card`, `.reward-system` callouts + `.chest-row`/`.treasure-chest` + `.character-sheet`/`.stat-row-sim`/`.die-icon` (with `.bonus` pop-in) + `.equip-inventory`/`.equip-tag`
+- `heroquest_original_quests.html` — `.quest-principle`, `.strategy-box`, `.design-analysis` callouts + `.quest-selector`/`.quest-button` (flex row + `.active`) + `.difficulty-meter`/`.difficulty-indicator`
+- `heroquest_digital_toolkit.html` — 62 rules restored: `.toolkit-realm`, `.quick-actions`/`.quick-btn`, `.toolkit-grid`, `.dice-container`/`.die` (`.rolling` animation), `.roll-controls`/`.roll-btn`, `.roll-results`, `.health-tracker`/`.heart` (`.empty`), `.treasure-generator`/`.treasure-btn`, `.mana-tracker`/`.mana-circle` (`.spent`), `.spell-grid`/`.spell-card`, `.combat-grid`/`.combatant`, `.settings-panel`/`.setting-toggle`, `.notification`, `.floating-dice`, `.course-section`/`.course-grid`
+- `heroquest_kellars_keep.html` — `.expansion-principle`, `.feature-analysis`, `.strategy-box` callouts + `.character-showcase`/`.character-portrait` + `.monster-gallery`/`.monster-card` + `.innovation-card` + `.quest-progression`/`.quest-node`/`.quest-arrow` (horizontal flow)
+- `heroquest_return_witch_lord.html` — `.villain-principle`, `.epic-box`, `.dramatic-analysis` callouts + `.witch-lord-portrait` + `.power-meter`/`.power-indicator` + `.spell-arsenal`/`.spell-showcase` + `.boss-phases`/`.phase-node`/`.phase-arrow` (horizontal flow) + `.legendary-encounters`/`.encounter-card`
+- `heroquest_prophecy_telor.html` — `.prophecy-principle`, `.destiny-box`, `.mystical-analysis` callouts + `.telor-avatar` + `.fate-meter`/`.fate-indicator` + `.prophecy-scroll` + `.divine-powers`/`.power-showcase` + `.prophecy-tracker`/`.prophecy-stage` (horizontal flow)
+- `heroquest_spirit_queens_torment.html` — fixed missing `</head>`/`<body>` tags + `.spirit-realm`, `.ethereal-principle`, `.torment-box`, `.horror-analysis`, `.bard-section` callouts + `.spirit-queen-portrait`, `.bard-portrait` + `.sanity-meter`/`.sanity-indicator` + `.musical-notation` + `.bard-card`/`.spectral-card` + `.torment-tracker`/`.torment-stage`/`.phase-connector` (horizontal flow) + `.sanity-levels`/`.sanity-state` + `.ethereal-creatures`/`.creature-manifestation` + `.ethereal-battlefield`/`.ethereal-cell` (8-col grid, 6 variants) + `.ethereal-wisp`/`.musical-note`
+- `heroquest_against_ogre_horde.html` — `.warfare-principle`, `.tactical-box`, `.strategy-analysis`, `.druid-section` callouts + `.horde-counter` + `.druid-portrait` + `.druid-card`/`.army-card` + `.engagement-scale`/`.scale-indicator` + `.army-display`/`.unit-showcase` + `.mass-combat-demo` + `.battle-formation`/`.formation-cell` (8-col grid, 7 variants) + `.nature-effects`
+- `heroquest_frozen_horror.html` — `.blizzard-effect`, `.frost-principle`, `.environmental-analysis`, `.survival-box` callouts + `.temperature-gauge`/`.temp-indicator` + `.survival-meter`/`.survival-stat` + `.arctic-card` + `.ice-creature-gallery`/`.creature-portrait` + `.frozen-terrain`/`.terrain-cell` (10-col grid, 6 variants) + `.snowflake`
+- `heroquest_mage_of_mirror.html` — `.mirror-realm`, `.mirror-principle`, `.reality-box`, `.arcane-analysis` callouts + `.mirror-portal` + `.reality-meter`/`.reality-indicator` + `.dimensional-layers`/`.layer-node` (with `.active`) + `.dimensional-magic`/`.spell-reflection` + `.dimensional-card` + `.spell-matrix`/`.matrix-spell` + `.mirror-battlefield`/`.mirror-cell` (8-col grid, 6 variants) + `.reality-fragment`
+- `heroquest_rise_dread_moon.html` — `.lunar-principle`, `.knight-principle`, `.transformation-box`, `.moon-analysis` callouts + `.dread-moon-portal` + `.night-sky`/`.star` + `.moon-phase-meter`/`.moon-indicator` + `.curse-meter`/`.curse-indicator` + `.moon-cycles`/`.moon-phase` (8 circular selectors) + `.transformation-tracker`/`.transform-stage` (horizontal flow) + `.lunar-battlefield`/`.lunar-cell` (8-col grid, 6 variants + `.selected`) + `.beast-forms`/`.beast-showcase` + `.knight-beast-comparison`/`.knight-form`/`.beast-form` + `.knight-equipment`/`.equipment-item`
+
+**Canvas text/label fixes:**
+- `heroquest_barbarian_tutorial.html` — Equipment Impact canvas: widened group spacing (120px→150px), bars shifted up, labels separated into rows, "Enhanced" shortened to "+Equip" at 10px
+- `heroquest_wizard_tutorial.html` — Spell Combos canvas: MP cost label moved from below black bar (obscured) to right of bar, vertically centered, left-aligned
+- `heroquest_berserker_tutorial.html` — Rage State canvas: "dice" → "d6" in attack labels to prevent overlap with adjacent percentage labels
+
 
 ### Session 7 — main.css Cleanup + Canvas Helper + Shared Components (April 2026)
 
