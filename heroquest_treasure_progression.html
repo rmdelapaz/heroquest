@@ -3,797 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Treasure, Equipment, and Character Progression</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Treasure &amp; Equipment - The HeroQuest Guide</title>
+    <meta name="description" content="HeroQuest treasure and equipment: how searching works, quest gold, the armory between quests, what each weapon and armor adds, potions and artifacts.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
     <style>
-    /* ── Callout boxes (page-specific, not in main.css) ── */
-    .treasure-principle, .progression-box, .equipment-card, .reward-system {
-      background: var(--accent-muted);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 1rem 0;
-      color: var(--text);
-    }
+        /* ── Armory planner ── */
+        .planner-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 20px; }
+        .planner-grid fieldset { border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; margin: 0; }
+        .planner-grid legend { font-weight: 700; color: var(--heading); padding: 0 4px; }
+        .planner-grid label { display: block; margin: 4px 0; cursor: pointer; }
+        .planner-grid label.off { color: var(--muted); text-decoration: line-through; }
+        .planner-grid select { font: inherit; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); max-width: 100%; }
+        .planner-out { margin-top: 1rem; }
+        .planner-out table { margin: 0.4rem 0 0; }
 
-    /* ── Treasure chests ── */
-    .chest-row {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin: 1.25rem 0;
-    }
-    .treasure-chest {
-      width: 64px;
-      height: 64px;
-      font-size: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(139, 69, 19, 0.3);
-      border: 2px solid #daa520;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      user-select: none;
-    }
-    .treasure-chest:hover:not(.opened) {
-      transform: scale(1.12);
-      box-shadow: 0 0 14px rgba(218, 165, 32, 0.5);
-      background: rgba(139, 69, 19, 0.5);
-    }
-    .treasure-chest.opened {
-      opacity: 0.35;
-      cursor: not-allowed;
-      transform: scale(0.9);
-      filter: grayscale(0.6);
-      border-color: #777;
-    }
-
-    /* ── Character sheet ── */
-    .character-sheet {
-      background: rgba(139, 69, 19, 0.15);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 1rem 0;
-    }
-    .stat-row-sim {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin: 8px 0;
-    }
-    .stat-row-sim .stat-name {
-      width: 110px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-    .stat-row-sim .dice-display {
-      display: flex;
-      gap: 4px;
-    }
-    .stat-row-sim .die-icon {
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      background: rgba(218, 165, 32, 0.25);
-      border: 1px solid #daa520;
-      border-radius: 5px;
-      transition: all 0.3s;
-    }
-    .stat-row-sim .die-icon.bonus {
-      background: rgba(50, 205, 50, 0.3);
-      border-color: #32cd32;
-      animation: dicePopIn 0.4s ease;
-    }
-    @keyframes dicePopIn {
-      0% { transform: scale(0); opacity: 0; }
-      60% { transform: scale(1.3); }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    .stat-row-sim .bp-display {
-      font-weight: 700;
-      font-size: 1.1rem;
-      color: var(--text);
-      min-width: 50px;
-    }
-
-    /* ── Equipment inventory ── */
-    .equip-inventory {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .equip-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px 10px;
-      background: rgba(218, 165, 32, 0.2);
-      border: 1px solid #daa520;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      color: var(--text);
-      animation: dicePopIn 0.4s ease;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .chest-row { gap: 10px; }
-      .treasure-chest { width: 52px; height: 52px; font-size: 28px; }
-      .stat-row-sim { flex-wrap: wrap; }
-      .stat-row-sim .stat-name { width: 100%; }
-    }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>💰 Treasure, Equipment, and Character Progression 🏆</h1>
-        
-        <div class="treasure-principle">
-            <h2>🎯 The Psychology of Rewards: Why Treasure Matters</h2>
-            <p><strong>Treasure in HeroQuest is like the paycheck and promotion system in your career!</strong> It's not just about the gold coins - it's about the feeling of growth, accomplishment, and becoming more powerful. Every piece of equipment tells a story of triumph, every magical item represents a challenge overcome.</p>
-            
-            <p><strong>Real-world analogy:</strong> Think of character progression like leveling up in your favorite video game, combined with the satisfaction of collecting rare baseball cards, and the practical benefits of upgrading your tools at work. Each new piece of equipment should make you feel both more powerful and more invested in your character's story.</p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Treasure &amp; Equipment</h1>
+        <p>How heroes find treasure, earn gold and spend it in the armory between quests, with the real numbers behind every weapon and piece of armor.</p>
+    </header>
 
-        <h2>🎪 The Three Pillars of Meaningful Progression</h2>
-        
-        <div class="mermaid">
-            graph TD
-                A[Character Growth] --> B[Power Increase]
-                A --> C[Story Investment]
-                A --> D[Strategic Options]
-                
-                B --> B1[Better Combat Stats]
-                B --> B2[Enhanced Abilities]
-                B --> B3[Survival Tools]
-                
-                C --> C1[Personal Achievement]
-                C --> C2[Memorable Moments]
-                C --> C3[Character Identity]
-                
-                D --> D1[Tactical Flexibility]
-                D --> D2[Problem Solving]
-                D --> D3[Role Specialization]
-                
-                style A fill:#ffd700,stroke:#333,stroke-width:3px
-                style B fill:#daa520,stroke:#333,stroke-width:2px
-                style C fill:#daa520,stroke:#333,stroke-width:2px
-                style D fill:#daa520,stroke:#333,stroke-width:2px
-        </div>
+    <main id="main">
+<section>
+<h2>How Heroes Grow</h2>
+<p>HeroQuest has no experience points or levels. A hero's Attack, Defend, Body and Mind start where the hero card says, and they grow in only three ways:</p>
+<ul>
+    <li><strong>Equipment</strong> bought from the armory between quests: weapons set your Attack dice, and armor adds Defend dice.</li>
+    <li><strong>Artifacts</strong> found in the quests themselves.</li>
+    <li><strong>Potions and one-off treasure</strong> that help during a quest.</li>
+</ul>
+<p>Gold and gear carry over from quest to quest, recorded on your character sheet. Heroes who complete all 14 quests of the core Quest Book earn the title of Sovereign Knights.</p>
+</section>
 
-        <h2>🏴‍☠️ Treasure Types: The Reward Ecosystem</h2>
-        
-        <div class="equipment-card">
-            <h3>💰 Gold Coins: The Universal Currency</h3>
-            <p><strong>Purpose:</strong> Freedom and flexibility</p>
-            <p><strong>Psychology:</strong> Immediate gratification and security</p>
-            <p><strong>Best Use:</strong> Equipment purchases and emergency supplies</p>
-            <p><strong>Design Philosophy:</strong> Like having cash in your wallet - always useful, provides options and peace of mind</p>
-        </div>
+<section>
+<h2>Finding Treasure</h2>
+<p>Searching for treasure is one of the six hero actions:</p>
+<ul>
+    <li>You can only search <strong>rooms</strong>, not corridors, and only when <strong>no monster is in the room</strong>.</li>
+    <li>Each hero may search a given room <strong>once</strong>, but every hero may take a turn searching the same room.</li>
+    <li>If the quest notes list special treasure for that room, Zargon reads it out. Otherwise you draw from the <strong>treasure deck</strong> (24 cards in the core game).</li>
+    <li>Almost half of the treasure deck is <strong>wandering monsters and hazards</strong>. A wandering monster appears next to you and attacks; hazards do what the card says. Those cards go back in the deck.</li>
+    <li>Chests and other furniture can be trapped. Search for traps first, or risk springing one.</li>
+</ul>
+<p>Quests also pay rewards. In the core Quest Book, Prince Magnus offers 240 gold coins (split among the heroes) for rescuing Sir Ragnar; the King pays each hero 100 gold coins for finding the lost wizard Wardoz, and 100 each for destroying Balur the Fire Mage; and <em>Bastion of Dread</em> pays a bounty for every monster killed. Players may share gold with each other.</p>
+</section>
 
-        <div class="equipment-card">
-            <h3>⚔️ Weapons: Tools of Heroism</h3>
-            <p><strong>Purpose:</strong> Direct power increase</p>
-            <p><strong>Psychology:</strong> Feeling of strength and capability</p>
-            <p><strong>Best Use:</strong> Enhancing combat effectiveness</p>
-            <p><strong>Design Philosophy:</strong> Like upgrading from a bicycle to a motorcycle - same function, much more powerful</p>
-        </div>
+<section>
+<h2>Between Quests</h2>
+<ol>
+    <li>Split any final reward among the heroes and record it.</li>
+    <li>If the quest was completed, every hero gets back all Body and Mind Points and every spell cast.</li>
+    <li>Visit the <strong>armory</strong>: buy any number of items from the equipment deck. Items are always in stock, so two heroes can both buy a helmet.</li>
+    <li>Keep any treasures you found; they come with you into the next quest.</li>
+</ol>
+<p>The First Light rulebook (same rules as the 2021 game) also lets heroes <strong>sell</strong> armory items back for half the listed price, rounded down: a 350-gold longsword sells for 175. The <em>Rise of the Dread Moon</em> pack adds an Underground Market that also buys items at half price.</p>
+</section>
 
-        <div class="equipment-card">
-            <h3>🛡️ Armor: Protection and Confidence</h3>
-            <p><strong>Purpose:</strong> Survival and risk mitigation</p>
-            <p><strong>Psychology:</strong> Security and boldness</p>
-            <p><strong>Best Use:</strong> Allowing aggressive tactics</p>
-            <p><strong>Design Philosophy:</strong> Like having good insurance - lets you take calculated risks</p>
-        </div>
+<section>
+<h2>The Armory</h2>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> most prices and effects below are the classic North American armory. The 2021 line confirms the Dagger at 25, the Shortsword at 150 and the Longsword at 350 gold coins; other 2021 prices may differ, so check your equipment cards. The European original priced some items differently and had extra items such as the Hand Axe, Spear, Bracers and Cloak of Protection.</p>
+</div>
+<h3>Weapons</h3>
+<div class="table-container">
+<table>
+<thead><tr><th>Weapon</th><th>Gold</th><th>Attack dice</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Dagger</td><td>25</td><td>1</td><td>Can be thrown at any monster you can see, but is lost once thrown. Wizard may use.</td></tr>
+<tr><td>Staff</td><td>100</td><td>1</td><td>Attacks diagonally. No shield. Wizard may use.</td></tr>
+<tr><td>Shortsword</td><td>150</td><td>2</td><td></td></tr>
+<tr><td>Broadsword</td><td>250</td><td>3</td><td>The Barbarian's starting weapon.</td></tr>
+<tr><td>Longsword</td><td>350</td><td>3</td><td>Attacks diagonally.</td></tr>
+<tr><td>Crossbow</td><td>350</td><td>3</td><td>Fires at any monster you can see, but not one next to you. Unlimited bolts.</td></tr>
+<tr><td>Battle Axe</td><td>400</td><td>4</td><td>No shield.</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Armor and Tools</h3>
+<div class="table-container">
+<table>
+<thead><tr><th>Item</th><th>Gold</th><th>Defend dice</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Helmet</td><td>125</td><td>+1</td><td></td></tr>
+<tr><td>Shield</td><td>150</td><td>+1</td><td>Not with the Battle Axe or Staff.</td></tr>
+<tr><td>Chain Mail</td><td>500</td><td>+1</td><td>Combines with helmet and shield.</td></tr>
+<tr><td>Plate Armor</td><td>850</td><td>+2</td><td>So heavy you roll only 1 red die to move. Combines with helmet and shield.</td></tr>
+<tr><td>Tool Kit</td><td>250</td><td>none</td><td>Lets a hero try to disarm a found trap (any result but a skull on one combat die). The Dwarf doesn't need one.</td></tr>
+</tbody>
+</table>
+</div>
+<p>The Wizard can't wear normal armor or use large weapons, and the rulebook advises him to save his money. A new weapon <em>replaces</em> your Attack dice rather than adding to them: if the Elf buys a longsword, the Elf rolls 3 Attack dice.</p>
+</section>
 
-        <div class="equipment-card">
-            <h3>🧪 Potions: Emergency Insurance</h3>
-            <p><strong>Purpose:</strong> Crisis management</p>
-            <p><strong>Psychology:</strong> Safety net and emergency power</p>
-            <p><strong>Best Use:</strong> Crucial moments and tight situations</p>
-            <p><strong>Design Philosophy:</strong> Like a first aid kit - hope you don't need it, glad you have it</p>
-        </div>
+<section>
+<h2>What an Upgrade Is Worth</h2>
+<p>Exact odds per attack, using classic monster stats (Orc: 2 Defend dice; Dread Warrior: 4 Attack, 4 Defend, 3 Body).</p>
+<div class="table-container">
+<table>
+<thead><tr><th>Attack dice</th><th>Example weapon</th><th>Wounds an Orc</th><th>Wounds a Dread Warrior</th><th>Kills a Dread Warrior within 3 attacks</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Dagger, Staff</td><td>34.7%</td><td>24.1%</td><td>1.4%</td></tr>
+<tr><td>2</td><td>Shortsword</td><td>59.0%</td><td>45.8%</td><td>25.2%</td></tr>
+<tr><td>3</td><td>Broadsword, Longsword, Crossbow</td><td>75.0%</td><td>62.9%</td><td>58.6%</td></tr>
+<tr><td>4</td><td>Battle Axe</td><td>85.1%</td><td>75.4%</td><td>81.6%</td></tr>
+</tbody>
+</table>
+</div>
+<div class="table-container">
+<table>
+<thead><tr><th>Hero's Defend dice</th><th>Example kit</th><th>A Dread Warrior wounds you</th><th>Average Body Points lost</th></tr></thead>
+<tbody>
+<tr><td>2</td><td>none</td><td>75.7%</td><td>1.40</td></tr>
+<tr><td>3</td><td>helmet</td><td>65.5%</td><td>1.15</td></tr>
+<tr><td>4</td><td>helmet + shield</td><td>55.6%</td><td>0.93</td></tr>
+<tr><td>5</td><td>helmet + shield + chain mail</td><td>46.3%</td><td>0.75</td></tr>
+<tr><td>6</td><td>helmet + shield + plate armor</td><td>38.0%</td><td>0.59</td></tr>
+</tbody>
+</table>
+</div>
+<p>Two practical points follow. For the Dwarf and Elf, the jump from 2 to 3 Attack dice (a longsword) is the biggest single upgrade in the armory, and the longsword's diagonal reach is a bonus. For defense, a 125-gold helmet does nearly as much per coin as anything else. Plate armor's two dice come at a real cost: one red die for movement averages 3.5 squares instead of 7.</p>
+</section>
 
-        <h2>🎮 Interactive Character Progression Simulator</h2>
-        
-        <div class="progression-box">
-            <p><strong>Watch your hero grow!</strong> In HeroQuest, treasure chests contain equipment from the Armoury. Each piece of gear adds dice or Body Points to your hero. Click chests in any order to see how equipment changes your capabilities.</p>
-            
-            <div class="chest-row" id="chest_row">
-                <!-- Populated by JS -->
-            </div>
-            
-            <div class="character-sheet">
-                <h4>🛡️ Barbarian — Starting Stats</h4>
-                <div class="stat-row-sim">
-                    <span class="stat-name">⚔️ Attack Dice</span>
-                    <div class="dice-display" id="attack_dice"></div>
-                </div>
-                <div class="stat-row-sim">
-                    <span class="stat-name">🛡️ Defend Dice</span>
-                    <div class="dice-display" id="defend_dice"></div>
-                </div>
-                <div class="stat-row-sim">
-                    <span class="stat-name">❤️ Body Points</span>
-                    <span class="bp-display" id="body_points"></span>
-                </div>
-                <div class="stat-row-sim">
-                    <span class="stat-name">🧠 Mind Points</span>
-                    <span class="bp-display" id="mind_points"></span>
-                </div>
-                <p><strong>Equipment Found:</strong></p>
-                <div class="equip-inventory" id="equip_inventory">
-                    <span style="color:var(--text-muted);font-size:0.85rem;">None yet — open some chests!</span>
-                </div>
-            </div>
-            
-            <div id="progression_feedback" style="margin-top: 20px; padding: 15px; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
-                <strong>Your Quest Begins!</strong> Search the dungeon chests to find equipment from the Armoury. Each piece of gear improves your hero's combat dice or survivability.
-            </div>
-
-            <button id="new_quest_btn" style="display:block; margin:1rem auto 0; padding:10px 24px; background:#8b4513; color:#fff; border:2px solid #daa520; border-radius:8px; font-size:1rem; cursor:pointer; transition: background 0.2s;">🏰 New Quest (Reset)</button>
-        </div>
-
-        <h2>⚖️ The Art of Balanced Rewards</h2>
-        
-        <div class="canvas-container">
-            <h3>Reward Balance</h3>
-            <canvas id="reward_balance_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="treasure-principle">
-            <h3>🎯 The Goldilocks Principle of Loot</h3>
-            <p><strong>Like Goldilocks' porridge, rewards must be "just right" to maintain engagement:</strong></p>
-            
-            <p><strong>🔥 Too Much, Too Fast:</strong> Players feel overwhelmed and items lose value</p>
-            <p><strong>🧊 Too Little, Too Slow:</strong> Players feel unrewarded and lose motivation</p>
-            <p><strong>✨ Just Right:</strong> Regular meaningful rewards that feel earned and exciting</p>
-            
-            <p><strong>The "Christmas Morning" Principle:</strong> Each treasure discovery should feel like unwrapping a present - exciting, surprising, and valuable!</p>
-        </div>
-
-        <h2>🎭 Equipment Synergy and Combinations</h2>
-        
-        <div class="canvas-container">
-            <h3>Equipment Synergy</h3>
-            <canvas id="equipment_synergy_canvas" width="600" height="350"></canvas>
-        </div>
-        
-        <div class="reward-system">
-            <h3>🔗 Building Equipment Sets</h3>
-            <p><strong>Great equipment works together like instruments in an orchestra:</strong></p>
-            
-            <p><strong>⚔️ The Warrior Set:</strong> Broadsword + Plate Mail + Strength Potion = Unstoppable Tank</p>
-            <p><strong>🏹 The Ranger Set:</strong> Crossbow + Leather Armor + Speed Potion = Mobile Striker</p>
-            <p><strong>🔮 The Mage Set:</strong> Magic Staff + Robes + Wisdom Potion = Arcane Master</p>
-            <p><strong>🗡️ The Specialist Set:</strong> Shortsword + Chain Mail + Healing Potion = Versatile Support</p>
-        </div>
-
-        <h2>📈 Character Advancement Strategies</h2>
-        
-        <div class="progression-box">
-            <h3>🎯 The Investment Portfolio Approach</h3>
-            <p><strong>Like building a financial portfolio, character growth should be diversified and strategic:</strong></p>
-            
-            <p><strong>🛡️ Conservative Growth:</strong> Focus on defense and survivability first</p>
-            <ul>
-                <li>Prioritize armor and healing items</li>
-                <li>Build a strong foundation before taking risks</li>
-                <li>Good for new players or dangerous campaigns</li>
-            </ul>
-            
-            <p><strong>⚔️ Aggressive Growth:</strong> Maximize offensive capabilities</p>
-            <ul>
-                <li>Invest in powerful weapons and attack bonuses</li>
-                <li>High risk, high reward playstyle</li>
-                <li>Best when you have reliable team support</li>
-            </ul>
-            
-            <p><strong>🎪 Balanced Growth:</strong> Steady improvement across all areas</p>
-            <ul>
-                <li>Moderate upgrades to all capabilities</li>
-                <li>Flexible and adaptable to any situation</li>
-                <li>Recommended for most players and campaigns</li>
-            </ul>
-        </div>
-
-        <h2>🎪 The Psychology of Meaningful Choices</h2>
-        
-        <div class="treasure-principle">
-            <h3>🤔 Creating Difficult Decisions</h3>
-            <p><strong>The best progression systems force players to make tough choices, like choosing college majors:</strong></p>
-            
-            <p><strong>💰 Limited Resources:</strong> Can't buy everything, must prioritize</p>
-            <p><strong>⏰ Opportunity Cost:</strong> Choosing one path means giving up another</p>
-            <p><strong>🎯 Specialization vs. Versatility:</strong> Be great at one thing or good at many</p>
-            <p><strong>🎲 Risk vs. Reward:</strong> Safe upgrades vs. powerful but risky options</p>
-        </div>
-
-        <h2>🏪 Equipment Management and Trading</h2>
-        
-        <div class="canvas-container">
-            <h3>Trading System</h3>
-            <canvas id="trading_system_canvas" width="600" height="250"></canvas>
-        </div>
-        
-        <div class="reward-system">
-            <h3>🤝 The Marketplace Economy</h3>
-            <p><strong>Equipment trading is like a fantasy stock market:</strong></p>
-            
-            <p><strong>📊 Supply and Demand:</strong> Rare items cost more, common items are cheap</p>
-            <p><strong>💱 Character Needs:</strong> A Wizard values different items than a Barbarian</p>
-            <p><strong>⏰ Timing:</strong> Buy gear when you need it, sell when it's outdated</p>
-            <p><strong>🤝 Negotiation:</strong> Sometimes trading with teammates is better than selling</p>
-        </div>
-
-        <h2>🎨 Making Loot Feel Special</h2>
-        
-        <div class="progression-box">
-            <h3>✨ The Storytelling Approach</h3>
-            <p><strong>Every piece of equipment should have a story, like family heirlooms:</strong></p>
-            
-            <p><strong>❌ Boring:</strong> "You find a +1 sword"</p>
-            <p><strong>✅ Epic:</strong> "Beneath the fallen orc chieftain, you discover 'Shadowbane' - an ancient blade whose edge still gleams with silver fire. Legend says it was forged to slay creatures of darkness, and you can feel its eager hunger for evil blood."</p>
-            
-            <p><strong>The "Antiques Roadshow" Method:</strong> Give items history, previous owners, and legendary reputations that make players excited to wield them!</p>
-        </div>
-
-        <h2>🎯 Advanced Progression Mechanics</h2>
-        
-        <div class="treasure-principle">
-            <h3>🔄 Dynamic Growth Systems</h3>
-            <p><strong>Like video games with unlockable content:</strong></p>
-            
-            <p><strong>🏆 Achievement Unlocks:</strong> Completing quests opens new equipment options</p>
-            <p><strong>🔧 Customization Paths:</strong> Players choose how their character specializes</p>
-            <p><strong>📚 Knowledge Progression:</strong> Learning new tactics and spell combinations</p>
-            <p><strong>🤝 Reputation Systems:</strong> How other NPCs react based on your achievements</p>
-        </div>
-
-        <h2>💡 Creative Reward Ideas</h2>
-        
-        <div class="reward-system">
-            <h3>🎭 Beyond Gold and Steel</h3>
-            <p><strong>Think outside the treasure chest:</strong></p>
-            
-            <p><strong>🗺️ Information Rewards:</strong> Maps, clues, and secret knowledge</p>
-            <p><strong>🤝 Ally Rewards:</strong> NPCs who help in future adventures</p>
-            <p><strong>🏰 Property Rewards:</strong> Bases, hideouts, and safe houses</p>
-            <p><strong>👑 Status Rewards:</strong> Titles, reputation, and social standing</p>
-            <p><strong>🔮 Unique Abilities:</strong> Special powers that can't be bought</p>
-        </div>
-
-        <h2>🎮 Progression Pacing Strategies</h2>
-        
-        <div class="canvas-container">
-            <h3>Pacing Strategy</h3>
-            <canvas id="pacing_strategy_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="progression-box">
-            <h3>⏰ The Theme Park Design Philosophy</h3>
-            <p><strong>Like designing a great theme park, progression should have rhythm and flow:</strong></p>
-            
-            <p><strong>🎢 Big Moments:</strong> Major equipment upgrades feel like riding the biggest roller coaster</p>
-            <p><strong>🎪 Small Delights:</strong> Minor improvements are like fun carnival games</p>
-            <p><strong>🍿 Rest Periods:</strong> Time to enjoy and appreciate what you've gained</p>
-            <p><strong>🎯 Clear Goals:</strong> Players can see the next exciting reward ahead</p>
-        </div>
-
-        <h2>🚨 Common Progression Pitfalls</h2>
-        
-        <div class="treasure-principle">
-            <h3>⚠️ The Seven Deadly Sins of Loot Design</h3>
-            
-            <p><strong>😴 The Boring Upgrade:</strong> +1 sword that feels exactly like the old sword</p>
-            <p><strong>💸 The Money Sink:</strong> Expensive items that don't feel worth the cost</p>
-            <p><strong>🎰 The Slot Machine:</strong> Completely random rewards with no player agency</p>
-            <p><strong>⛰️ The Grind Mountain:</strong> Progress so slow it feels like work</p>
-            <p><strong>🌊 The Power Flood:</strong> So many upgrades they lose all meaning</p>
-            <p><strong>🚫 The Dead End:</strong> Items that become useless after one adventure</p>
-            <p><strong>⚖️ The Imbalance:</strong> Rewards that make some players feel left out</p>
-        </div>
-
-        <h2>🎯 Practice Scenarios: Loot Distribution</h2>
-        
-        <div class="progression-box">
-            <h3>🧩 Treasury Master Challenges</h3>
-            
-            <p><strong>📚 Scenario 1: The Unequal Party</strong></p>
-            <p><em>Your party has a veteran player with great gear and a new player with basic equipment. How do you distribute found treasure fairly?</em></p>
-            
-            <p><strong>🏰 Scenario 2: The Specialized Find</strong></p>
-            <p><em>You find a powerful wizard staff, but your party has no wizard. Do you save it, sell it, or let someone multiclass?</em></p>
-            
-            <p><strong>🎲 Scenario 3: The Tough Choice</strong></p>
-            <p><em>Limited funds: buy one amazing weapon or several good pieces of armor for the whole party?</em></p>
-        </div>
-
-        <h2>🌟 Creating Legendary Moments</h2>
-        
-        <div class="reward-system">
-            <h3>🏆 The Hall of Fame Philosophy</h3>
-            <p><strong>Some rewards should be so special they become legends told for years:</strong></p>
-            
-            <p><strong>⚔️ The Perfect Moment:</strong> Finding exactly the right weapon at the crucial time</p>
-            <p><strong>🎭 The Dramatic Reveal:</strong> Discovering the true power of a mysterious item</p>
-            <p><strong>🤝 The Shared Victory:</strong> Equipment that helps the whole party succeed</p>
-            <p><strong>📖 The Story Generator:</strong> Items that create new adventures and plotlines</p>
-        </div>
-
-        <h2>🌟 Next Adventure Preview</h2>
-        
-        <p>In our next lecture, we'll explore <strong>"The Original Quest Book Adventures"</strong> - diving deep into the classic quests that started it all! We'll analyze the design principles, hidden secrets, optimal strategies, and how these timeless adventures create the perfect introduction to the HeroQuest universe.</p>
-        
-        <div class="treasure-principle">
-            <p><strong>Remember:</strong> Great progression isn't just about numbers getting bigger - it's about making players feel like they're growing, achieving, and becoming the heroes they always dreamed of being. Every reward should tell a story and every upgrade should feel like a triumph earned through courage and cunning!</p>
-        </div>
+<section>
+<h2>Armory Planner</h2>
+<p>Pick a hero and their kit, and see the cost and exact combat odds. Prices and monster stats are the classic North American numbers from the tables above.</p>
+<div class="tool-panel" id="armory_planner">
+    <div class="planner-grid">
+        <fieldset>
+            <legend>Hero and weapon</legend>
+            <select id="pl_hero" aria-label="Hero">
+                <option value="barbarian">Barbarian</option>
+                <option value="dwarf">Dwarf</option>
+                <option value="elf">Elf</option>
+                <option value="wizard">Wizard</option>
+            </select>
+            <label for="pl_weapon">Weapon in hand</label>
+            <select id="pl_weapon"></select>
+        </fieldset>
+        <fieldset id="pl_armor">
+            <legend>Armor and tools</legend>
+            <label><input type="checkbox" value="helmet"> Helmet (125)</label>
+            <label><input type="checkbox" value="shield"> Shield (150)</label>
+            <label><input type="checkbox" value="chain"> Chain Mail (500)</label>
+            <label><input type="checkbox" value="plate"> Plate Armor (850)</label>
+            <label><input type="checkbox" value="toolkit"> Tool Kit (250)</label>
+        </fieldset>
+        <fieldset>
+            <legend>Opponent</legend>
+            <select id="pl_monster" aria-label="Opponent">
+                <option value="goblin">Goblin (A2 D1 B1)</option>
+                <option value="orc" selected>Orc (A3 D2 B1)</option>
+                <option value="abom">Abomination (A3 D3 B2)</option>
+                <option value="dread">Dread Warrior (A4 D4 B3)</option>
+                <option value="garg">Gargoyle (A4 D5 B3)</option>
+            </select>
+        </fieldset>
     </div>
+    <div class="planner-out" id="pl_out" aria-live="polite"></div>
+</div>
+</section>
+
+<section>
+<h2>Potions</h2>
+<p>You can drink a potion at any time, even on another player's turn, and it doesn't use your action. You may drink more than one at once. On your turn you may hand a potion to an adjacent hero. A healing potion is the only thing besides a healing spell that can save a hero at 0 Body Points.</p>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> the classic treasure deck's potions were the Potion of Healing (restore Body Points equal to one red die), Potion of Strength (2 extra Attack dice on your next attack), Potion of Defense (2 extra Defend dice the next time you defend) and Heroic Brew (two attacks instead of one). Quest packs add many more; <em>Rise of the Dread Moon</em> even lets heroes brew their own.</p>
+</div>
+</section>
+
+<section>
+<h2>Artifacts</h2>
+<p>The core game has 14 artifact cards. They aren't in the treasure deck: the quest notes place them, usually as the reward for a particular room or foe. In the core Quest Book you hunt the <em>Talisman of Lore</em> in Melar's Maze, the <em>Ring of Return</em> turns up in the Castle of Mystery, and the last three quests turn on the <em>Spirit Blade</em>, the only weapon that can harm the Witch Lord.</p>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> other classic artifacts included Borin's Armor (plate that grants 4 Defend dice without slowing you), Orc's Bane (a shortsword that attacks Orcs twice), the Wand of Magic (cast two different spells in one turn), the Spell Ring (cast one spell twice), the Elixir of Life (bring a dead hero back) and the Wizard's Cloak and Wizard's Staff for the Wizard. Read your 2021 artifact cards for current effects.</p>
+</div>
+</section>
+
+<section>
+<h2>Try It at the Table</h2>
+<ul>
+    <li><strong>Plan the first purchase.</strong> After the Rescue of Sir Ragnar, each hero gets 60 of Prince Magnus's 240 coins. What can a hero afford by the end of Quest 3, and is it a helmet or saving toward a longsword?</li>
+    <li><strong>Share the gold.</strong> Gold can be passed between heroes. Pooling coins to buy the Dwarf a longsword early may help the party more than four small purchases.</li>
+    <li><strong>Equip the Wizard sideways.</strong> He can't wear armor, so his "armor" is a healing potion and a place behind the Barbarian.</li>
+</ul>
+</section>
+
+<section>
+<h2>Where Next</h2>
+<ul>
+    <li><a href="/heroquest_legendary_heroes.html">The Heroes</a>: all twelve official heroes and what they bring.</li>
+    <li><a href="/heroquest_original_quests.html">The Core Quest Book</a>: where the gold and artifacts are earned.</li>
+    <li><a href="/heroquest_character_sheet.html">Character Sheet</a>: track gold, gear and quests completed.</li>
+</ul>
+</section>
+    </main>
 
     <script>
-        // Character Progression Simulator — HeroQuest Armoury system
-        // Barbarian starting stats: 3 Attack, 2 Defend, 8 Body, 2 Mind
-        const baseStats = { attack: 3, defend: 2, body: 8, mind: 2 };
-        let heroStats = { ...baseStats };
-        
-        // Real HeroQuest Armoury equipment with actual game effects
-        const treasurePool = [
-            { name: 'Shield', icon: '🛡️', stat: 'defend', bonus: 1,
-              feedback: 'A sturdy shield! +1 Defend die — blocks are more likely now.' },
-            { name: 'Helmet', icon: '⛑️', stat: 'defend', bonus: 1,
-              feedback: 'A steel helmet! +1 Defend die — your head is well protected.' },
-            { name: 'Chain Mail', icon: '🧷', stat: 'defend', bonus: 1,
-              feedback: 'Chain mail armor! +1 Defend die — attacks now glance off your linked rings.' },
-            { name: 'Broadsword', icon: '⚔️', stat: 'attack', bonus: 1,
-              feedback: 'A finely forged broadsword! +1 Attack die — you strike harder now.' },
-            { name: 'Battle Axe', icon: '🪓', stat: 'attack', bonus: 1,
-              feedback: 'A fearsome battle axe! +1 Attack die — monsters beware!' },
-            { name: 'Healing Potion', icon: '🧪', stat: 'body', bonus: 4,
-              feedback: 'A healing potion! +4 Body Points restored — saved from the brink!' },
-            { name: 'Plate Mail', icon: '🛡️', stat: 'defend', bonus: 1,
-              feedback: 'Plate mail! +1 Defend die — but it\'s heavy. Worth the trade-off for survivability.' },
-            { name: 'Crossbow', icon: '🏹', stat: 'attack', bonus: 1,
-              feedback: 'A crossbow! +1 Attack die — now you can strike from range.' },
-        ];
-        
-        let questTreasures = [];  // 5 items drawn for this quest
-        let openedChests = [];    // track which are opened
-        
-        function shuffleAndDraw() {
-            const shuffled = [...treasurePool].sort(() => Math.random() - 0.5);
-            return shuffled.slice(0, 5);
-        }
-        
-        function initSimulator() {
-            heroStats = { ...baseStats };
-            questTreasures = shuffleAndDraw();
-            openedChests = [false, false, false, false, false];
-            
-            // Build chests
-            const chestRow = document.getElementById('chest_row');
-            chestRow.innerHTML = '';
-            for (let i = 0; i < 5; i++) {
-                const chest = document.createElement('div');
-                chest.className = 'treasure-chest';
-                chest.textContent = '🧰';
-                chest.addEventListener('click', () => openTreasure(i));
-                chestRow.appendChild(chest);
+    (function () {
+        var WEAPONS = {
+            dagger: { name: 'Dagger', cost: 25, atk: 1, wiz: true },
+            staff: { name: 'Staff', cost: 100, atk: 1, wiz: true, noShield: true },
+            shortsword: { name: 'Shortsword', cost: 150, atk: 2 },
+            broadsword: { name: 'Broadsword', cost: 250, atk: 3 },
+            longsword: { name: 'Longsword', cost: 350, atk: 3 },
+            crossbow: { name: 'Crossbow', cost: 350, atk: 3 },
+            battleaxe: { name: 'Battle Axe', cost: 400, atk: 4, noShield: true }
+        };
+        var ARMOR = { helmet: { cost: 125, def: 1 }, shield: { cost: 150, def: 1 }, chain: { cost: 500, def: 1 }, plate: { cost: 850, def: 2 }, toolkit: { cost: 250, def: 0 } };
+        var HEROES = {
+            barbarian: { def: 2, body: 8, start: 'broadsword' },
+            dwarf: { def: 2, body: 7, start: 'shortsword' },
+            elf: { def: 2, body: 6, start: 'shortsword' },
+            wizard: { def: 2, body: 4, start: 'dagger', wizard: true }
+        };
+        var MONSTERS = {
+            goblin: { name: 'Goblin', atk: 2, def: 1, body: 1 },
+            orc: { name: 'Orc', atk: 3, def: 2, body: 1 },
+            abom: { name: 'Abomination', atk: 3, def: 3, body: 2 },
+            dread: { name: 'Dread Warrior', atk: 4, def: 4, body: 3 },
+            garg: { name: 'Gargoyle', atk: 4, def: 5, body: 3 }
+        };
+        var heroSel = document.getElementById('pl_hero');
+        var weaponSel = document.getElementById('pl_weapon');
+        var monSel = document.getElementById('pl_monster');
+        var armorBox = document.getElementById('pl_armor');
+        var out = document.getElementById('pl_out');
+        if (!heroSel || !weaponSel || !out) return;
+
+        function binom(n, p) {
+            var r = [], c = 1;
+            for (var k = 0; k <= n; k++) {
+                r.push(c * Math.pow(p, k) * Math.pow(1 - p, n - k));
+                c = c * (n - k) / (k + 1);
             }
-            
-            renderStats();
-            document.getElementById('equip_inventory').innerHTML =
-                '<span style="color:var(--text-muted);font-size:0.85rem;">None yet — open some chests!</span>';
-            document.getElementById('progression_feedback').innerHTML =
-                '<strong>Your Quest Begins!</strong> Search the dungeon chests to find equipment from the Armoury. Each piece of gear improves your hero\'s combat dice or survivability.';
+            return r;
         }
-        
-        function openTreasure(index) {
-            if (openedChests[index]) return;
-            openedChests[index] = true;
-            
-            const chests = document.querySelectorAll('.treasure-chest');
-            chests[index].classList.add('opened');
-            chests[index].textContent = '✅';
-            
-            const treasure = questTreasures[index];
-            heroStats[treasure.stat] += treasure.bonus;
-            renderStats();
-            
-            // Add equipment tag
-            const inventory = document.getElementById('equip_inventory');
-            if (openedChests.filter(Boolean).length === 1) inventory.innerHTML = '';
-            const tag = document.createElement('span');
-            tag.className = 'equip-tag';
-            tag.textContent = `${treasure.icon} ${treasure.name}`;
-            inventory.appendChild(tag);
-            
-            // Feedback
-            const opened = openedChests.filter(Boolean).length;
-            document.getElementById('progression_feedback').innerHTML =
-                `<strong>🌟 ${treasure.name} Found!</strong><br>${treasure.feedback}<br>` +
-                `<em>${5 - opened} chest${5 - opened !== 1 ? 's' : ''} remaining.</em>`;
-            
-            if (opened === 5) {
-                setTimeout(() => {
-                    document.getElementById('progression_feedback').innerHTML +=
-                        '<br><br><strong>🏆 All Chests Searched!</strong> Look at how much stronger your Barbarian has become with real Armoury gear. ' +
-                        'In HeroQuest, choosing which equipment to buy — and who gets it — is a huge part of the strategy between quests.';
-                }, 1500);
+        function damage(a, d, pBlock) {
+            var hits = binom(a, 0.5), blocks = binom(d, pBlock), out = {};
+            hits.forEach(function (ph, h) {
+                blocks.forEach(function (pb, b) {
+                    var x = Math.max(0, h - b);
+                    out[x] = (out[x] || 0) + ph * pb;
+                });
+            });
+            return out;
+        }
+        function atLeast1(dist) { return 1 - (dist[0] || 0); }
+        function mean(dist) { var s = 0; for (var k in dist) s += k * dist[k]; return s; }
+        function killWithin(dist, body, n) {
+            var st = {}; st[body] = 1;
+            for (var i = 0; i < n; i++) {
+                var nx = {};
+                for (var rem in st) {
+                    rem = +rem;
+                    if (rem === 0) { nx[0] = (nx[0] || 0) + st[rem]; continue; }
+                    for (var d in dist) {
+                        var r = Math.max(0, rem - d);
+                        nx[r] = (nx[r] || 0) + st[rem] * dist[d];
+                    }
+                }
+                st = nx;
             }
+            return st[0] || 0;
         }
-        
-        function renderStats() {
-            // Attack dice
-            const attackDiv = document.getElementById('attack_dice');
-            attackDiv.innerHTML = '';
-            for (let i = 0; i < heroStats.attack; i++) {
-                const die = document.createElement('span');
-                die.className = 'die-icon' + (i >= baseStats.attack ? ' bonus' : '');
-                die.textContent = '🎲';
-                attackDiv.appendChild(die);
-            }
-            
-            // Defend dice
-            const defendDiv = document.getElementById('defend_dice');
-            defendDiv.innerHTML = '';
-            for (let i = 0; i < heroStats.defend; i++) {
-                const die = document.createElement('span');
-                die.className = 'die-icon' + (i >= baseStats.defend ? ' bonus' : '');
-                die.textContent = '🎲';
-                defendDiv.appendChild(die);
-            }
-            
-            // Body & Mind points
-            document.getElementById('body_points').textContent = `${heroStats.body} / ${heroStats.body}`;
-            document.getElementById('mind_points').textContent = `${heroStats.mind} / ${heroStats.mind}`;
+        function pct(x) { return (x * 100 + 1e-9).toFixed(1) + '%'; }
+
+        function fillWeapons() {
+            var h = HEROES[heroSel.value];
+            weaponSel.innerHTML = '';
+            Object.keys(WEAPONS).forEach(function (k) {
+                var w = WEAPONS[k];
+                if (h.wizard && !w.wiz) return;
+                var o = document.createElement('option');
+                o.value = k;
+                o.textContent = w.name + ' (' + w.atk + (w.atk === 1 ? ' die, ' : ' dice, ') + (k === h.start ? 'starting weapon' : w.cost + ' gold') + ')';
+                if (k === h.start) o.selected = true;
+                weaponSel.appendChild(o);
+            });
         }
-        
-        document.getElementById('new_quest_btn').addEventListener('click', initSimulator);
-        initSimulator();
-        
-        // Reward Balance Visualization
-        const balanceCanvas = document.getElementById('reward_balance_canvas');
-        const balanceCtx = balanceCanvas.getContext('2d');
-        
-        function drawRewardBalance() {
-            balanceCtx.clearRect(0, 0, balanceCanvas.width, balanceCanvas.height);
-            balanceCtx.fillStyle = '#2f1b14';
-            balanceCtx.fillRect(0, 0, balanceCanvas.width, balanceCanvas.height);
-            
-            balanceCtx.strokeStyle = '#daa520';
-            balanceCtx.lineWidth = 4;
-            balanceCtx.beginPath();
-            balanceCtx.moveTo(300, 250);
-            balanceCtx.lineTo(300, 100);
-            balanceCtx.stroke();
-            balanceCtx.beginPath();
-            balanceCtx.moveTo(150, 150);
-            balanceCtx.lineTo(450, 150);
-            balanceCtx.stroke();
-            
-            balanceCtx.fillStyle = '#8b4513';
-            balanceCtx.fillRect(100, 140, 100, 60);
-            balanceCtx.fillStyle = '#f4e4bc';
-            balanceCtx.font = '12px Arial';
-            balanceCtx.textAlign = 'center';
-            balanceCtx.fillText('Too Little', 150, 165);
-            balanceCtx.fillText('Boring', 150, 180);
-            
-            balanceCtx.fillStyle = '#8b4513';
-            balanceCtx.fillRect(400, 160, 100, 60);
-            balanceCtx.fillText('Too Much', 450, 185);
-            balanceCtx.fillText('Overwhelming', 450, 200);
-            
-            balanceCtx.fillStyle = '#ffd700';
-            balanceCtx.beginPath();
-            balanceCtx.arc(300, 120, 15, 0, Math.PI * 2);
-            balanceCtx.fill();
-            balanceCtx.fillStyle = '#000';
-            balanceCtx.fillText('Perfect', 300, 125);
-            
-            balanceCtx.fillStyle = '#ffd700';
-            balanceCtx.font = '16px Arial';
-            balanceCtx.fillText('The Balance of Meaningful Rewards', 300, 30);
-            balanceCtx.textAlign = 'left';
-        }
-        drawRewardBalance();
-        
-        // Equipment Synergy Visualization
-        const synergyCanvas = document.getElementById('equipment_synergy_canvas');
-        const synergyCtx = synergyCanvas.getContext('2d');
-        
-        function drawEquipmentSynergy() {
-            synergyCtx.clearRect(0, 0, synergyCanvas.width, synergyCanvas.height);
-            synergyCtx.fillStyle = '#2f1b14';
-            synergyCtx.fillRect(0, 0, synergyCanvas.width, synergyCanvas.height);
-            
-            const builds = [
-                {x: 150, y: 150, name: 'Tank Build', items: ['🛡️', '⚔️', '🧪'], color: '#4a90e2'},
-                {x: 450, y: 150, name: 'DPS Build', items: ['🗡️', '🏹', '⚡'], color: '#ff4500'},
-                {x: 150, y: 250, name: 'Support Build', items: ['🔮', '📚', '🌟'], color: '#9370db'},
-                {x: 450, y: 250, name: 'Utility Build', items: ['🎒', '🗝️', '💰'], color: '#32cd32'}
+
+        function update() {
+            var h = HEROES[heroSel.value];
+            var w = WEAPONS[weaponSel.value];
+            var m = MONSTERS[monSel.value];
+            var boxes = armorBox.querySelectorAll('input');
+            boxes.forEach(function (b) {
+                var off = false;
+                if (h.wizard && b.value !== 'toolkit') off = true;
+                if (b.value === 'shield' && w.noShield) off = true;
+                if (b.value === 'chain' && armorBox.querySelector('[value="plate"]').checked) off = true;
+                if (b.value === 'plate' && armorBox.querySelector('[value="chain"]').checked) off = true;
+                if (off) b.checked = false;
+                b.disabled = off;
+                b.parentElement.classList.toggle('off', off);
+            });
+            var cost = weaponSel.value === h.start ? 0 : w.cost;
+            var def = h.def, moveDice = 2;
+            boxes.forEach(function (b) {
+                if (!b.checked) return;
+                cost += ARMOR[b.value].cost;
+                def += ARMOR[b.value].def;
+                if (b.value === 'plate') moveDice = 1;
+            });
+            var mine = damage(w.atk, m.def, 1 / 6);
+            var theirs = damage(m.atk, def, 1 / 3);
+            var rows = [
+                ['Gold to spend', cost + ' gold coins'],
+                ['Attack / Defend dice', w.atk + ' / ' + def],
+                ['Movement', moveDice === 2 ? '2 red dice (average 7)' : '1 red die (average 3.5)'],
+                ['You wound the ' + m.name + ' in one attack', pct(atLeast1(mine))],
+                ['You kill it within 3 attacks (' + m.body + ' Body)', pct(killWithin(mine, m.body, 3))],
+                ['It wounds you in one attack', pct(atLeast1(theirs))],
+                ['Average Body Points you lose per attack', mean(theirs).toFixed(2) + ' of your ' + h.body]
             ];
-            
-            builds.forEach(build => {
-                // Draw connection lines FIRST (behind items)
-                build.items.forEach((item, index) => {
-                    const angle = (index * 120) * (Math.PI / 180);
-                    const itemX = build.x + Math.cos(angle) * 60;
-                    const itemY = build.y + Math.sin(angle) * 60;
-                    
-                    synergyCtx.strokeStyle = build.color;
-                    synergyCtx.lineWidth = 2;
-                    synergyCtx.beginPath();
-                    synergyCtx.moveTo(build.x, build.y);
-                    synergyCtx.lineTo(itemX, itemY);
-                    synergyCtx.stroke();
-                });
+            out.innerHTML = '';
+            var tc = document.createElement('div');
+            tc.className = 'table-container';
+            var t = document.createElement('table');
+            var tb = document.createElement('tbody');
+            rows.forEach(function (r) {
+                var tr = document.createElement('tr');
+                var th = document.createElement('th'); th.scope = 'row'; th.textContent = r[0];
+                var td = document.createElement('td'); td.textContent = r[1];
+                tr.appendChild(th); tr.appendChild(td); tb.appendChild(tr);
             });
-            
-            // Pass 2: circles and item boxes (on top of lines)
-            builds.forEach(build => {
-                synergyCtx.fillStyle = build.color;
-                synergyCtx.beginPath();
-                synergyCtx.arc(build.x, build.y, 40, 0, Math.PI * 2);
-                synergyCtx.fill();
-                
-                build.items.forEach((item, index) => {
-                    const angle = (index * 120) * (Math.PI / 180);
-                    const itemX = build.x + Math.cos(angle) * 60;
-                    const itemY = build.y + Math.sin(angle) * 60;
-                    
-                    synergyCtx.fillStyle = '#daa520';
-                    synergyCtx.fillRect(itemX - 15, itemY - 15, 30, 30);
-                });
-            });
-            
-            // Pass 3: ALL text drawn last (on top of everything)
-            synergyCtx.textAlign = 'center';
-            builds.forEach(build => {
-                // Item emoji text
-                build.items.forEach((item, index) => {
-                    const angle = (index * 120) * (Math.PI / 180);
-                    const itemX = build.x + Math.cos(angle) * 60;
-                    const itemY = build.y + Math.sin(angle) * 60;
-                    
-                    synergyCtx.fillStyle = '#000';
-                    synergyCtx.font = '16px Arial';
-                    synergyCtx.fillText(item, itemX, itemY + 5);
-                });
-                
-                // Build name
-                synergyCtx.fillStyle = '#f4e4bc';
-                synergyCtx.font = '12px Arial';
-                synergyCtx.fillText(build.name, build.x, build.y + 70);
-            });
-            
-            synergyCtx.fillStyle = '#ffd700';
-            synergyCtx.font = '16px Arial';
-            synergyCtx.textAlign = 'center';
-            synergyCtx.fillText('Equipment Synergy: Building Specialized Characters', 300, 30);
-            synergyCtx.textAlign = 'left';
-        }
-        drawEquipmentSynergy();
-        
-        // Trading System Visualization
-        const tradingCanvas = document.getElementById('trading_system_canvas');
-        const tradingCtx = tradingCanvas.getContext('2d');
-        
-        function drawTradingSystem() {
-            tradingCtx.clearRect(0, 0, tradingCanvas.width, tradingCanvas.height);
-            tradingCtx.fillStyle = '#2f1b14';
-            tradingCtx.fillRect(0, 0, tradingCanvas.width, tradingCanvas.height);
-            
-            const traders = [
-                {x: 100, y: 150, name: 'Weapons', item: '⚔️'},
-                {x: 500, y: 150, name: 'Armor', item: '🛡️'},
-                {x: 150, y: 50, name: 'Magic', item: '🔮'},
-                {x: 450, y: 50, name: 'Supplies', item: '🧪'}
-            ];
-            
-            // Draw connection lines FIRST (behind boxes)
-            traders.forEach(trader => {
-                tradingCtx.strokeStyle = '#cd853f';
-                tradingCtx.lineWidth = 2;
-                tradingCtx.beginPath();
-                tradingCtx.moveTo(trader.x, trader.y);
-                tradingCtx.lineTo(300, 150);
-                tradingCtx.stroke();
-            });
-            
-            // Draw marketplace (on top of lines)
-            tradingCtx.fillStyle = '#8b4513';
-            tradingCtx.fillRect(200, 100, 200, 100);
-            tradingCtx.fillStyle = '#f4e4bc';
-            tradingCtx.font = '14px Arial';
-            tradingCtx.textAlign = 'center';
-            tradingCtx.fillText('🏪 Marketplace', 300, 130);
-            
-            // Draw trader boxes (on top of lines)
-            traders.forEach(trader => {
-                tradingCtx.fillStyle = '#daa520';
-                tradingCtx.fillRect(trader.x - 25, trader.y - 25, 50, 50);
-                tradingCtx.fillStyle = '#000';
-                tradingCtx.font = '20px Arial';
-                tradingCtx.textAlign = 'center';
-                tradingCtx.fillText(trader.item, trader.x, trader.y + 5);
-                tradingCtx.fillStyle = '#f4e4bc';
-                tradingCtx.font = '10px Arial';
-                tradingCtx.fillText(trader.name, trader.x, trader.y + 45);
-            });
-            
-            tradingCtx.fillStyle = '#ffd700';
-            tradingCtx.font = '16px Arial';
-            tradingCtx.textAlign = 'center';
-            tradingCtx.fillText('Equipment Trading Network', 300, 20);
-            tradingCtx.textAlign = 'left';
-        }
-        drawTradingSystem();
-        
-        // Progression Pacing Visualization
-        const pacingCanvas = document.getElementById('pacing_strategy_canvas');
-        const pacingCtx = pacingCanvas.getContext('2d');
-        
-        function drawPacingStrategy() {
-            pacingCtx.clearRect(0, 0, pacingCanvas.width, pacingCanvas.height);
-            pacingCtx.fillStyle = '#2f1b14';
-            pacingCtx.fillRect(0, 0, pacingCanvas.width, pacingCanvas.height);
-            
-            pacingCtx.strokeStyle = '#ffd700';
-            pacingCtx.lineWidth = 3;
-            pacingCtx.beginPath();
-            
-            const points = [];
-            for (let i = 0; i <= 100; i++) {
-                const x = (i / 100) * 500 + 50;
-                const t = i / 20;
-                const y = 250 - (50 + 30 * Math.sin(t) + 20 * Math.sin(t * 2) + 10 * Math.sin(t * 3));
-                points.push({x, y});
-                if (i === 0) pacingCtx.moveTo(x, y);
-                else pacingCtx.lineTo(x, y);
+            t.appendChild(tb); tc.appendChild(t); out.appendChild(tc);
+            if (w.name === 'Crossbow') {
+                var p = document.createElement('p');
+                p.textContent = 'Remember: the crossbow can’t fire at a monster next to you.';
+                out.appendChild(p);
             }
-            pacingCtx.stroke();
-            
-            const majorRewards = [20, 40, 60, 80, 95];
-            majorRewards.forEach(point => {
-                const {x, y} = points[point];
-                pacingCtx.fillStyle = '#ffff00';
-                pacingCtx.beginPath();
-                pacingCtx.arc(x, y, 6, 0, Math.PI * 2);
-                pacingCtx.fill();
-                pacingCtx.fillStyle = '#f4e4bc';
-                pacingCtx.font = '10px Arial';
-                pacingCtx.textAlign = 'center';
-                pacingCtx.fillText('Major', x, y - 15);
-                pacingCtx.fillText('Reward', x, y - 5);
-            });
-            
-            pacingCtx.fillStyle = '#ffd700';
-            pacingCtx.font = '16px Arial';
-            pacingCtx.fillText('Reward Pacing: Peaks and Valleys', 200, 30);
-            pacingCtx.fillStyle = '#f4e4bc';
-            pacingCtx.font = '12px Arial';
-            pacingCtx.fillText('Adventure Progress', 250, 280);
-            pacingCtx.textAlign = 'left';
         }
-        drawPacingStrategy();
+
+        heroSel.addEventListener('change', function () { fillWeapons(); update(); });
+        weaponSel.addEventListener('change', update);
+        monSel.addEventListener('change', update);
+        armorBox.addEventListener('change', update);
+        fillWeapons();
+        update();
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_magic_spells.html">Magic &amp; Spells</a>
+    <a class="next" href="/heroquest_legendary_heroes.html">The Heroes</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

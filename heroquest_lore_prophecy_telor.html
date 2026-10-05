@@ -3,350 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Prophecy of Telor: Echoes of Destiny</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>The Prophecy of Telor: Lore - The HeroQuest Guide</title>
+    <meta name="description" content="Background for HeroQuest's Prophecy of Telor: Telor the wizard who travelled with Rogar, Melar and the Talisman of Lore, with fan elaboration marked.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>🔮 The Prophecy of Telor: Echoes of Destiny 🔮</h1>
-        
-        <div class="mystic-scroll">
-            <p><em>"In the mists of time before memory, when the world was young and the veil between present and future was thin as gossamer, there lived a seer whose vision pierced the very heart of destiny itself. Telor the Far-Seeing spoke words that would echo across the ages, weaving threads of fate that connect past, present, and future in patterns too vast for mortal minds to fully comprehend. His prophecy was not mere prediction—it was a map of possibilities, a guide to the moments when heroes must rise or watch the world fall into shadow..."</em></p>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>The Prophecy of Telor: Lore</h1>
+        <p>The story behind the pack, from Telor the wizard to Melar's maze.</p>
+    </header>
+
+    <main id="main">
+<section>
+        <p class="callout callout-edge"><strong>A note on sources:</strong> the quest book sketches this story only briefly, so this page mixes the official names with fan elaboration, and the elaborated parts are marked as such.</p>
+</section>
+<section>
+<h2>Telor, Companion of Rogar</h2>
+        <p>Long before the heroes of the current age, Mentor tells of a band who stood against the forces of Dread: <strong>Rogar</strong>, the barbarian prince who bore the Star of the West, <strong>Durgin</strong> the dwarf, <strong>Ladril</strong>, an elven fighter-mage from Elethorn, and <strong>Telor</strong>, a <strong>wizard</strong>. That is the official picture from the core Quest Book: Telor is a man and a spellcaster, one of the legendary heroes whose deeds the new adventurers are following.</p>
+        <p>Mentor himself, keeper of the Loretome, once taught an apprentice named Zargon, who turned to the powers of Dread. Telor's generation fought that darkness once; the quest pack that bears his name suggests he saw further ahead than his friends did.</p>
+
+        <div class="scene-box callout">
+            <p><strong>Fan elaboration.</strong> Nothing official says how Telor came to make a prophecy. One way to picture it: in the quiet years after Rogar's war, Telor wrote down what he feared would follow, a warning about the places where old magic had been left unattended. His friends remembered him as the one who always asked "and what comes after?" Some of his words survived, half riddle and half instruction, waiting for heroes who would need them.</p>
         </div>
 
-        <h2>The Nature of True Prophecy</h2>
-        <p>In the HeroQuest universe, prophecy is not a simple matter of predicting the future—it is the art of reading the cosmic currents that flow beneath the surface of apparent reality, understanding how choices made in one moment can ripple across time to create entirely different destinies. Telor's prophecy represents the pinnacle of this art, a vision so profound and far-reaching that it has shaped the course of history for over a millennium, its echoes still reverberating through every heroic deed and villainous plot.</p>
-
-        <h2>The Web of Fate</h2>
-        <div class="canvas-container">
-            <h3>Prophecy Web</h3>
-            <canvas id="prophecyWebCanvas" width="1000" height="500"></canvas>
+        <div class="ancient-scroll callout">
+            <p><em>"Where the maze was left unwatched,<br>
+            and the talisman lies cold,<br>
+            look to those who walk it next,<br>
+            for the old work is not done."</em></p>
+            <p>A fan-written verse in the spirit of the pack; it is not quoted from any official book.</p>
         </div>
-        
-        <script>
-            const prophecyCanvasElement = document.getElementById('prophecyWebCanvas');
-            const prophecyCtx = prophecyCanvasElement.getContext('2d');
-            let prophecyAnimFrame = 0;
-            
-            function drawProphecyWeb() {
-                prophecyCtx.clearRect(0, 0, 1000, 500);
-                prophecyAnimFrame++;
-                
-                // Draw constellation background
-                for (let i = 0; i < 80; i++) {
-                    const x = (i * 127) % 1000;
-                    const y = (i * 173) % 500;
-                    const twinkle = Math.sin(prophecyAnimFrame * 0.03 + i) * 0.5 + 0.5;
-                    prophecyCtx.fillStyle = `rgba(186, 85, 211, ${twinkle * 0.7})`;
-                    prophecyCtx.fillRect(x, y, 1, 1);
-                }
-                
-                // Central prophecy nexus
-                const centerX = 500, centerY = 250;
-                const nexusPulse = Math.sin(prophecyAnimFrame * 0.06) * 0.3 + 0.7;
-                
-                prophecyCtx.shadowColor = '#9370db';
-                prophecyCtx.shadowBlur = 30 * nexusPulse;
-                prophecyCtx.fillStyle = `rgba(147, 112, 219, ${nexusPulse})`;
-                prophecyCtx.beginPath();
-                prophecyCtx.arc(centerX, centerY, 40 * nexusPulse, 0, Math.PI * 2);
-                prophecyCtx.fill();
-                prophecyCtx.shadowBlur = 0;
-                
-                // Prophecy fragments scattered around the nexus
-                const fragments = [
-                    {name: 'The Rising Dark', x: 200, y: 150, angle: 0, distance: 200},
-                    {name: 'Four Champions', x: 800, y: 180, angle: 1.2, distance: 250},
-                    {name: 'The Broken Crown', x: 150, y: 350, angle: 2.4, distance: 180},
-                    {name: 'Shadow\'s End', x: 750, y: 380, angle: 3.6, distance: 220},
-                    {name: 'The Final Choice', x: 500, y: 100, angle: 4.8, distance: 160},
-                    {name: 'Destiny Fulfilled', x: 500, y: 400, angle: 6.0, distance: 150}
-                ];
-                
-                // Draw fate threads connecting fragments
-                fragments.forEach((fragment, index) => {
-                    const connectionPhase = prophecyAnimFrame * 0.04 + index * 1.3;
-                    const connection = Math.sin(connectionPhase) * 0.3 + 0.7;
-                    
-                    prophecyCtx.strokeStyle = `rgba(186, 85, 211, ${connection * 0.5})`;
-                    prophecyCtx.lineWidth = 2;
-                    prophecyCtx.setLineDash([15, 8]);
-                    prophecyCtx.lineDashOffset = prophecyAnimFrame * 0.4;
-                    
-                    prophecyCtx.beginPath();
-                    prophecyCtx.moveTo(centerX, centerY);
-                    const midX = (centerX + fragment.x) / 2 + Math.sin(connectionPhase) * 30;
-                    const midY = (centerY + fragment.y) / 2 + Math.cos(connectionPhase) * 25;
-                    prophecyCtx.quadraticCurveTo(midX, midY, fragment.x, fragment.y);
-                    prophecyCtx.stroke();
-                });
-                prophecyCtx.setLineDash([]);
-                
-                // Draw prophecy fragment nodes
-                fragments.forEach((fragment, index) => {
-                    const pulse = Math.sin(prophecyAnimFrame * 0.05 + index * 0.9) * 0.2 + 0.8;
-                    const fragmentColor = index % 2 === 0 ? '#ba55d3' : '#8a2be2';
-                    
-                    // Fragment aura
-                    prophecyCtx.shadowColor = fragmentColor;
-                    prophecyCtx.shadowBlur = 15 * pulse;
-                    prophecyCtx.fillStyle = fragmentColor + '60';
-                    prophecyCtx.beginPath();
-                    prophecyCtx.arc(fragment.x, fragment.y, 25 * pulse, 0, Math.PI * 2);
-                    prophecyCtx.fill();
-                    
-                    // Fragment core
-                    prophecyCtx.shadowBlur = 8 * pulse;
-                    prophecyCtx.fillStyle = fragmentColor;
-                    prophecyCtx.beginPath();
-                    prophecyCtx.arc(fragment.x, fragment.y, 10 * pulse, 0, Math.PI * 2);
-                    prophecyCtx.fill();
-                    prophecyCtx.shadowBlur = 0;
-                    
-                    // Fragment label
-                    prophecyCtx.fillStyle = fragmentColor;
-                    prophecyCtx.font = 'bold 11px serif';
-                    prophecyCtx.textAlign = 'center';
-                    prophecyCtx.fillText(fragment.name, fragment.x, fragment.y + 40);
-                });
-                
-                // Temporal energy flows
-                for (let i = 0; i < 60; i++) {
-                    const t = (prophecyAnimFrame + i * 12) * 0.02;
-                    const radius = 80 + (i * 6);
-                    const x = centerX + Math.sin(t + i * 0.5) * radius;
-                    const y = centerY + Math.cos(t * 0.8 + i * 0.3) * (radius * 0.6);
-                    const alpha = (Math.sin(t * 4) + 1) * 0.3;
-                    
-                    if (x > 0 && x < 1000 && y > 0 && y < 500) {
-                        prophecyCtx.fillStyle = `rgba(147, 112, 219, ${alpha})`;
-                        prophecyCtx.beginPath();
-                        prophecyCtx.arc(x, y, 2, 0, Math.PI * 2);
-                        prophecyCtx.fill();
-                    }
-                }
-                
-                // Destiny convergence points
-                const convergences = [{x: 350, y: 200}, {x: 650, y: 300}, {x: 500, y: 350}];
-                convergences.forEach((point, index) => {
-                    const convergence = Math.sin(prophecyAnimFrame * 0.07 + index * 2.1) * 0.5 + 0.5;
-                    prophecyCtx.fillStyle = `rgba(221, 160, 221, ${convergence})`;
-                    prophecyCtx.beginPath();
-                    prophecyCtx.arc(point.x, point.y, 8 * convergence + 4, 0, Math.PI * 2);
-                    prophecyCtx.fill();
-                });
-            }
-            
-            setInterval(drawProphecyWeb, 50);
-        </script>
-
-        <h2>The Vision of Telor the Far-Seeing</h2>
-
-        <div class="prophecy-card ancient-prophecy">
-            <div class="card-type">Ancient Prophecy</div>
-            <h3>👁️ The Seer's Last Vision</h3>
-            
-            <div class="vision-sequence">
-                <h4>When the Veil Lifted</h4>
-                <p>Telor the Far-Seeing was already ancient when the great vision came to him, a seer whose eyes had looked beyond the present for over two centuries, guiding kings and heroes with his insights into the paths of possibility. But this final vision was different—not a glimpse of potential futures, but a sweeping panorama of destiny itself, showing him the great pattern that would unfold across the ages and the crucial moments where individual choices would determine the fate of all existence.</p>
-                
-                <p>The vision lasted seven days and seven nights, during which Telor neither ate nor slept, his consciousness traveling forward through time to witness events that would not occur for centuries. When he finally returned to his own time, he was forever changed—his hair had turned white as starlight, his eyes reflected depths that seemed to contain eternity itself, and his voice carried the weight of cosmic understanding that made even the mightiest rulers bow their heads in reverence.</p>
-            </div>
-            
-            <div class="prophecy-meter">
-                <div class="prophecy-fill" style="width: 98%; background: linear-gradient(90deg, #9370db, #dda0dd);">
-                    <div class="prophecy-label">Temporal Scope</div>
-                </div>
-            </div>
-            <div class="prophecy-meter">
-                <div class="prophecy-fill" style="width: 95%; background: linear-gradient(90deg, #ba55d3, #dda0dd);">
-                    <div class="prophecy-label">Cosmic Significance</div>
-                </div>
-            </div>
-            <div class="prophecy-meter">
-                <div class="prophecy-fill" style="width: 92%; background: linear-gradient(90deg, #8a2be2, #9932cc);">
-                    <div class="prophecy-label">Mystical Accuracy</div>
-                </div>
-            </div>
-            
-            <div class="prophecy-fragment">
-                <h4>The Words That Echo Through Time</h4>
-                <p><em>"When darkness rises to claim the world entire, when ancient evils wake from deathless sleep, four shall stand where armies fail—the Strong, the Wise, the Swift, the True. In unity their power shall be found, in division all hope shall die. The crown shall break, the light shall fade, unless the choice be freely made to stand against the coming night, though death itself may be the price of light."</em></p>
-            </div>
-            
-            <span class="fate-tag">🔮 Divine Vision</span>
-            <span class="fate-tag">⏳ Temporal Mastery</span>
-            <span class="fate-tag">⭐ Cosmic Insight</span>
-            <span class="oracle-tag">📜 Eternal Wisdom</span>
-        </div>
-
-        <div class="prophecy-card seer-wisdom">
-            <div class="card-type">Seer Wisdom</div>
-            <h3>📚 The Interpretation of Signs</h3>
-            
-            <div class="vision-sequence">
-                <h4>Reading the Patterns of Fate</h4>
-                <p>Telor's prophecy was not delivered as a simple narrative but as a complex weaving of symbols, metaphors, and mystical correspondences that required generations of scholarly interpretation to fully understand. The "Four" clearly represent the archetypal heroes—Barbarian, Dwarf, Elf, and Wizard—but their deeper significance as embodiments of cosmic principles only became clear as the prophecy began to unfold through actual events.</p>
-                
-                <p>The "Strong" represents not just physical might but the strength of character needed to face impossible odds without faltering. The "Wise" embodies not merely book learning but the practical wisdom to make difficult choices when there are no perfect solutions. The "Swift" signifies not just speed but the ability to adapt and change when circumstances demand flexibility. The "True" means not just honesty but the unwavering commitment to principles that transcend personal comfort or safety.</p>
-            </div>
-            
-            <div class="sage-council">
-                <h4>The Council of Interpreters</h4>
-                <p>After Telor's passing, the greatest scholars, seers, and wise folk of the age formed the Council of Interpreters, dedicated to studying every word, symbol, and mystical correspondence within the prophecy. They created vast libraries of commentary, cross-referencing ancient texts, astronomical observations, and historical patterns to understand how the prophecy would manifest in the physical world.</p>
-                
-                <p>The Council's work revealed that the prophecy contained multiple layers of meaning—immediate interpretations that applied to specific events, broader patterns that shaped entire ages, and ultimate meanings that wouldn't become clear until the prophecy approached its final fulfillment. Each generation of interpreters added new insights while preserving the wisdom of their predecessors, creating a living document that grew more profound with each passing year.</p>
-            </div>
-            
-            <span class="vision-tag">📖 Scholarly Analysis</span>
-            <span class="vision-tag">🧩 Symbol Decoding</span>
-            <span class="vision-tag">⚖️ Pattern Recognition</span>
-            <span class="oracle-tag">🏛️ Institutional Memory</span>
-        </div>
-
+</section>
+<section>
+<h2>How the Pieces Connect</h2>
         <div class="mermaid">
-            graph TD
-                A[The Prophecy of Telor] --> B[Ancient Vision]
-                A --> C[Scholarly Interpretation]
-                A --> D[Modern Fulfillment]
-                A --> E[Ultimate Destiny]
-                
-                B --> F[Seven Day Vision]
-                B --> G[Cosmic Revelation]
-                B --> H[Symbolic Language]
-                
-                C --> I[Council Formation]
-                C --> J[Pattern Analysis]
-                C --> K[Historical Correlation]
-                
-                D --> L[Four Champions Rise]
-                D --> M[Dark Forces Gather]
-                D --> N[Critical Choices Made]
-                
-                E --> O[Final Confrontation]
-                E --> P[Destiny Fulfilled]
-                E --> Q[New Age Begins]
-                
-                style A fill:#9370db
-                style G fill:#ba55d3
-                style L fill:#8a2be2
-                style P fill:#dda0dd
+flowchart TD
+    A["Rogar's band&lt;br/&gt;(Rogar, Durgin, Ladril, Telor)"] --> B["Telor the wizard"]
+    B --> C["The Prophecy of Telor&lt;br/&gt;(quest pack)"]
+    D["Melar the wizard&lt;br/&gt;dabbles in dark magic"] --> E["Melar vanishes,&lt;br/&gt;leaving the Talisman of Lore"]
+    E --> F["Core Quest 5:&lt;br/&gt;Melar's Maze"]
+    F --> C
+    G["Zargon, Mentor's&lt;br/&gt;former apprentice"] -.-> C
         </div>
+        <p>Solid lines are official connections; the dotted line marks Zargon as the ever-present enemy behind the dark forces the heroes face.</p>
+</section>
+<section>
+<h2>Melar and the Talisman of Lore</h2>
+        <p>Here the pack's official premise is clearer. The wizard <strong>Melar</strong> vanished long ago after experimenting with dark magic. All he left behind was the <strong>Talisman of Lore</strong>. Heroes who played the core campaign have already walked his maze in Quest 5, <em>Melar's Maze</em>. In <em>The Prophecy of Telor</em> they must go back into Melar's maze and end whatever foul work has started there.</p>
 
-        <div class="prophecy-card quest-revelation">
-            <div class="card-type">Quest Revelation</div>
-            <h3>⚔️ The Prophecy Unfolds</h3>
-            
-            <div class="vision-sequence">
-                <h4>When Ancient Words Become Present Reality</h4>
-                <p>The quest begins when scholars at the Academy of Arcane Arts make a disturbing discovery: astronomical observations and mystical indicators suggest that Telor's ancient prophecy is entering its final phase. The "darkness rising to claim the world entire" is no longer a distant future threat but an immediate present danger, with signs pointing to the awakening of forces that have slumbered since the world's youth.</p>
-                
-                <p>What makes this revelation particularly urgent is the realization that the "Four" spoken of in the prophecy are not legendary figures from the distant past or future, but ordinary heroes living in the present moment. The cosmic forces that shape destiny have aligned to bring together individuals whose combined potential matches the archetypal patterns described in Telor's vision—if they can learn to work together and embrace their destined roles.</p>
-            </div>
-            
-            <div class="vision-grid">
-                <div class="vision-card">
-                    <h4>🌑 The Dark Convergence</h4>
-                    <p>Ancient seals weaken as malevolent forces probe for weaknesses in reality's defenses.</p>
-                    <span class="fate-tag">⚠️ Rising Threat</span>
-                </div>
-                <div class="vision-card">
-                    <h4>⭐ The Stellar Alignment</h4>
-                    <p>Celestial bodies move into configurations last seen during the prophecy's original vision.</p>
-                    <span class="fate-tag">🌟 Cosmic Timing</span>
-                </div>
-                <div class="vision-card">
-                    <h4>🔮 The Awakening Signs</h4>
-                    <p>Mystical phenomena increase as the boundary between prophecy and reality grows thin.</p>
-                    <span class="fate-tag">✨ Magical Resonance</span>
-                </div>
-                <div class="vision-card">
-                    <h4>👥 The Gathering</h4>
-                    <p>Fate draws the prophesied heroes together through seemingly coincidental encounters.</p>
-                    <span class="fate-tag">🎯 Destined Meeting</span>
-                </div>
-            </div>
-            
-            <span class="vision-tag">📅 Prophetic Timing</span>
-            <span class="vision-tag">🔍 Ancient Knowledge</span>
-            <span class="vision-tag">⚡ Mystical Awakening</span>
-            <span class="oracle-tag">🌟 Destiny Calls</span>
+        <div class="scene-box callout">
+            <p><strong>Fan elaboration.</strong> A maze built by a wizard is never only stone. Picture corridors that were meant to keep thieves out now keeping something in, and rooms that seem to stretch upward floor after floor. That last image has a real echo in the pack: some of its quests use a single board room to stand for several levels of a tower, and some send the heroes running with enemies close behind.</p>
         </div>
+</section>
+<section>
+<h2>The Warlock</h2>
+        <p>The pack's new hero is the <strong>Warlock</strong>, a halfling spellcaster who carries a wand and can take on a <strong>Demonform</strong>. Officially, Demonform gives an extra Attack die and lets the Warlock ignore traps; it ends when the Warlock takes any damage and is restored when they reduce a monster to 0 Body Points.</p>
+        <div class="scene-box callout">
+            <p><strong>Fan elaboration.</strong> A hero who borrows a demon's shape makes an uneasy ally for Mentor's cause. You might play the Warlock as someone who bargained for power to fight Dread with Dread's own tools, and who loses the form the moment their nerve or their skin is broken. Treat that as table colour, not rules.</p>
+        </div>
+</section>
+<section>
+<h2>Using the Lore at the Table</h2>
+        <div class="pillars">
+            <div class="pillar">
+                <h4>Read Mentor's backstory aloud</h4>
+                <p>The core Quest Book's account of Rogar and his companions is short. Reading it before the first quest of this pack tells everyone who Telor was.</p>
+            </div>
+            <div class="pillar">
+                <h4>Replay Melar's Maze first</h4>
+                <p>If your group hasn't played core Quest 5 recently, a quick replay sets up the return to the maze nicely.</p>
+            </div>
+            <div class="pillar">
+                <h4>Keep fan lore optional</h4>
+                <p>Use the elaborations on this page as flavour between quests. The quest book's own text always wins.</p>
+            </div>
+        </div>
+</section>
+<section>
+<h2>Where Next</h2>
+        <ul>
+            <li><a href="/heroquest_prophecy_telor.html">The Prophecy of Telor</a>: the quest pack itself and the Warlock's Demonform.</li>
+            <li><a href="/heroquest_lore_mentors_questgivers.html">Mentors and quest-givers</a>: Mentor and the figures who send heroes out.</li>
+            <li><a href="/heroquest_spirit_queens_torment.html">Spirit Queen's Torment</a>: the next pack in this guide.</li>
+        </ul>
+</section>
 
-        <div class="prophecy-card destiny-thread">
-            <div class="card-type">Destiny Thread</div>
-            <h3>🕸️ The Web of Interconnected Fate</h3>
-            
-            <div class="temporal-nexus">
-                <h4>How Past, Present, and Future Converge</h4>
-                <p>The Prophecy of Telor reveals that time is not a simple linear progression but a complex web where past decisions create present possibilities and future destinies cast shadows backward into earlier ages. Every heroic deed performed in the present strengthens the prophetic pattern, while every act of cowardice or corruption weakens the fabric of destiny and makes the prophecy's fulfillment more difficult.</p>
-                
-                <p>This means that heroes working to fulfill the prophecy are not just following a predetermined script—they are actively participating in its creation, their choices in each moment helping to weave the pattern that will determine whether the prophecy succeeds or fails. The future is not fixed but fluid, responsive to the moral weight of decisions made by individuals who may not even know they are part of a cosmic design.</p>
-            </div>
-            
-            <div class="destiny-revelation">
-                <h4>The Price of Prophetic Knowledge</h4>
-                <p>Those who become aware of the prophecy face a unique burden: knowing that their actions have cosmic significance can either inspire them to greater heroism or paralyze them with the weight of responsibility. Some heroes rise to meet their destiny with joy and determination, understanding that they have been chosen for the greatest adventure possible. Others struggle with the loss of simple, ordinary life, mourning the carefree existence they can never reclaim once they understand their true purpose.</p>
-                
-                <p>The prophecy itself seems to account for this psychological challenge, suggesting that true fulfillment requires heroes to embrace their roles not from duty alone but from genuine understanding that some causes are worth any sacrifice. The "choice freely made" mentioned in Telor's words refers not just to tactical decisions but to the fundamental choice to accept destiny's call even when the personal cost becomes clear.</p>
-            </div>
-            
-            <span class="fate-tag">🌐 Cosmic Web</span>
-            <span class="fate-tag">⚖️ Moral Weight</span>
-            <span class="fate-tag">🔄 Temporal Loop</span>
-            <span class="oracle-tag">💫 Free Will</span>
-        </div>
+    </main>
 
-        <div class="prophecy-card oracle-vision">
-            <div class="card-type">Oracle Vision</div>
-            <h3>🔮 The Ultimate Fulfillment</h3>
-            
-            <div class="vision-sequence">
-                <h4>When Prophecy Becomes History</h4>
-                <p>The final fulfillment of Telor's prophecy will not come through a single climactic battle but through a series of interconnected choices and actions that demonstrate the prophecy's deepest truth: that the power to shape destiny lies not in cosmic forces or ancient magic, but in the hearts of individuals who choose to stand for something greater than themselves, regardless of the personal cost.</p>
-                
-                <p>When the prophesied heroes finally face the ultimate darkness, they will discover that their greatest strength comes not from their individual abilities but from their unity—not just tactical cooperation, but a genuine bond forged through shared trials and mutual trust. The prophecy's fulfillment will prove that some victories can only be achieved through sacrifice, some lights can only be kindled by those willing to burn themselves for others' benefit.</p>
-            </div>
-            
-            <div class="prophecy-warning">
-                <h4>The Shadow of Alternative Futures</h4>
-                <p>Telor's vision also showed him the darker possibilities—the futures where the prophecy fails, where the Four never unite, where individual ambition overcomes collective purpose. In these shadow timelines, the world doesn't end in dramatic apocalypse but in slow decay, as hope gradually dies and civilizations crumble from within. These alternative futures serve as warnings, showing why the prophecy's fulfillment matters not just for preventing specific disasters but for preserving the very possibility of hope itself.</p>
-                
-                <p>The knowledge of these shadow futures drives much of the urgency surrounding the prophecy's interpretation and fulfillment. Scholars and heroes who understand what's at stake know they're not just fighting for their own world but for the principle that good can triumph over evil, that courage can overcome fear, and that unity can defeat division. The prophecy's ultimate message is that these victories are possible—but never inevitable.</p>
-            </div>
-            
-            <span class="vision-tag">🌟 Ultimate Victory</span>
-            <span class="vision-tag">👥 Unity Required</span>
-            <span class="vision-tag">💀 Alternative Failures</span>
-            <span class="oracle-tag">⚖️ Cosmic Stakes</span>
-        </div>
-
-        <h2>The Living Prophecy</h2>
-        
-        <div class="telor-legend">
-            <h3>More Than Words—A Living Force</h3>
-            <p>What makes Telor's prophecy unique among mystical predictions is that it has become a living force in the world, actively shaping events rather than merely predicting them. Heroes who learn of the prophecy find themselves drawn into its patterns, their personal quests becoming part of the larger destiny it describes. This creates a feedback loop where the prophecy influences reality, which in turn validates and strengthens the prophecy's power.</p>
-            
-            <p>This living nature means that the prophecy adapts to changing circumstances while maintaining its essential truth. The specific details of how it unfolds may vary—the "Four" might not be exactly who interpreters expected, the "darkness rising" might manifest differently than anticipated—but the core pattern remains constant, ensuring that hope always has a path to victory for those brave enough to walk it.</p>
-        </div>
-
-        <div class="destiny-revelation">
-            <h3>The Eternal Return</h3>
-            <p>Perhaps the most profound aspect of Telor's prophecy is its cyclical nature. The pattern it describes—unity overcoming division, light conquering darkness, hope defeating despair—repeats throughout history at different scales and in different forms. Each fulfillment doesn't end the cycle but prepares the way for future iterations, ensuring that every generation has the opportunity to participate in the cosmic drama of choosing between creation and destruction.</p>
-            
-            <p>This means that every hero who embraces their role in fulfilling the prophecy becomes part of an eternal legacy, their actions echoing forward and backward through time to inspire and strengthen others who face similar choices. The prophecy thus becomes not just a prediction but a promise—that as long as there are those willing to stand for light over darkness, the future will always contain the possibility of hope.</p>
-        </div>
-
-        <div class="mystic-scroll">
-            <p><em>"Thus stands the Prophecy of Telor—not as chains of fate that bind heroes to predetermined paths, but as a beacon of possibility that shows how ordinary individuals can achieve extraordinary things when they choose unity over division, courage over comfort, and hope over despair. In its words, every generation finds both warning and promise: that the greatest victories require the greatest sacrifices, but that such sacrifices, freely given, echo through eternity and ensure that light will never be entirely extinguished from the world..."</em></p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_prophecy_telor.html">The Prophecy of Telor</a>
+    <a class="next" href="/heroquest_spirit_queens_torment.html">Spirit Queen's Torment</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

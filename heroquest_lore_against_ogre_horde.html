@@ -3,416 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Against the Ogre Horde: The Primal Fury Unleashed</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Against the Ogre Horde: Lore - The HeroQuest Guide</title>
+    <meta name="description" content="The story of Against the Ogre Horde: the Dirgrusht ogres, Gruzbella Hammerhand and the World's End Tournament, Ekur the Ogre Lord and Zargon's sorcerers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>🗿 Against the Ogre Horde: The Primal Fury Unleashed 🗿</h1>
-        
-        <div class="savage-chronicle">
-            <p><em>"From the deepest wilderness where civilization's light has never shone, where the law of the strong rules absolutely and mercy is seen as weakness, comes a force that threatens to sweep away everything that generations of heroes have built and protected. The ogre horde represents not just a military threat but a philosophical challenge to the very foundations of ordered society—a reminder that beneath the veneer of culture and refinement lies the eternal struggle between raw power and civilized restraint..."</em></p>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Against the Ogre Horde: Lore</h1>
+        <p>The story behind the 2024 Ogre Horde quest pack, from the World's End arena to the fall of the Ogre Lord.</p>
+    </header>
+
+    <main id="main">
+<section>
+        <p class="callout callout-edge"><strong>A note on sources:</strong> the quest book sketches this story only briefly, so this page mixes the official names with fan elaboration, and the elaborated parts are marked as such.</p>
+        <div class="callout callout-edge callout-orange">
+            <p><strong>Spoilers.</strong> This page tells the whole story of the pack, including who the heroes fight and how it ends. Players who haven't been through the quests yet may want to stop here. For the rules, see <a href="/heroquest_against_ogre_horde.html">Against the Ogre Horde</a>.</p>
         </div>
-
-        <h2>The Philosophy of Overwhelming Force</h2>
-        <p>The ogre horde is not merely a collection of savage creatures driven by hunger or greed—it represents a fundamentally different approach to existence, one that rejects the complex social contracts and moral compromises that make civilization possible in favor of a brutal honesty about the role of power in determining who lives, who dies, and who rules. Their threat lies not just in their physical strength but in their ability to make civilized beings question whether their sophisticated values are worth defending.</p>
-
-        <h2>The Savage Migration</h2>
-        <div class="canvas-container">
-            <h3>Ogre Horde</h3>
-            <canvas id="ogreHordeCanvas" width="1000" height="500"></canvas>
-        </div>
-        
-        <script>
-            const ogreCanvasElement = document.getElementById('ogreHordeCanvas');
-            const ogreCtx = ogreCanvasElement.getContext('2d');
-            let ogreAnimFrame = 0;
-            
-            function drawOgreHorde() {
-                ogreCtx.clearRect(0, 0, 1000, 500);
-                ogreAnimFrame++;
-                
-                // Draw the savage wilderness
-                for (let i = 0; i < 80; i++) {
-                    const x = (i * 89) % 1000;
-                    const y = (i * 157) % 500;
-                    const wildness = Math.sin(ogreAnimFrame * 0.03 + i) * 0.3 + 0.4;
-                    ogreCtx.fillStyle = `rgba(139, 69, 19, ${wildness})`;
-                    ogreCtx.fillRect(x, y, 3, 3);
-                }
-                
-                // Central horde mass
-                const centerX = 500, centerY = 250;
-                const hordeIntensity = Math.sin(ogreAnimFrame * 0.05) * 0.3 + 0.7;
-                
-                // Main horde body
-                ogreCtx.shadowColor = '#a52a2a';
-                ogreCtx.shadowBlur = 40 * hordeIntensity;
-                ogreCtx.fillStyle = `rgba(165, 42, 42, ${hordeIntensity * 0.8})`;
-                ogreCtx.beginPath();
-                ogreCtx.ellipse(centerX, centerY, 120 * hordeIntensity, 80 * hordeIntensity, 0, 0, Math.PI * 2);
-                ogreCtx.fill();
-                
-                // Inner core of savage leadership
-                ogreCtx.shadowBlur = 20 * hordeIntensity;
-                ogreCtx.fillStyle = `rgba(210, 105, 30, ${hordeIntensity + 0.2})`;
-                ogreCtx.beginPath();
-                ogreCtx.arc(centerX, centerY, 40 * hordeIntensity, 0, Math.PI * 2);
-                ogreCtx.fill();
-                ogreCtx.shadowBlur = 0;
-                
-                // Tribal war bands spreading out
-                const warBands = [
-                    {x: 200, y: 150, size: 0.7, direction: 2.1},
-                    {x: 800, y: 180, size: 0.8, direction: 1.3},
-                    {x: 150, y: 350, size: 0.6, direction: 0.7},
-                    {x: 850, y: 320, size: 0.75, direction: 5.8},
-                    {x: 300, y: 100, size: 0.65, direction: 3.9},
-                    {x: 700, y: 400, size: 0.7, direction: 4.5}
-                ];
-                
-                warBands.forEach((band, index) => {
-                    const bandPhase = ogreAnimFrame * 0.04 + index * 1.1;
-                    const bandActivity = Math.sin(bandPhase) * 0.2 + 0.8;
-                    
-                    // War band mass
-                    ogreCtx.fillStyle = `rgba(139, 69, 19, ${bandActivity * 0.6})`;
-                    ogreCtx.beginPath();
-                    ogreCtx.arc(band.x, band.y, 30 * band.size * bandActivity, 0, Math.PI * 2);
-                    ogreCtx.fill();
-                    
-                    // War band leader
-                    ogreCtx.shadowColor = '#8b4513';
-                    ogreCtx.shadowBlur = 10 * bandActivity;
-                    ogreCtx.fillStyle = '#8b4513';
-                    ogreCtx.beginPath();
-                    ogreCtx.arc(band.x, band.y, 8 * bandActivity, 0, Math.PI * 2);
-                    ogreCtx.fill();
-                    ogreCtx.shadowBlur = 0;
-                    
-                    // Movement trails showing advance
-                    const trailLength = 60;
-                    const trailX = band.x - Math.cos(band.direction) * trailLength;
-                    const trailY = band.y - Math.sin(band.direction) * trailLength;
-                    
-                    ogreCtx.strokeStyle = `rgba(101, 67, 33, ${bandActivity * 0.5})`;
-                    ogreCtx.lineWidth = 4;
-                    ogreCtx.setLineDash([20, 10]);
-                    ogreCtx.lineDashOffset = ogreAnimFrame * 0.4;
-                    
-                    ogreCtx.beginPath();
-                    ogreCtx.moveTo(trailX, trailY);
-                    ogreCtx.lineTo(band.x, band.y);
-                    ogreCtx.stroke();
-                });
-                ogreCtx.setLineDash([]);
-                
-                // Individual ogre warriors scattered throughout
-                for (let i = 0; i < 50; i++) {
-                    const t = (ogreAnimFrame + i * 25) * 0.02;
-                    const x = centerX + Math.sin(t + i * 0.3) * (80 + i * 8);
-                    const y = centerY + Math.cos(t * 0.8 + i * 0.2) * (60 + i * 6);
-                    const alpha = (Math.sin(t * 4) + 1) * 0.4;
-                    
-                    if (x > 50 && x < 950 && y > 50 && y < 450) {
-                        ogreCtx.fillStyle = `rgba(165, 42, 42, ${alpha})`;
-                        ogreCtx.beginPath();
-                        ogreCtx.arc(x, y, 3, 0, Math.PI * 2);
-                        ogreCtx.fill();
-                    }
-                }
-                
-                // Destruction markers - burned settlements
-                const destruction = [
-                    {x: 100, y: 100}, {x: 900, y: 150}, {x: 150, y: 400},
-                    {x: 850, y: 380}, {x: 300, y: 50}, {x: 700, y: 450}
-                ];
-                
-                destruction.forEach((site, index) => {
-                    const firePhase = ogreAnimFrame * 0.08 + index * 2;
-                    const fireIntensity = Math.sin(firePhase) * 0.4 + 0.6;
-                    
-                    ogreCtx.fillStyle = `rgba(255, 69, 0, ${fireIntensity})`;
-                    ogreCtx.beginPath();
-                    ogreCtx.arc(site.x, site.y, 8 * fireIntensity, 0, Math.PI * 2);
-                    ogreCtx.fill();
-                    
-                    // Smoke trails
-                    ogreCtx.strokeStyle = `rgba(105, 105, 105, ${fireIntensity * 0.6})`;
-                    ogreCtx.lineWidth = 2;
-                    ogreCtx.beginPath();
-                    ogreCtx.moveTo(site.x, site.y);
-                    ogreCtx.lineTo(site.x + Math.sin(firePhase) * 20, site.y - 30);
-                    ogreCtx.stroke();
-                });
-                
-                // Territorial boundaries being pushed outward
-                const expansionWaves = 3;
-                for (let wave = 1; wave <= expansionWaves; wave++) {
-                    const wavePhase = ogreAnimFrame * 0.03 - wave * 0.8;
-                    const waveRadius = 150 + wave * 100 + Math.sin(wavePhase) * 30;
-                    const waveAlpha = Math.max(0, Math.sin(wavePhase) * 0.2);
-                    
-                    if (waveAlpha > 0) {
-                        ogreCtx.strokeStyle = `rgba(210, 105, 30, ${waveAlpha})`;
-                        ogreCtx.lineWidth = 3;
-                        ogreCtx.beginPath();
-                        ogreCtx.arc(centerX, centerY, waveRadius, 0, Math.PI * 2);
-                        ogreCtx.stroke();
-                    }
-                }
-                
-                // Tribal totems marking conquered territory
-                const totems = [{x: 250, y: 200}, {x: 750, y: 300}, {x: 400, y: 120}, {x: 600, y: 380}];
-                totems.forEach((totem, index) => {
-                    const totemPulse = Math.sin(ogreAnimFrame * 0.06 + index * 1.57) * 0.3 + 0.7;
-                    ogreCtx.fillStyle = `rgba(139, 69, 19, ${totemPulse})`;
-                    ogreCtx.fillRect(totem.x - 3, totem.y - 15, 6, 30);
-                    
-                    ogreCtx.fillStyle = `rgba(165, 42, 42, ${totemPulse})`;
-                    ogreCtx.beginPath();
-                    ogreCtx.arc(totem.x, totem.y - 15, 5 * totemPulse, 0, Math.PI * 2);
-                    ogreCtx.fill();
-                });
-            }
-            
-            setInterval(drawOgreHorde, 50);
-        </script>
-
-        <h2>The Savage Hierarchy</h2>
-
-        <div class="ogre-card horde-nature">
-            <div class="card-type">Horde Nature</div>
-            <h3>🌪️ The Living Storm of Destruction</h3>
-            
-            <div class="ogre-legend">
-                <h4>More Than the Sum of Its Parts</h4>
-                <p>An ogre horde is not simply a large group of individual creatures fighting together—it is a collective organism with its own emergent intelligence, a living weapon that grows more dangerous as it grows larger. Each ogre within the horde draws strength and purpose from the presence of their kin, creating a feedback loop where individual savagery amplifies collective brutality until the entire mass becomes something far more terrifying than any single member could achieve alone.</p>
-                
-                <p>The horde operates according to principles that civilized minds struggle to understand: there is no central command structure in the traditional sense, no complex logistics or strategic planning, yet they move with coordinated purpose that seems almost supernatural. They are guided by a collective instinct that allows them to identify the weakest points in their enemies' defenses and concentrate their overwhelming force exactly where it will do the most damage.</p>
-            </div>
-            
-            <div class="ferocity-meter">
-                <div class="ferocity-fill" style="width: 95%; background: linear-gradient(90deg, #a52a2a, #ff4500);">
-                    <div class="ferocity-label">Raw Destructive Power</div>
-                </div>
-            </div>
-            <div class="ferocity-meter">
-                <div class="ferocity-fill" style="width: 88%; background: linear-gradient(90deg, #8b4513, #cd853f);">
-                    <div class="ferocity-label">Collective Intelligence</div>
-                </div>
-            </div>
-            <div class="ferocity-meter">
-                <div class="ferocity-fill" style="width: 92%; background: linear-gradient(90deg, #654321, #daa520);">
-                    <div class="ferocity-label">Territorial Expansion</div>
-                </div>
-            </div>
-            
-            <div class="primal-instinct">
-                <h4>The Momentum of Conquest</h4>
-                <p>Once an ogre horde begins moving, it becomes increasingly difficult to stop not just because of its size but because of the psychological momentum it generates. Each successful raid increases their confidence and draws more ogres to join their cause, while each victory proves to them that their philosophy of might-makes-right is superior to the complex moral codes of their civilized enemies. The horde feeds on its own success, growing stronger and more aggressive with each settlement they destroy.</p>
-                
-                <p>This creates a terrifying snowball effect where early victories make later victories more likely, and the longer the horde remains undefeated, the more inevitable their ultimate triumph appears to both themselves and their enemies. Only a decisive defeat in the early stages of their expansion can break this momentum before it becomes unstoppable.</p>
-            </div>
-            
-            <span class="brutality-tag">💥 Collective Fury</span>
-            <span class="brutality-tag">🌊 Momentum Building</span>
-            <span class="brutality-tag">⚡ Emergent Intelligence</span>
-            <span class="tribal-tag">🗿 Primal Unity</span>
-        </div>
-
-        <div class="ogre-card ogre-society">
-            <div class="card-type">Ogre Society</div>
-            <h3>⚔️ The Law of the Strong</h3>
-            
-            <div class="tribal-dynamics">
-                <h4>Hierarchy Through Dominance</h4>
-                <p>Ogre society operates on principles that are brutally simple yet surprisingly effective: strength determines rank, might makes right, and leadership belongs to whoever can take it and hold it against all challengers. This creates a social structure that is constantly in flux, where ambitious individuals can rise through the ranks by proving their superiority in direct combat, and where leaders must constantly demonstrate their continued worthiness to rule or risk being overthrown by stronger rivals.</p>
-                
-                <p>What civilized observers often fail to understand is that this system, while harsh, creates a meritocracy based on the one quality that ogres value most: the ability to survive and thrive in a hostile world through personal power. Every ogre in a position of authority has earned that position through demonstrated competence in the skills their society considers most important, making their leadership both legitimate and effective within their cultural context.</p>
-            </div>
-            
-            <div class="tribal-hierarchy">
-                <h4>The Pecking Order of Power</h4>
-                <p>The ogre hierarchy is elegantly simple: at the top stands the War Chief, the strongest and most cunning individual in the entire horde. Below him are the Clan Leaders, each commanding a specific tribal group and earning their position through combat prowess and tactical cunning. Beneath them are the Warriors, the bulk of the horde's fighting force, and at the bottom are the Young and Weak, who serve supporting roles until they prove themselves worthy of higher status.</p>
-                
-                <p>This structure is fluid and dynamic—a young ogre can theoretically rise from the bottom to the top in a single season if they possess sufficient strength and ambition, while a leader who becomes weak or complacent can quickly find themselves demoted or dead. This constant competition ensures that the horde's leadership always represents the best fighters and most effective survivors among their people.</p>
-            </div>
-            
-            <span class="tribal-tag">👑 Merit-Based Leadership</span>
-            <span class="tribal-tag">⚔️ Combat Hierarchy</span>
-            <span class="tribal-tag">🔄 Dynamic Structure</span>
-            <span class="savage-tag">💪 Survival of Fittest</span>
-        </div>
+</section>
+<section>
+<h2>Mentor's Warning</h2>
+        <p>The pack opens, like every HeroQuest campaign, with a message from Mentor. The runes of the Loretome have shifted to warn of trouble in the lands of the ogres, and at the center of it Mentor senses a familiar presence: <strong>Zargon</strong>. His new plot is aimed at the <strong>Dirgrusht horde</strong>, a powerful and secretive community of ogres far to the north. Zargon means to corrupt the lord of the Dirgrusht clan and turn their fighting strength to his own ends.</p>
+        <p>Mentor can't divine where the Dirgrusht fortress lies, but the Loretome names someone who might know: the reigning <strong>Master of Battle</strong> at the World's End Tournament. The heroes' path is set out plainly: prove themselves in the tournament, get inside the Dirgrusht hold, and break Zargon's new alliance.</p>
+</section>
+<section>
+<h2>The Dirgrusht Ogres</h2>
+        <p>The quest book includes a short note, drawn from the records in Mentor's library, about the clan the heroes are about to meet. The official picture is more sympathetic than the usual "savage horde":</p>
+        <ul>
+            <li>The Dirgrusht are a sizable community settled near the <strong>World's End mountains</strong>, a harsh land where crops wither, the days are scorching and the nights are freezing.</li>
+            <li>They value <strong>strength above every other virtue</strong>, and in their society the strong lead the weak.</li>
+            <li>They are <strong>not evil</strong>. In their own militaristic way they believe the strong have a duty to care for the weak. Some of their past leaders ruled cruelly, others protected the weakest members of the clan.</li>
+            <li>They are deeply secretive. No traveler is known to have found where they live, and any who did have not come back to say so.</li>
+            <li>Ogres who leave the clan are often hired as <strong>mercenaries and battle advisors</strong>, because they are trained to fight from a young age.</li>
+        </ul>
+        <p>The note ends on the point that drives the whole pack: wherever there are people there is both good and evil, and Zargon is reaching for whatever evil lies in the Dirgrusht horde.</p>
+</section>
+<section>
+<h2>The World's End Tournament</h2>
+        <p>The tournament is held on the ancient ruins of <strong>Alvakryn</strong>, "where one does not wander by accident", and draws warriors from far and wide in search of glory and riches. The heroes have to name their team and beat three teams of competitors before they can face the reigning champions: the <strong>Wolves of World's End</strong>, led by a ferocious ogre pit fighter called <strong>Doralf</strong>.</p>
+        <p>Their victory brings slow applause from behind them. The Master of Battle is an ogre named <strong>Gruzbella Hammerhand</strong>. When she hears what the heroes plan, she turns serious. She has "no great love" for <strong>Ekur</strong>, the arrogant leader of the Dirgrusht, but didn't think him capable of siding with Zargon, and she agrees to guide the heroes to the fortress. Her price is a fight: it has been ages since she met opponents worth her full strength. The heroes win, she shakes each of their hands, pays them a champion's purse, and vows to be better prepared next time.</p>
+        <p>Gruzbella stays on the heroes' side after that. The supply crates they find inside the fortress are her gifts, smuggled in to help them, and the ogre mercenaries they can hire are her friends and sparring partners.</p>
+</section>
+<section>
+<h2>Inside the Fortress</h2>
+        <p>Gruzbella's directions lead through wild country to a network of earthen tunnels around the fortress's hidden <strong>iron gate</strong>, guarded by a magical effigy. Beyond it the heroes strike at the war room where the ogres plan their raids, then slip through the lair that houses the might of the horde, where an Ogre Commander named <strong>Tograk</strong> keeps his chamber.</p>
+        <p>Deeper in, the presence of Dread sorcerers confirms Mentor's fears. <strong>Nexrael</strong>, an apprentice Dread Sorcerer, lurks in the lair. <strong>Festral</strong>, a Dread Sorcerer, guards the <strong>Pit of Dread</strong>, a wellspring of Dread power that consumes anyone who lingers in it. The heroes must find Festral's <strong>Ring of Power</strong> and hurl it into the pit to destroy it. Festral's assistant, <strong>Xenloth the Dread Mage</strong>, waits near the end.</p>
+        <p>At the heart of the fortress sits <strong>Ekur, the Ogre Lord</strong>, with his general and his finest warriors. Mentor's message is clear that Ekur has been "completely corrupted by the lure of Zargon", but that there is still hope for the ogre people under him. Defeating Ekur breaks the unity of the horde. Then the alarm is raised, and the last quest is a running escape to the surface.</p>
 
         <div class="mermaid">
-            graph TD
-                A[Ogre Horde Threat] --> B[Tribal Unification]
-                A --> C[Territorial Expansion]
-                A --> D[Civilization Clash]
-                A --> E[Final Confrontation]
-                
-                B --> F[War Chief Rises]
-                B --> G[Clans Unite]
-                B --> H[Collective Purpose]
-                
-                C --> I[Raiding Parties]
-                C --> J[Settlement Destruction]
-                C --> K[Resource Acquisition]
-                
-                D --> L[Strategic Response]
-                D --> M[Defensive Alliances]
-                D --> N[Counter-Offensive]
-                
-                E --> O[Hero Intervention]
-                E --> P[Leadership Challenge]
-                E --> Q[Horde Dispersal]
-                
-                style A fill:#a52a2a
-                style H fill:#8b4513
-                style N fill:#654321
-                style Q fill:#cd853f
+flowchart TD
+    Z["Zargon"] --> F["Festral&lt;br/&gt;Dread Sorcerer"]
+    Z --> E["Ekur&lt;br/&gt;Ogre Lord, corrupted"]
+    F --> X["Xenloth and Nexrael&lt;br/&gt;Festral's assistant, an apprentice"]
+    E --> T["Tograk and the horde"]
+    M["Mentor"] --> H["The heroes"]
+    G["Gruzbella Hammerhand&lt;br/&gt;Master of Battle"] --> H
+    H -->|"defeat"| E
         </div>
+        <p class="diagram-hint">Zargon's side and the heroes' side as the quests present them. The arrows show who works for or with whom; the book doesn't print a formal chain of command.</p>
+</section>
+<section>
+<h2>How It Ends</h2>
+        <p>After the escape, the <strong>King's</strong> auxiliary forces meet the heroes and Gruzbella and defeat the last of Ekur's most stubborn followers. Gruzbella and her warriors stay with the rest of the Dirgrusht clan to help them choose their next leader, so that the next lord will not be so open to Dread temptation. Many ogre clans are still private and isolated, but Mentor calls this a first step toward a possible alliance between the ogres and the realm. Even as they rest at the edge of World's End, though, Mentor senses "a foreboding darkness on the horizon".</p>
+</section>
+<section>
+<h2>Fan Elaboration: Using the Story at Your Table</h2>
+        <div class="callout callout-edge callout-purple">
+            <p><strong>Not official.</strong> Everything in this section is this guide's own suggestion for Zargon players who want to stretch the story. None of it comes from the quest book.</p>
+        </div>
+        <ul>
+            <li><strong>Gruzbella as a recurring rival.</strong> She promises to be better prepared next time. A rematch in the arena, using the pack's stand-alone tournament rules, makes a good one-evening session between longer quests.</li>
+            <li><strong>The succession.</strong> The book leaves the next Dirgrusht leader open. A custom quest could have the heroes escort a candidate Gruzbella favors, or stop one of Ekur's loyalists from claiming the throne.</li>
+            <li><strong>Ogres as people.</strong> Because the book says the Dirgrusht are not evil, an ogre that surrenders or flees is a story opportunity rather than just a missed kill. Let the heroes spare one and have it turn up later as a mercenary.</li>
+            <li><strong>Festral's other rings.</strong> Nothing says the Ring of Power was unique. A Dread Sorcerer with a second ring is an easy hook for a follow-up quest.</li>
+        </ul>
+</section>
+<section>
+<h2>The Classic Pack</h2>
+        <div class="callout callout-edge callout-orange">
+            <p><strong>Classic edition (1989–1990):</strong> the original <em>Against the Ogre Horde</em> came out in 1990 in Europe and Australasia only, with 7 quests and its own story. The Dirgrusht, Gruzbella, the tournament and the Druid all belong to the 2024 Avalon Hill pack described on this page.</p>
+        </div>
+</section>
+<section>
+<h2>Where Next</h2>
+        <ul>
+            <li><a href="/heroquest_jungles_delthrak.html">Jungles of Delthrak</a>: the next quest pack, set among the dwarven refugees of Kellar's Keep.</li>
+            <li><a href="/heroquest_lore_dark_forces.html">Lore: The Dark Forces</a>: more on Zargon and his servants.</li>
+            <li><a href="/heroquest_against_ogre_horde.html">Against the Ogre Horde</a>: the rules side of this pack.</li>
+        </ul>
+</section>
+    </main>
 
-        <div class="ogre-card primitive-war">
-            <div class="card-type">Primitive Warfare</div>
-            <h3>🗡️ The Art of Savage Combat</h3>
-            
-            <div class="war-tactics">
-                <h4>Brutal Efficiency Over Elegant Strategy</h4>
-                <p>Ogre warfare eschews the complex tactical maneuvers and elaborate strategies favored by civilized armies in favor of an approach that prioritizes overwhelming force, psychological terror, and the exploitation of their enemies' moral weaknesses. They understand that most civilized beings are psychologically unprepared for the level of brutality that ogres consider normal, and they use this knowledge to break their opponents' will to fight before the actual combat even begins.</p>
-                
-                <p>Their tactical approach is deceptively sophisticated: they probe for weakness through lightning raids, concentrate their forces against isolated targets, and use terror tactics to prevent effective coordination among their enemies. While they may lack formal military training, they possess an intuitive understanding of how to maximize their natural advantages while exploiting their opponents' reluctance to match their level of savage intensity.</p>
-            </div>
-            
-            <div class="primal-instinct">
-                <h4>Weapons of Fear and Fury</h4>
-                <p>Ogre weapons are designed not just to kill but to intimidate—massive clubs that can crush armor and bones with equal ease, crude but effective blades that cause horrific wounds, and improvised weapons fashioned from the bones and belongings of previous victims. The psychological impact of these weapons often proves as devastating as their physical effects, demoralizing enemies who realize they face opponents completely unconstrained by civilized notions of proportional response.</p>
-                
-                <p>More importantly, ogres fight with a level of commitment that civilized warriors find difficult to match. They have no fear of death because they view a warrior's death in battle as the highest honor possible, and they have no compunction about using tactics that more refined combatants would consider dishonorable or excessive. This creates a significant psychological advantage that often proves more decisive than their superior physical strength.</p>
-            </div>
-            
-            <span class="brutality-tag">🏹 Terror Tactics</span>
-            <span class="brutality-tag">💀 Psychological Warfare</span>
-            <span class="brutality-tag">⚡ Lightning Raids</span>
-            <span class="savage-tag">🗡️ Unconventional Weapons</span>
-        </div>
-
-        <div class="ogre-card tribal-leader">
-            <div class="card-type">War Chief</div>
-            <h3>👑 The Alpha of Alphas</h3>
-            
-            <div class="tribal-dynamics">
-                <h4>Leadership Through Absolute Dominance</h4>
-                <p>The ogre War Chief represents the apex of their cultural values—a being who has proven through countless battles that they possess not just superior physical strength but the cunning intelligence and unbreakable will necessary to dominate other natural leaders. They are not merely the strongest ogre in the horde but the one who has demonstrated the ability to make other strong individuals willingly follow their leadership, a feat that requires political acumen alongside raw power.</p>
-                
-                <p>What makes a War Chief truly dangerous is that they combine the savage instincts of their people with a level of strategic thinking that rivals the best military minds of civilized nations. They understand how to channel the chaotic energy of the horde into focused destruction, how to exploit the weaknesses of more sophisticated opponents, and how to maintain unity among naturally fractious followers through a combination of respect, fear, and shared success.</p>
-            </div>
-            
-            <div class="savage-wisdom">
-                <h4>The Philosophy of Conquest</h4>
-                <p>The current War Chief, known only as "Bone-Crusher" for his habit of pulverizing his enemies' remains as a warning to others, represents a particularly dangerous evolution in ogre leadership. Unlike previous chiefs who were content with raiding and pillaging, Bone-Crusher has developed a vision of permanent conquest—not just taking what others have built, but establishing ogre dominance over vast territories and forcing surviving populations into servitude.</p>
-                
-                <p>His philosophy is terrifyingly simple: civilized weakness has made the settled peoples soft and vulnerable, while ogre strength has been tempered by centuries of struggle in the harsh wilderness. The time has come for the strong to rule over the weak openly and permanently, establishing a new order based on natural hierarchy rather than artificial social contracts. Under his leadership, the horde has transformed from a raiding force into an army of conquest with ambitions that threaten the very foundations of civilized society.</p>
-            </div>
-            
-            <span class="brutality-tag">👑 Supreme Alpha</span>
-            <span class="brutality-tag">🧠 Strategic Cunning</span>
-            <span class="brutality-tag">🌍 Conquest Vision</span>
-            <span class="tribal-tag">⚡ Unified Command</span>
-        </div>
-
-        <div class="ogre-card savage-quest">
-            <div class="card-type">Savage Quest</div>
-            <h3>⚔️ The Test of Civilized Values</h3>
-            
-            <div class="war-tactics">
-                <h4>More Than Military Victory</h4>
-                <p>The quest to stop the ogre horde presents heroes with challenges that go far beyond simple combat encounters. While defeating the horde militarily is certainly necessary, the greater challenge lies in proving that civilized values are not just pretty ideals but practical advantages that can triumph over raw savagery. Heroes must demonstrate that cooperation is stronger than domination, that wisdom is more powerful than brute force, and that moral constraints enhance rather than limit true strength.</p>
-                
-                <p>This requires heroes to fight the ogres without becoming like them—to match their ferocity without abandoning their humanity, to respond to brutality without resorting to equal brutality, and to achieve victory through means that justify the civilization they're defending. The easiest way to defeat savages is to become savage oneself, but such a victory would be meaningless if it destroys the very thing heroes are fighting to preserve.</p>
-            </div>
-            
-            <div class="civilization-clash">
-                <h4>The Philosophical Battlefield</h4>
-                <p>The conflict with the ogre horde ultimately becomes a test of competing philosophies about the nature of strength, leadership, and social organization. The ogres argue through their actions that complexity is weakness, that moral considerations are luxuries that effective societies cannot afford, and that the strong have not just the right but the obligation to dominate the weak for the good of all.</p>
-                
-                <p>Heroes must counter this philosophy not just with words but with deeds, proving that civilized societies can produce warriors as fierce as any savage when defending what they love, that moral constraints create rather than limit options for effective action, and that voluntary cooperation generates more power than forced submission. The ultimate victory comes not from destroying the horde but from demonstrating the superiority of the principles they threaten.</p>
-            </div>
-            
-            <span class="brutality-tag">⚖️ Moral Challenge</span>
-            <span class="brutality-tag">🎯 Philosophical Test</span>
-            <span class="brutality-tag">👥 Civilized Unity</span>
-            <span class="savage-tag">🏆 Values Victory</span>
-        </div>
-
-        <h2>The Horde's Hierarchy</h2>
-        
-        <div class="horde-grid">
-            <div class="horde-member-card">
-                <h4>👑 Bone-Crusher (War Chief)</h4>
-                <p>The supreme leader whose vision of permanent conquest has transformed the horde from raiders into an army of occupation.</p>
-                <span class="brutality-tag">🗡️ Tactical Genius</span>
-                <span class="tribal-tag">👥 Unified Command</span>
-            </div>
-            <div class="horde-member-card">
-                <h4>⚔️ Clan Champions</h4>
-                <p>Elite warriors who lead major tribal subdivisions and serve as the War Chief's primary lieutenants in battle.</p>
-                <span class="brutality-tag">💪 Combat Elite</span>
-                <span class="tribal-tag">🎯 Specialized Tactics</span>
-            </div>
-            <div class="horde-member-card">
-                <h4>🗿 Stone-Hurlers</h4>
-                <p>Ogres who specialize in siege warfare, using primitive but effective artillery to break fortifications and demoralize defenders.</p>
-                <span class="savage-tag">🏰 Siege Warfare</span>
-                <span class="brutality-tag">💥 Area Destruction</span>
-            </div>
-            <div class="horde-member-card">
-                <h4>🐺 Beast-Riders</h4>
-                <p>Elite scouts and raiders who have tamed dire wolves and other savage creatures to serve as mounts in hit-and-run attacks.</p>
-                <span class="savage-tag">🏃 High Mobility</span>
-                <span class="tribal-tag">🦎 Beast Mastery</span>
-            </div>
-            <div class="horde-member-card">
-                <h4>🔥 Fire-Makers</h4>
-                <p>Specialists in using fire as both weapon and tool, responsible for destroying enemy supplies and creating terror through arson.</p>
-                <span class="brutality-tag">🔥 Destructive Fire</span>
-                <span class="savage-tag">😱 Terror Tactics</span>
-            </div>
-            <div class="horde-member-card">
-                <h4>⚒️ War-Crafters</h4>
-                <p>The closest thing to intellectuals in ogre society, responsible for creating weapons, siege engines, and tactical innovations.</p>
-                <span class="tribal-tag">🛠️ Primitive Technology</span>
-                <span class="savage-tag">🧠 Practical Innovation</span>
-            </div>
-        </div>
-
-        <h2>The Price of Stopping Savagery</h2>
-        
-        <div class="territorial-expansion">
-            <h3>Defending More Than Territory</h3>
-            <p>The ogre horde's advance represents more than a military threat—it challenges the fundamental assumptions upon which civilized society is built. Their success would prove that brutality is more effective than cooperation, that moral considerations are evolutionary disadvantages, and that the complex social structures that make civilization possible are actually signs of weakness rather than strength.</p>
-            
-            <p>Heroes who stand against the horde carry the weight of proving that their civilization deserves to survive not just because it exists, but because it represents a better way of organizing society than the simple hierarchy of strength that the ogres propose. This means they must defeat the horde while exemplifying the very values that the ogres claim are weaknesses—showing mercy to the defeated, protecting non-combatants, and maintaining moral standards even in desperate circumstances.</p>
-        </div>
-
-        <div class="primal-instinct">
-            <h3>The Temptation of Savagery</h3>
-            <p>Perhaps the greatest danger the ogre horde poses is not their physical threat but their philosophical one—the seductive simplicity of their worldview and the undeniable effectiveness of their methods. When facing overwhelming brutality, the natural response is to match it with equal brutality, to abandon moral constraints that seem to provide only disadvantages in life-or-death struggles.</p>
-            
-            <p>Heroes who successfully defend against the horde without becoming savage themselves prove that civilization's true strength lies not in its ability to produce comfortable lives during peacetime, but in its capacity to maintain human dignity and moral clarity even under the most extreme pressure. Their victory demonstrates that the choice to be civilized is not a luxury but a form of strength that savagery cannot overcome.</p>
-        </div>
-
-        <div class="savage-chronicle">
-            <p><em>"Thus stands the challenge of the ogre horde—not merely a test of arms but a trial of the soul, forcing heroes to prove that civilization is more than just organized weakness, that moral constraints create rather than limit true power, and that the choice to remain human in the face of overwhelming savagery is the ultimate expression of strength. In defeating the horde while maintaining their principles, heroes demonstrate that some victories are worth winning not for what they preserve, but for how they are achieved..."</em></p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_against_ogre_horde.html">Against the Ogre Horde</a>
+    <a class="next" href="/heroquest_jungles_delthrak.html">Jungles of Delthrak</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

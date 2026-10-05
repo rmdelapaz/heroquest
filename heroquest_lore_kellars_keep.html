@@ -3,338 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kellar's Keep: The Fortress of Shadows</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Kellar's Keep: Lore - The HeroQuest Guide</title>
+    <meta name="description" content="The story behind HeroQuest's Kellar's Keep: the King's army trapped in Kaba Karn, Zargon's greenskins, and a labelled fan telling of the dwarven halls.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>🏰 Kellar's Keep: The Fortress of Shadows 🏰</h1>
-        
-        <div class="keep-chronicle">
-            <p><em>"In the borderlands where civilization meets the wild unknown, there stands a fortress that has witnessed the rise and fall of kingdoms, the march of armies, and the desperate last stands of heroes whose names echo through eternity. Kellar's Keep is more than stone and mortar—it is a monument to the eternal struggle between order and chaos, a bastion that has never truly fallen, though it has changed hands more times than any chronicler can count..."</em></p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Kellar's Keep: Lore</h1>
+        <p>The story of Kellar's Keep as the quest books tell it, with a clearly labelled fan elaboration of the dwarven halls under the mountain.</p>
+    </header>
 
-        <h2>The Fortress That Time Forgot</h2>
-        <p>Kellar's Keep stands as one of the most strategically important fortifications in the known world—not merely because of its military value, but because it represents something far more significant: the principle that some things are worth defending at any cost. Built on ancient foundations that predate recorded history, the Keep has served as the last line of defense against chaos for over a thousand years, its massive walls bearing witness to sieges, betrayals, heroic last stands, and miraculous victories.</p>
+    <main id="main">
+<section>
+<p>The quest books sketch this story only briefly, so this page mixes official names from the books with fan elaboration, and labels which is which.</p>
 
-        <h2>The Architecture of Defiance</h2>
-        <div class="canvas-container">
-            <h3>Keep Layout</h3>
-            <canvas id="keepLayoutCanvas" width="1000" height="500"></canvas>
-        </div>
-        
-        <script>
-            const keepCanvasElement = document.getElementById('keepLayoutCanvas');
-            const keepCtx = keepCanvasElement.getContext('2d');
-            let keepAnimFrame = 0;
-            
-            function drawKeepLayout() {
-                keepCtx.clearRect(0, 0, 1000, 500);
-                keepAnimFrame++;
-                
-                // Draw the fortress outer walls
-                keepCtx.strokeStyle = '#696969';
-                keepCtx.lineWidth = 8;
-                keepCtx.fillStyle = 'rgba(105, 105, 105, 0.3)';
-                
-                // Main fortress outline
-                keepCtx.beginPath();
-                keepCtx.rect(150, 100, 700, 300);
-                keepCtx.fill();
-                keepCtx.stroke();
-                
-                // Central keep tower
-                keepCtx.fillStyle = 'rgba(169, 169, 169, 0.5)';
-                keepCtx.fillRect(450, 150, 100, 200);
-                keepCtx.strokeRect(450, 150, 100, 200);
-                
-                // Corner towers
-                const towers = [
-                    {x: 125, y: 75}, {x: 825, y: 75},
-                    {x: 125, y: 375}, {x: 825, y: 375}
-                ];
-                
-                towers.forEach((tower, index) => {
-                    const pulse = Math.sin(keepAnimFrame * 0.03 + index) * 0.1 + 0.9;
-                    keepCtx.fillStyle = `rgba(128, 128, 128, ${pulse * 0.6})`;
-                    keepCtx.beginPath();
-                    keepCtx.arc(tower.x, tower.y, 25, 0, Math.PI * 2);
-                    keepCtx.fill();
-                    keepCtx.stroke();
-                });
-                
-                // Interior rooms and chambers
-                const rooms = [
-                    {name: 'Great Hall', x: 200, y: 200, w: 120, h: 80, color: '#b8860b'},
-                    {name: 'Armory', x: 350, y: 180, w: 80, h: 60, color: '#8b0000'},
-                    {name: 'Treasury', x: 580, y: 200, w: 100, h: 70, color: '#ffd700'},
-                    {name: 'Barracks', x: 200, y: 300, w: 150, h: 80, color: '#483d8b'},
-                    {name: 'Dungeon', x: 400, y: 320, w: 120, h: 60, color: '#2f2f2f'},
-                    {name: 'Library', x: 600, y: 300, w: 80, h: 80, color: '#9370db'}
-                ];
-                
-                rooms.forEach((room, index) => {
-                    const glow = Math.sin(keepAnimFrame * 0.04 + index * 1.2) * 0.2 + 0.8;
-                    
-                    // Room fill
-                    keepCtx.fillStyle = room.color + '40';
-                    keepCtx.fillRect(room.x, room.y, room.w, room.h);
-                    
-                    // Room border with glow effect
-                    keepCtx.shadowColor = room.color;
-                    keepCtx.shadowBlur = 8 * glow;
-                    keepCtx.strokeStyle = room.color;
-                    keepCtx.lineWidth = 2;
-                    keepCtx.strokeRect(room.x, room.y, room.w, room.h);
-                    keepCtx.shadowBlur = 0;
-                    
-                    // Room label
-                    keepCtx.fillStyle = room.color;
-                    keepCtx.font = '11px serif';
-                    keepCtx.textAlign = 'center';
-                    keepCtx.fillText(room.name, room.x + room.w/2, room.y + room.h/2 + 4);
-                });
-                
-                // Gates and entrances
-                const gates = [{x: 500, y: 100}, {x: 150, y: 250}, {x: 850, y: 250}];
-                gates.forEach((gate, index) => {
-                    const gateGlow = Math.sin(keepAnimFrame * 0.05 + index * 2) * 0.3 + 0.7;
-                    keepCtx.fillStyle = `rgba(184, 134, 11, ${gateGlow})`;
-                    keepCtx.fillRect(gate.x - 10, gate.y - 5, 20, 10);
-                });
-                
-                // Defensive positions and patrol routes
-                for (let i = 0; i < 20; i++) {
-                    const t = (keepAnimFrame + i * 20) * 0.02;
-                    const x = 500 + Math.sin(t) * 300;
-                    const y = 250 + Math.cos(t * 0.8) * 120;
-                    
-                    // Only show if within fortress walls
-                    if (x > 150 && x < 850 && y > 100 && y < 400) {
-                        const alpha = (Math.sin(t * 3) + 1) * 0.3;
-                        keepCtx.fillStyle = `rgba(169, 169, 169, ${alpha})`;
-                        keepCtx.beginPath();
-                        keepCtx.arc(x, y, 2, 0, Math.PI * 2);
-                        keepCtx.fill();
-                    }
-                }
-                
-                // Magical ward indicators
-                const wards = [{x: 300, y: 150}, {x: 700, y: 150}, {x: 500, y: 350}];
-                wards.forEach((ward, index) => {
-                    const wardPulse = Math.sin(keepAnimFrame * 0.06 + index * 1.5) * 0.4 + 0.6;
-                    keepCtx.fillStyle = `rgba(147, 112, 219, ${wardPulse})`;
-                    keepCtx.beginPath();
-                    keepCtx.arc(ward.x, ward.y, 6 * wardPulse, 0, Math.PI * 2);
-                    keepCtx.fill();
-                });
-            }
-            
-            setInterval(drawKeepLayout, 50);
-        </script>
+<div class="keep-chronicle">
+    <p><em>"Below the mountains there are halls that dwarves cut long before the King's grandfather was born. The stone remembers their hammers. Now it hears other footsteps: iron-shod orcs, the scuttle of goblins, and the slow, heavy tread of things that were never meant to walk under the earth..."</em></p>
+</div>
+</section>
 
-        <h2>The Legacy of Lord Kellar</h2>
+<section>
+<h2>What the Quest Books Establish</h2>
+<ul>
+    <li><strong>The King's army is trapped.</strong> The 2021 core Quest Book has the King ride with his army toward Darkfire Pass; the army ends up holed up in <strong>Kaba Karn</strong>, an ancient dwarven stronghold. Kellar's Keep carries on from there.</li>
+    <li><strong>The enemy is Zargon.</strong> Mentor's former apprentice, who pledged himself to the powers of Dread, commands the orcs, goblins and Abominations that fill this pack.</li>
+    <li><strong>The keep is dwarven.</strong> Fan sources say it is named for Kellar, a dwarf who found the passage. The books say little more about him, so this guide does not invent a life story.</li>
+    <li><strong>A bridge exists.</strong> Avalon Hill's free online quest "Forsaken Tunnels of Xor-Xel" was written to lead the heroes from the core campaign into this pack.</li>
+    <li><strong>Familiar faces.</strong> Mentor guides the heroes; Sir Ragnar, one of the King's most powerful knights, was rescued back in core Quest 2; Prince Magnus pays the rewards.</li>
+</ul>
 
-        <div class="quest-card fortress-lore">
-            <div class="card-type">Fortress Lore</div>
-            <h3>⚔️ The Founder's Vision</h3>
-            
-            <div class="fortress-layout">
-                <h4>Built to Endure the Ages</h4>
-                <p>Lord Kellar the Steadfast was not merely a military commander but a visionary who understood that true strength comes not from conquering others, but from protecting what matters most. When he chose the site for his fortress, he selected a strategic position that commanded three major trade routes while controlling access to the mineral-rich mountains beyond. But more than tactical advantage, Kellar sought to create something that would outlast any single lifetime—a symbol of unwavering resolve that would inspire defenders for generations to come.</p>
-                
-                <p>The Keep's design reflects this philosophy: every stone was placed with the understanding that it might one day be the only thing standing between civilization and chaos. The walls are thick enough to withstand dragon fire, the foundations deep enough to resist magical undermining, and the layout complex enough to make every corridor a potential chokepoint. This isn't just a fortress—it's a three-dimensional manifestation of the principle that some values are worth any sacrifice to preserve.</p>
-            </div>
-            
-            <div class="difficulty-meter">
-                <div class="difficulty-fill" style="width: 95%; background: linear-gradient(90deg, #696969, #a9a9a9);">
-                    <div class="difficulty-label">Architectural Complexity</div>
-                </div>
-            </div>
-            <div class="difficulty-meter">
-                <div class="difficulty-fill" style="width: 88%; background: linear-gradient(90deg, #8b4513, #cd853f);">
-                    <div class="difficulty-label">Historical Significance</div>
-                </div>
-            </div>
-            <div class="difficulty-meter">
-                <div class="difficulty-fill" style="width: 92%; background: linear-gradient(90deg, #483d8b, #9370db);">
-                    <div class="difficulty-label">Mystical Properties</div>
-                </div>
-            </div>
-            
-            <div class="historical-note">
-                <h4>The Curse of Command</h4>
-                <p>Lord Kellar's greatest triumph became his greatest burden. The fortress he created was so effective, so crucial to regional stability, that he could never leave it. He spent the last thirty years of his life within its walls, watching the world change through messenger reports and diplomatic visits, knowing that his presence was the cornerstone that held everything together. Some say his spirit still walks the battlements, unable to rest while the Keep faces any threat to its integrity.</p>
-            </div>
-            
-            <span class="defense-tag">🏰 Impregnable Walls</span>
-            <span class="defense-tag">🗡️ Strategic Position</span>
-            <span class="defense-tag">👻 Founder's Spirit</span>
-            <span class="reward-tag">📜 Ancient Wisdom</span>
-        </div>
+<div class="mermaid">
+flowchart TD
+    M["Mentor&lt;br/&gt;keeper of the Loretome"] --> H["The heroes"]
+    K["The King"] --> A["The King's army&lt;br/&gt;holed up in Kaba Karn"]
+    H --> KK["Kellar's Keep&lt;br/&gt;dwarven halls under the mountains"]
+    KK --> A
+    Z["Zargon"] --> F["Orcs, goblins&lt;br/&gt;and Abominations"]
+    F --> KK
+</div>
 
-        <div class="quest-card quest-mission">
-            <div class="card-type">Quest Mission</div>
-            <h3>🎯 The Garrison's Plea</h3>
-            
-            <div class="tactical-briefing">
-                <h4>When the Veteran Calls for Aid</h4>
-                <p>The quest begins not with grand proclamations or royal decrees, but with a simple, desperate letter from Sir Ragnar, the Keep's aging commander. His message is brief but laden with the weight of years: the fortress that has never fallen is facing its greatest test, and the handful of remaining defenders cannot hold it alone. This isn't a call for mercenaries or a request for military support—it's a plea for heroes who understand that some battles must be fought regardless of the odds.</p>
-                
-                <p>What makes this quest unique is its personal nature. Sir Ragnar isn't asking heroes to reclaim lost territory or retrieve stolen treasure—he's asking them to help him keep a promise he made decades ago to never let the Keep fall while he draws breath. The true mission isn't just defending walls and towers, but preserving the ideals those structures represent and ensuring that the flame of civilization doesn't flicker out in this remote corner of the world.</p>
-            </div>
-            
-            <div class="quest-grid">
-                <div class="mission-card">
-                    <h4>🛡️ Reinforce the Garrison</h4>
-                    <p>Help the understaffed defenders prepare for an imminent siege by training recruits and repairing defenses.</p>
-                    <span class="reward-tag">💪 Combat Experience</span>
-                </div>
-                <div class="mission-card">
-                    <h4>🔍 Investigate the Threat</h4>
-                    <p>Discover who is organizing the forces gathering to assault the Keep and what they hope to achieve.</p>
-                    <span class="reward-tag">🕵️ Intelligence Gathering</span>
-                </div>
-                <div class="mission-card">
-                    <h4>⚔️ Break the Siege</h4>
-                    <p>Lead a desperate sortie to shatter the enemy's encirclement before the Keep's supplies run out.</p>
-                    <span class="reward-tag">👑 Leadership Skills</span>
-                </div>
-            </div>
-            
-            <span class="defense-tag">🤝 Allied Support</span>
-            <span class="defense-tag">📋 Strategic Planning</span>
-            <span class="threat-tag">⏰ Time Pressure</span>
-            <span class="reward-tag">🎖️ Honor & Glory</span>
-        </div>
+<div class="callout callout-edge">
+    <p><strong>Classic edition (1989–1990):</strong> the original books tell the same broad story in older names. The heroes set out to rescue "the Emperor and his army", the villain is Morcar in the European books (Zargon in North America), and the Abominations are Fimir. Use those names only when you are reading from the classic books.</p>
+</div>
+</section>
 
-        <div class="mermaid">
-            graph TD
-                A[Kellar's Keep Campaign] --> B[Initial Assessment]
-                A --> C[Preparation Phase]
-                A --> D[Active Defense]
-                A --> E[Final Confrontation]
-                
-                B --> F[Meet Sir Ragnar]
-                B --> G[Survey Defenses]
-                B --> H[Assess Threats]
-                
-                C --> I[Train Garrison]
-                C --> J[Repair Fortifications]
-                C --> K[Gather Supplies]
-                
-                D --> L[Repel Probes]
-                D --> M[Counter-Intelligence]
-                D --> N[Maintain Morale]
-                
-                E --> O[Break the Siege]
-                E --> P[Defeat Enemy Leader]
-                E --> Q[Secure Victory]
-                
-                style A fill:#696969
-                style O fill:#b8860b
-                style P fill:#8b0000
-                style Q fill:#ffd700
-        </div>
+<section>
+<h2>A Fan's Telling: The Halls Under the Mountain</h2>
+<div class="callout scene-box">
+    <p><strong>Fan elaboration.</strong> Nothing in this section is from the quest books; use it as table colour if you like it.</p>
+    <p>The dwarves built for permanence. Their halls are square-cut and cold, their corridors narrow enough that one axe can hold them, and their doors heavy enough that once forced, they never swing shut again. That suited the dwarves well. It suits Zargon's orcs better now, because the same narrow ways that once kept invaders out now keep rescuers slow.</p>
+    <p>The greenskins did not take the halls by cleverness. They took them by numbers, room after room, until the warrens were more orc than dwarf. Goblins run the side passages and loot whatever the orcs leave behind. And in the deepest chambers the Abominations wait: slow, patient, hard to kill, set there by Zargon to guard the way to Kaba Karn.</p>
+    <p>Dwarven builders also hid things. A stretch of blank wall may be a door no orc has found; a quiet room may hold a chest the dwarves sealed long ago. Heroes who take the time to search, when the halls are quiet enough to allow it, may find the old builders still on their side.</p>
+</div>
+</section>
 
-        <div class="quest-card enemy-profile">
-            <div class="card-type">Enemy Profile</div>
-            <h3>💀 The Besieging Forces</h3>
-            
-            <div class="danger-assessment">
-                <h4>A Coalition of Darkness</h4>
-                <p>The enemies gathering around Kellar's Keep represent something far more dangerous than a simple military threat—they are a coalition of forces that have found common cause in their desire to see the fortress fall. Orc war-bands provide the muscle, rogue human mercenaries offer tactical expertise, and dark sorcerers bind them all together with promises of power and plunder. But their true strength lies not in numbers but in their shared understanding that the Keep represents everything they despise about order, law, and civilization.</p>
-                
-                <p>The siege leader is a fallen knight known only as the Iron Captain, whose identity remains hidden behind a helm that has never been removed in the presence of witnesses. Some say he was once a defender of the Keep who was driven mad by years of thankless service; others believe he's a vengeful spirit animated by hatred for everything the fortress represents. Whatever his true nature, he commands his diverse forces with tactical brilliance and an intimate knowledge of the Keep's defenses that suggests he once called it home.</p>
-            </div>
-            
-            <div class="fortress-defense">
-                <h4>The Anatomy of a Siege</h4>
-                <p>The Iron Captain's strategy reveals his deep understanding of both military tactics and psychological warfare. Rather than attempting a direct assault on the Keep's formidable walls, he has chosen to slowly strangle it through blockade and attrition. His forces control all the approaches, preventing supplies and reinforcements from reaching the garrison while maintaining enough pressure to keep the defenders constantly alert and exhausted.</p>
-                
-                <p>But the true genius of his plan lies in its psychological dimension: by making the siege long and drawn-out, he forces the defenders to face the gradual erosion of hope, the daily choice between surrender and continued resistance. Each day that passes without relief makes the eventual fall seem more inevitable, testing not just the garrison's supplies but their faith in the values they've sworn to defend.</p>
-            </div>
-            
-            <span class="threat-tag">⚔️ Tactical Genius</span>
-            <span class="threat-tag">👹 Diverse Forces</span>
-            <span class="threat-tag">🧠 Psychological Warfare</span>
-            <span class="threat-tag">🖤 Intimate Knowledge</span>
-        </div>
+<section>
+<h2>Using This Story at the Table</h2>
+<p>As Zargon, read the quest book's own introduction aloud before each quest; it is short and it is the official story. Add colour from the fan telling above between quests, while the heroes shop and heal. Keep the King's army in the background as the reason the heroes cannot turn back: they are the only help on the way.</p>
+</section>
 
-        <div class="quest-card location-detail">
-            <div class="card-type">Location Detail</div>
-            <h3>🏛️ The Heart of the Keep</h3>
-            
-            <div class="fortress-layout">
-                <h4>Every Stone Tells a Story</h4>
-                <p>Walking through Kellar's Keep is like traveling through a three-dimensional history book where every chamber, corridor, and defensive position bears witness to centuries of struggle and sacrifice. The Great Hall still displays the banners of long-dead heroes who once dined at its tables before riding out to battles that are now mere footnotes in history. The armory contains weapons wielded by legendary warriors, each blade carrying the weight of stories that could fill entire libraries.</p>
-                
-                <p>But it's in the quiet corners where the Keep's true character reveals itself: the small shrine where defenders have left tokens before dangerous missions, the worn steps of the watchtower stairs polished smooth by countless sentries, and the modest quarters where Sir Ragnar has spent decades turning strangers into comrades and recruits into heroes. These intimate spaces remind visitors that behind all the grand strategy and epic battles, the Keep's strength has always come from ordinary people choosing to do extraordinary things.</p>
-            </div>
-            
-            <div class="secret-passage">
-                <h4>The Hidden Ways</h4>
-                <p>Lord Kellar was too wise a builder to rely solely on obvious defenses. Throughout the Keep, hidden passages and secret chambers provide alternative routes for defenders and secure storage for the most precious resources. Some of these passages are known to the garrison command, others have been forgotten and must be rediscovered by heroes clever enough to read the architectural clues left by the original builders.</p>
-                
-                <p>The most mysterious of these hidden spaces is the Founder's Chamber, a room that supposedly exists somewhere within the Keep's central tower but has never been found by living memory. Legend says it contains Lord Kellar's final contingency—resources or knowledge meant to preserve the Keep's mission even if everything else is lost. Whether this chamber truly exists or is merely a comforting myth, the search for it has led many defenders to discover other forgotten assets when they needed them most.</p>
-            </div>
-            
-            <span class="defense-tag">🏛️ Historic Chambers</span>
-            <span class="defense-tag">🗝️ Secret Passages</span>
-            <span class="defense-tag">👻 Spiritual Presence</span>
-            <span class="reward-tag">🏺 Ancient Artifacts</span>
-        </div>
+<section>
+<h2>Where Next</h2>
+<ul>
+    <li><a href="/heroquest_kellars_keep.html">Kellar's Keep</a>, for what is in the pack and how to play it.</li>
+    <li><a href="/heroquest_return_witch_lord.html">Return of the Witch Lord</a>, the next quest pack.</li>
+    <li><a href="/heroquest_lore_kingdoms_regions.html">Lore: Kingdoms &amp; Regions</a>, for the wider world.</li>
+</ul>
+</section>
+    </main>
 
-        <div class="quest-card treasure-vault">
-            <div class="card-type">Treasure Vault</div>
-            <h3>💎 The Keep's True Treasures</h3>
-            
-            <div class="fortress-layout">
-                <h4>Wealth Beyond Gold</h4>
-                <p>The treasures of Kellar's Keep cannot be measured in gold or gems, though the fortress certainly contains its share of material wealth accumulated over centuries of successful defense. The true treasures are the intangible assets that make victory possible: the loyalty of experienced soldiers who trust their leaders without question, the tactical knowledge gained from centuries of defensive operations, and the morale that comes from serving a cause larger than oneself.</p>
-                
-                <p>Among the material treasures, the most valuable are the weapons and armor that have been blessed by use in righteous battles. The Blade of the Vigil has never failed to strike true when wielded by a defender of the Keep, the Shield of Echoes bears the marks of dragon claws and demon talons but has never been pierced, and the Banner of the Unbroken has flown from the Keep's towers through every siege, its presence alone worth a dozen reinforcements to the garrison's morale.</p>
-            </div>
-            
-            <div class="historical-note">
-                <h4>The Library of Wars</h4>
-                <p>Perhaps the Keep's most precious treasure is its library—not of poetry or philosophy, but of military knowledge accumulated across generations of warfare. Every siege, every battle, every successful defense has been carefully documented with tactical analyses, enemy assessments, and lessons learned. This institutional memory allows each generation of defenders to build upon the wisdom of their predecessors, ensuring that the same mistakes are never made twice.</p>
-                
-                <p>Heroes who prove themselves worthy may be granted access to these tactical archives, gaining insights that can transform them from competent fighters into true military leaders. The knowledge contained within these volumes has shaped the defensive strategies of kingdoms across the continent, making Kellar's Keep not just a fortress but a school of warfare for those wise enough to learn from its teachings.</p>
-            </div>
-            
-            <span class="reward-tag">⚔️ Legendary Weapons</span>
-            <span class="reward-tag">🛡️ Blessed Armor</span>
-            <span class="reward-tag">📚 Tactical Knowledge</span>
-            <span class="reward-tag">🎖️ Military Honors</span>
-        </div>
 
-        <h2>The Siege That Changed Everything</h2>
-        
-        <div class="tactical-briefing">
-            <h3>The Test of Ultimate Resolve</h3>
-            <p>The current siege of Kellar's Keep represents more than just another military engagement—it's a test of whether the principles the fortress embodies can survive in an age of increasing cynicism and moral compromise. The Iron Captain's forces aren't just trying to capture a strategic position; they're attempting to prove that idealism is a luxury that civilization can no longer afford, that practical considerations must always trump abstract principles.</p>
-            
-            <p>For the defenders, this makes surrender not just a military defeat but a philosophical one. They're not just fighting to hold ground but to demonstrate that some things remain worth defending even when the cost seems unbearable. Every day they hold out is a declaration that honor, duty, and sacrifice still have meaning in a world that often seems to have forgotten their value.</p>
-        </div>
-
-        <div class="keep-chronicle">
-            <h3>The Unbroken Chain</h3>
-            <p>What makes Kellar's Keep legendary is not that it has never been besieged—it has faced dozens of such challenges over the centuries. What makes it special is that it has never surrendered, never compromised its principles for temporary advantage, and never abandoned its mission even when doing so would have been the practical choice. Each successful defense has strengthened not just its walls but its reputation, creating a mystique that draws the best defenders while demoralizing its enemies.</p>
-            
-            <p>Heroes who help defend the Keep join an unbroken chain of champions stretching back to Lord Kellar himself. They become part of a tradition that transcends individual lifetimes, contributing their strength to an ideal that will outlast them all. In return, they gain something that no amount of treasure can purchase: the knowledge that they stood for something that mattered when it mattered most.</p>
-        </div>
-
-        <div class="keep-chronicle">
-            <p><em>"And so stands Kellar's Keep—not just a fortress of stone and steel, but a fortress of the spirit, proving that some walls can never be broken as long as there are those willing to defend them. In its chambers, heroes discover that the greatest victory is not conquering others but conquering the doubts within themselves, finding the strength to stand firm when everything else seems to be falling apart. For in the end, the Keep's true power lies not in its defenses, but in its ability to transform those who serve it from mere fighters into legends..."</em></p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_kellars_keep.html">Kellar's Keep</a>
+    <a class="next" href="/heroquest_return_witch_lord.html">Return of the Witch Lord</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

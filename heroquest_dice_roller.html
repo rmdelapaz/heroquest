@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice Roller - The HeroQuest Guide</title>
+    <meta name="description" content="A HeroQuest combat-dice roller with exact odds: roll attack dice against white or black shields, see how often an attack wounds or kills, and roll 2d6 movement.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        main .roller { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(16px, 3vw, 24px); margin: 1.2rem 0 1.4rem; box-shadow: var(--shadow); }
+        main .roller-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px 18px; margin-bottom: 0.8rem; }
+        main .roller-grid label { display: block; font-weight: 600; color: var(--heading); margin-bottom: 4px; }
+        main .roller-grid select { width: 100%; }
+        main .tray { display: flex; flex-wrap: wrap; gap: 8px; min-height: 52px; margin: 0.6rem 0; align-items: center; }
+        main .tray-label { font-weight: 700; color: var(--muted); font-size: 0.9rem; width: 100%; margin: 0.4rem 0 0; }
+        .cdie { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 10px; border: 2px solid #4a3b30; background: #fffdf9; color: #241c16; font-size: 0.68rem; font-weight: 700; line-height: 1.1; text-align: center; }
+        .cdie .face { font-size: 1.45rem; line-height: 1; }
+        .cdie.skull { background: #fbe9e7; border-color: #8f1d1d; color: #6e1414; }
+        .cdie.white { background: #ffffff; border-color: #4a3b30; color: #241c16; }
+        .cdie.black { background: #241c16; border-color: #241c16; color: #ffffff; }
+        .cdie.dim { opacity: 0.6; border-style: dashed; }
+        .cdie.red6 { background: #a3161f; border-color: #7f0f17; color: #fff; font-size: 1.4rem; }
+        main .verdict { font-size: 1.15rem; font-weight: 700; color: var(--heading); margin: 0.6rem 0 0; }
+        main .odds-table td:not(:first-child), main .odds-table th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+        main .bar { display: inline-block; height: 0.7em; background: var(--accent); border-radius: 3px; vertical-align: middle; margin-left: 6px; opacity: 0.75; }
+        main .matrix td, main .matrix th { text-align: center; font-variant-numeric: tabular-nums; padding: 0.4rem 0.45rem; }
+        main .note { color: var(--muted); font-size: 0.95rem; }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Dice Roller</h1>
+        <p>Roll HeroQuest's combat dice and movement dice, and see the exact odds behind every attack.</p>
+    </header>
+
+    <main id="main">
+<section>
+<h2>How the Combat Dice Work</h2>
+<p>HeroQuest's combat dice are six-sided, with three different symbols on them: <strong>three skulls</strong>, <strong>two white shields</strong> and <strong>one black shield</strong>.</p>
+<ul>
+    <li>The attacker rolls their attack dice. <strong>Every skull is a hit.</strong></li>
+    <li>The defender rolls their defend dice. A hero blocks one hit for every <strong>white shield</strong>; a monster blocks one hit for every <strong>black shield</strong>.</li>
+    <li>Each hit that isn't blocked costs the defender one <strong>Body Point</strong>. The common monsters (Goblins, Orcs, Skeletons and Zombies) have only one Body Point, so a single unblocked skull kills them.</li>
+</ul>
+<p>So a skull comes up half the time, a hero blocks with a third of their dice, and a monster blocks with only a sixth. That gap is why heroes can wade through Goblins and why every die of armour matters to them.</p>
+</section>
+
+<section>
+<h2>Combat Roller</h2>
+<div class="roller" id="combat">
+    <div class="roller-grid">
+        <div><label for="atk">Attack dice</label><select id="atk"></select></div>
+        <div><label for="def">Defend dice</label><select id="def"></select></div>
+        <div><label for="who">The defender is a…</label>
+            <select id="who"><option value="monster">Monster (blocks on black shields)</option><option value="hero">Hero (blocks on white shields)</option></select></div>
+        <div><label for="body">Defender's Body Points</label><select id="body"></select></div>
+    </div>
+    <button type="button" id="rollCombat">Roll the attack</button>
+    <p class="tray-label">Attack dice</p>
+    <div class="tray" id="atkTray" aria-live="polite"></div>
+    <p class="tray-label">Defend dice</p>
+    <div class="tray" id="defTray"></div>
+    <p class="verdict" id="verdict" aria-live="polite">Choose the dice and roll.</p>
+</div>
+
+<h3>Exact Odds for This Attack</h3>
+<p id="oddsSummary"></p>
+<div class="table-container">
+<table class="odds-table" id="oddsTable"><thead><tr><th>Body Points lost</th><th>Chance</th><th>This many or more</th></tr></thead><tbody></tbody></table>
+</div>
+<p id="killLine"></p>
+</section>
+
+<section>
+<h2>How Often Does an Attack Wound?</h2>
+<p>Each cell is the chance that one attack takes <strong>at least one Body Point</strong>. Rows are attack dice; columns are defend dice.</p>
+<h3>Against a Monster (black shields)</h3>
+<div class="table-container"><table class="matrix" id="mxMonster"></table></div>
+<h3>Against a Hero (white shields)</h3>
+<div class="table-container"><table class="matrix" id="mxHero"></table></div>
+<p class="note">Compare the same row in both tables: three attack dice wound a monster rolling two defend dice 75.0% of the time, but a hero with two defend dice only 62.5% of the time.</p>
+</section>
+
+<section>
+<h2>Movement Roller</h2>
+<p>Heroes roll two red six-sided dice for movement and may move up to the total in squares. Monsters don't roll: each one has a fixed Movement on its card.</p>
+<div class="roller" id="move">
+    <button type="button" id="rollMove">Roll movement (2d6)</button>
+    <div class="tray" id="moveTray" aria-live="polite"></div>
+    <p class="verdict" id="moveVerdict">Roll to see how far your hero can go.</p>
+</div>
+<div class="table-container">
+<table class="odds-table" id="moveTable"><thead><tr><th>Total</th><th>Chance</th><th>This many or more</th></tr></thead><tbody></tbody></table>
+</div>
+</section>
+
+<section>
+<h2>Try It at the Table</h2>
+<ul>
+    <li>Before a fight, set the roller to your hero against the monster in front of you and read the "kill within" line. It tells you whether to attack now or wait for a friend.</li>
+    <li>Set the defender to <em>Hero</em> and compare one defend die against two. That is what a helmet or a shield is worth to you.</li>
+    <li>Movement averages 7. If the door you need is 9 squares away, the table shows you have about a 28% chance of reaching it this turn.</li>
+</ul>
+</section>
+    </main>
+
+    <script>
+    (function () {
+        // Exact HeroQuest combat-dice odds. A combat die has 3 skulls, 2 white shields and 1 black shield.
+        var P_SKULL = 3 / 6, P_BLOCK = { hero: 2 / 6, monster: 1 / 6 };
+        function choose(n, k) { var r = 1; for (var i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
+        function binom(n, p) { var out = []; for (var k = 0; k <= n; k++) out.push(choose(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k)); return out; }
+        function damage(attack, defend, who) {
+            var hits = binom(attack, P_SKULL), blocks = binom(defend, P_BLOCK[who]), out = [];
+            for (var d = 0; d <= attack; d++) out.push(0);
+            hits.forEach(function (ph, h) { blocks.forEach(function (pb, b) { out[Math.max(0, h - b)] += ph * pb; }); });
+            return out;
+        }
+        function atLeast(dist, k) { var s = 0; for (var i = k; i < dist.length; i++) s += dist[i]; return s; }
+        function expected(dist) { return dist.reduce(function (s, p, d) { return s + p * d; }, 0); }
+        function killWithin(attack, defend, who, body, attacks) {
+            var dist = damage(attack, defend, who), state = [];
+            for (var r = 0; r <= body; r++) state.push(0);
+            state[body] = 1;
+            for (var a = 0; a < attacks; a++) {
+                var nxt = state.map(function () { return 0; });
+                nxt[0] = state[0];
+                for (var rem = 1; rem <= body; rem++) {
+                    if (!state[rem]) continue;
+                    dist.forEach(function (q, d) { nxt[Math.max(0, rem - d)] += state[rem] * q; });
+                }
+                state = nxt;
+            }
+            return state[0];
+        }
+        function movement() { var out = {}; for (var a = 1; a <= 6; a++) for (var b = 1; b <= 6; b++) out[a + b] = (out[a + b] || 0) + 1 / 36; return out; }
+        window.hqDice = { damage: damage, atLeast: atLeast, expected: expected, killWithin: killWithin, movement: movement };
+
+        var pct = function (p) { var v = p * 100; return (v > 0 && v < 0.1 ? '<0.1' : (v + 1e-9).toFixed(1)) + '%'; };
+        var $ = function (id) { return document.getElementById(id); };
+        function fill(sel, from, to, val) { for (var i = from; i <= to; i++) { var o = document.createElement('option'); o.value = i; o.textContent = i; if (i === val) o.selected = true; sel.appendChild(o); } }
+        fill($('atk'), 1, 8, 3); fill($('def'), 0, 8, 2); fill($('body'), 1, 10, 1);
+
+        function face(r) { return r < 3 ? 'skull' : (r < 5 ? 'white' : 'black'); }
+        var LABEL = { skull: ['💀', 'Skull'], white: ['🛡', 'White'], black: ['🛡', 'Black'] };
+        function dieEl(kind, dim) {
+            var d = document.createElement('span');
+            d.className = 'cdie ' + kind + (dim ? ' dim' : '');
+            d.innerHTML = '<span class="face" aria-hidden="true">' + LABEL[kind][0] + '</span>' + LABEL[kind][1];
+            d.setAttribute('role', 'img'); d.setAttribute('aria-label', LABEL[kind][1] === 'Skull' ? 'skull' : LABEL[kind][1].toLowerCase() + ' shield');
+            return d;
+        }
+        function cur() { return { a: +$('atk').value, d: +$('def').value, who: $('who').value, body: +$('body').value }; }
+
+        function showOdds() {
+            var c = cur(), dist = damage(c.a, c.d, c.who), tb = $('oddsTable').tBodies[0];
+            tb.innerHTML = '';
+            var max = Math.max.apply(null, dist);
+            dist.forEach(function (p, k) {
+                var tr = document.createElement('tr');
+                tr.innerHTML = '<td>' + k + '</td><td>' + pct(p) + '<span class="bar" style="width:' + Math.round(60 * p / max) + 'px"></span></td><td>' + pct(atLeast(dist, k)) + '</td>';
+                tb.appendChild(tr);
+            });
+            $('oddsSummary').textContent = c.a + ' attack dice against ' + c.d + ' defend dice (' + (c.who === 'hero' ? 'a hero blocking on white shields' : 'a monster blocking on black shields') +
+                '): the attack takes at least one Body Point ' + pct(atLeast(dist, 1)) + ' of the time and ' + expected(dist).toFixed(2) + ' Body Points on average.';
+            var parts = [1, 2, 3].map(function (n) { return pct(killWithin(c.a, c.d, c.who, c.body, n)) + ' within ' + n + (n === 1 ? ' attack' : ' attacks'); });
+            $('killLine').textContent = 'Chance to take a defender with ' + c.body + ' Body Point' + (c.body === 1 ? '' : 's') + ' down to zero: ' + parts.join(', ') + '.';
+        }
+        ['atk', 'def', 'who', 'body'].forEach(function (id) { $(id).addEventListener('change', showOdds); });
+
+        $('rollCombat').addEventListener('click', function () {
+            var c = cur(), at = $('atkTray'), dt = $('defTray'), hits = 0, blocks = 0;
+            at.innerHTML = ''; dt.innerHTML = '';
+            for (var i = 0; i < c.a; i++) { var f = face(Math.floor(Math.random() * 6)); if (f === 'skull') hits++; at.appendChild(dieEl(f, f !== 'skull')); }
+            var want = c.who === 'hero' ? 'white' : 'black';
+            for (var j = 0; j < c.d; j++) { var g = face(Math.floor(Math.random() * 6)); if (g === want) blocks++; dt.appendChild(dieEl(g, g !== want)); }
+            if (!c.d) dt.textContent = 'No defend dice.';
+            var lost = Math.max(0, hits - blocks);
+            $('verdict').textContent = hits + (hits === 1 ? ' skull' : ' skulls') + ', ' + blocks + ' ' + want + (blocks === 1 ? ' shield' : ' shields') + ': ' +
+                (lost ? 'the defender loses ' + lost + ' Body Point' + (lost === 1 ? '' : 's') + (lost >= c.body ? ' and is killed!' : '.') : 'no damage.');
+        });
+
+        function matrix(id, who) {
+            var t = $(id), h = '<thead><tr><th scope="col">Attack ↓ / Defend →</th>';
+            for (var d = 1; d <= 6; d++) h += '<th scope="col">' + d + '</th>';
+            h += '</tr></thead><tbody>';
+            for (var a = 1; a <= 6; a++) {
+                h += '<tr><th scope="row">' + a + '</th>';
+                for (var e = 1; e <= 6; e++) h += '<td>' + pct(atLeast(damage(a, e, who), 1)) + '</td>';
+                h += '</tr>';
+            }
+            t.innerHTML = h + '</tbody>';
+        }
+        matrix('mxMonster', 'monster'); matrix('mxHero', 'hero');
+
+        var mv = movement(), mb = $('moveTable').tBodies[0], cum = 1;
+        for (var s = 2; s <= 12; s++) { var tr = document.createElement('tr'); tr.innerHTML = '<td>' + s + '</td><td>' + pct(mv[s]) + '</td><td>' + pct(cum) + '</td>'; cum -= mv[s]; mb.appendChild(tr); }
+        $('rollMove').addEventListener('click', function () {
+            var a = 1 + Math.floor(Math.random() * 6), b = 1 + Math.floor(Math.random() * 6), t = $('moveTray');
+            t.innerHTML = '';
+            [a, b].forEach(function (v) { var d = document.createElement('span'); d.className = 'cdie red6'; d.textContent = v; d.setAttribute('role', 'img'); d.setAttribute('aria-label', 'red die showing ' + v); t.appendChild(d); });
+            $('moveVerdict').textContent = 'Move up to ' + (a + b) + ' squares.';
+        });
+        showOdds();
+    })();
+    </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_solo.html">Playing Without Zargon</a>
+    <a class="next" href="/heroquest_digital_toolkit.html">Zargon&#x27;s Toolkit</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
+</body>
+</html>

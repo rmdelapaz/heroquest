@@ -3,777 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Berserker Hero - HeroQuest Tutorial</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>The Berserker - The HeroQuest Guide</title>
+    <meta name="description" content="The Berserker is the human melee hero from Jungles of Delthrak: exact odds for hard-hitting attacks, where to stand, and how to survive on the front line.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-<div class="container">
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>🪓 The Berserker Hero: Avatar of Primal Fury</h1>
-        <p><em>Welcome, child of the wild! Today we explore the unbridled rage and savage power of HeroQuest's most ferocious warrior.</em></p>
+        <h1>The Berserker</h1>
+        <p>The Berserker, a human hero from the Jungles of Delthrak quest pack, is built to fight up close; this page covers the odds and the positioning that keep that hero alive.</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="hero-card">
             <h2>Meet the Berserker</h2>
-            <p>The Berserker is HeroQuest's embodiment of primal, uncontrolled fury - imagine a tribal warrior who channels pure animalistic rage into devastating combat power, trading civilization's restraints for the raw strength of the untamed wild. Where other warriors rely on training and technique, the Berserker draws power from ancestral spirits, blood frenzy, and the savage instincts that lurk beneath the veneer of civilization, becoming an unstoppable force of nature in battle.</p>
+            <p>The Berserker is one of the two heroes in the Avalon Hill <a href="/heroquest_jungles_delthrak.html">Jungles of Delthrak</a> quest pack (2024), alongside the dwarf <a href="/heroquest_explorer_tutorial.html">Explorer</a>. The Berserker is <strong>human</strong>, and the pack includes both male and female versions of the figure.</p>
+            <p>The name tells you the job: the Berserker is a close-combat fighter who wants to be in the middle of the fight. The exact special rules that make the Berserker different from the Barbarian are printed on the hero card. We couldn't confirm their wording from an official source, so this page doesn't describe them. Instead it covers the parts of HeroQuest that every front-line fighter lives or dies by: the combat odds, where to stand, and when to back off.</p>
         </section>
 
         <section>
-            <h2>Core Statistics: The Unleashed Beast</h2>
-            
-            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
-            <div class="stat-display">Attack: 3 combat dice</div>
-            <div class="stat-display">Defend: 1 combat die</div>
-            <div class="stat-display">Body Points: 9</div>
-            <div class="stat-display">Mind Points: 2</div>
-
+            <h2>Starting Statistics</h2>
+            <p>The Berserker moves with <strong>two red six-sided dice</strong> (2 to 12 squares, 7 on average), like every hero. For the Berserker's Attack, Defend, Body and Mind values, <strong>see the hero card</strong>.</p>
+            <div class="callout callout-edge">
+                <strong>Classic edition (1989–1990):</strong> there was no Berserker in the original game. The Barbarian was the only pure fighter among the four classic heroes (Attack 3, Defend 2, Body 8, Mind 2, the same numbers the 2021 Barbarian uses).
+            </div>
             <div class="analogy-box">
-                <strong>Think of it this way:</strong> If heroes were natural forces, the Berserker would be a hurricane - devastating offensive power (3 Attack, 9 Body) that tears through obstacles but with minimal control or protection (1 Defend, 2 Mind). Like a storm, the Berserker's strength comes from raw, uncontrolled energy that can reshape the battlefield but is inherently unpredictable and dangerous.
+                <strong>Think of it this way:</strong> a front-line fighter is a door you put between the monsters and your friends. A good door is in the right frame.
             </div>
+        </section>
 
+        <section>
+            <h2>The Odds of Hitting Hard</h2>
+            <p>Every attack works the same way. You roll your Attack dice and count skulls; each die is a skull half the time. The monster rolls its Defend dice and blocks one skull for each <strong>black shield</strong>, which comes up one time in six. Each unblocked skull removes one Body Point. Find your Attack dice on the left (count any weapon bonus) and the monster's Defend dice across the top:</p>
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Berserker Stats: The Fury Profile</h3>
-                    <canvas id="berserkerStatsCanvas" width="500" height="300"></canvas>
-                </div>
+                <h3>Chance to Wound a Monster</h3>
+                <canvas id="berserkerOddsCanvas" width="440" height="290" role="img" aria-label="Table of exact chances that an attack removes at least one Body Point, for 2 to 5 attack dice against monsters with 1 to 4 defend dice."></canvas>
             </div>
+            <p>Each extra Attack die is worth a lot against tough monsters. Going from 3 to 4 dice against a monster with 4 Defend dice raises your chance to wound it from 62.9% to 75.4%.</p>
 
-            <div class="primal_fury">
-                <h3>⚡ Extreme Stat Distribution</h3>
-                <p><strong>Maximum Attack:</strong> 3 dice equal the Barbarian and Knight's offensive capability</p>
-                <p><strong>Minimal Defense:</strong> 1 die represents abandoning protection for pure aggression</p>
-                <p><strong>Supreme Endurance:</strong> 9 Body Points exceed all other heroes' survival capacity</p>
-                <p><strong>Primal Mind:</strong> 2 Mind Points reflect instinct over intellect</p>
-                <p><strong>Glass Cannon Extreme:</strong> Maximum damage output with minimal damage avoidance</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Berserker Rage: The Heart of Fury</h2>
-            
-            <p>The Berserker's defining ability is entering a rage state that dramatically enhances combat effectiveness while sacrificing tactical control. This isn't mere anger - it's a supernatural transformation that channels primal forces.</p>
-
-            <div class="berserker-rage">
-                <h3>🔥 Rage State Mechanics</h3>
-                <p><strong>Rage Trigger:</strong> Enter fury state when taking damage or witnessing ally harm</p>
-                <p><strong>Enhanced Attacks:</strong> Additional attack dice and damage bonuses while raging</p>
-                <p><strong>Pain Immunity:</strong> Ignore wound penalties and continue fighting when others would fall</p>
-                <p><strong>Fearless State:</strong> Complete immunity to fear, intimidation, and morale effects</p>
-                <p><strong>Tactical Blindness:</strong> Cannot retreat, use tactics, or distinguish friend from foe</p>
-                <p><strong>Duration Limits:</strong> Rage eventually ends, leaving the Berserker exhausted</p>
-            </div>
-
+            <p>Tough monsters often need more than one hit. The next chart shows how likely you are to finish a monster with <strong>3 Defend dice and 2 Body Points</strong> within one, two or three of your attacks:</p>
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Rage State Combat Bonuses</h3>
-                    <canvas id="rageStateCanvas" width="600" height="250"></canvas>
-                </div>
+                <h3>Finishing a Tough Monster</h3>
+                <canvas id="berserkerKillCanvas" width="440" height="320" role="img" aria-label="Bar chart: chance to defeat a monster with 3 defend dice and 2 Body Points within 1, 2 or 3 attacks, for 2, 3 and 4 attack dice."></canvas>
             </div>
-
-            <div class="blood-frenzy">
-                <h3>Rage Progression Stages</h3>
-                <p><strong>Calm State:</strong> Normal stats, full tactical control, can use items and strategy</p>
-                <p><strong>Battle Fury:</strong> +1 Attack die, immune to fear, reduced tactical awareness</p>
-                <p><strong>Blood Rage:</strong> +2 Attack dice, ignore wounds, cannot retreat or surrender</p>
-                <p><strong>Primal Frenzy:</strong> +3 Attack dice, attack nearest target regardless of allegiance</p>
-                <p><strong>Exhaustion:</strong> Post-rage penalty period with reduced effectiveness</p>
-            </div>
+            <p>With 3 Attack dice, one attack finishes it only 33.3% of the time, but within three attacks you get there 86.6% of the time. Fights against big monsters take several turns, so plan to survive them.</p>
         </section>
 
         <section>
-            <h2>Savage Combat: The Art of Destruction</h2>
-            
-            <p>Berserker combat philosophy abandons finesse for overwhelming aggression. With minimal defense but maximum offensive potential, every engagement becomes a race between dealing damage and absorbing it.</p>
-
-            <div class="mermaid">
-                graph TD
-                    A[Berserker Combat Turn] --> B{Currently Raging?}
-                    B -->|Yes| C{Enemies Within Reach?}
-                    C -->|Yes| D[Attack Nearest Target]
-                    C -->|No| E[Charge Toward Combat]
-                    B -->|No| F{Should Enter Rage?}
-                    F -->|Yes| G[Trigger Rage State]
-                    F -->|No| H{Tactical Options Available?}
-                    H -->|Yes| I[Strategic Combat]
-                    H -->|No| J[Standard Aggressive Attack]
-                    D --> K[Continue Rage Assault]
-                    E --> L[Seek Next Target]
-                    G --> M[Begin Fury Combat]
-                    I --> N[Assess Rage Necessity]
-                    J --> O[Monitor Combat Status]
-            </div>
-
-            <div class="savage-instincts">
-                <h3>🗡️ Berserker Combat Principles</h3>
-                <p><strong>Offensive Priority:</strong> Deal maximum damage before enemies can respond</p>
-                <p><strong>Aggressive Positioning:</strong> Close to melee range immediately</p>
-                <p><strong>Pain Tolerance:</strong> Trade damage for damage without hesitation</p>
-                <p><strong>Target Fixation:</strong> Focus on single enemies until eliminated</p>
-                <p><strong>Instinctive Fighting:</strong> React faster than thought allows</p>
-            </div>
-
+            <h2>Where to Stand</h2>
+            <p>Monsters can attack only the four squares that share an edge with them. They can't attack or move diagonally, and they can't pass through heroes. So the number of monsters that can hit you depends on how many of your four sides are open.</p>
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Combat Style Effectiveness Comparison</h3>
-                    <canvas id="combatStyleCanvas" width="500" height="300"></canvas>
-                </div>
+                <h3>Open Room vs Corridor</h3>
+                <canvas id="berserkerChokeCanvas" width="440" height="310" role="img" aria-label="Two boards. Left: a hero in the open with four orcs around, all four can attack. Right: a hero in a corridor with an ally behind, only one orc can attack."></canvas>
+            </div>
+            <div class="survival-mastery">
+                <h3>Front-Line Rules of Thumb</h3>
+                <p><strong>Fight in corridors and doorways.</strong> One open side means one attacker per monster turn.</p>
+                <p><strong>Don't charge into the middle of a room.</strong> Four attackers on one hero can remove a lot of Body Points in a single Zargon turn.</p>
+                <p><strong>Move then attack, or attack then move.</strong> You can't split your movement around an attack, so if you plan to fall back after attacking, check your roll first and use it all after the attack.</p>
+                <p><strong>Leave a diagonal for a friend.</strong> A Bard with a rapier can attack from the diagonal square while you hold the front.</p>
             </div>
         </section>
 
         <section>
-            <h2>Tribal Wisdom: The Savage's Cunning</h2>
-            
-            <p>Despite low Mind Points, Berserkers possess primal wisdom gained through survival in harsh wilderness environments. This isn't book learning but intuitive understanding of combat, nature, and survival.</p>
-
-            <div class="tribal-wisdom">
-                <h3>🌿 Primal Knowledge Areas</h3>
-                <p><strong>Combat Instincts:</strong> Intuitive understanding of enemy weaknesses and attack patterns</p>
-                <p><strong>Survival Skills:</strong> Wilderness navigation, tracking, and resource gathering</p>
-                <p><strong>Animal Communication:</strong> Basic understanding of beast behavior and pack dynamics</p>
-                <p><strong>Danger Sensing:</strong> Supernatural awareness of threats and ambushes</p>
-                <p><strong>Tribal Lore:</strong> Ancient knowledge passed down through warrior traditions</p>
-                <p><strong>Pain Tolerance:</strong> Understanding of how to fight through injuries others couldn't survive</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Wisdom Application Success Rates</h3>
-                    <canvas id="tribalWisdomCanvas" width="500" height="250"></canvas>
-                </div>
-            </div>
-
-            <div class="wild-nature">
-                <h3>Instinct vs Intelligence</h3>
-                <p><strong>Quick Decisions:</strong> React faster than thinking heroes in crisis situations</p>
-                <p><strong>Pattern Recognition:</strong> Spot combat opportunities others miss through analysis</p>
-                <p><strong>Emotional Intelligence:</strong> Read enemy morale and psychological state</p>
-                <p><strong>Survival Priority:</strong> Focus on immediate, practical concerns over abstract planning</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Equipment Philosophy: Tools of the Wild</h2>
-            
-            <p>Berserkers favor simple, reliable equipment that enhances their natural fighting ability without requiring complex techniques or maintenance. Function trumps form in all equipment choices.</p>
-
-            <div class="savage-instincts">
-                <h3>🪓 Berserker Equipment Preferences</h3>
-                <p><strong>Brutal Weapons:</strong> Axes, clubs, and two-handed weapons for maximum damage</p>
-                <p><strong>Minimal Armor:</strong> Light protection that doesn't restrict movement or rage</p>
-                <p><strong>Natural Materials:</strong> Preference for bone, wood, stone, and hide over metal</p>
-                <p><strong>Backup Armaments:</strong> Multiple weapons in case primary breaks during fury</p>
-                <p><strong>Practical Gear:</strong> Survival tools and healing supplies for extended wilderness combat</p>
-                <p><strong>Trophy Items:</strong> Weapons and armor taken from defeated enemies</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Equipment Impact on Berserker Performance</h3>
-                    <canvas id="equipmentImpactCanvas" width="500" height="300"></canvas>
-                </div>
-            </div>
-
-            <div class="primal-fury">
-                <h3>Rage-Compatible Equipment</h3>
-                <p><strong>Unbreakable Weapons:</strong> Arms that can withstand frenzied use</p>
-                <p><strong>Flexible Armor:</strong> Protection that moves with wild combat motions</p>
-                <p><strong>Intuitive Design:</strong> Gear usable without conscious thought during rage</p>
-                <p><strong>Emergency Reserves:</strong> Backup equipment accessible even in fury state</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Party Dynamics: The Uncontrolled Ally</h2>
-            
-            <p>The Berserker's relationship with party members is complicated by their tendency to lose control during combat. They provide devastating offensive power but require careful management and positioning.</p>
-
-            <div class="mermaid">
-                graph LR
-                    A[Berserker: Devastating Offense] --> B[Barbarian: Mutual Respect]
-                    A --> C[Dwarf: Cautious Alliance]
-                    A --> D[Elf: Nervous Cooperation]
-                    A --> E[Wizard: Fearful Distance]
-                    A --> F[Knight: Protective Guidance]
-                    B --> G[Effective but Chaotic]
-                    C --> H[Stable with Limitations]
-                    D --> I[Tactical Flexibility]
-                    E --> J[High Risk, High Reward]
-                    F --> K[Disciplined Fury]
-            </div>
-
-            <div class="tribal-wisdom">
-                <h3>🤝 Party Management Strategies</h3>
-                <p><strong>With Barbarian:</strong> Form devastating front-line duo with overlapping combat roles</p>
-                <p><strong>With Dwarf:</strong> Dwarf's reliability balances Berserker's unpredictability</p>
-                <p><strong>With Elf:</strong> Elf provides ranged support while staying clear of rage effects</p>
-                <p><strong>With Wizard:</strong> Requires careful positioning to protect magical ally</p>
-                <p><strong>With Knight:</strong> Knight's discipline can help control and direct Berserker fury</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Party Effectiveness with Berserker Management</h3>
-                    <canvas id="partySynergyCanvas" width="500" height="250"></canvas>
-                </div>
-            </div>
-
-            <div class="blood-frenzy">
-                <h3>Rage Management Protocols</h3>
-                <p><strong>Pre-Combat Positioning:</strong> Place Berserker where rage won't endanger allies</p>
-                <p><strong>Trigger Control:</strong> Manage when and how rage state begins</p>
-                <p><strong>Direction Guidance:</strong> Use positioning to aim rage at appropriate targets</p>
-                <p><strong>Extraction Planning:</strong> Have methods to remove exhausted Berserker from danger</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Advanced Techniques: Mastering the Fury</h2>
-            
-            <div class="berserker-rage">
-                <h3>⚡ Advanced Berserker Mastery</h3>
-                <p><strong>Controlled Rage:</strong> Learn to enter and exit fury states more deliberately</p>
-                <p><strong>Selective Targeting:</strong> Maintain some awareness of friend vs foe during rage</p>
-                <p><strong>Fury Cycling:</strong> Alternate between rage and calm for tactical advantage</p>
-                <p><strong>Pain Channeling:</strong> Convert damage taken into enhanced offensive power</p>
-                <p><strong>Intimidation Mastery:</strong> Use fearsome presence for psychological warfare</p>
-            </div>
-
-            <div class="savage-instincts">
-                <h3>Master-Level Example: The Avalanche Technique</h3>
-                <p><strong>Setup:</strong> Multiple enemies clustered together in confined space</p>
-                <p><strong>Phase 1:</strong> Position at edge of enemy formation</p>
-                <p><strong>Phase 2:</strong> Enter controlled rage state and charge into center</p>
-                <p><strong>Phase 3:</strong> Use enhanced attacks to create chaos and panic</p>
-                <p><strong>Phase 4:</strong> Let rage momentum carry through entire enemy group</p>
-                <p><strong>Result:</strong> Single Berserker disrupts entire enemy formation through pure aggression</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Advanced Technique Risk vs Reward</h3>
-                    <canvas id="advancedTechniquesCanvas" width="600" height="300"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>When to Choose the Berserker: Optimal Scenarios</h2>
-            
-            <div class="primal-fury">
-                <h3>Perfect Berserker Adventures</h3>
-                <p><strong>Combat-Heavy Campaigns:</strong> Adventures focused on direct confrontation over subtlety</p>
-                <p><strong>Wilderness Settings:</strong> Natural environments where tribal skills provide advantages</p>
-                <p><strong>High-Damage Enemies:</strong> Scenarios where trading damage for damage favors high Body Points</p>
-                <p><strong>Psychological Warfare:</strong> Missions where intimidation and fear are tactical weapons</p>
-                <p><strong>Breakthrough Battles:</strong> Situations requiring overwhelming force to break enemy lines</p>
-                <p><strong>Survival Scenarios:</strong> Extended adventures where endurance and toughness matter</p>
-            </div>
-
-            <div class="wild-nature">
-                <h3>Challenging Scenarios for Berserkers</h3>
-                <p><strong>Stealth Missions:</strong> Subtle approaches incompatible with berserker nature</p>
-                <p><strong>Social Encounters:</strong> Diplomatic situations requiring restraint and eloquence</p>
-                <p><strong>Precision Tasks:</strong> Challenges requiring delicate manipulation or careful timing</p>
-                <p><strong>Magic-Heavy Adventures:</strong> Scenarios where low Mind Points severely limit options</p>
-                <p><strong>Friendly Fire Risks:</strong> Missions where rage could endanger innocent bystanders</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Rage Management: The Central Challenge</h2>
-            
-            <div class="blood-frenzy">
-                <h3>🔥 Rage State Economics</h3>
-                <p><strong>Entry Triggers:</strong> Damage taken, ally threatened, or voluntary activation</p>
-                <p><strong>Maintenance Cost:</strong> Physical and mental strain accumulates during rage</p>
-                <p><strong>Exit Conditions:</strong> No enemies visible, exhaustion, or exceptional willpower</p>
-                <p><strong>Recovery Period:</strong> Post-rage vulnerability while strength returns</p>
-                <p><strong>Long-term Effects:</strong> Repeated raging may have permanent consequences</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Rage Duration vs Effectiveness</h3>
-                    <canvas id="rageDurationCanvas" width="500" height="250"></canvas>
-                </div>
-            </div>
-
-            <div class="tribal-wisdom">
-                <h3>Rage Control Strategies</h3>
-                <p><strong>Timing Management:</strong> Save rage for crucial moments rather than every combat</p>
-                <p><strong>Environmental Awareness:</strong> Enter rage only when surroundings are appropriate</p>
-                <p><strong>Ally Communication:</strong> Signal party before entering uncontrolled state</p>
-                <p><strong>Exit Planning:</strong> Position rage to end in tactically advantageous location</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Positioning Strategy: The Rampaging Force</h2>
-            
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Berserker Positioning Tactics</h3>
-                    <canvas id="berserkerPositioningCanvas" width="400" height="400"></canvas>
-                </div>
-            </div>
-
-            <div class="savage-instincts">
-                <h3>🎯 Fury Positioning Principles</h3>
-                <p><strong>Aggressive Advance:</strong> Move directly toward highest-threat enemies</p>
-                <p><strong>Ally Separation:</strong> Maintain distance from fragile party members when raging</p>
-                <p><strong>Terrain Exploitation:</strong> Use environment to channel and focus rage</p>
-                <p><strong>Escape Route Denial:</strong> Position to prevent enemy retreat</p>
-                <p><strong>Central Disruption:</strong> Strike at enemy formation centers for maximum chaos</p>
-            </div>
-
-            <div class="analogy-box">
-                <strong>Natural Disaster Analogy:</strong> Positioning a Berserker is like directing a controlled avalanche - you can influence where it starts and roughly where it goes, but once the fury begins, you're dealing with a force of nature that follows its own momentum and physics.
-            </div>
-        </section>
-
-        <section>
-            <h2>Related Topics for Further Exploration</h2>
-            
+            <h2>Staying Alive</h2>
             <ul>
-                <li><strong>Rage Psychology:</strong> Understanding the mental and spiritual aspects of berserker fury</li>
-                <li><strong>Tribal Combat Techniques:</strong> Traditional fighting methods from primitive warrior cultures</li>
-                <li><strong>Pain Management:</strong> Advanced techniques for fighting through injuries and exhaustion</li>
-                <li><strong>Wilderness Survival:</strong> Skills for thriving in harsh natural environments</li>
-                <li><strong>Intimidation Mastery:</strong> Using fear and psychological pressure as tactical weapons</li>
-                <li><strong>Primitive Equipment Crafting:</strong> Creating effective weapons and armor from natural materials</li>
-                <li><strong>Animal Spirit Communion:</strong> Connecting with primal forces and ancestral wisdom</li>
-                <li><strong>Controlled Fury Training:</strong> Methods for directing and focusing berserker rage</li>
+                <li><strong>Carry a healing potion.</strong> Potions don't use your action. If you drop to 0 Body Points, you die unless you can drink a healing potion or cast a healing spell on yourself right then; allies can't save you afterwards.</li>
+                <li><strong>Buy armor between quests.</strong> Each extra Defend die blocks a hit one time in three.</li>
+                <li><strong>Back off before you're at 1.</strong> A monster with 3 Attack dice against your 2 Defend dice wounds you 62.5% of the time. Step back and let someone else hold the line for a turn.</li>
             </ul>
         </section>
 
-        <footer>
-            <p><em>Remember, warrior of the wild: Your rage is not weakness but strength unbound. While others cling to the illusions of control and civilization, you embrace the primal truth that sometimes, pure fury is the only answer to the darkness. In the deepest dungeons where evil thinks itself safe behind walls of stone and steel, you are the storm that tears down barriers and the hurricane that sweeps away all obstacles. Let your enemies know fear, for they face not just a warrior, but the untamed spirit of the wild itself!</em></p>
-        </footer>
+        <section>
+            <h2>Into the Jungle</h2>
+            <p>Jungles of Delthrak is a 16-quest pack with <strong>branching paths</strong>, so your party's choices change which quests you play. The pack also brings Raptor and Saberfang companions into play. Check the quest notes for how they act. On the Companion App, Jungles of Delthrak is one of the supported packs, which makes it easy to try with a Digital Zargon.</p>
+        </section>
+
+        <section>
+            <h2>Try It at the Table</h2>
+            <ul>
+                <li>Set up the two boards from the diagram with orcs and roll a few rounds of each. Count how many Body Points the hero loses in the open versus the corridor.</li>
+                <li>Before a big fight, agree which hero holds the corridor and who takes over when the front-liner is down to half Body Points.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Where Next</h2>
+            <ul>
+                <li><a href="/heroquest_jungles_delthrak.html">Jungles of Delthrak</a>: the quest pack the Berserker comes from.</li>
+                <li><a href="/heroquest_lore_jungles_delthrak.html">Jungles of Delthrak lore</a>: the story behind the pack.</li>
+                <li><a href="/heroquest_barbarian_tutorial.html">The Barbarian</a>: the classic front-line fighter.</li>
+                <li><a href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>: attack order, line of sight and blocking.</li>
+                <li><a href="/heroquest_explorer_tutorial.html">The Explorer</a>: the next hero in this guide.</li>
+            </ul>
+        </section>
     </main>
 
     <script>
-        // Berserker Stats Analysis
-        const berserkerStatsCanvas = document.getElementById('berserkerStatsCanvas');
-        const berserkerStatsCtx = berserkerStatsCanvas.getContext('2d');
-        
-        berserkerStatsCtx.clearRect(0, 0, 500, 300);
-        berserkerStatsCtx.font = '14px Arial';
-        berserkerStatsCtx.textAlign = 'center';
-        
-        const stats = [
-            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
-            {name: 'Attack', value: 3, max: 3, color: '#DC143C', label: '3 dice'},
-            {name: 'Defend', value: 1, max: 3, color: '#4169E1', label: '1 die'},
-            {name: 'Body', value: 9, max: 9, color: '#B22222', label: '9 points'},
-            {name: 'Mind', value: 2, max: 6, color: '#8B4513', label: '2 points'}
-        ];
-        
-        stats.forEach((stat, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (stat.value / stat.max) * 180;
-            
-            berserkerStatsCtx.fillStyle = stat.color;
-            berserkerStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
-            
-            berserkerStatsCtx.fillStyle = 'black';
-            berserkerStatsCtx.fillText(stat.label, x, 250);
-            berserkerStatsCtx.fillText(stat.name, x, 270);
-        });
-
-        // Rage State Combat Bonuses
-        const rageCanvas = document.getElementById('rageStateCanvas');
-        const rageCtx = rageCanvas.getContext('2d');
-        
-        rageCtx.clearRect(0, 0, 600, 250);
-        rageCtx.font = '12px Arial';
-        rageCtx.textAlign = 'center';
-        
-        const rageStates = [
-            {state: 'Calm', attack: 3, control: 100, fear: 0, color: '#4169E1'},
-            {state: 'Battle Fury', attack: 4, control: 75, fear: 25, color: '#DAA520'},
-            {state: 'Blood Rage', attack: 5, control: 40, fear: 60, color: '#FF6347'},
-            {state: 'Primal Frenzy', attack: 6, control: 10, fear: 90, color: '#B22222'},
-            {state: 'Exhaustion', attack: 2, control: 50, fear: 0, color: '#696969'}
-        ];
-        
-        rageStates.forEach((state, i) => {
-            const x = 80 + i * 100;
-            
-            // Attack power
-            const attackHeight = (state.attack / 6) * 100;
-            rageCtx.fillStyle = state.color;
-            rageCtx.fillRect(x - 35, 180 - attackHeight, 20, attackHeight);
-            
-            // Control level
-            const controlHeight = (state.control / 100) * 100;
-            rageCtx.fillStyle = state.color;
-            rageCtx.globalAlpha = 0.6;
-            rageCtx.fillRect(x - 10, 180 - controlHeight, 20, controlHeight);
-            
-            // Fear immunity
-            const fearHeight = (state.fear / 100) * 100;
-            rageCtx.fillStyle = state.color;
-            rageCtx.globalAlpha = 0.3;
-            rageCtx.fillRect(x + 15, 180 - fearHeight, 20, fearHeight);
-            rageCtx.globalAlpha = 1.0;
-            
-            rageCtx.fillStyle = 'black';
-            rageCtx.fillText(state.attack + 'd6', x - 25, 195);
-            rageCtx.fillText(state.control + '%', x, 195);
-            rageCtx.fillText(state.fear + '%', x + 25, 195);
-            
-            rageCtx.save();
-            rageCtx.translate(x, 220);
-            rageCtx.rotate(-Math.PI / 6);
-            rageCtx.fillText(state.state, 0, 0);
-            rageCtx.restore();
-        });
-        
-        rageCtx.fillText('Attack (Dark) | Control (Med) | Fear Immunity (Light)', 300, 30);
-
-        // Combat Style Effectiveness
-        const styleCanvas = document.getElementById('combatStyleCanvas');
-        const styleCtx = styleCanvas.getContext('2d');
-        
-        styleCtx.clearRect(0, 0, 500, 300);
-        styleCtx.font = '12px Arial';
-        styleCtx.textAlign = 'center';
-        
-        const combatStyles = [
-            {style: 'Pure Aggression', offense: 95, defense: 20, endurance: 85, color: '#B22222'},
-            {style: 'Controlled Fury', offense: 85, defense: 40, endurance: 90, color: '#DC143C'},
-            {style: 'Tactical Calm', offense: 70, defense: 60, endurance: 70, color: '#4169E1'},
-            {style: 'Defensive Fight', offense: 50, defense: 80, endurance: 60, color: '#2F4F4F'}
-        ];
-        
-        combatStyles.forEach((style, i) => {
-            const x = 80 + i * 90;
-            
-            // Offense
-            const offHeight = (style.offense / 100) * 120;
-            styleCtx.fillStyle = style.color;
-            styleCtx.fillRect(x - 30, 200 - offHeight, 18, offHeight);
-            
-            // Defense
-            const defHeight = (style.defense / 100) * 120;
-            styleCtx.fillStyle = style.color;
-            styleCtx.globalAlpha = 0.6;
-            styleCtx.fillRect(x - 6, 200 - defHeight, 18, defHeight);
-            
-            // Endurance
-            const endHeight = (style.endurance / 100) * 120;
-            styleCtx.fillStyle = style.color;
-            styleCtx.globalAlpha = 0.3;
-            styleCtx.fillRect(x + 18, 200 - endHeight, 18, endHeight);
-            styleCtx.globalAlpha = 1.0;
-            
-            styleCtx.fillStyle = 'black';
-            styleCtx.fillText(style.offense, x - 21, 220);
-            styleCtx.fillText(style.defense, x + 3, 220);
-            styleCtx.fillText(style.endurance, x + 27, 220);
-            
-            styleCtx.save();
-            styleCtx.translate(x, 250);
-            styleCtx.rotate(-Math.PI / 6);
-            styleCtx.fillText(style.style, 0, 0);
-            styleCtx.restore();
-        });
-        
-        styleCtx.fillText('Offense (Dark) | Defense (Med) | Endurance (Light)', 250, 30);
-
-        // Tribal Wisdom Success Rates
-        const wisdomCanvas = document.getElementById('tribalWisdomCanvas');
-        const wisdomCtx = wisdomCanvas.getContext('2d');
-        
-        wisdomCtx.clearRect(0, 0, 500, 250);
-        wisdomCtx.font = '12px Arial';
-        wisdomCtx.textAlign = 'center';
-        
-        const wisdomAreas = [
-            {area: 'Combat Instinct', success: 90, color: '#B22222'},
-            {area: 'Survival Skills', success: 85, color: '#8B4513'},
-            {area: 'Danger Sense', success: 80, color: '#DC143C'},
-            {area: 'Animal Comm', success: 75, color: '#A0522D'},
-            {area: 'Pain Tolerance', success: 95, color: '#654321'}
-        ];
-        
-        wisdomAreas.forEach((area, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (area.success / 100) * 150;
-            
-            wisdomCtx.fillStyle = area.color;
-            wisdomCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
-            
-            wisdomCtx.fillStyle = 'black';
-            wisdomCtx.fillText(area.success + '%', x, 185 - barHeight);
-            wisdomCtx.save();
-            wisdomCtx.translate(x, 220);
-            wisdomCtx.rotate(-Math.PI / 4);
-            wisdomCtx.fillText(area.area, 0, 0);
-            wisdomCtx.restore();
-        });
-
-        // Equipment Impact on Performance
-        const equipCanvas = document.getElementById('equipmentImpactCanvas');
-        const equipCtx = equipCanvas.getContext('2d');
-        
-        equipCtx.clearRect(0, 0, 500, 300);
-        equipCtx.font = '12px Arial';
-        equipCtx.textAlign = 'center';
-        
-        const equipTypes = [
-            {type: 'Brutal Weapons', base: 80, equipped: 95, color: '#B22222'},
-            {type: 'Light Armor', base: 30, equipped: 50, color: '#8B4513'},
-            {type: 'Survival Gear', base: 60, equipped: 80, color: '#A0522D'},
-            {type: 'Trophy Items', base: 70, equipped: 90, color: '#DC143C'}
-        ];
-        
-        equipTypes.forEach((equip, i) => {
-            const x = 80 + i * 90;
-            
-            // Base
-            const baseHeight = (equip.base / 100) * 150;
-            equipCtx.fillStyle = '#DDD';
-            equipCtx.fillRect(x - 25, 200 - baseHeight, 20, baseHeight);
-            
-            // Equipped
-            const equipHeight = (equip.equipped / 100) * 150;
-            equipCtx.fillStyle = equip.color;
-            equipCtx.fillRect(x + 5, 200 - equipHeight, 20, equipHeight);
-            
-            equipCtx.fillStyle = 'black';
-            equipCtx.fillText(equip.base + '%', x - 15, 220);
-            equipCtx.fillText(equip.equipped + '%', x + 15, 220);
-            equipCtx.fillText(equip.type, x, 240);
-        });
-
-        // Party Synergy with Management
-        const synergyCanvas = document.getElementById('partySynergyCanvas');
-        const synergyCtx = synergyCanvas.getContext('2d');
-        
-        synergyCtx.clearRect(0, 0, 500, 250);
-        synergyCtx.font = '12px Arial';
-        synergyCtx.textAlign = 'center';
-        
-        const partyCombs = [
-            {combo: 'Berserker Solo', effectiveness: 70, color: '#B22222'},
-            {combo: 'Unmanaged Party', effectiveness: 60, color: '#696969'},
-            {combo: 'Basic Management', effectiveness: 80, color: '#4169E1'},
-            {combo: 'Tactical Control', effectiveness: 90, color: '#32CD32'},
-            {combo: 'Master Direction', effectiveness: 95, color: '#FFD700'}
-        ];
-        
-        partyCombs.forEach((combo, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (combo.effectiveness / 100) * 150;
-            
-            synergyCtx.fillStyle = combo.color;
-            synergyCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
-            
-            synergyCtx.fillStyle = 'black';
-            synergyCtx.fillText(combo.effectiveness + '%', x, 185 - barHeight);
-            synergyCtx.save();
-            synergyCtx.translate(x, 220);
-            synergyCtx.rotate(-Math.PI / 4);
-            synergyCtx.fillText(combo.combo, 0, 0);
-            synergyCtx.restore();
-        });
-
-        // Advanced Techniques Risk vs Reward
-        const techCanvas = document.getElementById('advancedTechniquesCanvas');
-        const techCtx = techCanvas.getContext('2d');
-        
-        techCtx.clearRect(0, 0, 600, 300);
-        techCtx.font = '11px Arial';
-        techCtx.textAlign = 'center';
-        
-        const techniques = [
-            {tech: 'Controlled Rage', risk: 40, reward: 80, difficulty: 70, color: '#4169E1'},
-            {tech: 'Selective Target', risk: 60, reward: 85, difficulty: 85, color: '#DAA520'},
-            {tech: 'Fury Cycling', risk: 70, reward: 90, difficulty: 90, color: '#DC143C'},
-            {tech: 'Pain Channeling', risk: 80, reward: 95, difficulty: 95, color: '#B22222'},
-            {tech: 'Avalanche Tech', risk: 90, reward: 100, difficulty: 100, color: '#8B0000'}
-        ];
-        
-        techniques.forEach((tech, i) => {
-            const x = 80 + i * 100;
-            
-            // Risk (downward bars)
-            const riskHeight = (tech.risk / 100) * 80;
-            techCtx.fillStyle = tech.color;
-            techCtx.globalAlpha = 0.4;
-            techCtx.fillRect(x - 35, 150, 20, riskHeight);
-            
-            // Reward (upward bars)
-            const rewardHeight = (tech.reward / 100) * 80;
-            techCtx.fillStyle = tech.color;
-            techCtx.globalAlpha = 0.7;
-            techCtx.fillRect(x - 10, 150 - rewardHeight, 20, rewardHeight);
-            
-            // Difficulty (upward bars)
-            const diffHeight = (tech.difficulty / 100) * 80;
-            techCtx.fillStyle = tech.color;
-            techCtx.globalAlpha = 1.0;
-            techCtx.fillRect(x + 15, 150 - diffHeight, 20, diffHeight);
-            
-            techCtx.fillStyle = 'black';
-            techCtx.fillText(tech.risk, x - 25, 240);
-            techCtx.fillText(tech.reward, x, 60);
-            techCtx.fillText(tech.difficulty, x + 25, 60);
-            
-            techCtx.save();
-            techCtx.translate(x, 270);
-            techCtx.rotate(-Math.PI / 6);
-            techCtx.fillText(tech.tech, 0, 0);
-            techCtx.restore();
-        });
-        
-        techCtx.fillText('Risk (Down) | Reward (Up) | Difficulty (Up)', 300, 30);
-
-        // Rage Duration vs Effectiveness
-        const durationCanvas = document.getElementById('rageDurationCanvas');
-        const durationCtx = durationCanvas.getContext('2d');
-        
-        durationCtx.clearRect(0, 0, 500, 250);
-        durationCtx.font = '12px Arial';
-        durationCtx.textAlign = 'center';
-        
-        const rageDurations = [
-            {duration: 'Quick Burst', effectiveness: 70, control: 80, exhaustion: 20, color: '#4169E1'},
-            {duration: 'Short Rage', effectiveness: 85, control: 60, exhaustion: 40, color: '#DAA520'},
-            {duration: 'Standard Fury', effectiveness: 95, control: 40, exhaustion: 60, color: '#DC143C'},
-            {duration: 'Extended Rage', effectiveness: 90, control: 20, exhaustion: 80, color: '#B22222'},
-            {duration: 'Berserker Frenzy', effectiveness: 100, control: 5, exhaustion: 100, color: '#8B0000'}
-        ];
-        
-        rageDurations.forEach((rage, i) => {
-            const x = 60 + i * 80;
-            
-            // Effectiveness
-            const effHeight = (rage.effectiveness / 100) * 80;
-            durationCtx.fillStyle = rage.color;
-            durationCtx.fillRect(x - 30, 180 - effHeight, 15, effHeight);
-            
-            // Control
-            const controlHeight = (rage.control / 100) * 80;
-            durationCtx.fillStyle = rage.color;
-            durationCtx.globalAlpha = 0.6;
-            durationCtx.fillRect(x - 10, 180 - controlHeight, 15, controlHeight);
-            
-            // Exhaustion (downward)
-            const exhaustHeight = (rage.exhaustion / 100) * 60;
-            durationCtx.fillStyle = rage.color;
-            durationCtx.globalAlpha = 0.3;
-            durationCtx.fillRect(x + 10, 180, 15, exhaustHeight);
-            durationCtx.globalAlpha = 1.0;
-            
-            durationCtx.fillStyle = 'black';
-            durationCtx.fillText(rage.effectiveness, x - 22, 195);
-            durationCtx.fillText(rage.control, x - 2, 195);
-            durationCtx.fillText(rage.exhaustion, x + 17, 250);
-            
-            durationCtx.save();
-            durationCtx.translate(x, 220);
-            durationCtx.rotate(-Math.PI / 4);
-            durationCtx.fillText(rage.duration, 0, 0);
-            durationCtx.restore();
-        });
-        
-        durationCtx.fillText('Effectiveness | Control | Exhaustion (Down)', 250, 30);
-
-        // Berserker Positioning Tactics
-        const posCanvas = document.getElementById('berserkerPositioningCanvas');
-        const posCtx = posCanvas.getContext('2d');
-        
-        posCtx.clearRect(0, 0, 400, 400);
-        
-        // Draw grid
-        for(let i = 0; i <= 8; i++) {
-            posCtx.strokeStyle = '#CCC';
-            posCtx.beginPath();
-            posCtx.moveTo(i * 50, 0);
-            posCtx.lineTo(i * 50, 400);
-            posCtx.stroke();
-            
-            posCtx.beginPath();
-            posCtx.moveTo(0, i * 50);
-            posCtx.lineTo(400, i * 50);
-            posCtx.stroke();
+    (function () {
+        var PAPER = '#fbf8f1', INK = '#2b2118', MUTED = '#5c4b3b', GRID = '#a8977c', WALL = '#6b5440';
+        var HERO = '#1f5fa8', FOE = '#a52a1e', ALLY = '#2e7d32', REACH = '#f3d98b', SAFE = '#cfe6d2';
+        function font(x, size, bold) { x.font = (bold ? '700 ' : '') + size + 'px "Source Sans 3", Arial, sans-serif'; }
+        function setup(id) {
+            var c = document.getElementById(id);
+            if (!c || !c.getContext) return null;
+            var x = c.getContext('2d');
+            x.fillStyle = PAPER; x.fillRect(0, 0, c.width, c.height);
+            x.textAlign = 'center'; x.textBaseline = 'middle'; font(x, 14);
+            return x;
         }
-        
-        // Draw terrain
-        posCtx.fillStyle = '#654321';
-        posCtx.fillRect(150, 0, 100, 100);  // Wall
-        posCtx.fillRect(0, 200, 100, 50);   // Obstacle
-        posCtx.fillRect(300, 250, 100, 50); // Barrier
-        
-        // Draw enemy formation
-        posCtx.fillStyle = '#FF0000';
-        posCtx.fillRect(275, 125, 20, 20);
-        posCtx.fillRect(325, 125, 20, 20);
-        posCtx.fillRect(300, 175, 20, 20);
-        posCtx.fillRect(250, 175, 20, 20);
-        posCtx.fillRect(350, 175, 20, 20);
-        
-        // Draw allied party (safe distance)
-        posCtx.fillStyle = '#4169E1';
-        posCtx.fillRect(75, 75, 20, 20);    // Wizard
-        posCtx.fillRect(125, 325, 20, 20);  // Elf
-        posCtx.fillRect(25, 325, 20, 20);   // Dwarf
-        
-        // Draw Berserker charge path
-        posCtx.strokeStyle = '#B22222';
-        posCtx.setLineDash([5, 5]);
-        posCtx.lineWidth = 4;
-        posCtx.beginPath();
-        posCtx.moveTo(137, 287);
-        posCtx.lineTo(200, 200);
-        posCtx.lineTo(300, 150);
-        posCtx.stroke();
-        
-        // Draw Berserker starting position
-        posCtx.fillStyle = '#B22222';
-        posCtx.fillRect(125, 275, 25, 25);
-        
-        // Draw rage area effect
-        posCtx.strokeStyle = '#DC143C';
-        posCtx.setLineDash([3, 3]);
-        posCtx.lineWidth = 3;
-        posCtx.beginPath();
-        posCtx.arc(300, 150, 50, 0, 2 * Math.PI);
-        posCtx.stroke();
-        
-        posCtx.setLineDash([]);
-        posCtx.lineWidth = 1;
-        
-        // Labels
-        posCtx.fillStyle = 'white';
-        posCtx.font = '10px Arial';
-        posCtx.textAlign = 'center';
-        posCtx.fillText('B', 137, 290);  // Berserker
-        posCtx.fillText('W', 85, 88);    // Wizard
-        posCtx.fillText('E', 135, 338);  // Elf
-        posCtx.fillText('D', 35, 338);   // Dwarf
-        
-        posCtx.fillText('E', 285, 138);  // Enemies
-        posCtx.fillText('E', 335, 138);
-        posCtx.fillText('E', 310, 188);
-        posCtx.fillText('E', 260, 188);
-        posCtx.fillText('E', 360, 188);
-        
-        posCtx.fillStyle = 'black';
-        posCtx.font = '12px Arial';
-        posCtx.fillText('Berserker: Aggressive Charge into Enemy Center', 200, 20);
-        posCtx.fillText('Red Path = Charge Route, Circle = Rage Effect Area', 200, 380);
+        function choose(n, k) { var r = 1; for (var i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
+        function binom(n, p) { var o = []; for (var k = 0; k <= n; k++) o.push(choose(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k)); return o; }
+        // Body Points lost in one attack: skulls (1/2) minus blocks (pBlock: 1/6 monster, 1/3 hero)
+        function damage(a, d, pBlock) {
+            var h = binom(a, 0.5), b = binom(d, pBlock), o = [];
+            for (var i = 0; i <= a; i++) o.push(0);
+            for (i = 0; i <= a; i++) for (var j = 0; j <= d; j++) o[Math.max(0, i - j)] += h[i] * b[j];
+            return o;
+        }
+        function pct(p) { return (Math.round(p * 1000 + 1e-6) / 10).toFixed(1) + '%'; }
+        function grid(x, ox, oy, s, cols, rows) {
+            x.strokeStyle = GRID; x.lineWidth = 1;
+            for (var c = 0; c <= cols; c++) { x.beginPath(); x.moveTo(ox + c * s + 0.5, oy); x.lineTo(ox + c * s + 0.5, oy + rows * s); x.stroke(); }
+            for (var r = 0; r <= rows; r++) { x.beginPath(); x.moveTo(ox, oy + r * s + 0.5); x.lineTo(ox + cols * s, oy + r * s + 0.5); x.stroke(); }
+        }
+        function fillCell(x, ox, oy, s, c, r, fill) { x.fillStyle = fill; x.fillRect(ox + c * s, oy + r * s, s, s); }
+        function token(x, ox, oy, s, c, r, label, fill) {
+            var cx = ox + c * s + s / 2, cy = oy + r * s + s / 2;
+            x.beginPath(); x.arc(cx, cy, s * 0.4, 0, 2 * Math.PI);
+            x.fillStyle = fill; x.fill(); x.lineWidth = 1.5; x.strokeStyle = INK; x.stroke();
+            x.fillStyle = '#ffffff'; font(x, Math.round(s * 0.36), true); x.fillText(label, cx, cy + 1);
+        }
+        function arrow(x, x1, y1, x2, y2, color, dashed) {
+            x.save(); x.strokeStyle = color; x.fillStyle = color; x.lineWidth = 2.5;
+            if (dashed) x.setLineDash([5, 4]);
+            x.beginPath(); x.moveTo(x1, y1); x.lineTo(x2, y2); x.stroke(); x.setLineDash([]);
+            var a = Math.atan2(y2 - y1, x2 - x1);
+            x.beginPath(); x.moveTo(x2, y2);
+            x.lineTo(x2 - 11 * Math.cos(a - 0.4), y2 - 11 * Math.sin(a - 0.4));
+            x.lineTo(x2 - 11 * Math.cos(a + 0.4), y2 - 11 * Math.sin(a + 0.4));
+            x.closePath(); x.fill(); x.restore();
+        }
+        function legend(x, items, y, startX) {
+            var lx = startX; font(x, 13); x.textAlign = 'left';
+            items.forEach(function (it) {
+                x.fillStyle = it[0]; x.fillRect(lx, y - 7, 14, 14); x.strokeStyle = INK; x.lineWidth = 1; x.strokeRect(lx + 0.5, y - 6.5, 13, 13);
+                x.fillStyle = INK; x.fillText(it[1], lx + 20, y + 1); lx += 26 + x.measureText(it[1]).width + 14;
+            });
+            x.textAlign = 'center';
+        }
+        // Heat grid: chance an attack removes at least 1 Body Point, attack dice (rows) vs defend dice (cols)
+        function oddsGrid(id, attacks, defends, pBlock, rowLabel, colLabel) {
+            var x = setup(id); if (!x) return;
+            var W = x.canvas.width, left = 118, top = 64, cw = Math.floor((W - left - 16) / defends.length), ch = 42;
+            font(x, 14, true); x.fillStyle = INK; x.fillText(colLabel, left + cw * defends.length / 2, 20);
+            defends.forEach(function (d, j) { font(x, 14, true); x.fillStyle = INK; x.fillText(d + (d === 1 ? ' die' : ' dice'), left + j * cw + cw / 2, 46); });
+            attacks.forEach(function (a, i) {
+                var y = top + i * ch;
+                font(x, 14, true); x.fillStyle = INK; x.textAlign = 'right';
+                x.fillText(a + (a === 1 ? ' die' : ' dice'), left - 12, y + ch / 2); x.textAlign = 'center';
+                defends.forEach(function (d, j) {
+                    var p = 1 - damage(a, d, pBlock)[0];
+                    var t = Math.max(0, Math.min(1, (p - 0.2) / 0.75));
+                    var r = Math.round(253 + (140 - 253) * t), g = Math.round(246 + (199 - 246) * t), b = Math.round(227 + (154 - 227) * t);
+                    x.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+                    x.fillRect(left + j * cw + 2, y + 2, cw - 4, ch - 4);
+                    font(x, 15, true); x.fillStyle = INK; x.fillText(pct(p), left + j * cw + cw / 2, y + ch / 2 + 1);
+                });
+            });
+            font(x, 13); x.fillStyle = MUTED; x.textAlign = 'left';
+            x.fillText(rowLabel, 12, top - 18 + 0); x.textAlign = 'center';
+            x.fillText('Chance the attack removes at least 1 Body Point (exact)', W / 2, top + attacks.length * ch + 18);
+        }
+
+        // Figure 1: exact odds to wound
+        oddsGrid('berserkerOddsCanvas', [2, 3, 4, 5], [1, 2, 3, 4], 1 / 6, 'Attack dice', 'Monster Defend dice');
+
+        // Figure 2: chance to defeat a 3-Defend, 2-Body monster within N attacks
+        (function () {
+            var x = setup('berserkerKillCanvas'); if (!x) return;
+            function killWithin(a, d, body, n) {
+                var dist = damage(a, d, 1 / 6), state = {}; state[body] = 1;
+                for (var t = 0; t < n; t++) {
+                    var nxt = {};
+                    Object.keys(state).forEach(function (k) {
+                        var rem = +k, p = state[k];
+                        if (rem === 0) { nxt[0] = (nxt[0] || 0) + p; return; }
+                        dist.forEach(function (q, dmg) { var r = Math.max(0, rem - dmg); nxt[r] = (nxt[r] || 0) + p * q; });
+                    });
+                    state = nxt;
+                }
+                return state[0] || 0;
+            }
+            var groups = [2, 3, 4], cols = ['#c9a227', '#c06a00', '#a52a1e'], base = 230, H = 180, gx = 60, gw = 126;
+            x.strokeStyle = GRID; x.lineWidth = 1;
+            [0, 0.25, 0.5, 0.75, 1].forEach(function (v) {
+                var y = base - v * H; x.beginPath(); x.moveTo(48, y + 0.5); x.lineTo(430, y + 0.5); x.stroke();
+                font(x, 12); x.fillStyle = MUTED; x.textAlign = 'right'; x.fillText(Math.round(v * 100) + '%', 42, y); x.textAlign = 'center';
+            });
+            groups.forEach(function (a, gi) {
+                var cx0 = gx + gi * gw;
+                [1, 2, 3].forEach(function (n, ni) {
+                    var p = killWithin(a, 3, 2, n), bh = p * H, bx = cx0 + ni * 36;
+                    x.fillStyle = cols[ni]; x.fillRect(bx, base - bh, 32, bh);
+                    font(x, 12, true); x.fillStyle = INK; x.fillText((Math.round(p * 1000 + 1e-6) / 10).toFixed(1), bx + 16, base - bh - 9);
+                });
+                font(x, 14, true); x.fillStyle = INK; x.fillText(a + ' Attack dice', cx0 + 52, base + 18);
+            });
+            legend(x, [[cols[0], '1 attack'], [cols[1], '2 attacks'], [cols[2], '3 attacks']], 280, 90);
+            font(x, 12); x.fillStyle = MUTED; x.fillText('Bar labels are percentages (exact)', 220, 304);
+        })();
+
+        // Figure 3: open room vs corridor
+        (function () {
+            var x = setup('berserkerChokeCanvas'); if (!x) return;
+            var s = 38, DANGER = '#f4c7c0';
+            font(x, 14, true); x.fillStyle = INK;
+            x.fillText('Open room: 4 can attack', 108, 20); x.fillText('Corridor: 1 can attack', 330, 20);
+            var ox = 13, oy = 40;
+            [[1, 2], [3, 2], [2, 1], [2, 3]].forEach(function (p) { fillCell(x, ox, oy, s, p[0], p[1], DANGER); });
+            grid(x, ox, oy, s, 5, 5);
+            token(x, ox, oy, s, 2, 2, 'H', HERO);
+            [[1, 2], [3, 2], [2, 1], [2, 3]].forEach(function (p) { token(x, ox, oy, s, p[0], p[1], 'O', FOE); });
+            ox = 235;
+            for (var c = 0; c < 5; c++) for (var r = 0; r < 5; r++) if (r !== 2) fillCell(x, ox, oy, s, c, r, WALL);
+            fillCell(x, ox, oy, s, 3, 2, DANGER);
+            grid(x, ox, oy, s, 5, 5);
+            token(x, ox, oy, s, 1, 2, 'A', HERO);
+            token(x, ox, oy, s, 2, 2, 'H', HERO);
+            token(x, ox, oy, s, 3, 2, 'O', FOE); token(x, ox, oy, s, 4, 2, 'O', FOE);
+            legend(x, [[DANGER, 'Square a monster can attack you from']], 244, 90);
+            font(x, 14); x.fillStyle = INK;
+            x.fillText('H = front-line hero, A = ally, O = orc', 220, 272);
+            x.fillText('The second orc in the corridor can\u2019t reach the hero at all.', 220, 292);
+        })();
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_druid_tutorial.html">The Druid</a>
+    <a class="next" href="/heroquest_explorer_tutorial.html">The Explorer</a>
 </div>
+    <p class="closing-quote">Hit hard, stand where only one monster can answer, and keep a healing potion for the turn it all goes wrong.</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

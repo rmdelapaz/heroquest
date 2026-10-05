@@ -3,238 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Realms of Mortal Men: The Kingdoms and Regions</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Lore: Kingdoms &amp; Regions - The HeroQuest Guide</title>
+    <meta name="description" content="The places the HeroQuest books actually name, from Kaba Karn and Darkfire Pass to Barak Tor and Elethorn, plus clearly labelled fan regions to fill the map.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>🏰 Realms of Mortal Men: The Kingdoms and Regions 🏰</h1>
-        
-        <div class="ancient-text">
-            <p><em>"From the marble halls of great kingdoms to the windswept borderlands where wolves howl at the moon, the material plane sprawls like a vast tapestry woven from the dreams and ambitions of countless generations..."</em></p>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Lore: Kingdoms &amp; Regions</h1>
+        <p>This page lists the places the official HeroQuest books name and offers some clearly labelled fan regions for filling in the rest of the map.</p>
+    </header>
+
+    <main id="main">
+<section>
+<p class="callout callout-edge"><strong>About this page:</strong> the official quest books sketch the HeroQuest world briefly, naming places only when a quest needs them. This page mixes those official names (Mentor, the Loretome, Zargon, Rogar, Sir Ragnar, Prince Magnus, Ulag, Grak, the Witch Lord, Barak Tor, Kaba Karn, Darkfire Pass and others) with fan elaboration. The second half of the page is invented for this guide and is labelled that way.</p>
+<div class="ancient-scroll">
+            <p><em>"From the King's halls to the windswept passes where his army waits for rescue, every road in this realm ends at a door that someone was afraid to open..."</em></p>
         </div>
-
-        <h2>The Living Map of the Known World</h2>
-        <p>Picture the known world as a great patchwork quilt, where each square tells a story of triumph and tragedy, of kingdoms risen from the ashes of their predecessors. Like pieces of a shattered mirror, the fragments of the old Empire reflect different aspects of what once was—some preserving ancient traditions, others embracing radical change, and still others falling into shadow and ruin.</p>
-
+</section>
+<section>
+<h2>Places the Books Name</h2>
+        <p>HeroQuest is a dungeon game first, so its geography is thin. These are the places that turn up in the 2021 Game System and the Avalon Hill quest packs.</p>
+        <table>
+            <thead><tr><th>Place</th><th>What the books tell us</th><th>Where it appears</th></tr></thead>
+            <tbody>
+                <tr><td>The King's realm</td><td>The land the heroes defend, ruled by the King. Sir Ragnar is one of his knights; Prince Magnus pays rewards.</td><td>Core Quest Book and most packs</td></tr>
+                <tr><td>Barak Tor</td><td>The barrow of the Witch Lord, visited twice in the core campaign.</td><td>Core quests 12 and 14</td></tr>
+                <tr><td>Northern Dread Wastes</td><td>A bleak northern region named in the core Quest Book.</td><td>Core Quest Book</td></tr>
+                <tr><td>Darkfire Pass</td><td>The King rode with his army toward Darkfire Pass.</td><td>Kellar's Keep</td></tr>
+                <tr><td>Kaba Karn</td><td>An ancient dwarven stronghold where the King's army is holed up.</td><td>Kellar's Keep</td></tr>
+                <tr><td>Elethorn</td><td>Elven land: home of Ladril, Rogar's old companion, and of the Rogue. The "Elethorn saga" runs from <em>The Mage of the Mirror</em> to <em>Rise of the Dread Moon</em>.</td><td>Mage of the Mirror, Rise of the Dread Moon, Rogue Heir of Elethorn</td></tr>
+                <tr><td>Delthrak</td><td>A jungle full of branching paths, where the Berserker and Explorer join the heroes.</td><td>Jungles of Delthrak</td></tr>
+                <tr><td>Hopekin's Rest</td><td>Where heroes can earn Boons of Heroism between quests.</td><td>Wizards of Morcar (2026)</td></tr>
+            </tbody>
+        </table>
+        <p>Some packs set their quests in a kind of country rather than a named place: <em>The Frozen Horror</em> sends the heroes into icy lands of yetis, Ice Gremlins and Polar Warbears, and <em>Against the Ogre Horde</em> opens with the arena quests of the World's End Tournament.</p>
+        <div class="callout callout-edge"><strong>Classic edition (1989–1990):</strong> the original <em>Kellar's Keep</em> sends the heroes to rescue <strong>the Emperor</strong> and his army. The 2021 text says the King, and names the stronghold Kaba Karn; avoid importing Games Workshop place names from other games into 2021 text.</div>
+</section>
+<section>
+<h2>A Sketch of the Known Places</h2>
+        <p>The books do not tie these places together on a single map, so the picture below is only a sketch. The places are official; <strong>their positions are invented</strong> to give you something to point at across the table.</p>
         <div class="canvas-container">
-            <h3>Map</h3>
-            <canvas id="mapCanvas" width="900" height="500"></canvas>
+            <h3>Sketch map (positions invented)</h3>
+            <canvas id="mapCanvas" width="680" height="470" role="img" aria-label="Sketch map with the King's realm in the centre, Darkfire Pass and Kaba Karn to the east, Barak Tor to the south-west, Elethorn to the west, frozen lands and the Northern Dread Wastes to the north, and the Delthrak jungles to the south. Positions are invented."></canvas>
         </div>
-        
         <script>
-            const mapCanvasElement = document.getElementById('mapCanvas');
-            const mapCtx = mapCanvasElement.getContext('2d');
-            let animationFrame = 0;
-            
-            function drawWorldMap() {
-                mapCtx.clearRect(0, 0, 900, 500);
-                animationFrame++;
-                
-                // Draw landmasses with organic shapes
-                mapCtx.fillStyle = '#2f4f2f';
-                mapCtx.beginPath();
-                mapCtx.moveTo(50, 150);
-                mapCtx.quadraticCurveTo(200, 100, 350, 120);
-                mapCtx.quadraticCurveTo(500, 140, 650, 160);
-                mapCtx.quadraticCurveTo(800, 180, 850, 250);
-                mapCtx.quadraticCurveTo(820, 350, 700, 380);
-                mapCtx.quadraticCurveTo(500, 400, 300, 390);
-                mapCtx.quadraticCurveTo(150, 380, 80, 320);
-                mapCtx.quadraticCurveTo(30, 250, 50, 150);
-                mapCtx.fill();
-                
-                // Kingdom territories
-                const kingdoms = [
-                    {name: 'The Northern Reaches', x: 150, y: 140, color: '#4169e1', radius: 60},
-                    {name: 'The Central Kingdoms', x: 400, y: 200, color: '#ffd700', radius: 80},
-                    {name: 'The Southern Provinces', x: 600, y: 320, color: '#ff6347', radius: 70},
-                    {name: 'The Western Marches', x: 200, y: 280, color: '#9370db', radius: 50},
-                    {name: 'The Eastern Domains', x: 650, y: 180, color: '#32cd32', radius: 55}
-                ];
-                
-                kingdoms.forEach((kingdom, index) => {
-                    const pulse = Math.sin(animationFrame * 0.05 + index) * 0.1 + 0.9;
-                    mapCtx.fillStyle = kingdom.color + '40';
-                    mapCtx.beginPath();
-                    mapCtx.arc(kingdom.x, kingdom.y, kingdom.radius * pulse, 0, Math.PI * 2);
-                    mapCtx.fill();
-                    
-                    mapCtx.strokeStyle = kingdom.color;
-                    mapCtx.lineWidth = 2;
-                    mapCtx.stroke();
-                    
-                    // Kingdom names
-                    mapCtx.fillStyle = kingdom.color;
-                    mapCtx.font = '12px serif';
-                    mapCtx.textAlign = 'center';
-                    mapCtx.fillText(kingdom.name, kingdom.x, kingdom.y + 5);
-                });
-                
-                // Trade routes (animated)
-                mapCtx.strokeStyle = '#daa520';
-                mapCtx.lineWidth = 3;
-                mapCtx.setLineDash([10, 5]);
-                mapCtx.lineDashOffset = -animationFrame * 0.5;
-                mapCtx.beginPath();
-                mapCtx.moveTo(150, 140);
-                mapCtx.lineTo(400, 200);
-                mapCtx.lineTo(650, 180);
-                mapCtx.moveTo(400, 200);
-                mapCtx.lineTo(600, 320);
-                mapCtx.moveTo(200, 280);
-                mapCtx.lineTo(400, 200);
-                mapCtx.stroke();
-                mapCtx.setLineDash([]);
-                
-                // Ancient ruins (twinkling)
-                for (let i = 0; i < 15; i++) {
-                    const x = 100 + (i * 50) + Math.sin(animationFrame * 0.03 + i) * 20;
-                    const y = 100 + Math.cos(animationFrame * 0.04 + i * 0.7) * 150;
-                    const alpha = (Math.sin(animationFrame * 0.08 + i * 2) + 1) * 0.3;
-                    mapCtx.fillStyle = `rgba(139, 69, 19, ${alpha})`;
-                    mapCtx.fillRect(x - 3, y - 3, 6, 6);
+        (function () {
+            var canvas = document.getElementById('mapCanvas');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var INK = '#1f2430';
+            ctx.fillStyle = '#fbf8f1'; ctx.fillRect(0, 0, 680, 470);
+            // land mass
+            ctx.fillStyle = '#efe4c8'; ctx.strokeStyle = '#a88c55'; ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(60, 120); ctx.quadraticCurveTo(200, 40, 360, 60); ctx.quadraticCurveTo(560, 50, 630, 140);
+            ctx.quadraticCurveTo(665, 260, 610, 360); ctx.quadraticCurveTo(470, 445, 330, 430);
+            ctx.quadraticCurveTo(160, 430, 80, 350); ctx.quadraticCurveTo(25, 240, 60, 120);
+            ctx.closePath(); ctx.fill(); ctx.stroke();
+            function mountains(x, y, n) {
+                ctx.fillStyle = '#b9a27a'; ctx.strokeStyle = '#6e5630'; ctx.lineWidth = 1.5;
+                for (var i = 0; i < n; i++) {
+                    ctx.beginPath(); ctx.moveTo(x + i * 18, y); ctx.lineTo(x + i * 18 + 10, y - 18); ctx.lineTo(x + i * 18 + 20, y); ctx.closePath(); ctx.fill(); ctx.stroke();
                 }
             }
-            
-            setInterval(drawWorldMap, 50);
+            function trees(x, y, n) {
+                ctx.fillStyle = '#7fa66a'; ctx.strokeStyle = '#3f6130'; ctx.lineWidth = 1.2;
+                for (var i = 0; i < n; i++) { ctx.beginPath(); ctx.arc(x + i * 16, y - (i % 2) * 6, 7, 0, Math.PI * 2); ctx.fill(); ctx.stroke(); }
+            }
+            function label(lines, x, y, w, fill, stroke) {
+                var h = 14 + lines.length * 18;
+                ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.roundRect(x - w / 2, y - h / 2, w, h, 8); ctx.fill(); ctx.stroke();
+                ctx.fillStyle = INK; ctx.textAlign = 'center';
+                lines.forEach(function (t, i) {
+                    ctx.font = (i === 0 ? 'bold 14px' : '13px') + ' sans-serif';
+                    ctx.fillText(t, x, y - h / 2 + 21 + i * 18);
+                });
+            }
+            mountains(475, 250, 6); mountains(160, 92, 4);
+            trees(85, 262, 5); trees(250, 405, 5);
+            // routes from the realm
+            ctx.setLineDash([7, 5]); ctx.strokeStyle = '#7a5a26'; ctx.lineWidth = 2;
+            [[340, 250, 540, 200], [340, 250, 160, 320], [340, 250, 130, 220], [340, 250, 360, 380], [340, 250, 230, 120], [340, 250, 500, 110]].forEach(function (r) {
+                ctx.beginPath(); ctx.moveTo(r[0], r[1]); ctx.lineTo(r[2], r[3]); ctx.stroke();
+            });
+            ctx.setLineDash([]);
+            label(['The King\'s realm', 'core quests begin here'], 340, 250, 190, '#fff6d6', '#a07a1c');
+            label(['Darkfire Pass', 'and Kaba Karn'], 545, 195, 140, '#ffffff', '#6e5630');
+            label(['Barak Tor', 'the Witch Lord\'s barrow'], 170, 330, 180, '#ffffff', '#6e5630');
+            label(['Elethorn', 'elven lands'], 115, 215, 120, '#eef6e8', '#3f6130');
+            label(['Delthrak', 'jungles'], 400, 380, 110, '#eef6e8', '#3f6130');
+            label(['Frozen lands'], 225, 115, 130, '#e8f2fb', '#3b6ea8');
+            label(['Northern', 'Dread Wastes'], 505, 105, 130, '#f6e6e6', '#9a3a3a');
+            ctx.fillStyle = '#4a4f5c'; ctx.font = 'italic 13px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText('Official place names; positions and routes invented for this guide.', 340, 460);
+        })();
         </script>
-
-        <h2>The Great Kingdoms</h2>
-
-        <div class="kingdom-card">
-            <div class="kingdom-banner">The Northern Reaches</div>
-            <h3>Realm of the Iron Crown</h3>
-            <p>Imagine a land where winter holds court for half the year, where great pine forests stretch to the horizon like a sea of green spears, and where the people are as enduring as the granite peaks that pierce the sky. The Northern Reaches embody the old ways—honor above profit, loyalty above convenience, and the ancient codes that have guided northern folk since the world was young.</p>
-            
-            <div class="region-spotlight">
-                <h4>The Fortress Cities</h4>
-                <p>Built like eagles' nests upon impossible crags, the fortress cities of the North command respect through sheer audacity. <strong>Ironhold</strong>, the capital, perches on a mountain peak so high that clouds often shroud its towers. Here, the High King rules from a throne carved from a single piece of meteoric iron—a symbol that his authority comes from the heavens themselves.</p>
-                
-                <span class="settlement-type">⛰️ Mountain Fortress</span>
-                <span class="settlement-type">🛡️ Military Stronghold</span>
-                <span class="settlement-type">⚒️ Mining Hub</span>
-            </div>
-            
-            <p>The northerners are like wolves—fiercely loyal to their pack, but implacable enemies to those who threaten their kin. Their warriors train in conditions that would break lesser men, fighting with weapons forged from star-metal and blessed by runes older than written history.</p>
-        </div>
-
-        <div class="kingdom-card">
-            <div class="kingdom-banner">The Central Kingdoms</div>
-            <h3>The Heartland Confederacy</h3>
-            <p>If the North is the sword arm of civilization, then the Central Kingdoms are its beating heart—a collection of allied realms that have learned to prosper through cooperation rather than conquest. Picture rolling hills covered in golden wheat, rivers busy with merchant barges, and cities that sprawl beyond their ancient walls like flowers blooming in spring.</p>
-            
-            <div class="political-web">
-                <h4>The Council of Seven Crowns</h4>
-                <p>Unlike the rigid hierarchy of empires past, the Central Kingdoms govern themselves through the Council of Seven Crowns—a deliberative body where each kingdom sends representatives to hash out trade disputes, coordinate military responses, and occasionally engage in the elaborate verbal dueling that passes for diplomacy.</p>
-            </div>
-            
-            <div class="region-spotlight">
-                <h4>Notable Realms</h4>
-                <p><strong>Goldmeadow:</strong> The breadbasket kingdom, where fields stretch to the horizon and the harvest festivals last for weeks. Think of it as the agricultural powerhouse that keeps everyone fed.</p>
-                
-                <p><strong>Riverlands:</strong> A merchant republic built along the convergence of three great rivers, where information flows as freely as the water, and a clever trader can become wealthy beyond imagination—or lose everything on a single bad cargo.</p>
-                
-                <p><strong>Scholarly Sanctuary of Arcanum:</strong> A city-state devoted entirely to learning, where the great Library-Fortress houses more knowledge than some kingdoms possess wealth. Here, wizards study alongside scholars, and the pursuit of truth is considered the highest calling.</p>
-                
-                <span class="settlement-type">🌾 Agricultural Hub</span>
-                <span class="settlement-type">🚢 Trade Center</span>
-                <span class="settlement-type">📚 Seat of Learning</span>
-                <span class="settlement-type">🏛️ Political Capital</span>
-            </div>
-        </div>
-
+</section>
+<section>
+<h2>Which Stories Go Where</h2>
+        <p>The quest packs move the action around. This chart links each region to the stories set there.</p>
         <div class="mermaid">
-            graph LR
-                A[Council of Seven Crowns] --> B[Goldmeadow]
-                A --> C[Riverlands]
-                A --> D[Arcanum]
-                A --> E[Thornwall]
-                A --> F[Silverpeak]
-                A --> G[Greenwood]
-                A --> H[Sunset Harbor]
-                
-                B --> I[Agricultural Exports]
-                C --> J[Trade Networks]
-                D --> K[Magical Research]
-                E --> L[Border Defense]
-                
-                style A fill:#ffd700
-                style I fill:#90ee90
-                style J fill:#87ceeb
-                style K fill:#dda0dd
-                style L fill:#ff6347
+flowchart TD
+    R["The King's realm"] --> C["Core quests:&lt;br/&gt;Fellmarg's tomb to Barak Tor"]
+    C --> WL["Return of the Witch Lord"]
+    R --> KK["Kellar's Keep:&lt;br/&gt;Darkfire Pass and Kaba Karn"]
+    E["Elethorn"] --> MM["The Mage of the Mirror"]
+    MM --> DM["Rise of the Dread Moon"]
+    N["Frozen lands"] --> FH["The Frozen Horror"]
+    J["Delthrak"] --> JD["Jungles of Delthrak"]
         </div>
-
+</section>
+<section>
+<h2>Filling in the Map: Fan Regions</h2>
+        <p>Everything in this section is <strong>invented for this guide</strong>. It is here for Zargon players who want a bigger world for custom quests. If you use it, keep the official places where the books put them and let these regions sit around the edges.</p>
         <div class="kingdom-card">
-            <div class="kingdom-banner">The Southern Provinces</div>
-            <h3>Lands of Sun and Shadow</h3>
-            <p>The South is a realm of contrasts as stark as noon and midnight—wealthy coastal cities where silk-clad merchants haggle over exotic spices, while inland, vast deserts hide ancient tombs and forgotten cities that predate the Empire by millennia. It's a land where the past and present dance together like mirages in the heat.</p>
-            
-            <div class="region-spotlight">
-                <h4>The Pearl Cities</h4>
-                <p>Strung along the southern coast like jewels on a golden chain, the Pearl Cities represent the height of southern sophistication. <strong>Miraleth the Golden</strong> serves as the unofficial capital—a city so wealthy that its streets are paved with marble, and its fountains flow with water perfumed with rare oils.</p>
-                
-                <p>These aren't just trading posts—they're cultural melting pots where northern furs meet southern silk, where barbarian gold buys civilized luxuries, and where a person's worth is measured not by their bloodline but by their ability to navigate the complex web of commerce and politics.</p>
-                
-                <span class="settlement-type">🏖️ Coastal Port</span>
-                <span class="settlement-type">💰 Trade Metropolis</span>
-                <span class="settlement-type">🏺 Cultural Center</span>
-            </div>
-            
-            <div class="ancient-text">
-                <p><strong>The Desert of Whispers:</strong> Beyond the coastal prosperity lies the great southern desert, where the bones of ancient civilizations bleach under an unforgiving sun. Here, nomad tribes follow routes known only to them, and treasure hunters brave the shifting sands in search of tombs that promise either unimaginable wealth or a lonely death.</p>
-            </div>
+            <h3>The Northern Reaches (fan)</h3>
+            <p>Pine forest and granite peaks, where winter holds court for half the year and fortress towns cling to the crags. A natural home for tough mountain folk and a gateway to the frozen lands.</p>
         </div>
-
-        <h2>The Borderlands and Wild Territories</h2>
-
         <div class="kingdom-card">
-            <div class="kingdom-banner">The Western Marches</div>
-            <h3>Where Civilization Meets the Unknown</h3>
-            <p>The Western Marches exist in that twilight space between the ordered world of kingdoms and the chaotic realm of pure wilderness. Imagine a frontier where every sunset might reveal a new threat, where ancient forests hold secrets that predate human civilization, and where the line between heroism and survival blurs like smoke in the wind.</p>
-            
-            <div class="region-spotlight">
-                <h4>Frontier Settlements</h4>
-                <p><strong>Last Hope:</strong> The westernmost permanent settlement, a fortified town that serves as the final stop for adventurers heading into the true wilderness. It's a place where rumors are currency, where maps are worth their weight in gold, and where every stranger might be running from something—or toward something even more dangerous.</p>
-                
-                <p><strong>The Watchtowers:</strong> A series of ancient stone towers that march westward like sleeping giants, built by the Empire to warn of threats from the deep wilderness. Many are now abandoned, their beacon fires cold, but some still maintain lonely vigils against horrors that civilization prefers to forget.</p>
-                
-                <span class="settlement-type">🏕️ Frontier Town</span>
-                <span class="settlement-type">👁️ Watch Post</span>
-                <span class="settlement-type">🌲 Wilderness Outpost</span>
-            </div>
+            <h3>The Heartland Towns (fan)</h3>
+            <p>Rolling farmland, river barges and market towns: the part of the King's realm that the heroes are protecting. Use it for the village that hires the party, the merchant who lost a cargo, or the scholar who wants a book back from a tomb.</p>
         </div>
-
         <div class="kingdom-card">
-            <div class="kingdom-banner">The Eastern Domains</div>
-            <h3>Realm of Ancient Mysteries</h3>
-            <p>The East is old—older than memory, older than legend. Here, crumbling towers reach toward skies that have seen the rise and fall of civilizations whose names are lost to time. It's a land where magic runs deeper than anywhere else, where the very stones remember spells cast in ages past, and where scholars come to study mysteries that have puzzled the wisest minds for generations.</p>
-            
-            <div class="ancient-text">
-                <p><strong>The Ruined Metropolis of Keth Morai:</strong> Once the eastern capital of the Empire, now a haunted maze of broken walls and toppled monuments. They say the city fell in a single night when its rulers dabbled in magics too dangerous to control. Now it stands as a warning—and an irresistible lure for those who believe they can succeed where ancient emperors failed.</p>
-            </div>
+            <h3>The Southern Coast and Desert (fan)</h3>
+            <p>Wealthy port towns on the coast, and inland a desert full of old tombs. Good cover for mummy-heavy quests built from the core box's undead.</p>
         </div>
-
-        <h2>The Great Trade Networks</h2>
-        <div class="trade-route"></div>
-        <p>Like blood vessels carrying life through a great body, the trade routes connect these disparate realms into a functioning whole. The <strong>Golden Circuit</strong> links the northern mines to southern markets, while the <strong>Scholar's Road</strong> carries knowledge and magical components between the great centers of learning.</p>
-
-        <div class="political-web">
-            <h3>The Delicate Balance</h3>
-            <p>These kingdoms don't exist in isolation—they're bound together by treaties as complex as spider webs, trade agreements that can make or break nations, and old grudges that simmer like coals waiting for the right wind to fan them into flame. A conflict that starts as a trade dispute in the South can end up drawing in northern warriors and eastern wizards, because in this interconnected world, no kingdom truly stands alone.</p>
+        <div class="kingdom-card">
+            <h3>The Western Marches (fan)</h3>
+            <p>A frontier of watchtowers, many abandoned, their beacon fires cold. A last fortified town is where rumours are traded and maps are worth their weight in gold.</p>
         </div>
-
-        <div class="ancient-text">
-            <p><em>"Thus stands the mortal world—a tapestry of ambition and fear, of ancient glory and present struggle, where every hill might hide a ruin, every road might lead to adventure, and every kingdom guards secrets that could reshape the very foundations of reality..."</em></p>
+        <div class="kingdom-card">
+            <h3>The Eastern Ruins (fan)</h3>
+            <p>Broken cities older than anyone remembers, said to have fallen in a single night when their rulers meddled with magic they could not control. A ready-made excuse for a deep, strange dungeon.</p>
         </div>
-    </div>
-<script src="/nav.js"></script>
+</section>
+<section>
+<h2>Using Regions at the Table</h2>
+        <ul>
+            <li><strong>Keep travel to a sentence.</strong> HeroQuest has no overland rules; a line like "three days north, through Darkfire Pass" is all the journey needs before the heroes reach the stairway.</li>
+            <li><strong>Let the region pick the monsters.</strong> Undead for barrows and tombs, orcs and goblins for border raids, ice creatures for the frozen lands.</li>
+            <li><strong>Name one landmark per quest.</strong> One memorable place does more than a whole invented kingdom.</li>
+        </ul>
+</section>
+<section>
+<h2>Where Next</h2>
+        <ul>
+            <li><a href="/heroquest_lore_great_events.html">Lore: Great Events</a> puts these stories in order.</li>
+            <li><a href="/heroquest_lore_ancient_dungeons.html">Lore: Ancient Dungeons</a> covers the tombs and strongholds the heroes actually explore.</li>
+            <li><a href="/heroquest_custom_heroes_monsters.html">Custom Heroes &amp; Monsters</a> helps you build your own quests for these regions.</li>
+        </ul>
+</section>
+    </main>
+
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_lore_foundations.html">Lore: The World of HeroQuest</a>
+    <a class="next" href="/heroquest_lore_great_events.html">Lore: Great Events</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

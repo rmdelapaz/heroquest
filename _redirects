@@ -1,0 +1,7 @@
+/status.md /404.html 404!
+/qa_heroquest.py /404.html 404!
+/.vscode/* /404.html 404!
+/nav.js /index.html 301
+/canvas-helper.js /index.html 301
+/heroquest_rise_dread_moon_knight /heroquest_rise_dread_moon 301
+/heroquest_rise_dread_moon_knight.html /heroquest_rise_dread_moon 301

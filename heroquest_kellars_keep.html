@@ -3,758 +3,164 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Kellar's Keep - The First Expansion Revolution</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Kellar's Keep - The HeroQuest Guide</title>
+    <meta name="description" content="Kellar's Keep, the 2021 Avalon Hill HeroQuest quest pack: ten quests, no new heroes, more orcs and Abominations, with exact combat odds and tips.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
-
     <style>
-    /* ── Callout boxes (page-specific, not in main.css) ── */
-    .expansion-principle, .feature-analysis, .strategy-box {
-      background: var(--accent-muted);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 1rem 0;
-      color: var(--text);
-    }
-
-    /* ── Character showcase grid ── */
-    .character-showcase {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 1rem 0;
-    }
-    .character-portrait {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      color: var(--text);
-    }
-
-    /* ── Monster gallery grid ── */
-    .monster-gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 1rem 0;
-    }
-    .monster-card {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      color: var(--text);
-    }
-
-    /* ── Innovation cards ── */
-    .innovation-card {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 1rem 0;
-      color: var(--text);
-    }
-
-    /* ── Quest progression — horizontal flow ── */
-    .quest-progression {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-      padding: 20px;
-      background: var(--accent-muted);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-    .quest-node {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 72px;
-      height: 72px;
-      background: var(--accent, #7cb342);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.85rem;
-      line-height: 1.2;
-      border-radius: 50%;
-      border: 3px solid var(--border);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    }
-    .quest-arrow {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      user-select: none;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .quest-node { width: 58px; height: 58px; font-size: 0.75rem; }
-      .quest-arrow { font-size: 1.2rem; }
-      .character-showcase, .monster-gallery { grid-template-columns: 1fr; }
-    }
+    main table caption { caption-side: top; text-align: left; font-weight: 700; color: var(--heading); padding: 0 0 0.5rem; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏰 Kellar's Keep: The First Expansion Revolution 🗡️</h1>
-        
-        <div class="expansion-principle">
-            <h2>🌟 The Game-Changer: Why Kellar's Keep Mattered</h2>
-            <p><strong>Kellar's Keep wasn't just an expansion - it was a declaration that HeroQuest could be more than anyone imagined!</strong> Like The Empire Strikes Back following A New Hope, this expansion took everything great about the original game and asked "What if we made it BIGGER, DEEPER, and more EPIC?" It introduced concepts that would define fantasy gaming for decades.</p>
-            
-            <p><strong>Real-world analogy:</strong> Think of Kellar's Keep like the iPhone 3G following the original iPhone. The original proved the concept worked, but Kellar's Keep showed the true potential. It added the "app store" of new characters, the "GPS" of campaign connectivity, and the "camera" of cinematic storytelling that transformed HeroQuest from a game into a lifestyle.</p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Kellar's Keep</h1>
+        <p>What the 2021 Avalon Hill Kellar's Keep quest pack contains, where it fits after the core game, and how to survive its crowded greenskin quests.</p>
+    </header>
 
-        <h2>🎭 The Revolutionary Trio: Meet the New Heroes</h2>
-        
-        <div class="character-showcase">
-            <div class="character-portrait">
-                <h3>🪓 The Barbarian (Enhanced)</h3>
-                <p><strong>The Wrecking Ball Evolved</strong></p>
-                <p><strong>New Powers:</strong> Berserker rage, intimidation</p>
-                <p><strong>Philosophy:</strong> "Subtlety is for those who lack strength"</p>
-                <p><strong>Perfect For:</strong> Players who want to feel unstoppable</p>
-                <p><strong>Signature Move:</strong> Charging through enemy lines like a freight train</p>
-            </div>
-            
-            <div class="character-portrait">
-                <h3>🏹 The Elf (Refined)</h3>
-                <p><strong>The Swiss Army Knife Perfected</strong></p>
-                <p><strong>New Powers:</strong> Enhanced spellcasting, nature affinity</p>
-                <p><strong>Philosophy:</strong> "Wisdom and skill triumph over brute force"</p>
-                <p><strong>Perfect For:</strong> Players who love tactical flexibility</p>
-                <p><strong>Signature Move:</strong> Precise archery followed by tactical magic</p>
-            </div>
-            
-            <div class="character-portrait">
-                <h3>🔮 The Wizard (Ascended)</h3>
-                <p><strong>The Reality Bender</strong></p>
-                <p><strong>New Powers:</strong> More spells, magical research</p>
-                <p><strong>Philosophy:</strong> "Knowledge is the ultimate weapon"</p>
-                <p><strong>Perfect For:</strong> Players who enjoy complex strategy</p>
-                <p><strong>Signature Move:</strong> Devastating area spells that reshape battles</p>
-            </div>
-            
-            <div class="character-portrait">
-                <h3>🗡️ The Dwarf (Specialized)</h3>
-                <p><strong>The Master Craftsman</strong></p>
-                <p><strong>New Powers:</strong> Enhanced trap skills, equipment mastery</p>
-                <p><strong>Philosophy:</strong> "Proper preparation prevents poor performance"</p>
-                <p><strong>Perfect For:</strong> Players who love problem-solving</p>
-                <p><strong>Signature Move:</strong> Disarming deadly traps others couldn't even detect</p>
-            </div>
-        </div>
+    <main id="main">
+<section>
+<h2>Kellar's Keep at a Glance</h2>
+<p>Kellar's Keep is the first quest pack most groups pick up after the core box. It adds no new rules system and no new hero. What it adds is ten more quests, more monsters to fill them, and a story that carries on from where the core Quest Book leaves off. If your group finished the fourteen core quests and wants more of the same game, this is the natural next box.</p>
 
-        <h2>🎪 The Innovation Matrix: What Changed Everything</h2>
-        
-        <div class="mermaid">
-            graph TD
-                A[Kellar's Keep Innovations] --> B[New Characters]
-                A --> C[Extended Campaigns]
-                A --> D[Advanced Monsters]
-                A --> E[Complex Mechanics]
-                
-                B --> B1[Character Specialization]
-                B --> B2[Unique Abilities]
-                B --> B3[Personal Storylines]
-                
-                C --> C1[Multi-Session Arcs]
-                C --> C2[Character Development]
-                C --> C3[Narrative Continuity]
-                
-                D --> D1[Tactical Creatures]
-                D --> D2[Environmental Threats]
-                D --> D3[Boss Mechanics]
-                
-                E --> E1[Advanced Combat]
-                E --> E2[Skill Systems]
-                E --> E3[Resource Management]
-                
-                style A fill:#7cb342,stroke:#333,stroke-width:3px
-                style B fill:#8bc34a,stroke:#333,stroke-width:2px
-                style C fill:#8bc34a,stroke:#333,stroke-width:2px
-                style D fill:#8bc34a,stroke:#333,stroke-width:2px
-                style E fill:#8bc34a,stroke:#333,stroke-width:2px
-        </div>
+<div class="table-container">
+<table>
+    <thead><tr><th scope="col">Item</th><th scope="col">Avalon Hill edition</th></tr></thead>
+    <tbody>
+        <tr><td>Publisher and year</td><td>Avalon Hill (Hasbro), 2021</td></tr>
+        <tr><td>Requires</td><td>The HeroQuest Game System (the core box)</td></tr>
+        <tr><td>Quests</td><td>10</td></tr>
+        <tr><td>Heroes added</td><td>None. You play the Barbarian, Dwarf, Elf and Wizard from the core box, or any other hero you own.</td></tr>
+        <tr><td>Headline content</td><td>A new quest book and extra monster miniatures for a greenskin-heavy campaign: more orcs, goblins and Abominations</td></tr>
+        <tr><td>Companion app</td><td>Kellar's Keep is among the quest books the free HeroQuest Companion App supports, including its Digital Zargon mode</td></tr>
+    </tbody>
+</table>
+</div>
 
-        <h2>👹 The Monster Revolution: Beyond Orcs and Goblins</h2>
-        
-        <div class="canvas-container">
-            <h3>Monster Evolution</h3>
-            <canvas id="monster_evolution_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="monster-gallery">
-            <div class="monster-card">
-                <h4>🕷️ Giant Spiders</h4>
-                <p><strong>Innovation:</strong> Web-based area control</p>
-                <p><strong>Tactic:</strong> Environmental battlefield control</p>
-                <p><strong>Why Revolutionary:</strong> First monsters that changed terrain</p>
-            </div>
-            
-            <div class="monster-card">
-                <h4>💀 Skeletons</h4>
-                <p><strong>Innovation:</strong> Undead immunities</p>
-                <p><strong>Tactic:</strong> Resistant to certain attack types</p>
-                <p><strong>Why Revolutionary:</strong> Forced tactical adaptation</p>
-            </div>
-            
-            <div class="monster-card">
-                <h4>🧌 Chaos Warriors</h4>
-                <p><strong>Innovation:</strong> Elite enemy units</p>
-                <p><strong>Tactic:</strong> Single powerful opponents</p>
-                <p><strong>Why Revolutionary:</strong> Quality over quantity encounters</p>
-            </div>
-            
-            <div class="monster-card">
-                <h4>👤 Sir Ragnar (Boss)</h4>
-                <p><strong>Innovation:</strong> Multi-phase boss fight</p>
-                <p><strong>Tactic:</strong> Changing strategies mid-combat</p>
-                <p><strong>Why Revolutionary:</strong> Dynamic encounter design</p>
-            </div>
-        </div>
+<div class="callout callout-edge callout-blue">
+    <p><strong>No new heroes in this box.</strong> Kellar's Keep is a quest pack, not a hero pack. The first new hero of the Avalon Hill line is the Knight, from the separate Commander of the Guardian Knights collection; see <a href="/heroquest_legendary_heroes.html">The Heroes</a> for which box brings which hero.</p>
+</div>
+</section>
 
-        <h2>🗺️ The Campaign Architecture: Building Epic Narratives</h2>
-        
-        <div class="quest-progression">
-            <div class="quest-node">Q1<br>Entry</div>
-            <div class="quest-arrow">→</div>
-            <div class="quest-node">Q2<br>Build</div>
-            <div class="quest-arrow">→</div>
-            <div class="quest-node">Q3<br>Test</div>
-            <div class="quest-arrow">→</div>
-            <div class="quest-node">Q4<br>Crisis</div>
-            <div class="quest-arrow">→</div>
-            <div class="quest-node">Q5<br>Climax</div>
-        </div>
-        
-        <div class="feature-analysis">
-            <h3>📚 The Five-Act Structure</h3>
-            <p><strong>Kellar's Keep pioneered the campaign structure that every RPG now uses:</strong></p>
-            
-            <p><strong>🎬 Act I - The Hook:</strong> "Strange things are happening at Kellar's Keep..."</p>
-            <p><strong>⚔️ Act II - The Challenge:</strong> "The heroes must prove themselves worthy"</p>
-            <p><strong>🕵️ Act III - The Investigation:</strong> "Dark secrets are uncovered"</p>
-            <p><strong>💥 Act IV - The Crisis:</strong> "Everything goes wrong at once"</p>
-            <p><strong>👑 Act V - The Resolution:</strong> "Heroes save the day... or do they?"</p>
-        </div>
+<section>
+<h2>Where It Fits in the Campaign</h2>
+<p>The core Quest Book's story leaves the King's army holed up in Kaba Karn, an ancient dwarven stronghold. Kellar's Keep picks up that thread: the heroes head underground to reach them. Avalon Hill also released a free online quest, "Forsaken Tunnels of Xor-Xel", written as a bridge between the core book and this pack, so you can play it in between if you want a smoother hand-off.</p>
 
-        <h2>⚔️ Advanced Combat Mechanics: The Tactical Revolution</h2>
-        
-        <div class="canvas-container">
-            <h3>Combat Mechanics</h3>
-            <canvas id="combat_mechanics_canvas" width="600" height="350"></canvas>
-        </div>
-        
-        <div class="strategy-box">
-            <h3>🎯 New Combat Concepts</h3>
-            <p><strong>Kellar's Keep introduced combat concepts that seemed impossible in the original game:</strong></p>
-            
-            <p><strong>🌪️ Area of Effect Attacks:</strong> Like playing 3D chess instead of checkers</p>
-            <ul>
-                <li>Spells that hit multiple targets</li>
-                <li>Environmental damage sources</li>
-                <li>Positioning becomes critical</li>
-            </ul>
-            
-            <p><strong>🛡️ Damage Resistance:</strong> Like fighting with rock-paper-scissors rules</p>
-            <ul>
-                <li>Some enemies resist physical damage</li>
-                <li>Magic becomes essential, not optional</li>
-                <li>Team composition matters more than ever</li>
-            </ul>
-            
-            <p><strong>⏰ Initiative Systems:</strong> Like conducting an orchestra during a thunderstorm</p>
-            <ul>
-                <li>Turn order affects strategy</li>
-                <li>Speed becomes a valuable stat</li>
-                <li>Timing attacks becomes an art form</li>
-            </ul>
-        </div>
+<div class="mermaid">
+flowchart TD
+    A["Core Quest Book&lt;br/&gt;14 quests"] --> B["Forsaken Tunnels of Xor-Xel&lt;br/&gt;free online bridge quest"]
+    B --> C["Kellar's Keep&lt;br/&gt;10 quests"]
+    A -.-> C
+    C --> D["Return of the Witch Lord&lt;br/&gt;10 quests"]
+    D --> E["The Frozen Horror and later packs"]
+</div>
+<p>The dotted line is the direct route: the bridge quest is optional. Most groups then play the later packs in release order, which is the order this guide follows.</p>
 
-        <h2>🎨 Environmental Storytelling: The World Comes Alive</h2>
-        
-        <div class="expansion-principle">
-            <h3>🏰 The Keep as Character</h3>
-            <p><strong>Kellar's Keep wasn't just a location - it was a character with its own personality, history, and secrets!</strong></p>
-            
-            <p><strong>🕰️ Historical Layers:</strong> Each room tells the story of different time periods</p>
-            <p><strong>🎭 Atmospheric Details:</strong> Descriptions that make you feel the cold stone and musty air</p>
-            <p><strong>🔍 Interactive Elements:</strong> The environment becomes part of gameplay</p>
-            <p><strong>📖 Narrative Integration:</strong> Every corridor advances the overarching story</p>
-        </div>
+<div class="callout callout-edge">
+    <p><strong>Classic edition (1989–1990):</strong> the original Kellar's Keep was released in Europe and Australasia in 1989 and in North America in 1991, also with ten quests. It added more orcs, goblins and Fimir (the creatures the 2021 game calls Abominations), and its story sends the heroes to rescue the Emperor and his army. The Avalon Hill text speaks of the King instead, and the villain is Zargon throughout (Morcar in the original European books).</p>
+</div>
+</section>
 
-        <h2>🧩 Quest Design Innovations</h2>
-        
-        <div class="canvas-container">
-            <h3>Quest Design Innovation</h3>
-            <canvas id="quest_design_innovation_canvas" width="600" height="250"></canvas>
-        </div>
-        
-        <div class="innovation-card">
-            <h3>🔗 Connected Narratives</h3>
-            <p><strong>Revolutionary Concept:</strong> Actions in one quest affect later quests</p>
-            <p><strong>Player Impact:</strong> Choices matter beyond single sessions</p>
-            <p><strong>Why Important:</strong> Created the first true RPG campaign structure</p>
-            <p><strong>Modern Legacy:</strong> Every story-driven game uses this now</p>
-        </div>
+<section>
+<h2>What Changes at the Table</h2>
+<p>The rules are the core rules. Heroes still roll two red dice to move, still move then act or act then move (never part of a move, an action, then the rest), and still choose from the same six actions: Attack, Cast a spell, Search for treasure, Search for secret doors, Search for traps, or Disarm a trap. What changes is the pressure.</p>
 
-        <div class="innovation-card">
-            <h3>🎭 Character Development</h3>
-            <p><strong>Revolutionary Concept:</strong> Heroes grow stronger between quests</p>
-            <p><strong>Player Impact:</strong> Investment in character progression</p>
-            <p><strong>Why Important:</strong> Gave players long-term goals</p>
-            <p><strong>Modern Legacy:</strong> Foundation of all RPG advancement systems</p>
-        </div>
-
-        <div class="innovation-card">
-            <h3>🌍 Living World</h3>
-            <p><strong>Revolutionary Concept:</strong> The world changes based on player actions</p>
-            <p><strong>Player Impact:</strong> Sense of agency and consequence</p>
-            <p><strong>Why Important:</strong> Made players feel their choices mattered</p>
-            <p><strong>Modern Legacy:</strong> Every open-world game follows this principle</p>
-        </div>
-
-        <h2>🎯 Advanced Strategies for Kellar's Keep</h2>
-        
-        <div class="strategy-box">
-            <h3>🧠 The Master's Playbook</h3>
-            <p><strong>These strategies separate novices from veterans:</strong></p>
-            
-            <p><strong>🔄 The Rotation Strategy:</strong></p>
-            <ul>
-                <li>Cycle heroes through dangerous positions</li>
-                <li>No single character bears all the risk</li>
-                <li>Like basketball players rotating through defensive zones</li>
-            </ul>
-            
-            <p><strong>⚡ The Alpha Strike Doctrine:</strong></p>
-            <ul>
-                <li>Coordinate all attacks on priority targets</li>
-                <li>Eliminate threats completely rather than weakening many</li>
-                <li>Like military focused fire tactics</li>
-            </ul>
-            
-            <p><strong>🧱 The Fortress Mentality:</strong></p>
-            <ul>
-                <li>Control chokepoints and defensive positions</li>
-                <li>Force enemies to fight on your terms</li>
-                <li>Like medieval castle defense strategies</li>
-            </ul>
-        </div>
-
-        <h2>🎪 The Psychology of Expansion Gaming</h2>
-        
-        <div class="feature-analysis">
-            <h3>🧠 Why Kellar's Keep Hooked Players</h3>
-            <p><strong>The expansion understood player psychology in ways that were revolutionary for its time:</strong></p>
-            
-            <p><strong>📈 Progressive Challenge:</strong> Like a video game that perfectly scales difficulty</p>
-            <p><strong>🎁 Meaningful Rewards:</strong> Every victory felt earned and significant</p>
-            <p><strong>🤝 Social Bonding:</strong> Shared challenges created lasting friendships</p>
-            <p><strong>📚 Narrative Investment:</strong> Players cared about the story outcomes</p>
-            <p><strong>🔄 Replayability:</strong> Different character combinations changed everything</p>
-        </div>
-
-        <h2>🏆 Mastery Challenges: Advanced Play Modes</h2>
-        
-        <div class="expansion-principle">
-            <h3>🎯 Expert-Level Variants</h3>
-            <p><strong>Once you've mastered the basic campaigns, try these advanced challenges:</strong></p>
-            
-            <p><strong>⚡ Speed Campaign:</strong> Complete all quests in minimum sessions</p>
-            <p><strong>🛡️ Ironman Mode:</strong> No character deaths allowed - restart if anyone falls</p>
-            <p><strong>🎲 Random Heroes:</strong> Play with randomly assigned character types</p>
-            <p><strong>👥 Solo Hero:</strong> Single character attempts the entire campaign</p>
-            <p><strong>🔄 Role Reversal:</strong> Players rotate being the Evil Wizard each quest</p>
-        </div>
-
-        <h2>🔧 DM Tools: Running Kellar's Keep Campaigns</h2>
-        
-        <div class="canvas-container">
-            <h3>Dm Tools</h3>
-            <canvas id="dm_tools_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="strategy-box">
-            <h3>🎭 The Campaign Master's Toolkit</h3>
-            
-            <p><strong>📊 Tracking Campaign Progress:</strong></p>
-            <ul>
-                <li>Character advancement sheets</li>
-                <li>Story consequence charts</li>
-                <li>NPC relationship maps</li>
-                <li>Timeline tracking systems</li>
-            </ul>
-            
-            <p><strong>🎪 Managing Multiple Sessions:</strong></p>
-            <ul>
-                <li>Session recap techniques</li>
-                <li>Cliffhanger creation methods</li>
-                <li>Player motivation maintenance</li>
-                <li>Scheduling coordination strategies</li>
-            </ul>
-            
-            <p><strong>🎨 Enhancing Immersion:</strong></p>
-            <ul>
-                <li>Voice acting for recurring NPCs</li>
-                <li>Music and sound effect timing</li>
-                <li>Physical props and handouts</li>
-                <li>Lighting and atmosphere control</li>
-            </ul>
-        </div>
-
-        <h2>🌟 Legacy and Influence</h2>
-        
-        <div class="feature-analysis">
-            <h3>🏛️ How Kellar's Keep Changed Gaming Forever</h3>
-            <p><strong>The innovations introduced in this expansion became industry standards:</strong></p>
-            
-            <p><strong>📱 Video Game Influence:</strong> Campaign structures, character progression, environmental storytelling</p>
-            <p><strong>🎲 Tabletop Evolution:</strong> Multi-session campaigns, advanced combat mechanics, narrative continuity</p>
-            <p><strong>🎬 Media Impact:</strong> Fantasy storytelling tropes, character archetypes, world-building techniques</p>
-            <p><strong>🎮 Modern Gaming:</strong> Achievement systems, branching narratives, character customization</p>
-        </div>
-
-        <h2>🎯 Essential Tips for New Kellar's Keep Players</h2>
-        
-        <div class="expansion-principle">
-            <h3>🎓 The Graduation Guide</h3>
-            <p><strong>Moving from basic HeroQuest to Kellar's Keep requires new thinking:</strong></p>
-            
-            <p><strong>🔄 Think Campaign, Not Quest:</strong> Your decisions echo through multiple sessions</p>
-            <p><strong>🎭 Invest in Character:</strong> Role-playing becomes more important than min-maxing</p>
-            <p><strong>🤝 Team Synergy:</strong> Character combinations matter more than individual power</p>
-            <p><strong>📚 Learn the Lore:</strong> Understanding the world enhances every encounter</p>
-            <p><strong>⏰ Patience Pays:</strong> Long-term strategies beat short-term thinking</p>
-        </div>
-
-        <h2>🌟 Next Adventure Preview</h2>
-        
-        <p>In our next lecture, we'll explore <strong>"Return of the Witch Lord"</strong> - the expansion that took everything Kellar's Keep taught us and cranked it up to eleven! We'll dive into the epic confrontation with Morcar's greatest lieutenant, the advanced magic systems, and the dramatic storytelling techniques that made this expansion feel like the climax of a fantasy epic.</p>
-        
-        <div class="expansion-principle">
-            <p><strong>Remember:</strong> Kellar's Keep wasn't just an expansion - it was a proof of concept that HeroQuest could evolve into something magnificent. It showed that simple mechanics could support complex narratives, that players craved long-term investment, and that the best games are those that grow with their audience. Every modern RPG owes a debt to the innovations pioneered in this legendary expansion!</p>
-        </div>
+<div class="pillars">
+    <div class="pillar">
+        <span class="pillar-line">Numbers</span>
+        <h4>More bodies on the board</h4>
+        <p>With extra orcs and goblins in the box, Zargon can fill rooms and corridors far more densely than most core quests do. Expect to be outnumbered and to fight several turns in a row.</p>
     </div>
+    <div class="pillar">
+        <span class="pillar-line">Toughness</span>
+        <h4>Abominations in groups</h4>
+        <p>An Abomination takes more than one hit to drop. When several appear together they soak up attacks that a goblin crowd would not, so plan who finishes which one.</p>
+    </div>
+    <div class="pillar">
+        <span class="pillar-line">Carry-over</span>
+        <h4>Your gear matters now</h4>
+        <p>Body and Mind Points and spells reset between quests, but gold and equipment carry on. A party that bought armor during the core campaign walks into this pack in far better shape.</p>
+    </div>
+</div>
+</section>
 
-    <script>
-        // Monster Evolution Visualization
-        const monsterCanvas = document.getElementById('monster_evolution_canvas');
-        const monsterCtx = monsterCanvas.getContext('2d');
-        
-        function drawMonsterEvolution() {
-            monsterCtx.clearRect(0, 0, monsterCanvas.width, monsterCanvas.height);
-            
-            // Background
-            monsterCtx.fillStyle = '#1a2e0a';
-            monsterCtx.fillRect(0, 0, monsterCanvas.width, monsterCanvas.height);
-            
-            // Draw evolution timeline
-            monsterCtx.strokeStyle = '#7cb342';
-            monsterCtx.lineWidth = 3;
-            monsterCtx.beginPath();
-            monsterCtx.moveTo(50, 150);
-            monsterCtx.lineTo(550, 150);
-            monsterCtx.stroke();
-            
-            // Original monsters
-            const originalMonsters = [
-                {x: 100, y: 150, name: 'Goblin', symbol: '👺', complexity: 1},
-                {x: 200, y: 150, name: 'Orc', symbol: '👹', complexity: 2}
-            ];
-            
-            // Kellar's Keep monsters
-            const kellarsMonsters = [
-                {x: 350, y: 100, name: 'Spider', symbol: '🕷️', complexity: 4},
-                {x: 450, y: 120, name: 'Skeleton', symbol: '💀', complexity: 5},
-                {x: 500, y: 80, name: 'Chaos Warrior', symbol: '⚔️', complexity: 7}
-            ];
-            
-            // Draw original era
-            monsterCtx.fillStyle = '#689f38';
-            monsterCtx.fillRect(50, 120, 200, 60);
-            monsterCtx.fillStyle = '#000';
-            monsterCtx.font = '14px Arial';
-            monsterCtx.textAlign = 'center';
-            monsterCtx.fillText('Original Game', 150, 155);
-            
-            // Draw Kellar's Keep era
-            monsterCtx.fillStyle = '#7cb342';
-            monsterCtx.fillRect(300, 60, 250, 120);
-            monsterCtx.fillStyle = '#000';
-            monsterCtx.fillText("Kellar's Keep", 425, 125);
-            
-            // Draw monsters
-            [...originalMonsters, ...kellarsMonsters].forEach(monster => {
-                monsterCtx.fillStyle = '#2d5016';
-                monsterCtx.beginPath();
-                monsterCtx.arc(monster.x, monster.y, 20, 0, Math.PI * 2);
-                monsterCtx.fill();
-                
-                monsterCtx.strokeStyle = '#8bc34a';
-                monsterCtx.lineWidth = 2;
-                monsterCtx.stroke();
-                
-                monsterCtx.fillStyle = '#fff';
-                monsterCtx.font = '16px Arial';
-                monsterCtx.fillText(monster.symbol, monster.x, monster.y + 5);
-                
-                monsterCtx.fillStyle = '#e8f5e8';
-                monsterCtx.font = '10px Arial';
-                monsterCtx.fillText(monster.name, monster.x, monster.y + 35);
-            });
-            
-            // Arrow showing evolution
-            monsterCtx.strokeStyle = '#8bc34a';
-            monsterCtx.lineWidth = 4;
-            monsterCtx.beginPath();
-            monsterCtx.moveTo(250, 150);
-            monsterCtx.lineTo(290, 150);
-            monsterCtx.stroke();
-            
-            // Arrow head
-            monsterCtx.beginPath();
-            monsterCtx.moveTo(285, 145);
-            monsterCtx.lineTo(290, 150);
-            monsterCtx.lineTo(285, 155);
-            monsterCtx.stroke();
-            
-            monsterCtx.fillStyle = '#7cb342';
-            monsterCtx.font = '16px Arial';
-            monsterCtx.textAlign = 'center';
-            monsterCtx.fillText('Monster Complexity Evolution', 300, 30);
-            monsterCtx.textAlign = 'left';
-        }
-        
-        drawMonsterEvolution();
-        
-        // Combat Mechanics Visualization
-        const combatCanvas = document.getElementById('combat_mechanics_canvas');
-        const combatCtx = combatCanvas.getContext('2d');
-        
-        function drawCombatMechanics() {
-            combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
-            
-            // Background
-            combatCtx.fillStyle = '#1a2e0a';
-            combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
-            
-            // Draw battlefield grid
-            combatCtx.strokeStyle = '#2d5016';
-            combatCtx.lineWidth = 1;
-            for (let i = 0; i <= 12; i++) {
-                combatCtx.beginPath();
-                combatCtx.moveTo(50 + i * 40, 50);
-                combatCtx.lineTo(50 + i * 40, 290);
-                combatCtx.stroke();
-            }
-            for (let i = 0; i <= 6; i++) {
-                combatCtx.beginPath();
-                combatCtx.moveTo(50, 50 + i * 40);
-                combatCtx.lineTo(530, 50 + i * 40);
-                combatCtx.stroke();
-            }
-            
-            // Draw heroes
-            const heroes = [
-                {x: 130, y: 170, symbol: '🛡️', color: '#4a90e2'},
-                {x: 170, y: 210, symbol: '🏹', color: '#32cd32'},
-                {x: 90, y: 210, symbol: '🔮', color: '#9370db'},
-                {x: 130, y: 250, symbol: '🗡️', color: '#cd853f'}
-            ];
-            
-            heroes.forEach(hero => {
-                combatCtx.fillStyle = hero.color;
-                combatCtx.fillRect(hero.x - 15, hero.y - 15, 30, 30);
-                combatCtx.fillStyle = '#fff';
-                combatCtx.font = '16px Arial';
-                combatCtx.textAlign = 'center';
-                combatCtx.fillText(hero.symbol, hero.x, hero.y + 5);
-            });
-            
-            // Draw area effect spell
-            combatCtx.strokeStyle = '#ff6b35';
-            combatCtx.lineWidth = 3;
-            combatCtx.setLineDash([5, 5]);
-            combatCtx.beginPath();
-            combatCtx.arc(370, 150, 60, 0, Math.PI * 2);
-            combatCtx.stroke();
-            combatCtx.setLineDash([]);
-            
-            // Draw enemies in spell area
-            const enemies = [
-                {x: 330, y: 130, symbol: '👹'},
-                {x: 370, y: 150, symbol: '💀'},
-                {x: 410, y: 170, symbol: '🕷️'}
-            ];
-            
-            enemies.forEach(enemy => {
-                combatCtx.fillStyle = '#8b0000';
-                combatCtx.fillRect(enemy.x - 15, enemy.y - 15, 30, 30);
-                combatCtx.fillStyle = '#fff';
-                combatCtx.font = '16px Arial';
-                combatCtx.fillText(enemy.symbol, enemy.x, enemy.y + 5);
-            });
-            
-            // Draw spell effect
-            combatCtx.fillStyle = 'rgba(255, 107, 53, 0.3)';
-            combatCtx.beginPath();
-            combatCtx.arc(370, 150, 60, 0, Math.PI * 2);
-            combatCtx.fill();
-            
-            combatCtx.fillStyle = '#7cb342';
-            combatCtx.font = '16px Arial';
-            combatCtx.textAlign = 'center';
-            combatCtx.fillText('Area Effect Combat: Multiple Target Spells', 300, 30);
-            combatCtx.fillStyle = '#e8f5e8';
-            combatCtx.font = '12px Arial';
-            combatCtx.fillText('Revolutionary: One spell affects multiple enemies', 300, 320);
-            combatCtx.textAlign = 'left';
-        }
-        
-        drawCombatMechanics();
-        
-        // Quest Design Innovation Visualization
-        const questCanvas = document.getElementById('quest_design_innovation_canvas');
-        const questCtx = questCanvas.getContext('2d');
-        
-        function drawQuestDesignInnovation() {
-            questCtx.clearRect(0, 0, questCanvas.width, questCanvas.height);
-            
-            // Background
-            questCtx.fillStyle = '#1a2e0a';
-            questCtx.fillRect(0, 0, questCanvas.width, questCanvas.height);
-            
-            // Draw comparison between original and Kellar's Keep
-            questCtx.fillStyle = '#689f38';
-            questCtx.fillRect(50, 100, 200, 100);
-            questCtx.fillStyle = '#000';
-            questCtx.font = '14px Arial';
-            questCtx.textAlign = 'center';
-            questCtx.fillText('Original Quests', 150, 130);
-            questCtx.fillText('Standalone', 150, 150);
-            questCtx.fillText('Single Session', 150, 170);
-            
-            questCtx.fillStyle = '#7cb342';
-            questCtx.fillRect(350, 80, 200, 140);
-            questCtx.fillStyle = '#000';
-            questCtx.fillText("Kellar's Keep", 450, 110);
-            questCtx.fillText('Connected Campaign', 450, 130);
-            questCtx.fillText('Multi-Session', 450, 150);
-            questCtx.fillText('Character Growth', 450, 170);
-            questCtx.fillText('Narrative Continuity', 450, 190);
-            
-            // Arrow showing evolution
-            questCtx.strokeStyle = '#8bc34a';
-            questCtx.lineWidth = 4;
-            questCtx.beginPath();
-            questCtx.moveTo(270, 150);
-            questCtx.lineTo(330, 150);
-            questCtx.stroke();
-            
-            // Arrow head
-            questCtx.beginPath();
-            questCtx.moveTo(325, 145);
-            questCtx.lineTo(330, 150);
-            questCtx.lineTo(325, 155);
-            questCtx.stroke();
-            
-            questCtx.fillStyle = '#7cb342';
-            questCtx.font = '16px Arial';
-            questCtx.fillText('Quest Design Evolution', 300, 30);
-            questCtx.textAlign = 'left';
-        }
-        
-        drawQuestDesignInnovation();
-        
-        // DM Tools Visualization
-        const dmCanvas = document.getElementById('dm_tools_canvas');
-        const dmCtx = dmCanvas.getContext('2d');
-        
-        function drawDMTools() {
-            dmCtx.clearRect(0, 0, dmCanvas.width, dmCanvas.height);
-            
-            // Background
-            dmCtx.fillStyle = '#1a2e0a';
-            dmCtx.fillRect(0, 0, dmCanvas.width, dmCanvas.height);
-            
-            // Draw DM in center
-            dmCtx.fillStyle = '#7cb342';
-            dmCtx.fillRect(275, 125, 50, 50);
-            dmCtx.fillStyle = '#000';
-            dmCtx.font = '20px Arial';
-            dmCtx.textAlign = 'center';
-            dmCtx.fillText('🧙‍♂️', 300, 155);
-            
-            // Draw tool categories around DM
-            const tools = [
-                {x: 150, y: 100, name: 'Session\nPlanning', icon: '📋'},
-                {x: 450, y: 100, name: 'Character\nTracking', icon: '📊'},
-                {x: 150, y: 200, name: 'Story\nContinuity', icon: '📚'},
-                {x: 450, y: 200, name: 'Player\nEngagement', icon: '🎭'}
-            ];
-            
-            tools.forEach(tool => {
-                // Draw connection lines FIRST (behind boxes)
-                dmCtx.strokeStyle = '#689f38';
-                dmCtx.lineWidth = 2;
-                dmCtx.beginPath();
-                dmCtx.moveTo(tool.x, tool.y);
-                dmCtx.lineTo(300, 150);
-                dmCtx.stroke();
-            });
-            
-            // Draw DM in center (on top of lines)
-            dmCtx.fillStyle = '#7cb342';
-            dmCtx.fillRect(275, 125, 50, 50);
-            dmCtx.fillStyle = '#000';
-            dmCtx.font = '20px Arial';
-            dmCtx.textAlign = 'center';
-            dmCtx.fillText('🧙‍♂️', 300, 155);
-            
-            // Draw tool boxes and text (on top of lines)
-            tools.forEach(tool => {
-                dmCtx.fillStyle = '#2d5016';
-                dmCtx.fillRect(tool.x - 30, tool.y - 30, 60, 60);
-                dmCtx.strokeStyle = '#8bc34a';
-                dmCtx.lineWidth = 2;
-                dmCtx.strokeRect(tool.x - 30, tool.y - 30, 60, 60);
-                
-                dmCtx.fillStyle = '#fff';
-                dmCtx.font = '20px Arial';
-                dmCtx.textAlign = 'center';
-                dmCtx.fillText(tool.icon, tool.x, tool.y + 5);
-                
-                dmCtx.fillStyle = '#e8f5e8';
-                dmCtx.font = '10px Arial';
-                const lines = tool.name.split('\n');
-                lines.forEach((line, index) => {
-                    dmCtx.fillText(line, tool.x, tool.y + 45 + (index * 12));
-                });
-            });
-            
-            dmCtx.fillStyle = '#7cb342';
-            dmCtx.font = '16px Arial';
-            dmCtx.fillText('Campaign DM Toolkit', 220, 30);
-            dmCtx.textAlign = 'left';
-        }
-        
-        drawDMTools();
-    </script>
-<script src="/nav.js"></script>
+<section>
+<h2>The Odds Against Greenskins</h2>
+<p>The numbers below use the classic 1990 North American monster stats, which fan sources say the 2021 game follows; the official figures are on the 2021 monster cards and Zargon's screen, so check yours. Combat dice have three skulls, two white shields and one black shield: each skull is a hit, a hero blocks on a white shield and a monster blocks only on a black one. Every percentage is computed exactly from those faces.</p>
+
+<div class="table-container">
+<table>
+    <caption>Chance a hero kills the monster: top figure with one attack, bottom figure within two attacks</caption>
+    <thead><tr><th scope="col">Monster (classic NA Attack / Defend / Body)</th><th scope="col">Barbarian, 3 dice</th><th scope="col">Dwarf or Elf, 2 dice</th><th scope="col">Wizard, 1 die</th></tr></thead>
+    <tbody>
+        <tr><td>Goblin (2 / 1 / 1)</td><td>81.3%<br>96.5%</td><td>66.7%<br>88.9%</td><td>41.7%<br>66.0%</td></tr>
+        <tr><td>Orc (3 / 2 / 1)</td><td>75.0%<br>93.8%</td><td>59.0%<br>83.2%</td><td>34.7%<br>57.4%</td></tr>
+        <tr><td>Abomination (3 / 3 / 2)</td><td>33.3%<br>68.1%</td><td>14.5%<br>41.0%</td><td>0%<br>8.4%</td></tr>
+    </tbody>
+</table>
+</div>
+
+<div class="table-container">
+<table>
+    <caption>What one monster attack does to a hero defending with 2 dice</caption>
+    <thead><tr><th scope="col">Attacker</th><th scope="col">At least 1 Body Point lost</th><th scope="col">2 or more lost</th><th scope="col">Average loss</th></tr></thead>
+    <tbody>
+        <tr><td>Goblin (2 attack dice)</td><td>44.4%</td><td>11.1%</td><td>0.56</td></tr>
+        <tr><td>Orc or Abomination (3 attack dice)</td><td>62.5%</td><td>27.8%</td><td>0.96</td></tr>
+    </tbody>
+</table>
+</div>
+
+<p>Two things stand out. First, the Wizard's dagger cannot kill an Abomination in a single attack at all: one die can do at most one point of damage against two Body Points. Point the Wizard's spells and the Barbarian's broadsword at Abominations, and let the Dwarf and Elf clear goblins. Second, an orc hits a two-dice hero more often than not. Over a long fight in a crowded corridor that adds up, so a Helmet or Shield bought between quests pays for itself here. You can check any matchup yourself with the <a href="/heroquest_dice_roller.html">Dice Roller</a>.</p>
+</section>
+
+<section>
+<h2>Try It at the Table</h2>
+<div class="callout callout-edge callout-green">
+    <ul>
+        <li><strong>Fight in the corridor, not the room.</strong> Monsters cannot move or attack diagonally and cannot pass through heroes. A hero standing in a one-square corridor faces one attacker at a time while a second hero waits behind, ready to step up.</li>
+        <li><strong>Open doors with care.</strong> Doors never close again once opened. Opening several rooms at once can bring a whole wing down on you.</li>
+        <li><strong>Search only when the coast is clear.</strong> You cannot search while a monster is in view, and almost half of the treasure deck is wandering monsters or hazards, so a treasure search in a big dungeon is a small gamble each time.</li>
+        <li><strong>Save spells for the bad rooms.</strong> Each spell is cast once per quest. Spending Ball of Flame on a lone goblin leaves nothing for the Abomination pack two rooms later.</li>
+        <li><strong>Let the Dwarf handle traps.</strong> The Dwarf disarms without a tool kit and fails only on a black shield, so the rest of the party can keep their gold for armor.</li>
+    </ul>
+</div>
+</section>
+
+<section>
+<h2>Running It as Zargon</h2>
+<p>Kellar's Keep gives Zargon more figures, and the temptation is to throw them all in at once. The quests are more fun when the pressure builds: let the early rooms be manageable, then use the full weight of the greenskin miniatures where the quest notes call for it. Read each quest's notes before play so you know which monsters have special rules and where the wandering monster comes from. <a href="/heroquest_dungeon_mastering.html">Playing Zargon</a> covers pacing and fairness in more depth.</p>
+</section>
+
+<section>
+<h2>Where Next</h2>
+<ul>
+    <li><a href="/heroquest_lore_kellars_keep.html">Kellar's Keep: Lore</a>, the story behind the pack.</li>
+    <li><a href="/heroquest_return_witch_lord.html">Return of the Witch Lord</a>, the next quest pack.</li>
+    <li><a href="/heroquest_original_quests.html">The Core Quest Book</a>, if you have not finished the fourteen core quests.</li>
+    <li><a href="/heroquest_treasure_progression.html">Treasure &amp; Equipment</a>, for what to buy between quests.</li>
+</ul>
+</section>
+    </main>
+
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_original_quests.html">The Core Quest Book</a>
+    <a class="next" href="/heroquest_lore_kellars_keep.html">Kellar's Keep: Lore</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

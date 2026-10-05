@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playing Without Zargon - The HeroQuest Guide</title>
+    <meta name="description" content="Play HeroQuest solo or fully co-op: the Companion App's official Digital Zargon, plus an unofficial paper method with monster rules, room tables and a dice oracle.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <style>
+        main .roller { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: clamp(16px, 3vw, 24px); margin: 1.2rem 0 1.4rem; box-shadow: var(--shadow); }
+        main .roller label { display: block; font-weight: 600; color: var(--heading); margin-bottom: 4px; }
+        main .tray { display: flex; flex-wrap: wrap; gap: 8px; min-height: 52px; margin: 0.6rem 0; align-items: center; }
+        .cdie { display: inline-flex; flex-direction: column; align-items: center; justify-content: center; width: 54px; height: 54px; border-radius: 10px; border: 2px solid #4a3b30; background: #fffdf9; color: #241c16; font-size: 0.68rem; font-weight: 700; line-height: 1.1; text-align: center; }
+        .cdie .face { font-size: 1.45rem; line-height: 1; }
+        .cdie.skull { background: #fbe9e7; border-color: #8f1d1d; color: #6e1414; }
+        .cdie.white { background: #ffffff; color: #241c16; }
+        .cdie.black { background: #241c16; border-color: #241c16; color: #ffffff; }
+        .cdie.red6 { background: #a3161f; border-color: #7f0f17; color: #fff; font-size: 1.4rem; }
+        main .verdict { font-size: 1.15rem; font-weight: 700; color: var(--heading); margin: 0.6rem 0 0; }
+        main .num td:not(:first-child), main .num th:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+        main .rule-list li { margin: 0.45rem 0; }
+    </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Playing Without Zargon</h1>
+        <p>How to play HeroQuest solo or as a full team of heroes, with the official app or with dice and paper.</p>
+    </header>
+
+    <main id="main">
+<section>
+<h2>Two Ways to Play Without Zargon</h2>
+<p>The printed HeroQuest rules assume one player is Zargon. The rulebook says that if fewer than five people are playing, one person must still play as Zargon. Plenty of groups want everyone on the heroes' side, though, and plenty of players want to explore the dungeon alone. You have two options:</p>
+<ul>
+    <li><strong>The official way:</strong> the free HeroQuest Companion App can run Zargon for you.</li>
+    <li><strong>The paper way:</strong> the unofficial house rules on this page replace Zargon with a few priority rules, some tables and the game's own dice.</li>
+</ul>
+</section>
+
+<section>
+<h2>The Official Way: Digital Zargon</h2>
+<p>Hasbro's <strong>HeroQuest Companion App</strong> is free on iOS and Google Play and launched in November 2021. As well as narration (Mentor introduces each quest and Zargon reacts as it goes), sound and Body and Mind tracking, it can take the role of a <strong>Digital Zargon</strong>.</p>
+<ul>
+    <li>Up to four players can play purely as heroes, cooperating against the app.</li>
+    <li>Or you can play alone and control all four heroes yourself.</li>
+    <li>The app reveals rooms and dangers as you explore. It tells you where to place monsters and how to move them, while you still roll the dice and handle the cards.</li>
+</ul>
+<p>Since the core Quest Book, the app has added quests from the later packs, including Kellar's Keep, Return of the Witch Lord, The Frozen Horror, The Mage of the Mirror, Rise of the Dread Moon, Against the Ogre Horde, The Prophecy of Telor, Spirit Queen's Torment, Jungles of Delthrak and First Light. If you own the app and a phone or tablet, it is the easiest way to play without a Zargon, and it keeps the quest maps a surprise.</p>
+<div class="callout callout-edge">
+    <p><strong>Not the same thing:</strong> some packs, such as The Mage of the Mirror, open with a short quest for a single hero before the others join. That is part of the story, not a solo system. And the "Solo Combatants" rule in Against the Ogre Horde is an arena rule for a lone surviving team member, not a way to play alone.</p>
+</div>
+</section>
+
+<section>
+<h2>The Paper Way: Zargon's Rules</h2>
+<div class="callout callout-box">
+    <p><strong>Unofficial house rules.</strong> Everything from here to the end of the page is this guide's own design, not Avalon Hill's. It uses the normal HeroQuest rules for movement, combat, searching and spells, and replaces only the decisions a Zargon player would make.</p>
+</div>
+
+<h3>Setup</h3>
+<ul>
+    <li>Run all four base heroes yourself, or two heroes each with a friend. Four heroes are the safest party; one hero alone dies quickly in the core quests.</li>
+    <li><strong>Option A, a Quest Book quest:</strong> cover the quest map with a sheet of paper. Slide it aside only to read the room or corridor a hero can now see, and read the quest notes for that area only when it is revealed.</li>
+    <li><strong>Option B, a random dungeon:</strong> use the tables below to fill each room as you open it. Your goal is to find the objective room and then return to the stairway.</li>
+</ul>
+
+<h3>How Monsters Behave</h3>
+<p>On Zargon's turn, activate monsters one at a time, starting with the one closest to a hero. Each monster follows the first rule on this list that it can. Like heroes, monsters move then attack, or attack then move, never part of each.</p>
+<ol class="rule-list">
+    <li><strong>Adjacent to a hero?</strong> Attack. If several heroes are adjacent, attack the one with the fewest Body Points left. If that is a tie, attack the one with fewer defend dice, then the one whose player turn comes next.</li>
+    <li><strong>Can it reach a hero this turn?</strong> Move by the shortest route to a square next to that hero, then attack. If it can reach more than one hero, use the same order as rule 1.</li>
+    <li><strong>Can it see a hero?</strong> Move its full Movement toward the nearest hero it can see, staying in corridors and rooms the heroes have revealed.</li>
+    <li><strong>Otherwise</strong> it stays where it is. Guards wait for the heroes to come to them.</li>
+</ol>
+<p><strong>Spellcasting monsters</strong> such as a Dread Sorcerer cast instead of attacking when they can see a hero and have a spell left. Use the spells the quest notes give them. In a random dungeon, deal one Dread spell card face down and cast it the first time a hero is in line of sight. Then the sorcerer fights with its normal attack.</p>
+
+<h3>The Dread Clock</h3>
+<p>A real Zargon punishes slow, careful play with wandering monsters. At the end of every Zargon turn, roll one combat die. On a <strong>black shield</strong>, mark the Dread Clock. At <strong>three marks</strong>, a wandering monster appears next to the hero who searched most recently (or next to the hero farthest from the stairway, if nobody has searched). Use the quest's listed wandering monster, or roll for the type below, then clear the clock. A black shield comes up one time in six, so the clock fills after about 18 turns on average.</p>
+</section>
+
+<section>
+<h2>Random Dungeon Tables</h2>
+<p>When a hero opens a door into a room nobody has seen yet, roll the two red dice on the Room Table. When a hero first looks down a new corridor, roll one red die: on a <strong>6</strong>, a wandering monster waits there.</p>
+
+<h3>Room Table (2 red dice)</h3>
+<div class="table-container">
+<table class="num">
+    <thead><tr><th>Roll</th><th>Room</th><th>Chance</th></tr></thead>
+    <tbody>
+        <tr><td>2</td><td><strong>Dread lair:</strong> a Monster Roll plus one Dread Warrior. If the heroes have explored 5 or more rooms, the objective is here.</td><td>2.8%</td></tr>
+        <tr><td>3</td><td><strong>Trapped room:</strong> unless the room has been searched for traps, the first hero to step in rolls one combat die and loses 1 Body Point on a skull.</td><td>5.6%</td></tr>
+        <tr><td>4–5</td><td><strong>Empty room.</strong></td><td>19.4%</td></tr>
+        <tr><td>6–8</td><td><strong>Guarded room:</strong> a Monster Roll, with at least one monster.</td><td>44.4%</td></tr>
+        <tr><td>9</td><td><strong>Storeroom:</strong> a Monster Roll, plus a chest or cupboard to search.</td><td>11.1%</td></tr>
+        <tr><td>10</td><td><strong>Quiet room:</strong> empty, but a search for secret doors here always finds one.</td><td>8.3%</td></tr>
+        <tr><td>11</td><td><strong>Patrol:</strong> a Monster Roll. These monsters take a turn right away, before the heroes move again.</td><td>5.6%</td></tr>
+        <tr><td>12</td><td><strong>Throne room:</strong> if 5 or more rooms are explored, the objective is here, guarded by a Gargoyle (or a named villain from a quest you own) and a Monster Roll. Otherwise treat it as a guarded room.</td><td>2.8%</td></tr>
+    </tbody>
+</table>
+</div>
+<p>If the heroes have explored 10 rooms and still haven't found the objective, the next room with any monsters in it holds it.</p>
+
+<h3>Monster Roll and Monster Type</h3>
+<p><strong>Monster Roll:</strong> roll one combat die for each hero in the party. Each skull is one monster. Then roll a red die for the type: <strong>1–2</strong> Goblins, <strong>3–4</strong> Orcs, <strong>5</strong> Skeletons or Zombies, <strong>6</strong> one Abomination or Dread Warrior with any others as Orcs. Use the stats on the monster cards.</p>
+<div class="table-container">
+<table class="num">
+    <thead><tr><th>Skulls on a Monster Roll</th><th>2 heroes</th><th>3 heroes</th><th>4 heroes</th></tr></thead>
+    <tbody>
+        <tr><td>0</td><td>25.0%</td><td>12.5%</td><td>6.3%</td></tr>
+        <tr><td>1</td><td>50.0%</td><td>37.5%</td><td>25.0%</td></tr>
+        <tr><td>2</td><td>25.0%</td><td>37.5%</td><td>37.5%</td></tr>
+        <tr><td>3</td><td>–</td><td>12.5%</td><td>25.0%</td></tr>
+        <tr><td>4</td><td>–</td><td>–</td><td>6.3%</td></tr>
+    </tbody>
+</table>
+</div>
+<p>A party of four meets two monsters per room on average, which suits the base game's monster count.</p>
+</section>
+
+<section>
+<h2>The Skull Oracle</h2>
+<p>Sometimes you'll want to know something no table covers. Is the portcullis locked? Does the Orc chieftain flee? Ask a yes-or-no question, decide how likely the answer is, and roll that many combat dice. You get a <strong>Yes</strong> if enough skulls come up. Roll one red die at the same time: on a <strong>6</strong>, add a twist, "Yes, and…" or "No, and…".</p>
+<div class="table-container">
+<table class="num" id="oracleTable">
+    <thead><tr><th>Likelihood</th><th>Roll</th><th>Yes</th><th>Yes, and</th><th>No</th><th>No, and</th></tr></thead>
+    <tbody></tbody>
+</table>
+</div>
+<div class="roller">
+    <label for="likely">How likely is a Yes?</label>
+    <select id="likely"></select>
+    <p><button type="button" id="askOracle">Ask the oracle</button></p>
+    <div class="tray" id="oracleTray" aria-live="polite"></div>
+    <p class="verdict" id="oracleVerdict">Ask a question, then roll.</p>
+</div>
+</section>
+
+<section>
+<h2>Roll a Room</h2>
+<div class="roller">
+    <label for="party">Heroes in the party</label>
+    <select id="party"><option>1</option><option>2</option><option>3</option><option selected>4</option></select>
+    <p><button type="button" id="rollRoom">Open the door</button></p>
+    <div class="tray" id="roomTray" aria-live="polite"></div>
+    <p class="verdict" id="roomVerdict">Roll when a hero opens a new door.</p>
+</div>
+</section>
+
+<section>
+<h2>An Example of Play</h2>
+<p>Hrolf the Barbarian kicks open a door in a random dungeon. The red dice show 3 and 4: a guarded room. The Monster Roll for a party of four comes up with two skulls, and the red die shows a 4, so two Orcs stand inside.</p>
+<p>On Zargon's turn, both Orcs can reach Hrolf, the only hero they can see, so they move next to him and attack (rule 2). Hrolf survives with 6 Body Points. Next turn, Bram Coldiron the Dwarf steps up beside him, and Thessaly Varn the Elf and Oswin Tallow the Wizard hang back in the corridor.</p>
+<p>Oswin wonders whether a third Orc is hiding behind the rack of weapons. It seems unlikely, so he rolls four combat dice. Only one skull shows: no. The red die is a 2, so there's no twist. At the end of the turn the Dread Clock die shows a black shield, its first mark.</p>
+</section>
+
+<section>
+<h2>Try It at the Table</h2>
+<ul>
+    <li>Play Quest 1, The Trial, with the map covered and the monster rules above. It shows quickly whether the priority list feels fair to you.</li>
+    <li>Run a four-room random dungeon with only the Barbarian and the Wizard. Note when the Dread Clock fills and whether the party reaches the stairs.</li>
+    <li>If a rule above makes the monsters too clever or too dumb for your taste, change it. Write your version down so the next game plays the same way.</li>
+</ul>
+</section>
+    </main>
+
+    <script>
+    (function () {
+        // Unofficial solo tables. Combat die: 3 skulls, 2 white shields, 1 black shield.
+        var LIKELY = [['Very unlikely', 5, 4], ['Unlikely', 4, 3], ['Toss-up', 3, 2], ['Likely', 4, 2], ['Very likely', 5, 2]];
+        function choose(n, k) { var r = 1; for (var i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
+        function pYes(n, need) { var s = 0; for (var k = need; k <= n; k++) s += choose(n, k) / Math.pow(2, n); return s; }
+        var table = {};
+        LIKELY.forEach(function (l) {
+            var y = pYes(l[1], l[2]);
+            table[l[0]] = { dice: l[1], need: l[2], 'Yes': y * 5 / 6, 'Yes, and': y / 6, 'No': (1 - y) * 5 / 6, 'No, and': (1 - y) / 6 };
+        });
+        function monsterRoll(heroes) { var out = []; for (var k = 0; k <= heroes; k++) out.push(choose(heroes, k) / Math.pow(2, heroes)); return out; }
+        var ROOMS = [[2, 2, 'Dread lair: a Monster Roll plus one Dread Warrior. If 5 or more rooms are explored, the objective is here.'],
+            [3, 3, 'Trapped room: unless it was searched for traps, the first hero in rolls a combat die and loses 1 Body Point on a skull.'],
+            [4, 5, 'Empty room.'], [6, 8, 'Guarded room: a Monster Roll, with at least one monster.'],
+            [9, 9, 'Storeroom: a Monster Roll, plus a chest or cupboard to search.'],
+            [10, 10, 'Quiet room: empty, but a search for secret doors here always finds one.'],
+            [11, 11, 'Patrol: a Monster Roll. They act right away.'],
+            [12, 12, 'Throne room: if 5 or more rooms are explored, the objective is here, guarded by a Gargoyle (or a named villain from a quest you own) and a Monster Roll; otherwise a guarded room.']];
+        function room(sum) { for (var i = 0; i < ROOMS.length; i++) if (sum >= ROOMS[i][0] && sum <= ROOMS[i][1]) return ROOMS[i][2]; }
+        var TYPES = ['Goblins', 'Goblins', 'Orcs', 'Orcs', 'Skeletons or Zombies', 'one Abomination or Dread Warrior (any others are Orcs)'];
+        window.hqOracle = { table: table };
+        window.hqSolo = { monsterRoll: monsterRoll, room: room };
+
+        var $ = function (id) { return document.getElementById(id); };
+        var pct = function (p) { return (p * 100 + 1e-9).toFixed(1) + '%'; };
+        var tb = $('oracleTable').tBodies[0];
+        LIKELY.forEach(function (l) {
+            var t = table[l[0]], tr = document.createElement('tr');
+            tr.innerHTML = '<td>' + l[0] + '</td><td>' + l[1] + ' dice, ' + l[2] + '+ skulls</td><td>' + pct(t['Yes']) + '</td><td>' + pct(t['Yes, and']) + '</td><td>' + pct(t['No']) + '</td><td>' + pct(t['No, and']) + '</td>';
+            tb.appendChild(tr);
+            var o = document.createElement('option'); o.textContent = l[0]; if (l[0] === 'Toss-up') o.selected = true; $('likely').appendChild(o);
+        });
+
+        function face() { var r = Math.floor(Math.random() * 6); return r < 3 ? 'skull' : (r < 5 ? 'white' : 'black'); }
+        var LABEL = { skull: ['💀', 'Skull', 'skull'], white: ['🛡', 'White', 'white shield'], black: ['🛡', 'Black', 'black shield'] };
+        function combatDie(kind) {
+            var d = document.createElement('span'); d.className = 'cdie ' + kind;
+            d.innerHTML = '<span class="face" aria-hidden="true">' + LABEL[kind][0] + '</span>' + LABEL[kind][1];
+            d.setAttribute('role', 'img'); d.setAttribute('aria-label', LABEL[kind][2]); return d;
+        }
+        function redDie(v) { var d = document.createElement('span'); d.className = 'cdie red6'; d.textContent = v; d.setAttribute('role', 'img'); d.setAttribute('aria-label', 'red die showing ' + v); return d; }
+        var d6 = function () { return 1 + Math.floor(Math.random() * 6); };
+
+        $('askOracle').addEventListener('click', function () {
+            var t = table[$('likely').value], tray = $('oracleTray'), sk = 0;
+            tray.innerHTML = '';
+            for (var i = 0; i < t.dice; i++) { var f = face(); if (f === 'skull') sk++; tray.appendChild(combatDie(f)); }
+            var red = d6(); tray.appendChild(redDie(red));
+            var yes = sk >= t.need;
+            $('oracleVerdict').textContent = sk + (sk === 1 ? ' skull' : ' skulls') + ' (needed ' + t.need + '): ' + (yes ? 'Yes' : 'No') + (red === 6 ? ', and… (add a twist)' : '.');
+        });
+
+        $('rollRoom').addEventListener('click', function () {
+            var a = d6(), b = d6(), heroes = +$('party').value, tray = $('roomTray'), text = room(a + b);
+            tray.innerHTML = ''; tray.appendChild(redDie(a)); tray.appendChild(redDie(b));
+            if (/Monster Roll/.test(text)) {
+                var sk = 0; for (var i = 0; i < heroes; i++) { var f = face(); if (f === 'skull') sk++; tray.appendChild(combatDie(f)); }
+                var guarded = /^(Guarded|Throne)/.test(text);
+                if (guarded && sk === 0) sk = 1;
+                var type = d6(); tray.appendChild(redDie(type));
+                text += ' Monster Roll: ' + sk + (sk === 1 ? ' monster' : ' monsters') + (sk ? ' (' + TYPES[type - 1] + ').' : '.');
+            }
+            $('roomVerdict').textContent = 'Rolled ' + (a + b) + '. ' + text;
+        });
+    })();
+    </script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_online_play.html">Playing Online</a>
+    <a class="next" href="/heroquest_dice_roller.html">Dice Roller</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
+</body>
+</html>

@@ -3,606 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Online: Adventures Beyond the Physical Table</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Playing Online - The HeroQuest Guide</title>
+    <meta name="description" content="How to play HeroQuest remotely: the official Companion App and its Digital Zargon, a camera on a real board, and general virtual tabletops.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-    
 </head>
 <body>
-    <div class="container">
-        <h1>💻 HeroQuest Online: Adventures Beyond the Physical Table 💻</h1>
-        
-        <div class="digital-chronicle">
-            <p><em>"In an age where heroes gather not around wooden tables but through glowing screens, where dice rolls echo through fiber optic cables instead of stone chambers, the spirit of adventure adapts to new realms. Playing HeroQuest online isn't just about replicating the physical experience—it's about discovering new possibilities, connecting with distant companions, and proving that the magic of shared storytelling transcends any single medium. The digital frontier offers tools and opportunities that would have seemed like pure wizardry to the original creators..."</em></p>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Playing Online</h1>
+        <p>Ways to play HeroQuest with friends who aren't in the room: the official Companion App, video calls around a real board, and virtual tabletops.</p>
+    </header>
+
+    <main id="main">
+<section>
+<div class="digital-chronicle">
+            <p>HeroQuest is a physical board game, and the official way to play is around a real board. Still, groups scattered across towns or time zones have found ways to keep questing. This page covers the one official digital tool (the free Companion App), the simplest remote setup (a camera on a real board), and general-purpose virtual tabletops.</p>
         </div>
-
-        <h2>The Digital Transformation</h2>
-        <p>Moving HeroQuest from the physical table to the digital realm represents more than just a change of medium—it's an evolution that opens up entirely new possibilities for storytelling, game management, and player interaction. While nothing can completely replace the tactile joy of rolling real dice and moving miniatures across a board, online play offers unique advantages: instant access to vast libraries of maps and tokens, automated calculations that speed up gameplay, and the ability to connect with fellow adventurers across vast distances.</p>
-
-        <p>The key to successful online HeroQuest lies in understanding that you're not trying to perfectly recreate the physical experience, but rather to capture its essence while embracing the unique capabilities of digital tools. This means focusing on what makes HeroQuest special—the collaborative storytelling, the tactical decision-making, and the shared excitement of discovery—while using technology to enhance rather than replace these core elements.</p>
-
-        <h2>The Digital Adventure Setup</h2>
-        <div class="canvas-container">
-            <h3>Online Setup</h3>
-            <canvas id="onlineSetupCanvas" width="1000" height="500"></canvas>
-        </div>
-        
-        <script>
-            const setupCanvas = document.getElementById('onlineSetupCanvas');
-            const setupCtx = setupCanvas.getContext('2d');
-            let setupFrame = 0;
-            
-            function drawOnlineSetup() {
-                setupCtx.clearRect(0, 0, 1000, 500);
-                setupFrame++;
-                
-                // Network connections visualization
-                const networkPulse = Math.sin(setupFrame * 0.05) * 0.3 + 0.7;
-                
-                // Central server/platform hub
-                setupCtx.fillStyle = `rgba(30, 144, 255, ${networkPulse})`;
-                setupCtx.beginPath();
-                setupCtx.arc(500, 250, 40, 0, Math.PI * 2);
-                setupCtx.fill();
-                
-                setupCtx.fillStyle = '#87ceeb';
-                setupCtx.font = '12px serif';
-                setupCtx.textAlign = 'center';
-                setupCtx.fillText('VTT Platform', 500, 255);
-                
-                // Player nodes connected to central hub
-                const players = [
-                    {x: 200, y: 150, name: 'Barbarian', color: '#dc143c'},
-                    {x: 800, y: 150, name: 'Wizard', color: '#4b0082'},
-                    {x: 200, y: 350, name: 'Elf', color: '#228b22'},
-                    {x: 800, y: 350, name: 'Dwarf', color: '#8b4513'},
-                    {x: 500, y: 100, name: 'Game Master', color: '#ffd700'}
-                ];
-                
-                players.forEach((player, index) => {
-                    const playerPulse = Math.sin(setupFrame * 0.04 + index) * 0.2 + 0.8;
-                    
-                    // Player node
-                    setupCtx.fillStyle = player.color;
-                    setupCtx.globalAlpha = playerPulse;
-                    setupCtx.beginPath();
-                    setupCtx.arc(player.x, player.y, 25, 0, Math.PI * 2);
-                    setupCtx.fill();
-                    setupCtx.globalAlpha = 1;
-                    
-                    // Connection to center
-                    const connectionStrength = Math.sin(setupFrame * 0.03 + index * 1.5) * 0.4 + 0.6;
-                    setupCtx.strokeStyle = `rgba(30, 144, 255, ${connectionStrength})`;
-                    setupCtx.lineWidth = 3;
-                    setupCtx.setLineDash([5, 5]);
-                    setupCtx.beginPath();
-                    setupCtx.moveTo(player.x, player.y);
-                    setupCtx.lineTo(500, 250);
-                    setupCtx.stroke();
-                    setupCtx.setLineDash([]);
-                    
-                    // Player label
-                    setupCtx.fillStyle = player.color;
-                    setupCtx.font = '11px serif';
-                    setupCtx.textAlign = 'center';
-                    setupCtx.fillText(player.name, player.x, player.y + 40);
-                });
-                
-                // Digital tools floating around the setup
-                const tools = [
-                    {x: 100, y: 100, name: 'Dice Roller', icon: '🎲'},
-                    {x: 900, y: 100, name: 'Voice Chat', icon: '🎤'},
-                    {x: 100, y: 400, name: 'Map Viewer', icon: '🗺️'},
-                    {x: 900, y: 400, name: 'Character Sheet', icon: '📋'},
-                    {x: 350, y: 50, name: 'Token Library', icon: '🎭'},
-                    {x: 650, y: 450, name: 'Music Player', icon: '🎵'}
-                ];
-                
-                tools.forEach((tool, index) => {
-                    const toolFloat = Math.sin(setupFrame * 0.02 + index * 2) * 10;
-                    const toolAlpha = Math.sin(setupFrame * 0.06 + index) * 0.3 + 0.7;
-                    
-                    // Tool background
-                    setupCtx.fillStyle = `rgba(135, 206, 235, ${toolAlpha * 0.5})`;
-                    setupCtx.fillRect(tool.x - 25, tool.y + toolFloat - 15, 50, 30);
-                    
-                    // Tool icon
-                    setupCtx.font = '20px serif';
-                    setupCtx.textAlign = 'center';
-                    setupCtx.fillText(tool.icon, tool.x, tool.y + toolFloat);
-                    
-                    // Tool label
-                    setupCtx.fillStyle = '#b0e0e6';
-                    setupCtx.font = '9px serif';
-                    setupCtx.fillText(tool.name, tool.x, tool.y + toolFloat + 25);
-                });
-                
-                // Data streams between components
-                for (let i = 0; i < 30; i++) {
-                    const streamTime = (setupFrame + i * 10) * 0.02;
-                    const x = 100 + Math.sin(streamTime) * 400 + 300;
-                    const y = 100 + Math.cos(streamTime * 1.3) * 150 + 150;
-                    const alpha = (Math.sin(streamTime * 5) + 1) * 0.4;
-                    
-                    setupCtx.fillStyle = `rgba(173, 216, 230, ${alpha})`;
-                    setupCtx.beginPath();
-                    setupCtx.arc(x, y, 2, 0, Math.PI * 2);
-                    setupCtx.fill();
-                }
-                
-                // Platform selection indicators
-                const platforms = ['Roll20', 'Foundry VTT', 'Tabletop Simulator', 'Discord'];
-                platforms.forEach((platform, index) => {
-                    const angle = (index * Math.PI * 2 / platforms.length) + setupFrame * 0.01;
-                    const radius = 120;
-                    const x = 500 + Math.cos(angle) * radius;
-                    const y = 250 + Math.sin(angle) * radius;
-                    
-                    setupCtx.fillStyle = 'rgba(176, 224, 230, 0.8)';
-                    setupCtx.font = '10px serif';
-                    setupCtx.textAlign = 'center';
-                    setupCtx.fillText(platform, x, y);
-                });
-            }
-            
-            setInterval(drawOnlineSetup, 50);
-        </script>
-
-        <h2>Platform Selection Guide</h2>
-
-        <div class="quest-card platform-guide">
-            <div class="card-type">HeroQuest-Specific Tools</div>
-            <h3>⚔️ Dedicated HeroQuest Applications</h3>
-            
-            <div class="setup-brief">
-                <h4>Official and Community-Created HeroQuest Tools</h4>
-                <p>Beyond general VTT platforms, there are several tools created specifically for HeroQuest that can enhance your online experience. These range from Hasbro's official companion app to community-created dice rollers and quest editors that capture the authentic HeroQuest feel better than generic platforms.</p>
-            </div>
-            
-            <div class="platform-grid">
-                <div class="platform-card">
-                    <h4>🎭 HeroQuest Companion App <span class="cost-indicator free">Free</span></h4>
-                    <p><strong>Platform:</strong> iOS/Android (official Hasbro)<br>
-                    <strong>Features:</strong> AI Zargon, narrated quests, atmospheric audio<br>
-                    <strong>Best for:</strong> Solo play or all-hero groups<br>
-                    <strong>Note:</strong> Requires physical board game</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🎲 Banjo's HeroQuest Dice Roller <span class="cost-indicator free">Free</span></h4>
-                    <p><strong>Platform:</strong> Web browser<br>
-                    <strong>Features:</strong> Authentic HQ dice, sound effects, multiple styles<br>
-                    <strong>Best for:</strong> Online sessions needing proper dice<br>
-                    <strong>URL:</strong> Available on itch.io and WordPress</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🗺️ HeroScribe Quest Editor <span class="cost-indicator free">Free</span></h4>
-                    <p><strong>Platform:</strong> Java application<br>
-                    <strong>Features:</strong> Professional quest map creation<br>
-                    <strong>Best for:</strong> Creating custom adventures<br>
-                    <strong>Note:</strong> Vector graphics, all official icons</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🎲 HeroQuest Dice App <span class="cost-indicator freemium">Freemium</span></h4>
-                    <p><strong>Platform:</strong> Android<br>
-                    <strong>Features:</strong> Combat and movement dice simulation<br>
-                    <strong>Best for:</strong> Mobile-friendly dice rolling<br>
-                    <strong>Developer:</strong> ClemGrt</p>
-                </div>
-                <div class="platform-card">
-                    <h4>💻 Classic HeroQuest Online <span class="cost-indicator free">Free</span></h4>
-                    <p><strong>Platform:</strong> Web browser<br>
-                    <strong>Features:</strong> Full game recreation<br>
-                    <strong>Best for:</strong> Nostalgic DOS-style experience<br>
-                    <strong>URL:</strong> playclassic.games</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🎯 Community Dice Rollers <span class="cost-indicator free">Free</span></h4>
-                    <p><strong>Platform:</strong> Various web tools<br>
-                    <strong>Features:</strong> Custom HQ combat dice<br>
-                    <strong>Best for:</strong> Simple online rolling<br>
-                    <strong>Note:</strong> Multiple community versions available</p>
-                </div>
-            </div>
-            
-            <div class="setup-steps">
-                <h4>Using the Official HeroQuest Companion App Online</h4>
-                <p><strong>🎭 The Digital Zargon:</strong> The free HeroQuest Companion App allows you to run your next tabletop game session so everyone can play as heroes! The app takes on the role of Zargon using the onscreen quest map. Additional features include: • Narrated quest instructions, sound effects, and dungeon atmosphere • Dangers are revealed as the heroes explore dungeons • Quest events are tracked along with game progress • Players can record character Mind and Body Points digitally in-app • Spells and artifact effects are cast and triggered on screen</p>
-                
-                <p><strong>💻 Screen Sharing Setup:</strong> Run the app on a tablet or phone, then share your screen via Discord, Zoom, or your VTT platform. Players can see the map and quest progress while the app handles all GM duties.</p>
-                
-                <p><strong>🎮 Emulator Option:</strong> Using HeroQuest – Companion App on BlueStacks works great too—so wrangling a big group, a big screen, or a digital tabletop is easier than ever. Run it on PC using BlueStacks or similar Android emulators for better screen sharing.</p>
-            </div>
-            
-            <span class="platform-tag">📱 Mobile Apps</span>
-            <span class="platform-tag">🌐 Web Tools</span>
-            <span class="digital-tag">🎭 AI Game Master</span>
-            <span class="tool-tag">🎲 Authentic Dice</span>
-        </div>
-
-        <div class="quest-card platform-guide">
-            <div class="card-type">Platform Guide</div>
-            <h3>🌐 Choosing Your Digital Realm</h3>
-            
-            <div class="setup-brief">
-                <h4>The Foundation of Online Adventure</h4>
-                <p>Selecting the right virtual tabletop (VTT) platform is like choosing the foundation for your digital castle—it affects everything you'll build on top of it. Each platform has its own personality, strengths, and learning curve. The best choice isn't necessarily the most feature-rich option, but the one that best matches your group's technical comfort level, budget constraints, and gameplay preferences.</p>
-                
-                <p>Consider your group's needs carefully: Do you need elaborate visual effects or simple functionality? Are you playing with tech-savvy friends who love tweaking settings, or family members who just want to click and play? Will you be running short one-shots or epic campaigns spanning months? These questions will guide you toward the platform that will serve your adventures best.</p>
-            </div>
-            
-            <div class="platform-grid">
-                <div class="platform-card">
-                    <h4>🎯 Roll20 <span class="cost-indicator freemium">Freemium</span></h4>
-                    <p><strong>Best for:</strong> Beginners and casual groups<br>
-                    <strong>Strengths:</strong> Browser-based, easy setup, large community<br>
-                    <strong>Weaknesses:</strong> Limited free features, can be slow<br>
-                    <strong>HeroQuest Rating:</strong> ⭐⭐⭐⭐</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🏰 Foundry VTT <span class="cost-indicator paid">One-time Purchase</span></h4>
-                    <p><strong>Best for:</strong> Tech-savvy groups, long campaigns<br>
-                    <strong>Strengths:</strong> Highly customizable, great performance, mods<br>
-                    <strong>Weaknesses:</strong> Steeper learning curve, setup required<br>
-                    <strong>HeroQuest Rating:</strong> ⭐⭐⭐⭐⭐</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🎲 Tabletop Simulator <span class="cost-indicator paid">Steam Purchase</span></h4>
-                    <p><strong>Best for:</strong> Groups wanting 3D experience<br>
-                    <strong>Strengths:</strong> Realistic physics, workshop content<br>
-                    <strong>Weaknesses:</strong> Requires Steam, can be fiddly<br>
-                    <strong>HeroQuest Rating:</strong> ⭐⭐⭐⭐</p>
-                </div>
-                <div class="platform-card">
-                    <h4>💬 Discord + Bots <span class="cost-indicator free">Free</span></h4>
-                    <p><strong>Best for:</strong> Simple theater-of-mind play<br>
-                    <strong>Strengths:</strong> Everyone knows Discord, zero cost<br>
-                    <strong>Weaknesses:</strong> No visual maps, limited automation<br>
-                    <strong>HeroQuest Rating:</strong> ⭐⭐⭐</p>
-                </div>
-                <div class="platform-card">
-                    <h4>📱 Owlbear Rodeo <span class="cost-indicator free">Free</span></h4>
-                    <p><strong>Best for:</strong> Quick setup, mobile-friendly<br>
-                    <strong>Strengths:</strong> Simple interface, works on phones<br>
-                    <strong>Weaknesses:</strong> Basic features only<br>
-                    <strong>HeroQuest Rating:</strong> ⭐⭐⭐</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🎮 Fantasy Grounds <span class="cost-indicator paid">Subscription</span></h4>
-                    <p><strong>Best for:</strong> Rules automation enthusiasts<br>
-                    <strong>Strengths:</strong> Deep rule integration, character management<br>
-                    <strong>Weaknesses:</strong> Expensive, complex interface<br>
-                    <strong>HeroQuest Rating:</strong> ⭐⭐⭐</p>
-                </div>
-            </div>
-            
-            <span class="platform-tag">🌐 Browser-Based</span>
-            <span class="platform-tag">💻 Desktop Apps</span>
-            <span class="platform-tag">📱 Mobile-Friendly</span>
-            <span class="digital-tag">🔄 Cross-Platform</span>
-        </div>
-
-        <div class="quest-card tech-setup">
-            <div class="card-type">Tech Setup</div>
-            <h3>⚙️ Technical Requirements and Setup</h3>
-            
-            <div class="feature-comparison">
-                <h4>Minimum Requirements vs. Optimal Setup</h4>
-                <table>
-                    <tr>
-                        <th>Component</th>
-                        <th>Minimum</th>
-                        <th>Recommended</th>
-                        <th>Optimal</th>
-                        <th>Why It Matters</th>
-                    </tr>
-                    <tr>
-                        <td>Internet Speed</td>
-                        <td>5 Mbps down</td>
-                        <td>25 Mbps down</td>
-                        <td>50+ Mbps down</td>
-                        <td>Smooth video/map loading</td>
-                    </tr>
-                    <tr>
-                        <td>RAM</td>
-                        <td>4 GB</td>
-                        <td>8 GB</td>
-                        <td>16+ GB</td>
-                        <td>Multiple browser tabs/apps</td>
-                    </tr>
-                    <tr>
-                        <td>Microphone</td>
-                        <td>Built-in laptop mic</td>
-                        <td>USB headset</td>
-                        <td>Dedicated gaming headset</td>
-                        <td>Clear communication</td>
-                    </tr>
-                    <tr>
-                        <td>Camera</td>
-                        <td>Not required</td>
-                        <td>720p webcam</td>
-                        <td>1080p with good lighting</td>
-                        <td>Face-to-face connection</td>
-                    </tr>
-                    <tr>
-                        <td>Monitor Size</td>
-                        <td>13" laptop</td>
-                        <td>24" desktop</td>
-                        <td>Dual monitor setup</td>
-                        <td>Map visibility and multitasking</td>
-                    </tr>
-                </table>
-            </div>
-            
-            <div class="setup-steps">
-                <h4>First-Time Setup Checklist</h4>
-                <p><strong>📋 Before Your First Session:</strong></p>
-                <p>✅ Test your microphone and speakers with all players<br>
-                ✅ Ensure everyone can access the chosen platform<br>
-                ✅ Create and share character sheets or tokens<br>
-                ✅ Upload maps and set up basic lighting<br>
-                ✅ Test dice rolling functionality<br>
-                ✅ Establish backup communication method (Discord, phone)<br>
-                ✅ Share screen briefly to check everyone can see clearly</p>
-                
-                <p><strong>🎯 Optimization Tips:</strong></p>
-                <p>• Close unnecessary browser tabs and applications<br>
-                • Use wired internet connection when possible<br>
-                • Position camera at eye level for better presence<br>
-                • Use push-to-talk to reduce background noise<br>
-                • Have character sheets open in separate window/tab</p>
-            </div>
-            
-            <div class="tech-warning">
-                <h4>Common Technical Pitfalls</h4>
-                <p><strong>Audio Issues:</strong> Echo usually means someone doesn't have headphones. Background noise can be fixed with push-to-talk or noise cancellation.</p>
-                
-                <p><strong>Platform Crashes:</strong> Always have a backup plan. Know how to quickly rejoin the session, and consider having Discord as a fallback communication method.</p>
-                
-                <p><strong>Slow Performance:</strong> Maps with too many dynamic lighting effects can bog down the system. Start simple and add complexity gradually.</p>
-            </div>
-            
-            <span class="platform-tag">🔧 Hardware Setup</span>
-            <span class="platform-tag">📶 Network Optimization</span>
-            <span class="digital-tag">🎤 Audio Configuration</span>
-            <span class="tool-tag">📹 Video Setup</span>
-        </div>
-
+</section>
+<section>
+<h2>Which Setup Fits Your Group?</h2>
         <div class="mermaid">
-            graph TD
-                A[Choose Platform] --> B[Account Setup]
-                A --> C[Hardware Check]
-                A --> D[Group Coordination]
-                
-                B --> E[Create Campaign]
-                C --> F[Audio/Video Test]
-                D --> G[Schedule Session Zero]
-                
-                E --> H[Upload Assets]
-                F --> I[Configure Settings]
-                G --> J[Character Creation]
-                
-                H --> K[Map Preparation]
-                I --> L[Test Gameplay]
-                J --> M[Rules Review]
-                
-                K --> N[First Adventure]
-                L --> N
-                M --> N
-                
-                N --> O[Regular Play Sessions]
-                O --> P[Platform Mastery]
-                
-                style A fill:#4169e1
-                style E fill:#32cd32
-                style N fill:#ffa500
-                style P fill:#ffd700
+flowchart TD
+    A["Who owns the game?"] --> B["One player has the box"]
+    A --> C["Everyone is remote,&lt;br/&gt;no shared box"]
+    B --> D{"Is anyone&lt;br/&gt;playing Zargon?"}
+    D -->|Yes| E["Video call with a&lt;br/&gt;camera on the board"]
+    D -->|No| F["Companion App as&lt;br/&gt;Digital Zargon, shared on the call"]
+    C --> G["Virtual tabletop, with&lt;br/&gt;the owner's own components"]
         </div>
+</section>
+<section>
+<h2>📱 The Official Companion App</h2>
+        <div class="quest-card platform-guide">
+            <p><strong>HeroQuest - Companion App</strong> is Hasbro's free official app for iOS and Android, released in November 2021 alongside the Avalon Hill edition. It doesn't replace the board: you still set up the real board, move the real figures, roll the real dice and handle the cards. What it adds:</p>
+            <ul>
+                <li><strong>Narration and atmosphere:</strong> Mentor narrates quest introductions and endings, Zargon reacts, and the app supplies sound and dungeon ambience.</li>
+                <li><strong>Revealed dangers:</strong> the app reveals what the heroes find as they explore.</li>
+                <li><strong>Tracking:</strong> heroes can record their Body and Mind Points in the app, and spell and artifact effects are triggered on screen.</li>
+                <li><strong>Digital Zargon:</strong> the app can take the role of Zargon, so up to four players can all play heroes, or one player can run all four heroes solo. It tells you how the monsters move and act; the players move the figures and roll for them.</li>
+            </ul>
+            <p>The app launched with the core quests and has since added quest packs from the Avalon Hill line, including Kellar's Keep, Return of the Witch Lord, The Frozen Horror, The Mage of the Mirror, Rise of the Dread Moon, Against the Ogre Horde, Prophecy of Telor, Spirit Queen's Torment, Jungles of Delthrak and First Light. Check the store listing for the current list.</p>
+        </div>
+        <div class="callout callout-blue callout-box">
+            <p><strong>Using the app remotely:</strong> one player with the board runs the app and points a camera at the board. Share the app's screen (or a second camera on the tablet) on the call so everyone hears the narration and sees what Digital Zargon asks for. Remote players tell the host what their hero does, and the host moves the figures and rolls, or remote players roll their own real dice and report the result honestly.</p>
+        </div>
+        <p>For how Digital Zargon changes the game, and other ways to play without a Zargon player, see <a href="/heroquest_solo.html">Playing Without Zargon</a>.</p>
+</section>
+<section>
+<h2>🎥 A Camera on a Real Board</h2>
+        <p>The simplest remote game needs no special software: one person owns the game, sets up the board at home, and points a camera down at it during a video call. If that person plays Zargon, they keep the quest notes hidden off camera and reveal rooms on the board as usual.</p>
+        <div class="setup-steps">
+            <h3>Setup Checklist</h3>
+            <ul>
+                <li><strong>Camera overhead.</strong> A phone on a stand or a webcam on a lamp arm looking straight down shows the whole board. A second camera at a low angle is nice for big reveals.</li>
+                <li><strong>Good, even light.</strong> Dice faces and small figures disappear in shadow.</li>
+                <li><strong>Roll on camera.</strong> Either the host rolls for everyone, or each player rolls their own HeroQuest dice on their own camera. Agree which before the quest.</li>
+                <li><strong>Character sheets.</strong> Each hero keeps their own sheet; the <a href="/heroquest_character_sheet.html">Character Sheet</a> on this site saves to your browser and exports to a file.</li>
+                <li><strong>Test first.</strong> Do a quick "can everyone see and hear" check before reading the parchment text.</li>
+            </ul>
+        </div>
+        <p>No HeroQuest dice at a remote player's home? The <a href="/heroquest_dice_roller.html">Dice Roller</a> on this site rolls combat and movement dice and shows the exact odds.</p>
+</section>
+<section>
+<h2>🌐 Virtual Tabletops</h2>
+        <p>General-purpose virtual tabletops (VTTs) give everyone a shared map and tokens in a browser or app. None of them is an official HeroQuest product, and none comes with HeroQuest content. Some groups set up their own games on them, and community-made HeroQuest setups exist for some platforms, including Tabletop Simulator's community workshop. They're unofficial, so quality and legality vary.</p>
+        <div class="platform-grid">
+            <div class="platform-card">
+                <h4>🌐 Browser-based VTTs</h4>
+                <p>Roll20 and Owlbear Rodeo run in a browser with no install. Good for groups who want a shared map and token movement without much setup.</p>
+            </div>
+            <div class="platform-card">
+                <h4>🏰 Installed VTTs</h4>
+                <p>Foundry VTT is installed and hosted by one player and is very customisable, with more setup work up front.</p>
+            </div>
+            <div class="platform-card">
+                <h4>🎲 3D tabletop sandboxes</h4>
+                <p>Tabletop Simulator is a 3D sandbox where pieces and dice behave like physical objects. Every player needs their own copy.</p>
+            </div>
+            <div class="platform-card">
+                <h4>💬 Voice chat only</h4>
+                <p>A Discord or phone call plus a camera on the host's board (above) is often simpler than a full VTT.</p>
+            </div>
+        </div>
+        <div class="callout callout-orange callout-box">
+            <p><strong>Respect the publisher:</strong> HeroQuest's art, maps and quest text belong to Hasbro. For private games, the fair approach is for the group's host to own the game and use their own components. Don't upload or share scans of quest books or cards publicly.</p>
+        </div>
+        <div class="pro-tip">
+            <h3>Running HeroQuest on a VTT</h3>
+            <ul>
+                <li><strong>Hidden map:</strong> Zargon needs to reveal rooms only when a hero looks into them. Use the platform's hidden layer or fog of war, and reveal rooms by hand as doors open.</li>
+                <li><strong>The right dice:</strong> HeroQuest's combat die isn't a normal number die. If the platform can't show custom faces, map a d6 to faces: 1–3 skull, 4–5 white shield, 6 black shield. That gives the same 3/2/1 split as the real die.</li>
+                <li><strong>Two red dice for movement:</strong> heroes roll 2d6 and move up to the total. Monsters don't roll; they use their fixed movement.</li>
+                <li><strong>Don't over-automate.</strong> A tracker for Body and Mind Points helps; a script that resolves every attack hides the fun of rolling.</li>
+            </ul>
+        </div>
+</section>
+<section>
+<h2>🧑‍🤝‍🧑 Tips for Online Players</h2>
+        <div class="feature-comparison">
+            <table>
+                <tr><th>At the table</th><th>Online</th><th>What helps</th></tr>
+                <tr><td>Point at a square</td><td>Name it</td><td>Agree on a way to name squares, such as "two squares past the door".</td></tr>
+                <tr><td>Everyone sees the dice</td><td>Only the camera sees them</td><td>Hold the dice up to the camera, or roll in the shared roller.</td></tr>
+                <tr><td>Quick cross-talk</td><td>Talking over each other</td><td>Go around in turn order: player to Zargon's left first, Zargon last.</td></tr>
+                <tr><td>Glance at the board</td><td>The view may lag</td><td>The host says what changed after each move.</td></tr>
+            </table>
+        </div>
+        <div class="tech-warning">
+            <h3>When Something Breaks</h3>
+            <ul>
+                <li><strong>Audio echo</strong> usually means someone isn't wearing headphones.</li>
+                <li><strong>The call drops:</strong> the board doesn't care. Take a photo of the board, rejoin, and carry on.</li>
+                <li><strong>A camera fails:</strong> the host describes the board aloud until it's back. HeroQuest's board is simple enough to play from description for a few turns.</li>
+            </ul>
+        </div>
+</section>
+<section>
+<h2>🕹️ The Classic Computer Games</h2>
+        <p>Gremlin Graphics made two official computer games in the early 1990s: <strong>HeroQuest</strong> (1991), based on the board game, and <strong>HeroQuest II: Legacy of Sorasil</strong> (1994, for the Amiga). Both are single-player and long out of print. Today the only official digital product for the board game is the Companion App.</p>
+</section>
+<section>
+<h2>🎯 Try It at the Table</h2>
+        <div class="scenario-box">
+            <ol>
+                <li>Set up the board, point a phone camera at it, and play the first core quest with one remote friend.</li>
+                <li>Try the same quest with the Companion App as Digital Zargon, sharing its screen on the call. Compare which felt more like the table game.</li>
+            </ol>
+        </div>
+</section>
+<section>
+<h2>🧭 Where Next</h2>
+        <ul>
+            <li><a href="/heroquest_solo.html">Playing Without Zargon</a>: Digital Zargon and other no-Zargon play.</li>
+            <li><a href="/heroquest_dice_roller.html">Dice Roller</a>: combat and movement dice for remote players.</li>
+            <li><a href="/heroquest_digital_toolkit.html">Zargon's Toolkit</a>: trackers for the Zargon player.</li>
+            <li><a href="/heroquest_character_sheet.html">Character Sheet</a>: a sheet that saves in your browser.</li>
+        </ul>
+</section>
+    </main>
 
-        <div class="quest-card dm-tools">
-            <div class="card-type">DM Tools</div>
-            <h3>🎭 Game Master's Digital Arsenal</h3>
-            
-            <div class="setup-brief">
-                <h4>Mastering the Digital Domain</h4>
-                <p>As a digital Game Master, you're not just running the adventure—you're also serving as the technical director, sound engineer, and visual effects coordinator for your players' experience. This might seem daunting, but the right tools can actually make GMing easier than ever before. Digital platforms offer capabilities that physical play simply can't match: instant access to any map or token, automated dice rolling and calculations, dynamic lighting effects, and the ability to seamlessly switch between different scenes and encounters.</p>
-                
-                <p>The key is to start simple and gradually incorporate more advanced features as you become comfortable with the platform. Your players don't need Hollywood-level production values—they need smooth, responsive gameplay and clear communication. Focus on mastering the basics before adding bells and whistles.</p>
-            </div>
-            
-            <div class="platform-grid">
-                <div class="platform-card">
-                    <h4>🗺️ Map Management</h4>
-                    <p><strong>Essential Tools:</strong><br>
-                    • Grid alignment and scaling<br>
-                    • Layer management (maps, tokens, effects)<br>
-                    • Quick scene switching<br>
-                    • Fog of war controls</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🎲 Dice and Automation</h4>
-                    <p><strong>Core Features:</strong><br>
-                    • Custom dice macros<br>
-                    • Automated damage calculation<br>
-                    • Initiative tracking<br>
-                    • Hidden GM rolls</p>
-                </div>
-                <div class="platform-card">
-                    <h4>🎵 Atmosphere Control</h4>
-                    <p><strong>Immersion Tools:</strong><br>
-                    • Background music playlists<br>
-                    • Sound effect triggers<br>
-                    • Ambient noise loops<br>
-                    • Volume controls per player</p>
-                </div>
-                <div class="platform-card">
-                    <h4>📝 Campaign Management</h4>
-                    <p><strong>Organization:</strong><br>
-                    • Note-taking systems<br>
-                    • NPC tracking<br>
-                    • Handout distribution<br>
-                    • Session logging</p>
-                </div>
-            </div>
-            
-            <div class="pro-tip">
-                <h4>Pro GM Digital Tips</h4>
-                <p><strong>HeroQuest-Specific Integration:</strong> Use the official HeroQuest Companion App as your AI Zargon via screen sharing while handling dice rolls through Banjo's web-based dice roller for authentic HeroQuest combat dice experience.</p>
-                
-                <p><strong>Dual-Screen Setup:</strong> Run HeroScribe for quest creation and map editing, then use the companion app for gameplay with community dice rollers for authentic HeroQuest dice mechanics.</p>
-                
-                <p><strong>Community Tools Integration:</strong> Banjo's dice roller includes various cosmetic styles for the dice, including the core style and Frozen Horror style as found in the official Hasbro App, plus custom representations of Veil Dice and Jungles of Delthrak dice.</p>
-            </div>
-            
-            <span class="tool-tag">🎭 Scene Management</span>
-            <span class="tool-tag">🎵 Audio Control</span>
-            <span class="digital-tag">📊 Data Tracking</span>
-            <span class="platform-tag">🔄 Automation</span>
-        </div>
-
-        <div class="quest-card player-tips">
-            <div class="card-type">Player Tips</div>
-            <h3>🎮 Player's Guide to Digital Heroics</h3>
-            
-            <div class="setup-brief">
-                <h4>Adapting Your Heroic Style</h4>
-                <p>Playing HeroQuest online requires some adjustment from physical table play, but it also opens up new opportunities for engagement and creativity. Digital platforms can actually enhance certain aspects of the game—you might find it easier to manage complex character abilities with digital sheets, or discover that online dice rollers help you avoid the curse of terrible physical dice luck!</p>
-                
-                <p>The most important skill for online play isn't technical expertise—it's communication. Since you can't rely on body language and subtle visual cues as much as in person, you'll need to be more explicit about your intentions and more attentive to what other players are saying and doing.</p>
-            </div>
-            
-            <div class="feature-comparison">
-                <h4>Online vs. Physical Play Adaptations</h4>
-                <table>
-                    <tr>
-                        <th>Aspect</th>
-                        <th>Physical Play</th>
-                        <th>Online Adaptation</th>
-                        <th>Digital Advantage</th>
-                    </tr>
-                    <tr>
-                        <td>Token Movement</td>
-                        <td>Pick up and place miniatures</td>
-                        <td>Click and drag tokens</td>
-                        <td>Precise movement, undo mistakes</td>
-                    </tr>
-                    <tr>
-                        <td>Dice Rolling</td>
-                        <td>Physical dice on table</td>
-                        <td>Click buttons or type commands</td>
-                        <td>Automatic math, visible to all</td>
-                    </tr>
-                    <tr>
-                        <td>Character Sheets</td>
-                        <td>Paper sheets and pencils</td>
-                        <td>Digital forms with calculations</td>
-                        <td>Auto-calculations, backup copies</td>
-                    </tr>
-                    <tr>
-                        <td>Communication</td>
-                        <td>Natural conversation</td>
-                        <td>Voice chat + text for actions</td>
-                        <td>Clear action logging, replay</td>
-                    </tr>
-                    <tr>
-                        <td>Map Visibility</td>
-                        <td>Everyone sees same board</td>
-                        <td>Individual fog of war</td>
-                        <td>True hidden information</td>
-                    </tr>
-                </table>
-            </div>
-            
-            <div class="pro-tip">
-                <h4>HeroQuest-Specific Player Setup</h4>
-                <p><strong>🎲 Authentic Dice Experience:</strong> Use Banjo's HeroQuest Dice Roller for authentic combat dice with sound effects and multiple visual styles including official Hasbro designs. The web app runs in browsers and includes both combat dice and movement dice specifically designed for HeroQuest.</p>
-                
-                <p><strong>📱 Mobile Integration:</strong> Download the official HeroQuest Companion App on iOS or Android to track your character's Body and Mind Points digitally, with spells and artifact effects triggered on screen. The app can guide new players through movement, actions, and treasure searching.</p>
-                
-                <p><strong>🗺️ Quest Creation:</strong> Use HeroScribe for creating and sharing custom quest maps with typographic quality vector graphics and all official HeroQuest icons included. Perfect for GMs wanting to create new adventures.</p>
-                
-                <p><strong>🎮 Classic Experience:</strong> For pure nostalgia, try the browser-based classic HeroQuest recreation at playclassic.games for a DOS-style isometric experience.</p>
-            </div>
-            
-            <span class="digital-tag">🎮 Interface Mastery</span>
-            <span class="digital-tag">🗣️ Communication Skills</span>
-            <span class="platform-tag">⚡ Quick Actions</span>
-            <span class="tool-tag">🔧 Problem Solving</span>
-        </div>
-
-        <div class="quest-card troubleshooting">
-            <div class="card-type">Troubleshooting</div>
-            <h3>🔧 Solving Digital Dilemmas</h3>
-            
-            <div class="tech-warning">
-                <h4>The Most Common Issues and Solutions</h4>
-                <p><strong>Problem:</strong> "I can't hear anyone!" / "No one can hear me!"<br>
-                <strong>Solution:</strong> Check browser permissions for microphone/speakers. Try refreshing the page. Verify correct audio devices are selected in platform settings.</p>
-                
-                <p><strong>Problem:</strong> Platform runs slowly or crashes<br>
-                <strong>Solution:</strong> Close other browser tabs and applications. Clear browser cache. Try using a different browser (Chrome usually works best for VTTs).</p>
-                
-                <p><strong>Problem:</strong> Can't see the map or tokens are missing<br>
-                <strong>Solution:</strong> Refresh the page. Check if you're in the right scene. Verify internet connection. Ask GM to re-send/re-share assets.</p>
-                
-                <p><strong>Problem:</strong> Dice rolls aren't working<br>
-                <strong>Solution:</strong> Check chat window for roll commands. Verify macro syntax. Try manual rolling if automated systems fail.</p>
-            </div>
-            
-            <div class="setup-steps">
-                <h4>Emergency Protocols</h4>
-                <p><strong>🚨 When Technology Fails:</strong></p>
-                <p>1. <strong>Stay Calm:</strong> Technical issues happen to everyone<br>
-                2. <strong>Communicate:</strong> Let others know what's wrong<br>
-                3. <strong>Try Simple Fixes:</strong> Refresh page, restart browser<br>
-                4. <strong>Use Backup Methods:</strong> Switch to Discord/phone if needed<br>
-                5. <strong>Continue Playing:</strong> Don't let tech stop the adventure</p>
-                
-                <p><strong>📞 Backup Communication Chain:</strong></p>
-                <p>Primary: VTT platform voice chat<br>
-                Backup: Discord voice channel<br>
-                Emergency: Group text message<br>
-                Last Resort: Conference call on phones</p>
-            </div>
-            
-            <div class="pro-tip">
-                <h4>Prevention Is Better Than Cure</h4>
-                <p><strong>Before Each Session:</strong> Test audio with a quick "can everyone hear me?" round. Verify everyone can see the map clearly. Do a quick dice roll test.</p>
-                
-                <p><strong>Regular Maintenance:</strong> Keep browsers updated. Clear cache monthly. Test new features during downtime, not during actual play.</p>
-                
-                <p><strong>Have Alternatives Ready:</strong> Know how to switch to theater-of-the-mind if maps fail. Keep physical dice handy for backup rolling. Have character sheets saved locally.</p>
-            </div>
-            
-            <span class="digital-tag">🔧 Quick Fixes</span>
-            <span class="platform-tag">📞 Backup Plans</span>
-            <span class="tool-tag">🚨 Emergency Protocols</span>
-            <span class="digital-tag">🛡️ Prevention</span>
-        </div>
-
-        <h2>Advanced Online Techniques</h2>
-        
-        <div class="setup-brief">
-            <h3>Elevating Your Digital Game</h3>
-            <p>Once you've mastered the basics of online play, you can begin incorporating advanced techniques that take advantage of digital platforms' unique capabilities. Dynamic lighting can create genuine surprises and tension as heroes explore darkened dungeons. Automated macros can handle complex calculations instantly. Sound effects and music can create atmosphere that rivals professional productions.</p>
-            
-            <p>The key to successfully implementing advanced features is doing so gradually and always prioritizing gameplay over spectacle. A perfectly timed sound effect enhances the moment, but technical difficulties trying to trigger it can destroy immersion. Start with one or two advanced features per session until they become second nature, then gradually add more complexity.</p>
-        </div>
-
-        <div class="digital-chronicle">
-            <h3>The Future of Digital Adventure</h3>
-            <p>Online HeroQuest represents more than just a temporary substitute for in-person gaming—it's a legitimate evolution of the hobby that opens up new possibilities for storytelling and shared experience. Digital tools allow for innovations impossible in physical play: maps that change in real-time, NPCs with voiceovers, integration with streaming services for broader audiences, and the ability to seamlessly blend multiple media types into a single coherent experience.</p>
-            
-            <p>As technology continues to advance, we can expect virtual and augmented reality integration, AI-assisted game mastering, and even more sophisticated automation. But regardless of how fancy the technology becomes, the heart of HeroQuest remains unchanged: friends gathering to tell stories, face challenges together, and create memories that will last long after the devices are powered down.</p>
-        </div>
-
-        <div class="digital-chronicle">
-            <p><em>"In the end, whether your dice are physical cubes tumbling across a wooden table or digital algorithms processing in silicon chips, whether your maps are hand-drawn on graph paper or rendered in high-definition pixels, the magic happens in the space between imagination and possibility. Online HeroQuest proves that the true power of adventure lies not in the medium but in the shared commitment to exploration, discovery, and the eternal human desire to ask: 'What happens next?'"</em></p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_custom_heroes_monsters.html">Custom Heroes &amp; Monsters</a>
+    <a class="next" href="/heroquest_solo.html">Playing Without Zargon</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

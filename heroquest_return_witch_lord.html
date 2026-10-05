@@ -3,844 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Return of the Witch Lord - The Ultimate Villain Showdown</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Return of the Witch Lord - The HeroQuest Guide</title>
+    <meta name="description" content="Return of the Witch Lord, the 2021 Avalon Hill HeroQuest quest pack: ten undead quests, no new heroes, with exact odds against skeletons and mummies.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
-
     <style>
-    /* ── Callout boxes (page-specific) ── */
-    .villain-principle, .epic-box, .dramatic-analysis {
-      background: var(--accent-muted);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 1rem 0;
-      color: var(--text);
-    }
-
-    /* ── Witch Lord portrait ── */
-    .witch-lord-portrait {
-      text-align: center;
-      font-size: 64px;
-      margin: 1.5rem 0;
-      padding: 24px;
-      background: linear-gradient(135deg, rgba(156,39,176,0.15), rgba(171,71,188,0.1));
-      border: 2px solid #ab47bc;
-      border-radius: 12px;
-      color: var(--text);
-    }
-
-    /* ── Power meter ── */
-    .power-meter {
-      position: relative;
-      width: 100%;
-      height: 24px;
-      background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336, #9c27b0);
-      border-radius: 12px;
-      margin: 0.75rem 0;
-      border: 2px solid var(--border);
-    }
-    .power-indicator {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border: 3px solid #333;
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(156,39,176,0.6);
-    }
-
-    /* ── Spell arsenal grid ── */
-    .spell-arsenal {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 1rem 0;
-    }
-    .spell-showcase {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      color: var(--text);
-    }
-
-    /* ── Boss phases — horizontal flow ── */
-    .boss-phases {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-      padding: 20px;
-      background: var(--accent-muted);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-    .phase-node {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 80px;
-      height: 80px;
-      background: #9c27b0;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.8rem;
-      line-height: 1.2;
-      border-radius: 50%;
-      border: 3px solid var(--border);
-      box-shadow: 0 2px 8px rgba(156,39,176,0.3);
-    }
-    .phase-arrow {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-muted);
-      user-select: none;
-    }
-
-    /* ── Legendary encounters grid ── */
-    .legendary-encounters {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 1rem 0;
-    }
-    .encounter-card {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      color: var(--text);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .phase-node { width: 64px; height: 64px; font-size: 0.7rem; }
-      .phase-arrow { font-size: 1.2rem; }
-      .spell-arsenal, .legendary-encounters { grid-template-columns: 1fr; }
-    }
+    main table caption { caption-side: top; text-align: left; font-weight: 700; color: var(--heading); padding: 0 0 0.5rem; }
     </style>
-  
 </head>
 <body>
-    <div class="container">
-        <h1>👑 Return of the Witch Lord: The Ultimate Villain Showdown 🔮</h1>
-        
-        <div class="villain-principle">
-            <h2>⚡ The Empire Strikes Back: Why This Expansion Changed Everything</h2>
-            <p><strong>Return of the Witch Lord wasn't just a sequel - it was a masterclass in escalation storytelling!</strong> Like The Dark Knight following Batman Begins, this expansion took everything players loved about the original villain and asked "What if he came back smarter, more powerful, and absolutely furious?" It created the template for every great villain return in gaming history.</p>
-            
-            <p><strong>Real-world analogy:</strong> Think of this expansion like Marvel's Infinity War - it's the culmination of everything that came before. All your training, all your victories, all your character growth has been preparing you for this ultimate confrontation. The Witch Lord isn't just a boss fight; he's the final exam for everything you've learned about being a hero.</p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Return of the Witch Lord</h1>
+        <p>What the 2021 Avalon Hill Return of the Witch Lord quest pack contains and how to fight its skeletons, zombies and mummies.</p>
+    </header>
 
-        <div class="witch-lord-portrait">
-            👑
-            <div style="font-size: 16px; margin-top: 10px;">The Witch Lord</div>
-            <div style="font-size: 12px; opacity: 0.8;">Morcar's Greatest Champion</div>
-        </div>
+    <main id="main">
+<section>
+<h2>Return of the Witch Lord at a Glance</h2>
+<p>The core Quest Book ends its story at Barak Tor, the barrow of the Witch Lord, where the heroes recover the Spirit Blade and go back to finish him. This pack brings him back. It is the undead quest pack: ten quests built around skeletons, zombies and mummies, with no new rules system and no new hero.</p>
 
-        <h2>🎭 The Villain's Evolution: From Threat to Legend</h2>
-        
-        <div class="mermaid">
-            graph TD
-                A[Original Witch Lord] --> B[Defeat & Banishment]
-                B --> C[Time in the Void]
-                C --> D[Return Enhanced]
-                D --> E[New Powers]
-                D --> F[Greater Intelligence]
-                D --> G[Personal Vendetta]
-                
-                E --> E1[Advanced Magic]
-                E --> E2[Summoning Abilities]
-                E --> E3[Reality Manipulation]
-                
-                F --> F1[Strategic Thinking]
-                F --> F2[Tactical Adaptation]
-                F --> F3[Psychological Warfare]
-                
-                G --> G1[Knows the Heroes]
-                G --> G2[Prepared Countermeasures]
-                G --> G3[Personal Stakes]
-                
-                style A fill:#9c27b0,stroke:#333,stroke-width:2px
-                style D fill:#ab47bc,stroke:#333,stroke-width:3px
-                style E fill:#ba68c8,stroke:#333,stroke-width:2px
-                style F fill:#ba68c8,stroke:#333,stroke-width:2px
-                style G fill:#ba68c8,stroke:#333,stroke-width:2px
-        </div>
+<div class="table-container">
+<table>
+    <thead><tr><th scope="col">Item</th><th scope="col">Avalon Hill edition</th></tr></thead>
+    <tbody>
+        <tr><td>Publisher and year</td><td>Avalon Hill (Hasbro), 2021</td></tr>
+        <tr><td>Requires</td><td>The HeroQuest Game System (the core box)</td></tr>
+        <tr><td>Quests</td><td>10</td></tr>
+        <tr><td>Heroes added</td><td>None. Use the core four or any other hero you own.</td></tr>
+        <tr><td>Headline content</td><td>A new quest book and extra undead miniatures: skeletons, zombies and mummies in larger numbers than the core box allows</td></tr>
+        <tr><td>Companion app</td><td>Supported by the free HeroQuest Companion App, including its Digital Zargon mode</td></tr>
+    </tbody>
+</table>
+</div>
 
-        <h2>⚔️ The Power Scale: Measuring Ultimate Threat</h2>
-        
-        <div class="power-meter">
-            <div class="power-indicator" id="power_indicator" style="left: 90%;"></div>
-        </div>
-        <p style="text-align: center;"><em>Witch Lord Threat Level: <span id="threat_level">LEGENDARY</span></em></p>
-        
-        <div class="canvas-container">
-            <h3>Power Comparison</h3>
-            <canvas id="power_comparison_canvas" width="600" height="325"></canvas>
-        </div>
-        
-        <div class="epic-box">
-            <h3>📊 By the Numbers: What Makes Him Legendary</h3>
-            <p><strong>The Witch Lord represents the absolute pinnacle of HeroQuest antagonists:</strong></p>
-            
-            <p><strong>💪 Combat Statistics:</strong> Attack 4, Defense 3, Body Points 8 (Godlike by HeroQuest standards)</p>
-            <p><strong>🧠 Intelligence Rating:</strong> Strategic planning, adaptive tactics, memory of past defeats</p>
-            <p><strong>🔮 Magical Arsenal:</strong> Access to spells that can reshape entire encounters</p>
-            <p><strong>👥 Command Authority:</strong> Controls armies of monsters, not just individual units</p>
-            <p><strong>🎭 Narrative Weight:</strong> Personal investment in the heroes' destruction</p>
-        </div>
+<div class="callout callout-edge">
+    <p><strong>Classic edition (1989–1990):</strong> the original Return of the Witch Lord came out in Europe and Australasia in 1989 and in North America in 1991. It was also an undead-themed pack of quests. The European books name the villain Morcar; the North American books and the 2021 game call him Zargon.</p>
+</div>
+</section>
 
-        <h2>🌟 The Spell Arsenal: Magic as Storytelling</h2>
-        
-        <div class="spell-arsenal">
-            <div class="spell-showcase">
-                <h4>⚡ Lightning Bolt</h4>
-                <p><strong>The Signature Move</strong></p>
-                <p>Devastating ranged attack that can eliminate heroes instantly</p>
-                <p><em>"Like Thor's hammer, but wielded by the villain"</em></p>
-            </div>
-            
-            <div class="spell-showcase">
-                <h4>💀 Summon Skeletons</h4>
-                <p><strong>The Army Builder</strong></p>
-                <p>Creates undead reinforcements mid-combat</p>
-                <p><em>"Turns victory into desperate survival"</em></p>
-            </div>
-            
-            <div class="spell-showcase">
-                <h4>🌫️ Chaos Spell</h4>
-                <p><strong>The Reality Bender</strong></p>
-                <p>Unpredictable effects that change everything</p>
-                <p><em>"Magic wild card that keeps heroes guessing"</em></p>
-            </div>
-            
-            <div class="spell-showcase">
-                <h4>🛡️ Magical Defense</h4>
-                <p><strong>The Fortress</strong></p>
-                <p>Enhanced protection against hero attacks</p>
-                <p><em>"Makes every hit feel earned"</em></p>
-            </div>
-        </div>
+<section>
+<h2>Where It Fits in the Campaign</h2>
+<div class="mermaid">
+flowchart TD
+    A["Core Quests 12 to 14&lt;br/&gt;Barak Tor and the Spirit Blade"] --> B["Kellar's Keep&lt;br/&gt;10 quests"]
+    B --> C["Return of the Witch Lord&lt;br/&gt;10 quests"]
+    C --> D["The Frozen Horror&lt;br/&gt;first quest pack with a hero figure"]
+</div>
+<p>You can play this pack straight after the core book if you want the Witch Lord story while it is fresh, but most groups play Kellar's Keep first, in release order. Either way, bring your heroes' gold and equipment with you: a party still in starting gear will find a long undead campaign hard going.</p>
+</section>
 
-        <h2>🎪 The Multi-Phase Boss Fight Revolution</h2>
-        
-        <div class="boss-phases">
-            <div class="phase-node">
-                <div style="font-size: 20px;">👑</div>
-                <div>Phase 1</div>
-                <div>Arrogant</div>
-            </div>
-            <div class="phase-arrow">→</div>
-            <div class="phase-node">
-                <div style="font-size: 20px;">⚡</div>
-                <div>Phase 2</div>
-                <div>Aggressive</div>
-            </div>
-            <div class="phase-arrow">→</div>
-            <div class="phase-node">
-                <div style="font-size: 20px;">💀</div>
-                <div>Phase 3</div>
-                <div>Desperate</div>
-            </div>
-            <div class="phase-arrow">→</div>
-            <div class="phase-node">
-                <div style="font-size: 20px;">🌟</div>
-                <div>Phase 4</div>
-                <div>Legendary</div>
-            </div>
-        </div>
+<section>
+<h2>Fighting the Undead</h2>
+<p>Undead in HeroQuest are not immune to weapons and do not need special tactics to hurt. What sets them apart is how they move and how hard they are to put down. The table uses the classic 1990 North American monster chart, which fan sources say the 2021 game follows; your 2021 monster cards and Zargon's screen have the official numbers.</p>
 
-        <div class="canvas-container">
-            <h3>Boss Fight Dynamics</h3>
-            <canvas id="boss_fight_dynamics_canvas" width="600" height="350"></canvas>
-        </div>
-        
-        <div class="dramatic-analysis">
-            <h3>🎬 The Three-Act Boss Fight Structure</h3>
-            <p><strong>Like a perfectly scripted movie climax, the Witch Lord fight follows dramatic principles:</strong></p>
-            
-            <p><strong>🎭 Act I - The Confident Villain:</strong> "You fools! You think you can defeat me again?"</p>
-            <ul>
-                <li>Uses standard attacks to test the heroes</li>
-                <li>Taunts and psychological warfare</li>
-                <li>Relatively predictable patterns</li>
-            </ul>
-            
-            <p><strong>⚔️ Act II - The Escalation:</strong> "Enough games! Feel my true power!"</p>
-            <ul>
-                <li>Unleashes devastating spell combinations</li>
-                <li>Summons powerful reinforcements</li>
-                <li>Forces heroes to adapt their strategy</li>
-            </ul>
-            
-            <p><strong>💥 Act III - The Desperate Gambit:</strong> "If I cannot rule, then all shall perish!"</p>
-            <ul>
-                <li>All-out assault with every remaining resource</li>
-                <li>Environmental effects and area damage</li>
-                <li>Heroes must use everything they've learned</li>
-            </ul>
-        </div>
+<div class="table-container">
+<table>
+    <caption>Classic NA undead stats</caption>
+    <thead><tr><th scope="col">Monster</th><th scope="col">Move</th><th scope="col">Attack</th><th scope="col">Defend</th><th scope="col">Body</th><th scope="col">Mind</th></tr></thead>
+    <tbody>
+        <tr><td>Skeleton</td><td>6</td><td>2</td><td>2</td><td>1</td><td>0</td></tr>
+        <tr><td>Zombie</td><td>5</td><td>2</td><td>3</td><td>1</td><td>0</td></tr>
+        <tr><td>Mummy</td><td>4</td><td>3</td><td>4</td><td>2</td><td>0</td></tr>
+    </tbody>
+</table>
+</div>
 
-        <h2>🧠 Advanced Tactical Analysis</h2>
-        
-        <div class="canvas-container">
-            <h3>Tactical Analysis</h3>
-            <canvas id="tactical_analysis_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="epic-box">
-            <h3>🎯 Master-Level Strategies</h3>
-            <p><strong>Defeating the Witch Lord requires tactics that would make Sun Tzu proud:</strong></p>
-            
-            <p><strong>⚡ The Lightning Priority Doctrine:</strong></p>
-            <ul>
-                <li>Spread out to minimize Lightning Bolt damage</li>
-                <li>Never cluster your heroes together</li>
-                <li>Use corners and walls for cover</li>
-            </ul>
-            
-            <p><strong>💀 The Summoning Suppression Strategy:</strong></p>
-            <ul>
-                <li>Interrupt skeleton summoning with ranged attacks</li>
-                <li>Control battlefield positioning to limit spawn points</li>
-                <li>Prioritize eliminating fresh summons immediately</li>
-            </ul>
-            
-            <p><strong>🔮 The Magic Conservation Principle:</strong></p>
-            <ul>
-                <li>Save your best spells for the final phases</li>
-                <li>Use healing magic strategically, not desperately</li>
-                <li>Coordinate spell usage for maximum synergy</li>
-            </ul>
-        </div>
+<div class="table-container">
+<table>
+    <caption>Chance a hero kills the monster: top figure with one attack, bottom figure within two attacks</caption>
+    <thead><tr><th scope="col">Monster</th><th scope="col">Barbarian, 3 dice</th><th scope="col">Dwarf or Elf, 2 dice</th><th scope="col">Wizard, 1 die</th></tr></thead>
+    <tbody>
+        <tr><td>Skeleton</td><td>75.0%<br>93.8%</td><td>59.0%<br>83.2%</td><td>34.7%<br>57.4%</td></tr>
+        <tr><td>Zombie</td><td>68.9%<br>90.3%</td><td>52.1%<br>77.0%</td><td>28.9%<br>49.5%</td></tr>
+        <tr><td>Mummy</td><td>28.9%<br>61.1%</td><td>12.1%<br>34.1%</td><td>0%<br>5.8%</td></tr>
+    </tbody>
+</table>
+</div>
+<p>All figures are exact for combat dice with three skulls, two white shields and one black shield, where monsters block only on the black shield. Against a hero defending with two dice, a skeleton or zombie (2 attack dice) causes at least one point of damage 44.4% of the time, a mummy (3 attack dice) 62.5% of the time.</p>
 
-        <h2>🏆 The Legendary Encounters: Beyond the Main Fight</h2>
-        
-        <div class="legendary-encounters">
-            <div class="encounter-card">
-                <h4>🏰 The Fortress Assault</h4>
-                <p><strong>The Siege Epic</strong></p>
-                <p>Storm the Witch Lord's stronghold through multiple defensive layers</p>
-                <p><em>Innovation: Multi-room connected combat</em></p>
-            </div>
-            
-            <div class="encounter-card">
-                <h4>👻 The Spirit Guardians</h4>
-                <p><strong>The Puzzle Fight</strong></p>
-                <p>Defeat ethereal enemies that require special tactics</p>
-                <p><em>Innovation: Enemies immune to physical attacks</em></p>
-            </div>
-            
-            <div class="encounter-card">
-                <h4>⚔️ The Champion's Duel</h4>
-                <p><strong>The Honor Battle</strong></p>
-                <p>One-on-one combat with the Witch Lord's greatest warrior</p>
-                <p><em>Innovation: Single hero spotlight moments</em></p>
-            </div>
-            
-            <div class="encounter-card">
-                <h4>🌀 The Dimensional Rift</h4>
-                <p><strong>The Reality Break</strong></p>
-                <p>Fight while reality itself becomes unstable</p>
-                <p><em>Innovation: Environment as active participant</em></p>
-            </div>
-        </div>
-
-        <h2>🎨 Cinematic Storytelling Techniques</h2>
-        
-        <div class="villain-principle">
-            <h3>🎬 Creating Movie-Quality Moments</h3>
-            <p><strong>Return of the Witch Lord pioneered techniques that made tabletop gaming feel cinematic:</strong></p>
-            
-            <p><strong>💭 Pre-Battle Monologue:</strong> "So, the 'heroes' return. How delightfully predictable."</p>
-            <p><strong>⚡ Signature Move Reveals:</strong> First Lightning Bolt should be shocking and devastating</p>
-            <p><strong>🎭 Mid-Fight Dialogue:</strong> Taunt heroes based on their past adventures</p>
-            <p><strong>🌟 Transformation Moments:</strong> Each phase change should feel like a movie reveal</p>
-            <p><strong>💥 Climactic Finale:</strong> Final defeat should be earned and emotionally satisfying</p>
-        </div>
-
-        <h2>🧙‍♂️ Playing the Witch Lord: The Master Class</h2>
-        
-        <div class="canvas-container">
-            <h3>Villain Psychology</h3>
-            <canvas id="villain_psychology_canvas" width="600" height="250"></canvas>
-        </div>
-        
-        <div class="dramatic-analysis">
-            <h3>🎭 The Actor's Approach to Ultimate Evil</h3>
-            <p><strong>Playing the Witch Lord is like being the lead villain in a blockbuster movie:</strong></p>
-            
-            <p><strong>🎪 Voice and Mannerisms:</strong></p>
-            <ul>
-                <li>Deep, commanding voice with theatrical delivery</li>
-                <li>Dramatic gestures that emphasize magical power</li>
-                <li>Confident posture that shows his superiority complex</li>
-            </ul>
-            
-            <p><strong>🧠 Psychology and Motivation:</strong></p>
-            <ul>
-                <li>Wounded pride from previous defeat</li>
-                <li>Intellectual arrogance about his magical superiority</li>
-                <li>Personal vendetta against the specific heroes who beat him</li>
-            </ul>
-            
-            <p><strong>⚔️ Combat Personality:</strong></p>
-            <ul>
-                <li>Starts overconfident, becomes increasingly desperate</li>
-                <li>Uses taunts and psychological warfare</li>
-                <li>Reveals information about past adventures</li>
-            </ul>
-        </div>
-
-        <h2>⚖️ Balancing Ultimate Power</h2>
-        
-        <div class="epic-box">
-            <h3>🎯 The Goldilocks Boss: Not Too Easy, Not Impossible</h3>
-            <p><strong>Creating a legendary encounter that's challenging but fair requires perfect balance:</strong></p>
-            
-            <p><strong>💪 Power Level Calibration:</strong></p>
-            <ul>
-                <li>Strong enough to threaten experienced heroes</li>
-                <li>Weak enough that victory feels achievable</li>
-                <li>Dynamic enough to require tactical adaptation</li>
-            </ul>
-            
-            <p><strong>🎲 RNG Management:</strong></p>
-            <ul>
-                <li>Powerful attacks balanced by lower hit chances</li>
-                <li>Multiple tactical options for heroes</li>
-                <li>Comeback mechanics for both sides</li>
-            </ul>
-            
-            <p><strong>⏰ Pacing Control:</strong></p>
-            <ul>
-                <li>Build tension gradually through multiple phases</li>
-                <li>Create moments of hope and moments of despair</li>
-                <li>Ensure the fight feels epic but not endless</li>
-            </ul>
-        </div>
-
-        <h2>🎯 Victory Strategies: How Heroes Can Win</h2>
-        
-        <div class="villain-principle">
-            <h3>🏆 The Champion's Playbook</h3>
-            <p><strong>These are the strategies used by legendary HeroQuest groups:</strong></p>
-            
-            <p><strong>🛡️ The Tank and Spank:</strong> Barbarian absorbs damage while others deal it</p>
-            <p><strong>🏹 The Kiting Strategy:</strong> Keep distance and use ranged attacks</p>
-            <p><strong>🔮 The Magic Burst:</strong> Coordinate all spells for massive damage</p>
-            <p><strong>⚔️ The Divide and Conquer:</strong> Split attention between Witch Lord and summons</p>
-            <p><strong>🌟 The All-or-Nothing:</strong> Gamble everything on one decisive moment</p>
-        </div>
-
-        <h2>📚 Learning from Defeat: The Teaching Boss</h2>
-        
-        <div class="canvas-container">
-            <h3>Learning Curve</h3>
-            <canvas id="learning_curve_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="dramatic-analysis">
-            <h3>🎓 Why Losing Can Be Winning</h3>
-            <p><strong>The Witch Lord is designed to be a teaching boss - each defeat makes heroes stronger:</strong></p>
-            
-            <p><strong>📖 Lesson 1:</strong> Positioning matters more than raw damage</p>
-            <p><strong>📖 Lesson 2:</strong> Resource management across multiple phases</p>
-            <p><strong>📖 Lesson 3:</strong> Adaptation beats memorized strategies</p>
-            <p><strong>📖 Lesson 4:</strong> Teamwork multiplies individual strengths</p>
-            <p><strong>📖 Lesson 5:</strong> Sometimes retreating is the wisest choice</p>
-        </div>
-
-        <h2>🌟 Legacy and Influence</h2>
-        
-        <div class="epic-box">
-            <h3>🏛️ How the Witch Lord Changed Gaming Forever</h3>
-            <p><strong>The innovations in this expansion became the gold standard for boss design:</strong></p>
-            
-            <p><strong>🎮 Video Game Influence:</strong> Multi-phase bosses, adaptive AI, cinematic presentation</p>
-            <p><strong>🎲 Tabletop Evolution:</strong> Complex villains, narrative boss fights, emotional investment</p>
-            <p><strong>🎬 Media Impact:</strong> Recurring villains, character development through conflict</p>
-            <p><strong>🎪 Modern Gaming:</strong> Epic encounters, scalable difficulty, memorable antagonists</p>
-        </div>
-
-        <h2>🎯 Essential Tips for Epic Encounters</h2>
-        
-        <div class="villain-principle">
-            <h3>🎭 The Director's Cut</h3>
-            <p><strong>Creating memorable villain encounters requires attention to every detail:</strong></p>
-            
-            <p><strong>🎪 Atmosphere Creation:</strong> Lighting, music, and dramatic descriptions</p>
-            <p><strong>⏰ Timing Management:</strong> Know when to escalate and when to let tension build</p>
-            <p><strong>🎭 Character Consistency:</strong> The villain should feel like the same character throughout</p>
-            <p><strong>📚 Narrative Payoff:</strong> Reference past adventures and character growth</p>
-            <p><strong>🏆 Victory Celebration:</strong> Make the win feel truly epic and well-earned</p>
-        </div>
-
-        <h2>🌟 Next Adventure Preview</h2>
-        
-        <p>In our next lecture, we'll explore <strong>"Against the Ogre Horde"</strong> - the expansion that introduced mass combat and army-scale battles to HeroQuest! We'll dive into the revolutionary mechanics of fighting multiple enemies simultaneously, battlefield tactics, and how this expansion made heroes feel like generals commanding epic fantasy battles.</p>
-        
-        <div class="villain-principle">
-            <p><strong>Remember:</strong> Return of the Witch Lord wasn't just about fighting a powerful enemy - it was about creating a legendary experience that players would remember forever. Every spell cast, every tactical decision, every moment of desperation or triumph becomes part of the group's shared mythology. The best villains don't just challenge heroes' abilities - they challenge their character, their bonds, and their determination to be worthy of the title "hero."</p>
-        </div>
+<div class="pillars">
+    <div class="pillar">
+        <span class="pillar-line">Speed</span>
+        <h4>You are faster</h4>
+        <p>Heroes roll two dice for movement and average 7 squares. Zombies move 5 and mummies 4. Retreating to a better spot, such as a corridor mouth or a doorway, is usually possible, and slow undead arrive one at a time.</p>
     </div>
+    <div class="pillar">
+        <span class="pillar-line">Toughness</span>
+        <h4>Mummies are the real threat</h4>
+        <p>A mummy blocks better than anything else in this table and needs two hits. Give it the Barbarian or a damage spell; a Wizard with a dagger has less than a 6% chance of killing one in two attacks.</p>
+    </div>
+    <div class="pillar">
+        <span class="pillar-line">Numbers</span>
+        <h4>Skeletons come in crowds</h4>
+        <p>One skeleton is easy. Six in a room add up: each one that reaches you has a fair chance of a hit. Thin them before they surround the weakest hero.</p>
+    </div>
+</div>
+</section>
 
-    <script>
-        // Power Comparison Visualization
-        const powerCanvas = document.getElementById('power_comparison_canvas');
-        const powerCtx = powerCanvas.getContext('2d');
-        
-        function drawPowerComparison() {
-            powerCtx.clearRect(0, 0, powerCanvas.width, powerCanvas.height);
-            
-            // Background
-            powerCtx.fillStyle = '#1a0033';
-            powerCtx.fillRect(0, 0, powerCanvas.width, powerCanvas.height);
-            
-            // Draw power comparison bars
-            const entities = [
-                {name: 'Goblin', power: 20, x: 100, color: '#4caf50'},
-                {name: 'Orc', power: 35, x: 200, color: '#8bc34a'},
-                {name: 'Chaos Warrior', power: 60, x: 300, color: '#ffc107'},
-                {name: 'Original Witch Lord', power: 75, x: 400, color: '#ff9800'},
-                {name: 'WITCH LORD RETURNS', power: 95, x: 500, color: '#ab47bc'}
-            ];
-            
-            entities.forEach(entity => {
-                const barHeight = (entity.power / 100) * 200;
-                
-                // Draw bar
-                powerCtx.fillStyle = entity.color;
-                powerCtx.fillRect(entity.x - 30, 250 - barHeight, 60, barHeight);
-                
-                // Draw border
-                powerCtx.strokeStyle = '#e1bee7';
-                powerCtx.lineWidth = 2;
-                powerCtx.strokeRect(entity.x - 30, 250 - barHeight, 60, barHeight);
-                
-                // Draw power level
-                powerCtx.fillStyle = '#fff';
-                powerCtx.font = '12px Arial';
-                powerCtx.textAlign = 'center';
-                powerCtx.fillText(entity.power.toString(), entity.x, 240 - barHeight);
-                
-                // Draw name
-                powerCtx.fillStyle = '#e1bee7';
-                powerCtx.font = '10px Arial';
-                powerCtx.save();
-                powerCtx.translate(entity.x, 270);
-                powerCtx.rotate(-Math.PI / 4);
-                powerCtx.fillText(entity.name, 0, 0);
-                powerCtx.restore();
-            });
-            
-            powerCtx.fillStyle = '#ab47bc';
-            powerCtx.font = '16px Arial';
-            powerCtx.textAlign = 'center';
-            powerCtx.fillText('Power Level Comparison: The Ultimate Threat', 300, 30);
-            powerCtx.textAlign = 'left';
-        }
-        
-        drawPowerComparison();
-        
-        // Boss Fight Dynamics Visualization
-        const bossCanvas = document.getElementById('boss_fight_dynamics_canvas');
-        const bossCtx = bossCanvas.getContext('2d');
-        
-        function drawBossFightDynamics() {
-            bossCtx.clearRect(0, 0, bossCanvas.width, bossCanvas.height);
-            
-            // Background
-            bossCtx.fillStyle = '#1a0033';
-            bossCtx.fillRect(0, 0, bossCanvas.width, bossCanvas.height);
-            
-            // Draw tension curve for boss fight
-            bossCtx.strokeStyle = '#ab47bc';
-            bossCtx.lineWidth = 4;
-            bossCtx.beginPath();
-            
-            const phases = [
-                {x: 100, y: 200, label: 'Confident\nStart', tension: 30},
-                {x: 200, y: 150, label: 'First\nSpells', tension: 50},
-                {x: 300, y: 100, label: 'Summon\nArmy', tension: 80},
-                {x: 400, y: 80, label: 'Desperate\nFury', tension: 90},
-                {x: 500, y: 250, label: 'Victory\nRelief', tension: 10}
-            ];
-            
-            phases.forEach((phase, index) => {
-                if (index === 0) bossCtx.moveTo(phase.x, phase.y);
-                else bossCtx.lineTo(phase.x, phase.y);
-                
-                // Draw phase markers
-                bossCtx.fillStyle = '#ba68c8';
-                bossCtx.beginPath();
-                bossCtx.arc(phase.x, phase.y, 8, 0, Math.PI * 2);
-                bossCtx.fill();
-                
-                // Draw labels
-                bossCtx.fillStyle = '#e1bee7';
-                bossCtx.font = '10px Arial';
-                bossCtx.textAlign = 'center';
-                const lines = phase.label.split('\n');
-                lines.forEach((line, lineIndex) => {
-                    bossCtx.fillText(line, phase.x, phase.y - 25 + (lineIndex * 12));
-                });
-            });
-            
-            bossCtx.stroke();
-            
-            // Draw dramatic moments
-            const dramaticMoments = [
-                {x: 250, y: 120, event: '💥 "Enough games!"'},
-                {x: 350, y: 90, event: '💀 Skeleton army rises'},
-                {x: 450, y: 70, event: '⚡ Final lightning storm'}
-            ];
-            
-            dramaticMoments.forEach(moment => {
-                bossCtx.fillStyle = 'rgba(171, 71, 188, 0.3)';
-                bossCtx.fillRect(moment.x - 40, moment.y - 20, 80, 40);
-                bossCtx.fillStyle = '#e1bee7';
-                bossCtx.font = '8px Arial';
-                bossCtx.fillText(moment.event, moment.x, moment.y);
-            });
-            
-            bossCtx.fillStyle = '#ab47bc';
-            bossCtx.font = '16px Arial';
-            bossCtx.textAlign = 'center';
-            bossCtx.fillText('Boss Fight Tension Curve: The Emotional Journey', 300, 30);
-            
-            // Axes labels
-            bossCtx.fillStyle = '#e1bee7';
-            bossCtx.font = '12px Arial';
-            bossCtx.fillText('Fight Progression', 300, 330);
-            bossCtx.save();
-            bossCtx.translate(20, 200);
-            bossCtx.rotate(-Math.PI / 2);
-            bossCtx.fillText('Tension Level', 0, 0);
-            bossCtx.restore();
-            bossCtx.textAlign = 'left';
-        }
-        
-        drawBossFightDynamics();
-        
-        // Tactical Analysis Visualization
-        const tacticalCanvas = document.getElementById('tactical_analysis_canvas');
-        const tacticalCtx = tacticalCanvas.getContext('2d');
-        
-        function drawTacticalAnalysis() {
-            tacticalCtx.clearRect(0, 0, tacticalCanvas.width, tacticalCanvas.height);
-            
-            // Background
-            tacticalCtx.fillStyle = '#1a0033';
-            tacticalCtx.fillRect(0, 0, tacticalCanvas.width, tacticalCanvas.height);
-            
-            // Draw battlefield
-            tacticalCtx.strokeStyle = '#4a148c';
-            tacticalCtx.lineWidth = 1;
-            for (let i = 0; i <= 12; i++) {
-                tacticalCtx.beginPath();
-                tacticalCtx.moveTo(50 + i * 40, 50);
-                tacticalCtx.lineTo(50 + i * 40, 250);
-                tacticalCtx.stroke();
-            }
-            for (let i = 0; i <= 5; i++) {
-                tacticalCtx.beginPath();
-                tacticalCtx.moveTo(50, 50 + i * 40);
-                tacticalCtx.lineTo(530, 50 + i * 40);
-                tacticalCtx.stroke();
-            }
-            
-            // Draw Witch Lord
-            tacticalCtx.fillStyle = '#ab47bc';
-            tacticalCtx.fillRect(275, 125, 50, 50);
-            tacticalCtx.fillStyle = '#fff';
-            tacticalCtx.font = '20px Arial';
-            tacticalCtx.textAlign = 'center';
-            tacticalCtx.fillText('👑', 300, 155);
-            
-            // Draw Lightning Bolt area
-            tacticalCtx.strokeStyle = '#ffeb3b';
-            tacticalCtx.lineWidth = 3;
-            tacticalCtx.setLineDash([5, 5]);
-            tacticalCtx.beginPath();
-            tacticalCtx.moveTo(300, 150);
-            tacticalCtx.lineTo(150, 90);
-            tacticalCtx.stroke();
-            tacticalCtx.setLineDash([]);
-            
-            // Draw heroes in tactical positions
-            const heroes = [
-                {x: 130, y: 90, symbol: '🛡️', safe: false},
-                {x: 170, y: 130, symbol: '🏹', safe: true},
-                {x: 90, y: 170, symbol: '🔮', safe: true},
-                {x: 210, y: 210, symbol: '🗡️', safe: true}
-            ];
-            
-            heroes.forEach(hero => {
-                tacticalCtx.fillStyle = hero.safe ? '#4caf50' : '#f44336';
-                tacticalCtx.fillRect(hero.x - 15, hero.y - 15, 30, 30);
-                tacticalCtx.fillStyle = '#fff';
-                tacticalCtx.font = '16px Arial';
-                tacticalCtx.fillText(hero.symbol, hero.x, hero.y + 5);
-            });
-            
-            // Draw summon positions
-            const summons = [
-                {x: 450, y: 90, symbol: '💀'},
-                {x: 410, y: 170, symbol: '💀'},
-                {x: 370, y: 210, symbol: '💀'}
-            ];
-            
-            summons.forEach(summon => {
-                tacticalCtx.fillStyle = '#8b0000';
-                tacticalCtx.fillRect(summon.x - 15, summon.y - 15, 30, 30);
-                tacticalCtx.fillStyle = '#fff';
-                tacticalCtx.font = '16px Arial';
-                tacticalCtx.fillText(summon.symbol, summon.x, summon.y + 5);
-            });
-            
-            tacticalCtx.fillStyle = '#ab47bc';
-            tacticalCtx.font = '16px Arial';
-            tacticalCtx.textAlign = 'center';
-            tacticalCtx.fillText('Tactical Positioning: Avoiding the Lightning Bolt', 300, 30);
-            tacticalCtx.fillStyle = '#e1bee7';
-            tacticalCtx.font = '10px Arial';
-            tacticalCtx.fillText('Green = Safe Position, Red = Lightning Bolt Target', 300, 280);
-            tacticalCtx.textAlign = 'left';
-        }
-        
-        drawTacticalAnalysis();
-        
-        // Villain Psychology Visualization
-        const villainCanvas = document.getElementById('villain_psychology_canvas');
-        const villainCtx = villainCanvas.getContext('2d');
-        
-        function drawVillainPsychology() {
-            villainCtx.clearRect(0, 0, villainCanvas.width, villainCanvas.height);
-            
-            // Background
-            villainCtx.fillStyle = '#1a0033';
-            villainCtx.fillRect(0, 0, villainCanvas.width, villainCanvas.height);
-            
-            // Draw psychological profile
-            const traits = [
-                {x: 150, y: 100, trait: 'Arrogance', level: 90, color: '#ab47bc'},
-                {x: 300, y: 80, trait: 'Intelligence', level: 85, color: '#ba68c8'},
-                {x: 450, y: 120, trait: 'Vindictiveness', level: 95, color: '#9c27b0'},
-                {x: 150, y: 180, trait: 'Magical Power', level: 88, color: '#8e24aa'},
-                {x: 300, y: 200, trait: 'Strategic Mind', level: 80, color: '#7b1fa2'},
-                {x: 450, y: 160, trait: 'Desperation', level: 75, color: '#6a1b9a'}
-            ];
-            
-            traits.forEach(trait => {
-                // Draw trait circle
-                const radius = (trait.level / 100) * 30 + 10;
-                villainCtx.fillStyle = trait.color;
-                villainCtx.beginPath();
-                villainCtx.arc(trait.x, trait.y, radius, 0, Math.PI * 2);
-                villainCtx.fill();
-                
-                villainCtx.strokeStyle = '#e1bee7';
-                villainCtx.lineWidth = 2;
-                villainCtx.stroke();
-                
-                // Draw trait level
-                villainCtx.fillStyle = '#fff';
-                villainCtx.font = '12px Arial';
-                villainCtx.textAlign = 'center';
-                villainCtx.fillText(trait.level.toString(), trait.x, trait.y + 4);
-                
-                // Draw trait name
-                villainCtx.fillStyle = '#e1bee7';
-                villainCtx.font = '10px Arial';
-                villainCtx.fillText(trait.trait, trait.x, trait.y + 50);
-            });
-            
-            villainCtx.fillStyle = '#ab47bc';
-            villainCtx.font = '16px Arial';
-            villainCtx.fillText('Witch Lord Psychological Profile', 200, 30);
-            villainCtx.textAlign = 'left';
-        }
-        
-        drawVillainPsychology();
-        
-        // Learning Curve Visualization
-        const learningCanvas = document.getElementById('learning_curve_canvas');
-        const learningCtx = learningCanvas.getContext('2d');
-        
-        function drawLearningCurve() {
-            learningCtx.clearRect(0, 0, learningCanvas.width, learningCanvas.height);
-            
-            // Background
-            learningCtx.fillStyle = '#1a0033';
-            learningCtx.fillRect(0, 0, learningCanvas.width, learningCanvas.height);
-            
-            // Draw learning progression
-            learningCtx.strokeStyle = '#ab47bc';
-            learningCtx.lineWidth = 3;
-            learningCtx.beginPath();
-            
-            const attempts = [
-                {x: 100, y: 200, success: 10, attempt: 1},
-                {x: 200, y: 170, success: 25, attempt: 2},
-                {x: 300, y: 130, success: 45, attempt: 3},
-                {x: 400, y: 100, success: 70, attempt: 4},
-                {x: 500, y: 80, success: 90, attempt: 5}
-            ];
-            
-            attempts.forEach((attempt, index) => {
-                const y = 250 - (attempt.success * 1.5);
-                
-                if (index === 0) learningCtx.moveTo(attempt.x, y);
-                else learningCtx.lineTo(attempt.x, y);
-                
-                // Draw attempt markers
-                learningCtx.fillStyle = '#ba68c8';
-                learningCtx.beginPath();
-                learningCtx.arc(attempt.x, y, 6, 0, Math.PI * 2);
-                learningCtx.fill();
-                
-                // Draw success percentage
-                learningCtx.fillStyle = '#e1bee7';
-                learningCtx.font = '10px Arial';
-                learningCtx.textAlign = 'center';
-                learningCtx.fillText(attempt.success + '%', attempt.x, y - 15);
-                learningCtx.fillText('Attempt ' + attempt.attempt, attempt.x, 270);
-            });
-            
-            learningCtx.stroke();
-            
-            learningCtx.fillStyle = '#ab47bc';
-            learningCtx.font = '16px Arial';
-            learningCtx.textAlign = 'center';
-            learningCtx.fillText('Learning Curve: Growing Stronger Through Defeat', 300, 30);
-            
-            learningCtx.fillStyle = '#e1bee7';
-            learningCtx.font = '12px Arial';
-            learningCtx.fillText('Battle Attempts', 300, 290);
-            learningCtx.save();
-            learningCtx.translate(20, 150);
-            learningCtx.rotate(-Math.PI / 2);
-            learningCtx.fillText('Success Rate', 0, 0);
-            learningCtx.restore();
-            learningCtx.textAlign = 'left';
-        }
-        
-        drawLearningCurve();
-    </script>
-<script src="/nav.js"></script>
+<section>
+<h2>Named Villains and Dread Magic</h2>
+<p>Quest books give named characters, the Witch Lord among them, their own stat boxes, and Zargon gives Dread spells to the specific monsters the quest notes list. This guide does not reprint those stat boxes. Before each quest, Zargon should check which characters can cast and how many spells they hold; heroes should expect at least one spellcaster when a quest names a villain. Heroes resist some Dread spells with their Mind Points, which is one reason the Wizard and Elf are worth keeping alive deep in a crypt.</p>
+</section>
+
+<section>
+<h2>Try It at the Table</h2>
+<div class="callout callout-edge callout-green">
+    <ul>
+        <li><strong>Use the speed gap.</strong> If a mummy and two skeletons enter a room together, step back and let the skeletons reach you first. You fight the fast ones before the slow, tough one arrives.</li>
+        <li><strong>Keep a healing source in reserve.</strong> A hero at 0 Body Points dies unless a healing potion or healing spell is used on their own turn, and allies cannot save them afterwards. Carry a potion on the hero most likely to be swarmed.</li>
+        <li><strong>Spend spells on mummies and named villains.</strong> Spells are once per quest. A skeleton falls to a sword often enough; a mummy may not.</li>
+        <li><strong>Finish the quest.</strong> A quest only counts once the heroes get back to the stairway or reach the exit the quest names. Don't let the last undead room eat the party on the way out.</li>
+    </ul>
+</div>
+</section>
+
+<section>
+<h2>Running It as Zargon</h2>
+<p>The undead are slow, so their danger comes from placement. Put them where heroes must come to them: between the heroes and the exit, or in rooms the quest requires the heroes to search. Play the Witch Lord as the quest notes describe; his menace lies in what the quest notes give him and in the servants around him, not in powers you add. <a href="/heroquest_dungeon_mastering.html">Playing Zargon</a> has more on pacing a pack campaign.</p>
+</section>
+
+<section>
+<h2>Where Next</h2>
+<ul>
+    <li><a href="/heroquest_lore_return_witch_lord.html">Return of the Witch Lord: Lore</a>, the story behind the pack.</li>
+    <li><a href="/heroquest_frozen_horror.html">The Frozen Horror</a>, the next quest pack.</li>
+    <li><a href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>, for the full combat rules.</li>
+    <li><a href="/heroquest_dice_roller.html">Dice Roller</a>, to test any matchup yourself.</li>
+</ul>
+</section>
+    </main>
+
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_lore_kellars_keep.html">Kellar's Keep: Lore</a>
+    <a class="next" href="/heroquest_lore_return_witch_lord.html">Return of the Witch Lord: Lore</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

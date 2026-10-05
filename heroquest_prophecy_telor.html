@@ -3,332 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest The Prophecy of Telor - Destiny and Divine Intervention</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>The Prophecy of Telor - The HeroQuest Guide</title>
+    <meta name="description" content="Guide to the Prophecy of Telor quest pack for HeroQuest: 13 quests, the halfling Warlock hero and Demonform, with exact odds for its extra Attack die.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
     <style>
-    /* ── Callout boxes (page-specific) ── */
-    .prophecy-principle, .destiny-box, .mystical-analysis {
-      background: var(--accent-muted);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 1rem 0;
-      color: var(--text);
-    }
+    /* Demonform cycle figure: fixed light panel in both themes */
+    .form-figure { margin: 1.4rem 0; padding: 12px; background: #fbf8f2; border: 1px solid var(--border); border-radius: 10px; }
+    .form-figure svg { display: block; width: 100%; height: auto; max-width: 360px; margin: 0 auto; }
+    .form-figure figcaption { color: #3a3226; font-size: 0.9rem; text-align: center; margin-top: 8px; }
 
-    /* ── Telor avatar ── */
-    .telor-avatar {
-      text-align: center;
-      font-size: 64px;
-      margin: 1.5rem 0;
-      padding: 20px;
-      background: linear-gradient(135deg, rgba(13,110,253,0.1), rgba(255,215,0,0.1));
-      border: 2px solid var(--accent, #0d6efd);
-      border-radius: 12px;
-    }
-
-    /* ── Fate meter ── */
-    .fate-meter {
-      position: relative;
-      width: 100%;
-      height: 24px;
-      background: linear-gradient(to right, #6c757d, #0d6efd, #ffd700, #ff6b35);
-      border-radius: 12px;
-      margin: 0.75rem 0;
-      border: 2px solid var(--border);
-    }
-    .fate-indicator {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border: 3px solid #333;
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(13,110,253,0.6);
-    }
-
-    /* ── Prophecy scroll ── */
-    .prophecy-scroll {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      margin: 1rem 0;
-      font-style: italic;
-      color: var(--text);
-    }
-
-    /* ── Divine powers grid ── */
-    .divine-powers {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 1rem 0;
-    }
-    .power-showcase {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      color: var(--text);
-    }
-
-    /* ── Prophecy tracker — horizontal flow ── */
-    .prophecy-tracker {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-      padding: 20px;
-      background: var(--accent-muted);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-    .prophecy-stage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 80px;
-      height: 80px;
-      background: var(--accent, #0d6efd);
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.8rem;
-      line-height: 1.2;
-      border-radius: 50%;
-      border: 3px solid var(--border);
-      box-shadow: 0 2px 8px rgba(13,110,253,0.3);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .prophecy-stage { width: 64px; height: 64px; font-size: 0.7rem; }
-      .divine-powers { grid-template-columns: 1fr; }
-    }
     </style>
 </head>
 <body>
-    <div class="container fate-thread">
-        <h1>🌟 The Prophecy of Telor: Destiny & Divine Intervention ⚡</h1>
-        
-        <div class="prophecy-principle">
-            <h2>📜 The Cosmic Game-Changer: When Fate Enters the Equation</h2>
-            <p><strong>The Prophecy of Telor wasn't just an expansion - it was a philosophical revolution that introduced the concept of destiny itself as a game mechanic!</strong> Like the Matrix revealing that reality has hidden rules, this expansion showed that some things are meant to be, some heroes are chosen, and some adventures are written in the stars themselves. It transformed HeroQuest from tactical combat into mythic storytelling.</p>
-            
-            <p><strong>Real-world analogy:</strong> Think of this expansion like going from playing checkers to understanding that you're actually a character in an epic novel. The original game was about making smart moves; The Prophecy of Telor is about discovering you're part of a grand design where your choices echo through destiny itself. It's the difference between fighting random monsters and fulfilling ancient prophecies!</p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>The Prophecy of Telor</h1>
+        <p>A guide to the 13-quest pack that adds the Warlock and Demonform.</p>
+    </header>
 
-        <div class="telor-avatar">
-            ⚡
-        </div>
+    <main id="main">
+<section>
+<h2>What This Pack Is</h2>
+        <p><em>The Prophecy of Telor</em> is an Avalon Hill quest pack for the 2021 HeroQuest Game System (you need the core box to play it). It began life as a stretch goal unlocked in the 2020 HasLab crowdfunding campaign, went out to backers who chose the Mythic tier, and then reached general retail around 2023–24 alongside its sister pack, <a href="/heroquest_spirit_queens_torment.html">Spirit Queen's Torment</a>. It brings a new hero, the <strong>Warlock</strong>, and a campaign of <strong>13 quests</strong>.</p>
 
-        <div class="fate-meter">
-            <div class="fate-indicator" id="fate_indicator" style="left: 60%;"></div>
+        <div class="callout callout-edge callout-blue">
+            <p><strong>Who is Telor?</strong> Telor is a person, not a place or a god. In Mentor's backstory in the core Quest Book, Telor is the <strong>wizard</strong> who travelled with Rogar the barbarian prince, alongside Durgin the dwarf and Ladril the elf. The pack is named for him. There is no "fate" or "destiny" system in this pack: it plays with the ordinary HeroQuest rules plus the additions listed below.</p>
         </div>
-        <p style="text-align: center;"><em>Destiny Alignment: <span id="fate_level">PROPHETIC CONVERGENCE</span></em></p>
+</section>
+<section>
+<h2>The Story in Brief</h2>
+        <p>The wizard <strong>Melar</strong> vanished long ago after meddling with dark magic, leaving behind only the <strong>Talisman of Lore</strong>. Players who have run the core campaign will remember Melar from Quest 5, <em>Melar's Maze</em>. In this pack the heroes go back into Melar's maze to find out what is stirring there and put a stop to it. How Telor and his prophecy fit in is revealed as the quests unfold, so this page leaves it unspoiled.</p>
+        <p>Reviewers noted the variety of quest goals: some quests have the heroes escaping while being chased, and some use a single room on the board to stand for several floors of a tower. The <a href="/heroquest_lore_prophecy_telor.html">Lore page</a> explores the background in more depth.</p>
+</section>
+<section>
+<h2>What's in the Box</h2>
+        <ul>
+            <li>The <strong>Warlock</strong> hero miniature, plus a separate <strong>Demonform</strong> miniature for the Warlock's transformed shape</li>
+            <li>13 monster miniatures cast in orange: new sculpts of existing monster types, not new monster kinds</li>
+            <li>6 combat dice in a matching fiery orange</li>
+            <li>Equipment cards (the Warlock's wand and several potions) and artifact cards (spell scrolls)</li>
+            <li>The Warlock's three spell cards and hero card</li>
+            <li>A quest book with 13 quests</li>
+        </ul>
+        <p>Both this pack and Spirit Queen's Torment are supported by the free HeroQuest Companion App, so you can also play them with the app as a digital Zargon.</p>
+</section>
+<section>
+<h2>The Warlock</h2>
+        <p>The Warlock is a halfling spellcaster who starts with a <strong>wand</strong> and three spell cards of their own. Their signature feature is <strong>Demonform</strong>: the Warlock can take on a demonic shape, represented by swapping in the Demonform miniature. This guide doesn't reprint the hero card's numbers; see the <a href="/heroquest_warlock_tutorial.html">Warlock</a> page for a fuller look at playing the hero.</p>
 
-        <h2>📜 The Sacred Prophecy: Ancient Words of Power</h2>
-        
-        <div class="prophecy-scroll">
-            <h3 style="text-align: center;">The Prophecy of Telor</h3>
-            <p style="text-align: center; font-size: 18px; margin: 20px 0;">
-                <em>"When darkness covers all the land,<br>
-                And evil's power grows too strong,<br>
-                Four heroes, brave and true of heart,<br>
-                Shall right the ancient wrong.<br><br>
-                
-                Through trials of fire, ice, and blood,<br>
-                They'll forge their destiny anew,<br>
-                And in the hour of greatest need,<br>
-                The prophecy shall prove true."</em>
-            </p>
+        <h3>Demonform at a glance</h3>
+        <ul>
+            <li><strong>Stronger attacks:</strong> in Demonform the Warlock rolls <strong>one extra Attack die</strong>.</li>
+            <li><strong>Trap-proof:</strong> the Warlock in Demonform <strong>ignores traps</strong>.</li>
+            <li><strong>Fragile:</strong> taking <strong>any damage</strong> returns the Warlock to normal form.</li>
+            <li><strong>Self-renewing:</strong> reducing a monster to <strong>0 Body Points</strong> restores Demonform.</li>
+        </ul>
+        <p>Check the cards in your box for the exact wording, including how and when the Warlock first takes the form.</p>
+
+        <figure class="form-figure">
+            <svg viewBox="0 0 360 400" role="img" aria-labelledby="dfTitle dfDesc">
+                <title id="dfTitle">The Demonform cycle</title>
+                <desc id="dfDesc">Normal form and Demonform. Reducing a monster to zero Body Points restores Demonform. Taking any damage moves the Warlock from Demonform back to normal form.</desc>
+                <defs>
+                    <marker id="dfArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+                        <path d="M0,0 L10,5 L0,10 z" fill="#3a3226"/>
+                    </marker>
+                </defs>
+                <rect x="80" y="10" width="200" height="110" rx="12" fill="#e8eef7" stroke="#1f4f8a" stroke-width="2"/>
+                <text x="180" y="50" text-anchor="middle" font-size="21" font-weight="700" fill="#1a2b45">Normal form</text>
+                <text x="180" y="78" text-anchor="middle" font-size="17" fill="#2b3442">usual Attack dice</text>
+                <text x="180" y="102" text-anchor="middle" font-size="17" fill="#2b3442">traps work normally</text>
+
+                <rect x="80" y="280" width="200" height="110" rx="12" fill="#fbe5d6" stroke="#a3410c" stroke-width="2"/>
+                <text x="180" y="320" text-anchor="middle" font-size="21" font-weight="700" fill="#5a2206">Demonform</text>
+                <text x="180" y="348" text-anchor="middle" font-size="17" fill="#4a2a18">+1 Attack die</text>
+                <text x="180" y="372" text-anchor="middle" font-size="17" fill="#4a2a18">ignores traps</text>
+
+                <path d="M120,128 L120,272" fill="none" stroke="#3a3226" stroke-width="2.5" marker-end="url(#dfArrow)"/>
+                <text x="112" y="186" text-anchor="end" font-size="16" fill="#2e2a24">a monster</text>
+                <text x="112" y="206" text-anchor="end" font-size="16" fill="#2e2a24">drops to</text>
+                <text x="112" y="226" text-anchor="end" font-size="16" fill="#2e2a24">0 Body</text>
+                <path d="M240,272 L240,128" fill="none" stroke="#3a3226" stroke-width="2.5" marker-end="url(#dfArrow)"/>
+                <text x="248" y="186" font-size="16" fill="#2e2a24">the Warlock</text>
+                <text x="248" y="206" font-size="16" fill="#2e2a24">takes any</text>
+                <text x="248" y="226" font-size="16" fill="#2e2a24">damage</text>
+            </svg>
+            <figcaption>Demonform rewards finishing kills and punishes getting hit.</figcaption>
+        </figure>
+
+        <h3>What one extra die is worth</h3>
+        <p>Exact odds for a single attack against a monster with 2 Defend dice and 1 Body Point (a classic orc; monsters block only on the black shield, 1 face in 6):</p>
+        <div class="table-container">
+        <table>
+            <thead><tr><th>Attack dice</th><th>Chance to kill the orc</th><th>Average Body Points removed</th></tr></thead>
+            <tbody>
+                <tr><td>2</td><td>59.0%</td><td>0.76</td></tr>
+                <tr><td>3</td><td>75.0%</td><td>1.22</td></tr>
+                <tr><td>4</td><td>85.1%</td><td>1.69</td></tr>
+            </tbody>
+        </table>
         </div>
-
-        <h2>🧙‍♂️ The Warlock Hero: Master of Dark Prophecy</h2>
-        
-        <div class="destiny-box">
-            <h3>🔮 The Chosen One of Shadow and Light</h3>
-            <p><strong>The Warlock represents the ultimate fusion of arcane power and prophetic destiny!</strong> Unlike other heroes who stumble into their fate, the Warlock actively seeks out prophecy, wielding both dark magic and divine intervention as tools of destiny fulfillment.</p>
-            
-            <p><strong>🌟 Unique Abilities:</strong></p>
+        <p>Against a tougher target, such as a classic North American Dread Warrior with 4 Defend dice and 3 Body Points, one attack with 3 dice kills it only 6.0% of the time; with 4 dice that rises to 17.5%. Because a kill renews Demonform, the extra die feeds itself: aim the Warlock at weakened or low-Body monsters to keep the form going.</p>
+</section>
+<section>
+<h2>Playing the Pack Well</h2>
+        <div class="callout callout-edge callout-green">
             <ul>
-                <li><strong>Prophecy Weaving:</strong> Can alter minor prophecy outcomes through spellcraft</li>
-                <li><strong>Arcane Destiny:</strong> Gains extra Destiny Points when using magic in prophetic situations</li>
-                <li><strong>Dark Oracle:</strong> Can glimpse darker alternate futures that others cannot see</li>
-                <li><strong>Fate Binding:</strong> Can tie enemy destinies to their own, sharing consequences</li>
-            </ul>
-            
-            <p><strong>⚡ Starting Equipment:</strong> Staff of Destiny, Prophetic Robes, Crystal of Foresight, Tome of Binding</p>
-        </div>
-
-        <h2>⚡ Divine Powers: The Intervention System</h2>
-        
-        <div class="divine-powers">
-            <div class="power-showcase">
-                <h4>🌟 Divine Intervention</h4>
-                <p><strong>The Miracle Save</strong></p>
-                <p><strong>Effect:</strong> Automatic success on any roll</p>
-                <p><strong>Cost:</strong> 3 Destiny Points</p>
-                <p><strong>Manifestation:</strong> "A golden light surrounds you as fate itself intervenes..."</p>
-            </div>
-            
-            <div class="power-showcase">
-                <h4>👁️ Prophetic Vision</h4>
-                <p><strong>The Oracle's Sight</strong></p>
-                <p><strong>Effect:</strong> See hidden dangers and opportunities</p>
-                <p><strong>Cost:</strong> 1 Destiny Point</p>
-                <p><strong>Manifestation:</strong> "Time slows as you glimpse the threads of fate..."</p>
-            </div>
-            
-            <div class="power-showcase">
-                <h4>⚡ Lightning of Telor</h4>
-                <p><strong>The Divine Strike</strong></p>
-                <p><strong>Effect:</strong> Devastating attack that never misses</p>
-                <p><strong>Cost:</strong> 2 Destiny Points</p>
-                <p><strong>Manifestation:</strong> "Divine lightning crackles from the heavens..."</p>
-            </div>
-            
-            <div class="power-showcase">
-                <h4>🛡️ Aegis of Destiny</h4>
-                <p><strong>The Chosen's Protection</strong></p>
-                <p><strong>Effect:</strong> Temporary invulnerability to all harm</p>
-                <p><strong>Cost:</strong> 4 Destiny Points</p>
-                <p><strong>Manifestation:</strong> "You become as untouchable as destiny itself..."</p>
-            </div>
-            
-            <div class="power-showcase">
-                <h4>🔮 Warlock's Prophecy</h4>
-                <p><strong>The Dark Oracle</strong></p>
-                <p><strong>Effect:</strong> Force one enemy to reroll their next action</p>
-                <p><strong>Cost:</strong> 2 Destiny Points + 1 Spell</p>
-                <p><strong>Manifestation:</strong> "You whisper a counter-prophecy that reshapes reality..."</p>
-            </div>
-            
-            <div class="power-showcase">
-                <h4>⚫ Fate Binding</h4>
-                <p><strong>The Destiny Chain</strong></p>
-                <p><strong>Effect:</strong> Link your fate to an enemy's - share all damage and effects</p>
-                <p><strong>Cost:</strong> 3 Destiny Points</p>
-                <p><strong>Manifestation:</strong> "Dark threads connect your souls across the battlefield..."</p>
-            </div>
-        </div>
-
-        <h2>🎭 The Prophecy Fulfillment Tracker</h2>
-        
-        <div class="prophecy-tracker">
-            <div class="prophecy-stage">
-                <div style="font-size: 20px;">📜</div>
-                <div>Prophecy</div>
-                <div>Received</div>
-            </div>
-            <div style="font-size: 24px; color: var(--accent, #0d6efd);">→</div>
-            <div class="prophecy-stage">
-                <div style="font-size: 20px;">🔍</div>
-                <div>Signs</div>
-                <div>Manifest</div>
-            </div>
-            <div style="font-size: 24px; color: var(--accent, #0d6efd);">→</div>
-            <div class="prophecy-stage">
-                <div style="font-size: 20px;">⚔️</div>
-                <div>Trials</div>
-                <div>Begin</div>
-            </div>
-            <div style="font-size: 24px; color: var(--accent, #0d6efd);">→</div>
-            <div class="prophecy-stage">
-                <div style="font-size: 20px;">🌟</div>
-                <div>Destiny</div>
-                <div>Fulfilled</div>
-            </div>
-        </div>
-
-        <h2>🎲 Strategic Philosophy: The Balance of Choice and Fate</h2>
-        
-        <div class="destiny-box">
-            <h3>⚖️ The Four Paths of Prophecy</h3>
-            <p><strong>Every prophetic hero must choose their relationship with destiny:</strong></p>
-            
-            <p><strong>🗡️ The Sword Strategy:</strong> Fight fate and forge your own path</p>
-            <ul>
-                <li>Resist predetermined outcomes through force</li>
-                <li>Use destiny powers sparingly to maintain independence</li>
-                <li>Create unexpected solutions to prophetic challenges</li>
-                <li>Risk destiny points for creative problem-solving</li>
-            </ul>
-            
-            <p><strong>🛡️ The Shield Strategy:</strong> Embrace destiny and become its champion</p>
-            <ul>
-                <li>Accept prophetic guidance and divine assistance</li>
-                <li>Maximize destiny point accumulation and usage</li>
-                <li>Protect others by being the focal point</li>
-                <li>Use destiny powers for direct confrontation</li>
-                <li>Risk everything for decisive victories</li>
-            </ul>
-            
-            <p><strong>🌊 The River Strategy:</strong> Go with the flow of fate</p>
-            <ul>
-                <li>Adapt to circumstances as they arise</li>
-                <li>Trust in divine timing and patience</li>
-                <li>Find opportunities within challenges</li>
-                <li>Minimize resistance to natural progression</li>
-            </ul>
-            
-            <p><strong>🔮 The Warlock's Path:</strong> Manipulate destiny through arcane knowledge</p>
-            <ul>
-                <li>Use magic to bend prophecy to your advantage</li>
-                <li>Combine spells with destiny powers for maximum effect</li>
-                <li>Seek forbidden knowledge about future events</li>
-                <li>Balance light and dark forces within prophecy</li>
-                <li>Create new prophecies through powerful rituals</li>
+                <li><strong>Keep the Warlock out of the front rank when you can.</strong> Any damage ends Demonform, so let the Barbarian or Dwarf soak the first blows, then step in to finish wounded monsters.</li>
+                <li><strong>Use the trap immunity.</strong> A Warlock in Demonform can lead through corridors you suspect are trapped, but remember it protects only the Warlock, not the heroes following.</li>
+                <li><strong>Still move then act, or act then move.</strong> Demonform doesn't change the turn rules: no splitting your movement around an attack.</li>
+                <li><strong>Read each quest's goal first.</strong> With escape quests and tower quests in the mix, "kill everything" is not always the win condition.</li>
             </ul>
         </div>
+</section>
+<section>
+<h2>Try It at the Table</h2>
+        <ul>
+            <li>Play a quest with the Warlock and count how many turns they spend in Demonform. Then replay with a "finisher only" rule (the Warlock attacks only monsters already wounded) and compare.</li>
+            <li>As Zargon, decide each turn whether a monster should hit the Warlock just to break Demonform, even when another hero is the easier target.</li>
+        </ul>
+</section>
+<section>
+<h2>Where Next</h2>
+        <ul>
+            <li><a href="/heroquest_lore_prophecy_telor.html">The Prophecy of Telor: Lore</a>: background, Telor himself and the Talisman of Lore.</li>
+            <li><a href="/heroquest_warlock_tutorial.html">Warlock</a>: the hero in depth.</li>
+            <li><a href="/heroquest_spirit_queens_torment.html">Spirit Queen's Torment</a>: the sister pack, with the Bard.</li>
+            <li><a href="/heroquest_dice_roller.html">Dice Roller</a>: try the extra-die odds for yourself.</li>
+        </ul>
+</section>
 
-        <h2>🏆 Legacy: The Eternal Impact</h2>
-        
-        <div class="mystical-analysis">
-            <h3>🌟 How Prophecy of Telor Changed Gaming Forever</h3>
-            <p><strong>This expansion introduced concepts that became fundamental to modern storytelling:</strong></p>
-            
-            <p><strong>🎮 Video Game Influence:</strong> Chosen one narratives, destiny mechanics, karma systems</p>
-            <p><strong>🎲 Tabletop Evolution:</strong> Meta-narrative elements, player agency vs. story structure</p>
-            <p><strong>🎬 Media Impact:</strong> Prophecy fulfillment arcs, predetermined vs. changeable futures</p>
-            <p><strong>🎪 Modern Gaming:</strong> Moral choice systems, consequence tracking, philosophical themes</p>
-        </div>
+    </main>
 
-        <h2>🎯 Mastery Challenges: Prophetic Trials</h2>
-        
-        <div class="destiny-box">
-            <h3>⚡ Divine Tests of Worthiness</h3>
-            <p><strong>Prove your understanding of destiny and divine power:</strong></p>
-            
-            <p><strong>🌟 The Selfless Hero:</strong> Complete prophecy while gaining no personal benefit</p>
-            <p><strong>⚖️ The Wise Judge:</strong> Make all major choices based on long-term consequences</p>
-            <p><strong>👥 The United Leader:</strong> Fulfill prophecy while keeping entire party aligned</p>
-            <p><strong>🔮 The Oracle's Path:</strong> Predict and prepare for all major prophetic events</p>
-            <p><strong>⚡ The Destiny Shaper:</strong> Alter prophecy outcomes through perfect choices</p>
-            <p><strong>🧙‍♂️ The Warlock's Mastery:</strong> Complete the prophecy using only arcane powers and dark magic</p>
-            <p><strong>🌑 The Shadow Prophet:</strong> Fulfill a prophecy by embracing its darkest possible interpretation</p>
-        </div>
-
-        <h2>🌟 Next Adventure Preview</h2>
-        
-        <p>In our next lecture, we'll explore <strong>"Spirit Queen's Torment"</strong> - Wield Fortune's Longsword and face supernatural challenges. Ghost combat and ethereal mechanics await!</p>
-        
-        <div class="prophecy-principle">
-            <p><strong>Remember:</strong> The Prophecy of Telor taught us that the greatest adventures aren't just about personal glory or treasure - they're about becoming part of something larger than ourselves. True heroes don't just change the world; they allow the world to change them in return. When you wield the power of destiny, you become both the author and the character in the greatest story ever told!</p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_lore_rise_dread_moon.html">Rise of the Dread Moon: Lore</a>
+    <a class="next" href="/heroquest_lore_prophecy_telor.html">The Prophecy of Telor: Lore</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

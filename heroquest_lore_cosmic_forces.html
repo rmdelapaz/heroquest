@@ -3,351 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Eternal Weave: Cosmic Forces and Divine Powers</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Lore: Cosmic Forces - The HeroQuest Guide</title>
+    <meta name="description" content="What HeroQuest's books say about the powers behind the world (Dread, the four elements, the Loretome) and one clearly labelled fan cosmology for campaigns.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>⭐ The Eternal Weave: Cosmic Forces and Divine Powers ⭐</h1>
-        
-        <div class="celestial-tome">
-            <p><em>"Beyond the petty squabbles of mortal kingdoms, beyond even the grand struggles between heroes and monsters, vast cosmic forces weave the tapestry of existence itself. These powers dwarf mortal understanding like mountains dwarf anthills, yet they touch every life, every choice, every moment of every day. To comprehend them is to glimpse the fundamental architecture of reality..."</em></p>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Lore: Cosmic Forces</h1>
+        <p>This page separates the few powers the official books mention from one fan interpretation of the cosmos that you can use or ignore.</p>
+    </header>
+
+    <main id="main">
+<section>
+<p class="callout callout-edge"><strong>About this page:</strong> the official quest books sketch the world briefly and say almost nothing about gods or cosmic powers. This page mixes official names (Mentor, the Loretome, Zargon, Rogar, Sir Ragnar, Prince Magnus, Ulag, Grak, the Witch Lord, Barak Tor, Kaba Karn, Darkfire Pass and others) with fan elaboration. The cosmology in the second half is <strong>one interpretation written for this guide</strong>, not official lore.</p>
+<div class="celestial-tome">
+            <p><em>"The books do not name the gods. They name a sage, his book, his fallen pupil, and the Dread that took him. Everything else is for the table to decide."</em></p>
         </div>
-
-        <h2>The Cosmic Architecture</h2>
-        <p>The universe of HeroQuest operates according to principles far grander than the simple laws of physics. It is a realm where moral choices have cosmic weight, where the balance between order and chaos determines the fate of entire dimensions, and where divine powers actively participate in shaping the destiny of all creation. Think of it as a vast cosmic symphony, where every action creates harmonies or discordances that ripple across the planes of existence.</p>
-
-        <h2>The Web of Cosmic Influence</h2>
+</section>
+<section>
+<h2>What the Books Actually Say</h2>
+        <p>HeroQuest keeps its metaphysics light. The official material gives you a handful of powers, and all of them show up in play:</p>
+        <ul>
+            <li><strong>The powers of Dread.</strong> Zargon "pledged allegiance to the great powers of Dread". The books never describe them further. In play, Dread is the source of Zargon's twelve Dread spells and gives its name to his Dread Warriors and Dread Sorcerer. (In the classic editions, this power is called Chaos.)</li>
+            <li><strong>The four elements.</strong> Hero magic comes in four schools, Air, Earth, Fire and Water, three spells each, shared between the Wizard and the Elf.</li>
+            <li><strong>The Loretome.</strong> Mentor's great book of lore, which he guards. It is the one "sacred object" at the heart of the official setting.</li>
+            <li><strong>Pack-specific powers.</strong> The Avalon Hill packs add more: a prophecy (<em>The Prophecy of Telor</em>), a spirit queen (<em>Spirit Queen's Torment</em>), a Dread Moon, the Warlock's Demonform, the Monk's elemental fighting style, the Druid's animal allies, the Bard's songs, alchemy in <em>Rise of the Dread Moon</em>, and the Protection, Detection and Darkness schools of <em>Wizards of Morcar</em>.</li>
+        </ul>
+        <p>No pantheon of gods appears in the core books, and none of the heroes is a priest. If your group wants gods, you are adding them.</p>
+</section>
+<section>
+<h2>The Powers in Play</h2>
+        <p>Here is how those official powers reach the board.</p>
+        <div class="mermaid">
+flowchart TD
+    D["The powers of Dread"] --> Z["Zargon"]
+    Z --> DS["12 Dread spells,&lt;br/&gt;given to chosen monsters"]
+    E["Air, Earth, Fire, Water"] --> WE["Hero spells:&lt;br/&gt;Wizard 9, Elf 3"]
+    L["The Loretome"] --> M["Mentor"]
+    M --> Q["The quests"]
+        </div>
+</section>
+<section>
+<h2>One Interpretation: Order, Dread and the Elements</h2>
+        <p>What follows is <strong>a fan cosmology invented for this guide</strong>. It takes the official pieces (Dread, the four elements, the Loretome) and arranges them into a picture that can give a long campaign some weight. Treat it as a suggestion.</p>
         <div class="canvas-container">
-            <h3>Cosmic Web</h3>
-            <canvas id="cosmicWebCanvas" width="1000" height="500"></canvas>
+            <h3>A fan cosmology (not official)</h3>
+            <canvas id="cosmicCanvas" width="680" height="440" role="img" aria-label="Fan interpretation: Order on the left and Dread on the right, the realm in the middle, the four elements Air, Earth, Fire and Water around it, and the Loretome above as a record of destiny. Labelled as not official."></canvas>
         </div>
-        
         <script>
-            const cosmicCanvasElement = document.getElementById('cosmicWebCanvas');
-            const cosmicCtx = cosmicCanvasElement.getContext('2d');
-            let cosmicAnimFrame = 0;
-            
-            function drawCosmicWeb() {
-                cosmicCtx.clearRect(0, 0, 1000, 500);
-                cosmicAnimFrame++;
-                
-                // Draw cosmic background stars
-                for (let i = 0; i < 100; i++) {
-                    const x = (i * 37) % 1000;
-                    const y = (i * 73) % 500;
-                    const twinkle = Math.sin(cosmicAnimFrame * 0.03 + i) * 0.5 + 0.5;
-                    cosmicCtx.fillStyle = `rgba(255, 255, 255, ${twinkle * 0.8})`;
-                    cosmicCtx.fillRect(x, y, 1, 1);
-                }
-                
-                // Define cosmic forces
-                const cosmicForces = [
-                    {name: 'The Light', x: 200, y: 100, color: '#ffd700', power: 0.9},
-                    {name: 'The Darkness', x: 800, y: 100, color: '#8b0000', power: 0.9},
-                    {name: 'Order', x: 150, y: 250, color: '#4169e1', power: 0.8},
-                    {name: 'Chaos', x: 850, y: 250, color: '#ff4500', power: 0.8},
-                    {name: 'Creation', x: 300, y: 400, color: '#32cd32', power: 0.85},
-                    {name: 'Entropy', x: 700, y: 400, color: '#8b008b', power: 0.85},
-                    {name: 'The Balance', x: 500, y: 250, color: '#00ced1', power: 1.0}
-                ];
-                
-                // Draw energy connections between opposing forces
-                const connections = [
-                    [0, 1], // Light-Darkness
-                    [2, 3], // Order-Chaos
-                    [4, 5], // Creation-Entropy
-                ];
-                
-                connections.forEach(([a, b], index) => {
-                    const force1 = cosmicForces[a];
-                    const force2 = cosmicForces[b];
-                    const tension = Math.sin(cosmicAnimFrame * 0.02 + index) * 0.3 + 0.7;
-                    
-                    cosmicCtx.strokeStyle = `rgba(255, 215, 0, ${tension * 0.6})`;
-                    cosmicCtx.lineWidth = 4;
-                    cosmicCtx.setLineDash([20, 10]);
-                    cosmicCtx.lineDashOffset = cosmicAnimFrame * 0.5;
-                    
-                    cosmicCtx.beginPath();
-                    cosmicCtx.moveTo(force1.x, force1.y);
-                    const midX = (force1.x + force2.x) / 2 + Math.sin(cosmicAnimFrame * 0.03 + index) * 30;
-                    const midY = (force1.y + force2.y) / 2 + Math.cos(cosmicAnimFrame * 0.03 + index) * 20;
-                    cosmicCtx.quadraticCurveTo(midX, midY, force2.x, force2.y);
-                    cosmicCtx.stroke();
-                });
-                cosmicCtx.setLineDash([]);
-                
-                // Draw connections to The Balance
-                cosmicForces.slice(0, 6).forEach((force, index) => {
-                    const balance = cosmicForces[6];
-                    const harmony = Math.sin(cosmicAnimFrame * 0.04 + index * 1.2) * 0.2 + 0.8;
-                    
-                    cosmicCtx.strokeStyle = `rgba(0, 206, 209, ${harmony * 0.4})`;
-                    cosmicCtx.lineWidth = 2;
-                    cosmicCtx.beginPath();
-                    cosmicCtx.moveTo(force.x, force.y);
-                    cosmicCtx.lineTo(balance.x, balance.y);
-                    cosmicCtx.stroke();
-                });
-                
-                // Draw cosmic force nodes
-                cosmicForces.forEach((force, index) => {
-                    const pulse = Math.sin(cosmicAnimFrame * 0.05 + index * 0.8) * 0.3 * force.power + 0.7;
-                    
-                    // Outer divine aura
-                    cosmicCtx.shadowColor = force.color;
-                    cosmicCtx.shadowBlur = 40 * pulse;
-                    cosmicCtx.fillStyle = force.color + '40';
-                    cosmicCtx.beginPath();
-                    cosmicCtx.arc(force.x, force.y, 50 * pulse * force.power, 0, Math.PI * 2);
-                    cosmicCtx.fill();
-                    
-                    // Inner core
-                    cosmicCtx.shadowBlur = 15 * pulse;
-                    cosmicCtx.fillStyle = force.color;
-                    cosmicCtx.beginPath();
-                    cosmicCtx.arc(force.x, force.y, 15 * pulse, 0, Math.PI * 2);
-                    cosmicCtx.fill();
-                    cosmicCtx.shadowBlur = 0;
-                    
-                    // Force name
-                    cosmicCtx.fillStyle = force.color;
-                    cosmicCtx.font = 'bold 14px serif';
-                    cosmicCtx.textAlign = 'center';
-                    cosmicCtx.fillText(force.name, force.x, force.y + 70);
-                });
-                
-                // Cosmic energy flows
-                for (let i = 0; i < 80; i++) {
-                    const t = (cosmicAnimFrame + i * 12) * 0.015;
-                    const x = 500 + Math.sin(t) * 400 + Math.cos(t * 1.7) * 200;
-                    const y = 250 + Math.cos(t * 0.9) * 150 + Math.sin(t * 2.3) * 100;
-                    const alpha = (Math.sin(t * 4) + 1) * 0.3;
-                    
-                    cosmicCtx.fillStyle = `rgba(255, 215, 0, ${alpha})`;
-                    cosmicCtx.beginPath();
-                    cosmicCtx.arc(x, y, 2, 0, Math.PI * 2);
-                    cosmicCtx.fill();
-                }
-                
-                // Divine intervention points
-                const interventions = [{x: 400, y: 150}, {x: 600, y: 350}, {x: 250, y: 350}];
-                interventions.forEach((point, index) => {
-                    const divine = Math.sin(cosmicAnimFrame * 0.07 + index * 2.5) * 0.5 + 0.5;
-                    cosmicCtx.fillStyle = `rgba(255, 255, 255, ${divine})`;
-                    cosmicCtx.beginPath();
-                    cosmicCtx.arc(point.x, point.y, 6 * divine + 2, 0, Math.PI * 2);
-                    cosmicCtx.fill();
+        (function () {
+            var canvas = document.getElementById('cosmicCanvas');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var INK = '#1f2430';
+            ctx.fillStyle = '#fbf8f1'; ctx.fillRect(0, 0, 680, 440);
+            function circle(x, y, r, lines, fill, stroke) {
+                ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = 2.5;
+                ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+                ctx.fillStyle = INK; ctx.textAlign = 'center';
+                lines.forEach(function (t, i) {
+                    ctx.font = (i === 0 ? 'bold 15px' : '13px') + ' sans-serif';
+                    ctx.fillText(t, x, y + 5 + (i - (lines.length - 1) / 2) * 18);
                 });
             }
-            
-            setInterval(drawCosmicWeb, 50);
+            function arrow(x1, y1, x2, y2, color) {
+                var a = Math.atan2(y2 - y1, x2 - x1);
+                ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 2.5;
+                ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(x2, y2);
+                ctx.lineTo(x2 - 11 * Math.cos(a - 0.4), y2 - 11 * Math.sin(a - 0.4));
+                ctx.lineTo(x2 - 11 * Math.cos(a + 0.4), y2 - 11 * Math.sin(a + 0.4)); ctx.closePath(); ctx.fill();
+            }
+            // Loretome above
+            ctx.fillStyle = '#fff6d6'; ctx.strokeStyle = '#a07a1c'; ctx.lineWidth = 2.5;
+            ctx.beginPath(); ctx.roundRect(240, 14, 200, 56, 8); ctx.fill(); ctx.stroke();
+            ctx.fillStyle = INK; ctx.textAlign = 'center'; ctx.font = 'bold 15px sans-serif';
+            ctx.fillText('The Loretome', 340, 38); ctx.font = '13px sans-serif'; ctx.fillText('as a record of destiny', 340, 58);
+            arrow(340, 72, 340, 158, '#a07a1c');
+            // poles
+            circle(95, 230, 72, ['Order', 'Mentor, the King,', 'the heroes'], '#e3eefa', '#3b6ea8');
+            circle(585, 230, 72, ['Dread', 'Zargon and', 'his forces'], '#f6e1e1', '#9a3a3a');
+            arrow(170, 230, 262, 230, '#3b6ea8');
+            arrow(510, 230, 418, 230, '#9a3a3a');
+            // realm and elements
+            circle(340, 230, 70, ['The realm', 'where both', 'pull'], '#fffdf7', '#6e5630');
+            var els = [['Air', 250, 145, '#e3eefa', '#3b6ea8'], ['Fire', 430, 145, '#fbe3d9', '#b4502a'], ['Water', 250, 315, '#dcedf2', '#2f7486'], ['Earth', 430, 315, '#e7f0de', '#4f7a2e']];
+            els.forEach(function (e) { circle(e[1], e[2], 35, [e[0]], e[3], e[4]); });
+            ctx.fillStyle = '#4a4f5c'; ctx.font = 'italic 13px sans-serif'; ctx.textAlign = 'center';
+            ctx.fillText('The four elements feed hero magic (official); the poles and the', 340, 396);
+            ctx.fillText('Loretome-as-destiny are this guide\'s interpretation.', 340, 416);
+        })();
         </script>
-
-        <h2>The Prime Cosmic Forces</h2>
-
-        <div class="divine-card light-force">
-            <div class="force-type">The Light</div>
-            <h3>☀️ The Source of All Order</h3>
-            
-            <div class="divine-manifestation">
-                <h4>The Eternal Flame of Creation</h4>
-                <p>The Light is not merely illumination—it is the fundamental principle of existence itself, the force that brings order from chaos, meaning from confusion, and hope from despair. Think of it as the universe's creative impulse made manifest, the power that transforms empty void into vibrant reality. It doesn't just banish darkness; it provides the framework within which all positive existence becomes possible.</p>
-                
-                <p>The Light manifests in countless ways: the courage that drives heroes to face impossible odds, the love that binds communities together, the wisdom that guides just rulers, and the inspiration that lifts mortals beyond their limitations. It is both the spark of consciousness that makes free will possible and the moral compass that points toward righteousness.</p>
-            </div>
-            
-            <div class="divine-meter">
-                <div class="divine-fill" style="width: 95%; background: linear-gradient(90deg, #ffd700, #ffff99);">
-                    <div class="divine-label">Creative Power</div>
-                </div>
-            </div>
-            <div class="divine-meter">
-                <div class="divine-fill" style="width: 92%; background: linear-gradient(90deg, #4169e1, #87ceeb);">
-                    <div class="divine-label">Protective Influence</div>
-                </div>
-            </div>
-            <div class="divine-meter">
-                <div class="divine-fill" style="width: 88%; background: linear-gradient(90deg, #32cd32, #98fb98);">
-                    <div class="divine-label">Healing Essence</div>
-                </div>
-            </div>
-            
-            <div class="divine-blessing">
-                <h4>Manifestations in the Mortal Realm</h4>
-                <p>Heroes touched by the Light find their weapons striking with greater precision against evil, their healing magic flowing more freely, and their presence inspiring others to acts of courage and selflessness. Sacred sites blessed by the Light become sanctuaries where the wounded can heal and the weary can find rest. Even the humblest candle flame, when lit with pure intention, can hold back shadows that no amount of mundane fire could dispel.</p>
-            </div>
-            
-            <span class="influence-tag">✨ Divine Inspiration</span>
-            <span class="influence-tag">🛡️ Sacred Protection</span>
-            <span class="influence-tag">💖 Righteous Courage</span>
-            <span class="domain-tag">⚖️ Justice</span>
-            <span class="domain-tag">🕊️ Peace</span>
-            <span class="domain-tag">🌱 Growth</span>
+        <div class="divine-card">
+            <h3>Order (interpretation)</h3>
+            <p>Mentor, the King and the heroes stand for a world of law, homes and hard-won peace. In this reading, Order is not a god but a direction: building, protecting, remembering.</p>
         </div>
-
-        <div class="divine-card dark-force">
-            <div class="force-type">The Darkness</div>
-            <h3>🌑 The Consuming Void</h3>
-            
-            <div class="divine-manifestation">
-                <h4>The Hunger That Devours All</h4>
-                <p>The Darkness is not merely the absence of light—it is an active, malevolent force that seeks to unmake all of creation, to return the universe to the primordial void from which it emerged. It whispers to mortals of power without responsibility, pleasure without consequence, and victory without honor. Where the Light creates, the Darkness consumes; where the Light unifies, the Darkness divides; where the Light inspires hope, the Darkness breeds despair.</p>
-                
-                <p>Yet the Darkness is not without its own terrible intelligence. It understands that outright destruction is less effective than corruption—turning the Light's own creations against themselves, perverting love into obsession, justice into vengeance, and protection into tyranny. Its greatest triumph is not the destruction of heroes, but their fall into villainy.</p>
-            </div>
-            
-            <div class="cosmic-warning">
-                <h4>The Seductive Corruption</h4>
-                <p>The Darkness rarely presents itself as pure evil—that would be too obvious, too easy to resist. Instead, it offers shortcuts to noble goals, justifications for questionable means, and the intoxicating promise that the ends always justify the means. A hero seeking to protect the innocent might be whispered suggestions about preemptive strikes against potential threats. A ruler trying to bring peace might hear arguments for why temporary tyranny is necessary for long-term harmony.</p>
-            </div>
-            
-            <span class="corruption-tag">🔥 Destructive Rage</span>
-            <span class="corruption-tag">🖤 Soul Corruption</span>
-            <span class="corruption-tag">💀 Entropic Decay</span>
-            <span class="domain-tag">⚔️ Conquest</span>
-            <span class="domain-tag">👑 Tyranny</span>
-            <span class="domain-tag">🌪️ Chaos</span>
+        <div class="divine-card">
+            <h3>Dread (interpretation)</h3>
+            <p>The official books say only that Dread has "great powers" and that Zargon serves them. This reading treats Dread as a hunger that offers power in exchange for loyalty, which is exactly the bargain Zargon took.</p>
         </div>
-
-        <div class="mermaid">
-            graph TB
-                A[The Cosmic Balance] --> B[Forces of Light]
-                A --> C[Forces of Darkness]
-                A --> D[Neutral Principles]
-                
-                B --> E[Creation]
-                B --> F[Order]
-                B --> G[Protection]
-                B --> H[Inspiration]
-                
-                C --> I[Destruction]
-                C --> J[Chaos]
-                C --> K[Corruption]
-                C --> L[Despair]
-                
-                D --> M[Time]
-                D --> N[Fate]
-                D --> O[Change]
-                D --> P[Balance]
-                
-                E -.-> I
-                F -.-> J
-                G -.-> K
-                H -.-> L
-                
-                style A fill:#00ced1
-                style B fill:#ffd700
-                style C fill:#8b0000
-                style D fill:#9370db
+        <div class="divine-card">
+            <h3>The Elements (interpretation)</h3>
+            <p>The four schools are official; giving them a cosmic role is not. Here, Air, Earth, Fire and Water are neutral forces that either side can draw on, which explains why Zargon's sorcerers can hurl fire just as the Wizard does.</p>
         </div>
-
-        <div class="divine-card neutral-force">
-            <div class="force-type">The Balance</div>
-            <h3>⚖️ The Cosmic Equilibrium</h3>
-            
-            <div class="divine-manifestation">
-                <h4>The Mediator of All Forces</h4>
-                <p>The Balance is perhaps the most mysterious of the cosmic forces—not because it hides its nature, but because its nature transcends simple moral categories. It is the principle that ensures no single force, no matter how benevolent or malevolent, can completely dominate existence. The Balance doesn't favor good over evil or order over chaos; it ensures that the cosmic tension between opposing forces remains dynamic and meaningful.</p>
-                
-                <p>This doesn't make the Balance morally neutral in the way mortals understand neutrality. Instead, it operates according to a cosmic morality so vast that individual actions, even great heroic deeds or terrible villainies, are simply notes in a symphony too complex for mortal minds to fully comprehend. The Balance ensures that every choice matters, that victory is never permanent, and that hope is never completely lost.</p>
-            </div>
-            
-            <div class="balance-scale">
-                <h4>The Price of Cosmic Harmony</h4>
-                <p>The Balance demands that every great triumph be matched by a corresponding challenge, every act of creation by the possibility of destruction, every moment of perfect order by the potential for chaos. This isn't cruelty—it's the mechanism by which growth and change remain possible. A universe of pure Light would be static perfection with no room for improvement; a universe of pure Darkness would be empty void with no potential for anything at all.</p>
-                
-                <p>Heroes who serve the Balance don't seek to eliminate evil—they seek to ensure that good has the opportunity to triumph through merit rather than cosmic favoritism. They understand that the greatest victory is not the absence of challenge, but the ability to meet every challenge with wisdom, courage, and moral clarity.</p>
-            </div>
-            
-            <span class="influence-tag">⚖️ Cosmic Justice</span>
-            <span class="influence-tag">🔄 Dynamic Change</span>
-            <span class="influence-tag">📏 Universal Law</span>
-            <span class="domain-tag">⏰ Time</span>
-            <span class="domain-tag">🎭 Fate</span>
-            <span class="domain-tag">🌊 Cycles</span>
+        <div class="divine-card">
+            <h3>Destiny and the Loretome (interpretation)</h3>
+            <p>If the Loretome records what must happen, every quest is a page being written. That gives a campaign a satisfying shape: the heroes are not just surviving, they are filling in the book.</p>
         </div>
+</section>
+<section>
+<h2>Adding Gods to Your Table</h2>
+        <p>Some groups like named patrons. The old version of this page offered four, and they still work as <strong>invented flavour</strong>: the Radiant One (light and protection), the Forge Master (craft and endurance, popular with dwarves), the Wild Hunter (forests and beasts, a natural fit for the Druid) and the Wise Keeper (knowledge, a friend to Mentor). A few tips:</p>
+        <ul>
+            <li><strong>Keep them off the rules.</strong> HeroQuest has no prayer or blessing mechanics; don't invent one. Show a patron's favour with an existing card instead, such as a potion found in a shrine.</li>
+            <li><strong>Let them stay mysterious.</strong> A carved altar or an old prayer in a quest note does more than a full pantheon.</li>
+            <li><strong>Don't contradict the books.</strong> Zargon's power comes from Dread; a god of evil above him is your addition, not the game's.</li>
+        </ul>
+</section>
+<section>
+<h2>Where Next</h2>
+        <ul>
+            <li><a href="/heroquest_lore_magic_artifacts.html">Lore: Magic &amp; Artifacts</a> covers the spells and relics in detail.</li>
+            <li><a href="/heroquest_magic_spells.html">Magic &amp; Spells</a> has the rules for every hero school.</li>
+            <li><a href="/heroquest_lore_mentors_questgivers.html">Lore: Mentors &amp; Quest-Givers</a> looks at Mentor and the Loretome.</li>
+        </ul>
+</section>
+    </main>
 
-        <div class="divine-card cosmic-principle">
-            <div class="force-type">Living Principle</div>
-            <h3>⏳ The Weave of Destiny</h3>
-            
-            <div class="divine-manifestation">
-                <h4>The Threads That Bind All Things</h4>
-                <p>Destiny in the HeroQuest universe is not a predetermined script but a living tapestry woven from the choices of every conscious being. Every decision creates threads in this cosmic weave—some strong enough to influence the fate of kingdoms, others so subtle they seem meaningless until viewed from the perspective of centuries. The Weave responds to moral choices with more sensitivity than physical ones, growing stronger and more beautiful when fed by acts of heroism, wisdom, and selfless love.</p>
-                
-                <p>Prophets and seers don't read the future—they read the current pattern of the Weave, seeing where the strongest threads are leading and what outcomes become most likely if current trends continue. But because the Weave is constantly being rewoven by new choices, prophecies are probabilities rather than certainties, warnings and promises rather than immutable laws.</p>
-            </div>
-            
-            <div class="prophecy-scroll">
-                <h4>The Great Patterns</h4>
-                <p>Certain patterns repeat throughout history with such regularity that they seem to be fundamental properties of the Weave itself. The rise and fall of empires, the emergence of heroes in times of greatest darkness, the corruption of power when it becomes concentrated in single hands—these cycles suggest that the universe has a kind of immune system, generating antibodies against forces that threaten its long-term health.</p>
-                
-                <p>The most profound pattern is the Hero's Journey itself—the way in which ordinary individuals, when faced with extraordinary circumstances, can transcend their limitations and become agents of cosmic change. This pattern is so fundamental that it seems built into the very structure of reality, suggesting that heroism isn't just a human concept but a universal principle.</p>
-            </div>
-            
-            <span class="influence-tag">🕸️ Fate Weaving</span>
-            <span class="influence-tag">🔮 Prophetic Vision</span>
-            <span class="influence-tag">📜 Cosmic Memory</span>
-            <span class="domain-tag">🎯 Purpose</span>
-            <span class="domain-tag">🌟 Destiny</span>
-            <span class="domain-tag">📖 Stories</span>
-        </div>
 
-        <h2>Divine Intervention and Mortal Agency</h2>
-        
-        <div class="pantheon-grid">
-            <div class="deity-card">
-                <h4>🌟 The Radiant One</h4>
-                <p>The supreme deity of Light, who appears to mortals as pure radiance that somehow communicates perfect understanding without words.</p>
-                <span class="influence-tag">☀️ Solar Blessing</span>
-                <span class="domain-tag">👑 Divine Rulership</span>
-            </div>
-            <div class="deity-card">
-                <h4>🔨 The Forge Master</h4>
-                <p>Patron of all who create, build, and shape the world through honest labor and skilled craftsmanship.</p>
-                <span class="influence-tag">⚒️ Craft Mastery</span>
-                <span class="domain-tag">🏗️ Creation</span>
-            </div>
-            <div class="deity-card">
-                <h4>🏹 The Wild Hunter</h4>
-                <p>Guardian of natural places and patron of those who live in harmony with the untamed world.</p>
-                <span class="influence-tag">🌿 Nature's Call</span>
-                <span class="domain-tag">🦌 The Hunt</span>
-            </div>
-            <div class="deity-card">
-                <h4>📚 The Wise Keeper</h4>
-                <p>Deity of knowledge, memory, and the preservation of wisdom across the ages.</p>
-                <span class="influence-tag">🧠 Divine Insight</span>
-                <span class="domain-tag">📖 Knowledge</span>
-            </div>
-        </div>
-
-        <div class="divine-intervention">
-            <h3>When the Divine Touches the Mortal</h3>
-            <p>Divine intervention in the HeroQuest world is subtle rather than overwhelming—a gentle hand guiding rather than a thunderbolt from the sky. The cosmic forces understand that mortals must earn their victories through their own choices and actions, or those victories become meaningless. Instead of solving problems for heroes, divine power typically manifests as opportunities, insights, or the strengthening of qualities the heroes already possess.</p>
-            
-            <p>A hero facing impossible odds might suddenly remember a half-forgotten lesson from their training, find their courage burning brighter than ever before, or discover that their seemingly hopeless situation contains the seeds of victory. The divine doesn't change the fundamental challenge—it ensures that those with pure hearts and clear purpose have every opportunity to succeed through their own merit.</p>
-        </div>
-
-        <div class="celestial-tome">
-            <h3>The Cosmic Perspective</h3>
-            <p>From the perspective of cosmic forces, individual mortal lives are simultaneously infinitely precious and cosmically brief—like beautiful flowers that bloom for a single day but whose brief existence adds irreplaceable beauty to the eternal garden. Every choice made by every conscious being sends ripples through the cosmic weave, contributing to patterns that will echo across eternity.</p>
-            
-            <p>This is why heroes matter so much in the cosmic scheme: not because they're more important than other mortals, but because they're mortals who have chosen to align themselves consciously with cosmic principles. They become willing participants in the great work of creation, transformation, and preservation that the universe is constantly performing upon itself.</p>
-        </div>
-
-        <div class="celestial-tome">
-            <p><em>"Thus stands the cosmic architecture—vast beyond mortal comprehension, yet intimate enough to care about every choice made by every conscious being. In this grand design, heroes serve as both artists and artwork, shapers and shaped, agents of change who are themselves constantly being transformed by the forces they serve. For in the end, the greatest cosmic truth is this: every soul has the potential to become a force of creation, and every act of genuine heroism adds another thread of light to the eternal weave..."</em></p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_lore_dark_forces.html">Lore: The Dark Forces</a>
+    <a class="next" href="/heroquest_lore_mentors_questgivers.html">Lore: Mentors &amp; Quest-Givers</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

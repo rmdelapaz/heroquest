@@ -3,777 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Bard Hero - HeroQuest Tutorial</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>The Bard - The HeroQuest Guide</title>
+    <meta name="description" content="The Bard is the orc hero from the Spirit Queen&#x27;s Torment quest pack: how the rapier&#x27;s diagonal attack works, how to use the songs, and where to stand.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-<div class="container">
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>🎵 The Bard Hero: Master of Inspiration and Lore</h1>
-        <p><em>Welcome, storyteller of legend! Today we explore the melodic magic and unifying power of HeroQuest's ultimate support specialist.</em></p>
+        <h1>The Bard</h1>
+        <p>The Bard, the orc hero from Spirit Queen's Torment, fights with a rapier that strikes diagonally and supports the party with songs.</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="hero-card">
             <h2>Meet the Bard</h2>
-            <p>The Bard is HeroQuest's embodiment of inspirational leadership and versatile support - imagine a Renaissance polymath who combines the motivational power of a great general, the knowledge of a scholar, and the adaptability of a diplomat. Where other heroes excel through personal power, the Bard transforms ordinary adventurers into legendary heroes through music, knowledge, and the ancient arts of inspiration.</p>
-        </section>
-
-        <section>
-            <h2>Core Statistics: The Balanced Catalyst</h2>
-            
-            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
-            <div class="stat-display">Attack: 2 combat dice</div>
-            <div class="stat-display">Defend: 2 combat dice</div>
-            <div class="stat-display">Body Points: 6</div>
-            <div class="stat-display">Mind Points: 4</div>
-
-            <div class="analogy-box">
-                <strong>Think of it this way:</strong> If heroes were orchestra members, the Bard would be the conductor - not necessarily the most skilled at any single instrument, but the one who makes everyone else play better together. Like a master conductor who can elevate a good orchestra to greatness, the Bard's true power lies in harmonizing the abilities of others.
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Bard Stats: The Support Foundation</h3>
-                    <canvas id="bardStatsCanvas" width="500" height="300"></canvas>
-                </div>
-            </div>
-
-            <div class="versatility-highlight">
-                <h3>📊 Balanced Capability Assessment</h3>
-                <p><strong>Physical Competence:</strong> 2/2/6 combat stats provide reliable but not exceptional fighting ability</p>
-                <p><strong>Magical Capability:</strong> 4 Mind Points enable meaningful spellcasting without pure specialization</p>
-                <p><strong>Survivability:</strong> 6 Body Points offer decent resilience for a support character</p>
-                <p><strong>Universal Application:</strong> No glaring weaknesses make the Bard adaptable to any situation</p>
-                <p><strong>Team Multiplier:</strong> Stats become secondary to inspirational and support abilities</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Inspiration Mastery: The Heart of Bardic Power</h2>
-            
-            <p>The Bard's signature ability is inspiration - the power to enhance allies' capabilities through music, storytelling, and leadership. This isn't just mechanical buffing; it's about transforming the entire party's potential.</p>
-
-            <div class="inspiration-power">
-                <h3>🎶 Inspirational Abilities</h3>
-                <p><strong>Combat Inspiration:</strong> Grant allies additional attack dice or combat bonuses</p>
-                <p><strong>Courage Songs:</strong> Remove fear effects and boost morale in desperate situations</p>
-                <p><strong>Healing Melodies:</strong> Accelerate natural healing and restore hope</p>
-                <p><strong>Knowledge Sharing:</strong> Provide tactical insights that improve party decision-making</p>
-                <p><strong>Rally Call:</strong> Bring fallen or retreating allies back into the fight</p>
-                <p><strong>Coordination Enhancement:</strong> Improve party movement and tactical positioning</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Inspiration Effect Magnitudes</h3>
-                    <canvas id="inspirationEffectsCanvas" width="600" height="250"></canvas>
-                </div>
-            </div>
-
-            <div class="performance-art">
-                <h3>Musical Combat Applications</h3>
-                <p><strong>Battle Hymns:</strong> Sustained songs that provide ongoing combat benefits</p>
-                <p><strong>Tactical Overtures:</strong> Complex musical pieces that coordinate multiple party actions</p>
-                <p><strong>Emergency Crescendos:</strong> Powerful short bursts that can turn the tide of battle</p>
-                <p><strong>Harmonized Casting:</strong> Combine musical inspiration with magical effects</p>
-                <p><strong>Morale Maintenance:</strong> Keep party spirits high during extended adventures</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Knowledge and Lore: The Scholar's Arsenal</h2>
-            
-            <p>Beyond inspiration, Bards possess vast knowledge of history, monsters, magic, and dungeon secrets. This intellectual arsenal often proves as valuable as any weapon or spell.</p>
-
-            <div class="knowledge-base">
-                <h3>📚 Bardic Lore Specialties</h3>
-                <p><strong>Monster Knowledge:</strong> Identify creature weaknesses and predict behavior patterns</p>
-                <p><strong>Historical Insights:</strong> Understand dungeon construction and likely trap placement</p>
-                <p><strong>Magical Theory:</strong> Assist with spell identification and magical problem-solving</p>
-                <p><strong>Cultural Awareness:</strong> Navigate social encounters and understand motivations</p>
-                <p><strong>Tactical Analysis:</strong> Recognize optimal strategies based on accumulated experience</p>
-                <p><strong>Ancient Secrets:</strong> Access to forgotten knowledge that can unlock hidden paths</p>
-            </div>
-
-            <div class="mermaid">
-                graph TD
-                    A[Encounter Unknown Threat] --> B[Bard Knowledge Check]
-                    B --> C{Successful Lore Roll?}
-                    C -->|Yes| D[Reveal Weakness/Strategy]
-                    C -->|No| E[Provide General Tactical Advice]
-                    D --> F[Share Information with Party]
-                    E --> F
-                    F --> G[Party Plans with Enhanced Information]
-                    G --> H[Execute Informed Strategy]
-                    H --> I[Higher Success Probability]
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Knowledge Application Success Rates</h3>
-                    <canvas id="knowledgeSuccessCanvas" width="500" height="250"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Combat Philosophy: The Supporting Maestro</h2>
-            
-            <p>The Bard's approach to combat focuses on force multiplication rather than personal damage output. They excel at making good fighters great and great fighters legendary.</p>
-
-            <div class="analogy-box">
-                <strong>Military Analogy:</strong> The Bard is like a modern military's command and control specialist - they coordinate air support, artillery, and intelligence to make front-line troops far more effective than they could be individually. The radio operator might not carry the biggest gun, but they're often the most valuable person on the battlefield.
-            </div>
-
-            <div class="mermaid">
-                graph TD
-                    A[Bard's Combat Turn] --> B{Allies Need Support?}
-                    B -->|Yes| C{Type of Support Needed?}
-                    C -->|Combat Bonus| D[Inspirational Song]
-                    C -->|Healing| E[Healing Melody]
-                    C -->|Positioning| F[Coordination Call]
-                    B -->|No| G{Direct Threat to Bard?}
-                    G -->|Yes| H[Defensive Action/Retreat]
-                    G -->|No| I{Tactical Opportunity?}
-                    I -->|Yes| J[Knowledge-Based Strategy]
-                    I -->|No| K[Standard Combat Action]
-                    D --> L[Assess Enhanced Party Performance]
-                    E --> L
-                    F --> L
-                    H --> M[Call for Assistance]
-                    J --> N[Implement Specialized Tactic]
-                    K --> O[Evaluate Next Support Opportunity]
-            </div>
-
-            <div class="support-mastery">
-                <h3>🎯 Combat Support Priorities</h3>
-                <p><strong>Force Multiplication:</strong> Always prioritize making allies more effective over personal damage</p>
-                <p><strong>Situation Assessment:</strong> Use knowledge to identify optimal tactical approaches</p>
-                <p><strong>Resource Management:</strong> Balance inspiration abilities with magical and physical reserves</p>
-                <p><strong>Safety Through Value:</strong> Stay alive by being too valuable for enemies to ignore safely</p>
-                <p><strong>Adaptive Response:</strong> Switch support types based on evolving battlefield needs</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Magical Versatility: The Scholarly Spellcaster</h2>
-            
-            <p>With 4 Mind Points, the Bard provides meaningful magical support without the specialization of pure casters. Their spell selection typically focuses on utility, support, and problem-solving rather than raw damage.</p>
-
-            <div class="inspiration-power">
-                <h3>🔮 Bardic Spellcasting Approach</h3>
-                <p><strong>Utility Focus:</strong> Spells that solve problems rather than dealing damage</p>
-                <p><strong>Support Enhancement:</strong> Magic that amplifies inspirational abilities</p>
-                <p><strong>Emergency Solutions:</strong> Spells saved for crisis moments when inspiration isn't enough</p>
-                <p><strong>Knowledge Integration:</strong> Combine magical and scholarly approaches to challenges</p>
-                <p><strong>Resource Efficiency:</strong> Maximize spell impact through careful timing and targeting</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Magical Support Effectiveness</h3>
-                    <canvas id="magicalSupportCanvas" width="500" height="300"></canvas>
-                </div>
-            </div>
-
-            <div class="versatility-highlight">
-                <h3>Optimal Bardic Spell Selection</h3>
-                <p><strong>Healing Spells:</strong> Complement natural healing abilities with magical restoration</p>
-                <p><strong>Communication Magic:</strong> Enhance information gathering and social interactions</p>
-                <p><strong>Detection Spells:</strong> Support dungeon exploration and trap identification</p>
-                <p><strong>Protection Magic:</strong> Defensive spells that keep the party safe</p>
-                <p><strong>Utility Spells:</strong> Problem-solving magic for unexpected challenges</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Positioning Strategy: The Mobile Support Hub</h2>
-            
-            <p>Bard positioning requires balancing multiple needs: staying close enough to provide inspiration, maintaining safety from direct threats, and positioning for optimal party support coverage.</p>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Bard Positioning Tactics</h3>
-                    <canvas id="bardPositioningCanvas" width="400" height="400"></canvas>
-                </div>
-            </div>
-
-            <div class="team-synergy">
-                <h3>🗺️ Positioning Principles</h3>
-                <p><strong>Central Support Location:</strong> Position where inspiration can reach all party members</p>
-                <p><strong>Protected but Accessible:</strong> Close enough to help, protected enough to survive</p>
-                <p><strong>Escape Route Planning:</strong> Always have withdrawal options if overwhelmed</p>
-                <p><strong>Communication Range:</strong> Maintain ability to coordinate party actions</p>
-                <p><strong>Flexible Movement:</strong> Ready to reposition as battlefield conditions change</p>
-            </div>
-
-            <div class="analogy-box">
-                <strong>Sports Analogy:</strong> The Bard is like a basketball point guard - not necessarily the tallest or strongest player, but the one who sees the whole court, sets up plays, and makes everyone else better. They need to be involved in the action without becoming the primary target.
-            </div>
-        </section>
-
-        <section>
-            <h2>Equipment Strategy: Tools of the Trade</h2>
-            
-            <p>Bard equipment focuses on versatility, survivability, and enhancing their support capabilities rather than maximizing any single combat statistic.</p>
-
-            <div class="versatility-highlight">
-                <h3>🎒 Optimal Bard Loadout</h3>
-                <p><strong>Musical Instruments:</strong> Enhanced versions that amplify inspirational abilities</p>
-                <p><strong>Knowledge Tools:</strong> Books, scrolls, and reference materials for lore checks</p>
-                <p><strong>Protective Gear:</strong> Light armor that doesn't interfere with performance</p>
-                <p><strong>Backup Weapons:</strong> Reliable combat options for emergency situations</p>
-                <p><strong>Communication Items:</strong> Tools that enhance party coordination</p>
-                <p><strong>Utility Equipment:</strong> Versatile gear for unexpected challenges</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Equipment Impact on Bard Effectiveness</h3>
-                    <canvas id="bardEquipmentCanvas" width="500" height="300"></canvas>
-                </div>
-            </div>
-
-            <div class="performance-art">
-                <h3>Signature Equipment Categories</h3>
-                <p><strong>Masterwork Lute:</strong> Primary inspiration tool with magical enhancement potential</p>
-                <p><strong>Scholar's Kit:</strong> Reference materials and writing tools for knowledge application</p>
-                <p><strong>Traveler's Gear:</strong> Equipment that supports extended adventuring</p>
-                <p><strong>Social Tools:</strong> Items that enhance diplomatic and information-gathering capabilities</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Party Dynamics: The Ultimate Team Player</h2>
-            
-            <p>The Bard's relationship with party members is fundamentally different from other heroes - they exist to make everyone else more effective, creating synergies that exceed the sum of individual capabilities.</p>
-
-            <div class="mermaid">
-                graph LR
-                    A[Bard: Inspiration & Coordination] --> B[Barbarian: Enhanced Combat Effectiveness]
-                    A --> C[Dwarf: Improved Utility Success Rates]
-                    A --> D[Elf: Magical Synergy & Tactical Support]
-                    A --> E[Wizard: Protected Casting & Resource Sharing]
-                    B --> F[Party Synergy Amplification]
-                    C --> F
-                    D --> F
-                    E --> F
-                    G[Bardic Knowledge] --> H[Informed Decision Making]
-                    H --> F
-            </div>
-
-            <div class="team-synergy">
-                <h3>🤝 Individual Hero Synergies</h3>
-                <p><strong>With Barbarian:</strong> Inspiration enhances already formidable combat abilities</p>
-                <p><strong>With Dwarf:</strong> Knowledge complements practical expertise, improving exploration</p>
-                <p><strong>With Elf:</strong> Magical understanding creates versatile problem-solving combinations</p>
-                <p><strong>With Wizard:</strong> Shared intellectual approach and complementary magical knowledge</p>
-                <p><strong>Universal Benefit:</strong> Every hero becomes more effective with Bardic support</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Party Effectiveness Multipliers</h3>
-                    <canvas id="partyMultipliersCanvas" width="500" height="250"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Advanced Techniques: Mastering the Art of Support</h2>
-            
-            <div class="inspiration-power">
-                <h3>🎼 Advanced Bardic Techniques</h3>
-                <p><strong>Layered Inspiration:</strong> Combine multiple inspirational effects for compound benefits</p>
-                <p><strong>Predictive Support:</strong> Use knowledge to anticipate party needs before they arise</p>
-                <p><strong>Resource Orchestration:</strong> Coordinate party abilities for maximum tactical impact</p>
-                <p><strong>Crisis Management:</strong> Specialized techniques for turning desperate situations around</p>
-                <p><strong>Information Warfare:</strong> Use knowledge strategically to gain tactical advantages</p>
-            </div>
-
-            <div class="support-mastery">
-                <h3>Master-Level Example: The Crescendo Gambit</h3>
-                <p><strong>Setup:</strong> Party facing overwhelming odds in crucial encounter</p>
-                <p><strong>Phase 1:</strong> Use monster lore to identify optimal target priorities</p>
-                <p><strong>Phase 2:</strong> Cast inspiration on primary damage dealer for enhanced attack</p>
-                <p><strong>Phase 3:</strong> Coordinate party positioning through tactical knowledge</p>
-                <p><strong>Phase 4:</strong> Provide healing melody to keep key party members fighting</p>
-                <p><strong>Result:</strong> Transform probable defeat into decisive victory through perfect support orchestration</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Advanced Technique Effectiveness</h3>
-                    <canvas id="advancedTechniquesCanvas" width="600" height="300"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>When to Choose the Bard: Optimal Scenarios</h2>
-            
-            <div class="team-synergy">
-                <h3>Perfect Bard Missions</h3>
-                <p><strong>Team-Focused Adventures:</strong> Scenarios where party coordination is crucial</p>
-                <p><strong>Knowledge-Heavy Quests:</strong> Adventures requiring historical or cultural understanding</p>
-                <p><strong>Social Encounters:</strong> Missions involving diplomacy, negotiation, or information gathering</p>
-                <p><strong>Balanced Parties:</strong> Groups where no single hero dominates, allowing support to shine</p>
-                <p><strong>Extended Campaigns:</strong> Long adventures where morale and inspiration become crucial</p>
-                <p><strong>Mystery Adventures:</strong> Quests where lore and deduction are key to success</p>
-            </div>
-
-            <div class="versatility-highlight">
-                <h3>Challenging Scenarios for Bards</h3>
-                <p><strong>Solo Adventures:</strong> Bard abilities are wasted without party members to support</p>
-                <p><strong>Pure Combat Gauntlets:</strong> Sustained fighting where inspiration can't keep pace</p>
-                <p><strong>Speed Runs:</strong> Time-critical missions where careful support planning is impossible</p>
-                <p><strong>Stealth-Heavy Quests:</strong> Adventures where music and inspiration would compromise concealment</p>
-                <p><strong>Resource-Starved Scenarios:</strong> Situations where basic survival overshadows optimization</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Inspiration Economics: Managing Support Resources</h2>
-            
-            <div class="knowledge-base">
-                <h3>🎵 Resource Management Principles</h3>
-                <p><strong>Inspiration Timing:</strong> Use abilities when they'll have maximum impact</p>
-                <p><strong>Mind Point Conservation:</strong> Balance magical and musical support options</p>
-                <p><strong>Knowledge Rationing:</strong> Share critical information at optimal moments</p>
-                <p><strong>Energy Preservation:</strong> Maintain stamina for sustained support throughout adventures</p>
-                <p><strong>Emergency Reserves:</strong> Always keep resources for crisis situations</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Resource Allocation Strategies</h3>
-                    <canvas id="resourceAllocationCanvas" width="500" height="250"></canvas>
-                </div>
-            </div>
-
-            <div class="analogy-box">
-                <strong>Economic Analogy:</strong> Managing Bardic resources is like being a financial advisor - you're not spending your own money, but optimizing how others spend theirs. Your job is to ensure every party "investment" (action) gets maximum return through your support and guidance.
-            </div>
-        </section>
-
-        <section>
-            <h2>Related Topics for Further Exploration</h2>
-            
+            <p>The Bard joined HeroQuest in the <a href="/heroquest_spirit_queens_torment.html">Spirit Queen's Torment</a> quest pack, a 14-quest Avalon Hill expansion for the 2021 HeroQuest Game System. The Bard is an <strong>orc</strong>, which makes this the first time the heroes have an orc on their side of the board.</p>
+            <p>Two things set the Bard apart from the base four heroes:</p>
             <ul>
-                <li><strong>Inspiration Mastery Guide:</strong> Advanced techniques for maximizing party enhancement effects</li>
-                <li><strong>Lore and Knowledge Systems:</strong> Comprehensive guide to information gathering and application</li>
-                <li><strong>Party Coordination Theory:</strong> Mathematical analysis of team effectiveness multipliers</li>
-                <li><strong>Social Encounter Tactics:</strong> Using Bardic skills in non-combat situations</li>
-                <li><strong>Resource Optimization:</strong> Advanced resource management for extended adventures</li>
-                <li><strong>Equipment Synergies:</strong> Maximizing gear combinations for support effectiveness</li>
-                <li><strong>Crisis Management:</strong> Emergency techniques for desperate situations</li>
-                <li><strong>Musical Combat Theory:</strong> Advanced applications of performance abilities in battle</li>
+                <li><strong>A rapier that attacks diagonally.</strong> With most weapons, a hero can only attack the four squares that share an edge with them. The Bard's rapier also reaches the four diagonal squares.</li>
+                <li><strong>Songs.</strong> The pack gives the Bard three songs: <strong>Lullaby</strong>, <strong>Healing Song</strong> and <strong>Inspiring Tale</strong>.</li>
+            </ul>
+            <p>That makes the Bard a support hero who can still fight: someone who stands just off the front line, stabs past the corner of a friend, and picks the right song for the moment.</p>
+        </section>
+
+        <section>
+            <h2>Starting Statistics</h2>
+            <p>Like every hero, the Bard moves with <strong>two red six-sided dice</strong> (2 to 12 squares, 7 on average) and uses the normal combat dice for attacking and defending. The Bard's exact Attack, Defend, Body and Mind numbers are printed on the Bard's hero card in the pack. This guide doesn't repeat them because we couldn't confirm them from an official source, so <strong>see the hero card</strong>.</p>
+            <div class="callout callout-edge">
+                <strong>Classic edition (1989–1990):</strong> there was no Bard in the original Milton Bradley / Games Workshop game. The Bard exists only in the Avalon Hill line.
+            </div>
+            <div class="analogy-box">
+                <strong>Think of it this way:</strong> the Barbarian is the battering ram and the Wizard is the artillery. The Bard is the one standing between them who makes both of their turns go better.
+            </div>
+        </section>
+
+        <section>
+            <h2>The Rapier: Attacking on the Diagonal</h2>
+            <p>In HeroQuest, figures normally attack only orthogonally (a few weapons are exceptions): up, down, left or right. <strong>Monsters may not attack diagonally at all</strong>, and they can't move diagonally either. The rapier breaks that pattern for the Bard, and that one rule shapes almost everything about how the Bard plays.</p>
+
+            <div class="canvas-container">
+                <h3>Rapier Reach</h3>
+                <canvas id="bardReachCanvas" width="440" height="270" role="img" aria-label="Two 5 by 5 grids. Left: with most weapons a hero can attack the 4 squares sharing an edge. Right: the Bard's rapier reaches those 4 squares plus the 4 diagonal squares, 8 in total."></canvas>
+            </div>
+
+            <p>The best use of the diagonal is to attack a monster that can't attack you back. If a monster is fighting your Barbarian face to face and you stand on a square diagonal to it, your rapier reaches the monster but the monster can't reach you: it can't attack diagonally. On its turn it has to keep hitting the Barbarian or move.</p>
+
+            <div class="canvas-container">
+                <h3>Striking Where Monsters Can't Answer</h3>
+                <canvas id="bardDiagonalCanvas" width="440" height="330" role="img" aria-label="A corridor scene. The Barbarian faces an orc. The Bard stands diagonally behind the Barbarian and attacks the orc with the rapier. The orc can attack the Barbarian but not the Bard."></canvas>
+            </div>
+
+            <div class="support-mastery">
+                <h3>Using the Diagonal Well</h3>
+                <p><strong>Pair up with a front-liner.</strong> Let the Barbarian, Dwarf or Knight take the square in front of the monster. You take the diagonal.</p>
+                <p><strong>Check line of sight.</strong> You still need a clear line from the centre of your square to the centre of the target's. A wall, a closed door or another figure across that line blocks it; just touching a corner doesn't.</p>
+                <p><strong>Free monsters can still reach you.</strong> On its turn a monster can move to a square beside you and attack. The diagonal protects you from monsters that are already busy with a friend, not from ones that are free to move.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>The Songs</h2>
+            <p>The Bard's three songs in Spirit Queen's Torment are <strong>Lullaby</strong>, <strong>Healing Song</strong> and <strong>Inspiring Tale</strong>. Their exact timing, targets and limits are printed on the Bard's cards. Read the cards before your first quest, and keep them face up where the Zargon player can see them too.</p>
+            <ul>
+                <li><strong>Lullaby:</strong> as the name suggests, this song is aimed at the monsters. Use it when a fight is about to go badly and you need to take enemies out of the action.</li>
+                <li><strong>Healing Song:</strong> recovery for the party. Save it for when someone is actually hurt, not for topping up one lost Body Point.</li>
+                <li><strong>Inspiring Tale:</strong> a boost for your allies. It is at its best right before your strongest attacker's turn.</li>
+            </ul>
+            <p>A simple way to decide which song to use on your turn:</p>
+            <div class="mermaid">
+flowchart TD
+    A["Bard's turn"] --> B{"Is a hero about to drop?"}
+    B -->|Yes| C["Healing Song"]
+    B -->|No| D{"Too many monsters attacking at once?"}
+    D -->|Yes| E["Lullaby"]
+    D -->|No| F{"Big attack coming from an ally?"}
+    F -->|Yes| G["Inspiring Tale"]
+    F -->|No| H["Use the rapier and keep the songs"]
+            </div>
+            <div class="callout callout-edge">
+                <strong>Remember the basic turn:</strong> you move then act, or act then move. You can't move part of your roll, use a song or attack, and then finish moving. Plan your square first.
+            </div>
+        </section>
+
+        <section>
+            <h2>How Often Does the Rapier Land?</h2>
+            <p>Every attack works the same way: roll your Attack dice and count skulls. The monster rolls its Defend dice and blocks one skull for each <strong>black shield</strong>. Each skull left over removes one Body Point. A combat die has 3 skulls, 2 white shields and 1 black shield, so each of your dice hits half the time and each monster defend die blocks one time in six.</p>
+            <p>Find your Bard's Attack on the hero card, then read across:</p>
+            <div class="canvas-container">
+                <h3>Chance to Wound a Monster</h3>
+                <canvas id="bardOddsCanvas" width="440" height="290" role="img" aria-label="Table of exact chances that an attack removes at least one Body Point, for 1 to 4 attack dice against monsters with 1 to 4 defend dice."></canvas>
+            </div>
+            <p>Two dice against a monster with two Defend dice wound it 59.0% of the time. That's why the diagonal matters: it lets you add those attacks to the fight without taking hits in return.</p>
+        </section>
+
+        <section>
+            <h2>The Bard in the Party</h2>
+            <div class="team-synergy">
+                <h3>Who the Bard Works Best With</h3>
+                <p><strong>Barbarian, Knight or Berserker:</strong> a tough hero on the front square gives you a diagonal to work from.</p>
+                <p><strong>Wizard:</strong> the Wizard's spells and your songs both cover emergencies. Talk before the quest so you don't both spend your healing on the same crisis.</p>
+                <p><strong>Elf or Dwarf:</strong> two-dice fighters who appreciate a second attack on the same monster.</p>
+            </div>
+            <div class="inspiration-power">
+                <h3>Common Mistakes</h3>
+                <p><strong>Standing in front.</strong> If you take the orthogonal square, you lose the rapier's main advantage and the monster can hit you.</p>
+                <p><strong>Saving everything.</strong> Songs that are never used don't help anyone. If a hero is about to die, use the song.</p>
+                <p><strong>Forgetting monsters can't attack diagonally.</strong> That rule protects you only while you stay on the diagonal.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Try It at the Table</h2>
+            <ul>
+                <li>Set up a corridor with one orc and two heroes. Put the Barbarian in front of the orc and the Bard on the diagonal behind. Play three rounds and note who takes damage.</li>
+                <li>Before a quest, read all three song cards aloud with your group and agree on when each one should be used.</li>
             </ul>
         </section>
 
-        <footer>
-            <p><em>Remember, keeper of songs and stories: True power lies not in what you can do alone, but in what you inspire others to achieve together. In the depths of Morcar's dungeons, a single voice raised in courage can transform a group of adventurers into legends. Your greatest weapon is not your blade, but your ability to kindle the heroic spark that lies within every brave heart!</em></p>
-        </footer>
+        <section>
+            <h2>Where Next</h2>
+            <ul>
+                <li><a href="/heroquest_spirit_queens_torment.html">Spirit Queen's Torment</a>: the quest pack the Bard comes from.</li>
+                <li><a href="/heroquest_lore_spirit_queens_torment.html">Spirit Queen's Torment lore</a>: the story behind the pack.</li>
+                <li><a href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>: line of sight, attack order and positioning.</li>
+                <li><a href="/heroquest_dice_roller.html">Dice Roller</a>: roll combat dice and check odds.</li>
+                <li><a href="/heroquest_druid_tutorial.html">The Druid</a>: the next hero in this guide.</li>
+            </ul>
+        </section>
     </main>
 
     <script>
-        // Bard Stats Analysis
-        const bardStatsCanvas = document.getElementById('bardStatsCanvas');
-        const bardStatsCtx = bardStatsCanvas.getContext('2d');
-        
-        bardStatsCtx.clearRect(0, 0, 500, 300);
-        bardStatsCtx.font = '14px Arial';
-        bardStatsCtx.textAlign = 'center';
-        
-        const stats = [
-            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
-            {name: 'Attack', value: 2, max: 4, color: '#4ECDC4', label: '2 dice'},
-            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
-            {name: 'Body', value: 6, max: 8, color: '#96CEB4', label: '6 points'},
-            {name: 'Mind', value: 4, max: 6, color: '#FFEAA7', label: '4 points'}
-        ];
-        
-        stats.forEach((stat, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (stat.value / stat.max) * 180;
-            
-            bardStatsCtx.fillStyle = stat.color;
-            bardStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
-            
-            bardStatsCtx.fillStyle = 'black';
-            bardStatsCtx.fillText(stat.label, x, 250);
-            bardStatsCtx.fillText(stat.name, x, 270);
-        });
-
-        // Inspiration Effects Magnitude
-        const inspirationCanvas = document.getElementById('inspirationEffectsCanvas');
-        const inspirationCtx = inspirationCanvas.getContext('2d');
-        
-        inspirationCtx.clearRect(0, 0, 600, 250);
-        inspirationCtx.font = '12px Arial';
-        inspirationCtx.textAlign = 'center';
-        
-        const inspirationTypes = [
-            {type: 'Combat Bonus', magnitude: 85, duration: 70, color: '#DAA520'},
-            {type: 'Healing Song', magnitude: 75, duration: 60, color: '#32CD32'},
-            {type: 'Courage Rally', magnitude: 90, duration: 80, color: '#FF6347'},
-            {type: 'Knowledge Share', magnitude: 95, duration: 100, color: '#9370DB'},
-            {type: 'Coordination', magnitude: 80, duration: 90, color: '#4169E1'}
-        ];
-        
-        inspirationTypes.forEach((inspiration, i) => {
-            const x = 80 + i * 100;
-            
-            // Magnitude bar
-            const magHeight = (inspiration.magnitude / 100) * 120;
-            inspirationCtx.fillStyle = inspiration.color;
-            inspirationCtx.fillRect(x - 30, 180 - magHeight, 25, magHeight);
-            
-            // Duration bar
-            const durHeight = (inspiration.duration / 100) * 120;
-            inspirationCtx.fillStyle = inspiration.color;
-            inspirationCtx.globalAlpha = 0.6;
-            inspirationCtx.fillRect(x + 5, 180 - durHeight, 25, durHeight);
-            inspirationCtx.globalAlpha = 1.0;
-            
-            inspirationCtx.fillStyle = 'black';
-            inspirationCtx.fillText(inspiration.magnitude + '%', x - 17, 195);
-            inspirationCtx.fillText(inspiration.duration + '%', x + 17, 195);
-            
-            inspirationCtx.save();
-            inspirationCtx.translate(x, 220);
-            inspirationCtx.rotate(-Math.PI / 6);
-            inspirationCtx.fillText(inspiration.type, 0, 0);
-            inspirationCtx.restore();
-        });
-        
-        inspirationCtx.fillText('Effect Magnitude (Solid) vs Duration (Faded)', 300, 30);
-
-        // Knowledge Success Rates
-        const knowledgeCanvas = document.getElementById('knowledgeSuccessCanvas');
-        const knowledgeCtx = knowledgeCanvas.getContext('2d');
-        
-        knowledgeCtx.clearRect(0, 0, 500, 250);
-        knowledgeCtx.font = '12px Arial';
-        knowledgeCtx.textAlign = 'center';
-        
-        const knowledgeAreas = [
-            {area: 'Monster Lore', success: 85, color: '#FF6347'},
-            {area: 'History', success: 90, color: '#9370DB'},
-            {area: 'Magic Theory', success: 75, color: '#4169E1'},
-            {area: 'Tactics', success: 80, color: '#32CD32'},
-            {area: 'Culture', success: 95, color: '#DAA520'}
-        ];
-        
-        knowledgeAreas.forEach((knowledge, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (knowledge.success / 100) * 150;
-            
-            knowledgeCtx.fillStyle = knowledge.color;
-            knowledgeCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
-            
-            knowledgeCtx.fillStyle = 'black';
-            knowledgeCtx.fillText(knowledge.success + '%', x, 185 - barHeight);
-            knowledgeCtx.save();
-            knowledgeCtx.translate(x, 220);
-            knowledgeCtx.rotate(-Math.PI / 4);
-            knowledgeCtx.fillText(knowledge.area, 0, 0);
-            knowledgeCtx.restore();
-        });
-
-        // Magical Support Effectiveness
-        const magicalCanvas = document.getElementById('magicalSupportCanvas');
-        const magicalCtx = magicalCanvas.getContext('2d');
-        
-        magicalCtx.clearRect(0, 0, 500, 300);
-        magicalCtx.font = '12px Arial';
-        magicalCtx.textAlign = 'center';
-        
-        const supportTypes = [
-            {type: 'Utility', bard: 85, wizard: 70, elf: 75, color: '#DAA520'},
-            {type: 'Healing', bard: 70, wizard: 60, elf: 65, color: '#32CD32'},
-            {type: 'Protection', bard: 75, wizard: 85, elf: 70, color: '#4169E1'},
-            {type: 'Detection', bard: 80, wizard: 75, elf: 70, color: '#9370DB'}
-        ];
-        
-        supportTypes.forEach((support, i) => {
-            const x = 80 + i * 90;
-            
-            // Bard effectiveness
-            const bardHeight = (support.bard / 100) * 120;
-            magicalCtx.fillStyle = support.color;
-            magicalCtx.fillRect(x - 30, 200 - bardHeight, 20, bardHeight);
-            
-            // Wizard comparison
-            const wizHeight = (support.wizard / 100) * 120;
-            magicalCtx.fillStyle = support.color;
-            magicalCtx.globalAlpha = 0.5;
-            magicalCtx.fillRect(x - 5, 200 - wizHeight, 20, wizHeight);
-            
-            // Elf comparison
-            const elfHeight = (support.elf / 100) * 120;
-            magicalCtx.fillStyle = support.color;
-            magicalCtx.globalAlpha = 0.3;
-            magicalCtx.fillRect(x + 20, 200 - elfHeight, 20, elfHeight);
-            magicalCtx.globalAlpha = 1.0;
-            
-            magicalCtx.fillStyle = 'black';
-            magicalCtx.fillText(support.bard, x - 20, 220);
-            magicalCtx.fillText(support.wizard, x + 5, 220);
-            magicalCtx.fillText(support.elf, x + 30, 220);
-            magicalCtx.fillText(support.type, x, 240);
-        });
-        
-        magicalCtx.fillText('Bard (Solid) vs Wizard (Medium) vs Elf (Light)', 250, 30);
-
-        // Bard Positioning Tactics
-        const posCanvas = document.getElementById('bardPositioningCanvas');
-        const posCtx = posCanvas.getContext('2d');
-        
-        posCtx.clearRect(0, 0, 400, 400);
-        
-        // Draw grid
-        for(let i = 0; i <= 8; i++) {
-            posCtx.strokeStyle = '#CCC';
-            posCtx.beginPath();
-            posCtx.moveTo(i * 50, 0);
-            posCtx.lineTo(i * 50, 400);
-            posCtx.stroke();
-            
-            posCtx.beginPath();
-            posCtx.moveTo(0, i * 50);
-            posCtx.lineTo(400, i * 50);
-            posCtx.stroke();
+    (function () {
+        var PAPER = '#fbf8f1', INK = '#2b2118', MUTED = '#5c4b3b', GRID = '#a8977c', WALL = '#6b5440';
+        var HERO = '#1f5fa8', FOE = '#a52a1e', ALLY = '#2e7d32', REACH = '#f3d98b', SAFE = '#cfe6d2';
+        function font(x, size, bold) { x.font = (bold ? '700 ' : '') + size + 'px "Source Sans 3", Arial, sans-serif'; }
+        function setup(id) {
+            var c = document.getElementById(id);
+            if (!c || !c.getContext) return null;
+            var x = c.getContext('2d');
+            x.fillStyle = PAPER; x.fillRect(0, 0, c.width, c.height);
+            x.textAlign = 'center'; x.textBaseline = 'middle'; font(x, 14);
+            return x;
         }
-        
-        // Draw obstacles
-        posCtx.fillStyle = '#654321';
-        posCtx.fillRect(200, 100, 50, 100);
-        posCtx.fillRect(50, 250, 100, 50);
-        
-        // Draw enemies
-        posCtx.fillStyle = '#FF0000';
-        posCtx.fillRect(325, 75, 25, 25);
-        posCtx.fillRect(275, 175, 25, 25);
-        posCtx.fillRect(350, 325, 25, 25);
-        
-        // Draw party members
-        posCtx.fillStyle = '#4169E1';
-        posCtx.fillRect(275, 125, 25, 25);  // Barbarian
-        posCtx.fillRect(150, 175, 25, 25);  // Dwarf
-        posCtx.fillRect(225, 275, 25, 25);  // Elf
-        
-        // Draw Bard (central support position)
-        posCtx.fillStyle = '#DAA520';
-        posCtx.fillRect(200, 200, 25, 25);
-        
-        // Draw inspiration radius
-        posCtx.strokeStyle = '#FFD700';
-        posCtx.setLineDash([3, 3]);
-        posCtx.lineWidth = 2;
-        posCtx.beginPath();
-        posCtx.arc(212, 212, 60, 0, 2 * Math.PI);
-        posCtx.stroke();
-        
-        // Draw coordination lines to party members
-        posCtx.strokeStyle = '#DAA520';
-        posCtx.setLineDash([2, 2]);
-        posCtx.lineWidth = 1;
-        
-        posCtx.beginPath();
-        posCtx.moveTo(212, 212);
-        posCtx.lineTo(287, 137);
-        posCtx.stroke();
-        
-        posCtx.beginPath();
-        posCtx.moveTo(212, 212);
-        posCtx.lineTo(162, 187);
-        posCtx.stroke();
-        
-        posCtx.beginPath();
-        posCtx.moveTo(212, 212);
-        posCtx.lineTo(237, 287);
-        posCtx.stroke();
-        
-        posCtx.setLineDash([]);
-        posCtx.lineWidth = 1;
-        
-        // Labels
-        posCtx.fillStyle = 'white';
-        posCtx.font = '10px Arial';
-        posCtx.textAlign = 'center';
-        posCtx.fillText('B', 212, 215);  // Bard
-        posCtx.fillText('Ba', 287, 140); // Barbarian
-        posCtx.fillText('D', 162, 190);  // Dwarf
-        posCtx.fillText('E', 237, 290);  // Elf
-        
-        posCtx.fillText('E', 337, 90);   // Enemies
-        posCtx.fillText('E', 287, 190);
-        posCtx.fillText('E', 362, 340);
-        
-        posCtx.fillStyle = 'black';
-        posCtx.font = '12px Arial';
-        posCtx.fillText('Bard: Central Support with Inspiration Radius', 200, 20);
+        function choose(n, k) { var r = 1; for (var i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
+        function binom(n, p) { var o = []; for (var k = 0; k <= n; k++) o.push(choose(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k)); return o; }
+        // Body Points lost in one attack: skulls (1/2) minus blocks (pBlock: 1/6 monster, 1/3 hero)
+        function damage(a, d, pBlock) {
+            var h = binom(a, 0.5), b = binom(d, pBlock), o = [];
+            for (var i = 0; i <= a; i++) o.push(0);
+            for (i = 0; i <= a; i++) for (var j = 0; j <= d; j++) o[Math.max(0, i - j)] += h[i] * b[j];
+            return o;
+        }
+        function pct(p) { return (Math.round(p * 1000 + 1e-6) / 10).toFixed(1) + '%'; }
+        function grid(x, ox, oy, s, cols, rows) {
+            x.strokeStyle = GRID; x.lineWidth = 1;
+            for (var c = 0; c <= cols; c++) { x.beginPath(); x.moveTo(ox + c * s + 0.5, oy); x.lineTo(ox + c * s + 0.5, oy + rows * s); x.stroke(); }
+            for (var r = 0; r <= rows; r++) { x.beginPath(); x.moveTo(ox, oy + r * s + 0.5); x.lineTo(ox + cols * s, oy + r * s + 0.5); x.stroke(); }
+        }
+        function fillCell(x, ox, oy, s, c, r, fill) { x.fillStyle = fill; x.fillRect(ox + c * s, oy + r * s, s, s); }
+        function token(x, ox, oy, s, c, r, label, fill) {
+            var cx = ox + c * s + s / 2, cy = oy + r * s + s / 2;
+            x.beginPath(); x.arc(cx, cy, s * 0.4, 0, 2 * Math.PI);
+            x.fillStyle = fill; x.fill(); x.lineWidth = 1.5; x.strokeStyle = INK; x.stroke();
+            x.fillStyle = '#ffffff'; font(x, Math.round(s * 0.36), true); x.fillText(label, cx, cy + 1);
+        }
+        function arrow(x, x1, y1, x2, y2, color, dashed) {
+            x.save(); x.strokeStyle = color; x.fillStyle = color; x.lineWidth = 2.5;
+            if (dashed) x.setLineDash([5, 4]);
+            x.beginPath(); x.moveTo(x1, y1); x.lineTo(x2, y2); x.stroke(); x.setLineDash([]);
+            var a = Math.atan2(y2 - y1, x2 - x1);
+            x.beginPath(); x.moveTo(x2, y2);
+            x.lineTo(x2 - 11 * Math.cos(a - 0.4), y2 - 11 * Math.sin(a - 0.4));
+            x.lineTo(x2 - 11 * Math.cos(a + 0.4), y2 - 11 * Math.sin(a + 0.4));
+            x.closePath(); x.fill(); x.restore();
+        }
+        function legend(x, items, y, startX) {
+            var lx = startX; font(x, 13); x.textAlign = 'left';
+            items.forEach(function (it) {
+                x.fillStyle = it[0]; x.fillRect(lx, y - 7, 14, 14); x.strokeStyle = INK; x.lineWidth = 1; x.strokeRect(lx + 0.5, y - 6.5, 13, 13);
+                x.fillStyle = INK; x.fillText(it[1], lx + 20, y + 1); lx += 26 + x.measureText(it[1]).width + 14;
+            });
+            x.textAlign = 'center';
+        }
+        // Heat grid: chance an attack removes at least 1 Body Point, attack dice (rows) vs defend dice (cols)
+        function oddsGrid(id, attacks, defends, pBlock, rowLabel, colLabel) {
+            var x = setup(id); if (!x) return;
+            var W = x.canvas.width, left = 118, top = 64, cw = Math.floor((W - left - 16) / defends.length), ch = 42;
+            font(x, 14, true); x.fillStyle = INK; x.fillText(colLabel, left + cw * defends.length / 2, 20);
+            defends.forEach(function (d, j) { font(x, 14, true); x.fillStyle = INK; x.fillText(d + (d === 1 ? ' die' : ' dice'), left + j * cw + cw / 2, 46); });
+            attacks.forEach(function (a, i) {
+                var y = top + i * ch;
+                font(x, 14, true); x.fillStyle = INK; x.textAlign = 'right';
+                x.fillText(a + (a === 1 ? ' die' : ' dice'), left - 12, y + ch / 2); x.textAlign = 'center';
+                defends.forEach(function (d, j) {
+                    var p = 1 - damage(a, d, pBlock)[0];
+                    var t = Math.max(0, Math.min(1, (p - 0.2) / 0.75));
+                    var r = Math.round(253 + (140 - 253) * t), g = Math.round(246 + (199 - 246) * t), b = Math.round(227 + (154 - 227) * t);
+                    x.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+                    x.fillRect(left + j * cw + 2, y + 2, cw - 4, ch - 4);
+                    font(x, 15, true); x.fillStyle = INK; x.fillText(pct(p), left + j * cw + cw / 2, y + ch / 2 + 1);
+                });
+            });
+            font(x, 13); x.fillStyle = MUTED; x.textAlign = 'left';
+            x.fillText(rowLabel, 12, top - 18 + 0); x.textAlign = 'center';
+            x.fillText('Chance the attack removes at least 1 Body Point (exact)', W / 2, top + attacks.length * ch + 18);
+        }
 
-        // Equipment Impact on Effectiveness
-        const equipCanvas = document.getElementById('bardEquipmentCanvas');
-        const equipCtx = equipCanvas.getContext('2d');
-        
-        equipCtx.clearRect(0, 0, 500, 300);
-        equipCtx.font = '12px Arial';
-        equipCtx.textAlign = 'center';
-        
-        const equipCategories = [
-            {name: 'Inspiration', base: 70, equipped: 90, color: '#DAA520'},
-            {name: 'Knowledge', base: 80, equipped: 95, color: '#9370DB'},
-            {name: 'Survival', base: 60, equipped: 75, color: '#32CD32'},
-            {name: 'Versatility', base: 75, equipped: 85, color: '#4169E1'}
-        ];
-        
-        equipCategories.forEach((category, i) => {
-            const x = 80 + i * 90;
-            
-            // Base
-            const baseHeight = (category.base / 100) * 150;
-            equipCtx.fillStyle = '#DDD';
-            equipCtx.fillRect(x - 25, 200 - baseHeight, 20, baseHeight);
-            
-            // Equipped
-            const equipHeight = (category.equipped / 100) * 150;
-            equipCtx.fillStyle = category.color;
-            equipCtx.fillRect(x + 5, 200 - equipHeight, 20, equipHeight);
-            
-            equipCtx.fillStyle = 'black';
-            equipCtx.fillText(category.base + '%', x - 15, 220);
-            equipCtx.fillText(category.equipped + '%', x + 15, 220);
-            equipCtx.fillText(category.name, x, 240);
-        });
+        // Figure 1: rapier reach
+        (function () {
+            var x = setup('bardReachCanvas'); if (!x) return;
+            var s = 34, panels = [[22, 'Most weapons: 4 squares', false], [248, 'Rapier: 8 squares', true]];
+            panels.forEach(function (p) {
+                var ox = p[0], oy = 48;
+                font(x, 14, true); x.fillStyle = INK; x.fillText(p[1], ox + 2.5 * s, 24);
+                for (var c = 0; c < 5; c++) for (var r = 0; r < 5; r++) {
+                    var dc = Math.abs(c - 2), dr = Math.abs(r - 2);
+                    if ((dc + dr === 1) || (p[2] && dc === 1 && dr === 1)) fillCell(x, ox, oy, s, c, r, REACH);
+                }
+                grid(x, ox, oy, s, 5, 5);
+                token(x, ox, oy, s, 2, 2, p[2] ? 'Bd' : 'H', HERO);
+            });
+            legend(x, [[REACH, 'Squares the hero can attack']], 248, 120);
+        })();
 
-        // Party Effectiveness Multipliers
-        const multipliersCanvas = document.getElementById('partyMultipliersCanvas');
-        const multipliersCtx = multipliersCanvas.getContext('2d');
-        
-        multipliersCtx.clearRect(0, 0, 500, 250);
-        multipliersCtx.font = '12px Arial';
-        multipliersCtx.textAlign = 'center';
-        
-        const partyCombs = [
-            {combo: 'No Bard', effectiveness: 70, color: '#DDD'},
-            {combo: 'Bard + 1 Hero', effectiveness: 85, color: '#96CEB4'},
-            {combo: 'Bard + 2 Heroes', effectiveness: 92, color: '#4ECDC4'},
-            {combo: 'Bard + 3 Heroes', effectiveness: 98, color: '#32CD32'},
-            {combo: 'Full Optimized', effectiveness: 105, color: '#FFD700'}
-        ];
-        
-        partyCombs.forEach((combo, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (combo.effectiveness / 110) * 150;
-            
-            multipliersCtx.fillStyle = combo.color;
-            multipliersCtx.fillRect(x - 25, 200 - barHeight, 50, barHeight);
-            
-            multipliersCtx.fillStyle = 'black';
-            multipliersCtx.fillText(combo.effectiveness + '%', x, 185 - barHeight);
-            multipliersCtx.save();
-            multipliersCtx.translate(x, 220);
-            multipliersCtx.rotate(-Math.PI / 4);
-            multipliersCtx.fillText(combo.combo, 0, 0);
-            multipliersCtx.restore();
-        });
+        // Figure 2: diagonal attack the monster can't answer
+        (function () {
+            var x = setup('bardDiagonalCanvas'); if (!x) return;
+            var s = 44, ox = 22, oy = 14, cols = 9, rows = 5, DANGER = '#f4c7c0';
+            for (var c = 0; c < cols; c++) { fillCell(x, ox, oy, s, c, 0, WALL); fillCell(x, ox, oy, s, c, 4, WALL); }
+            fillCell(x, ox, oy, s, 4, 1, DANGER); fillCell(x, ox, oy, s, 6, 1, DANGER); fillCell(x, ox, oy, s, 5, 2, DANGER);
+            fillCell(x, ox, oy, s, 4, 2, SAFE);
+            grid(x, ox, oy, s, cols, rows);
+            token(x, ox, oy, s, 5, 1, 'O', FOE);
+            token(x, ox, oy, s, 4, 1, 'B', HERO);
+            token(x, ox, oy, s, 4, 2, 'Bd', HERO);
+            var cx = function (c) { return ox + c * s + s / 2; }, cy = function (r) { return oy + r * s + s / 2; };
+            arrow(x, cx(4) + 13, cy(2) - 13, cx(5) - 14, cy(1) + 14, '#1a1a1a', false);
+            font(x, 13, true); x.fillStyle = '#ffffff'; x.textAlign = 'left';
+            x.fillText('Wall', ox + 6, oy + 12); x.fillText('Wall', ox + 6, oy + 4 * s + 12); x.textAlign = 'center';
+            legend(x, [[DANGER, 'Orc can attack'], [SAFE, 'Bard: safe from this orc']], 248, 40);
+            font(x, 14); x.fillStyle = INK;
+            x.fillText('B = Barbarian, Bd = Bard, O = orc. Arrow: the rapier', 220, 278);
+            x.fillText('reaches the orc diagonally, but the orc can only attack', 220, 298);
+            x.fillText('orthogonally, so the Barbarian is its only target.', 220, 318);
+        })();
 
-        // Advanced Techniques Effectiveness
-        const techniqueCanvas = document.getElementById('advancedTechniquesCanvas');
-        const techniqueCtx = techniqueCanvas.getContext('2d');
-        
-        techniqueCtx.clearRect(0, 0, 600, 300);
-        techniqueCtx.font = '11px Arial';
-        techniqueCtx.textAlign = 'center';
-        
-        const techniques = [
-            {technique: 'Layered Inspiration', complexity: 80, effectiveness: 95, color: '#DAA520'},
-            {technique: 'Predictive Support', complexity: 90, effectiveness: 85, color: '#9370DB'},
-            {technique: 'Resource Orchestra', complexity: 95, effectiveness: 100, color: '#FF6347'},
-            {technique: 'Crisis Management', complexity: 70, effectiveness: 90, color: '#32CD32'},
-            {technique: 'Information Warfare', complexity: 85, effectiveness: 80, color: '#4169E1'}
-        ];
-        
-        techniques.forEach((tech, i) => {
-            const x = 80 + i * 100;
-            
-            // Complexity (difficulty to execute)
-            const complexHeight = (tech.complexity / 100) * 120;
-            techniqueCtx.fillStyle = tech.color;
-            techniqueCtx.globalAlpha = 0.5;
-            techniqueCtx.fillRect(x - 30, 200 - complexHeight, 25, complexHeight);
-            
-            // Effectiveness (power when executed well)
-            const effHeight = (tech.effectiveness / 100) * 120;
-            techniqueCtx.fillStyle = tech.color;
-            techniqueCtx.globalAlpha = 1.0;
-            techniqueCtx.fillRect(x + 5, 200 - effHeight, 25, effHeight);
-            
-            techniqueCtx.fillStyle = 'black';
-            techniqueCtx.fillText(tech.complexity + '%', x - 17, 220);
-            techniqueCtx.fillText(tech.effectiveness + '%', x + 17, 220);
-            
-            techniqueCtx.save();
-            techniqueCtx.translate(x, 250);
-            techniqueCtx.rotate(-Math.PI / 6);
-            techniqueCtx.fillText(tech.technique, 0, 0);
-            techniqueCtx.restore();
-        });
-        
-        techniqueCtx.fillText('Complexity (Faded) vs Effectiveness (Solid)', 300, 30);
-
-        // Resource Allocation Strategies
-        const resourceCanvas = document.getElementById('resourceAllocationCanvas');
-        const resourceCtx = resourceCanvas.getContext('2d');
-        
-        resourceCtx.clearRect(0, 0, 500, 250);
-        resourceCtx.font = '12px Arial';
-        resourceCtx.textAlign = 'center';
-        
-        const strategies = [
-            {name: 'Conservative', inspiration: 30, magic: 40, knowledge: 30, color: '#4169E1'},
-            {name: 'Inspiration Focus', inspiration: 50, magic: 25, knowledge: 25, color: '#DAA520'},
-            {name: 'Balanced', inspiration: 35, magic: 35, knowledge: 30, color: '#32CD32'},
-            {name: 'Knowledge Heavy', inspiration: 25, magic: 25, knowledge: 50, color: '#9370DB'}
-        ];
-        
-        strategies.forEach((strategy, i) => {
-            const x = 80 + i * 90;
-            const totalHeight = 120;
-            
-            // Inspiration allocation
-            const inspHeight = (strategy.inspiration / 100) * totalHeight;
-            resourceCtx.fillStyle = '#DAA520';
-            resourceCtx.fillRect(x - 30, 180, 60, -inspHeight);
-            
-            // Magic allocation
-            const magicHeight = (strategy.magic / 100) * totalHeight;
-            resourceCtx.fillStyle = '#9370DB';
-            resourceCtx.fillRect(x - 30, 180 - inspHeight, 60, -magicHeight);
-            
-            // Knowledge allocation
-            const knowHeight = (strategy.knowledge / 100) * totalHeight;
-            resourceCtx.fillStyle = '#4169E1';
-            resourceCtx.fillRect(x - 30, 180 - inspHeight - magicHeight, 60, -knowHeight);
-            
-            resourceCtx.fillStyle = 'black';
-            resourceCtx.fillText(strategy.name, x, 200);
-            resourceCtx.fillText(`${strategy.inspiration}/${strategy.magic}/${strategy.knowledge}`, x, 220);
-        });
-        
-        resourceCtx.fillText('Resource Allocation: Inspiration/Magic/Knowledge', 250, 30);
+        // Figure 3: exact odds
+        oddsGrid('bardOddsCanvas', [1, 2, 3, 4], [1, 2, 3, 4], 1 / 6, 'Attack dice', 'Monster Defend dice');
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_warlock_tutorial.html">The Warlock</a>
+    <a class="next" href="/heroquest_druid_tutorial.html">The Druid</a>
 </div>
+    <p class="closing-quote">A rapier on the diagonal, a song at the right moment: the Bard wins fights by making every other hero's turn count.</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

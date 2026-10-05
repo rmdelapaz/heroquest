@@ -432,3 +432,9 @@ Session 6 used a Python script (`strip_styles.py`) run locally in WSL to batch-s
 - `.gitignore` — excludes screenshots/ and QA utility scripts
 - `heroquest_character_sheet.html` — fillable/printable/saveable character sheet (hero + monster modes), localStorage save/load, auto-fill stats by class, JSON export/import, 4-up print layout at 3.75"×5" per card
 - `fix_canvas_wrap.py` — sitewide scanner that finds `<canvas>` elements not wrapped in `.canvas-container` and wraps them; run with `--fix` to apply
+
+### Session 12 — Full guide treatment (2026-10-05)
+- Rebuilt as **The HeroQuest Guide** (2021 Avalon Hill baseline; classic 1989–90 only in labelled notes). Ray's choices: players-first order, toolkit split, keep the `_tutorial` URLs (wording only), merge the two Dread Moon pages.
+- New shell: tokenized `styles/main.css` (crimson/gold, Vollkorn SC headings), `js/site.js` (theme key still `hq-theme`), `js/diagrams.js` (theme-aware Mermaid). `nav.js` and `canvas-helper.js` removed (301 to home). Static page-nav, footer, 404, `_redirects` (status.md / qa script / .vscode blocked; dread_moon_knight 301 → rise_dread_moon).
+- New pages: `heroquest_dice_roller.html` (window.hqDice), `heroquest_solo.html` "Playing Without Zargon" (Digital Zargon + unofficial paper rules, window.hqOracle / hqSolo). Odds verified against `~/projects/_guide_tools/hq_odds/` (verify_pages.py, 3,429 cases).
+- Every content page rewritten against the fact sheet `~/projects/_guide_tools/hq_facts.md` (brief: heroquest_brief.md; converter: hq_convert.py).

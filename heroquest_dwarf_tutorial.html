@@ -3,527 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Dwarf Hero - HeroQuest Tutorial</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>The Dwarf - The HeroQuest Guide</title>
+    <meta name="description" content="The HeroQuest Dwarf: 2 attack, 2 defend, 7 Body, 3 Mind, and the only hero who disarms traps without a tool kit. Exact trap and combat odds inside.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-<div class="container">
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>⚒️ The Dwarf Hero: Master of Traps and Treasure</h1>
-        <p><em>Welcome, brave adventurer! Today we explore the cunning and expertise of HeroQuest's most skilled dungeon specialist.</em></p>
+        <h1>The Dwarf</h1>
+        <p>How to play the Dwarf, the party's trap expert and second fighter: stats, the trap rules, exact odds and party role.</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="hero-card">
             <h2>Meet the Dwarf</h2>
-            <p>The Dwarf is HeroQuest's ultimate utility specialist - imagine a medieval Swiss Army knife in the form of a bearded, axe-wielding engineer. While others charge into combat or cast spells, the Dwarf excels at the dangerous technical work that keeps the party alive: detecting deadly traps, disarming cunning mechanisms, and finding hidden treasures that others would miss entirely.</p>
+            <p>The Dwarf is a solid fighter with one rule no other core hero has: <strong>the Dwarf disarms traps without a tool kit and fails only on a black shield.</strong> Everything else about the Dwarf is steady rather than special: 2 attack dice, 2 defend dice, 7 Body Points (second only to the Barbarian) and 3 Mind Points.</p>
+            <p>The Dwarf starts with a Shortsword in the HeroQuest Game System. In the 2025 starter box <em>HeroQuest: First Light</em>, which uses the same rules, the Dwarf starts with a Handaxe instead.</p>
         </section>
 
         <section>
-            <h2>Core Statistics: The Balanced Specialist</h2>
-            
-            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
-            <div class="stat-display">Attack: 2 combat dice</div>
-            <div class="stat-display">Defend: 2 combat dice</div>
-            <div class="stat-display">Body Points: 7</div>
-            <div class="stat-display">Mind Points: 3</div>
-
-            <div class="analogy-box">
-                <strong>Think of it this way:</strong> If heroes were professionals, the Dwarf would be a master craftsman - reliable in all areas but truly exceptional at specialized tasks. Like a skilled electrician who can handle basic carpentry but truly shines when working with complex wiring, the Dwarf can fight and survive, but excels at the technical challenges of dungeon exploration.
+            <h2>Starting Stats</h2>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Stat</th><th>Dwarf</th><th>What it means</th></tr></thead>
+                    <tbody>
+                        <tr><td>Attack</td><td>2 dice</td><td>From the Shortsword. Every skull is a hit.</td></tr>
+                        <tr><td>Defend</td><td>2 dice</td><td>Every white shield blocks one hit.</td></tr>
+                        <tr><td>Body Points</td><td>7</td><td>At 0 you die unless you drink a healing potion or cast a healing spell at once.</td></tr>
+                        <tr><td>Mind Points</td><td>3</td><td>Resistance to magic: better than the Barbarian, worse than the Elf and Wizard.</td></tr>
+                        <tr><td>Movement</td><td>2 red dice</td><td>Same as every hero.</td></tr>
+                        <tr><td>Special</td><td>Trap disarming</td><td>No tool kit needed; fails only on a black shield.</td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Dwarf Stats Comparison</h3>
-                    <canvas id="dwarfStatsCanvas" width="500" height="300"></canvas>
-                </div>
+                <h3>The Dwarf Next to the Other Core Heroes</h3>
+                <canvas id="dwarfStatsCanvas" width="420" height="232" role="img" aria-label="Pip chart of starting stats. Barbarian: Attack 3, Defend 2, Body 8, Mind 2. Dwarf: 2, 2, 7, 3. Elf: 2, 2, 6, 4. Wizard: 1, 2, 4, 6."></canvas>
             </div>
         </section>
 
         <section>
-            <h2>The Art of Trap Detection: The Dwarf's Crown Jewel</h2>
-            
-            <p>The Dwarf's signature ability is automatic trap detection when searching for traps. While other heroes must rely on luck (rolling specific results on special dice), the Dwarf simply finds traps through expertise and experience.</p>
+            <h2>Traps: the Dwarf's Job</h2>
+            <p>Any hero can use their action to <strong>search for traps</strong>, as long as no monsters are in sight. Zargon then reveals the traps you would find. Searching is the same for every hero: there is no roll and the Dwarf finds nothing extra. The Dwarf's advantage starts once a trap is found.</p>
 
-            <div class="special-ability">
-                <h3>🔍 Trap Detection Mastery</h3>
-                <p><strong>Special Rule:</strong> The Dwarf automatically finds traps when searching for them - no dice roll required!</p>
-                <p><strong>Game Impact:</strong> This transforms the entire party's dungeon experience, making previously lethal areas safely navigable.</p>
-                <p><strong>Strategic Value:</strong> Saves the party countless Body Points and potential quest failures.</p>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Trap</th><th>What happens if you spring it</th></tr></thead>
+                    <tbody>
+                        <tr><td>Pit</td><td>Lose 1 Body Point. While you're in the pit you fight with one fewer die.</td></tr>
+                        <tr><td>Falling block</td><td>Roll 3 combat dice, lose 1 Body Point per skull, no defense roll. The square is blocked for good.</td></tr>
+                        <tr><td>Spear</td><td>Roll 1 combat die; a skull costs 1 Body Point.</td></tr>
+                        <tr><td>Chest or furniture trap</td><td>Set off by searching the furniture; the quest notes say what it does.</td></tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div class="trap-example">
-                <h3>Trap Detection in Action</h3>
-                <p><strong>Scenario:</strong> The party approaches a suspicious-looking corridor with pressure plates</p>
-                <p><strong>Without Dwarf:</strong> Other heroes search and might find traps on lucky special die rolls</p>
-                <p><strong>With Dwarf:</strong> Automatic detection reveals all traps, allowing safe passage or tactical exploitation</p>
-                <p><strong>Real-world parallel:</strong> It's like having a professional mine detector operator versus someone with a metal detector app on their phone - both might work, but one is reliable and experienced.</p>
-            </div>
+            <p>A falling block is the nasty one: it deals 1.5 Body Points on average, at least 2 half the time, and all 3 one time in eight. That's a real threat to the Wizard's 4 Body Points.</p>
 
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Trap Detection Success Rates</h3>
-                    <canvas id="trapDetectionCanvas" width="600" height="250"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Combat Capabilities: The Reliable Warrior</h2>
-            
-            <p>With 2 attack dice and 2 defend dice, the Dwarf sits comfortably in the middle of HeroQuest's combat spectrum. They're not the devastating force of the Barbarian, but they're far from helpless, and their 7 Body Points provide solid survivability.</p>
-
-            <div class="analogy-box">
-                <strong>Military Analogy:</strong> The Dwarf is like a combat engineer - not the front-line infantry (Barbarian) or the artillery specialist (Wizard), but the essential support personnel who can fight effectively when needed while providing crucial technical expertise.
+                <h3>Getting Past a Trap You've Found</h3>
+                <canvas id="dwarfTrapCanvas" width="420" height="162" role="img" aria-label="Chance of success: the Dwarf disarming a trap, 83.3 percent; another hero disarming with a Tool Kit, 50 percent; any hero jumping a found trap, 50 percent."></canvas>
             </div>
 
-            <div class="trap-example">
-                <h3>Combat Performance Analysis</h3>
-                <p><strong>vs Goblins/Orcs:</strong> Reliable victory against single weak enemies</p>
-                <p><strong>vs Fimir:</strong> Even match requiring tactical positioning</p>
-                <p><strong>vs Chaos Warriors:</strong> Challenging but winnable with support or good equipment</p>
-                <p><strong>Strategic Role:</strong> Secondary combatant who can hold their own while the Barbarian handles primary threats</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Combat Effectiveness Comparison</h3>
-                    <canvas id="dwarfCombatCanvas" width="500" height="250"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Treasure Hunting Excellence: The Dwarf's Secret Weapon</h2>
-            
-            <p>Beyond trap detection, Dwarfs excel at finding treasure. Their natural affinity for valuable objects and understanding of craftsmanship makes them superior treasure hunters compared to other heroes.</p>
-
-            <div class="treasure-box">
-                <h3>💎 Treasure Hunting Advantages</h3>
-                <p><strong>Enhanced Search:</strong> Better success rates when searching for secret doors and treasure</p>
-                <p><strong>Craftsmanship Knowledge:</strong> Understands the value and function of discovered items</p>
-                <p><strong>Hidden Compartments:</strong> Expertise in finding concealed storage and secret mechanisms</p>
-                <p><strong>Economic Impact:</strong> More treasure means better equipment for the entire party</p>
-            </div>
-
-            <div class="mermaid">
-                graph TD
-                    A[Dwarf Searches Room] --> B{Treasure Present?}
-                    B -->|Yes| C[Enhanced Detection Roll]
-                    B -->|No| D[Thorough Search Reveals Hidden Features]
-                    C --> E[Higher Success Rate Than Other Heroes]
-                    D --> F[May Find Secret Doors or Passages]
-                    E --> G[Party Benefits from Extra Gold/Items]
-                    F --> G
-            </div>
-        </section>
-
-        <section>
-            <h2>Movement and Positioning: The Strategic Observer</h2>
-            
-            <p>Like all heroes, the Dwarf uses 2d6 movement, but their positioning strategy differs significantly from pure combat heroes. The Dwarf must balance being close enough to detect traps with staying safe enough to survive encounters.</p>
-
-            <div class="analogy-box">
-                <strong>Exploration Analogy:</strong> The Dwarf is like a cave guide leading tourists through dangerous terrain - they need to stay ahead of the group to spot hazards, but not so far ahead that they can't get help if trouble appears.
-            </div>
-
-            <div class="mermaid">
-                graph TD
-                    A[Dwarf Movement Phase] --> B{High Movement Roll 8-12?}
-                    B -->|Yes| C[Scout Ahead for Traps and Treasure]
-                    B -->|No| D{Medium Roll 5-7?}
-                    D -->|Yes| E[Stay with Party, Search Current Area]
-                    D -->|No| F[Low Roll 2-4: Defensive Position]
-                    C --> G[Report Findings to Party]
-                    E --> H[Coordinate with Team]
-                    F --> I[Let Others Take Point]
-                    G --> J[Plan Next Move]
-                    H --> J
-                    I --> J
-            </div>
-        </section>
-
-        <section>
-            <h2>Equipment Strategy: Tools of the Trade</h2>
-            
-            <p>The Dwarf's equipment choices should enhance their utility role while providing adequate combat capability. Unlike the Barbarian who focuses purely on combat gear, the Dwarf needs a more diverse toolkit.</p>
-
-            <div class="treasure-box">
-                <h3>Optimal Equipment Priority</h3>
-                <p><strong>Primary Weapons:</strong> Battle Axe or Short Sword - reliable damage without sacrificing utility</p>
-                <p><strong>Secondary Tools:</strong> Crossbow for ranged support and kiting dangerous enemies</p>
-                <p><strong>Protective Gear:</strong> Leather Armor for basic protection without mobility penalties</p>
-                <p><strong>Utility Items:</strong> Rope, tools, and healing potions for extended exploration</p>
-                <p><strong>Philosophy:</strong> Jack-of-all-trades loadout that supports the party's overall success rather than maximizing personal combat power</p>
-            </div>
-
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Equipment Impact on Dwarf Effectiveness</h3>
-                    <canvas id="dwarfEquipmentCanvas" width="500" height="250"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>Party Dynamics: The Essential Support</h2>
-            
-            <p>In a balanced party, the Dwarf often serves as the "enabler" - the hero who makes everyone else's job easier and safer. Their trap detection and treasure finding create opportunities and resources that benefit the entire team.</p>
-
-            <div class="mermaid">
-                graph LR
-                    A[Dwarf: Trap Detection & Utility] --> B[Barbarian: Safe to Charge Forward]
-                    A --> C[Wizard: Protected from Surprise Damage]
-                    A --> D[Elf: Can Focus on Combat/Magic]
-                    B --> E[Successful Quest Completion]
-                    C --> E
-                    D --> E
-                    F[Extra Treasure from Dwarf] --> G[Better Equipment for All]
-                    G --> E
-            </div>
-
-            <div class="analogy-box">
-                <strong>Sports Team Parallel:</strong> The Dwarf is like a point guard in basketball - not necessarily the highest scorer, but the player who sets up everyone else for success through vision, positioning, and game awareness.
-            </div>
-        </section>
-
-        <section>
-            <h2>Advanced Techniques: Mastering Dwarf Play</h2>
-            
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Advanced Dwarf Positioning Strategy</h3>
-                    <canvas id="dwarfPositioningCanvas" width="400" height="400"></canvas>
-                </div>
-            </div>
-
-            <div class="special-ability">
-                <h3>🎯 Advanced Dwarf Tactics</h3>
-                <p><strong>Trap Exploitation:</strong> Use detected traps as tactical advantages - lure enemies into them</p>
-                <p><strong>Corridor Control:</strong> Position to funnel enemies through detected "safe" paths</p>
-                <p><strong>Resource Management:</strong> Balance personal safety with party treasure acquisition</p>
-                <p><strong>Information Warfare:</strong> Share trap and treasure intel to coordinate party movements</p>
-                <p><strong>Emergency Protocols:</strong> Always maintain escape routes when scouting ahead</p>
-            </div>
-
-            <div class="trap-example">
-                <h3>Master-Level Example: The Trap Gambit</h3>
-                <p><strong>Setup:</strong> Dwarf detects a pit trap in a narrow corridor with enemies approaching</p>
-                <p><strong>Standard Approach:</strong> Disarm trap and proceed safely</p>
-                <p><strong>Advanced Approach:</strong> Leave trap armed, position party to force enemies across it</p>
-                <p><strong>Result:</strong> Enemies fall into their own dungeon's trap, taking damage without party risk</p>
-                <p><strong>Lesson:</strong> Superior information creates tactical opportunities beyond simple safety</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>When to Choose the Dwarf: Ideal Scenarios</h2>
-            
-            <div class="treasure-box">
-                <h3>Perfect Dwarf Missions</h3>
-                <p><strong>Trap-Heavy Dungeons:</strong> Quests known for dangerous mechanical hazards</p>
-                <p><strong>Treasure Hunts:</strong> Scenarios where finding all loot is crucial for success</p>
-                <p><strong>Exploration Campaigns:</strong> Multi-session adventures where survival matters more than speed</p>
-                <p><strong>New Player Groups:</strong> The Dwarf's safety features help inexperienced parties learn</p>
-                <p><strong>Balanced Parties:</strong> When you need a reliable utility hero who can also fight</p>
-            </div>
-
-            <div class="trap-example">
-                <h3>Challenging Scenarios for Dwarfs</h3>
-                <p><strong>Combat-Heavy Quests:</strong> Scenarios with minimal traps and maximum monster encounters</p>
-                <p><strong>Speed Runs:</strong> Time-critical missions where careful searching slows progress</p>
-                <p><strong>Puzzle-Focused Adventures:</strong> Quests requiring high Mind Points for spell usage</p>
-                <p><strong>Solo Play:</strong> Without party support, the Dwarf's moderate combat stats become limiting</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Synergy Analysis: Dwarf Combinations</h2>
-            
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Party Composition Effectiveness</h3>
-                    <canvas id="partySynergyCanvas" width="500" height="300"></canvas>
-                </div>
-            </div>
-
-            <div class="special-ability">
-                <h3>🤝 Optimal Party Pairings</h3>
-                <p><strong>Dwarf + Barbarian:</strong> Classic tank/support combo - Barbarian fights while Dwarf handles hazards</p>
-                <p><strong>Dwarf + Wizard:</strong> Intelligence meets expertise - magical solutions enhanced by technical knowledge</p>
-                <p><strong>Dwarf + Elf:</strong> Balanced flexibility - both heroes can adapt to various situations</p>
-                <p><strong>All Four Heroes:</strong> The Dwarf's utility shines brightest in full parties where specialization matters</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Related Topics for Further Exploration</h2>
-            
             <ul>
-                <li><strong>Trap Mechanics Deep Dive:</strong> Understanding all trap types and disarmament techniques</li>
-                <li><strong>Treasure Economics:</strong> How gold and equipment distribution affects party power</li>
-                <li><strong>Dungeon Architecture:</strong> Reading room layouts to predict trap and treasure placement</li>
-                <li><strong>Risk Assessment:</strong> When to take calculated risks versus playing it safe</li>
-                <li><strong>Communication Protocols:</strong> Sharing critical information effectively during gameplay</li>
-                <li><strong>Equipment Optimization:</strong> Balancing personal gear with party utility items</li>
-                <li><strong>Exploration Efficiency:</strong> Systematic searching techniques for complete dungeon coverage</li>
+                <li><strong>The Dwarf disarms</strong> on anything but a black shield: 5 chances in 6.</li>
+                <li><strong>Another hero</strong> needs a Tool Kit from the Armory and then any non-skull result: an even chance.</li>
+                <li><strong>Jumping</strong> over a found trap costs 2 movement and also needs any non-skull result.</li>
+            </ul>
+
+            <div class="mermaid">
+                flowchart TD
+                    A["Search for traps (no monsters in sight)"] --> B{Trap found?}
+                    B -->|No| C[Move on]
+                    B -->|Yes| D{How do you get past?}
+                    D -->|Dwarf| E["Disarm: fails only on a black shield"]
+                    D -->|Hero with a Tool Kit| F["Disarm: any non-skull"]
+                    D -->|Any hero| G["Jump: 2 movement, any non-skull"]
+                    D -->|Any hero| H[Take another route]
+            </div>
+
+            <div class="vulnerability-warning">
+                <h3>You can't lure monsters into traps</h3>
+                <p>Monsters don't spring hidden traps, so leaving a trap armed "for the orcs" does nothing. Disarm it or walk around it.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2>Fighting</h2>
+            <p>With 2 attack dice the Dwarf hits like the Elf and a step below the Barbarian. Against one-Body monsters that's still good: a 59.0% chance to kill an Orc in one attack (the Barbarian's is 75.0%), and 83.2% within two attacks. The tough monsters are a different story. Two dice can produce at most two hits, so the Dwarf can never kill a three-Body Dread Warrior or Gargoyle in a single attack.</p>
+
+            <div class="canvas-container">
+                <h3>Chance to Destroy Each Monster</h3>
+                <canvas id="dwarfOddsCanvas" width="420" height="476" role="img" aria-label="Bar chart of the Dwarf's chance to destroy each monster with 2 attack dice, in one attack and within two attacks. Goblin 66.7 and 88.9 percent; Orc 59.0 and 83.2; Skeleton 59.0 and 83.2; Zombie 52.1 and 77.0; Abomination 14.5 and 41.0; Mummy 12.1 and 34.1; Dread Warrior 0 and 9.6; Gargoyle 0 and 7.1."></canvas>
+            </div>
+            <p><em>Monster defend dice and Body Points come from the classic 1990 North American chart (Goblin 1/1, Orc 2/1, Skeleton 2/1, Zombie 3/1, Abomination 3/2, Mummy 4/2, Dread Warrior 4/3, Gargoyle 5/3). Fan sources say the 2021 game matches; your monster cards have the final word.</em></p>
+
+            <p>On defense the Dwarf is close to the Barbarian. With 7 Body Points and 2 defend dice, the chance that an Orc (3 attack dice) kills the Dwarf within four attacks is 7.6%. The Dwarf has none of the Wizard's equipment limits, so a Helmet or Chain Mail turns them into a good second front-liner.</p>
+        </section>
+
+        <section>
+            <h2>Equipment</h2>
+            <div class="treasure-box">
+                <h3>Spending the Dwarf's Gold</h3>
+                <p><strong>Skip the Tool Kit.</strong> The Dwarf doesn't need one, and their disarm odds (5 in 6) are already better than a Tool Kit gives anyone else.</p>
+                <p><strong>Defense first.</strong> Each extra defend die cuts the damage you take. Against an Orc, going from 2 to 3 defend dice drops your chance of being hurt from 62.5% to 50.9%.</p>
+                <p><strong>Then a bigger weapon.</strong> A weapon's attack dice replace the Dwarf's 2. With a 3-dice weapon the Dwarf fights as well as the Barbarian.</p>
+            </div>
+            <p>Item details and prices are in <a href="/heroquest_treasure_progression.html">Treasure &amp; Equipment</a>.</p>
+        </section>
+
+        <section>
+            <h2>The Dwarf in the Party</h2>
+            <ul>
+                <li><strong>Walk near the front in corridors.</strong> Traps sit in corridors as well as rooms, and the Dwarf wants to be the one who reaches a found trap first.</li>
+                <li><strong>Search for traps before the Wizard walks anywhere new.</strong> One falling block can take the Wizard from 4 Body Points to 1.</li>
+                <li><strong>Be the second fighter.</strong> Stand beside the Barbarian in rooms so two heroes can attack the same tough monster.</li>
+                <li><strong>Remember searches cost your action.</strong> A turn spent searching is a turn not attacking, so search when the room is clear and save fights for when monsters appear.</li>
             </ul>
         </section>
 
-        <footer>
-            <p><em>Remember, young adventurer: The Dwarf's true power lies not in the strength of their arm, but in the depth of their knowledge. While others may claim the glory of combat, it is often the Dwarf's careful eye and steady hand that separates triumph from disaster in the treacherous depths of Morcar's domain!</em></p>
-        </footer>
+        <section>
+            <h2>Try It at the Table</h2>
+            <ul>
+                <li>For one quest, have the Dwarf search for traps in every new corridor before anyone else steps in. Count the Body Points that saves.</li>
+                <li>Roll one combat die six times as the Dwarf disarming, and six times as a hero with a Tool Kit. The difference between 5-in-6 and 1-in-2 shows up fast.</li>
+                <li>Compare the Dwarf and Barbarian against a Mummy with the <a href="/heroquest_dice_roller.html">Dice Roller</a>.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Where Next</h2>
+            <ul>
+                <li><a href="/heroquest_elf_tutorial.html">The Elf</a>: fighter and spellcaster in one.</li>
+                <li><a href="/heroquest_barbarian_tutorial.html">The Barbarian</a>: the front-liner the Dwarf fights beside.</li>
+                <li><a href="/heroquest_basics.html">Getting Started</a>: the full turn, search and trap rules.</li>
+            </ul>
+        </section>
     </main>
 
     <script>
-        // Dwarf Stats Comparison Chart
-        const dwarfStatsCanvas = document.getElementById('dwarfStatsCanvas');
-        const dwarfStatsCtx = dwarfStatsCanvas.getContext('2d');
-        
-        dwarfStatsCtx.clearRect(0, 0, 500, 300);
-        dwarfStatsCtx.font = '14px Arial';
-        dwarfStatsCtx.textAlign = 'center';
-        
-        const stats = [
-            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
-            {name: 'Attack', value: 2, max: 4, color: '#4ECDC4', label: '2 dice'},
-            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
-            {name: 'Body', value: 7, max: 8, color: '#96CEB4', label: '7 points'},
-            {name: 'Mind', value: 3, max: 4, color: '#FFEAA7', label: '3 points'}
-        ];
-        
-        stats.forEach((stat, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (stat.value / stat.max) * 180;
-            
-            dwarfStatsCtx.fillStyle = stat.color;
-            dwarfStatsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
-            
-            dwarfStatsCtx.fillStyle = 'black';
-            dwarfStatsCtx.fillText(stat.label, x, 250);
-            dwarfStatsCtx.fillText(stat.name, x, 270);
+    (function () {
+        'use strict';
+    // Figure helpers: fixed dark-on-light colours (canvases sit on a light panel in both themes).
+    var FONT = '"Source Sans 3", Arial, sans-serif';
+    var INK = '#1f1a14', MUTED = '#4d453d', GRID = '#d6cec2', PANEL = '#f3ecdf';
+    var HERO = { Barbarian: '#a3161f', Dwarf: '#8a4b08', Elf: '#1e6b34', Wizard: '#1f4fa8' };
+    function fig(id) {
+        var c = document.getElementById(id);
+        if (!c || !c.getContext) return null;
+        var x = c.getContext('2d');
+        x.clearRect(0, 0, c.width, c.height);
+        return x;
+    }
+    function txt(x, s, px, py, o) {
+        o = o || {};
+        x.font = (o.bold ? '700 ' : '400 ') + (o.size || 14) + 'px ' + FONT;
+        x.fillStyle = o.color || INK;
+        x.textAlign = o.align || 'left';
+        x.textBaseline = 'alphabetic';
+        x.fillText(s, px, py);
+    }
+    // The four core heroes' printed stats as pips; `focus` row is outlined.
+    function heroStats(id, focus) {
+        var x = fig(id); if (!x) return;
+        var W = x.canvas.width;
+        var rows = [['Barbarian', 3, 2, 8, 2], ['Dwarf', 2, 2, 7, 3], ['Elf', 2, 2, 6, 4], ['Wizard', 1, 2, 4, 6]];
+        var cols = [['Attack', 3], ['Defend', 2], ['Body', 8], ['Mind', 6]];
+        var P = 10, G = 3, colX = [], cx = 98;
+        cols.forEach(function (c) { colX.push(cx); cx += Math.max(c[1] * (P + G) - G, 50) + 12; });
+        txt(x, 'Starting stats of the four core heroes', W / 2, 22, { bold: 1, align: 'center', size: 15 });
+        cols.forEach(function (c, i) { txt(x, c[0], colX[i], 52, { bold: 1, size: 13 }); });
+        rows.forEach(function (r, j) {
+            var y = 62 + j * 34, on = r[0] === focus;
+            if (on) {
+                x.fillStyle = PANEL; x.fillRect(5, y, W - 10, 30);
+                x.strokeStyle = HERO[r[0]]; x.lineWidth = 2; x.strokeRect(5, y, W - 10, 30);
+            }
+            txt(x, r[0], 14, y + 20, { bold: on, size: 14 });
+            cols.forEach(function (c, i) {
+                x.fillStyle = HERO[r[0]];
+                for (var k = 0; k < r[i + 1]; k++) x.fillRect(colX[i] + k * (P + G), y + 10, P, P);
+            });
         });
-
-        // Trap Detection Success Rates
-        const trapCanvas = document.getElementById('trapDetectionCanvas');
-        const trapCtx = trapCanvas.getContext('2d');
-        
-        trapCtx.clearRect(0, 0, 600, 250);
-        trapCtx.font = '12px Arial';
-        trapCtx.textAlign = 'center';
-        
-        const trapData = [
-            {hero: 'Dwarf', success: 100, color: '#4ECDC4'},
-            {hero: 'Other Heroes', success: 33, color: '#FF6B6B'},
-            {hero: 'Blind Luck', success: 16, color: '#DDD'}
-        ];
-        
-        trapData.forEach((data, i) => {
-            const x = 100 + i * 150;
-            const barHeight = (data.success / 100) * 150;
-            
-            trapCtx.fillStyle = data.color;
-            trapCtx.fillRect(x - 40, 200 - barHeight, 80, barHeight);
-            
-            trapCtx.fillStyle = 'black';
-            trapCtx.fillText(data.success + '%', x, 185 - barHeight);
-            trapCtx.fillText(data.hero, x, 220);
-        });
-        
-        trapCtx.fillText('Trap Detection Success Rates', 300, 30);
-
-        // Combat Effectiveness
-        const combatCanvas = document.getElementById('dwarfCombatCanvas');
-        const combatCtx = combatCanvas.getContext('2d');
-        
-        combatCtx.clearRect(0, 0, 500, 250);
-        combatCtx.font = '11px Arial';
-        combatCtx.textAlign = 'center';
-        
-        const combatScenarios = [
-            {enemy: 'Goblin', dwarf: 70, barbarian: 89, color: '#96CEB4'},
-            {enemy: 'Orc', dwarf: 70, barbarian: 89, color: '#96CEB4'},
-            {enemy: 'Fimir', dwarf: 42, barbarian: 70, color: '#FFEAA7'},
-            {enemy: 'Chaos Warrior', dwarf: 19, barbarian: 42, color: '#FF6B6B'}
-        ];
-        
-        combatScenarios.forEach((scenario, i) => {
-            const x = 80 + i * 100;
-            
-            // Dwarf bar
-            const dwarfHeight = (scenario.dwarf / 100) * 120;
-            combatCtx.fillStyle = scenario.color;
-            combatCtx.fillRect(x - 30, 180 - dwarfHeight, 25, dwarfHeight);
-            
-            // Barbarian comparison (lighter)
-            const barbarianHeight = (scenario.barbarian / 100) * 120;
-            combatCtx.fillStyle = scenario.color;
-            combatCtx.globalAlpha = 0.4;
-            combatCtx.fillRect(x + 5, 180 - barbarianHeight, 25, barbarianHeight);
-            combatCtx.globalAlpha = 1.0;
-            
-            combatCtx.fillStyle = 'black';
-            combatCtx.fillText(scenario.dwarf + '%', x - 17, 195);
-            combatCtx.fillText(scenario.barbarian + '%', x + 17, 195);
-            combatCtx.fillText('vs ' + scenario.enemy, x, 210);
-        });
-        
-        combatCtx.fillText('Dwarf Combat Win Rates (Dark) vs Barbarian (Light)', 250, 30);
-
-        // Equipment Impact
-        const equipCanvas = document.getElementById('dwarfEquipmentCanvas');
-        const equipCtx = equipCanvas.getContext('2d');
-        
-        equipCtx.clearRect(0, 0, 500, 250);
-        equipCtx.font = '12px Arial';
-        equipCtx.textAlign = 'center';
-        
-        const equipCategories = [
-            {name: 'Combat', base: 60, equipped: 80, color: '#4ECDC4'},
-            {name: 'Trap Detection', base: 100, equipped: 100, color: '#96CEB4'},
-            {name: 'Treasure Finding', base: 70, equipped: 90, color: '#FFEAA7'},
-            {name: 'Survivability', base: 65, equipped: 85, color: '#FF6B6B'}
-        ];
-        
-        equipCategories.forEach((category, i) => {
-            const x = 80 + i * 90;
-            
-            // Base effectiveness
-            const baseHeight = (category.base / 100) * 120;
-            equipCtx.fillStyle = '#DDD';
-            equipCtx.fillRect(x - 25, 180 - baseHeight, 20, baseHeight);
-            
-            // With equipment
-            const equipHeight = (category.equipped / 100) * 120;
-            equipCtx.fillStyle = category.color;
-            equipCtx.fillRect(x + 5, 180 - equipHeight, 20, equipHeight);
-            
-            equipCtx.fillStyle = 'black';
-            equipCtx.fillText(category.base + '%', x - 15, 195);
-            equipCtx.fillText(category.equipped + '%', x + 15, 195);
-            equipCtx.fillText(category.name, x, 215);
-        });
-        
-        equipCtx.fillText('Base (Gray) vs Equipped (Color) Effectiveness', 250, 30);
-
-        // Advanced Positioning Grid
-        const posCanvas = document.getElementById('dwarfPositioningCanvas');
-        const posCtx = posCanvas.getContext('2d');
-        
-        posCtx.clearRect(0, 0, 400, 400);
-        
-        // Draw grid
-        for(let i = 0; i <= 8; i++) {
-            posCtx.strokeStyle = '#CCC';
-            posCtx.beginPath();
-            posCtx.moveTo(i * 50, 0);
-            posCtx.lineTo(i * 50, 400);
-            posCtx.stroke();
-            
-            posCtx.beginPath();
-            posCtx.moveTo(0, i * 50);
-            posCtx.lineTo(400, i * 50);
-            posCtx.stroke();
+        txt(x, 'Each square is one die or one point.', W / 2, 220, { size: 13, color: MUTED, align: 'center' });
+    }
+    // Horizontal bar chart of probabilities (0-1). o: {title, labelW, rows:[{label, vals:[]}], series:[{name, color}], note}
+    function hbars(id, o) {
+        var x = fig(id); if (!x) return;
+        var W = x.canvas.width, n = o.series.length, bh = 14;
+        var labW = o.labelW || 100, x0 = labW + 10, x1 = W - 52;
+        var block = n * bh + (n - 1) * 3, rowH = block + 12;
+        txt(x, o.title, W / 2, 22, { bold: 1, align: 'center', size: 15 });
+        var y = 38;
+        if (n > 1) {
+            var lx = 12;
+            o.series.forEach(function (s) {
+                x.fillStyle = s.color; x.fillRect(lx, y, 12, 12);
+                txt(x, s.name, lx + 17, y + 11, { size: 13 });
+                lx += 17 + x.measureText(s.name).width + 18;
+            });
+            y += 24;
         }
-        
-        // Draw walls
-        posCtx.fillStyle = '#654321';
-        posCtx.fillRect(0, 150, 150, 50);
-        posCtx.fillRect(250, 150, 150, 50);
-        posCtx.fillRect(100, 250, 200, 50);
-        
-        // Draw traps (red X)
-        posCtx.strokeStyle = '#FF0000';
-        posCtx.lineWidth = 3;
-        posCtx.beginPath();
-        posCtx.moveTo(175, 175);
-        posCtx.lineTo(225, 225);
-        posCtx.moveTo(225, 175);
-        posCtx.lineTo(175, 225);
-        posCtx.stroke();
-        
-        // Draw treasure (gold star)
-        posCtx.fillStyle = '#FFD700';
-        posCtx.beginPath();
-        posCtx.moveTo(350, 300);
-        posCtx.lineTo(360, 320);
-        posCtx.lineTo(380, 320);
-        posCtx.lineTo(365, 335);
-        posCtx.lineTo(370, 355);
-        posCtx.lineTo(350, 345);
-        posCtx.lineTo(330, 355);
-        posCtx.lineTo(335, 335);
-        posCtx.lineTo(320, 320);
-        posCtx.lineTo(340, 320);
-        posCtx.closePath();
-        posCtx.fill();
-        
-        // Draw Dwarf position
-        posCtx.fillStyle = '#8B4513';
-        posCtx.fillRect(175, 125, 25, 25);
-        posCtx.fillStyle = 'white';
-        posCtx.font = '12px Arial';
-        posCtx.textAlign = 'center';
-        posCtx.fillText('D', 187, 140);
-        
-        // Draw party members
-        posCtx.fillStyle = '#666';
-        posCtx.fillRect(125, 125, 20, 20);
-        posCtx.fillRect(225, 125, 20, 20);
-        posCtx.fillRect(150, 100, 20, 20);
-        
-        posCtx.fillStyle = 'white';
-        posCtx.font = '10px Arial';
-        posCtx.fillText('B', 135, 138);
-        posCtx.fillText('W', 235, 138);
-        posCtx.fillText('E', 160, 113);
-        
-        posCtx.fillStyle = 'black';
-        posCtx.font = '12px Arial';
-        posCtx.fillText('Dwarf Scouting: Detect Traps, Find Treasure', 200, 20);
-        posCtx.fillText('Red X = Detected Trap, Gold Star = Hidden Treasure', 200, 380);
-
-        // Party Synergy Chart
-        const synergyCanvas = document.getElementById('partySynergyCanvas');
-        const synergyCtx = synergyCanvas.getContext('2d');
-        
-        synergyCtx.clearRect(0, 0, 500, 300);
-        synergyCtx.font = '12px Arial';
-        synergyCtx.textAlign = 'center';
-        
-        const partyCombs = [
-            {combo: 'Dwarf Solo', effectiveness: 60, color: '#FF6B6B'},
-            {combo: 'Dwarf + Barbarian', effectiveness: 85, color: '#4ECDC4'},
-            {combo: 'Dwarf + Wizard', effectiveness: 80, color: '#96CEB4'},
-            {combo: 'Dwarf + Elf', effectiveness: 75, color: '#FFEAA7'},
-            {combo: 'Full Party', effectiveness: 95, color: '#98FB98'}
-        ];
-        
-        partyCombs.forEach((combo, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (combo.effectiveness / 100) * 200;
-            
-            synergyCtx.fillStyle = combo.color;
-            synergyCtx.fillRect(x - 25, 250 - barHeight, 50, barHeight);
-            
-            synergyCtx.fillStyle = 'black';
-            synergyCtx.fillText(combo.effectiveness + '%', x, 235 - barHeight);
-            synergyCtx.save();
-            synergyCtx.translate(x, 270);
-            synergyCtx.rotate(-Math.PI / 4);
-            synergyCtx.fillText(combo.combo, 0, 0);
-            synergyCtx.restore();
+        var top = y, bottom = top + o.rows.length * rowH;
+        [0, 0.25, 0.5, 0.75, 1].forEach(function (t) {
+            var gx = x0 + t * (x1 - x0);
+            x.strokeStyle = GRID; x.lineWidth = 1;
+            x.beginPath(); x.moveTo(gx, top - 2); x.lineTo(gx, bottom); x.stroke();
+            txt(x, Math.round(t * 100) + '%', gx, bottom + 15, { size: 12, color: MUTED, align: 'center' });
         });
-        
-        synergyCtx.fillText('Party Combination Effectiveness', 250, 30);
+        o.rows.forEach(function (r, i) {
+            var ry = top + i * rowH + 6;
+            txt(x, r.label, labW, ry + block / 2 + 5, { size: 13, align: 'right' });
+            r.vals.forEach(function (v, k) {
+                var by = ry + k * (bh + 3);
+                x.fillStyle = o.series[k].color;
+                x.fillRect(x0, by, Math.max(2, v * (x1 - x0)), bh);
+                txt(x, (v * 100 + 1e-9).toFixed(1) + '%', x0 + v * (x1 - x0) + 4, by + 12, { size: 12 });
+            });
+        });
+        if (o.note) txt(x, o.note, W / 2, bottom + 34, { size: 12, color: MUTED, align: 'center' });
+    }
+    // Board helpers: square grid, wall squares, round tokens.
+    function board(x, ox, oy, cols, rows, s, walls) {
+        x.fillStyle = '#fbf8f2'; x.fillRect(ox, oy, cols * s, rows * s);
+        x.strokeStyle = GRID; x.lineWidth = 1;
+        for (var i = 0; i <= cols; i++) { x.beginPath(); x.moveTo(ox + i * s, oy); x.lineTo(ox + i * s, oy + rows * s); x.stroke(); }
+        for (var j = 0; j <= rows; j++) { x.beginPath(); x.moveTo(ox, oy + j * s); x.lineTo(ox + cols * s, oy + j * s); x.stroke(); }
+        x.fillStyle = '#5b4632';
+        (walls || []).forEach(function (w) { x.fillRect(ox + w[0] * s, oy + w[1] * s, s, s); });
+    }
+    function token(x, ox, oy, s, c, r, letter, color, square) {
+        var cx = ox + c * s + s / 2, cy = oy + r * s + s / 2, rad = s * 0.36;
+        x.fillStyle = color;
+        if (square) x.fillRect(cx - rad, cy - rad, rad * 2, rad * 2);
+        else { x.beginPath(); x.arc(cx, cy, rad, 0, Math.PI * 2); x.fill(); }
+        txt(x, letter, cx, cy + 5, { bold: 1, size: 14, color: '#ffffff', align: 'center' });
+    }
+    function sight(x, ox, oy, s, a, b, ok) {
+        x.save();
+        x.strokeStyle = ok ? '#1e6b34' : '#b3261e'; x.lineWidth = 2.5;
+        if (!ok) x.setLineDash([6, 5]);
+        x.beginPath();
+        x.moveTo(ox + a[0] * s + s / 2, oy + a[1] * s + s / 2);
+        x.lineTo(ox + b[0] * s + s / 2, oy + b[1] * s + s / 2);
+        x.stroke(); x.restore();
+    }
+    // 2d6 movement distribution (exact: n/36).
+    function moveDist(id) {
+        var x = fig(id); if (!x) return;
+        var W = x.canvas.width, H = x.canvas.height;
+        var ways = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1];
+        txt(x, 'Two red dice: chance of each total', W / 2, 22, { bold: 1, align: 'center', size: 15 });
+        var x0 = 14, cw = (W - 28) / 11, base = H - 52, mh = base - 62;
+        ways.forEach(function (v, i) {
+            var h = v / 6 * mh, bx = x0 + i * cw;
+            x.fillStyle = i + 2 === 7 ? '#1f4fa8' : '#6d8fc4';
+            x.fillRect(bx + 4, base - h, cw - 8, h);
+            txt(x, (v / 36 * 100 + 1e-9).toFixed(1), bx + cw / 2, base - h - 5, { size: 12, align: 'center' });
+            txt(x, String(i + 2), bx + cw / 2, base + 17, { bold: 1, size: 13, align: 'center' });
+        });
+        x.strokeStyle = INK; x.lineWidth = 1; x.beginPath(); x.moveTo(x0, base); x.lineTo(W - x0, base); x.stroke();
+        txt(x, 'Squares you may move (top numbers: % chance)', W / 2, H - 12, { size: 13, color: MUTED, align: 'center' });
+    }
+        heroStats('dwarfStatsCanvas', 'Dwarf');
+
+        hbars('dwarfTrapCanvas', {
+            title: 'Chance to get past a found trap',
+            labelW: 150,
+            series: [{ name: 'chance', color: '#8a4b08' }],
+            rows: [
+                { label: 'Dwarf disarms', vals: [5 / 6] },
+                { label: 'Tool Kit disarm', vals: [0.5] },
+                { label: 'Jump the trap', vals: [0.5] }
+            ],
+            note: 'Dwarf: fails only on a black shield. Others: any non-skull.'
+        });
+
+        hbars('dwarfOddsCanvas', {
+            title: 'Dwarf (2 attack dice): chance to destroy',
+            labelW: 100,
+            series: [{ name: 'in one attack', color: '#8a4b08' }, { name: 'within two attacks', color: '#d9a066' }],
+            rows: [
+                { label: 'Goblin', vals: [0.6667, 0.8889] },
+                { label: 'Orc', vals: [0.5903, 0.8321] },
+                { label: 'Skeleton', vals: [0.5903, 0.8321] },
+                { label: 'Zombie', vals: [0.5208, 0.7704] },
+                { label: 'Abomination', vals: [0.1447, 0.4099] },
+                { label: 'Mummy', vals: [0.1206, 0.3405] },
+                { label: 'Dread Warrior', vals: [0, 0.0959] },
+                { label: 'Gargoyle', vals: [0, 0.0707] }
+            ],
+            note: 'Exact odds; monster stats from the classic 1990 chart.'
+        });
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_barbarian_tutorial.html">The Barbarian</a>
+    <a class="next" href="/heroquest_elf_tutorial.html">The Elf</a>
 </div>
+    <p class="closing-quote">The Dwarf rarely gets the big kill, but a party that walks home without falling into a single pit usually has one to thank.</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

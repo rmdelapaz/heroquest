@@ -3,646 +3,319 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Spells, Magic, and Mystical Arts</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Magic &amp; Spells - The HeroQuest Guide</title>
+    <meta name="description" content="HeroQuest magic explained: the Air, Earth, Fire and Water schools, the spell draft between Elf and Wizard, once-per-quest casting, and Zargon's Dread spells.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
     <style>
-    /* ── Callout boxes (page-specific, not in main.css) ── */
-    .magic-principle, .mystical-box, .grimoire-entry {
-      background: var(--accent-muted);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 1rem 0;
-      color: var(--text);
-    }
+        /* ── Spell draft lab ── */
+        .lab-step { margin: 0.8rem 0 0.4rem; font-weight: 700; color: var(--heading); }
+        .school-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 0.4rem 0 0.8rem; }
+        .school-btns button, .lab-actions button {
+            padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border-strong);
+            background: var(--surface); color: var(--text); font: inherit; cursor: pointer;
+        }
+        .school-btns button:hover, .lab-actions button:hover { border-color: var(--accent); }
+        .school-btns button:disabled { cursor: default; background: var(--surface-2); color: var(--muted); text-decoration: line-through; }
+        .spell-hand { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin: 0.4rem 0 1rem; }
+        .spell-tile {
+            text-align: left; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border-strong);
+            background: var(--surface); color: var(--text); font: inherit; cursor: pointer; line-height: 1.3;
+        }
+        .spell-tile small { display: block; color: var(--muted); }
+        .spell-tile.spent { background: var(--surface-2); color: var(--muted); text-decoration: line-through; }
+        .lab-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 0.6rem; }
+        .lab-output { margin-top: 0.8rem; }
 
-    /* ── Spell matrix grid ── */
-    .spell-matrix {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-      gap: 12px;
-      margin: 1rem 0;
-    }
-
-    /* ── Spell rune buttons ── */
-    .spell-rune {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      margin: 0 auto;
-      font-size: 28px;
-      background: rgba(75, 0, 130, 0.4);
-      border: 2px solid #9370db;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      user-select: none;
-    }
-    .spell-rune:hover {
-      transform: scale(1.15);
-      box-shadow: 0 0 14px rgba(147, 112, 219, 0.6);
-      background: rgba(75, 0, 130, 0.7);
-    }
-    .spell-rune.active {
-      transform: scale(1.3);
-      box-shadow: 0 0 22px rgba(221, 160, 221, 0.9);
-      background: rgba(138, 43, 226, 0.8);
-    }
-    .spell-rune.spent {
-      opacity: 0.3;
-      border-color: #555;
-      background: rgba(50, 50, 50, 0.4);
-      cursor: not-allowed;
-      transform: scale(0.9);
-      box-shadow: none;
-      filter: grayscale(1);
-    }
-    .spell-rune.spent:hover {
-      transform: scale(0.9);
-      box-shadow: none;
-      background: rgba(50, 50, 50, 0.4);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .spell-matrix { grid-template-columns: repeat(4, 1fr); gap: 8px; }
-      .spell-rune { width: 50px; height: 50px; font-size: 22px; }
-    }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔮 Spells, Magic, and Mystical Arts ✨</h1>
-        
-        <div class="magic-principle">
-            <h2>🌟 The Essence of Magic: Power and Responsibility</h2>
-            <p><strong>Magic in HeroQuest is like being a symphony conductor with a finite orchestra!</strong> Each spell is a powerful instrument that can change the course of battle, but you only get to use each musician a limited number of times. The art lies not just in knowing what each spell does, but in knowing WHEN to use it for maximum dramatic impact.</p>
-            
-            <p><strong>Real-world analogy:</strong> Think of spells like a master chef's secret ingredients. A pinch of rare saffron can transform a dish, but you don't waste it on everyday cooking. Save your best spells for moments that matter most - the dramatic boss fights, the desperate last stands, the heroic rescues!</p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Magic &amp; Spells</h1>
+        <p>How spells work in HeroQuest: the four elemental schools, the spell draft between the Elf and the Wizard, once-per-quest casting, and Zargon's Dread spells.</p>
+    </header>
 
-        <h2>🎭 The Three Schools of Magical Thinking</h2>
-        
-        <div class="mermaid">
-            graph TD
-                A[Mystical Arts] --> B[Offensive Magic]
-                A --> C[Defensive Magic]
-                A --> D[Utility Magic]
-                
-                B --> B1[Direct Damage]
-                B --> B2[Area Effects]
-                B --> B3[Elemental Forces]
-                
-                C --> C1[Healing Arts]
-                C --> C2[Protection Wards]
-                C --> C3[Defensive Barriers]
-                
-                D --> D1[Movement Enhancement]
-                D --> D2[Perception Spells]
-                D --> D3[Environmental Control]
-                
-                style A fill:#dda0dd,stroke:#333,stroke-width:3px
-                style B fill:#ff4500,stroke:#333,stroke-width:2px
-                style C fill:#32cd32,stroke:#333,stroke-width:2px
-                style D fill:#4169e1,stroke:#333,stroke-width:2px
-        </div>
+    <main id="main">
+<section>
+<h2>How Magic Works</h2>
+<p>Among the four core heroes, only the <strong>Elf</strong> and the <strong>Wizard</strong> cast spells. Hero spells come in four elemental schools, <strong>Air, Earth, Fire and Water</strong>, with three spell cards in each: twelve in all.</p>
+<ul>
+    <li><strong>Casting is your action</strong> for the turn, so you can move and cast, or cast and move, but not attack as well.</li>
+    <li>You need <strong>line of sight</strong> to the target, which can be yourself, another hero or a monster.</li>
+    <li><strong>Each spell can be cast once per quest.</strong> After casting, the card is set aside until the quest ends.</li>
+    <li><strong>Spells come back between quests,</strong> along with Body and Mind Points, after a successful quest.</li>
+</ul>
+<p>Spells aren't fuel to be saved for a final battle. They are twelve one-shot answers per quest, renewed every time you get home.</p>
+</section>
 
-        <h2>📚 The Wizard's Grimoire: Spell Compendium</h2>
-        
-        <div class="spell-card">
-            <h3>⚡ Ball of Flame</h3>
-            <p><strong>Type:</strong> Offensive Ranged</p>
-            <p><strong>Effect:</strong> 3 combat dice damage</p>
-            <p><strong>Best Used:</strong> Against clustered weak enemies</p>
-            <p><strong>Theatrical Moment:</strong> "You gather crackling energy in your palms, and with a dramatic gesture, unleash a roaring sphere of fire that illuminates the entire chamber!"</p>
-        </div>
+<section>
+<h2>The Spell Draft</h2>
+<p>Before each quest the two casters split the schools:</p>
+<div class="mermaid">
+flowchart TD
+    A["Wizard picks one school"] --> B["Elf picks one of the other three"]
+    B --> C["Wizard takes the last two"]
+    C --> D["Wizard: 9 spells from 3 schools"]
+    C --> E["Elf: 3 spells from 1 school"]
+</div>
+<p>For a first game the rulebook suggests the Wizard take <strong>Fire</strong> and the Elf <strong>Earth</strong>, which leaves Air and Water to the Wizard as well. Because the Elf always ends up with whichever school they choose, the real question at the table is which school the party most wants in the Elf's hands: the Elf has more Body Points and can fight, so a healing school there keeps healing alive if the Wizard falls.</p>
+</section>
 
-        <div class="spell-card">
-            <h3>💨 Wind of Magic</h3>
-            <p><strong>Type:</strong> Utility Movement</p>
-            <p><strong>Effect:</strong> Move without triggering wandering monsters</p>
-            <p><strong>Best Used:</strong> Strategic repositioning</p>
-            <p><strong>Theatrical Moment:</strong> "Mystical winds swirl around you, lifting you silently through the shadows like a ghost through the night!"</p>
-        </div>
+<section>
+<h2>The Twelve Hero Spells</h2>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> the names and effects below come from the classic North American spell cards. The 2021 cards use the same four schools of three; check your own cards for exact wording, since this guide hasn't verified every 2021 card line by line.</p>
+</div>
+<div class="spell-card">
+<h3>Air</h3>
+<ul>
+    <li><strong>Swift Wind:</strong> speeds up one hero's next move.</li>
+    <li><strong>Tempest:</strong> a whirlwind surrounds one monster, which misses its next turn.</li>
+    <li><strong>Genie:</strong> a genie either opens any door on the board, revealing what lies beyond, or attacks one monster in line of sight with <strong>5 combat dice</strong>.</li>
+</ul>
+</div>
+<div class="spell-card">
+<h3>Earth</h3>
+<ul>
+    <li><strong>Heal Body:</strong> one hero (you included) regains up to 4 lost Body Points, never above their starting total.</li>
+    <li><strong>Rock Skin:</strong> one hero rolls 1 extra Defend die until they next lose a Body Point.</li>
+    <li><strong>Pass Through Rock:</strong> on their next move, one hero may move through walls. Ending the move inside solid rock traps them forever.</li>
+</ul>
+</div>
+<div class="spell-card">
+<h3>Fire</h3>
+<ul>
+    <li><strong>Fire of Wrath:</strong> deals 1 Body Point to one monster, unless it rolls a 5 or 6 on one red die.</li>
+    <li><strong>Courage:</strong> one hero rolls 2 extra Attack dice on their next attack. The spell breaks as soon as that hero can no longer see a monster.</li>
+    <li><strong>Ball of Flame:</strong> deals 2 Body Points to one monster; it then rolls two red dice, and each 5 or 6 cancels 1 point.</li>
+</ul>
+</div>
+<div class="spell-card">
+<h3>Water</h3>
+<ul>
+    <li><strong>Water of Healing:</strong> one hero regains up to 4 lost Body Points, never above their starting total.</li>
+    <li><strong>Sleep:</strong> one monster falls asleep and can't move, attack or defend. It can break the spell at once or on a later turn by rolling one red die per Mind Point and getting a 6. Doesn't work on Skeletons, Zombies or Mummies.</li>
+    <li><strong>Veil of Mist:</strong> on their next move, one hero may pass unseen through squares occupied by monsters.</li>
+</ul>
+</div>
+</section>
 
-        <div class="spell-card">
-            <h3>💎 Rock Skin</h3>
-            <p><strong>Type:</strong> Defensive Enhancement</p>
-            <p><strong>Effect:</strong> +1 defend dice for duration</p>
-            <p><strong>Best Used:</strong> Before entering dangerous areas</p>
-            <p><strong>Theatrical Moment:</strong> "Your skin takes on the appearance of living granite, each muscle becoming as hard as mountain stone!"</p>
-        </div>
+<section>
+<h2>The Numbers Behind the Spells</h2>
+<p>Using the classic card effects above:</p>
+<div class="table-container">
+<table>
+<thead><tr><th>Spell</th><th>Result</th><th>Chance</th></tr></thead>
+<tbody>
+<tr><td>Fire of Wrath</td><td>Deals its 1 Body Point</td><td>66.7%</td></tr>
+<tr><td rowspan="3">Ball of Flame</td><td>Deals 2 Body Points</td><td>44.4%</td></tr>
+<tr><td>Deals 1 Body Point</td><td>44.4%</td></tr>
+<tr><td>Deals nothing</td><td>11.1%</td></tr>
+<tr><td>Genie (attack)</td><td>Wounds a monster with 4 Defend dice</td><td>84.1%</td></tr>
+<tr><td>Heal Body / Water of Healing</td><td>Restore up to 4 Body Points</td><td>certain</td></tr>
+</tbody>
+</table>
+</div>
+<p>Ball of Flame averages 1.33 Body Points and ignores Defend dice entirely, which is why it shines against high-defense monsters. For comparison, the Barbarian's 3 Attack dice wound a 4-Defend monster only 62.9% of the time.</p>
+<p>Sleep depends on the target's Mind. Each roll to break it succeeds 16.7% of the time against a 1-Mind monster, 30.6% at 2 Mind, 42.1% at 3 Mind and 51.8% at 4 Mind (Goblin, Orc, Dread Warrior and Gargoyle on the classic chart). Use it on high-attack, low-Mind targets, and plan to kill the sleeper quickly: it can't defend while asleep.</p>
+</section>
 
-        <div class="spell-card">
-            <h3>🌟 Healing</h3>
-            <p><strong>Type:</strong> Restorative Magic</p>
-            <p><strong>Effect:</strong> Restore 1d6 Body Points</p>
-            <p><strong>Best Used:</strong> Emergency situations</p>
-            <p><strong>Theatrical Moment:</strong> "Golden light flows from your hands, mending wounds and restoring vitality as life force surges through damaged flesh!"</p>
-        </div>
-
-        <h2>🧙‍♂️ Interactive Spell Laboratory</h2>
-        
-        <div class="mystical-box">
-            <p><strong>Practice your magical timing!</strong> In HeroQuest, each spell is a one-use card — once you cast it, it's gone for the rest of the quest. Click a spell card to cast it and watch your options shrink. Choose wisely!</p>
-            
-            <p style="text-align: center;"><strong>Spell Cards Remaining: <span id="spells_remaining">8</span> / 8</strong></p>
-            
-            <div class="spell-matrix" id="spell_matrix">
-                <!-- Spell cards will be populated by JavaScript -->
-            </div>
-            
-            <div id="spell_result" style="margin-top: 20px; padding: 15px; background: rgba(138, 43, 226, 0.1); border-radius: 10px; min-height: 60px;">
-                <strong>Spell Cards Ready:</strong> Choose a spell to cast — but remember, each card can only be used once per quest!
-            </div>
-
-            <button id="new_quest_btn" style="display:block; margin:1rem auto 0; padding:10px 24px; background:#9370db; color:#fff; border:none; border-radius:8px; font-size:1rem; cursor:pointer; transition: background 0.2s;">🏰 New Quest (Reset Spells)</button>
-        </div>
-
-        <h2>🎪 The Art of Spell Timing</h2>
-        
-        <div class="canvas-container">
-            <h3>Spell Timing</h3>
-            <canvas id="spell_timing_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="magic-principle">
-            <h3>⏰ The Theater Director's Approach</h3>
-            <p><strong>Great spellcasting is like directing a blockbuster movie - it's all about timing and dramatic impact!</strong></p>
-            
-            <p><strong>🎬 Act I - Setup Spells:</strong> Cast protective and enhancement spells before danger</p>
-            <p><strong>🎬 Act II - Combat Spells:</strong> Use offensive magic when it creates maximum drama</p>
-            <p><strong>🎬 Act III - Resolution Spells:</strong> Save healing and escape spells for climactic moments</p>
-            
-            <p><strong>The "Movie Magic" Rule:</strong> Ask yourself - "If this were a movie scene, when would the spell have the biggest WOW factor?" That's when you cast it!</p>
-        </div>
-
-        <h2>🔥 Advanced Spellcasting Techniques</h2>
-        
-        <div class="grimoire-entry">
-            <h3>🎯 The Precision Strike Method</h3>
-            <p><strong>Like a sniper choosing the perfect shot:</strong></p>
-            <ul>
-                <li>Wait for enemies to cluster before using area spells</li>
-                <li>Target the most dangerous enemy with single-target spells</li>
-                <li>Use positioning to maximize spell effectiveness</li>
-                <li>Coordinate with teammates for combination attacks</li>
-            </ul>
-            
-            <h3>🛡️ The Insurance Policy Approach</h3>
-            <p><strong>Like a wise investor diversifying their portfolio:</strong></p>
-            <ul>
-                <li>Always keep one healing spell in reserve</li>
-                <li>Cast defensive spells BEFORE you need them</li>
-                <li>Save escape spells for true emergencies</li>
-                <li>Don't use all spells in the first encounter</li>
-            </ul>
-        </div>
-
-        <h2>⚗️ Spell Synergy and Combinations</h2>
-        
-        <div class="canvas-container">
-            <h3>Spell Synergy</h3>
-            <canvas id="spell_synergy_canvas" width="600" height="350"></canvas>
-        </div>
-        
-        <div class="mystical-box">
-            <h3>🔗 Magical Harmony Principles</h3>
-            <p><strong>Some spells work together like ingredients in a master chef's recipe:</strong></p>
-            
-            <p><strong>🔥 + 💨 Fire + Wind:</strong> Cast Ball of Flame after Wind of Magic for surprise positioning</p>
-            <p><strong>💎 + ⚔️ Rock Skin + Combat:</strong> Enhanced defense makes aggressive tactics safer</p>
-            <p><strong>🌟 + 🛡️ Healing + Protection:</strong> Heal first, then protect to prevent re-damage</p>
-            <p><strong>⚡ + 🎯 Area Damage + Positioning:</strong> Use movement to line up multiple targets</p>
-        </div>
-
-        <h2>🎭 Roleplaying Your Magic</h2>
-        
-        <div class="spell-card">
-            <h3>🎨 The Method Actor Approach</h3>
-            <p><strong>Each spell should feel different - like playing different characters in a play:</strong></p>
-            
-            <p><strong>🔥 Fire Magic:</strong> Speak with passion, gesture dramatically, invoke heat and flame</p>
-            <p><strong>💨 Wind Magic:</strong> Use flowing movements, speak of air and freedom</p>
-            <p><strong>💎 Earth Magic:</strong> Ground yourself, speak of strength and endurance</p>
-            <p><strong>🌟 Divine Magic:</strong> Look upward, speak reverently of light and healing</p>
-        </div>
-
-        <div class="spell-card">
-            <h3>🗣️ Incantation Examples</h3>
-            <p><strong>Transform simple spell names into magical moments:</strong></p>
-            
-            <p><strong>❌ Boring:</strong> "I cast Ball of Flame"</p>
-            <p><strong>✅ Epic:</strong> "By the ancient fires of the dragon lords, I summon forth the burning sphere of destruction!"</p>
-            
-            <p><strong>❌ Boring:</strong> "I cast Healing"</p>
-            <p><strong>✅ Epic:</strong> "Sacred light of restoration, flow through my hands and mend what has been broken!"</p>
-        </div>
-
-        <h2>🏰 Environmental Magic Mastery</h2>
-        
-        <div class="grimoire-entry">
-            <h3>🌍 Reading the Magical Landscape</h3>
-            <p><strong>Every room tells a story about what magic will work best:</strong></p>
-            
-            <p><strong>🏃 Narrow Corridors:</strong> Perfect for area-effect spells that hit multiple enemies in a line</p>
-            <p><strong>🏛️ Large Chambers:</strong> Ideal for movement spells and tactical repositioning</p>
-            <p><strong>🕳️ Trapped Areas:</strong> Use utility spells to bypass dangers safely</p>
-            <p><strong>🚪 Doorway Chokes:</strong> Cast defensive spells before entering unknown areas</p>
-            <p><strong>💰 Treasure Rooms:</strong> Save offensive spells - treasure is often guarded!</p>
-        </div>
-
-        <h2>🎲 The Mathematics of Magic</h2>
-        
-        <div class="canvas-container">
-            <h3>Magic Probability</h3>
-            <canvas id="magic_probability_canvas" width="600" height="250"></canvas>
-        </div>
-        
-        <div class="magic-principle">
-            <h3>📊 The Statistician Wizard</h3>
-            <p><strong>Understanding spell mathematics makes you a more effective caster:</strong></p>
-            
-            <p><strong>⚔️ Damage Spell Efficiency:</strong></p>
-            <ul>
-                <li>3 dice spells: Average 1-2 damage, Maximum 3 damage</li>
-                <li>Best against enemies with 1-2 Body Points</li>
-                <li>Less efficient against heavily armored foes</li>
-            </ul>
-            
-            <p><strong>🌟 Healing Spell Value:</strong></p>
-            <ul>
-                <li>1d6 healing: Average 3.5 Body Points restored</li>
-                <li>Most valuable when hero is at 1-2 Body Points</li>
-                <li>Consider the cost vs. drinking a healing potion</li>
-            </ul>
-        </div>
-
-        <h2>🧝‍♀️ The Elf's Magical Arsenal</h2>
-        
-        <div class="mystical-box">
-            <h3>🎯 Elven Spellcasting Strategy</h3>
-            <p><strong>The Elf is like a Swiss Army knife wizard - versatile but limited:</strong></p>
-            
-            <p><strong>🎪 Early Game Strategy:</strong> Use spells to gain tactical advantages</p>
-            <p><strong>⚔️ Mid Game Strategy:</strong> Balance spellcasting with physical combat</p>
-            <p><strong>🏆 End Game Strategy:</strong> Save best spells for the final boss encounter</p>
-            
-            <p><strong>The "Ace in the Hole" Principle:</strong> Always keep one powerful spell unused until you absolutely need it - like keeping a trump card in your hand!</p>
-        </div>
-
-        <h2>🎪 Magical Item Integration</h2>
-        
-        <div class="grimoire-entry">
-            <h3>⚡ Artifacts and Enchanted Equipment</h3>
-            <p><strong>Magical items are like having extra spell slots - use them wisely!</strong></p>
-            
-            <p><strong>🗡️ Weapon Enchantments:</strong> Complement your spells with magical weapons</p>
-            <p><strong>🛡️ Protective Talismans:</strong> Stack with defensive spells for ultimate protection</p>
-            <p><strong>💍 Utility Rings:</strong> Provide ongoing benefits that free up spell choices</p>
-            <p><strong>📜 Scrolls and Potions:</strong> Emergency backup magic when spells are exhausted</p>
-        </div>
-
-        <h2>🚨 Crisis Magic: Emergency Spellcasting</h2>
-        
-        <div class="magic-principle">
-            <h3>🚑 The Emergency Room Approach</h3>
-            <p><strong>Sometimes you need magical triage - quick decisions about who to save and how:</strong></p>
-            
-            <p><strong>🩺 Priority 1 - Life or Death:</strong> Use healing spells to prevent character death</p>
-            <p><strong>⚔️ Priority 2 - Combat Critical:</strong> Use offensive spells to eliminate immediate threats</p>
-            <p><strong>🏃 Priority 3 - Tactical Escape:</strong> Use utility spells to reposition or retreat</p>
-            
-            <p><strong>The "Hail Mary" Rule:</strong> When everything goes wrong, sometimes a desperate magical gamble is better than certain defeat!</p>
-        </div>
-
-        <h2>🎯 Advanced Magical Scenarios</h2>
-        
-        <div class="mystical-box">
-            <h3>🧩 Spellcaster's Dilemmas</h3>
-            
-            <p><strong>🔥 Scenario 1: The Overwhelming Horde</strong></p>
-            <p><em>6 Goblins surround your party, but you only have 2 spells left</em></p>
-            <p><strong>Question:</strong> Do you use Ball of Flame for area damage, or save spells for the boss ahead?</p>
-            
-            <p><strong>💔 Scenario 2: The Fallen Hero</strong></p>
-            <p><em>Your Barbarian is at 1 Body Point, but the Wizard is unconscious</em></p>
-            <p><strong>Question:</strong> Who do you heal first, and why?</p>
-            
-            <p><strong>🏰 Scenario 3: The Unknown Door</strong></p>
-            <p><em>You hear boss music beyond a door, but you've used half your spells</em></p>
-            <p><strong>Question:</strong> Do you rest and risk reinforcements, or charge in with limited magic?</p>
-        </div>
-
-        <h2>🌟 Creating Magical Moments</h2>
-        
-        <div class="grimoire-entry">
-            <h3>🎬 The Cinematic Spellcaster</h3>
-            <p><strong>Every spell should feel like a movie's special effects scene:</strong></p>
-            
-            <p><strong>📸 Pre-Spell Setup:</strong> Describe gathering magical energy</p>
-            <p><strong>⚡ The Casting:</strong> Make gestures, speak incantations, build tension</p>
-            <p><strong>💥 The Effect:</strong> Describe the visual and audio spectacle</p>
-            <p><strong>🎭 The Aftermath:</strong> Show the impact on enemies and environment</p>
-            
-            <p><strong>Remember:</strong> You're not just rolling dice - you're creating magic that would make Disney jealous!</p>
-        </div>
-
-        <h2>🎯 Practice Challenges</h2>
-        
-        <div class="mystical-box">
-            <h3>🏆 Magical Mastery Tests</h3>
-            
-            <p><strong>📚 Challenge 1: Spell Conservation</strong></p>
-            <p>Complete a quest using only 3 spells total. Which spells do you choose and when?</p>
-            
-            <p><strong>⚔️ Challenge 2: Combat Wizard</strong></p>
-            <p>Play an Elf who only uses offensive spells. How do you handle healing and defense?</p>
-            
-            <p><strong>🛡️ Challenge 3: Support Caster</strong></p>
-            <p>Play an Elf who never uses direct damage spells. How do you contribute to combat?</p>
-        </div>
-
-        <h2>🌟 Next Adventure Preview</h2>
-        
-        <p>In our next lecture, we'll explore <strong>"Treasure, Equipment, and Character Progression"</strong> - diving into the reward systems that keep heroes motivated, equipment strategies, and how to create satisfying character growth that makes every adventure feel like progress toward legendary status!</p>
-        
-        <div class="magic-principle">
-            <p><strong>Remember:</strong> Magic in HeroQuest isn't just about mechanical effects - it's about creating moments of wonder, turning the tide of battle, and making players feel like true masters of mystical arts. Every spell is an opportunity to create a story that will be retold for years to come!</p>
-        </div>
+<section>
+<h2>Spell Draft Lab</h2>
+<p>Run a draft, then cast spells from each hand. Every card can be used once; <em>New quest</em> brings them all back, just as the rules do.</p>
+<div class="tool-panel" id="spell_lab">
+    <p class="lab-step" id="lab_step">Step 1: the Wizard picks a school.</p>
+    <div class="school-btns" id="school_btns"></div>
+    <div id="hands"></div>
+    <div class="lab-actions">
+        <button type="button" id="new_quest_btn">New quest (spells return)</button>
+        <button type="button" id="redraft_btn">Start the draft again</button>
     </div>
+    <div class="lab-output callout callout-edge" id="spell_result" aria-live="polite"><p>Pick the Wizard's first school.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Using Spells Well</h2>
+<ul>
+    <li><strong>Healing is insurance.</strong> A hero at 0 Body Points survives only by healing at once. Keep one healing spell (or a potion) unspent while anyone is in the front line.</li>
+    <li><strong>Mind the draft before special quests.</strong> In the core Quest Book, Balur the Fire Mage can't be harmed by fire magic, so a Wizard holding only Fire for damage is in trouble there.</li>
+    <li><strong>Sleep isn't for undead.</strong> Skeletons, Zombies and Mummies ignore it.</li>
+    <li><strong>Line of sight runs through people.</strong> Your own Barbarian blocks the Wizard's view down a corridor, so cast before he steps forward, or from a side angle.</li>
+    <li><strong>Courage needs a target right now.</strong> Its bonus disappears once the hero can't see a monster, so cast it when the fight is already on.</li>
+    <li><strong>Pass Through Rock is a scouting and escape tool,</strong> but read the quest map warning: solid rock is deadly.</li>
+</ul>
+</section>
+
+<section>
+<h2>Zargon's Dread Spells</h2>
+<p>Zargon has a deck of <strong>12 Dread spells</strong>. They aren't cast freely: the quest notes say which monsters or villains carry which spells, and some Dread spell cards are only used in quest packs or custom quests. A monster casting a spell uses its action for the turn, just as a hero does.</p>
+<p>Mind Points are a hero's defense against this magic. Barbarians with 2 Mind are the most exposed; Wizards with 6 the least.</p>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> the North American game introduced "Chaos" spells for Zargon (the European original had none). They included Summon Undead, Summon Orcs, Escape, Tempest, Command, Fear, Sleep, Firestorm and Ball of Flame, plus Rust, Cloud of Chaos and Lightning Bolt. Heroes could shake off effects such as Sleep, Fear and Command by rolling one red die per Mind Point and getting a 6. The 2021 game renamed the deck "Dread spells"; check the cards for the current list.</p>
+</div>
+</section>
+
+<section>
+<h2>Other Sources of Magic</h2>
+<ul>
+    <li><strong>Potions</strong> can be drunk at any time and don't use your action, so any hero can use them, including the Barbarian and Dwarf.</li>
+    <li><strong>Artifacts</strong> from the quest notes can add magic. The core Quest Book's <em>Talisman of Lore</em>, hidden in Melar's Maze, enhances the wearer's understanding of magic.</li>
+    <li><strong>Quest packs add more.</strong> <em>The Mage of the Mirror</em> brings elven magic, <em>Rise of the Dread Moon</em> brings alchemy (potion brewing), and the 2026 <em>Wizards of Morcar</em> adds three new hero schools, Protection, Detection and Darkness, which can be swapped in for the elemental ones. Newer heroes such as the Warlock, Bard and Druid have their own special abilities on their cards; see <a href="/heroquest_legendary_heroes.html">The Heroes</a>.</li>
+</ul>
+</section>
+
+<section>
+<h2>Try It at the Table</h2>
+<ul>
+    <li>Run the draft three ways in the lab above: Elf takes Earth, Elf takes Water, Elf takes Fire. Which party can still heal if the Wizard goes down first?</li>
+    <li>Count the casts: in your next quest, note which spells were still unspent when you reached the stairway. Those were free power you left behind.</li>
+    <li>Before casting at a monster, check its Defend dice. Against 1-Defend Goblins a weapon usually does the job; save Ball of Flame for the Gargoyle.</li>
+</ul>
+</section>
+
+<section>
+<h2>Where Next</h2>
+<ul>
+    <li><a href="/heroquest_treasure_progression.html">Treasure &amp; Equipment</a>: potions, the armory and artifacts.</li>
+    <li><a href="/heroquest_wizard_tutorial.html">The Wizard</a> and <a href="/heroquest_elf_tutorial.html">The Elf</a>: playing the two casters.</li>
+    <li><a href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>: where spells fit in a fight.</li>
+</ul>
+</section>
+    </main>
 
     <script>
-        // Spell Laboratory Interactive System — card-based (matches real HeroQuest)
-        const spells = [
-            {symbol: '🔥', name: 'Ball of Flame', effect: 'Hurls a ball of fire at a monster — roll 3 combat dice for damage!', cast: false},
-            {symbol: '💨', name: 'Wind of Magic', effect: 'Move through the dungeon without triggering wandering monsters!', cast: false},
-            {symbol: '💎', name: 'Rock Skin', effect: 'Your skin hardens like stone — gain +1 defend die for the rest of the quest!', cast: false},
-            {symbol: '🌟', name: 'Healing', effect: 'Golden light restores lost Body Points — roll 1d6 to heal!', cast: false},
-            {symbol: '⚡', name: 'Tempest', effect: 'Lightning arcs through the corridor — roll 2 combat dice against every adjacent monster!', cast: false},
-            {symbol: '❄️', name: 'Sleep', effect: 'The monster\'s eyes grow heavy — it cannot attack or defend this turn!', cast: false},
-            {symbol: '✨', name: 'Courage', effect: 'A hero\'s resolve strengthens — ignore the next trap encountered!', cast: false},
-            {symbol: '🛡️', name: 'Water of Healing', effect: 'A blessed spring appears — restore one hero to full Body Points!', cast: false}
-        ];
-        
-        const spellMatrix = document.getElementById('spell_matrix');
-        const spellResult = document.getElementById('spell_result');
-        const spellsRemaining = document.getElementById('spells_remaining');
-        
-        function initSpellLab() {
-            spellMatrix.innerHTML = '';
-            spells.forEach((spell, index) => {
-                spell.cast = false;
-                const card = document.createElement('div');
-                card.className = 'spell-rune';
-                card.textContent = spell.symbol;
-                card.title = spell.name;
-                card.addEventListener('click', () => castSpell(index));
-                spellMatrix.appendChild(card);
+    (function () {
+        var SCHOOLS = {
+            Air: [['Swift Wind', 'Speeds up one hero’s next move.'], ['Tempest', 'One monster misses its next turn.'], ['Genie', 'Open any door, or attack one monster with 5 combat dice.']],
+            Earth: [['Heal Body', 'One hero regains up to 4 Body Points.'], ['Rock Skin', 'One hero rolls 1 extra Defend die until they lose a Body Point.'], ['Pass Through Rock', 'One hero may move through walls on their next move.']],
+            Fire: [['Fire of Wrath', '1 Body Point to a monster unless it rolls 5 or 6 on a red die.'], ['Courage', 'One hero rolls 2 extra Attack dice on their next attack.'], ['Ball of Flame', '2 Body Points; each 5 or 6 on two red dice cancels 1.']],
+            Water: [['Water of Healing', 'One hero regains up to 4 Body Points.'], ['Sleep', 'One living monster can’t move, attack or defend until it breaks free.'], ['Veil of Mist', 'One hero may pass through monster squares on their next move.']]
+        };
+        var ORDER = ['Air', 'Earth', 'Fire', 'Water'];
+        var btns = document.getElementById('school_btns');
+        var step = document.getElementById('lab_step');
+        var hands = document.getElementById('hands');
+        var result = document.getElementById('spell_result');
+        if (!btns || !hands || !result) return;
+        var wizFirst, elf, spent;
+
+        function say(text) {
+            result.innerHTML = '';
+            var p = document.createElement('p');
+            p.textContent = text;
+            result.appendChild(p);
+        }
+
+        function drawButtons() {
+            btns.innerHTML = '';
+            if (elf) { btns.hidden = true; return; }
+            btns.hidden = false;
+            ORDER.forEach(function (s) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.textContent = s;
+                b.disabled = s === wizFirst;
+                b.addEventListener('click', function () { pick(s); });
+                btns.appendChild(b);
             });
-            updateRemaining();
-            spellResult.innerHTML = '<strong>Spell Cards Ready:</strong> Choose a spell to cast — but remember, each card can only be used once per quest!';
         }
-        
-        function castSpell(index) {
-            const spell = spells[index];
-            const card = spellMatrix.children[index];
-            
-            if (spell.cast) {
-                spellResult.innerHTML = `
-                    <strong>⚠️ ${spell.name} — Already Cast!</strong><br>
-                    This spell card has already been used this quest. In HeroQuest, each spell card can only be cast once per quest.<br>
-                    <em>Choose a different spell, or start a New Quest to get your cards back.</em>
-                `;
-                return;
+
+        function pick(s) {
+            if (!wizFirst) {
+                wizFirst = s;
+                step.textContent = 'Step 2: the Elf picks one of the other three schools.';
+                say('The Wizard takes ' + s + '. Now the Elf chooses.');
+            } else {
+                elf = s;
+                var rest = ORDER.filter(function (x) { return x !== wizFirst && x !== elf; });
+                step.textContent = 'Draft done: the Wizard takes ' + rest.join(' and ') + ' as well. Click a spell to cast it.';
+                say('Wizard: ' + [wizFirst].concat(rest).join(', ') + ' (9 spells). Elf: ' + elf + ' (3 spells). Each card can be cast once this quest.');
             }
-            
-            spell.cast = true;
-            card.classList.add('spent');
-            
-            // Brief flash before going spent
-            card.classList.add('active');
-            setTimeout(() => card.classList.remove('active'), 400);
-            
-            updateRemaining();
-            
-            const remaining = spells.filter(s => !s.cast).length;
-            
-            spellResult.innerHTML = `
-                <strong>🌟 ${spell.name} Cast!</strong><br>
-                ${spell.effect}<br>
-                <em>${remaining} spell card${remaining !== 1 ? 's' : ''} remaining this quest.</em>
-            `;
-            
-            if (remaining === 0) {
-                spellResult.innerHTML += '<br><strong>All spell cards spent!</strong> You\'ll need to rely on steel and wits for the rest of this quest — or start a New Quest to reset.';
-            }
+            drawButtons();
+            drawHands();
         }
-        
-        function updateRemaining() {
-            spellsRemaining.textContent = spells.filter(s => !s.cast).length;
-        }
-        
-        document.getElementById('new_quest_btn').addEventListener('click', initSpellLab);
-        initSpellLab();
-        
-        // Spell Timing Visualization
-        const timingCanvas = document.getElementById('spell_timing_canvas');
-        const timingCtx = timingCanvas.getContext('2d');
-        
-        function drawSpellTiming() {
-            timingCtx.clearRect(0, 0, timingCanvas.width, timingCanvas.height);
-            
-            // Background
-            timingCtx.fillStyle = '#1a0d4d';
-            timingCtx.fillRect(0, 0, timingCanvas.width, timingCanvas.height);
-            
-            // Draw timeline
-            timingCtx.strokeStyle = '#9370db';
-            timingCtx.lineWidth = 3;
-            timingCtx.beginPath();
-            timingCtx.moveTo(50, 150);
-            timingCtx.lineTo(550, 150);
-            timingCtx.stroke();
-            
-            // Draw spell timing points
-            const spellMoments = [
-                {x: 100, y: 150, label: 'Pre-Combat\nBuffs', color: '#32cd32'},
-                {x: 250, y: 100, label: 'Opening\nStrike', color: '#ff4500'},
-                {x: 350, y: 120, label: 'Mid-Combat\nControl', color: '#ffa500'},
-                {x: 450, y: 80, label: 'Emergency\nHealing', color: '#dda0dd'},
-                {x: 500, y: 60, label: 'Finishing\nMove', color: '#ff6347'}
-            ];
-            
-            spellMoments.forEach(moment => {
-                // Draw connection line
-                timingCtx.strokeStyle = moment.color;
-                timingCtx.lineWidth = 2;
-                timingCtx.beginPath();
-                timingCtx.moveTo(moment.x, 150);
-                timingCtx.lineTo(moment.x, moment.y);
-                timingCtx.stroke();
-                
-                // Draw spell burst
-                timingCtx.fillStyle = moment.color;
-                timingCtx.beginPath();
-                timingCtx.arc(moment.x, moment.y, 8, 0, Math.PI * 2);
-                timingCtx.fill();
-                
-                // Draw label
-                timingCtx.fillStyle = '#e6f3ff';
-                timingCtx.font = '10px Arial';
-                timingCtx.textAlign = 'center';
-                const lines = moment.label.split('\n');
-                lines.forEach((line, index) => {
-                    timingCtx.fillText(line, moment.x, moment.y - 20 + (index * 12));
+
+        function hand(title, schools) {
+            var h = document.createElement('h3');
+            h.textContent = title;
+            hands.appendChild(h);
+            var wrap = document.createElement('div');
+            wrap.className = 'spell-hand';
+            schools.forEach(function (s) {
+                SCHOOLS[s].forEach(function (sp) {
+                    var key = sp[0];
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'spell-tile' + (spent[key] ? ' spent' : '');
+                    b.textContent = key;
+                    var sm = document.createElement('small');
+                    sm.textContent = s + (spent[key] ? ' • cast' : '');
+                    b.appendChild(sm);
+                    b.setAttribute('aria-pressed', String(!!spent[key]));
+                    b.addEventListener('click', function () { cast(key, sp[1]); });
+                    wrap.appendChild(b);
                 });
             });
-            
-            // Title
-            timingCtx.fillStyle = '#dda0dd';
-            timingCtx.font = '16px Arial';
-            timingCtx.textAlign = 'center';
-            timingCtx.fillText('Optimal Spell Timing Throughout Combat', 300, 30);
-            
-            // Timeline labels
-            timingCtx.fillStyle = '#e6f3ff';
-            timingCtx.font = '12px Arial';
-            timingCtx.fillText('Combat Start', 100, 170);
-            timingCtx.fillText('Combat End', 500, 170);
-            
-            timingCtx.textAlign = 'left';
+            hands.appendChild(wrap);
         }
-        
-        drawSpellTiming();
-        
-        // Spell Synergy Visualization
-        const synergyCanvas = document.getElementById('spell_synergy_canvas');
-        const synergyCtx = synergyCanvas.getContext('2d');
-        
-        function drawSpellSynergy() {
-            synergyCtx.clearRect(0, 0, synergyCanvas.width, synergyCanvas.height);
-            
-            // Background
-            synergyCtx.fillStyle = '#1a0d4d';
-            synergyCtx.fillRect(0, 0, synergyCanvas.width, synergyCanvas.height);
-            
-            // Draw spell combinations
-            const combos = [
-                {x: 150, y: 100, spells: ['🔥', '💨'], effect: 'Flame Storm'},
-                {x: 450, y: 100, spells: ['💎', '⚔️'], effect: 'Armored Assault'},
-                {x: 150, y: 250, spells: ['🌟', '🛡️'], effect: 'Divine Protection'},
-                {x: 450, y: 250, spells: ['⚡', '❄️'], effect: 'Elemental Fury'}
-            ];
-            
-            // Draw connection lines FIRST (behind everything)
-            synergyCtx.strokeStyle = '#8a2be2';
-            synergyCtx.lineWidth = 2;
-            synergyCtx.setLineDash([5, 5]);
-            combos.forEach(combo => {
-                synergyCtx.beginPath();
-                synergyCtx.moveTo(combo.x, combo.y);
-                synergyCtx.lineTo(300, 175);
-                synergyCtx.stroke();
-            });
-            synergyCtx.setLineDash([]);
-            
-            // Draw central wizard (on top of lines)
-            synergyCtx.fillStyle = '#9370db';
-            synergyCtx.fillRect(275, 150, 50, 50);
-            synergyCtx.fillStyle = '#fff';
-            synergyCtx.font = '20px Arial';
-            synergyCtx.textAlign = 'center';
-            synergyCtx.fillText('🧙‍♂️', 300, 180);
-            
-            // Draw combo circles, symbols, and labels (on top of lines)
-            combos.forEach(combo => {
-                // Draw combination circle
-                synergyCtx.fillStyle = '#4b0082';
-                synergyCtx.beginPath();
-                synergyCtx.arc(combo.x, combo.y, 40, 0, Math.PI * 2);
-                synergyCtx.fill();
-                
-                synergyCtx.strokeStyle = '#dda0dd';
-                synergyCtx.lineWidth = 2;
-                synergyCtx.stroke();
-                
-                // Draw spell symbols
-                synergyCtx.fillStyle = '#fff';
-                synergyCtx.font = '16px Arial';
-                synergyCtx.textAlign = 'center';
-                synergyCtx.fillText(combo.spells[0], combo.x - 10, combo.y);
-                synergyCtx.fillText(combo.spells[1], combo.x + 10, combo.y);
-                
-                // Draw effect label
-                synergyCtx.fillStyle = '#dda0dd';
-                synergyCtx.font = '10px Arial';
-                synergyCtx.fillText(combo.effect, combo.x, combo.y + 55);
-            });
-            
-            // Title (on top of everything)
-            synergyCtx.fillStyle = '#dda0dd';
-            synergyCtx.font = '16px Arial';
-            synergyCtx.textAlign = 'center';
-            synergyCtx.fillText('Spell Synergy Combinations', 300, 30);
-            synergyCtx.textAlign = 'left';
+
+        function drawHands() {
+            hands.innerHTML = '';
+            if (!elf) return;
+            var rest = ORDER.filter(function (x) { return x !== wizFirst && x !== elf; });
+            hand('Wizard (9 spells)', [wizFirst].concat(rest));
+            hand('Elf (3 spells)', [elf]);
         }
-        
-        drawSpellSynergy();
-        
-        // Magic Probability Visualization
-        const probCanvas = document.getElementById('magic_probability_canvas');
-        const probCtx = probCanvas.getContext('2d');
-        
-        function drawMagicProbability() {
-            probCtx.clearRect(0, 0, probCanvas.width, probCanvas.height);
-            
-            // Background
-            probCtx.fillStyle = '#1a0d4d';
-            probCtx.fillRect(0, 0, probCanvas.width, probCanvas.height);
-            
-            // Draw probability bars
-            const probabilities = [
-                {label: 'Healing (1d6)', min: 1, max: 6, avg: 3.5, x: 100},
-                {label: 'Fireball (3 dice)', min: 0, max: 3, avg: 1.5, x: 300},
-                {label: 'Lightning (3 dice)', min: 0, max: 3, avg: 1.5, x: 500}
-            ];
-            
-            probabilities.forEach(prob => {
-                // Draw bar background
-                probCtx.fillStyle = '#4b0082';
-                probCtx.fillRect(prob.x - 40, 100, 80, 100);
-                
-                // Draw average indicator
-                const avgHeight = (prob.avg / prob.max) * 100;
-                probCtx.fillStyle = '#dda0dd';
-                probCtx.fillRect(prob.x - 40, 200 - avgHeight, 80, avgHeight);
-                
-                // Draw labels
-                probCtx.fillStyle = '#e6f3ff';
-                probCtx.font = '10px Arial';
-                probCtx.textAlign = 'center';
-                probCtx.fillText(prob.label, prob.x, 220);
-                probCtx.fillText(`Avg: ${prob.avg}`, prob.x, 235);
-                probCtx.fillText(`Range: ${prob.min}-${prob.max}`, prob.x, 250);
-            });
-            
-            probCtx.fillStyle = '#dda0dd';
-            probCtx.font = '16px Arial';
-            probCtx.fillText('Spell Effect Probabilities', 200, 30);
-            probCtx.textAlign = 'left';
+
+        function cast(key, effect) {
+            if (spent[key]) {
+                say(key + ' has already been cast this quest. It comes back after the quest ends.');
+                return;
+            }
+            spent[key] = true;
+            var left = 12 - Object.keys(spent).length;
+            say(key + ': ' + effect + ' ' + left + ' spell' + (left === 1 ? '' : 's') + ' left between the two casters this quest.');
+            drawHands();
         }
-        
-        drawMagicProbability();
+
+        function reset(full) {
+            spent = {};
+            if (full) {
+                wizFirst = null; elf = null;
+                step.textContent = 'Step 1: the Wizard picks a school.';
+                say('Pick the Wizard’s first school.');
+            } else if (elf) {
+                say('New quest: every spell card is back in hand.');
+            }
+            drawButtons();
+            drawHands();
+        }
+
+        document.getElementById('new_quest_btn').addEventListener('click', function () { reset(false); });
+        document.getElementById('redraft_btn').addEventListener('click', function () { reset(true); });
+        reset(true);
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>
+    <a class="next" href="/heroquest_treasure_progression.html">Treasure &amp; Equipment</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

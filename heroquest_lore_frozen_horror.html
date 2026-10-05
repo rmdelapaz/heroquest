@@ -3,438 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Frozen Horror: Terror from the Endless Winter</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>The Frozen Horror: Lore - The HeroQuest Guide</title>
+    <meta name="description" content="The story behind HeroQuest's Frozen Horror: the Barbarian, hired mercenaries, Yetis and Polar Warbears, plus a clearly labelled fan telling of the north.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>❄️ The Frozen Horror: Terror from the Endless Winter ❄️</h1>
-        
-        <div class="glacial-chronicle">
-            <p><em>"In the uttermost north, where the world ends in walls of ice that pierce the sky and the sun becomes a pale memory barely visible through perpetual storms, there dwells a terror so ancient and so alien that it predates the very concept of warmth itself. The Frozen Horror is not merely a creature of ice and cold—it is the embodiment of entropy made manifest, the living incarnation of the universe's tendency toward absolute zero, toward the final stillness where all motion, all life, all hope freezes into eternal crystal silence..."</em></p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>The Frozen Horror: Lore</h1>
+        <p>The story of The Frozen Horror as the quest books tell it, with a clearly labelled fan elaboration of the frozen north and the creature beneath the ice.</p>
+    </header>
 
-        <h2>The Nature of Absolute Cold</h2>
-        <p>The Frozen Horror represents something far more terrifying than a powerful monster dwelling in a cold climate—it is a fundamental force of cosmic entropy that seeks to transform all existence into its own perfect, crystalline image of absolute stillness. Its presence doesn't just bring cold; it brings the concept of ending itself, the final state where all energy has been drained, all movement has ceased, and all possibilities have crystallized into one eternal, unchanging moment of perfect, deadly beauty.</p>
+    <main id="main">
+<section>
+<p>The quest books sketch this story only briefly, so this page mixes official names from the books with fan elaboration, and labels which is which.</p>
 
-        <h2>The Realm of Endless Winter</h2>
-        <div class="canvas-container">
-            <h3>Frozen Realm</h3>
-            <canvas id="frozenRealmCanvas" width="1000" height="500"></canvas>
-        </div>
-        
-        <script>
-            const frozenCanvasElement = document.getElementById('frozenRealmCanvas');
-            const frozenCtx = frozenCanvasElement.getContext('2d');
-            let frozenAnimFrame = 0;
-            
-            function drawFrozenRealm() {
-                frozenCtx.clearRect(0, 0, 1000, 500);
-                frozenAnimFrame++;
-                
-                // Draw snowfall
-                for (let i = 0; i < 150; i++) {
-                    const x = (frozenAnimFrame * 0.5 + i * 67) % 1000;
-                    const y = (frozenAnimFrame * 1.2 + i * 43) % 500;
-                    const size = 1 + (i % 3);
-                    const alpha = 0.3 + (Math.sin(frozenAnimFrame * 0.02 + i) * 0.2);
-                    frozenCtx.fillStyle = `rgba(224, 255, 255, ${alpha})`;
-                    frozenCtx.beginPath();
-                    frozenCtx.arc(x, y, size, 0, Math.PI * 2);
-                    frozenCtx.fill();
-                }
-                
-                // Central Horror manifestation
-                const centerX = 500, centerY = 250;
-                const horrorPulse = Math.sin(frozenAnimFrame * 0.04) * 0.3 + 0.7;
-                
-                // Horror's icy aura
-                frozenCtx.shadowColor = '#4682b4';
-                frozenCtx.shadowBlur = 60 * horrorPulse;
-                frozenCtx.fillStyle = `rgba(70, 130, 180, ${horrorPulse * 0.6})`;
-                frozenCtx.beginPath();
-                frozenCtx.arc(centerX, centerY, 80 * horrorPulse, 0, Math.PI * 2);
-                frozenCtx.fill();
-                
-                // Inner core of absolute zero
-                frozenCtx.shadowBlur = 30 * horrorPulse;
-                frozenCtx.fillStyle = `rgba(224, 255, 255, ${horrorPulse + 0.3})`;
-                frozenCtx.beginPath();
-                frozenCtx.arc(centerX, centerY, 35 * horrorPulse, 0, Math.PI * 2);
-                frozenCtx.fill();
-                frozenCtx.shadowBlur = 0;
-                
-                // Ice crystal formations spreading outward
-                const crystals = [
-                    {x: 150, y: 150, size: 0.8, growth: 0},
-                    {x: 850, y: 180, size: 0.9, growth: 0.5},
-                    {x: 200, y: 350, size: 0.7, growth: 1.0},
-                    {x: 800, y: 320, size: 0.85, growth: 1.5},
-                    {x: 300, y: 100, size: 0.75, growth: 2.0},
-                    {x: 700, y: 400, size: 0.8, growth: 2.5}
-                ];
-                
-                crystals.forEach((crystal, index) => {
-                    const crystalPhase = frozenAnimFrame * 0.03 + crystal.growth;
-                    const crystalGrowth = Math.sin(crystalPhase) * 0.2 + 0.8;
-                    
-                    // Crystal base
-                    frozenCtx.fillStyle = `rgba(135, 206, 235, ${crystalGrowth * 0.7})`;
-                    frozenCtx.save();
-                    frozenCtx.translate(crystal.x, crystal.y);
-                    frozenCtx.rotate(crystalPhase * 0.1);
-                    
-                    // Draw crystalline structure
-                    frozenCtx.beginPath();
-                    frozenCtx.moveTo(0, -30 * crystal.size * crystalGrowth);
-                    frozenCtx.lineTo(15 * crystal.size, -10 * crystal.size);
-                    frozenCtx.lineTo(10 * crystal.size, 20 * crystal.size);
-                    frozenCtx.lineTo(-10 * crystal.size, 20 * crystal.size);
-                    frozenCtx.lineTo(-15 * crystal.size, -10 * crystal.size);
-                    frozenCtx.closePath();
-                    frozenCtx.fill();
-                    
-                    // Crystal glow
-                    frozenCtx.shadowColor = '#87ceeb';
-                    frozenCtx.shadowBlur = 15 * crystalGrowth;
-                    frozenCtx.strokeStyle = '#87ceeb';
-                    frozenCtx.lineWidth = 2;
-                    frozenCtx.stroke();
-                    frozenCtx.shadowBlur = 0;
-                    
-                    frozenCtx.restore();
-                    
-                    // Connection to horror
-                    const connectionStrength = Math.sin(crystalPhase + 1) * 0.2 + 0.6;
-                    frozenCtx.strokeStyle = `rgba(176, 224, 230, ${connectionStrength * 0.4})`;
-                    frozenCtx.lineWidth = 2;
-                    frozenCtx.setLineDash([12, 6]);
-                    frozenCtx.lineDashOffset = frozenAnimFrame * 0.3;
-                    
-                    frozenCtx.beginPath();
-                    frozenCtx.moveTo(crystal.x, crystal.y);
-                    const midX = (crystal.x + centerX) / 2 + Math.sin(crystalPhase) * 20;
-                    const midY = (crystal.y + centerY) / 2 + Math.cos(crystalPhase) * 15;
-                    frozenCtx.quadraticCurveTo(midX, midY, centerX, centerY);
-                    frozenCtx.stroke();
-                });
-                frozenCtx.setLineDash([]);
-                
-                // Frozen victims trapped in ice
-                const victims = [
-                    {x: 120, y: 220}, {x: 320, y: 150}, {x: 680, y: 180},
-                    {x: 880, y: 280}, {x: 250, y: 380}, {x: 750, y: 350}
-                ];
-                
-                victims.forEach((victim, index) => {
-                    const victimPhase = frozenAnimFrame * 0.02 + index * 1.5;
-                    const iceThickness = Math.sin(victimPhase) * 0.1 + 0.9;
-                    
-                    // Ice prison
-                    frozenCtx.shadowColor = '#b0e0e6';
-                    frozenCtx.shadowBlur = 8 * iceThickness;
-                    frozenCtx.fillStyle = `rgba(176, 224, 230, ${iceThickness * 0.8})`;
-                    frozenCtx.beginPath();
-                    frozenCtx.arc(victim.x, victim.y, 12 * iceThickness, 0, Math.PI * 2);
-                    frozenCtx.fill();
-                    frozenCtx.shadowBlur = 0;
-                    
-                    // Victim silhouette
-                    frozenCtx.fillStyle = `rgba(47, 79, 79, ${iceThickness})`;
-                    frozenCtx.beginPath();
-                    frozenCtx.arc(victim.x, victim.y, 6, 0, Math.PI * 2);
-                    frozenCtx.fill();
-                });
-                
-                // Waves of freezing energy
-                for (let wave = 1; wave <= 4; wave++) {
-                    const wavePhase = frozenAnimFrame * 0.025 - wave * 0.7;
-                    const waveRadius = 120 + wave * 90 + Math.sin(wavePhase) * 25;
-                    const waveAlpha = Math.max(0, Math.sin(wavePhase) * 0.3);
-                    
-                    if (waveAlpha > 0) {
-                        frozenCtx.strokeStyle = `rgba(135, 206, 235, ${waveAlpha})`;
-                        frozenCtx.lineWidth = 3;
-                        frozenCtx.beginPath();
-                        frozenCtx.arc(centerX, centerY, waveRadius, 0, Math.PI * 2);
-                        frozenCtx.stroke();
-                    }
-                }
-                
-                // Crystalline pathways of ice
-                const pathways = [
-                    {start: {x: 100, y: 100}, end: {x: 400, y: 200}},
-                    {start: {x: 600, y: 150}, end: {x: 900, y: 250}},
-                    {start: {x: 200, y: 400}, end: {x: 500, y: 300}},
-                    {start: {x: 700, y: 450}, end: {x: 400, y: 350}}
-                ];
-                
-                pathways.forEach((path, index) => {
-                    const pathPhase = frozenAnimFrame * 0.04 + index * 1.8;
-                    const pathGlow = Math.sin(pathPhase) * 0.3 + 0.7;
-                    
-                    frozenCtx.strokeStyle = `rgba(175, 238, 238, ${pathGlow * 0.6})`;
-                    frozenCtx.lineWidth = 4;
-                    frozenCtx.beginPath();
-                    frozenCtx.moveTo(path.start.x, path.start.y);
-                    frozenCtx.lineTo(path.end.x, path.end.y);
-                    frozenCtx.stroke();
-                });
-                
-                // Floating ice shards
-                for (let i = 0; i < 40; i++) {
-                    const t = (frozenAnimFrame + i * 18) * 0.015;
-                    const x = centerX + Math.sin(t + i * 0.4) * (100 + i * 10);
-                    const y = centerY + Math.cos(t * 0.7 + i * 0.3) * (70 + i * 8) + Math.sin(t * 3) * 10;
-                    const alpha = (Math.sin(t * 2) + 1) * 0.4;
-                    
-                    if (x > 0 && x < 1000 && y > 0 && y < 500) {
-                        frozenCtx.fillStyle = `rgba(224, 255, 255, ${alpha})`;
-                        frozenCtx.save();
-                        frozenCtx.translate(x, y);
-                        frozenCtx.rotate(t * 2);
-                        frozenCtx.fillRect(-2, -2, 4, 4);
-                        frozenCtx.restore();
-                    }
-                }
-                
-                // Blizzard wind patterns
-                const windStreaks = 20;
-                for (let i = 0; i < windStreaks; i++) {
-                    const windPhase = frozenAnimFrame * 0.08 + i * 0.3;
-                    const windX = (windPhase * 100) % 1000;
-                    const windY = 50 + (i * 20) + Math.sin(windPhase) * 30;
-                    const windAlpha = (Math.sin(windPhase * 2) + 1) * 0.2;
-                    
-                    frozenCtx.strokeStyle = `rgba(224, 255, 255, ${windAlpha})`;
-                    frozenCtx.lineWidth = 2;
-                    frozenCtx.beginPath();
-                    frozenCtx.moveTo(windX, windY);
-                    frozenCtx.lineTo(windX + 50, windY + Math.sin(windPhase) * 10);
-                    frozenCtx.stroke();
-                }
-            }
-            
-            setInterval(drawFrozenRealm, 50);
-        </script>
+<div class="glacial-chronicle">
+    <p><em>"North of the last farms the snow stops melting. North of the last forts the maps stop being maps. Somewhere beyond that, under the ice, something waits. The people who live up there do not name it. The heroes will learn to call it the Frozen Horror..."</em></p>
+</div>
+</section>
 
-        <h2>The Avatar of Absolute Zero</h2>
+<section>
+<h2>What the Quest Books Establish</h2>
+<ul>
+    <li><strong>The Frozen Horror is a creature.</strong> It is the monster the pack is named for, and it comes as its own miniature. Beyond that, this guide does not invent a history for it.</li>
+    <li><strong>The Barbarian leads.</strong> The pack centres on the Barbarian and includes an alternate Barbarian figure.</li>
+    <li><strong>The cold has teeth.</strong> The pack's monsters are Ice Gremlins, Polar Warbears and Yetis, none of which appear in the core box.</li>
+    <li><strong>The heroes hire help.</strong> Twelve Mercenaries come in the box: paid fighters who march with the heroes into the north.</li>
+    <li><strong>The world around it.</strong> In the core 2021 books the enemy is Zargon and his magic is Dread. The core Quest Book also names the Northern Dread Wastes, though how the pack's frozen lands relate to them is for the quest book to say.</li>
+</ul>
 
-        <div class="frost-card ancient-evil">
-            <div class="card-type">Ancient Evil</div>
-            <h3>🧊 The Primordial Frost</h3>
-            
-            <div class="horror-legend">
-                <h4>Before Heat, Before Life</h4>
-                <p>The Frozen Horror predates not just civilization or even life itself, but the very concept of warmth that makes existence possible. It is a remnant from the universe's earliest epoch, when the cosmos was cold and empty, before the first stars ignited to bring light and heat to the void. Unlike other ancient evils that represent corruption or chaos, the Frozen Horror embodies the universe's original state—perfect, crystalline stillness where nothing moves, nothing changes, and nothing can ever disturb the absolute peace of total entropy.</p>
-                
-                <p>It does not hate life or seek to cause suffering in the way that more comprehensible evils do. Instead, it views warmth, movement, and change as temporary aberrations that disrupt the natural order of perfect cold. Its goal is not destruction but correction—returning the universe to its proper state of absolute zero, where all motion ceases, all energy dissipates, and all complexity resolves into the beautiful simplicity of eternal ice.</p>
-            </div>
-            
-            <div class="terror-meter">
-                <div class="terror-fill" style="width: 98%; background: linear-gradient(90deg, #4682b4, #87ceeb);">
-                    <div class="terror-label">Entropy Mastery</div>
-                </div>
-            </div>
-            <div class="terror-meter">
-                <div class="terror-fill" style="width: 95%; background: linear-gradient(90deg, #87ceeb, #b0e0e6);">
-                    <div class="terror-label">Thermal Negation</div>
-                </div>
-            </div>
-            <div class="terror-meter">
-                <div class="terror-fill" style="width: 92%; background: linear-gradient(90deg, #b0e0e6, #e0ffff);">
-                    <div class="terror-label">Reality Crystallization</div>
-                </div>
-            </div>
-            
-            <div class="ancient-prison">
-                <h4>The Prison of Permafrost</h4>
-                <p>For eons beyond counting, the Frozen Horror has been contained within the uttermost reaches of the northern ice, bound not by chains or spells but by the simple fact that its perfect cold could not spread beyond the natural barriers of distance and dilution. The vast ice sheets served as both its domain and its prison, allowing it to exist in its preferred state while preventing it from extending its influence into the warmer regions where life had taken hold.</p>
-                
-                <p>But prisons, even natural ones, are only as strong as the forces that maintain them. As the world's climate has begun to shift and change, as magical disturbances have weakened the barriers between realms, and as the Horror's own patient efforts have slowly eroded the constraints that bound it, the ancient prison has begun to crack. For the first time in geological ages, the Frozen Horror stirs with the possibility of freedom—and the opportunity to fulfill its cosmic purpose of returning all existence to the perfect stillness of absolute cold.</p>
-            </div>
-            
-            <span class="frost-tag">❄️ Primordial Cold</span>
-            <span class="frost-tag">⚡ Entropy Control</span>
-            <span class="frost-tag">🌌 Cosmic Purpose</span>
-            <span class="ice-tag">🧊 Reality Freezing</span>
-        </div>
+<div class="mermaid">
+flowchart TD
+    B["The Barbarian&lt;br/&gt;and companions"] --> M["Hired Mercenaries"]
+    B --> N["The frozen north"]
+    M --> N
+    N --> I["Ice Gremlins, Polar Warbears&lt;br/&gt;and Yetis"]
+    I --> F["The Frozen Horror"]
+</div>
 
-        <div class="frost-card frozen-realm">
-            <div class="card-type">Frozen Realm</div>
-            <h3>🏔️ The Domain of Endless Winter</h3>
-            
-            <div class="ice-manifestation">
-                <h4>Where Heat Goes to Die</h4>
-                <p>The Frozen Horror's domain exists as a pocket of absolute winter that defies all natural laws governing climate and temperature. Here, the normal rules of thermodynamics break down completely—heat doesn't just dissipate, it is actively consumed and destroyed, warmth doesn't just fade, it is transformed into its opposite. The very air crystallizes into geometric patterns that hurt to look at, and the ground is covered in ice so cold that it burns like fire when touched by living flesh.</p>
-                
-                <p>This realm operates according to the physics of entropy taken to their logical extreme. Time moves differently here, slowing as the Horror's influence grows stronger, until moments stretch into hours and movement becomes nearly impossible. Sounds become muffled and distorted as the air itself begins to solidify, and light takes on an eerie, crystalline quality that seems to drain warmth from whatever it touches rather than providing illumination.</p>
-            </div>
-            
-            <div class="permafrost-realm">
-                <h4>The Architecture of Absolute Zero</h4>
-                <p>The landscape within the Horror's influence transforms into something that resembles a vast, living crystal—not chaotic ice formations but perfectly ordered geometric structures that follow mathematical principles too complex for mortal minds to fully comprehend. Mountains become crystalline spires that ring with harmonic frequencies when the wind passes through them, and valleys fill with ice so clear and pure that it seems to extend infinitely downward into dimensions that normal space cannot contain.</p>
-                
-                <p>Most unsettling of all are the preserved forms of those who have been caught in the Horror's expanding influence—not corpses but perfect ice sculptures that maintain the exact moment of their freezing in excruciating detail. These frozen figures serve as both art gallery and warning, showing visitors the fate that awaits all warmth and life should the Horror achieve its ultimate goal of cosmic crystallization.</p>
-            </div>
-            
-            <span class="ice-tag">🌡️ Temperature Void</span>
-            <span class="ice-tag">⏱️ Time Distortion</span>
-            <span class="ice-tag">🔬 Physics Violation</span>
-            <span class="cold-tag">🎨 Crystal Architecture</span>
-        </div>
+<div class="callout callout-edge">
+    <p><strong>Classic edition (1989–1990):</strong> the original Frozen Horror was a North America-only "Barbarian Quest Pack" from the early 1990s. It came with a female Barbarian figure and opened with the Barbarian questing alone before the rest of the party joined, and it introduced mercenaries and ice monsters. It was never released in Europe, so there is no Morcar-era version of this story.</p>
+</div>
+</section>
 
-        <div class="mermaid">
-            graph TD
-                A[Frozen Horror Threat] --> B[Ancient Awakening]
-                A --> C[Arctic Expansion]
-                A --> D[Reality Crystallization]
-                A --> E[Final Confrontation]
-                
-                B --> F[Prison Weakening]
-                B --> G[Entropy Stirring]
-                B --> H[Cold Manifestation]
-                
-                C --> I[Climate Disruption]
-                C --> J[Ice Creature Rising]
-                C --> K[Thermal Negation]
-                
-                D --> L[Physics Breakdown]
-                D --> M[Time Distortion]
-                D --> N[Matter Crystallization]
-                
-                E --> O[Heroes Intervention]
-                E --> P[Heat Source Quest]
-                E --> Q[Horror Containment]
-                
-                style A fill:#4682b4
-                style N fill:#87ceeb
-                style P fill:#b0e0e6
-                style Q fill:#e0ffff
-        </div>
+<section>
+<h2>A Fan's Telling: The Cold That Asks You to Stop</h2>
+<div class="callout scene-box">
+    <p><strong>Fan elaboration.</strong> Nothing in this section is from the quest books; use it as table colour if you like it.</p>
+    <p>Most evils in the world want something: gold, power, the King's throne. The thing under the ice seems to want nothing at all except stillness. Travellers who come back from the north talk less about claws and more about the quiet: no birds, no wind in the right places, footprints that stop.</p>
+    <p>The creatures that live near it are hungry rather than wicked. Ice Gremlins pick at the edges of a camp. Polar Warbears and Yetis are the north's own giants, and something has made them bolder than they should be. A party that marches north with only four swords soon learns why the frontier villages hire every blade they can find, and why the Barbarian, raised to this kind of cold, walks at the front.</p>
+    <p>That is the Horror's real weapon in this telling: not the cold itself, but the voice in it that says the march is too long, the north too wide, and that it would be so easy to stop and rest. Heroes who keep walking are the ones who reach it.</p>
+</div>
+</section>
 
-        <div class="frost-card ice-horror">
-            <div class="card-type">Ice Horror</div>
-            <h3>👁️ The Manifestation of Ending</h3>
-            
-            <div class="ice-manifestation">
-                <h4>Beauty Beyond Mortal Comprehension</h4>
-                <p>Those who have glimpsed the Frozen Horror and survived describe not a monster in any conventional sense, but something so perfectly, terrifyingly beautiful that the mind struggles to process what it sees. The Horror appears as a constantly shifting geometric form of living crystal and flowing ice, its surfaces reflecting light in patterns that seem to contain infinite depth and complexity. It is simultaneously massive and delicate, solid and ethereal, present and absent—existing in a state that transcends normal concepts of physical being.</p>
-                
-                <p>What makes the Horror truly terrifying is not any threatening gesture or hostile action, but the simple fact of its presence. To look upon it is to understand viscerally what the end of all things will look like—not violent destruction but peaceful cessation, not chaotic collapse but ordered crystallization. It radiates a kind of cosmic serenity that is more frightening than any rage or malevolence could ever be, because it represents the ultimate peace that comes only with the complete absence of all motion, all change, all life.</p>
-            </div>
-            
-            <div class="freezing-terror">
-                <h4>The Touch of Absolute Zero</h4>
-                <p>The Horror's influence extends far beyond its physical form, creating an aura of progressive crystallization that affects everything within its range. Living creatures begin to slow and stiffen as their body heat is drained away, their movements becoming increasingly rigid until they achieve the perfect stillness that the Horror represents. But this is not simple freezing—it is a fundamental transformation of the victim's essential nature, converting the chaos of life into the order of death.</p>
-                
-                <p>Those caught in the Horror's influence report that the process is not painful but rather increasingly peaceful, as if all the struggles and anxieties of existence are slowly melting away along with their body heat. This makes the Horror's power particularly insidious, as victims often cooperate with their own crystallization, finding in it a release from the burdens of consciousness and choice that define living existence.</p>
-            </div>
-            
-            <span class="frost-tag">💎 Crystalline Beauty</span>
-            <span class="frost-tag">☮️ Peaceful Ending</span>
-            <span class="frost-tag">🔄 Life Transformation</span>
-            <span class="ice-tag">😌 Seductive Stillness</span>
-        </div>
+<section>
+<h2>Using This Story at the Table</h2>
+<p>As Zargon, let the cold live in your descriptions, not in extra rules: the pack has no temperature or hypothermia track, and the heroes fight with the normal rules. Give the hired mercenaries a line or two of personality when the heroes recruit them; it makes losing one in a corridor matter. Read each quest's introduction for the official story.</p>
+</section>
 
-        <div class="frost-card arctic-creatures">
-            <div class="card-type">Arctic Servants</div>
-            <h3>🐺 The Children of Winter</h3>
-            
-            <div class="creature-grid">
-                <div class="creature-card">
-                    <h4>❄️ Frost Wraiths</h4>
-                    <p>Spirits of those who died from extreme cold, now serving as harbingers of the Horror's expanding influence.</p>
-                    <span class="cold-tag">👻 Ethereal Form</span>
-                    <span class="cold-tag">🌬️ Freezing Touch</span>
-                </div>
-                <div class="creature-card">
-                    <h4>🐻 Ice Bears</h4>
-                    <p>Massive polar predators enhanced by the Horror's power, their claws and teeth sharp as crystal.</p>
-                    <span class="ice-tag">💪 Enhanced Strength</span>
-                    <span class="ice-tag">🧊 Crystal Claws</span>
-                </div>
-                <div class="creature-card">
-                    <h4>🐺 Frost Wolves</h4>
-                    <p>Pack hunters with breath so cold it crystallizes the air, hunting in coordinated groups across the tundra.</p>
-                    <span class="cold-tag">❄️ Freezing Breath</span>
-                    <span class="cold-tag">👥 Pack Tactics</span>
-                </div>
-                <div class="creature-card">
-                    <h4>🦅 Blizzard Hawks</h4>
-                    <p>Aerial scouts that carry miniature blizzards with them, obscuring vision and dropping ice shards from above.</p>
-                    <span class="ice-tag">🌨️ Weather Control</span>
-                    <span class="ice-tag">🪶 Ice Shard Rain</span>
-                </div>
-                <div class="creature-card">
-                    <h4>❄️ Living Snowstorms</h4>
-                    <p>Autonomous weather patterns given consciousness by the Horror's influence, moving with intelligent purpose.</p>
-                    <span class="frost-tag">🌪️ Weather Being</span>
-                    <span class="frost-tag">🌨️ Engulfing Storm</span>
-                </div>
-                <div class="creature-card">
-                    <h4>🧊 Crystal Golems</h4>
-                    <p>Animated ice constructs that serve as the Horror's primary agents in spreading its crystalline influence.</p>
-                    <span class="ice-tag">💎 Living Crystal</span>
-                    <span class="ice-tag">🗿 Construct Nature</span>
-                </div>
-            </div>
-            
-            <span class="cold-tag">👥 Diverse Servants</span>
-            <span class="cold-tag">❄️ Cold Immunity</span>
-            <span class="cold-tag">🎯 Coordinated Assault</span>
-        </div>
+<section>
+<h2>Where Next</h2>
+<ul>
+    <li><a href="/heroquest_frozen_horror.html">The Frozen Horror</a>, for what is in the pack and how to play it.</li>
+    <li><a href="/heroquest_mage_of_mirror.html">The Mage of the Mirror</a>, the next quest pack.</li>
+    <li><a href="/heroquest_barbarian_tutorial.html">Barbarian</a>, the hero at the centre of this story.</li>
+</ul>
+</section>
+    </main>
 
-        <div class="frost-card winter-quest">
-            <div class="card-type">Winter Quest</div>
-            <h3>🔥 The Race Against Entropy</h3>
-            
-            <div class="ice-manifestation">
-                <h4>Fighting the Inevitable</h4>
-                <p>The quest to stop the Frozen Horror presents heroes with a challenge unlike any other—how do you fight an enemy that represents the ultimate fate of all existence? The Horror's power grows stronger with each passing moment as it draws energy from the natural tendency of all systems toward entropy and decay. Traditional heroic solutions prove inadequate when facing a foe that doesn't seek conquest or destruction but rather the peaceful cessation of all activity and change.</p>
-                
-                <p>Heroes must not only resist the Horror's influence but actively oppose the fundamental forces of physics and thermodynamics that it represents. This requires finding sources of heat and energy so pure and intense that they can counteract the absolute cold that the Horror embodies, while simultaneously solving the deeper problem of how to contain or redirect a force that is as natural and inevitable as gravity itself.</p>
-            </div>
-            
-            <div class="winter-salvation">
-                <h4>The Eternal Flame</h4>
-                <p>Ancient texts speak of a legendary source of heat that burns independently of fuel or air—the Eternal Flame that supposedly burns at the heart of the world itself, providing the fundamental energy that keeps the planet warm enough to support life. Finding and harnessing this flame represents the only hope of generating enough thermal energy to counter the Horror's influence and restore the natural balance between heat and cold.</p>
-                
-                <p>But the quest for the Eternal Flame is itself fraught with peril, requiring heroes to venture into the deepest places of the earth where the boundaries between elemental fire and pure energy become meaningless. They must prove themselves worthy not just through combat prowess but through their commitment to the principle that existence—with all its chaos, pain, and uncertainty—is preferable to the perfect peace of absolute stillness.</p>
-            </div>
-            
-            <span class="frost-tag">🔥 Heat Source Quest</span>
-            <span class="frost-tag">⚡ Energy Balance</span>
-            <span class="frost-tag">🌍 Cosmic Stakes</span>
-            <span class="ice-tag">⚖️ Physics Challenge</span>
-        </div>
 
-        <h2>The Philosophy of Perfect Stillness</h2>
-        
-        <div class="eternal-winter">
-            <h3>The Seduction of Ending</h3>
-            <p>Perhaps the most insidious aspect of the Frozen Horror's threat is not its power but its appeal—the way it offers a solution to all of existence's problems through the simple expedient of ending existence itself. To those weary of struggle, tired of uncertainty, or overwhelmed by the complexity of life, the Horror's promise of perfect, peaceful stillness can seem like salvation rather than destruction.</p>
-            
-            <p>Heroes who face the Horror must not only resist its physical influence but also its philosophical argument—that entropy is inevitable, that all struggles ultimately end in failure, and that the wisest choice is to embrace the ending gracefully rather than fighting it pointlessly. The quest becomes as much about affirming the value of existence despite its difficulties as it is about finding the technical means to counter the Horror's power.</p>
-        </div>
-
-        <div class="dimensional-rift">
-            <h3>The Heat Death Delayed</h3>
-            <p>The ultimate resolution of the Frozen Horror threat cannot be achieved through simple victory but only through the restoration of cosmic balance. Heroes must find a way to contain the Horror's influence while accepting that what it represents—the eventual heat death of the universe—is indeed inevitable on cosmic timescales. Their victory lies not in defeating entropy but in ensuring that this natural process unfolds over eons rather than years.</p>
-            
-            <p>This creates a profound meditation on the nature of heroism itself: sometimes the greatest victories are not permanent triumphs but temporary delays, not the elimination of problems but their postponement until future generations can find better solutions. The heroes who face the Frozen Horror fight not for eternal victory but for the continuation of the cosmic story, ensuring that the universe's eventual ending comes as the conclusion of a long and meaningful narrative rather than a premature truncation.</p>
-        </div>
-
-        <div class="glacial-chronicle">
-            <p><em>"Thus stands the challenge of the Frozen Horror—not evil to be vanquished but entropy to be delayed, not a monster to defeat but a cosmic principle to balance. In facing this ultimate cold, heroes discover that the greatest victory lies not in conquering the inevitable but in ensuring that inevitability comes only after all possibilities have been explored, all stories told, and all warmth shared. For in the end, the true enemy is not cold itself but the premature arrival of that final, perfect stillness that will come to all things in its proper time..."</em></p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_frozen_horror.html">The Frozen Horror</a>
+    <a class="next" href="/heroquest_mage_of_mirror.html">The Mage of the Mirror</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

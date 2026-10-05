@@ -3,150 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Ancient Realms: Foundations of HeroQuest</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Lore: The World of HeroQuest - The HeroQuest Guide</title>
+    <meta name="description" content="What the HeroQuest quest books establish about the world (Mentor, the Loretome, Zargon, the King, Rogar) and where fan elaboration fills the gaps.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>⚔️ The Ancient Realms: Foundations of HeroQuest ⚔️</h1>
-        
-        <div class="ancient-scroll">
-            <p><em>"In the beginning, when the world was young and magic flowed like rivers through the land, there existed realms where heroes were forged in the crucible of adventure, and legends were born from the clash of steel and spell..."</em></p>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Lore: The World of HeroQuest</h1>
+        <p>This page sums up what the official books say about the HeroQuest world and marks clearly where fan elaboration takes over.</p>
+    </header>
+
+    <main id="main">
+<section>
+<p class="callout callout-edge"><strong>About this page:</strong> the official quest books sketch the HeroQuest world in a few paragraphs of backstory and short quest introductions. This page mixes those official names (Mentor, the Loretome, Zargon, Rogar, Sir Ragnar, Prince Magnus, Ulag, Grak, the Witch Lord, Barak Tor, Kaba Karn, Darkfire Pass and others) with fan elaboration written for this guide. Anything not in the books is labelled as an interpretation, so you can keep it or drop it at your table.</p>
+<div class="ancient-scroll">
+            <p><em>"Long ago, when the world was younger, a barbarian prince carried the Star of the West against the darkness. Now the darkness stirs again, and Mentor looks for heroes..."</em></p>
         </div>
-
-        <h2>The World of HeroQuest</h2>
-        <p>Imagine a world where the very air crackles with ancient magic, where forgotten dungeons lie beneath every hill like sleeping giants, and where the boundary between myth and reality is as thin as morning mist. This is the realm of HeroQuest—a land that exists in that magical space between the familiar and the fantastic, much like how Tolkien's Middle-earth feels both foreign and achingly familiar.</p>
-
-        <div class="realm-card">
-            <h3>The Cosmic Tapestry</h3>
-            <p>The HeroQuest universe operates on multiple planes of existence, woven together like an intricate tapestry. Think of it as a grand library where each floor represents a different realm—the material world where heroes walk, the ethereal planes where spirits dwell, and the chaotic realms where dark powers scheme.</p>
-        </div>
-
-        <h2>The Cosmological Structure</h2>
+</section>
+<section>
+<h2>What the Official Books Establish</h2>
+        <p>The 2021 Avalon Hill Quest Book opens with a short history told by <strong>Mentor</strong>, the sage who guards the <strong>Loretome</strong>, his great book of lore. Everything else in the setting hangs off a handful of names:</p>
+        <ul>
+            <li><strong>Zargon</strong> was once Mentor's apprentice. He turned away and pledged allegiance to the great powers of <strong>Dread</strong>. In play he is the villain, and the player who runs the monsters takes his role.</li>
+            <li><strong>Rogar</strong>, a barbarian prince, bore the <strong>Star of the West</strong> in an earlier age. His companions were <strong>Durgin</strong> the dwarf, <strong>Ladril</strong>, an elven fighter-mage from Elethorn, and <strong>Telor</strong> the wizard. Together they drove Zargon's forces back, but did not destroy them.</li>
+            <li><strong>The King</strong> rules the realm the heroes defend. <strong>Sir Ragnar</strong> is one of the King's most powerful knights, and <strong>Prince Magnus</strong> pays the heroes' rewards.</li>
+            <li>Zargon's servants include <strong>Ulag</strong> the Orc Warlord, his son <strong>Grak</strong>, <strong>Verag</strong> the gargoyle and the <strong>Witch Lord</strong> of Barak Tor.</li>
+            <li>Heroes who finish all 14 core quests become <strong>Sovereign Knights</strong>.</li>
+        </ul>
+        <div class="callout callout-edge"><strong>Classic edition (1989–1990):</strong> the 1989 UK/European game calls the villain <strong>Morcar</strong>; the 1990 North American edition renamed him Zargon, and the 2021 game kept Zargon. The classic text also speaks of <strong>the Emperor</strong> rather than the King, of <strong>Chaos</strong> rather than Dread, and of <strong>Fimir</strong> where the 2021 game has Abominations. In the 2026 <em>Wizards of Morcar</em> pack, Morcar is a separate figure whose identity the heroes uncover, so the two names are not simply interchangeable there.</div>
+</section>
+<section>
+<h2>The Four Schools of Hero Magic</h2>
+        <p>The one piece of "world structure" the rules spell out is magic. Heroes draw on four elemental schools, <strong>Air, Earth, Fire and Water</strong>, each with three spells. Zargon has his own deck of twelve <strong>Dread spells</strong>, which he gives to particular monsters as each quest directs.</p>
         <div class="canvas-container">
-            <h3>Cosmology</h3>
-            <canvas id="cosmologyCanvas" width="800" height="400"></canvas>
+            <h3>Air, Earth, Fire and Water: how the schools are shared</h3>
+            <canvas id="schoolsCanvas" width="680" height="430" role="img" aria-label="Four spell schools, Air, Earth, Fire and Water, each with three classic spell names, and the draft: the Wizard picks one school, the Elf picks one of the other three, the Wizard takes the last two."></canvas>
         </div>
-        
         <script>
-            const cosmologyCanvas = document.getElementById('cosmologyCanvas');
-            const ctx = cosmologyCanvas.getContext('2d');
-            
-            // Draw the cosmic structure
-            function drawCosmology() {
-                // Clear canvas
-                ctx.clearRect(0, 0, 800, 400);
-                
-                // Material Plane (center)
-                ctx.fillStyle = '#8B4513';
-                ctx.fillRect(300, 180, 200, 40);
-                ctx.fillStyle = '#FFD700';
-                ctx.font = '16px serif';
-                ctx.fillText('Material Plane', 320, 205);
-                
-                // Ethereal Realm (above)
-                ctx.fillStyle = 'rgba(173, 216, 230, 0.7)';
-                ctx.fillRect(300, 120, 200, 40);
-                ctx.fillStyle = '#87CEEB';
-                ctx.fillText('Ethereal Realm', 325, 145);
-                
-                // Chaos Realm (below)
-                ctx.fillStyle = 'rgba(139, 0, 0, 0.7)';
-                ctx.fillRect(300, 240, 200, 40);
-                ctx.fillStyle = '#FF4500';
-                ctx.fillText('Chaos Realm', 335, 265);
-                
-                // Draw connecting lines
-                ctx.strokeStyle = '#FFD700';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(400, 160);
-                ctx.lineTo(400, 180);
-                ctx.moveTo(400, 220);
-                ctx.lineTo(400, 240);
-                ctx.stroke();
-                
-                // Add mystical effects
-                const time = Date.now() * 0.001;
-                for (let i = 0; i < 20; i++) {
-                    const x = 100 + (Math.sin(time + i) * 50) + (i * 30);
-                    const y = 200 + (Math.cos(time + i * 0.7) * 100);
-                    ctx.fillStyle = `rgba(255, 215, 0, ${0.3 + Math.sin(time + i) * 0.2})`;
-                    ctx.beginPath();
-                    ctx.arc(x, y, 3, 0, Math.PI * 2);
-                    ctx.fill();
+        (function () {
+            var canvas = document.getElementById('schoolsCanvas');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            var INK = '#1f2430', SOFT = '#4a4f5c';
+            function box(x, y, w, h, fill, stroke) {
+                ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.lineWidth = 2;
+                ctx.beginPath(); ctx.roundRect(x, y, w, h, 10); ctx.fill(); ctx.stroke();
+            }
+            function text(t, x, y, font, color, align) {
+                ctx.font = font; ctx.fillStyle = color || INK; ctx.textAlign = align || 'center'; ctx.fillText(t, x, y);
+            }
+            ctx.fillStyle = '#fbf8f1'; ctx.fillRect(0, 0, 680, 430);
+            text('The four schools (three spells each)', 340, 32, 'bold 18px Georgia, serif', '#5a3a10');
+            var schools = [
+                ['Air', '#e3eefa', '#3b6ea8', ['Swift Wind', 'Tempest', 'Genie']],
+                ['Earth', '#e7f0de', '#4f7a2e', ['Heal Body', 'Rock Skin', 'Pass Through Rock']],
+                ['Fire', '#fbe3d9', '#b4502a', ['Fire of Wrath', 'Courage', 'Ball of Flame']],
+                ['Water', '#dcedf2', '#2f7486', ['Water of Healing', 'Sleep', 'Veil of Mist']]
+            ];
+            schools.forEach(function (s, i) {
+                var x = 20 + i * 165;
+                box(x, 50, 150, 130, s[1], s[2]);
+                text(s[0], x + 75, 80, 'bold 18px Georgia, serif', INK);
+                s[3].forEach(function (sp, j) { text(sp, x + 75, 110 + j * 22, '14px sans-serif', INK); });
+            });
+            text('Spell names as printed on the classic cards.', 340, 202, 'italic 13px sans-serif', SOFT);
+            text('Sharing them out before the first quest', 340, 238, 'bold 17px Georgia, serif', '#5a3a10');
+            var steps = ['1. The Wizard picks', 'one school', '2. The Elf picks one', 'of the other three', '3. The Wizard takes', 'the last two'];
+            for (var k = 0; k < 3; k++) {
+                var bx = 20 + k * 225;
+                box(bx, 256, 190, 70, '#f3ecdc', '#8a6a2f');
+                text(steps[k * 2], bx + 95, 284, 'bold 15px sans-serif', INK);
+                text(steps[k * 2 + 1], bx + 95, 306, '15px sans-serif', INK);
+                if (k < 2) {
+                    ctx.strokeStyle = '#8a6a2f'; ctx.fillStyle = '#8a6a2f'; ctx.lineWidth = 2;
+                    ctx.beginPath(); ctx.moveTo(bx + 194, 291); ctx.lineTo(bx + 218, 291); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(bx + 222, 291); ctx.lineTo(bx + 212, 285); ctx.lineTo(bx + 212, 297); ctx.closePath(); ctx.fill();
                 }
             }
-            
-            setInterval(drawCosmology, 50);
+            box(20, 346, 640, 66, '#ffffff', '#8a6a2f');
+            text('Result: the Wizard holds 9 spells (three schools), the Elf holds 3 (one school).', 340, 372, 'bold 14px sans-serif', INK);
+            text('Each spell can be cast once per quest. Suggested first quest: Wizard Fire, Elf Earth.', 340, 396, '14px sans-serif', INK);
+        })();
         </script>
-
-        <h2>The Powers That Shape Reality</h2>
-        
+        <p>Calling them "the four winds of magic" or giving each element a personality (steady Earth, restless Air, passionate Fire, adaptable Water) is fan flavour; the books simply name the schools and their spells. The full spell list and draft advice live on <a href="/heroquest_magic_spells.html">Magic &amp; Spells</a>.</p>
+</section>
+<section>
+<h2>The Powers That Shape the Story</h2>
+        <p>Strip the setting to its bones and it is a short chain of relationships. The diagram below uses only names from the official books.</p>
         <div class="mermaid">
-            graph TD
-                A[The Light] --> B[Order & Protection]
-                C[The Darkness] --> D[Chaos & Corruption]
-                B --> E[Human Kingdoms]
-                D --> F[Orc Tribes]
-                D --> G[Undead Legions]
-                E --> H[Heroes]
-                F --> I[Warlords]
-                G --> J[Necromancers]
-                
-                style A fill:#FFD700
-                style C fill:#8B0000
-                style H fill:#4169E1
+flowchart TD
+    M["Mentor"] -->|guards| L["The Loretome"]
+    M -->|once taught| Z["Zargon"]
+    Z -->|pledged to| D["The powers of Dread"]
+    D --> F["Zargon's forces:&lt;br/&gt;orcs, goblins, Abominations,&lt;br/&gt;Dread Warriors, undead"]
+    M -->|guides| H["The heroes"]
+    K["The King"] -->|rewards through| P["Prince Magnus"]
+    P --> H
+    H -->|oppose| F
         </div>
-
         <div class="character-spotlight">
-            <h3>The Eternal Struggle</h3>
-            <p>Like the eternal dance between day and night, the forces of Light and Darkness wage an endless war across the realms. This isn't a simple good-versus-evil narrative—it's more like the cosmic balance between order and chaos, creation and entropy. The Light represents structure, civilization, and protection, while the Darkness embodies change, freedom from constraint, and raw, untamed power.</p>
+            <h3>The Long Struggle</h3>
+            <p>The books frame the conflict plainly: Mentor and the King's realm on one side, Zargon and Dread on the other, with the heroes in the middle doing the actual work underground. Fans sometimes read more into it, for example a cosmic balance between order and chaos, or Zargon as a tragic fallen pupil. Those readings can add depth to a campaign, but they are interpretations; see <a href="/heroquest_lore_cosmic_forces.html">Lore: Cosmic Forces</a> for one of them, labelled as such.</p>
         </div>
-
-        <h2>The Material Plane: Where Heroes Walk</h2>
-        <p>The material plane serves as the primary stage for heroic adventures, much like how a theater provides the setting for grand dramas. Here, ancient kingdoms rise and fall like the tide, each leaving behind ruins that become the dungeons and strongholds where heroes test their mettle.</p>
-
+</section>
+<section>
+<h2>The Wider World: Fan Elaboration</h2>
+        <p>The quest books describe places only as far as a quest needs them. Everything in this section is <strong>invented for this guide</strong> to help a Zargon player set a scene; none of it is official.</p>
         <div class="realm-card">
-            <h3>The Empire's Legacy</h3>
-            <p>Long ago, a great Empire stretched across the known world like a protective blanket, bringing law, order, and prosperity to countless peoples. But empires, like mighty oaks, eventually fall—some to rot from within, others to the fierce storms of war. When this Empire crumbled, it left behind a patchwork of successor kingdoms, each clutching fragments of ancient glory like children holding pieces of a broken mirror.</p>
+            <h3>An Older Realm in Pieces</h3>
+            <p>One popular way to read the setting is that the King's realm is the surviving heart of something older and larger. Ruined towers, half-forgotten tombs and abandoned dwarven halls make sense if many generations built and fell before the heroes arrived. (In the classic edition's text this realm is ruled by an Emperor; the 2021 books say the King.)</p>
         </div>
-
         <div class="realm-card">
             <h3>The Borderlands</h3>
-            <p>Between these civilized realms lie the Borderlands—wild territories where the king's law holds about as much sway as a whisper in a hurricane. These are the places where monsters roam freely, where ancient ruins hide treasures and terrors in equal measure, and where a hero's reputation is earned one perilous quest at a time.</p>
+            <p>Between settled land and Zargon's strongholds lie wild border country where the King's law is thin. It is a handy explanation for why monsters keep turning up within a day's march of a village, and why a reward from Prince Magnus is worth the risk.</p>
         </div>
-
-        <h2>The Arcane Foundations</h2>
-        <p>Magic in the HeroQuest world isn't the neat, categorized system of a university—it's wild, primal, and dangerous, like trying to harness lightning in a bottle. It flows from the very fabric of reality, concentrated in certain places and objects, and those who wield it must always remember that magic has a will of its own.</p>
-
+</section>
+<section>
+<h2>The Call to Adventure</h2>
+        <p>The official heroes come from very different places. The core box has the Barbarian, Dwarf, Elf and Wizard; the Avalon Hill packs add the Knight, Rogue, Monk, Warlock, Bard, Druid, Berserker and Explorer. What unites them in the books is simple: Mentor needs them, and Zargon's forces are on the move again. Meet them all on <a href="/heroquest_legendary_heroes.html">The Heroes</a>.</p>
         <div class="ancient-scroll">
-            <h3>The Four Winds of Magic</h3>
-            <p><strong>Earth Magic:</strong> The power of stone and growing things, as reliable and enduring as the mountains themselves.</p>
-            <p><strong>Air Magic:</strong> Swift and unpredictable, like trying to catch the wind—it can lift you to great heights or dash you against the rocks.</p>
-            <p><strong>Fire Magic:</strong> Passionate and destructive, a double-edged sword that can warm a hearth or burn down a city.</p>
-            <p><strong>Water Magic:</strong> Fluid and adaptive, finding its way through any obstacle, wearing down the mightiest fortress drop by drop.</p>
+            <p><em>"Every shadow might hide an adventure, and every ruin a legend. Mentor's book is still open; the next page is yours to write."</em></p>
         </div>
+</section>
+<section>
+<h2>Where Next</h2>
+        <ul>
+            <li><a href="/heroquest_lore_kingdoms_regions.html">Lore: Kingdoms &amp; Regions</a> covers the places the books name.</li>
+            <li><a href="/heroquest_lore_great_events.html">Lore: Great Events</a> puts the official story in order.</li>
+            <li><a href="/heroquest_original_quests.html">The Core Quest Book</a> walks through the 14 core quests.</li>
+        </ul>
+</section>
+    </main>
 
-        <h2>The Call to Adventure</h2>
-        <p>In this world of crumbling empires and wild magic, heroes emerge not because they seek glory, but because they answer a call that resonates in their very souls. Like metal drawn to a magnet, they are pulled toward ancient dungeons, forgotten temples, and cursed strongholds where ordinary folk fear to tread.</p>
 
-        <div class="character-spotlight">
-            <p>These heroes come from all walks of life—some are noble knights carrying the weight of ancestral honor, others are cunning rogues who've learned that sometimes the only way to survive is to take what you need. Some wield magic with the scholarly precision of a master craftsman, while others channel divine power with the unwavering faith of a true believer.</p>
-        </div>
-
-        <p>But what unites them all is this: in a world where darkness creeps at the edges of civilization like fog rolling in from the sea, someone must stand as a beacon of hope. Someone must venture into the places where nightmares dwell and emerge victorious, carrying not just treasure, but proof that even in the darkest depths, the light of heroism can never be fully extinguished.</p>
-
-        <div class="ancient-scroll">
-            <p><em>"And so begins our tale, in a world where every shadow might hide an adventure, every ruin might contain a legend, and every hero carries within them the power to change the very course of history..."</em></p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_character_sheet.html">Character Sheet</a>
+    <a class="next" href="/heroquest_lore_kingdoms_regions.html">Lore: Kingdoms &amp; Regions</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

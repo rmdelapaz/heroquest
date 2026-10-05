@@ -3,434 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Mage of the Mirror: Reflections of Reality and Illusion</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>The Mage of the Mirror: Lore - The HeroQuest Guide</title>
+    <meta name="description" content="The story of The Mage of the Mirror: Queen Terrellia, her sister Sinestra, Princess Millandriell, Elethorn and the Realm of Reflection.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>🪞 The Mage of the Mirror: Reflections of Reality and Illusion 🪞</h1>
-        
-        <div class="reflection-chronicle">
-            <p><em>"In the labyrinthine halls where mirrors reflect not just images but possibilities, where reality bends and truth becomes a matter of perspective, there dwells a being who has mastered the most dangerous magic of all—the power to make others question the very nature of their own existence. The Mage of the Mirror does not merely cast illusions; he weaves alternate realities so convincing that even the heroes who enter his domain begin to doubt which version of themselves is real and which is merely reflection..."</em></p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>The Mage of the Mirror: Lore</h1>
+        <p>This page tells the story behind The Mage of the Mirror, from the kidnapping of Princess Millandriell to the fall of the archmage Sinestra.</p>
+    </header>
 
-        <h2>The Philosophy of Reflected Truth</h2>
-        <p>The Mage of the Mirror represents a unique form of magical threat—one that attacks not through brute force or overwhelming power, but through the systematic destruction of certainty itself. His mastery lies in understanding that reality is far more fragile than most people realize, built upon assumptions and perceptions that can be altered, manipulated, and ultimately shattered by one who understands the underlying mechanisms of belief and identity.</p>
+    <main id="main">
+<section>
+<div class="callout callout-edge"><p>The quest book tells this story only briefly, in Mentor's messages and the quest notes. This page mixes the official names and events with fan elaboration, and labels the elaboration where it appears.</p></div>
+</section>
 
-        <h2>The Hall of Infinite Reflections</h2>
-        <div class="canvas-container">
-            <h3>Mirror Realm</h3>
-            <canvas id="mirrorRealmCanvas" width="1000" height="500"></canvas>
-        </div>
-        
-        <script>
-            const mirrorCanvasElement = document.getElementById('mirrorRealmCanvas');
-            const mirrorCtx = mirrorCanvasElement.getContext('2d');
-            let mirrorAnimFrame = 0;
-            
-            function drawMirrorRealm() {
-                mirrorCtx.clearRect(0, 0, 1000, 500);
-                mirrorAnimFrame++;
-                
-                // Draw reflective surfaces creating maze-like effects
-                for (let i = 0; i < 50; i++) {
-                    const x = (i * 127) % 1000;
-                    const y = (i * 173) % 500;
-                    const shimmer = Math.sin(mirrorAnimFrame * 0.03 + i) * 0.3 + 0.4;
-                    mirrorCtx.fillStyle = `rgba(186, 85, 211, ${shimmer})`;
-                    mirrorCtx.fillRect(x, y, 2, 20);
-                    mirrorCtx.fillRect(x, y, 20, 2);
-                }
-                
-                // Central mage manifestation
-                const centerX = 500, centerY = 250;
-                const magePhase = Math.sin(mirrorAnimFrame * 0.05) * 0.3 + 0.7;
-                
-                // Mage's primary form
-                mirrorCtx.shadowColor = '#ba55d3';
-                mirrorCtx.shadowBlur = 40 * magePhase;
-                mirrorCtx.fillStyle = `rgba(186, 85, 211, ${magePhase * 0.8})`;
-                mirrorCtx.beginPath();
-                mirrorCtx.arc(centerX, centerY, 50 * magePhase, 0, Math.PI * 2);
-                mirrorCtx.fill();
-                
-                // Inner core of illusion
-                mirrorCtx.shadowBlur = 20 * magePhase;
-                mirrorCtx.fillStyle = `rgba(221, 160, 221, ${magePhase + 0.2})`;
-                mirrorCtx.beginPath();
-                mirrorCtx.arc(centerX, centerY, 25 * magePhase, 0, Math.PI * 2);
-                mirrorCtx.fill();
-                mirrorCtx.shadowBlur = 0;
-                
-                // Multiple mirror reflections of the mage
-                const reflections = [
-                    {x: 200, y: 150, opacity: 0.8, offset: 0},
-                    {x: 800, y: 180, opacity: 0.7, offset: 1.2},
-                    {x: 150, y: 350, opacity: 0.6, offset: 2.4},
-                    {x: 850, y: 320, opacity: 0.75, offset: 3.6},
-                    {x: 300, y: 100, opacity: 0.65, offset: 4.8},
-                    {x: 700, y: 400, opacity: 0.7, offset: 6.0}
-                ];
-                
-                reflections.forEach((reflection, index) => {
-                    const reflectPhase = mirrorAnimFrame * 0.04 + reflection.offset;
-                    const reflectIntensity = Math.sin(reflectPhase) * 0.2 + 0.8;
-                    
-                    // Reflection aura
-                    mirrorCtx.shadowColor = '#9370db';
-                    mirrorCtx.shadowBlur = 15 * reflectIntensity;
-                    mirrorCtx.fillStyle = `rgba(147, 112, 219, ${reflection.opacity * reflectIntensity * 0.6})`;
-                    mirrorCtx.beginPath();
-                    mirrorCtx.arc(reflection.x, reflection.y, 30 * reflectIntensity, 0, Math.PI * 2);
-                    mirrorCtx.fill();
-                    
-                    // Reflection core
-                    mirrorCtx.shadowBlur = 8 * reflectIntensity;
-                    mirrorCtx.fillStyle = `rgba(216, 191, 216, ${reflection.opacity * reflectIntensity})`;
-                    mirrorCtx.beginPath();
-                    mirrorCtx.arc(reflection.x, reflection.y, 12 * reflectIntensity, 0, Math.PI * 2);
-                    mirrorCtx.fill();
-                    mirrorCtx.shadowBlur = 0;
-                    
-                    // Connection lines showing reflection relationship
-                    const connectionStrength = Math.sin(reflectPhase + 2) * 0.2 + 0.6;
-                    mirrorCtx.strokeStyle = `rgba(221, 160, 221, ${connectionStrength * 0.3})`;
-                    mirrorCtx.lineWidth = 2;
-                    mirrorCtx.setLineDash([10, 5]);
-                    mirrorCtx.lineDashOffset = mirrorAnimFrame * 0.2;
-                    
-                    mirrorCtx.beginPath();
-                    mirrorCtx.moveTo(reflection.x, reflection.y);
-                    const midX = (reflection.x + centerX) / 2 + Math.sin(reflectPhase) * 15;
-                    const midY = (reflection.y + centerY) / 2 + Math.cos(reflectPhase) * 12;
-                    mirrorCtx.quadraticCurveTo(midX, midY, centerX, centerY);
-                    mirrorCtx.stroke();
-                });
-                mirrorCtx.setLineDash([]);
-                
-                // Mirror surfaces throughout the realm
-                const mirrors = [
-                    {x: 100, y: 200, w: 80, h: 120, angle: 0.2},
-                    {x: 900, y: 180, w: 60, h: 100, angle: -0.3},
-                    {x: 300, y: 400, w: 70, h: 90, angle: 0.5},
-                    {x: 700, y: 50, w: 90, h: 110, angle: -0.4},
-                    {x: 450, y: 450, w: 100, h: 30, angle: 0.1},
-                    {x: 50, y: 50, w: 120, h: 40, angle: -0.2}
-                ];
-                
-                mirrors.forEach((mirror, index) => {
-                    const mirrorPhase = mirrorAnimFrame * 0.03 + index * 1.1;
-                    const mirrorGlow = Math.sin(mirrorPhase) * 0.2 + 0.8;
-                    
-                    mirrorCtx.save();
-                    mirrorCtx.translate(mirror.x, mirror.y);
-                    mirrorCtx.rotate(mirror.angle);
-                    
-                    // Mirror frame
-                    mirrorCtx.fillStyle = `rgba(72, 61, 139, ${mirrorGlow})`;
-                    mirrorCtx.fillRect(-5, -5, mirror.w + 10, mirror.h + 10);
-                    
-                    // Mirror surface
-                    mirrorCtx.shadowColor = '#6a5acd';
-                    mirrorCtx.shadowBlur = 10 * mirrorGlow;
-                    mirrorCtx.fillStyle = `rgba(106, 90, 205, ${mirrorGlow * 0.8})`;
-                    mirrorCtx.fillRect(0, 0, mirror.w, mirror.h);
-                    mirrorCtx.shadowBlur = 0;
-                    
-                    // Reflective glint
-                    mirrorCtx.fillStyle = `rgba(255, 255, 255, ${mirrorGlow * 0.6})`;
-                    mirrorCtx.fillRect(mirror.w * 0.7, mirror.h * 0.1, mirror.w * 0.2, mirror.h * 0.1);
-                    
-                    mirrorCtx.restore();
-                });
-                
-                // Illusion particles floating through the space
-                for (let i = 0; i < 60; i++) {
-                    const t = (mirrorAnimFrame + i * 15) * 0.02;
-                    const x = centerX + Math.sin(t + i * 0.3) * (80 + i * 8);
-                    const y = centerY + Math.cos(t * 0.8 + i * 0.2) * (60 + i * 6) + Math.sin(t * 2) * 10;
-                    const alpha = (Math.sin(t * 3) + 1) * 0.4;
-                    
-                    if (x > 0 && x < 1000 && y > 0 && y < 500) {
-                        mirrorCtx.fillStyle = `rgba(221, 160, 221, ${alpha})`;
-                        mirrorCtx.beginPath();
-                        mirrorCtx.arc(x, y, 2, 0, Math.PI * 2);
-                        mirrorCtx.fill();
-                    }
-                }
-                
-                // Reality distortion waves
-                for (let wave = 1; wave <= 3; wave++) {
-                    const wavePhase = mirrorAnimFrame * 0.04 - wave * 0.8;
-                    const waveRadius = 100 + wave * 80 + Math.sin(wavePhase) * 20;
-                    const waveAlpha = Math.max(0, Math.sin(wavePhase) * 0.2);
-                    
-                    if (waveAlpha > 0) {
-                        mirrorCtx.strokeStyle = `rgba(147, 112, 219, ${waveAlpha})`;
-                        mirrorCtx.lineWidth = 2;
-                        mirrorCtx.setLineDash([8, 4]);
-                        mirrorCtx.lineDashOffset = mirrorAnimFrame * 0.3;
-                        mirrorCtx.beginPath();
-                        mirrorCtx.arc(centerX, centerY, waveRadius, 0, Math.PI * 2);
-                        mirrorCtx.stroke();
-                        mirrorCtx.setLineDash([]);
-                    }
-                }
-                
-                // Hero reflections (confused identities)
-                const heroReflections = [
-                    {x: 250, y: 300, truth: 0.9}, {x: 750, y: 200, truth: 0.3},
-                    {x: 400, y: 150, truth: 0.7}, {x: 600, y: 350, truth: 0.5}
-                ];
-                
-                heroReflections.forEach((hero, index) => {
-                    const heroPhase = mirrorAnimFrame * 0.06 + index * 1.8;
-                    const heroClarity = Math.sin(heroPhase) * 0.3 + 0.7;
-                    const truthLevel = hero.truth * heroClarity;
-                    
-                    mirrorCtx.fillStyle = `rgba(${255 * (1 - truthLevel)}, ${255 * truthLevel}, 255, ${heroClarity})`;
-                    mirrorCtx.beginPath();
-                    mirrorCtx.arc(hero.x, hero.y, 8 * heroClarity, 0, Math.PI * 2);
-                    mirrorCtx.fill();
-                });
-                
-                // Dimensional fractures where reality breaks down
-                const fractures = [{x: 200, y: 100}, {x: 800, y: 400}, {x: 500, y: 50}];
-                fractures.forEach((fracture, index) => {
-                    const fracturePhase = mirrorAnimFrame * 0.08 + index * 2.1;
-                    const fractureIntensity = Math.sin(fracturePhase) * 0.4 + 0.6;
-                    
-                    mirrorCtx.strokeStyle = `rgba(186, 85, 211, ${fractureIntensity})`;
-                    mirrorCtx.lineWidth = 3;
-                    mirrorCtx.beginPath();
-                    mirrorCtx.moveTo(fracture.x - 20, fracture.y);
-                    mirrorCtx.lineTo(fracture.x + 20, fracture.y);
-                    mirrorCtx.moveTo(fracture.x, fracture.y - 20);
-                    mirrorCtx.lineTo(fracture.x, fracture.y + 20);
-                    mirrorCtx.stroke();
-                });
-            }
-            
-            setInterval(drawMirrorRealm, 50);
-        </script>
+<section>
+<h2>The Elven Kingdom of Elethorn</h2>
+<p>Elethorn is the elven kingdom of the HeroQuest world, ruled by <strong>Queen Terrellia</strong>. It has a long history with Mentor. In the Game System's backstory, <strong>Ladril</strong>, the elven fighter-mage who fought beside Rogar the barbarian, came from Elethorn. Mentor's first message in this pack spells out what's at stake. If the elves fall to Zargon, "the King will lose the power and strength of Queen Terrellia's people", and that "will surely mean the end of the Realm".</p>
+<p>The furniture in the pack (a throne, a tomb, bookcases, an alchemist's bench) was designed "for the elven world". The quests take the heroes to a fortress on the southern border, a cavern south of the kingdom, the Queen's own test maze, an old mine, an alchemist's laboratory on the western border, and finally a castle deep in the marshes of Gliness Fen.</p>
+<div class="callout callout-edge callout-purple"><p><strong>Fan elaboration:</strong> At many tables, Elethorn is a kingdom of old forests and older magic. It's proud, slow to ask humans for help, and quick to remember a debt. That fits the quest book's tone: the Queen won't trust outsiders with her daughter's life until an elf has proved the plan can work.</p></div>
+</section>
 
-        <h2>The Master of Reflected Realities</h2>
+<section>
+<h2>A Family Divided</h2>
+<p>The whole story turns on one family:</p>
+<div class="pillars">
+  <div class="pillar"><span class="pillar-line">The ruler</span><h4>Queen Terrellia</h4><p>The elven queen. She receives a ransom note and insists that an elven hero prove their worth in three trials before she agrees to a rescue.</p></div>
+  <div class="pillar"><span class="pillar-line">The captive</span><h4>Princess Millandriell</h4><p>The Queen's daughter, "but a child" of five, kidnapped and held in a mirror maze in the Realm of Reflection.</p></div>
+  <div class="pillar"><span class="pillar-line">The villain</span><h4>Sinestra, the archmage</h4><p>The Queen's "evil sister". Her ransom note demands that Terrellia abdicate and hand all power to her. Mentor believes she serves Zargon willingly.</p></div>
+</div>
 
-        <div class="mirror-card mirror-magic">
-            <div class="card-type">Mirror Magic</div>
-            <h3>🎭 The Architect of Illusion</h3>
-            
-            <div class="mage-legend">
-                <h4>Beyond Simple Deception</h4>
-                <p>The Mage of the Mirror has transcended the crude art of creating false images and entered the realm of ontological manipulation—the ability to alter the fundamental nature of what is real and what is reflection. His magic operates on the principle that reality itself is far more malleable than most beings realize, constructed from layers of perception, belief, and assumption that can be peeled away, rearranged, and reconstructed by one who understands their true nature.</p>
-                
-                <p>What makes him truly dangerous is not his ability to create illusions, but his mastery over the relationship between observer and observed, between the self and its reflection. He understands that identity is not fixed but fluid, that the boundary between what you are and what you think you are is far thinner than most people realize. Through his mirrors, he doesn't just show false images—he creates alternate versions of reality that are so internally consistent that they become indistinguishable from truth.</p>
-            </div>
-            
-            <div class="deception-meter">
-                <div class="deception-fill" style="width: 98%; background: linear-gradient(90deg, #ba55d3, #dda0dd);">
-                    <div class="deception-label">Reality Manipulation</div>
-                </div>
-            </div>
-            <div class="deception-meter">
-                <div class="deception-fill" style="width: 95%; background: linear-gradient(90deg, #9370db, #ba55d3);">
-                    <div class="deception-label">Identity Distortion</div>
-                </div>
-            </div>
-            <div class="deception-meter">
-                <div class="deception-fill" style="width: 92%; background: linear-gradient(90deg, #6a5acd, #9370db);">
-                    <div class="deception-label">Perceptual Mastery</div>
-                </div>
-            </div>
-            
-            <div class="twisted-truth">
-                <h4>The Mirror's True Purpose</h4>
-                <p>The Mage's ultimate goal is not conquest or destruction in any conventional sense, but something far more insidious—the complete dissolution of the boundary between reality and reflection, creating a world where every truth contains its own contradiction, where every identity includes its opposite, and where the very concepts of authentic existence become meaningless. He seeks to transform the universe into a vast hall of mirrors where everything reflects everything else in an infinite recursion of possibilities.</p>
-                
-                <p>In such a reality, free will becomes impossible because every choice generates its own counter-choice, every decision spawns its own reversal, and every identity fragments into infinite variations. The Mage views this not as destruction but as liberation—freeing all beings from the tyranny of singular existence and allowing them to experience the full spectrum of what they could be, even if they lose track of what they actually are in the process.</p>
-            </div>
-            
-            <span class="reflection-tag">🪞 Mirror Mastery</span>
-            <span class="reflection-tag">🎭 Identity Fluid</span>
-            <span class="reflection-tag">🌀 Reality Recursion</span>
-            <span class="illusion-tag">♾️ Infinite Possibility</span>
-        </div>
+<div class="mermaid">
+flowchart TD
+    Z["Zargon"] -.->|"suspected master"| S["Sinestra, the archmage"]
+    S -->|"sister of"| T["Queen Terrellia"]
+    S --> SV["Her servants: the high alchemist&lt;br/&gt;and Tormuk the necromancer"]
+    S -->|"kidnaps"| M["Princess Millandriell"]
+    T -->|"mother of"| M
+    E["The Elf hero,&lt;br/&gt;chosen by Mentor"] -->|"rescues"| M
+</div>
 
-        <div class="mirror-card reflection-realm">
-            <div class="card-type">Mirror Realm</div>
-            <h3>🏰 The Palace of Infinite Reflections</h3>
-            
-            <div class="mirror-manifestation">
-                <h4>Architecture of Ambiguity</h4>
-                <p>The Mage's domain exists as a vast palace constructed entirely from mirrors, but these are not ordinary reflective surfaces—they are windows into alternate versions of reality, each showing a different possibility, a different timeline, a different interpretation of what could be. The architecture itself defies conventional geometry, with corridors that loop back on themselves, rooms that exist inside their own reflections, and staircases that lead both up and down simultaneously.</p>
-                
-                <p>Navigation through the palace becomes an exercise in existential philosophy rather than mere physical movement. Each mirror shows not just the viewer's reflection but alternate versions of themselves—the hero they could have been if they had made different choices, the villain they might become if they surrender to darker impulses, the completely different person they would be if they had been born in different circumstances. The palace forces visitors to confront the fundamental question: which version of themselves is the "real" one?</p>
-            </div>
-            
-            <div class="mirror-dimension">
-                <h4>The Mechanics of Reflection</h4>
-                <p>Within the palace, the normal rules governing cause and effect become fluid and negotiable. Actions performed in one mirror create reactions in another, words spoken to one reflection are heard by different versions of the speaker, and objects moved in the "real" world shift and change in their reflected counterparts according to logic that only the Mage fully understands.</p>
-                
-                <p>The most disorienting aspect of the realm is the way it treats time and memory. Past events can be viewed and even altered through certain mirrors, while others show potential futures that shift and change based on the observer's current thoughts and intentions. Memory becomes unreliable as visitors begin to remember things that happened to their reflections rather than themselves, creating a feedback loop where identity gradually dissolves into a kaleidoscope of possibilities.</p>
-            </div>
-            
-            <span class="illusion-tag">🏗️ Impossible Architecture</span>
-            <span class="illusion-tag">⏰ Temporal Fluidity</span>
-            <span class="illusion-tag">🧠 Memory Distortion</span>
-            <span class="mirror-tag">🌀 Causal Loops</span>
-        </div>
+<div class="callout callout-edge callout-purple"><p><strong>Fan elaboration:</strong> The book never says why Sinestra turned on her sister. Players tend to fill that gap with a younger sister passed over for the throne, a scholar of mirror magic who went too deep, or both. Whatever you pick, keep the official core: she wants the crown, she is willing to use a child to get it, and Zargon's power stands behind her.</p></div>
+</section>
 
-        <div class="mermaid">
-            graph TD
-                A[Mage of Mirror Threat] --> B[Reality Questioning]
-                A --> C[Identity Fragmentation]
-                A --> D[Mirror Maze Navigation]
-                A --> E[Truth Restoration]
-                
-                B --> F[Perception Distortion]
-                B --> G[False Memories]
-                B --> H[Alternate Selves]
-                
-                C --> I[Multiple Identities]
-                C --> J[Conflicting Memories]
-                C --> K[Choice Paralysis]
-                
-                D --> L[Mirror Puzzles]
-                D --> M[Reflection Combat]
-                D --> N[Reality Anchors]
-                
-                E --> O[True Self Discovery]
-                E --> P[Mirror Mastery]
-                E --> Q[Clarity Achievement]
-                
-                style A fill:#ba55d3
-                style K fill:#9370db
-                style P fill:#6a5acd
-                style Q fill:#dda0dd
-        </div>
+<section>
+<h2>The Elf's Three Trials</h2>
+<p>Mentor picks one elven hero to lead the rescue, but the Queen's terms are strict. The Elf has to pass three trials alone first:</p>
+<ol>
+  <li><strong>The Sovereign Sword.</strong> Agents of Zargon have stolen the Queen's legendary family heirloom and taken it to a fortress on the southern border. The Elf brings it back and is rewarded with elven chain mail.</li>
+  <li><strong>On Sacred Ground.</strong> Creatures of Dread have taken two of the Queen's attendants to an underground cavern. The Elf fights through to free them.</li>
+  <li><strong>Terrellia's Maze.</strong> The Queen's own maze, stocked with monsters who have been promised their freedom if they kill the Elf. A note warns, "All is not as it seems". The prize is a golden book, and the reward is a weapon of the Elf's choice.</li>
+</ol>
+</section>
 
-        <div class="mirror-card illusion-mastery">
-            <div class="card-type">Illusion Arts</div>
-            <h3>✨ The Weaving of False Truths</h3>
-            
-            <div class="mirror-manifestation">
-                <h4>Layers Upon Layers of Deception</h4>
-                <p>The Mage's illusions operate on multiple levels simultaneously, creating nested realities where each layer of deception contains its own internal logic and consistency. Unlike crude magical trickery that simply creates false images, his illusions are complete alternate realities with their own histories, relationships, and causal chains. Victims don't just see things that aren't there—they experience entire lifetimes that never happened but feel completely authentic.</p>
-                
-                <p>The sophistication of these illusions lies in their psychological accuracy. The Mage doesn't create random fantasies but carefully constructs alternate realities that appeal to his victims' deepest desires, fears, and unconscious assumptions about themselves and the world. Each illusion is tailored to the individual, exploiting their specific psychological vulnerabilities and offering them exactly what they most want to believe is true, even if accepting it means abandoning their actual identity.</p>
-            </div>
-            
-            <div class="illusion-weaving">
-                <h4>The Symbiosis of Truth and Falsehood</h4>
-                <p>What makes the Mage's illusions particularly insidious is the way he weaves elements of genuine truth into his fabrications, creating hybrid realities that are neither completely false nor entirely true. He takes real memories, real relationships, and real experiences, then subtly alters key details to create alternate versions of events that feel authentic because they are built upon genuine foundations.</p>
-                
-                <p>This technique exploits the fundamental unreliability of memory and perception, demonstrating how easy it is to convince someone that their recollection of events is flawed when presented with a slightly different version that explains the same evidence. Victims find themselves doubting not just specific memories but their entire capacity for distinguishing truth from falsehood, creating a state of epistemological vertigo where all certainty becomes impossible.</p>
-            </div>
-            
-            <span class="reflection-tag">🎨 Nested Reality</span>
-            <span class="reflection-tag">🧠 Psychological Precision</span>
-            <span class="reflection-tag">🔀 Truth Weaving</span>
-            <span class="illusion-tag">🌪️ Epistemic Chaos</span>
-        </div>
+<section>
+<h2>Lunarium and the Realm of Reflection</h2>
+<p>Millandriell is held in the <strong>Realm of Reflection</strong>, a world behind the mirrors. The only way in is <strong>lunarium</strong>, a glittering silver liquid that opens a mirror entry. Only the Queen's old royal prospector can tell true lunarium from fakes. The rest of the party joins the Elf here. They free the prospector from a mine where Zargon's minions hold him, then take him to the high alchemist's laboratory, where he picks the real flask out of hundreds of silver bottles.</p>
+<p>Sinestra fights back. Her servant <strong>Tormuk the necromancer</strong> casts a spell on two of the Queen's bodyguards, the finest elven archers in the kingdom, and they fight for him until the heroes break it. In the castle at Gliness Fen, giant wolves carry a werewolf's curse.</p>
+<div class="callout callout-edge callout-purple"><p><strong>Fan elaboration:</strong> The book doesn't explain what lunarium is. Many groups treat it as moonlight given substance, a link that fits the moon shrines and Lunar Charms of <a href="/heroquest_lore_rise_dread_moon.html">Rise of the Dread Moon</a>. That pack does turn Lunar Charms into lunarium at an alchemist's bench to pass the Mirror Gates, so the idea has some official support.</p></div>
+</section>
 
-        <div class="mirror-card mirror-creatures">
-            <div class="card-type">Mirror Beings</div>
-            <h3>👥 The Reflections Made Real</h3>
-            
-            <div class="reflection-grid">
-                <div class="reflection-card">
-                    <h4>🪞 Doppelgangers</h4>
-                    <p>Perfect physical copies of heroes that know everything their originals know but serve the Mage's purpose with inverted moral priorities.</p>
-                    <span class="mirror-tag">👤 Perfect Mimicry</span>
-                    <span class="mirror-tag">🔄 Moral Inversion</span>
-                </div>
-                <div class="reflection-card">
-                    <h4>👻 Phantom Memories</h4>
-                    <p>Ghostly manifestations of experiences that never happened, but which feel so real they begin to overwrite actual memories.</p>
-                    <span class="illusion-tag">💭 False Experience</span>
-                    <span class="illusion-tag">🧠 Memory Override</span>
-                </div>
-                <div class="reflection-card">
-                    <h4>🌟 Possibility Echoes</h4>
-                    <p>Manifestations of alternate versions of heroes from different timeline branches, each representing different life choices.</p>
-                    <span class="reflection-tag">⏳ Timeline Variants</span>
-                    <span class="reflection-tag">🎯 Choice Reflection</span>
-                </div>
-                <div class="reflection-card">
-                    <h4>🔮 Mirror Shards</h4>
-                    <p>Fragments of broken mirrors that show distorted aspects of the viewer's personality, magnifying specific traits to extreme proportions.</p>
-                    <span class="mirror-tag">🪞 Trait Magnification</span>
-                    <span class="mirror-tag">⚖️ Aspect Distortion</span>
-                </div>
-                <div class="reflection-card">
-                    <h4>👑 False Identities</h4>
-                    <p>Complete alternate personas that the Mage offers to heroes, complete with fabricated histories and relationships that feel entirely authentic.</p>
-                    <span class="illusion-tag">🎭 Complete Personas</span>
-                    <span class="illusion-tag">📚 Fabricated History</span>
-                </div>
-                <div class="reflection-card">
-                    <h4>🌀 Recursive Loops</h4>
-                    <p>Magical constructs that trap heroes in repeating cycles of experience, each iteration slightly different but leading to the same confusion.</p>
-                    <span class="reflection-tag">🔄 Experience Loops</span>
-                    <span class="reflection-tag">🌀 Gradual Variation</span>
-                </div>
-            </div>
-            
-            <span class="mirror-tag">👥 Identity Crisis</span>
-            <span class="mirror-tag">🎭 False Authenticity</span>
-            <span class="mirror-tag">🧩 Reality Fragments</span>
-        </div>
+<section>
+<h2>Silvermane's Lair</h2>
+<p>Sinestra's deepest den is called <strong>Silvermane's Lair</strong>. A great mirror there shows the captive princess. When the lunarium touches it, the glass turns black and the heroes can step through into the Realm of Reflection, though not back again. Another mirror in that realm holds the <strong>Elven Bow of Vindication</strong>, a treasure of the elven kingdom that Mentor says can help destroy the archmage. Sinestra waits in her Inner Sanctum with spells of mirror magic, firestorm and the werewolf's curse.</p>
+<p>In the conclusion, Queen Terrellia holds a celebration for the heroes and has their names written into the ancient <strong>Book of Elven Heroes</strong>. She takes back the Bow of Vindication and gives them a chest holding 2,000 gold coins. Mentor tells them peace and order have been restored to the Realm.</p>
+<p>That peace doesn't last. When <a href="/heroquest_lore_rise_dread_moon.html">Rise of the Dread Moon</a> opens, Millandriell is safely home, but Mentor fears "a great evil still simmers in Elethorn".</p>
+</section>
 
-        <div class="mirror-card reality-quest">
-            <div class="card-type">Reality Quest</div>
-            <h3>🔍 The Search for Authentic Truth</h3>
-            
-            <div class="mirror-manifestation">
-                <h4>When Everything Is Questionable</h4>
-                <p>The quest to overcome the Mage of the Mirror requires heroes to solve a problem that goes far beyond simple combat or puzzle-solving—they must find a way to distinguish truth from falsehood when all their normal methods of verification have been compromised. Every sense can be deceived, every memory can be altered, and every piece of evidence can be fabricated with perfect accuracy. The challenge becomes not just finding the real Mage among countless reflections, but determining which version of themselves is genuine.</p>
-                
-                <p>This creates a uniquely philosophical adventure where heroes must develop new epistemological frameworks for determining truth. They cannot rely on their eyes, their memories, or even their emotions, all of which can be manipulated by the Mage's power. Instead, they must learn to recognize truth through more fundamental criteria—internal consistency, moral coherence, and the deep patterns that connect authentic experiences in ways that perfectly crafted illusions cannot quite replicate.</p>
-            </div>
-            
-            <div class="clarity-quest">
-                <h4>The Anchor of Identity</h4>
-                <p>The key to defeating the Mage lies not in overcoming his illusions but in developing such a clear and unshakeable sense of personal identity that external deceptions become irrelevant. Heroes must learn to recognize themselves not through external characteristics or memories—both of which can be copied or altered—but through the fundamental patterns of thought, feeling, and choice that make them unique individuals.</p>
-                
-                <p>This requires a level of self-knowledge that few people ever achieve, forcing heroes to confront not just who they are but why they are that way, what core principles guide their decisions, and which aspects of their personality remain constant regardless of circumstances. Only by achieving this level of self-awareness can they hope to distinguish their authentic selves from even the most perfect reflection the Mage can create.</p>
-            </div>
-            
-            <span class="reflection-tag">🔍 Truth Detection</span>
-            <span class="reflection-tag">🧠 Self-Knowledge</span>
-            <span class="reflection-tag">⚖️ Identity Anchor</span>
-            <span class="illusion-tag">💎 Authentic Core</span>
-        </div>
+<section>
+<div class="callout callout-edge"><p><strong>Classic edition (1989–1990):</strong> The original <em>The Mage of the Mirror</em> was a North American "Elf Quest Pack" from Milton Bradley in the early 1990s. Sinestra was the villain there too. The 2023 Avalon Hill pack retells the story for the current game, so check which book a quest note comes from.</p></div>
+</section>
 
-        <h2>The Philosophy of Reflected Existence</h2>
-        
-        <div class="identity-crisis">
-            <h3>The Question of Authentic Self</h3>
-            <p>The Mage of the Mirror forces heroes to confront one of the most unsettling philosophical questions imaginable: if a perfect copy of yourself exists with all your memories, skills, and personality traits, but with different moral commitments, which one is the "real" you? His challenge goes beyond simple impersonation to raise fundamental questions about the nature of identity, consciousness, and moral responsibility.</p>
-            
-            <p>Through his mirrors, he demonstrates that what people think of as their "true self" is actually a constantly shifting constellation of memories, beliefs, and habits that can be altered, rearranged, or replaced without destroying the fundamental continuity of consciousness. This revelation can be either liberating or terrifying, depending on whether one views identity as a precious possession to be protected or a limiting prison to be transcended.</p>
-        </div>
+<section>
+<h2>Where Next</h2>
+<p>For the rules and quests of this pack, see <a href="/heroquest_mage_of_mirror.html">The Mage of the Mirror</a>. To follow the story to its end, continue to <a href="/heroquest_rise_dread_moon.html">Rise of the Dread Moon</a>.</p>
+</section>
+    </main>
 
-        <div class="paradox-chamber">
-            <h3>The Recursion of Reality</h3>
-            <p>The ultimate resolution of the Mage's challenge requires heroes to embrace a paradox: they must simultaneously accept that their identity is fluid and changeable while also maintaining an unshakeable commitment to their core values and principles. They must acknowledge that multiple versions of themselves could exist while still choosing to be responsible for the specific version they actually are.</p>
-            
-            <p>This creates a sophisticated understanding of selfhood that transcends simple either/or thinking. Heroes learn that they can acknowledge the contingency and malleability of identity while still making meaningful choices about who they want to be. The victory over the Mage comes not from proving that one version of reality is "true" and all others are "false," but from demonstrating that truth itself is something that must be actively chosen and maintained rather than simply discovered.</p>
-        </div>
-
-        <div class="reflection-chronicle">
-            <p><em>"Thus stands the challenge of the Mage of the Mirror—not a battle to be won through strength or wisdom alone, but a philosophical journey that transforms how heroes understand the very nature of existence itself. In facing him, they discover that the most powerful magic is not the ability to change reality, but the courage to choose which reality to inhabit when all possibilities seem equally valid. For in the end, authenticity is not about finding the one true self, but about taking responsibility for the self one chooses to become..."</em></p>
-        </div>
-    </div>
-<script src="/nav.js"></script>
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_mage_of_mirror.html">The Mage of the Mirror</a>
+    <a class="next" href="/heroquest_rise_dread_moon.html">Rise of the Dread Moon</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

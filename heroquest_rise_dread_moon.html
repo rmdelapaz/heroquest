@@ -3,1348 +3,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Rise of the Dread Moon - Lycanthropic Transformation and Lunar Cycles</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Rise of the Dread Moon - The HeroQuest Guide</title>
+    <meta name="description" content="Rise of the Dread Moon (2023): ten quests in Elethorn with the Knight, disguises, alchemy, mercenaries, the Underground Market and ethereal Specters.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
     <style>
-    /* ── Callout boxes ── */
-    .lunar-principle, .knight-principle, .transformation-box, .moon-analysis {
-      background: var(--accent-muted);
-      border-left: 4px solid var(--accent);
-      border-radius: 0 8px 8px 0;
-      padding: 16px 20px;
-      margin: 1rem 0;
-      color: var(--text);
-    }
-
-    /* ── Dread moon portal ── */
-    .dread-moon-portal {
-      text-align: center;
-      font-size: 64px;
-      margin: 1.5rem 0;
-      padding: 20px;
-      background: linear-gradient(135deg, rgba(255,167,38,0.12), rgba(30,30,60,0.2));
-      border: 2px solid #ffa726;
-      border-radius: 12px;
-    }
-
-    /* ── Night sky decoration ── */
-    .night-sky {
-      position: relative;
-      overflow: hidden;
-      min-height: 40px;
-    }
-    .star {
-      position: absolute;
-      font-size: 10px;
-      opacity: 0.4;
-      pointer-events: none;
-      animation: twinkle 3s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle {
-      0% { opacity: 0.2; transform: scale(1); }
-      100% { opacity: 0.6; transform: scale(1.3); }
-    }
-
-    /* ── Moon phase meter ── */
-    .moon-phase-meter {
-      position: relative;
-      width: 100%;
-      height: 24px;
-      background: linear-gradient(to right, #1a1a2e, #3a3a5e, #ffa726, #3a3a5e, #1a1a2e);
-      border-radius: 12px;
-      margin: 0.75rem 0;
-      border: 2px solid var(--border);
-    }
-    .moon-indicator {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border: 3px solid #333;
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(255,167,38,0.6);
-    }
-
-    /* ── Curse meter ── */
-    .curse-meter {
-      position: relative;
-      width: 100%;
-      height: 24px;
-      background: linear-gradient(to right, #4caf50, #ffeb3b, #ff9800, #f44336, #4a0000);
-      border-radius: 12px;
-      margin: 0.75rem 0;
-      border: 2px solid var(--border);
-    }
-    .curse-indicator {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 18px;
-      height: 18px;
-      background: #fff;
-      border: 3px solid #333;
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(244,67,54,0.6);
-    }
-
-    /* ── Moon cycles — horizontal phase selector ── */
-    .moon-cycles {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin: 1rem 0;
-    }
-    .moon-phase {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 56px;
-      background: var(--accent-muted);
-      border: 2px solid var(--border);
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 22px;
-      transition: background 0.2s, transform 0.15s, border-color 0.2s;
-      color: var(--text);
-      user-select: none;
-    }
-    .moon-phase:hover { transform: scale(1.12); border-color: #ffa726; }
-    .moon-phase.active {
-      background: #ffa726;
-      color: #000;
-      border-color: #e65100;
-      box-shadow: 0 0 12px rgba(255,167,38,0.5);
-    }
-
-    /* ── Transformation tracker — horizontal flow ── */
-    .transformation-tracker {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin: 1.5rem 0;
-      padding: 16px;
-      background: var(--accent-muted);
-      border-radius: 12px;
-      border: 1px solid var(--border);
-    }
-    .transform-stage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      width: 68px;
-      height: 68px;
-      background: #e65100;
-      color: #fff;
-      font-weight: 700;
-      font-size: 0.7rem;
-      line-height: 1.2;
-      border-radius: 50%;
-      border: 3px solid var(--border);
-      box-shadow: 0 2px 8px rgba(255,167,38,0.3);
-    }
-
-    /* ── Interactive lunar battlefield ── */
-    .lunar-battlefield {
-      display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 2px;
-      margin: 1rem 0;
-      max-width: 420px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .lunar-cell {
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s;
-      user-select: none;
-    }
-    .lunar-cell:hover { transform: scale(1.1); z-index: 1; }
-    .lunar-cell.moonlight { background: rgba(255,167,38,0.2); }
-    .lunar-cell.shadow { background: rgba(30,30,60,0.35); }
-    .lunar-cell.cursed-ground { background: rgba(244,67,54,0.25); }
-    .lunar-cell.normal-terrain { background: rgba(100,100,100,0.15); }
-    .lunar-cell.human-form { background: rgba(74,144,226,0.3); cursor: default; }
-    .lunar-cell.beast-form { background: rgba(255,87,34,0.35); cursor: default; }
-    .lunar-cell.selected { outline: 2px solid #ffa726; box-shadow: 0 0 8px rgba(255,167,38,0.5); }
-
-    /* ── Beast forms grid ── */
-    .beast-forms {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 1rem 0;
-    }
-    .beast-showcase {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      color: var(--text);
-    }
-
-    /* ── Knight/beast comparison ── */
-    .knight-beast-comparison {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin: 1rem 0;
-    }
-    .knight-form, .beast-form {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px;
-      color: var(--text);
-    }
-    .knight-form { border-left: 4px solid #42a5f5; }
-    .beast-form { border-left: 4px solid #ff5722; }
-
-    /* ── Knight equipment grid ── */
-    .knight-equipment {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin: 1rem 0;
-    }
-    .equipment-item {
-      background: var(--accent-muted);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 14px;
-      color: var(--text);
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      .moon-phase { width: 44px; height: 44px; font-size: 18px; }
-      .transform-stage { width: 54px; height: 54px; font-size: 0.6rem; }
-      .knight-beast-comparison { grid-template-columns: 1fr; }
-      .beast-forms, .knight-equipment { grid-template-columns: 1fr; }
-      .lunar-battlefield { grid-template-columns: repeat(6, 1fr); }
-    }
+/* Ethereal attack calculator */
+    .calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 12px 18px; margin: 0.5rem 0 1rem; }
+    .calc-grid label { display: block; font-weight: 600; color: var(--heading); margin-bottom: 0.3rem; }
+    .calc-grid select, .calc-grid input[type="range"] { width: 100%; }
+    .calc-out { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 10px; margin: 0.8rem 0; }
+    .calc-out div { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; color: var(--text); }
+    .calc-out strong { display: block; font-size: 1.35rem; color: var(--accent); }
+    .calc-note { color: var(--muted); font-size: 0.92rem; margin: 0.4rem 0 0; }
+    .quest-list { counter-reset: none; padding-left: 1.4rem; }
+    .quest-list li { margin-bottom: 0.35rem; }
     </style>
 </head>
 <body>
-    <div class="container night-sky">
-        <h1>🌙 Rise of the Dread Moon: Lycanthropic Transformation & Lunar Cycles 🐺</h1>
-        
-        <div class="lunar-principle">
-            <h2>🌕 The Crimson Curse: When Heroes Become the Monsters</h2>
-            <p><strong>Rise of the Dread Moon wasn't just an expansion - it was a terrifying exploration of the monster within that every hero fears becoming!</strong> Like The Wolf Man or An American Werewolf in London, this expansion proved that sometimes the greatest enemy isn't some distant evil, but the beast that lies dormant in our own souls, waiting for the right trigger to emerge. It transformed HeroQuest from external adventure into internal horror.</p>
-            
-            <p><strong>Real-world analogy:</strong> Think of this expansion like going from fighting external enemies to battling your own worst impulses. The original game was about heroes vs. monsters; Rise of the Dread Moon is about heroes discovering they ARE the monsters. It's the difference between fighting a werewolf and becoming one - knowing that every full moon, you'll lose control and hurt the people you've sworn to protect!</p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Rise of the Dread Moon</h1>
+        <p>Rise of the Dread Moon is the 2023 Avalon Hill quest pack that finishes the Elethorn story begun in The Mage of the Mirror, and this page covers its rules, monsters and quests.</p>
+    </header>
 
-        <div class="dread-moon-portal">
-            🌕
-        </div>
+    <main id="main">
+<section>
+<h2>What This Pack Is</h2>
+<p><em>Rise of the Dread Moon</em> is an Avalon Hill quest pack for the 2021 HeroQuest Game System, released in 2023. You need the Game System to play it. Its quest book says it "concludes the exciting story begun in The Mage of the Mirror", so it is the second half of the Elethorn saga. Play The Mage of the Mirror first if you can, and play these ten quests in order: the book says that matters more here than usual.</p>
+<p>The heroes go back to the elven kingdom of Elethorn after Princess Millandriell's rescue. The kingdom is now in civil unrest. The Mirror Gates that linked it to the rest of the Realm have been tampered with, a company of Guardian Knights has gone silent, and the Night of the Dread Moon is coming. The quest book describes it as an event that "happens once every thousand years" and strengthens Dread magic in the elven lands. Sir Ragnar, the knight the heroes rescued in the core game, has turned traitor and sided with Zargon's agents.</p>
 
-        <div class="moon-phase-meter">
-            <div class="moon-indicator" id="moon_indicator" style="left: 75%;"></div>
-        </div>
-        <p style="text-align: center;"><em>Moon Phase: <span id="moon_phase">FULL MOON RISING</span></em></p>
+<div class="pillars">
+  <div class="pillar"><span class="pillar-line">New hero</span><h4>The Knight</h4><p>The pack includes the Knight hero. See <a href="/heroquest_knight_tutorial.html">the Knight</a> page for how to play the class.</p></div>
+  <div class="pillar"><span class="pillar-line">New system</span><h4>Alchemy</h4><p>An alchemy deck of potions and reagents. At an Alchemist's Bench, you turn reagents into potions.</p></div>
+  <div class="pillar"><span class="pillar-line">New allies</span><h4>Elven mercenaries</h4><p>Four loyal elven soldiers (Striker, Glaive, Arbalist, Scout) who are in hiding. You unlock them as the story goes on.</p></div>
+  <div class="pillar"><span class="pillar-line">New shop</span><h4>The Underground Market</h4><p>Buy potions, armory items and new gear here. You can also sell items for half their price.</p></div>
+  <div class="pillar"><span class="pillar-line">New foes</span><h4>Cultists, Specters, the Dread Wraith</h4><p>Ethereal undead that pass through walls, plus Magus Guards, Assassins and corrupted elven troops.</p></div>
+</div>
 
-        <div class="curse-meter">
-            <div class="curse-indicator" id="curse_indicator" style="left: 60%;"></div>
-        </div>
-        <p style="text-align: center;"><em>Curse Severity: <span id="curse_level">LYCANTHROPIC SURGE</span></em></p>
+<h3>What's in the box</h3>
+<p>The contents page lists these miniatures: the Knight, a Dread Wraith, Magus Guards, Assassins, Dread Cultists, Specters, Elven Archers, Elven Warriors and the elven mercenaries. It also has furniture built for the elven world: statues, a rack (used as an Arcane Prison), a cupboard, a table and a sorcerer's table. There is an iron entrance door, a wooden exit door, two mirror stands, a tile sheet and 58 game cards.</p>
+<p>The tile sheet holds the Hideout and Plaza tiles, trap doors, caltrops, Lunar Charms, disguise tokens, reputation tokens, strangers, smoke-bomb markers and standing mirrors.</p>
+</section>
 
-        <h2>🐺 The Lycanthropic Trinity: Transformation Mechanics</h2>
-        
-        <div class="mermaid">
-            graph TD
-                A[Lycanthropic System] --> B[Moon Phase Tracking]
-                A --> C[Transformation Triggers]
-                A --> D[Dual Nature Mechanics]
-                A --> E[Curse Management]
-                
-                B --> B1[New Moon - Calm]
-                B --> B2[Waxing - Growing Power]
-                B --> B3[Full Moon - Beast Dominance]
-                B --> B4[Waning - Returning Control]
-                
-                C --> C1[Emotional Stress]
-                C --> C2[Physical Damage]
-                C --> C3[Lunar Proximity]
-                C --> C4[Voluntary Change]
-                
-                D --> D1[Human Form Abilities]
-                D --> D2[Beast Form Powers]
-                D --> D3[Hybrid Advantages]
-                D --> D4[Identity Conflicts]
-                
-                E --> E1[Curse Progression]
-                E --> E2[Control Methods]
-                E --> E3[Cure Seeking]
-                E --> E4[Acceptance Path]
-                
-                style A fill:#ff6b6b,stroke:#333,stroke-width:3px
-                style B fill:#ffa726,stroke:#333,stroke-width:2px
-                style C fill:#ffa726,stroke:#333,stroke-width:2px
-                style D fill:#ffa726,stroke:#333,stroke-width:2px
-                style E fill:#ffa726,stroke:#333,stroke-width:2px
-        </div>
+<section>
+<h2>The Rules That Change</h2>
+<p>Most of the game plays exactly like the Game System: <a href="/heroquest_basics.html">move then act, or act then move</a>, with the same six actions and the same combat dice. Here is what the quest book adds or changes.</p>
 
-        <h2>🌙 Interactive Moon Phase Tracker</h2>
-        
-        <div class="moon-cycles">
-            <div class="moon-phase" onclick="setMoonPhase(0, 'new')" title="New Moon">
-                🌑
-            </div>
-            <div class="moon-phase" onclick="setMoonPhase(1, 'waxing')" title="Waxing Crescent">
-                🌒
-            </div>
-            <div class="moon-phase" onclick="setMoonPhase(2, 'quarter')" title="First Quarter">
-                🌓
-            </div>
-            <div class="moon-phase" onclick="setMoonPhase(3, 'waxing-gibbous')" title="Waxing Gibbous">
-                🌔
-            </div>
-            <div class="moon-phase active" onclick="setMoonPhase(4, 'full')" title="Full Moon">
-                🌕
-            </div>
-            <div class="moon-phase" onclick="setMoonPhase(5, 'waning-gibbous')" title="Waning Gibbous">
-                🌖
-            </div>
-            <div class="moon-phase" onclick="setMoonPhase(6, 'last-quarter')" title="Last Quarter">
-                🌗
-            </div>
-            <div class="moon-phase" onclick="setMoonPhase(7, 'waning')" title="Waning Crescent">
-                🌘
-            </div>
-        </div>
+<h3>Starting and ending quests</h3>
+<p>Many quests don't start or end on the spiral stairway. Mentor's message for each quest tells you where you begin and where you leave. When the map shows an iron entry door, the heroes line up outside it and ask Zargon to open it. Like any door, the wooden exit door only appears once a hero looks down that corridor.</p>
 
-        <div id="moon_effects" style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 10px;">
-            <strong>Lunar Effects:</strong> Full Moon - Maximum lycanthropic power! Transformation is inevitable and beast form dominates.
-        </div>
+<h3>Mind Points and shock</h3>
+<p>Mind Point damage is tracked here, on the bottom row of the Body Point boxes on your character sheet. At 0 Mind Points a hero is <strong>in shock</strong>. A hero in shock rolls one red movement die, one Attack die and two Defend dice, and armor, weapons and artifacts add nothing. Getting even one Mind Point back ends the shock. You cannot go below 0. Spells that work on Mind Points, such as Sleep, can't be cast on monsters with 0 Mind Points, and Specters have 0.</p>
 
-        <h2>🔄 The Transformation Cycle: Beast Within</h2>
-        
-        <div class="transformation-tracker">
-            <div class="transform-stage">
-                <div style="font-size: 20px;">😌</div>
-                <div>Human</div>
-                <div>Control</div>
-            </div>
-            <div style="font-size: 24px; color: var(--accent, #ffa726);">→</div>
-            <div class="transform-stage">
-                <div style="font-size: 20px;">😰</div>
-                <div>Struggle</div>
-                <div>Tension</div>
-            </div>
-            <div style="font-size: 24px; color: var(--accent, #ffa726);">→</div>
-            <div class="transform-stage">
-                <div style="font-size: 20px;">😤</div>
-                <div>Change</div>
-                <div>Beginning</div>
-            </div>
-            <div style="font-size: 24px; color: var(--accent, #ffa726);">→</div>
-            <div class="transform-stage">
-                <div style="font-size: 20px;">🐺</div>
-                <div>Beast</div>
-                <div>Dominant</div>
-            </div>
-            <div style="font-size: 24px; color: var(--accent, #ffa726);">→</div>
-            <div class="transform-stage">
-                <div style="font-size: 20px;">😱</div>
-                <div>Return</div>
-                <div>Horror</div>
-            </div>
-        </div>
+<h3>Disguises</h3>
+<p>Some quests let each hero take a disguise token at the start, with no action needed. A disguised hero has to keep a low profile. To stay disguised, you must:</p>
+<ul>
+  <li>attack unarmed or with a dagger, shortsword, handaxe or staff;</li>
+  <li>cast no spells;</li>
+  <li>wear no armor except bracers and helmets.</li>
+</ul>
+<p>Break any of these and you hand the token back. You keep the gear you're not allowed to use, but you can't use it while disguised. Artifacts count as the item they represent. Borin's Armor counts as plate mail, so it breaks a disguise. A Wizard's Cloak isn't armor, so it doesn't. Mercenaries always count as disguised. Disguises matter: in several quests, inactive guards ignore disguised heroes. A disguised hero who moves next to one can remove it with a silent strike.</p>
 
-        <h2>🐺 Lycanthropic Combat: Dual Nature Warfare</h2>
-        
-        <div class="canvas-container">
-            <h3>Lycanthrope Combat</h3>
-            <canvas id="lycanthrope_combat_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="transformation-box">
-            <h3>⚔️ Fighting with Two Souls</h3>
-            <p><strong>Lycanthropic heroes must balance human strategy with beast instincts:</strong></p>
-            
-            <p><strong>😇 Human Form Advantages:</strong></p>
-            <ul>
-                <li>Full strategic thinking and spell use</li>
-                <li>Equipment and weapon mastery</li>
-                <li>Social interaction and communication</li>
-                <li>Moral compass and ethical decision making</li>
-            </ul>
-            
-            <p><strong>🐺 Beast Form Powers:</strong></p>
-            <ul>
-                <li>Enhanced strength, speed, and senses</li>
-                <li>Natural weapons (claws, fangs, bite)</li>
-                <li>Damage resistance and healing factor</li>
-                <li>Intimidation and fear effects</li>
-            </ul>
-            
-            <p><strong>⚖️ The Internal Conflict:</strong></p>
-            <ul>
-                <li>Human mind vs. beast instincts in decision making</li>
-                <li>Risk of harming allies during transformation</li>
-                <li>Equipment restrictions in beast form</li>
-                <li>Moral guilt over actions taken as beast</li>
-            </ul>
-        </div>
+<h3>Unarmed combat</h3>
+<p>A hero with no weapon rolls 1 Attack die. A hero with no armor rolls 2 Defend dice. This comes up in Quest 4, when the heroes start in a cell with their gear taken away.</p>
 
-        <h2>🌙 Interactive Lycanthrope Battlefield</h2>
-        
-        <div class="moon-analysis">
-            <p><strong>Navigate the cursed landscape!</strong> Click terrain to see how different environments affect lycanthropic abilities and transformations.</p>
-            
-            <div class="lunar-battlefield" id="lunar_battlefield">
-                <!-- Grid will be populated by JavaScript -->
-            </div>
-            
-            <p><strong>Terrain Legend:</strong> 🌙 Moonlight | 🌑 Shadow | 💜 Cursed Ground | 🌍 Normal | 🔥 Lycanthrope | 👤 Human | 🐺 Beast</p>
-            
-            <div id="terrain_effects" style="margin-top: 20px; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 10px;">
-                <strong>Environmental Effects:</strong> Click terrain tiles to analyze lycanthropic interactions with the environment!
-            </div>
-        </div>
+<h3>Hideouts</h3>
+<p>The heroes can't get to shops whenever they like, but friends leave supplies in hideouts for them. A hideout has a makeshift Alchemist's Bench and is safe from threats. It can be searched for treasure once per quest, and any Wandering Monster or Hazard card drawn while searching it is ignored and goes to the bottom of the deck. Once per quest, as an action, each hero in the hideout may roll one red die and restore that many points, split however they like between Body and Mind. For example, on a 5 you could take 3 Body and 2 Mind.</p>
 
-        <h2>🐺 The Lycanthrope Bestiary: Pack Mentality</h2>
-        
-        <div class="beast-forms">
-            <div class="beast-showcase">
-                <h4>🐺 Alpha Werewolf</h4>
-                <p><strong>The Pack Leader</strong></p>
-                <p><strong>Origin:</strong> Ancient curse bloodline, born lycanthrope</p>
-                <p><strong>Powers:</strong> Command pack, forced transformation of others</p>
-                <p><strong>Weakness:</strong> Silver weapons, wolfsbane, lunar eclipse</p>
-                <p><em>"The first among the cursed"</em></p>
-            </div>
-            
-            <div class="beast-showcase">
-                <h4>🌙 Cursed Heroes</h4>
-                <p><strong>The Reluctant Beasts</strong></p>
-                <p><strong>Origin:</strong> Heroes infected during adventures</p>
-                <p><strong>Powers:</strong> Retain some human intelligence</p>
-                <p><strong>Weakness:</strong> Internal conflict, moral restraints</p>
-                <p><em>"Heroes fighting their own nature"</em></p>
-            </div>
-            
-            <div class="beast-showcase">
-                <h4>🦇 Were-Creatures</h4>
-                <p><strong>The Varied Cursed</strong></p>
-                <p><strong>Origin:</strong> Different animal spirits, various curses</p>
-                <p><strong>Powers:</strong> Unique abilities per animal type</p>
-                <p><strong>Weakness:</strong> Specific to creature type</p>
-                <p><em>"The curse takes many forms"</em></p>
-            </div>
-            
-            <div class="beast-showcase">
-                <h4>🌕 Moon Cultists</h4>
-                <p><strong>The Willing Transformed</strong></p>
-                <p><strong>Origin:</strong> Humans who embrace the curse</p>
-                <p><strong>Powers:</strong> Voluntary transformation, ritual magic</p>
-                <p><strong>Weakness:</strong> Dependence on lunar cycles</p>
-                <p><em>"They welcome the beast within"</em></p>
-            </div>
-        </div>
+<h3>Moon shrines and Lunar Charms</h3>
+<p>In this pack the sorcerer's table stands for one of the elves' shrines to the moon. When a hero searches a room with one for treasure, the Elf, or any hero carrying a <strong>Lunar Charm</strong>, also restores 1 Body Point and 1 Mind Point. The heroes collect Lunar Charms as the story goes on. They protect against several hazards in the temple, and later they become the key to the Mirror Gates.</p>
 
-        <h2>🧬 The Science of Lycanthropy</h2>
-        
-        <div class="canvas-container">
-            <h3>Lycanthropy Mechanics</h3>
-            <canvas id="lycanthropy_mechanics_canvas" width="600" height="350"></canvas>
-        </div>
-        
-        <div class="lunar-principle">
-            <h3>🔬 Understanding the Curse</h3>
-            <p><strong>The expansion treated lycanthropy as both magical curse and biological condition:</strong></p>
-            
-            <p><strong>🌙 Lunar Sensitivity:</strong></p>
-            <ul>
-                <li>Moon phases directly affect transformation likelihood</li>
-                <li>Full moon makes transformation almost inevitable</li>
-                <li>New moon provides maximum control and stability</li>
-                <li>Eclipses can temporarily break or strengthen curses</li>
-            </ul>
-            
-            <p><strong>🧬 Biological Changes:</strong></p>
-            <ul>
-                <li>Enhanced metabolism requires more food consumption</li>
-                <li>Accelerated healing during and after transformation</li>
-                <li>Heightened senses even in human form</li>
-                <li>Physical markers: increased body hair, fangs, eye color</li>
-            </ul>
-            
-            <p><strong>🧠 Psychological Impact:</strong></p>
-            <ul>
-                <li>Memory gaps during beast form episodes</li>
-                <li>Increased aggression and territorial behavior</li>
-                <li>Pack bonding instincts with other lycanthropes</li>
-                <li>Guilt and trauma from actions while transformed</li>
-            </ul>
-        </div>
+<h3>Reputation tokens</h3>
+<p>Zargon gives the party one reputation token to share each time it completes a quest. The quests also offer chances to earn more. You can spend a token only when the quest notes allow it, for example to persuade a nervous witness, bribe a jailer or prove your loyalty to the resistance. Between quests, you can sell a token for 250 gold coins, but you have to spend that money at the Underground Market straight away, and any change is lost. You can also spend a token to hire an elven mercenary instead of paying gold.</p>
 
-        <h2>💉 Curse Transmission and Prevention</h2>
-        
-        <div class="canvas-container">
-            <h3>Curse Transmission</h3>
-            <canvas id="curse_transmission_canvas" width="600" height="300"></canvas>
-        </div>
-        
-        <div class="transformation-box">
-            <h3>🦠 The Spreading Darkness</h3>
-            <p><strong>Lycanthropy spreads through multiple vectors, creating epidemic potential:</strong></p>
-            
-            <p><strong>🩸 Direct Transmission:</strong></p>
-            <ul>
-                <li>Bite wounds from lycanthropes during transformation</li>
-                <li>Blood contact through open wounds</li>
-                <li>Scratch wounds from claws (lower transmission rate)</li>
-                <li>Sharing of cursed objects or artifacts</li>
-            </ul>
-            
-            <p><strong>🛡️ Prevention Methods:</strong></p>
-            <ul>
-                <li>Silver items worn as protection</li>
-                <li>Wolfsbane herb carried or consumed</li>
-                <li>Holy symbols and blessed weapons</li>
-                <li>Quarantine procedures during suspected infection</li>
-            </ul>
-            
-            <p><strong>⚗️ Treatment Options:</strong></p>
-            <ul>
-                <li>Immediate silver nitrate application to wounds</li>
-                <li>Ritual purification within 24 hours of infection</li>
-                <li>Quest for legendary cure ingredients</li>
-                <li>Acceptance and learning to control the curse</li>
-            </ul>
-        </div>
+<h3>Monster spells and the Dread Moon</h3>
+<p>Monsters in this pack can cast Dread spells. Each monster may cast each spell it knows once per quest, even if another monster has already cast the same spell. Some spells are "at will" and can be cast as an action any time. In three quests (7, 9 and 10), the quest notes add <strong>Dread Moon empowerment</strong>: every monster rolls one extra Attack die.</p>
 
-        <h2>🎭 The Psychology of Dual Identity</h2>
-        
-        <div class="moon-analysis">
-            <h3>🧠 Living with Two Selves</h3>
-            <p><strong>Lycanthropic heroes face unprecedented psychological challenges:</strong></p>
-            
-            <p><strong>😰 Identity Crisis:</strong></p>
-            <ul>
-                <li>Which self is the "real" one - human or beast?</li>
-                <li>Responsibility for actions taken while transformed</li>
-                <li>Fear of hurting loved ones during episodes</li>
-                <li>Social isolation due to dangerous condition</li>
-            </ul>
-            
-            <p><strong>🤝 Support Systems:</strong></p>
-            <ul>
-                <li>Fellow lycanthropes who understand the struggle</li>
-                <li>Trusted friends who help maintain humanity</li>
-                <li>Mentors who teach control techniques</li>
-                <li>Professional help from clerics and healers</li>
-            </ul>
-            
-            <p><strong>🌟 Path to Acceptance:</strong></p>
-            <ul>
-                <li>Learning to see both sides as part of whole self</li>
-                <li>Using beast abilities for heroic purposes</li>
-                <li>Teaching others about lycanthropic reality</li>
-                <li>Finding balance between human and beast needs</li>
-            </ul>
-        </div>
+<h3>Large and ethereal monsters</h3>
+<p>A monster that fills more than one square, such as the Dread Wraith, can attack any adjacent square, diagonals included. <strong>Ethereal</strong> monsters (Specters and the Dread Wraith) follow their own rules:</p>
+<ul>
+  <li>they can move through heroes, walls and other solid objects, but must end on an empty square and can't enter undiscovered areas;</li>
+  <li>traps don't affect them, including caltrops a hero has placed;</li>
+  <li>when a hero attacks one with an ordinary weapon, only <strong>black shields</strong> count as hits, not skulls. Spells and artifacts hit normally.</li>
+</ul>
+<p>That last rule is a big deal. One combat die has three skull faces but only one black shield, so a normal weapon is about a third as effective against an ethereal target as against anything else. Try it in the calculator below.</p>
+</section>
 
-        <h2>🛡️ The Knight's Lycanthropic Ordeal</h2>
-        
-        <div class="knight-principle">
-            <h2>⚔️ Honor vs. Beast: The Knight's Greatest Trial</h2>
-            <p><strong>For the Knight, lycanthropy represents the ultimate test of chivalric values!</strong> Sworn to protect the innocent, uphold justice, and maintain honor, the Knight must now wrestle with an inner beast that threatens everything they stand for. This creates a unique paradox - can true honor survive when you become the very monster you've sworn to destroy?</p>
-            
-            <p><strong>The Knight's Dilemma:</strong> Every transformation risks breaking sacred oaths. Every full moon becomes a test of will stronger than any dragon or dungeon. The Knight must learn to fight not just external evil, but the darkness that now lives within their own soul - while somehow maintaining the code of chivalry that defines their very identity.</p>
-        </div>
+<section>
+<h2>Alchemy and the Underground Market</h2>
+<p>The alchemy deck holds potions and reagents. You can buy some potions. Others you can only find or craft. When a quest tells you to take a <strong>random potion</strong>, Zargon shuffles the alchemy deck, you draw one card, note the potion on your character sheet and return the card.</p>
 
-        <h2>⚔️ Knight vs. Beast: The Internal War</h2>
-        
-        <div class="knight-beast-comparison">
-            <div class="knight-form">
-                <h3>⚔️ Knight Form</h3>
-                <p><strong>Chivalric Strengths:</strong></p>
-                <ul>
-                    <li>🛡️ Superior armor and defense</li>
-                    <li>⚔️ Masterful weapon techniques</li>
-                    <li>🙏 Divine blessing and protection</li>
-                    <li>👑 Natural leadership abilities</li>
-                    <li>🤝 Strong team coordination</li>
-                    <li>📜 Tactical planning expertise</li>
-                </ul>
-                
-                <p><strong>Moral Anchors:</strong></p>
-                <ul>
-                    <li>Honor code prevents unnecessary violence</li>
-                    <li>Oath to protect the innocent</li>
-                    <li>Duty to uphold justice</li>
-                    <li>Loyalty to companions</li>
-                </ul>
-            </div>
-            
-            <div class="beast-form">
-                <h3>🐺 Beast Form</h3>
-                <p><strong>Lycanthropic Powers:</strong></p>
-                <ul>
-                    <li>🦷 Natural weapons (claws, fangs)</li>
-                    <li>💪 Enhanced strength and speed</li>
-                    <li>👁️ Supernatural senses</li>
-                    <li>🩹 Accelerated healing</li>
-                    <li>😱 Fear-inducing presence</li>
-                    <li>🌙 Lunar-enhanced abilities</li>
-                </ul>
-                
-                <p><strong>Beast Instincts:</strong></p>
-                <ul>
-                    <li>Aggression overrides honor</li>
-                    <li>Pack mentality vs. individual duty</li>
-                    <li>Survival instincts vs. sacrifice</li>
-                    <li>Territory marking vs. chivalry</li>
-                </ul>
-            </div>
-        </div>
+<div class="mermaid">
+flowchart TD
+    A["Reagent card&lt;br/&gt;(found during quests)"] --> B{"Who is crafting?"}
+    B -->|"the Wizard"| C["Between quests,&lt;br/&gt;or next to a bench"]
+    B -->|"anyone else"| D["Next to a bench,&lt;br/&gt;with a Reagent Kit"]
+    C --> E["Choose a potion listed&lt;br/&gt;on the reagent card"]
+    D --> E
+    E --> F["Record the potion on your sheet;&lt;br/&gt;the reagent is used up"]
+</div>
 
-        <h2>⚔️ Knight Equipment & Lycanthropic Challenges</h2>
-        
-        <div class="knight-equipment">
-            <div class="equipment-item">
-                <h4>🛡️ Great Shield</h4>
-                <p><strong>Human Form:</strong> +3 Defense, blocks attacks</p>
-                <p><strong>Beast Form:</strong> Too heavy, restricts movement</p>
-                <p><em>Conflict: Protection vs. mobility</em></p>
-            </div>
-            
-            <div class="equipment-item">
-                <h4>⚔️ Blessed Longsword</h4>
-                <p><strong>Human Form:</strong> +2 Attack, +1 vs. evil</p>
-                <p><strong>Beast Form:</strong> Cannot wield, drops when transforming</p>
-                <p><em>Challenge: Divine blessing vs. cursed nature</em></p>
-            </div>
-            
-            <div class="equipment-item">
-                <h4>🛡️ Plate Armor</h4>
-                <p><strong>Human Form:</strong> +4 Defense, intimidation</p>
-                <p><strong>Beast Form:</strong> Restricts transformation, may break</p>
-                <p><em>Dilemma: Heavy protection vs. natural form</em></p>
-            </div>
-            
-            <div class="equipment-item">
-                <h4>🐎 Noble Steed</h4>
-                <p><strong>Human Form:</strong> Mounted combat, mobility</p>
-                <p><strong>Beast Form:</strong> Horse fears lycanthrope scent</p>
-                <p><em>Bond tested: Loyalty vs. primal fear</em></p>
-            </div>
-            
-            <div class="equipment-item">
-                <h4>🙏 Holy Symbol</h4>
-                <p><strong>Human Form:</strong> Divine protection, turn undead</p>
-                <p><strong>Beast Form:</strong> May cause self-harm if cursed</p>
-                <p><em>Crisis: Faith vs. curse</em></p>
-            </div>
-            
-            <div class="equipment-item">
-                <h4>📜 Code of Chivalry</h4>
-                <p><strong>Human Form:</strong> Moral guidance, inspiration</p>
-                <p><strong>Beast Form:</strong> Forgotten, instincts override</p>
-                <p><em>Core conflict: Reason vs. beast mind</em></p>
-            </div>
-        </div>
+<p><strong>Crafting.</strong> The Wizard can turn a reagent into one of the potions listed on its card, either between quests or while next to an Alchemist's Bench. Some reagents give a choice of potions, and some give more than one. Any other hero needs a <strong>Reagent Kit</strong> (400 gold coins), and crafting with it is an action taken next to a bench. A kit is lost after five uses. A used reagent stays out of the deck until the quest ends.</p>
+<p><strong>Drinking and passing.</strong> You can drink a potion at any time without using an action, and you can have as many in effect as you like unless a card says otherwise. On your turn, you may pass a potion to an adjacent hero as long as neither of you is next to a monster. If you drop to 0 Body Points, you may immediately drink a potion that restores Body Points. You may also gamble on a <strong>Potion of Unforeseeable Fate</strong>, which draws and activates a random alchemy card and might turn out to be a healing potion.</p>
 
-        <h2>🛡️ The Knight's Social Burden</h2>
-        
-        <div class="transformation-box">
-            <h3>👑 Leadership Under the Curse</h3>
-            <p><strong>The Knight's lycanthropy creates unprecedented social challenges:</strong></p>
-            
-            <p><strong>🤝 Team Dynamics:</strong></p>
-            <ul>
-                <li>Maintaining leadership authority despite dangerous condition</li>
-                <li>Protecting party members from their own beast form</li>
-                <li>Dealing with fear and distrust from companions</li>
-                <li>Balancing team safety with personal transformation needs</li>
-            </ul>
-            
-            <p><strong>👑 Noble Responsibilities:</strong></p>
-            <ul>
-                <li>Concealing condition from subjects and peers</li>
-                <li>Managing lands and duties while dealing with curse</li>
-                <li>Arranging for competent substitutes during danger periods</li>
-                <li>Maintaining public image and confidence</li>
-            </ul>
-            
-            <p><strong>⛪ Religious Obligations:</strong></p>
-            <ul>
-                <li>Seeking divine guidance and possible cure through faith</li>
-                <li>Confessing condition to religious authorities</li>
-                <li>Balancing curse with holy calling and divine favor</li>
-                <li>Using religious discipline to maintain human control</li>
-            </ul>
-        </div>
+<h3>The Underground Market</h3>
+<p>Mentor's old ally Zerese runs this market beneath the city. It sells the new items below, every potion in the alchemy deck that has a gold coin value, and everything in the Game System's armory. You can buy there between quests when the quest notes allow it. Several quests end with "Heroes may not visit any shops after this quest", so stock up when you get the chance.</p>
+<p>You can also <strong>sell</strong> any item the Market stocks, for half its listed cost rounded down. For example, a 350-coin longsword sells for 175 and a 25-coin dagger for 12.</p>
+<div class="table-container">
+<table>
+  <thead><tr><th>Item</th><th>Cost</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td>Caltrops</td><td>100 gc</td><td>No action needed. Drop a caltrops tile on a square you move through. Anyone who moves onto it rolls one combat die and must stop moving unless they roll a white shield (so they stop 2 times in 3). The tile is removed once someone ends a turn on it. One use.</td></tr>
+    <tr><td>Reagent Kit</td><td>400 gc</td><td>As an action next to an Alchemist's Bench, turn one reagent into a potion. Five uses. The Wizard doesn't need one.</td></tr>
+    <tr><td>Smoke Bomb</td><td>100 gc</td><td>Use during your move on one adjacent monster. Until that monster's next turn, every hero can move unseen through its square. One use.</td></tr>
+  </tbody>
+</table>
+</div>
+</section>
 
-        <h2>🌕 Advanced Lycanthrope Strategies</h2>
-        
-        <div class="canvas-container">
-            <h3>Lycanthrope Strategies</h3>
-            <canvas id="lycanthrope_strategies_canvas" width="600" height="350"></canvas>
-        </div>
-        
-        <div class="lunar-principle">
-            <h3>🎯 Mastering the Beast Within</h3>
-            
-            <p><strong>🧘 The Control Path:</strong></p>
-            <ul>
-                <li>Meditation and mental discipline techniques</li>
-                <li>Gradual exposure to transformation triggers</li>
-                <li>Learning to retain consciousness during change</li>
-                <li>Building mental barriers against beast instincts</li>
-            </ul>
-            
-            <p><strong>🐺 The Acceptance Path:</strong></p>
-            <ul>
-                <li>Embracing both human and beast as valid selves</li>
-                <li>Using transformation tactically in combat</li>
-                <li>Communicating with pack members effectively</li>
-                <li>Channeling beast instincts for heroic purposes</li>
-            </ul>
-            
-            <p><strong>⚗️ The Cure Path:</strong></p>
-            <ul>
-                <li>Seeking magical or divine intervention</li>
-                <li>Completing quests to lift the curse</li>
-                <li>Making sacrifices to break lycanthropic bonds</li>
-                <li>Accepting risks of cure attempts</li>
-            </ul>
-        </div>
+<section>
+<h2>Elven Mercenaries</h2>
+<p>These are loyal soldiers of Elethorn who have gone into hiding. You don't start with any. The quest notes tell you when the heroes find one, for example by paying a minstrel, persuading a retired veteran or freeing a prisoner. Each time, you choose one of the four types to unlock. After that, a hero can hire that type between quests.</p>
+<div class="table-container">
+<table>
+  <thead><tr><th>Mercenary</th><th>Cost per quest</th><th>Move</th><th>Attack</th><th>Defend</th><th>Body</th><th>Mind</th><th>Special</th></tr></thead>
+  <tbody>
+    <tr><td>Striker</td><td>100 gc</td><td>5</td><td>4</td><td>5</td><td>2</td><td>2</td><td>Hits hardest and defends best</td></tr>
+    <tr><td>Glaive</td><td>75 gc</td><td>6</td><td>3</td><td>3</td><td>2</td><td>2</td><td>Polearm: attacks diagonally</td></tr>
+    <tr><td>Arbalist</td><td>75 gc</td><td>6</td><td>3</td><td>3</td><td>2</td><td>2</td><td>Crossbow; switches to a broadsword when adjacent</td></tr>
+    <tr><td>Scout</td><td>50 gc</td><td>9</td><td>2</td><td>3</td><td>2</td><td>2</td><td>Finds and disarms traps as the Dwarf does</td></tr>
+  </tbody>
+</table>
+</div>
+<ul>
+  <li>A mercenary moves and acts on its hero's turn. It can't search for treasure or traps, except that the Scout handles traps.</li>
+  <li>You can't hire two of the same type for one quest.</li>
+  <li>To keep a mercenary for the next quest, pay <strong>half</strong> its cost, rounded down. If it dies, you can hire one again later at full price.</li>
+  <li>A mercenary hired with a reputation token stays with its hero, free, until it dies or is dismissed. This is usually the best use of a spare token.</li>
+</ul>
+</section>
 
-        <h2>🌙 Lunar Calendar and Adventure Planning</h2>
-        
-        <div class="transformation-box">
-            <h3>📅 Strategic Moon Phase Management</h3>
-            <p><strong>Smart adventuring parties plan around lunar cycles:</strong></p>
-            
-            <p><strong>🌑 New Moon Adventures (Safe Period):</strong></p>
-            <ul>
-                <li>Social interactions and diplomacy missions</li>
-                <li>Delicate operations requiring precise control</li>
-                <li>Shopping, equipment maintenance, and planning</li>
-                <li>Training and skill development sessions</li>
-                <li><strong>Knight Focus:</strong> Court duties, religious ceremonies, public appearances</li>
-            </ul>
-            
-            <p><strong>🌓 Quarter Moon Adventures (Moderate Risk):</strong></p>
-            <ul>
-                <li>Standard dungeon exploration and combat</li>
-                <li>Investigations and puzzle-solving quests</li>
-                <li>Balanced risk-reward scenarios</li>
-                <li>Team coordination building exercises</li>
-                <li><strong>Knight Focus:</strong> Military campaigns, standard questing duties</li>
-            </ul>
-            
-            <p><strong>🌕 Full Moon Adventures (High Intensity):</strong></p>
-            <ul>
-                <li>Maximum combat effectiveness missions</li>
-                <li>Assault operations against major threats</li>
-                <li>Emergency response situations</li>
-                <li>Embracing the beast for greater good</li>
-                <li><strong>Knight Focus:</strong> Isolation protocols, trusted substitutes take command</li>
-            </ul>
-        </div>
+<section>
+<h2>The Monsters of Elethorn</h2>
+<p>These are the stat lines from the monster chart in the quest book. "Spells" means Dread spells, each cast once per quest unless marked "at will". The cards describe what each spell does.</p>
+<div class="table-container">
+<table>
+  <thead><tr><th>Monster</th><th>Move</th><th>Attack</th><th>Defend</th><th>Body</th><th>Mind</th><th>Notes</th></tr></thead>
+  <tbody>
+    <tr><td>Dread Cultist</td><td>7</td><td>2</td><td>2</td><td>1</td><td>2</td><td>Spells: Dreadlights, Channel Dread</td></tr>
+    <tr><td>Elven Archer</td><td>6</td><td>4 (1)</td><td>2</td><td>3</td><td>2</td><td>4 dice at range in line of sight, only 1 when adjacent</td></tr>
+    <tr><td>Elven Warrior</td><td>6</td><td>4</td><td>3</td><td>3</td><td>2</td><td>Corrupted swordmasters of Elethorn</td></tr>
+    <tr><td>Assassin</td><td>10</td><td>5</td><td>3</td><td>2</td><td>3</td><td>Attacks diagonally</td></tr>
+    <tr><td>Magus Guard</td><td>8</td><td>4</td><td>4</td><td>3</td><td>3</td><td>Spells: Ball of Flame, Tempest (chart row is printed as "Magus Knight")</td></tr>
+    <tr><td>Specter</td><td>8</td><td>3</td><td>3</td><td>1</td><td>0</td><td>Undead, ethereal. Channel Dread at will. Holy Water destroys it.</td></tr>
+    <tr><td>Dread Wraith</td><td>9</td><td>6</td><td>4</td><td>5</td><td>5</td><td>Large, ethereal. Spells: Dreadlights, Channel Dread, Fear, Summon Specters</td></tr>
+  </tbody>
+</table>
+</div>
+<p><strong>Specters</strong> have just 1 Body Point, but they are hard to hit. A Barbarian with 3 Attack dice and an ordinary weapon has only a 27.0% chance of destroying one per attack (needing more black shields than the Specter's three dice roll), against 68.9% if skulls counted. The cheap answers are Holy Water, attack spells and artifact weapons. Specters also have 0 Mind Points, so Sleep does nothing to them.</p>
+<p><strong>Dread Cultists</strong> are fragile (1 Body, 2 Defend), but in one quest a group of them standing in a summoning circle calls up two more Specters at the start of each of Zargon's turns while at least two Cultists are still alive. Kill them fast.</p>
 
-        <h2>🏆 Legacy and Influence</h2>
-        
-        <div class="moon-analysis">
-            <h3>🌟 How Rise of the Dread Moon Changed Gaming</h3>
-            <p><strong>This expansion pioneered transformation mechanics that became gaming staples:</strong></p>
-            
-            <p><strong>🎮 Video Game Influence:</strong> Transformation systems, dual character mechanics, cycle-based gameplay</p>
-            <p><strong>🎲 Tabletop Evolution:</strong> Identity crisis mechanics, lycanthrope player characters, curse management</p>
-            <p><strong>🎬 Media Impact:</strong> Sympathetic monster narratives, internal conflict themes, acceptance vs. cure debates</p>
-            <p><strong>🎪 Modern Gaming:</strong> Shapeshifting mechanics, psychological horror, identity exploration</p>
-        </div>
+<div class="tool-panel" id="ethereal-calc">
+  <h3 class="tool-title">Ethereal Attack Calculator</h3>
+  <p>These are exact odds for one hero attack against an ethereal monster. An ordinary weapon hits only on black shields. A spell or artifact attack hits on skulls as usual. The monster defends with black shields either way.</p>
+  <div class="calc-grid">
+    <div><label for="ec-dice">Your Attack dice: <span id="ec-dice-val">3</span></label><input type="range" id="ec-dice" min="1" max="6" value="3"></div>
+    <div><label for="ec-target">Target</label><select id="ec-target"><option value="specter">Specter (Defend 3, Body 1)</option><option value="wraith">Dread Wraith (Defend 4, Body 5)</option></select></div>
+    <div><label for="ec-mode">Attack type</label><select id="ec-mode"><option value="weapon">Ordinary weapon (hits on black shields)</option><option value="magic">Spell or artifact (hits on skulls)</option></select></div>
+  </div>
+  <div class="calc-out" aria-live="polite">
+    <div>Chance to wound<strong id="ec-wound">-</strong></div>
+    <div>Average Body Points lost<strong id="ec-avg">-</strong></div>
+    <div>Chance to destroy within 3 attacks<strong id="ec-kill3">-</strong></div>
+  </div>
+  <p class="calc-note" id="ec-note">These odds ignore special abilities. In Quest 10, Magrian also heals and has the Dread Moon's protection.</p>
+</div>
+</section>
 
-        <h2>🎯 Mastery Challenges: Lycanthropic Trials</h2>
-        
-        <div class="transformation-box">
-            <h3>🐺 Elite Beast Master Tests</h3>
-            <p><strong>Prove your mastery of lycanthropic survival:</strong></p>
-            
-            <p><strong>🧘 The Controller:</strong> Complete adventure without involuntary transformations</p>
-            <p><strong>🤝 The Protector:</strong> Keep all allies safe during full moon episodes</p>
-            <p><strong>⚖️ The Balanced:</strong> Use both human and beast forms strategically</p>
-            <p><strong>🌟 The Teacher:</strong> Help another lycanthrope achieve control</p>
-            <p><strong>💊 The Seeker:</strong> Find and achieve a permanent cure for the curse</p>
-            
-            <p><strong>🛡️ Knight-Specific Trials:</strong></p>
-            <ul>
-                <li><strong>The Honorable Beast:</strong> Maintain chivalric principles while in beast form</li>
-                <li><strong>The Noble Leader:</strong> Successfully command party through full lunar cycle</li>
-                <li><strong>The Divine Warrior:</strong> Use lycanthropic power for righteous purposes</li>
-                <li><strong>The Code Keeper:</strong> Create new chivalric principles embracing dual nature</li>
-            </ul>
-        </div>
+<section>
+<h2>The Ten Quests</h2>
+<p>The campaign falls into four parts. You sneak in under the city, move through the streets of a capital under curfew, collect Lunar Charms at the moon temple, and finally storm the palace and the arcane tower.</p>
 
-        <h2>🌟 Next Adventure Preview</h2>
-        
-        <p>In our next lecture, we'll explore <strong>"Jungles of Delthrak"</strong> - Wilderness survival and environmental combat. Master nature's challenges and predator encounters.</p>
-        
-        <div class="lunar-principle">
-            <p><strong>Remember:</strong> Rise of the Dread Moon taught us that heroism isn't about being perfect - it's about maintaining your humanity even when you're literally becoming a monster. The greatest battles aren't always against external enemies, but against the darkness within ourselves. Sometimes the most heroic act is learning to live with aspects of yourself that you fear, and finding ways to use even your darkest traits in service of the light!</p>
-            
-            <p><strong>For the Knight:</strong> The curse may change the body, but cannot touch a truly noble heart. A Knight who maintains their protective instincts and moral core, whether human or wolf, proves that chivalry is not about perfection, but about choosing to serve others regardless of personal cost!</p>
-        </div>
-    </div>
+<div class="mermaid">
+flowchart TD
+    subgraph U["Beneath the city"]
+        Q1["1. Ancient Waterways Within"] --> Q2["2. A Smuggler's Run"]
+    end
+    subgraph S["The streets of Elethorn"]
+        Q3["3. Dread in the Downpour"] --> Q4["4. New Friends in Low Places"] --> Q5["5. Pandemonium in the Streets"]
+    end
+    subgraph T["Temple and tunnels"]
+        Q6["6. The Tunnels of a Secret Cadre"] --> Q7["7. Elven Temple of the Moon"] --> Q8["8. Voices From Beyond"]
+    end
+    subgraph P["Palace and tower"]
+        Q9["9. The Royal Palace Awaits"] --> Q10["10. Under the Dread Moon"]
+    end
+    U --> S
+    S --> T
+    T --> P
+</div>
+
+<div class="callout callout-edge callout-orange"><p><strong>Spoiler warning:</strong> The quest summaries below are written for the Zargon player. If you're playing a hero, skip to "Tips for the Heroes".</p></div>
+
+<details class="answer">
+<summary>Quest-by-quest notes for Zargon</summary>
+<ol class="quest-list">
+  <li><strong>Ancient Waterways Within.</strong> The sentries turned the heroes away at the city gates, so they come in through old underground waterways. If a hero rolls doubles for movement while in a waterway, they don't move. Instead they are dragged that many squares toward a pit-trap drain and may fall in. A plaque reading "The winds of Elethorn are sweet bygones" warns that a statue will become a Gargoyle unless someone has cast an Air spell in that room. The Wandering Monster is an Abomination.</li>
+  <li><strong>A Smuggler's Run.</strong> This quest introduces disguises, the Underground Market (Zerese) and the hideout, which needs a key found in a chest. If the heroes pay a refugee minstrel 200 gold coins, they get a reputation token and unlock a mercenary. The Wandering Monster is a Thief who steals 25 gold coins from undisguised heroes.</li>
+  <li><strong>Dread in the Downpour.</strong> The heroes knock on doors marked X to question citizens. Each knock rolls one combat die, and a skull counts as a success. After three successes, the next X door is the right one. The Wandering Monster depends on your disguise: a Specter if disguised, a Magus Guard if not.</li>
+  <li><strong>New Friends in Low Places.</strong> The heroes start in a cell with their equipment taken away. They fight unarmed until they reach the jailer's room, where they get their gear back. Defeated guards and cultists drop key rings, and each ring opens one locked door. There are prisoners to free, a mercenary to unlock and a dying elf with a star-shaped amulet.</li>
+  <li><strong>Pandemonium in the Streets.</strong> The heroes escape across a plaza patrolled by guards. Monsters on a plaza stay inactive until they're attacked or an undisguised hero comes into view. There's a merchant to protect, a chest that only the star amulet opens, and a chest with a poison needle (3 Body Points).</li>
+  <li><strong>The Tunnels of a Secret Cadre.</strong> Ithraeon, the mysterious stranger, turns out to be one of the Queen's advisors and a member of the Cadre of the Raven's Veil. He gives the heroes a Lunar Charm. Cultists in a summoning circle call up Specters, and the artifact Raven's Talon lies on a tomb guarded by elven Skeletons that can each cast Fire of Wrath once.</li>
+  <li><strong>Elven Temple of the Moon.</strong> The heroes race to collect Lunar Charms in the ruined temple. Several rooms punish anyone who enters without a Lunar Charm. The Mirror Gates lead to a lesser Realm of Reflection that holds Phoenix Ash. This is the first quest with Dread Moon empowerment.</li>
+  <li><strong>Voices From Beyond.</strong> The first time each monster dies, roll one combat die. On a black shield, the dead rise and it comes back as a Zombie. A hooded stranger buys reputation tokens for 200 gold coins and later gives the heroes the Dawnshield. Opening a rift into the Realm of Reflection is a Mind test (see the tip below). Zerese offers one last visit to the Market.</li>
+  <li><strong>The Royal Palace Awaits.</strong> Sir Ragnar (using the Dread Warrior figure) stands at Move 5, Attack 5, Defend 5, Body 4, Mind 4. The first time he drops to 0 Body he stays at 1. Afterwards, Lunar Charms are turned into <em>lunarium</em> at an Alchemist's Bench so the heroes can pass the Mirror Gates. Body and Mind Points are <strong>not</strong> restored after this quest.</li>
+  <li><strong>Under the Dread Moon.</strong> At the top of the arcane tower, the heroes face Magrian the Dread Wraith. The first Magrian they meet is a mirror image that shatters. The real one heals 1 Body Point a turn by draining the imprisoned Queen. Once per quest each, Zargon may also use Terror, Consume Magic, Reflection and Shift Reality. One room holds 1,989 gold coins, a nod to the original game's year. The Wandering Monsters are 2 Specters.</li>
+</ol>
+</details>
+</section>
+
+<section>
+<h2>Tips for the Heroes</h2>
+<ul>
+  <li><strong>Plan for no shops.</strong> After several quests, you can't visit any shop. Buy potions and caltrops whenever Zerese is around, and keep a reputation token in reserve. You can sell it for Market credit even when the shops are closed.</li>
+  <li><strong>Stay disguised in the streets.</strong> In the city quests, disguised heroes slip past inactive guards and take them out silently. If you drop the disguise, the whole plaza wakes up. Keep the big weapons and the spells for the fights that actually need them.</li>
+  <li><strong>Let the Wizard brew.</strong> The Wizard crafts without a Reagent Kit, including between quests. Give the Wizard your reagents and buy a kit only if someone else needs to brew at a bench in the middle of a quest.</li>
+  <li><strong>Bring magic for ghosts.</strong> Against Specters, keep an attack spell or Holy Water ready. Ordinary weapons hit them only on black shields.</li>
+  <li><strong>Pick the right door-opener.</strong> The rift in Quest 8 is a roll of one red die plus your current Mind Points. A total of 1–4 releases three Specters, 5–6 costs 1 Mind Point, and over 6 is safe. A full-Mind Wizard (6) is always safe. A full-Mind Elf (4) is safe on a 3 or higher, two times in three. A Barbarian (2) releases the Specters one time in three.</li>
+  <li><strong>Hire with tokens.</strong> A mercenary hired with a reputation token is permanent and free. A Striker (4 Attack, 5 Defend) bought this way is worth it for the rest of the campaign.</li>
+</ul>
+</section>
+
+<section>
+<h2>Where Next</h2>
+<p>Read the story behind these quests on <a href="/heroquest_lore_rise_dread_moon.html">Rise of the Dread Moon: Lore</a>. If you haven't played the first half of the saga yet, go back to <a href="/heroquest_mage_of_mirror.html">The Mage of the Mirror</a>. To learn the pack's new hero, read <a href="/heroquest_knight_tutorial.html">the Knight</a>. To check odds of your own, use the <a href="/heroquest_dice_roller.html">Dice Roller</a>.</p>
+</section>
+    </main>
 
     <script>
-        // Add twinkling stars for night sky effect
-        function createStars() {
-            for (let i = 0; i < 30; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.textContent = '✦';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 2 + 's';
-                document.querySelector('.night-sky').appendChild(star);
+    (function () {
+        'use strict';
+        // Exact odds for one hero attack on an ethereal monster.
+        // Combat die: 3 skulls, 2 white shields, 1 black shield. Monsters defend on black shields (1/6).
+        function binom(n, p) {
+            var out = [], c = 1;
+            for (var k = 0; k <= n; k++) {
+                out.push(c * Math.pow(p, k) * Math.pow(1 - p, n - k));
+                c = c * (n - k) / (k + 1);
             }
+            return out;
         }
-        
-        createStars();
-        
-        // Interactive Moon Phase System
-        const moonPhases = [
-            { name: 'New Moon', symbol: '🌑', power: 10, control: 90, effects: 'Maximum control, minimal beast influence. Safe for social interactions.' },
-            { name: 'Waxing Crescent', symbol: '🌒', power: 25, control: 75, effects: 'Growing power, good control. Ideal for training and practice.' },
-            { name: 'First Quarter', symbol: '🌓', power: 40, control: 60, effects: 'Balanced power and control. Standard adventuring conditions.' },
-            { name: 'Waxing Gibbous', symbol: '🌔', power: 65, control: 35, effects: 'Strong power, weakening control. Increased aggression likely.' },
-            { name: 'Full Moon', symbol: '🌕', power: 100, control: 10, effects: 'Maximum lycanthropic power! Transformation is inevitable and beast form dominates.' },
-            { name: 'Waning Gibbous', symbol: '🌖', power: 75, control: 40, effects: 'High power, returning control. Mixed human-beast state possible.' },
-            { name: 'Last Quarter', symbol: '🌗', power: 50, control: 70, effects: 'Moderate power, good control returning. Exhaustion common.' },
-            { name: 'Waning Crescent', symbol: '🌘', power: 20, control: 85, effects: 'Low power, high control. Recovery period from full moon.' }
-        ];
-        
-        let currentMoonPhase = 4; // Start at full moon
-        
-        function setMoonPhase(phaseIndex, phaseName) {
-            currentMoonPhase = phaseIndex;
-            
-            // Update active moon phase
-            document.querySelectorAll('.moon-phase').forEach(phase => phase.classList.remove('active'));
-            document.querySelectorAll('.moon-phase')[phaseIndex].classList.add('active');
-            
-            // Update moon indicator
-            const indicator = document.getElementById('moon_indicator');
-            const phaseLevel = document.getElementById('moon_phase');
-            
-            indicator.style.left = (phaseIndex * 12.5) + '%';
-            phaseLevel.textContent = moonPhases[phaseIndex].name.toUpperCase();
-            
-            // Update effects display
-            const effectsDiv = document.getElementById('moon_effects');
-            const phase = moonPhases[phaseIndex];
-            effectsDiv.innerHTML = `
-                <strong>Lunar Effects:</strong> ${phase.name} - ${phase.effects}<br>
-                <strong>Beast Power:</strong> ${phase.power}% | <strong>Human Control:</strong> ${phase.control}%
-            `;
-            
-            // Update curse indicator based on moon phase
-            const curseIndicator = document.getElementById('curse_indicator');
-            const curseLevel = document.getElementById('curse_level');
-            
-            curseIndicator.style.left = phase.power + '%';
-            
-            if (phase.power >= 80) curseLevel.textContent = 'BEAST DOMINANCE';
-            else if (phase.power >= 60) curseLevel.textContent = 'LYCANTHROPIC SURGE';
-            else if (phase.power >= 40) curseLevel.textContent = 'GROWING INFLUENCE';
-            else if (phase.power >= 20) curseLevel.textContent = 'MINOR EFFECTS';
-            else curseLevel.textContent = 'DORMANT CURSE';
-        }
-        
-        // Lycanthrope Combat Visualization
-        const combatCanvas = document.getElementById('lycanthrope_combat_canvas');
-        const combatCtx = combatCanvas.getContext('2d');
-        
-        function drawLycanthropeCombat() {
-            combatCtx.clearRect(0, 0, combatCanvas.width, combatCanvas.height);
-            
-            // Background
-            combatCtx.fillStyle = '#000011';
-            combatCtx.fillRect(0, 0, combatCanvas.width, combatCanvas.height);
-            
-            // Draw transformation sequence
-            const forms = [
-                {x: 150, y: 150, form: 'Human', symbol: '🧍', color: '#4169e1', abilities: ['Strategy', 'Equipment', 'Spells']},
-                {x: 300, y: 150, form: 'Hybrid', symbol: '🐺', color: '#ff8c00', abilities: ['Enhanced', 'Senses', 'Claws']},
-                {x: 450, y: 150, form: 'Beast', symbol: '🐺', color: '#dc143c', abilities: ['Maximum', 'Strength', 'Ferocity']}
-            ];
-            
-            forms.forEach((form, index) => {
-                // Form representation
-                combatCtx.fillStyle = form.color;
-                combatCtx.beginPath();
-                combatCtx.arc(form.x, form.y, 35, 0, Math.PI * 2);
-                combatCtx.fill();
-                
-                combatCtx.strokeStyle = '#ffa726';
-                combatCtx.lineWidth = 3;
-                combatCtx.stroke();
-                
-                // Form symbol
-                combatCtx.fillStyle = '#fff';
-                combatCtx.font = '24px Arial';
-                combatCtx.textAlign = 'center';
-                combatCtx.fillText(form.symbol, form.x, form.y + 8);
-                
-                // Form name
-                combatCtx.fillStyle = '#f5f5dc';
-                combatCtx.font = '14px Arial';
-                combatCtx.fillText(form.form, form.x, form.y + 55);
-                
-                // Abilities
-                combatCtx.font = '10px Arial';
-                form.abilities.forEach((ability, abilityIndex) => {
-                    combatCtx.fillText(ability, form.x, form.y + 75 + (abilityIndex * 12));
+        function damage(attack, defend, pHit) {
+            var hits = binom(attack, pHit), blocks = binom(defend, 1 / 6), dist = {};
+            hits.forEach(function (ph, h) {
+                blocks.forEach(function (pb, b) {
+                    var d = Math.max(0, h - b);
+                    dist[d] = (dist[d] || 0) + ph * pb;
                 });
-                
-                // Transformation arrows
-                if (index < forms.length - 1) {
-                    combatCtx.strokeStyle = '#ff6b6b';
-                    combatCtx.lineWidth = 3;
-                    combatCtx.beginPath();
-                    combatCtx.moveTo(form.x + 40, form.y);
-                    combatCtx.lineTo(forms[index + 1].x - 40, forms[index + 1].y);
-                    combatCtx.stroke();
-                    
-                    // Arrow head
-                    combatCtx.beginPath();
-                    combatCtx.moveTo(forms[index + 1].x - 45, forms[index + 1].y - 5);
-                    combatCtx.lineTo(forms[index + 1].x - 40, forms[index + 1].y);
-                    combatCtx.lineTo(forms[index + 1].x - 45, forms[index + 1].y + 5);
-                    combatCtx.stroke();
-                }
             });
-            
-            combatCtx.fillStyle = '#ff6b6b';
-            combatCtx.font = '16px Arial';
-            combatCtx.textAlign = 'center';
-            combatCtx.fillText('Lycanthropic Transformation: Three Combat Forms', 300, 30);
-            combatCtx.textAlign = 'left';
+            return dist;
         }
-        
-        drawLycanthropeCombat();
-        
-        // Interactive Lunar Battlefield
-        const battlefieldGrid = document.getElementById('lunar_battlefield');
-        const terrainEffects = document.getElementById('terrain_effects');
-        let battlefieldState = [];
-        
-        // Initialize battlefield
-        for (let i = 0; i < 80; i++) {
-            const cell = document.createElement('div');
-            cell.className = 'lunar-cell';
-            
-            // Generate terrain
-            const terrainType = Math.random();
-            if (terrainType < 0.2) {
-                cell.className += ' moonlight';
-                cell.textContent = '🌙';
-                battlefieldState.push('moonlight');
-            } else if (terrainType < 0.4) {
-                cell.className += ' shadow';
-                cell.textContent = '🌑';
-                battlefieldState.push('shadow');
-            } else if (terrainType < 0.6) {
-                cell.className += ' cursed-ground';
-                cell.textContent = '💜';
-                battlefieldState.push('cursed');
-            } else {
-                cell.className += ' normal-terrain';
-                cell.textContent = '🌍';
-                battlefieldState.push('normal');
+        function killWithin(dist, body, attacks) {
+            var state = {}; state[body] = 1;
+            for (var i = 0; i < attacks; i++) {
+                var next = {};
+                Object.keys(state).forEach(function (r) {
+                    var rem = +r, p = state[r];
+                    if (rem === 0) { next[0] = (next[0] || 0) + p; return; }
+                    Object.keys(dist).forEach(function (d) {
+                        var left = Math.max(0, rem - d);
+                        next[left] = (next[left] || 0) + p * dist[d];
+                    });
+                });
+                state = next;
             }
-            
-            cell.addEventListener('click', () => analyzeTerrainEffect(i));
-            battlefieldGrid.appendChild(cell);
+            return state[0] || 0;
         }
-        
-        // Add lycanthropes
-        battlefieldGrid.children[25].className = 'lunar-cell human-form';
-        battlefieldGrid.children[25].textContent = '👤';
-        battlefieldState[25] = 'human';
-        
-        battlefieldGrid.children[55].className = 'lunar-cell beast-form';
-        battlefieldGrid.children[55].textContent = '🐺';
-        battlefieldState[55] = 'beast';
-        
-        function analyzeTerrainEffect(index) {
-            const terrain = battlefieldState[index];
-            let analysis = '';
-            
-            switch(terrain) {
-                case 'moonlight':
-                    analysis = 'Direct moonlight exposure. Triggers involuntary transformation. +50% beast power, -50% human control.';
-                    break;
-                case 'shadow':
-                    analysis = 'Shadowed area. Provides some protection from lunar influence. Normal transformation rules apply.';
-                    break;
-                case 'cursed':
-                    analysis = 'Cursed ground. Ancient lycanthropic energy. Permanent transformation risk, enhanced beast abilities.';
-                    break;
-                case 'normal':
-                    analysis = 'Normal terrain. Standard environmental conditions. Moon phase determines effects.';
-                    break;
-                case 'human':
-                    analysis = 'Lycanthrope in human form. Retains intelligence and equipment use. Vulnerable to forced transformation.';
-                    break;
-                case 'beast':
-                    analysis = 'Lycanthrope in beast form. Maximum physical power but reduced strategic thinking. Pack instincts active.';
-                    break;
-                default:
-                    analysis = 'Unknown terrain type.';
-            }
-            
-            terrainEffects.innerHTML = `<strong>Environmental Effects:</strong> ${analysis}`;
+        var targets = { specter: { def: 3, body: 1 }, wraith: { def: 4, body: 5 } };
+        var dice = document.getElementById('ec-dice');
+        var target = document.getElementById('ec-target');
+        var mode = document.getElementById('ec-mode');
+        if (!dice || !target || !mode) return;
+        function pct(x) { return (x * 100 + 1e-9).toFixed(1) + '%'; }
+        function update() {
+            var n = +dice.value, t = targets[target.value];
+            var pHit = mode.value === 'weapon' ? 1 / 6 : 1 / 2;
+            var dist = damage(n, t.def, pHit);
+            var wound = 0, avg = 0;
+            Object.keys(dist).forEach(function (d) { if (+d > 0) wound += dist[d]; avg += d * dist[d]; });
+            document.getElementById('ec-dice-val').textContent = n;
+            document.getElementById('ec-wound').textContent = pct(wound);
+            document.getElementById('ec-avg').textContent = avg.toFixed(2);
+            document.getElementById('ec-kill3').textContent = pct(killWithin(dist, t.body, 3));
         }
-        
-        // Lycanthropy Mechanics Visualization
-        const mechanicsCanvas = document.getElementById('lycanthropy_mechanics_canvas');
-        const mechanicsCtx = mechanicsCanvas.getContext('2d');
-        
-        function drawLycanthropyMechanics() {
-            mechanicsCtx.clearRect(0, 0, mechanicsCanvas.width, mechanicsCanvas.height);
-            
-            // Background
-            mechanicsCtx.fillStyle = '#000011';
-            mechanicsCtx.fillRect(0, 0, mechanicsCanvas.width, mechanicsCanvas.height);
-            
-            // Draw human vs beast brain
-            const brainX = 300;
-            const brainY = 150;
-            
-            // Left brain (human)
-            mechanicsCtx.fillStyle = '#4169e1';
-            mechanicsCtx.beginPath();
-            mechanicsCtx.arc(brainX - 50, brainY, 40, 0, Math.PI * 2);
-            mechanicsCtx.fill();
-            
-            mechanicsCtx.fillStyle = '#fff';
-            mechanicsCtx.font = '12px Arial';
-            mechanicsCtx.textAlign = 'center';
-            mechanicsCtx.fillText('Human Mind', brainX - 50, brainY - 60);
-            mechanicsCtx.fillText('Logic', brainX - 50, brainY - 10);
-            mechanicsCtx.fillText('Strategy', brainX - 50, brainY + 5);
-            mechanicsCtx.fillText('Morality', brainX - 50, brainY + 20);
-            
-            // Right brain (beast)
-            mechanicsCtx.fillStyle = '#dc143c';
-            mechanicsCtx.beginPath();
-            mechanicsCtx.arc(brainX + 50, brainY, 40, 0, Math.PI * 2);
-            mechanicsCtx.fill();
-            
-            mechanicsCtx.fillStyle = '#fff';
-            mechanicsCtx.fillText('Beast Mind', brainX + 50, brainY - 60);
-            mechanicsCtx.fillText('Instinct', brainX + 50, brainY - 10);
-            mechanicsCtx.fillText('Aggression', brainX + 50, brainY + 5);
-            mechanicsCtx.fillText('Survival', brainX + 50, brainY + 20);
-            
-            // Conflict zone
-            mechanicsCtx.fillStyle = '#ff8c00';
-            mechanicsCtx.fillRect(brainX - 25, brainY - 15, 50, 30);
-            mechanicsCtx.fillStyle = '#000';
-            mechanicsCtx.fillText('CONFLICT', brainX, brainY);
-            mechanicsCtx.fillText('ZONE', brainX, brainY + 15);
-            
-            // Moon influence
-            mechanicsCtx.fillStyle = '#ffd700';
-            mechanicsCtx.beginPath();
-            mechanicsCtx.arc(brainX, brainY - 100, 30, 0, Math.PI * 2);
-            mechanicsCtx.fill();
-            
-            mechanicsCtx.fillStyle = '#000';
-            mechanicsCtx.font = '20px Arial';
-            mechanicsCtx.fillText('🌕', brainX, brainY - 90);
-            
-            // Lunar influence rays
-            mechanicsCtx.strokeStyle = '#ffd700';
-            mechanicsCtx.lineWidth = 2;
-            for (let i = 0; i < 8; i++) {
-                const angle = (i * 45) * (Math.PI / 180);
-                const startX = brainX + Math.cos(angle) * 35;
-                const startY = (brainY - 100) + Math.sin(angle) * 35;
-                const endX = brainX + Math.cos(angle) * 60;
-                const endY = (brainY - 100) + Math.sin(angle) * 60;
-                
-                mechanicsCtx.beginPath();
-                mechanicsCtx.moveTo(startX, startY);
-                mechanicsCtx.lineTo(endX, endY);
-                mechanicsCtx.stroke();
-            }
-            
-            // Transformation factors
-            const factors = [
-                {x: 100, y: 80, factor: 'Stress', effect: '+Transform'},
-                {x: 500, y: 80, factor: 'Silver', effect: '-Transform'},
-                {x: 100, y: 220, factor: 'Damage', effect: '+Transform'},
-                {x: 500, y: 220, factor: 'Wolfsbane', effect: '-Transform'}
-            ];
-            
-            factors.forEach(factor => {
-                mechanicsCtx.fillStyle = factor.effect.includes('+') ? '#ff6b6b' : '#4caf50';
-                mechanicsCtx.fillRect(factor.x - 20, factor.y - 10, 40, 20);
-                
-                mechanicsCtx.fillStyle = '#fff';
-                mechanicsCtx.font = '10px Arial';
-                mechanicsCtx.textAlign = 'center';
-                mechanicsCtx.fillText(factor.factor, factor.x, factor.y);
-                mechanicsCtx.fillText(factor.effect, factor.x, factor.y + 25);
-            });
-            
-            mechanicsCtx.fillStyle = '#ff6b6b';
-            mechanicsCtx.font = '16px Arial';
-            mechanicsCtx.fillText('Lycanthropic Psychology: The Battle for Control', 200, 30);
-            mechanicsCtx.textAlign = 'left';
-        }
-        
-        drawLycanthropyMechanics();
-        
-        // Curse Transmission Visualization
-        const transmissionCanvas = document.getElementById('curse_transmission_canvas');
-        const transmissionCtx = transmissionCanvas.getContext('2d');
-        
-        function drawCurseTransmission() {
-            transmissionCtx.clearRect(0, 0, transmissionCanvas.width, transmissionCanvas.height);
-            
-            // Background
-            transmissionCtx.fillStyle = '#000011';
-            transmissionCtx.fillRect(0, 0, transmissionCanvas.width, transmissionCanvas.height);
-            
-            // Draw infection spread
-            const center = {x: 300, y: 150};
-            const infected = [
-                {x: 300, y: 150, stage: 'Alpha', size: 40, color: '#dc143c'},
-                {x: 200, y: 100, stage: 'Beta', size: 30, color: '#ff6b6b'},
-                {x: 400, y: 100, stage: 'Beta', size: 30, color: '#ff6b6b'},
-                {x: 150, y: 200, stage: 'Gamma', size: 20, color: '#ffa726'},
-                {x: 300, y: 220, stage: 'Gamma', size: 20, color: '#ffa726'},
-                {x: 450, y: 200, stage: 'Gamma', size: 20, color: '#ffa726'}
-            ];
-            
-            // Draw infection connections
-            transmissionCtx.strokeStyle = '#e94560';
-            transmissionCtx.lineWidth = 2;
-            transmissionCtx.setLineDash([5, 5]);
-            
-            // Connect alpha to betas
-            transmissionCtx.beginPath();
-            transmissionCtx.moveTo(center.x, center.y);
-            transmissionCtx.lineTo(200, 100);
-            transmissionCtx.stroke();
-            
-            transmissionCtx.beginPath();
-            transmissionCtx.moveTo(center.x, center.y);
-            transmissionCtx.lineTo(400, 100);
-            transmissionCtx.stroke();
-            
-            // Connect betas to gammas
-            transmissionCtx.beginPath();
-            transmissionCtx.moveTo(200, 100);
-            transmissionCtx.lineTo(150, 200);
-            transmissionCtx.stroke();
-            
-            transmissionCtx.beginPath();
-            transmissionCtx.moveTo(400, 100);
-            transmissionCtx.lineTo(450, 200);
-            transmissionCtx.stroke();
-            
-            transmissionCtx.setLineDash([]);
-            
-            // Draw infected individuals
-            infected.forEach(person => {
-                transmissionCtx.fillStyle = person.color;
-                transmissionCtx.beginPath();
-                transmissionCtx.arc(person.x, person.y, person.size, 0, Math.PI * 2);
-                transmissionCtx.fill();
-                
-                transmissionCtx.strokeStyle = '#f5f5dc';
-                transmissionCtx.lineWidth = 2;
-                transmissionCtx.stroke();
-                
-                transmissionCtx.fillStyle = '#fff';
-                transmissionCtx.font = '16px Arial';
-                transmissionCtx.textAlign = 'center';
-                transmissionCtx.fillText('🐺', person.x, person.y + 5);
-                
-                transmissionCtx.fillStyle = '#f5f5dc';
-                transmissionCtx.font = '10px Arial';
-                transmissionCtx.fillText(person.stage, person.x, person.y + person.size + 15);
-            });
-            
-            // Draw prevention methods
-            const preventions = [
-                {x: 100, y: 50, method: 'Silver', symbol: '🥈'},
-                {x: 500, y: 50, method: 'Wolfsbane', symbol: '🌿'},
-                {x: 100, y: 250, method: 'Holy Symbol', symbol: '✝️'},
-                {x: 500, y: 250, method: 'Quarantine', symbol: '🚧'}
-            ];
-            
-            preventions.forEach(prevention => {
-                transmissionCtx.fillStyle = '#4caf50';
-                transmissionCtx.beginPath();
-                transmissionCtx.arc(prevention.x, prevention.y, 25, 0, Math.PI * 2);
-                transmissionCtx.fill();
-                
-                transmissionCtx.fillStyle = '#fff';
-                transmissionCtx.font = '16px Arial';
-                transmissionCtx.fillText(prevention.symbol, prevention.x, prevention.y + 5);
-                
-                transmissionCtx.fillStyle = '#f5f5dc';
-                transmissionCtx.font = '10px Arial';
-                transmissionCtx.fillText(prevention.method, prevention.x, prevention.y + 40);
-            });
-            
-            transmissionCtx.fillStyle = '#ff6b6b';
-            transmissionCtx.font = '16px Arial';
-            transmissionCtx.textAlign = 'center';
-            transmissionCtx.fillText('Lycanthropic Transmission: Curse Spreading and Prevention', 300, 30);
-            transmissionCtx.textAlign = 'left';
-        }
-        
-        drawCurseTransmission();
-        
-        // Lycanthrope Strategies Visualization
-        const strategiesCanvas = document.getElementById('lycanthrope_strategies_canvas');
-        const strategiesCtx = strategiesCanvas.getContext('2d');
-        
-        function drawLycanthropeStrategies() {
-            strategiesCtx.clearRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
-            
-            // Background
-            strategiesCtx.fillStyle = '#000011';
-            strategiesCtx.fillRect(0, 0, strategiesCanvas.width, strategiesCanvas.height);
-            
-            // Draw strategy paths
-            const paths = [
-                {x: 150, y: 150, name: 'Control Path', symbol: '🧘', color: '#4169e1', description: 'Master the Beast'},
-                {x: 300, y: 100, name: 'Acceptance Path', symbol: '⚖️', color: '#ff8c00', description: 'Embrace Duality'},
-                {x: 450, y: 150, name: 'Cure Path', symbol: '⚗️', color: '#9370db', description: 'Seek Redemption'}
-            ];
-            
-            paths.forEach(path => {
-                // Path area
-                strategiesCtx.fillStyle = path.color + '40';
-                strategiesCtx.beginPath();
-                strategiesCtx.arc(path.x, path.y, 60, 0, Math.PI * 2);
-                strategiesCtx.fill();
-                
-                strategiesCtx.strokeStyle = path.color;
-                strategiesCtx.lineWidth = 3;
-                strategiesCtx.stroke();
-                
-                // Path core
-                strategiesCtx.fillStyle = path.color;
-                strategiesCtx.beginPath();
-                strategiesCtx.arc(path.x, path.y, 25, 0, Math.PI * 2);
-                strategiesCtx.fill();
-                
-                // Path symbol
-                strategiesCtx.fillStyle = '#fff';
-                strategiesCtx.font = '20px Arial';
-                strategiesCtx.textAlign = 'center';
-                strategiesCtx.fillText(path.symbol, path.x, path.y + 7);
-                
-                // Path labels
-                strategiesCtx.fillStyle = '#f5f5dc';
-                strategiesCtx.font = '12px Arial';
-                strategiesCtx.fillText(path.name, path.x, path.y + 80);
-                strategiesCtx.font = '10px Arial';
-                strategiesCtx.fillText(path.description, path.x, path.y + 95);
-            });
-            
-            // Draw choice connections
-            strategiesCtx.strokeStyle = '#ffa726';
-            strategiesCtx.lineWidth = 2;
-            strategiesCtx.setLineDash([5, 5]);
-            
-            // Connect paths to show they're choices
-            strategiesCtx.beginPath();
-            strategiesCtx.moveTo(150, 90);
-            strategiesCtx.lineTo(300, 40);
-            strategiesCtx.stroke();
-            
-            strategiesCtx.beginPath();
-            strategiesCtx.moveTo(300, 40);
-            strategiesCtx.lineTo(450, 90);
-            strategiesCtx.stroke();
-            
-            strategiesCtx.setLineDash([]);
-            
-            // Central choice point
-            strategiesCtx.fillStyle = '#ffd700';
-            strategiesCtx.beginPath();
-            strategiesCtx.arc(300, 40, 15, 0, Math.PI * 2);
-            strategiesCtx.fill();
-            
-            strategiesCtx.fillStyle = '#000';
-            strategiesCtx.font = '12px Arial';
-            strategiesCtx.textAlign = 'center';
-            strategiesCtx.fillText('?', 300, 45);
-            
-            // Add outcome indicators
-            const outcomes = [
-                {x: 150, y: 250, result: 'Mental Discipline', icon: '🧠'},
-                {x: 300, y: 250, result: 'Balanced Power', icon: '⚖️'},
-                {x: 450, y: 250, result: 'Lost Humanity', icon: '💔'}
-            ];
-            
-            outcomes.forEach((outcome, index) => {
-                strategiesCtx.fillStyle = paths[index].color;
-                strategiesCtx.fillRect(outcome.x - 20, outcome.y - 10, 40, 20);
-                
-                strategiesCtx.fillStyle = '#fff';
-                strategiesCtx.font = '16px Arial';
-                strategiesCtx.fillText(outcome.icon, outcome.x, outcome.y + 5);
-                
-                strategiesCtx.fillStyle = '#f5f5dc';
-                strategiesCtx.font = '10px Arial';
-                strategiesCtx.fillText(outcome.result, outcome.x, outcome.y + 25);
-                
-                // Connect to path
-                strategiesCtx.strokeStyle = paths[index].color;
-                strategiesCtx.lineWidth = 2;
-                strategiesCtx.beginPath();
-                strategiesCtx.moveTo(paths[index].x, paths[index].y + 60);
-                strategiesCtx.lineTo(outcome.x, outcome.y - 10);
-                strategiesCtx.stroke();
-            });
-            
-            strategiesCtx.fillStyle = '#ff6b6b';
-            strategiesCtx.font = '16px Arial';
-            strategiesCtx.textAlign = 'center';
-            strategiesCtx.fillText('Lycanthropic Strategy Paths: Choosing Your Destiny', 300, 20);
-            strategiesCtx.textAlign = 'left';
-        }
-        
-        drawLycanthropeStrategies();
+        [dice, target, mode].forEach(function (el) { el.addEventListener('input', update); el.addEventListener('change', update); });
+        update();
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_lore_mage_of_the_mirror.html">The Mage of the Mirror: Lore</a>
+    <a class="next" href="/heroquest_lore_rise_dread_moon.html">Rise of the Dread Moon: Lore</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

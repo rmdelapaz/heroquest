@@ -3,412 +3,365 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Barbarian Hero - HeroQuest Tutorial</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>The Barbarian - The HeroQuest Guide</title>
+    <meta name="description" content="The HeroQuest Barbarian: 3 attack dice, 2 defend dice, 8 Body, 2 Mind. Exact odds against each monster, plus armor, movement and front-line positioning.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-<div class="container">
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
     <header>
-        <h1>🪓 The Barbarian Hero: Master of Might and Fury</h1>
-        <p><em>Welcome, brave adventurer! Today we explore the raw power and primal strength of HeroQuest's most formidable warrior.</em></p>
+        <h1>The Barbarian</h1>
+        <p>How to play the Barbarian, the party's strongest fighter: stats, exact attack odds, armor and where to stand.</p>
     </header>
 
-    <main>
+    <main id="main">
         <section class="hero-card">
             <h2>Meet the Barbarian</h2>
-            <p>The Barbarian is HeroQuest's embodiment of pure physical prowess - imagine a Viking warrior crossed with Conan the Barbarian, wielding ancient fury in the depths of Morcar's dungeons. This hero doesn't rely on magic or fancy tricks; instead, they crush enemies with overwhelming force and shrug off damage that would fell lesser heroes.</p>
+            <p>The Barbarian is the strongest fighter of the four heroes in the HeroQuest Game System. They start with a Broadsword, roll <strong>3 attack dice</strong> and have <strong>8 Body Points</strong>, more than any other core hero. They cast no spells and have the lowest Mind Points, so their job is simple to describe and hard to do well: get to the monsters, hit them, and keep them off the Wizard.</p>
+            <p>In the rulebook's opening story, Mentor recalls an earlier hero of this kind: Rogar, the barbarian prince who carried the Star of the West. See <a href="/heroquest_legendary_heroes.html">The Heroes</a> for that backstory.</p>
         </section>
 
         <section>
-            <h2>Core Statistics: The Foundation of Power</h2>
-            
-            <div class="stat-display">Movement: 2d6 (2-12 squares, avg 7)</div>
-            <div class="stat-display">Attack: 3 combat dice</div>
-            <div class="stat-display">Defend: 2 combat dice</div>
-            <div class="stat-display">Body Points: 8</div>
-            <div class="stat-display">Mind Points: 2</div>
-
-            <div class="analogy-box">
-                <strong>Think of it this way:</strong> If heroes were cars, the Barbarian would be a heavy-duty pickup truck. Movement varies with the dice (like traffic conditions affecting speed), but incredibly powerful (Attack 3), tough (8 Body Points), and built to haul heavy loads through rough terrain. The low Mind Points (2) represent focusing all energy on physical prowess rather than mental agility.
+            <h2>Starting Stats</h2>
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Stat</th><th>Barbarian</th><th>What it means</th></tr></thead>
+                    <tbody>
+                        <tr><td>Attack</td><td>3 dice</td><td>From the Broadsword. Every skull is a hit.</td></tr>
+                        <tr><td>Defend</td><td>2 dice</td><td>Every white shield blocks one hit.</td></tr>
+                        <tr><td>Body Points</td><td>8</td><td>Your health. At 0 you die unless you drink a healing potion or cast a healing spell straight away.</td></tr>
+                        <tr><td>Mind Points</td><td>2</td><td>Wisdom and resistance to magic. Low, so Dread spells work well against you.</td></tr>
+                        <tr><td>Movement</td><td>2 red dice</td><td>Same as every hero: roll each turn, move up to the total.</td></tr>
+                        <tr><td>Starting gear</td><td>Broadsword</td><td>No armor.</td></tr>
+                    </tbody>
+                </table>
             </div>
 
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Barbarian Stats Visualization</h3>
-                    <canvas id="barbarianStatsCanvas" width="500" height="300"></canvas>
-                </div>
+                <h3>The Barbarian Next to the Other Core Heroes</h3>
+                <canvas id="barbarianStatsCanvas" width="420" height="232" role="img" aria-label="Pip chart of starting stats. Barbarian: Attack 3, Defend 2, Body 8, Mind 2. Dwarf: 2, 2, 7, 3. Elf: 2, 2, 6, 4. Wizard: 1, 2, 4, 6."></canvas>
+            </div>
+
+            <div class="analogy-box">
+                <strong>Low Mind is a real weakness.</strong> In the classic card text, a hero hit by a Dread (classic: Chaos) spell such as Sleep, Fear or Command breaks free by rolling one red die per Mind Point and needing a 6. With 2 Mind Points the Barbarian has an 11 in 36 (30.6%) chance per try; the Wizard, with 6, has 66.5%. Check the wording on your own spell cards.
             </div>
         </section>
 
         <section>
-            <h2>The Art of Combat: Where Barbarians Shine</h2>
-            
-            <p>The Barbarian's 3 attack dice make them the most reliable damage dealer in standard HeroQuest. While other heroes might cast spells or use ranged attacks, the Barbarian's strategy is beautifully simple: get close and hit hard.</p>
+            <h2>Attacking: Where the Barbarian Shines</h2>
+            <p>Combat dice have three skulls, two white shields and one black shield. You roll your attack dice and every skull is a hit. The monster rolls its defend dice and blocks one hit for each <strong>black shield</strong>, which is only one face in six. Each unblocked hit takes away a Body Point. That is why three attack dice matter so much: each die is a coin flip for a hit, and monsters block poorly.</p>
 
             <div class="combat-example">
-                <h3>Combat Example: Facing an Orc</h3>
-                <p><strong>Scenario:</strong> Your Barbarian encounters an Orc (1 attack die, 1 defend die, 1 Body Point)</p>
-                <p><strong>Barbarian rolls:</strong> 3 attack dice vs Orc's 1 defend die</p>
-                <p><strong>Likely outcome:</strong> With 3 dice, you're almost guaranteed to roll at least one skull (combat success), while the Orc needs to roll a black shield to defend. The odds heavily favor the Barbarian!</p>
-                <p><strong>Real-world parallel:</strong> It's like a professional boxer fighting an untrained opponent - the skill and power difference makes the outcome almost certain.</p>
+                <h3>Example: Barbarian against an Orc</h3>
+                <p><strong>The Orc:</strong> 3 attack, 2 defend, 1 Body Point (classic 1990 North American chart).</p>
+                <p><strong>You roll:</strong> 3 attack dice. The Orc rolls 2 defend dice, needing black shields.</p>
+                <p><strong>Exact odds:</strong> a <strong>75.0%</strong> chance to kill the Orc with this one attack, and <strong>93.8%</strong> within two attacks. On average you deal 1.22 Body Points per swing.</p>
             </div>
 
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Combat Probability Demonstration</h3>
-                    <canvas id="combatProbabilityCanvas" width="600" height="200"></canvas>
-                </div>
+                <h3>Chance to Destroy Each Monster</h3>
+                <canvas id="barbarianOddsCanvas" width="420" height="476" role="img" aria-label="Bar chart of the Barbarian's chance to destroy each monster with 3 attack dice, in one attack and within two attacks. Goblin 81.3 and 96.5 percent; Orc 75.0 and 93.8; Skeleton 75.0 and 93.8; Zombie 68.9 and 90.3; Abomination 33.3 and 68.1; Mummy 28.9 and 61.1; Dread Warrior 6.0 and 32.5; Gargoyle 5.0 and 26.8."></canvas>
             </div>
+
+            <div class="table-container">
+                <table>
+                    <thead><tr><th>Monster</th><th>Defend dice</th><th>Body Points</th></tr></thead>
+                    <tbody>
+                        <tr><td>Goblin</td><td>1</td><td>1</td></tr>
+                        <tr><td>Orc</td><td>2</td><td>1</td></tr>
+                        <tr><td>Skeleton</td><td>2</td><td>1</td></tr>
+                        <tr><td>Zombie</td><td>3</td><td>1</td></tr>
+                        <tr><td>Abomination</td><td>3</td><td>2</td></tr>
+                        <tr><td>Mummy</td><td>4</td><td>2</td></tr>
+                        <tr><td>Dread Warrior</td><td>4</td><td>3</td></tr>
+                        <tr><td>Gargoyle</td><td>5</td><td>3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p><em>These are the classic 1990 North American monster stats. Fan sources say the 2021 game uses the same numbers; if your monster cards or Zargon's screen say otherwise, trust them. Quest notes can also change a single monster (one 2021 quest gives a Mummy 4 attack dice instead of 3).</em></p>
+
+            <p>The chart shows the pattern. One-Body monsters fall to the Barbarian most of the time. Dread Warriors and the Gargoyle take three unblocked hits, so expect a fight of several turns, or bring a second hero alongside.</p>
         </section>
 
         <section>
-            <h2>Movement Strategy: Embracing the Dice</h2>
-            
-            <p>All heroes in HeroQuest roll 2d6 for movement each turn, giving a range of 2-12 squares with an average of 7. This creates exciting variability - sometimes you'll roll a 12 and sprint across the dungeon, other times a 2 will leave you crawling forward. The key is adapting your strategy to these rolls rather than fighting them.</p>
-
-            <div class="analogy-box">
-                <strong>Traffic Analogy:</strong> Movement in HeroQuest is like driving in varying traffic conditions. Sometimes you hit green lights all the way (high roll), sometimes you're stuck in gridlock (low roll). Smart drivers (players) plan for both scenarios and have backup routes ready.
-            </div>
+            <h2>Taking Hits: Body Points and Armor</h2>
+            <p>When a monster attacks you, it rolls its attack dice and you block with <strong>white shields</strong>, a third of your dice. Eight Body Points let the Barbarian stand in front for a long time: against an Orc (3 attack dice) with 2 defend dice, you lose 0.96 Body Points per attack on average, and the chance of being killed within four Orc attacks is only 2.6%.</p>
 
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Movement Probability Distribution</h3>
-                    <canvas id="movementProbabilityCanvas" width="500" height="250"></canvas>
-                </div>
+                <h3>What Extra Defend Dice Buy You</h3>
+                <canvas id="barbarianArmorCanvas" width="420" height="252" role="img" aria-label="Chance of losing at least one Body Point to a single attack. Orc with 3 attack dice: 62.5 percent against 2 defend dice, 50.9 against 3, 40.7 against 4. Dread Warrior with 4 attack dice: 75.7, 65.5 and 55.6 percent."></canvas>
             </div>
+
+            <div class="combat-example">
+                <h3>Equipment for the Barbarian</h3>
+                <p><strong>Weapons:</strong> a weapon's attack dice replace your printed number, so the Broadsword is already your 3 dice. The classic Armory's Battle Axe rolls 4 dice but needs both hands, so no shield. With 4 dice your chance to kill an Orc in one attack rises from 75.0% to 85.1%, and against a Dread Warrior from 6.0% to 17.5%.</p>
+                <p><strong>Armor:</strong> Helmet, Shield and Chain Mail each add a defend die in the classic Armory. Plate Armor adds more but leaves you only one red die for movement.</p>
+                <p><strong>Potions:</strong> drinking a potion is not an action, and a healing potion saves you at 0 Body if you drink it at once. On your turn you can also hand one to an adjacent ally.</p>
+            </div>
+            <p>Prices, card wording and which items are in the 2021 Armory are covered in <a href="/heroquest_treasure_progression.html">Treasure &amp; Equipment</a>.</p>
+        </section>
+
+        <section>
+            <h2>Movement</h2>
+            <p>All heroes roll the two red dice each turn and may move up to that many squares, never diagonally and never through monsters or walls (you may pass over other heroes). You don't have to use the full roll. You either <strong>move and then act</strong>, or <strong>act and then move</strong>. You can't move part of the way, attack, and then finish moving.</p>
+
+            <div class="canvas-container">
+                <h3>How Far You'll Get</h3>
+                <canvas id="barbarianMoveCanvas" width="420" height="250" role="img" aria-label="Distribution of two six-sided dice: 2 is 2.8 percent, 3 is 5.6, 4 is 8.3, 5 is 11.1, 6 is 13.9, 7 is 16.7, 8 is 13.9, 9 is 11.1, 10 is 8.3, 11 is 5.6, 12 is 2.8."></canvas>
+            </div>
+            <p>The average roll is 7. You get 7 or more 58.3% of the time, and 4 or less 16.7% of the time. If you need 8 squares to get next to a monster, there's a 41.7% chance you reach it and attack this turn. If you don't, it's often better to attack something nearby first and then move.</p>
 
             <div class="mermaid">
-                graph TD
-                    A[Roll 2d6 for Movement] --> B{High Roll 8-12?}
-                    B -->|Yes| C[Aggressive Positioning - Rush to Combat/Objectives]
-                    B -->|No| D{Medium Roll 5-7?}
-                    D -->|Yes| E[Standard Movement - Steady Progress]
-                    D -->|No| F[Low Roll 2-4 - Defensive Positioning]
-                    C --> G[End Turn]
-                    E --> G
-                    F --> G
-            </div>
-
-            <div class="combat-example">
-                <h3>Movement Examples in Practice</h3>
-                <p><strong>High Roll (10-12):</strong> Perfect opportunity to charge into combat or reach distant treasure/switches</p>
-                <p><strong>Average Roll (6-8):</strong> Reliable movement for steady dungeon exploration and positioning</p>
-                <p><strong>Low Roll (2-4):</strong> Focus on careful positioning, maybe just peek around corners or secure your current area</p>
-                <p><strong>Strategic Insight:</strong> Never assume you'll get the movement you need - always have a backup plan for low rolls!</p>
+                flowchart TD
+                    A[Your turn] --> B{Monster already adjacent?}
+                    B -->|Yes| C[Attack first, then move away or onward]
+                    B -->|No| D[Roll the red dice and move]
+                    D --> E{Adjacent to a monster now?}
+                    E -->|Yes| F[Attack]
+                    E -->|No| G["Search, or end the turn (the action is lost)"]
             </div>
         </section>
 
         <section>
-            <h2>Defensive Capabilities: The Immovable Object</h2>
-            
-            <p>With 8 Body Points and 2 defend dice, the Barbarian can absorb tremendous punishment. This makes them perfect for:</p>
-            
-            <ul>
-                <li><strong>Tanking damage</strong> - Drawing enemy attacks away from frailer allies</li>
-                <li><strong>Holding chokepoints</strong> - Blocking narrow passages while others support</li>
-                <li><strong>Surviving traps</strong> - Many dungeon hazards become manageable with 8 Body Points</li>
-            </ul>
-
-            <div class="analogy-box">
-                <strong>Football Comparison:</strong> The Barbarian is like an offensive lineman - not glamorous, but absolutely essential. They create space for the team's "skill players" (Wizard, Elf) to operate safely.
-            </div>
-        </section>
-
-        <section>
-            <h2>Equipment Synergy: Maximizing Barbarian Potential</h2>
-            
-            <p>The Barbarian's equipment choices should amplify their natural strengths:</p>
-            
-            <div class="combat-example">
-                <h3>Optimal Equipment Priority</h3>
-                <p><strong>Weapons:</strong> Broad Sword (+1 attack die) turns 3 dice into 4 - devastating!</p>
-                <p><strong>Armor:</strong> Chain Mail (+1 defend die) makes you nearly untouchable</p>
-                <p><strong>Accessories:</strong> Healing Potions leverage your high Body Point pool</p>
-                <p><strong>Why this works:</strong> You're already strong at combat and defense, so enhancing these strengths creates exponential improvement rather than trying to patch weaknesses.</p>
-            </div>
+            <h2>Positioning: Holding the Front</h2>
+            <p>Monsters, like heroes, can't attack diagonally. A hero standing in a corridor one square wide can only be attacked from the squares in front and behind. Put the Barbarian there and only one monster at a time can reach them.</p>
 
             <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Equipment Impact Visualization</h3>
-                    <canvas id="equipmentImpactCanvas" width="500" height="250"></canvas>
-                </div>
+                <h3>One Attacker at a Time</h3>
+                <canvas id="barbarianCorridorCanvas" width="420" height="278" role="img" aria-label="Grid: four orcs in a room. The Barbarian stands in the corridor square just outside it, with the Dwarf behind. Only the orc directly in front of the Barbarian is in an attacking square."></canvas>
             </div>
+
+            <p>One trade-off: heroes block line of sight just as monsters do. If the Wizard stands directly behind you in a straight corridor, they can't see past you to cast at the monsters in front. Leave a gap to one side when you're in a room, or step out of the line after the fight starts.</p>
         </section>
 
         <section>
-            <h2>Team Dynamics: The Barbarian's Role</h2>
-            
-            <p>In a typical four-hero party, the Barbarian serves as the anchor - the reliable foundation that allows others to take risks:</p>
-
-            <div class="mermaid">
-                graph LR
-                    A[Barbarian: Tank & Primary DPS] --> B[Wizard: Support & AOE]
-                    A --> C[Elf: Flexible Damage]
-                    A --> D[Dwarf: Trap Detection & Backup Tank]
-                    B --> E[Team Success]
-                    C --> E
-                    D --> E
-            </div>
-
-            <div class="analogy-box">
-                <strong>MMO Gaming Parallel:</strong> If you've played online games, the Barbarian fills the classic "warrior tank" role - high health, high threat generation, positioned at the front of every engagement to protect the more fragile damage dealers and support characters.
-            </div>
-        </section>
-
-        <section>
-            <h2>Tactical Applications: When to Choose Barbarian</h2>
-            
-            <div class="combat-example">
-                <h3>Ideal Scenarios for Barbarian Selection</h3>
-                <p><strong>New Players:</strong> Forgiving high health and straightforward combat mechanics</p>
-                <p><strong>Combat-Heavy Quests:</strong> Quests with lots of monsters favor direct combat approach</p>
-                <p><strong>Team Support:</strong> When your group needs a reliable front-line fighter</p>
-                <p><strong>Equipment Rich:</strong> Scenarios where good weapons/armor are available early</p>
-            </div>
-
-            <div class="combat-example">
-                <h3>Challenging Scenarios</h3>
-                <p><strong>Puzzle-Heavy Quests:</strong> Low Mind Points limit spell usage and problem-solving</p>
-                <p><strong>Speed-Critical Missions:</strong> Slow movement can be a liability in time-sensitive scenarios</p>
-                <p><strong>Ranged-Heavy Encounters:</strong> Some quests favor heroes who can attack at distance</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>Advanced Techniques: Mastering the Barbarian</h2>
-            
-            <p>Once you understand the basics, these advanced concepts will elevate your Barbarian play:</p>
-            
-            <div class="canvas-container">
-                <div class="canvas-container">
-                    <h3>Advanced Positioning Example</h3>
-                    <canvas id="advancedPositioningCanvas" width="400" height="400"></canvas>
-                </div>
-            </div>
-
+            <h2>The Barbarian in the Party</h2>
             <ul>
-                <li><strong>Doorway Control:</strong> Position yourself in doorways to force enemies into single combat</li>
-                <li><strong>Body Point Management:</strong> Use your high health as a resource - trade damage for tactical advantage</li>
-                <li><strong>Threat Assessment:</strong> Target the most dangerous enemies first, using your reliable damage</li>
-                <li><strong>Movement Efficiency:</strong> Plan routes 3-4 turns ahead to overcome movement limitations</li>
+                <li><strong>Goes first into rooms</strong> where a fight is expected, so the frailer heroes don't take the first attacks.</li>
+                <li><strong>Finishes the tough monsters</strong> others have already wounded. Damage stays on a monster between turns, so two heroes hitting the same Dread Warrior is usually better than two separate fights.</li>
+                <li><strong>Leaves trap work to the Dwarf.</strong> The Barbarian can search, but the Dwarf disarms without a tool kit and fails only on a black shield.</li>
+                <li><strong>Gets the fighter-boosting spells.</strong> A spell that adds dice, such as Courage (Fire school) or Rock Skin (Earth school) in the classic spell list, does the most good on the hero who already rolls the most.</li>
             </ul>
         </section>
 
         <section>
-            <h2>Related Topics for Further Exploration</h2>
-            
+            <h2>Try It at the Table</h2>
             <ul>
-                <li><strong>Combat Mechanics Deep Dive:</strong> Understanding dice probabilities and optimal attack strategies</li>
-                <li><strong>Equipment Guide:</strong> Comprehensive analysis of weapons and armor for each hero type</li>
-                <li><strong>Party Composition:</strong> How different hero combinations affect quest success rates</li>
-                <li><strong>Quest-Specific Strategies:</strong> Adapting Barbarian tactics to different dungeon types</li>
-                <li><strong>Morcar's Monster Manual:</strong> Understanding enemy capabilities to inform combat decisions</li>
+                <li>Before a big room, count the squares to the door and check the 2d6 chart: what are your odds of reaching it and attacking in one turn?</li>
+                <li>Play one quest where the Barbarian always takes a corridor square when a fight starts. Count how many attacks they take compared with a quest where they charge into the middle of the room.</li>
+                <li>Use the <a href="/heroquest_dice_roller.html">Dice Roller</a> to roll 3 attack dice against a Dread Warrior's 4 defend dice ten times and see how rarely it goes down in one blow.</li>
             </ul>
         </section>
 
-        <footer>
-            <p><em>Remember, young hero: The Barbarian's greatest strength isn't just in their mighty thews, but in their reliability. While others may falter, the Barbarian endures, ensuring your party can face whatever horrors lurk in Morcar's dungeons!</em></p>
-        </footer>
+        <section>
+            <h2>Where Next</h2>
+            <ul>
+                <li><a href="/heroquest_dwarf_tutorial.html">The Dwarf</a>: the trap specialist and second fighter.</li>
+                <li><a href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>: line of sight, corridors and focus fire for the whole party.</li>
+                <li><a href="/heroquest_frozen_horror.html">The Frozen Horror</a>: the quest pack that adds an alternate Barbarian figure (its early-1990s original opened with solo quests for the Barbarian).</li>
+            </ul>
+        </section>
     </main>
 
     <script>
-        // Barbarian Stats Radar Chart
-        const statsCanvas = document.getElementById('barbarianStatsCanvas');
-        const statsCtx = statsCanvas.getContext('2d');
-        
-        // Draw stats comparison
-        statsCtx.clearRect(0, 0, 500, 300);
-        statsCtx.font = '14px Arial';
-        statsCtx.textAlign = 'center';
-        
-        // Draw bars for each stat
-        const stats = [
-            {name: 'Movement', value: 7, max: 12, color: '#FF6B6B', label: '2d6 (avg 7)'},
-            {name: 'Attack', value: 3, max: 4, color: '#4ECDC4', label: '3 dice'},
-            {name: 'Defend', value: 2, max: 3, color: '#45B7D1', label: '2 dice'},
-            {name: 'Body', value: 8, max: 8, color: '#96CEB4', label: '8 points'},
-            {name: 'Mind', value: 2, max: 4, color: '#FFEAA7', label: '2 points'}
-        ];
-        
-        stats.forEach((stat, i) => {
-            const x = 60 + i * 80;
-            const barHeight = (stat.value / stat.max) * 180;
-            
-            // Draw bar
-            statsCtx.fillStyle = stat.color;
-            statsCtx.fillRect(x - 20, 230 - barHeight, 40, barHeight);
-            
-            // Draw value
-            statsCtx.fillStyle = 'black';
-            statsCtx.fillText(stat.label, x, 250);
-            statsCtx.fillText(stat.name, x, 270);
+    (function () {
+        'use strict';
+    // Figure helpers: fixed dark-on-light colours (canvases sit on a light panel in both themes).
+    var FONT = '"Source Sans 3", Arial, sans-serif';
+    var INK = '#1f1a14', MUTED = '#4d453d', GRID = '#d6cec2', PANEL = '#f3ecdf';
+    var HERO = { Barbarian: '#a3161f', Dwarf: '#8a4b08', Elf: '#1e6b34', Wizard: '#1f4fa8' };
+    function fig(id) {
+        var c = document.getElementById(id);
+        if (!c || !c.getContext) return null;
+        var x = c.getContext('2d');
+        x.clearRect(0, 0, c.width, c.height);
+        return x;
+    }
+    function txt(x, s, px, py, o) {
+        o = o || {};
+        x.font = (o.bold ? '700 ' : '400 ') + (o.size || 14) + 'px ' + FONT;
+        x.fillStyle = o.color || INK;
+        x.textAlign = o.align || 'left';
+        x.textBaseline = 'alphabetic';
+        x.fillText(s, px, py);
+    }
+    // The four core heroes' printed stats as pips; `focus` row is outlined.
+    function heroStats(id, focus) {
+        var x = fig(id); if (!x) return;
+        var W = x.canvas.width;
+        var rows = [['Barbarian', 3, 2, 8, 2], ['Dwarf', 2, 2, 7, 3], ['Elf', 2, 2, 6, 4], ['Wizard', 1, 2, 4, 6]];
+        var cols = [['Attack', 3], ['Defend', 2], ['Body', 8], ['Mind', 6]];
+        var P = 10, G = 3, colX = [], cx = 98;
+        cols.forEach(function (c) { colX.push(cx); cx += Math.max(c[1] * (P + G) - G, 50) + 12; });
+        txt(x, 'Starting stats of the four core heroes', W / 2, 22, { bold: 1, align: 'center', size: 15 });
+        cols.forEach(function (c, i) { txt(x, c[0], colX[i], 52, { bold: 1, size: 13 }); });
+        rows.forEach(function (r, j) {
+            var y = 62 + j * 34, on = r[0] === focus;
+            if (on) {
+                x.fillStyle = PANEL; x.fillRect(5, y, W - 10, 30);
+                x.strokeStyle = HERO[r[0]]; x.lineWidth = 2; x.strokeRect(5, y, W - 10, 30);
+            }
+            txt(x, r[0], 14, y + 20, { bold: on, size: 14 });
+            cols.forEach(function (c, i) {
+                x.fillStyle = HERO[r[0]];
+                for (var k = 0; k < r[i + 1]; k++) x.fillRect(colX[i] + k * (P + G), y + 10, P, P);
+            });
         });
-
-        // Combat Probability Visualization
-        const combatCanvas = document.getElementById('combatProbabilityCanvas');
-        const combatCtx = combatCanvas.getContext('2d');
-        
-        combatCtx.clearRect(0, 0, 600, 200);
-        combatCtx.font = '12px Arial';
-        
-        // Draw probability bars
-        const scenarios = [
-            {name: 'vs Goblin (1 die)', success: 89, color: '#4ECDC4'},
-            {name: 'vs Orc (1 die)', success: 89, color: '#4ECDC4'},
-            {name: 'vs Fimir (2 dice)', success: 70, color: '#96CEB4'},
-            {name: 'vs Chaos Warrior (3 dice)', success: 42, color: '#FFEAA7'}
-        ];
-        
-        scenarios.forEach((scenario, i) => {
-            const x = 50 + i * 130;
-            const barHeight = (scenario.success / 100) * 120;
-            
-            combatCtx.fillStyle = scenario.color;
-            combatCtx.fillRect(x, 150 - barHeight, 60, barHeight);
-            
-            combatCtx.fillStyle = 'black';
-            combatCtx.fillText(scenario.success + '%', x + 30, 140 - barHeight);
-            combatCtx.save();
-            combatCtx.translate(x + 30, 170);
-            combatCtx.rotate(-Math.PI / 4);
-            combatCtx.fillText(scenario.name, 0, 0);
-            combatCtx.restore();
-        });
-
-        // Equipment Impact Chart
-        const equipCanvas = document.getElementById('equipmentImpactCanvas');
-        const equipCtx = equipCanvas.getContext('2d');
-        
-        equipCtx.clearRect(0, 0, 500, 250);
-        equipCtx.font = '12px Arial';
-        equipCtx.textAlign = 'center';
-        
-        // Base vs Enhanced stats
-        const baseStats = [3, 2, 8]; // Attack, Defend, Body
-        const enhancedStats = [4, 3, 8]; // With Broad Sword + Chain Mail
-        const labels = ['Attack Dice', 'Defend Dice', 'Body Points'];
-        
-        labels.forEach((label, i) => {
-            const x = 80 + i * 150;
-            
-            // Base stat bar
-            equipCtx.fillStyle = '#DDD';
-            equipCtx.fillRect(x - 30, 180 - baseStats[i] * 20, 25, baseStats[i] * 20);
-            
-            // Enhanced stat bar
-            equipCtx.fillStyle = '#4ECDC4';
-            equipCtx.fillRect(x + 5, 180 - enhancedStats[i] * 20, 25, enhancedStats[i] * 20);
-            
-            equipCtx.fillStyle = 'black';
-            equipCtx.fillText(label, x, 200);
-            equipCtx.font = '10px Arial';
-            equipCtx.fillText('Base', x - 17, 215);
-            equipCtx.fillText('+Equip', x + 17, 215);
-            equipCtx.font = '12px Arial';
-        });
-
-        // Advanced Positioning Grid
-        const posCanvas = document.getElementById('advancedPositioningCanvas');
-        const posCtx = posCanvas.getContext('2d');
-        
-        posCtx.clearRect(0, 0, 400, 400);
-        
-        // Draw grid
-        for(let i = 0; i <= 8; i++) {
-            posCtx.strokeStyle = '#CCC';
-            posCtx.beginPath();
-            posCtx.moveTo(i * 50, 0);
-            posCtx.lineTo(i * 50, 400);
-            posCtx.stroke();
-            
-            posCtx.beginPath();
-            posCtx.moveTo(0, i * 50);
-            posCtx.lineTo(400, i * 50);
-            posCtx.stroke();
+        txt(x, 'Each square is one die or one point.', W / 2, 220, { size: 13, color: MUTED, align: 'center' });
+    }
+    // Horizontal bar chart of probabilities (0-1). o: {title, labelW, rows:[{label, vals:[]}], series:[{name, color}], note}
+    function hbars(id, o) {
+        var x = fig(id); if (!x) return;
+        var W = x.canvas.width, n = o.series.length, bh = 14;
+        var labW = o.labelW || 100, x0 = labW + 10, x1 = W - 52;
+        var block = n * bh + (n - 1) * 3, rowH = block + 12;
+        txt(x, o.title, W / 2, 22, { bold: 1, align: 'center', size: 15 });
+        var y = 38;
+        if (n > 1) {
+            var lx = 12;
+            o.series.forEach(function (s) {
+                x.fillStyle = s.color; x.fillRect(lx, y, 12, 12);
+                txt(x, s.name, lx + 17, y + 11, { size: 13 });
+                lx += 17 + x.measureText(s.name).width + 18;
+            });
+            y += 24;
         }
-        
-        // Draw walls (doorway)
-        posCtx.fillStyle = '#654321';
-        posCtx.fillRect(150, 0, 50, 100);
-        posCtx.fillRect(200, 0, 50, 100);
-        posCtx.fillRect(150, 150, 50, 50);
-        posCtx.fillRect(200, 150, 50, 50);
-        
-        // Draw Barbarian
-        posCtx.fillStyle = '#FF6B6B';
-        posCtx.fillRect(175, 125, 25, 25);
-        posCtx.fillStyle = 'white';
-        posCtx.font = '10px Arial';
-        posCtx.textAlign = 'center';
-        posCtx.fillText('B', 187, 140);
-        
-        // Draw enemies
-        posCtx.fillStyle = '#000';
-        posCtx.fillRect(125, 75, 20, 20);
-        posCtx.fillRect(225, 75, 20, 20);
-        posCtx.fillRect(175, 50, 20, 20);
-        
-        posCtx.fillStyle = 'white';
-        posCtx.fillText('O', 135, 88);
-        posCtx.fillText('O', 235, 88);
-        posCtx.fillText('O', 185, 63);
-        
-        // Add labels
-        posCtx.fillStyle = 'black';
-        posCtx.font = '12px Arial';
-        posCtx.fillText('Doorway Control: Force 1v1 Combat', 200, 20);
-        
-        // Add movement probability chart
-        const movementCanvas = document.getElementById('movementProbabilityCanvas');
-        const movementCtx = movementCanvas.getContext('2d');
-        
-        movementCtx.clearRect(0, 0, 500, 250);
-        movementCtx.font = '12px Arial';
-        movementCtx.textAlign = 'center';
-        
-        // Movement probabilities for 2d6
-        const movementData = [
-            {roll: 2, prob: 2.8, squares: 2},
-            {roll: 3, prob: 5.6, squares: 3},
-            {roll: 4, prob: 8.3, squares: 4},
-            {roll: 5, prob: 11.1, squares: 5},
-            {roll: 6, prob: 13.9, squares: 6},
-            {roll: 7, prob: 16.7, squares: 7},
-            {roll: 8, prob: 13.9, squares: 8},
-            {roll: 9, prob: 11.1, squares: 9},
-            {roll: 10, prob: 8.3, squares: 10},
-            {roll: 11, prob: 5.6, squares: 11},
-            {roll: 12, prob: 2.8, squares: 12}
-        ];
-        
-        movementData.forEach((data, i) => {
-            const x = 30 + i * 40;
-            const barHeight = (data.prob / 16.7) * 150; // Scale to max probability
-            
-            // Color coding: red for low, yellow for medium, green for high
-            let color = '#FF6B6B'; // Low movement (2-4)
-            if (data.roll >= 5 && data.roll <= 9) color = '#FFEAA7'; // Medium (5-9)
-            if (data.roll >= 10) color = '#96CEB4'; // High (10-12)
-            
-            movementCtx.fillStyle = color;
-            movementCtx.fillRect(x - 15, 200 - barHeight, 30, barHeight);
-            
-            movementCtx.fillStyle = 'black';
-            movementCtx.fillText(data.roll, x, 220);
-            movementCtx.fillText(data.prob.toFixed(1) + '%', x, 240);
+        var top = y, bottom = top + o.rows.length * rowH;
+        [0, 0.25, 0.5, 0.75, 1].forEach(function (t) {
+            var gx = x0 + t * (x1 - x0);
+            x.strokeStyle = GRID; x.lineWidth = 1;
+            x.beginPath(); x.moveTo(gx, top - 2); x.lineTo(gx, bottom); x.stroke();
+            txt(x, Math.round(t * 100) + '%', gx, bottom + 15, { size: 12, color: MUTED, align: 'center' });
         });
-        
-        movementCtx.fillText('Movement Roll Probabilities (2d6)', 250, 20);
-        movementCtx.fillText('Dice Roll', 250, 230);
-        movementCtx.fillText('Probability %', 250, 250);
+        o.rows.forEach(function (r, i) {
+            var ry = top + i * rowH + 6;
+            txt(x, r.label, labW, ry + block / 2 + 5, { size: 13, align: 'right' });
+            r.vals.forEach(function (v, k) {
+                var by = ry + k * (bh + 3);
+                x.fillStyle = o.series[k].color;
+                x.fillRect(x0, by, Math.max(2, v * (x1 - x0)), bh);
+                txt(x, (v * 100 + 1e-9).toFixed(1) + '%', x0 + v * (x1 - x0) + 4, by + 12, { size: 12 });
+            });
+        });
+        if (o.note) txt(x, o.note, W / 2, bottom + 34, { size: 12, color: MUTED, align: 'center' });
+    }
+    // Board helpers: square grid, wall squares, round tokens.
+    function board(x, ox, oy, cols, rows, s, walls) {
+        x.fillStyle = '#fbf8f2'; x.fillRect(ox, oy, cols * s, rows * s);
+        x.strokeStyle = GRID; x.lineWidth = 1;
+        for (var i = 0; i <= cols; i++) { x.beginPath(); x.moveTo(ox + i * s, oy); x.lineTo(ox + i * s, oy + rows * s); x.stroke(); }
+        for (var j = 0; j <= rows; j++) { x.beginPath(); x.moveTo(ox, oy + j * s); x.lineTo(ox + cols * s, oy + j * s); x.stroke(); }
+        x.fillStyle = '#5b4632';
+        (walls || []).forEach(function (w) { x.fillRect(ox + w[0] * s, oy + w[1] * s, s, s); });
+    }
+    function token(x, ox, oy, s, c, r, letter, color, square) {
+        var cx = ox + c * s + s / 2, cy = oy + r * s + s / 2, rad = s * 0.36;
+        x.fillStyle = color;
+        if (square) x.fillRect(cx - rad, cy - rad, rad * 2, rad * 2);
+        else { x.beginPath(); x.arc(cx, cy, rad, 0, Math.PI * 2); x.fill(); }
+        txt(x, letter, cx, cy + 5, { bold: 1, size: 14, color: '#ffffff', align: 'center' });
+    }
+    function sight(x, ox, oy, s, a, b, ok) {
+        x.save();
+        x.strokeStyle = ok ? '#1e6b34' : '#b3261e'; x.lineWidth = 2.5;
+        if (!ok) x.setLineDash([6, 5]);
+        x.beginPath();
+        x.moveTo(ox + a[0] * s + s / 2, oy + a[1] * s + s / 2);
+        x.lineTo(ox + b[0] * s + s / 2, oy + b[1] * s + s / 2);
+        x.stroke(); x.restore();
+    }
+    // 2d6 movement distribution (exact: n/36).
+    function moveDist(id) {
+        var x = fig(id); if (!x) return;
+        var W = x.canvas.width, H = x.canvas.height;
+        var ways = [1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1];
+        txt(x, 'Two red dice: chance of each total', W / 2, 22, { bold: 1, align: 'center', size: 15 });
+        var x0 = 14, cw = (W - 28) / 11, base = H - 52, mh = base - 62;
+        ways.forEach(function (v, i) {
+            var h = v / 6 * mh, bx = x0 + i * cw;
+            x.fillStyle = i + 2 === 7 ? '#1f4fa8' : '#6d8fc4';
+            x.fillRect(bx + 4, base - h, cw - 8, h);
+            txt(x, (v / 36 * 100 + 1e-9).toFixed(1), bx + cw / 2, base - h - 5, { size: 12, align: 'center' });
+            txt(x, String(i + 2), bx + cw / 2, base + 17, { bold: 1, size: 13, align: 'center' });
+        });
+        x.strokeStyle = INK; x.lineWidth = 1; x.beginPath(); x.moveTo(x0, base); x.lineTo(W - x0, base); x.stroke();
+        txt(x, 'Squares you may move (top numbers: % chance)', W / 2, H - 12, { size: 13, color: MUTED, align: 'center' });
+    }
+        heroStats('barbarianStatsCanvas', 'Barbarian');
+
+        hbars('barbarianOddsCanvas', {
+            title: 'Barbarian (3 attack dice): chance to destroy',
+            labelW: 100,
+            series: [{ name: 'in one attack', color: '#a3161f' }, { name: 'within two attacks', color: '#e08a7e' }],
+            rows: [
+                { label: 'Goblin', vals: [0.8125, 0.9648] },
+                { label: 'Orc', vals: [0.7500, 0.9375] },
+                { label: 'Skeleton', vals: [0.7500, 0.9375] },
+                { label: 'Zombie', vals: [0.6887, 0.9029] },
+                { label: 'Abomination', vals: [0.3333, 0.6807] },
+                { label: 'Mummy', vals: [0.2894, 0.6107] },
+                { label: 'Dread Warrior', vals: [0.0602, 0.3250] },
+                { label: 'Gargoyle', vals: [0.0500, 0.2676] }
+            ],
+            note: 'Exact odds; monster stats from the classic 1990 chart.'
+        });
+
+        hbars('barbarianArmorCanvas', {
+            title: 'Chance one attack costs you a Body Point',
+            labelW: 150,
+            series: [{ name: 'chance', color: '#5b4632' }],
+            rows: [
+                { label: 'Orc vs 2 defend', vals: [0.6250] },
+                { label: 'Orc vs 3 defend', vals: [0.5093] },
+                { label: 'Orc vs 4 defend', vals: [0.4074] },
+                { label: 'Dread Warrior vs 2', vals: [0.7569] },
+                { label: 'Dread Warrior vs 3', vals: [0.6550] },
+                { label: 'Dread Warrior vs 4', vals: [0.5556] }
+            ],
+            note: 'Orc: 3 attack dice. Dread Warrior: 4. Heroes block on white shields.'
+        });
+
+        moveDist('barbarianMoveCanvas');
+
+        (function corridor() {
+            var x = fig('barbarianCorridorCanvas'); if (!x) return;
+            var s = 34, ox = 74, oy = 36, walls = [];
+            for (var c = 4; c < 8; c++) [0, 1, 3, 4].forEach(function (r) { walls.push([c, r]); });
+            txt(x, 'Room (left) opening into a one-square corridor', 210, 22, { bold: 1, align: 'center', size: 15 });
+            board(x, ox, oy, 8, 5, s, walls);
+            x.strokeStyle = '#1e6b34'; x.lineWidth = 3; x.strokeRect(ox + 3 * s + 2, oy + 2 * s + 2, s - 4, s - 4);
+            token(x, ox, oy, s, 3, 2, 'O', '#333333', true);
+            token(x, ox, oy, s, 2, 1, 'O', '#333333', true);
+            token(x, ox, oy, s, 3, 1, 'O', '#333333', true);
+            token(x, ox, oy, s, 2, 3, 'O', '#333333', true);
+            token(x, ox, oy, s, 4, 2, 'B', HERO.Barbarian);
+            token(x, ox, oy, s, 5, 2, 'D', HERO.Dwarf);
+            txt(x, 'Green square: the only open square', 210, 232, { size: 13, align: 'center' });
+            txt(x, 'a monster can attack B from.', 210, 249, { size: 13, align: 'center' });
+            txt(x, 'B Barbarian, D Dwarf, O Orc. Brown squares are wall.', 210, 267, { size: 13, color: MUTED, align: 'center' });
+        })();
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_legendary_heroes.html">The Heroes</a>
+    <a class="next" href="/heroquest_dwarf_tutorial.html">The Dwarf</a>
 </div>
+    <p class="closing-quote">The Barbarian wins by being dependable: three attack dice every turn and eight Body Points to spend standing between the monsters and everyone else.</p>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

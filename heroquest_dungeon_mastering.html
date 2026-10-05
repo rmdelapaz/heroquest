@@ -3,622 +3,435 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Dungeon Mastering - The Art of Being the Evil Wizard</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Playing Zargon - The HeroQuest Guide</title>
+    <meta name="description" content="How to play Zargon in the 2021 HeroQuest rules: reading quest notes, revealing the board, running monsters and Dread spells, pacing and fair play.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
 </head>
 <body>
-    <div class="container">
-        <h1>🧙‍♂️ The Art of Being the Evil Wizard 🏰</h1>
-        
-        <div class="psychology-box">
-            <h2>🎭 The Director's Chair: Your Role as Storyteller</h2>
-            <p><strong>You're not the villain - you're the entire movie studio!</strong> Think of yourself as Steven Spielberg directing an action movie. You control the pacing, the tension, the surprises, and even the supporting cast (monsters). Your job isn't to "win" against the heroes - it's to give them an amazing adventure they'll talk about for years.</p>
-            
-            <p><strong>Real-world analogy:</strong> You're like a carnival ride operator. You want riders (heroes) to be thrilled, maybe a little scared, but ultimately safe and eager to ride again. Too easy = boring, too hard = frustrating and no fun.</p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Playing Zargon</h1>
+        <p>What the Zargon player does in the 2021 HeroQuest rules, from reading the quest notes to running every monster on the board.</p>
+    </header>
 
-        <h2>🎬 The Three Pillars of Great Dungeon Mastering</h2>
-        
+    <main id="main">
+<section>
+<div class="psychology-box">
+            <h2>🎭 The Director's Chair: What Zargon Is For</h2>
+            <p>In the story, Zargon is the evil sorcerer who wants to destroy the realm and the heroes. At the table, the rulebook gives the Zargon player a different job: <strong>serve as game master.</strong> You guide the heroes through the quest, reveal the dungeon exactly as the quest notes say, and control every monster on the board.</p>
+            <p>Play the monsters to win their fights, because the heroes deserve a real threat. But your bigger goal is a quest that runs smoothly and feels dangerous. Think of yourself as a film director who also plays every villain: you set the pace, but the heroes are the stars.</p>
+        </div>
+</section>
+<section>
+<h2>🎬 The Three Jobs of the Zargon Player</h2>
+
         <div class="mermaid">
-            graph TD
-                A[Great DM] --> B[Storyteller]
-                A --> C[Game Master]
-                A --> D[Entertainment Director]
-                
-                B --> B1[Creates Atmosphere]
-                B --> B2[Builds Tension]
-                B --> B3[Memorable NPCs]
-                
-                C --> C1[Fair Rule Referee]
-                C --> C2[Balances Challenge]
-                C --> C3[Keeps Game Moving]
-                
-                D --> D1[Reads the Room]
-                D --> D2[Adjusts Difficulty]
-                D --> D3[Everyone Has Fun]
-                
-                style A fill:#9d4edd,stroke:#333,stroke-width:3px
-                style B fill:#c77dff,stroke:#333,stroke-width:2px
-                style C fill:#c77dff,stroke:#333,stroke-width:2px
-                style D fill:#c77dff,stroke:#333,stroke-width:2px
+flowchart TD
+    Z["Zargon player"] --> R["Referee"]
+    Z --> M["Monster player"]
+    Z --> N["Narrator"]
+    R --> R1["Follow the quest notes&lt;br/&gt;Reveal only what is seen&lt;br/&gt;Answer rules questions"]
+    M --> M1["Move and attack with monsters&lt;br/&gt;Cast the Dread spells you were given&lt;br/&gt;Place wandering monsters"]
+    N --> N1["Read the parchment text&lt;br/&gt;Describe rooms and doors&lt;br/&gt;Give monsters a voice"]
         </div>
-
-        <h2>🎪 The Psychology of Player Engagement</h2>
-        
-        <div class="psychology-box">
-            <h3>🧠 Understanding Your Players</h3>
-            <p><strong>Every player is different, like guests at a party:</strong></p>
-            
-            <div class="voice-guide">
-                <h4>⚔️ The Action Hero</h4>
-                <p>Wants combat, glory, and heroic moments. Give them chances to be the star in battle!</p>
-            </div>
-
-            <div class="voice-guide">
-                <h4>🕵️ The Detective</h4>
-                <p>Loves puzzles, secrets, and mysteries. Hide clues and let them piece things together!</p>
-            </div>
-
-            <div class="voice-guide">
-                <h4>💰 The Treasure Hunter</h4>
-                <p>Motivated by loot and rewards. Make sure they find cool stuff regularly!</p>
-            </div>
-
-            <div class="voice-guide">
-                <h4>🎭 The Role-Player</h4>
-                <p>Wants character moments and story. Give their character personal stakes in the adventure!</p>
-            </div>
-        </div>
-
-        <h3>🎭 Player Archetypes at a Glance</h3>
-        <svg id="hq_dm_player_types" viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;margin:1.5rem auto;display:block;">
-          <style>
-            .ptTitle{font:bold 14px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle}
-            .ptDesc{font:11px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
-            .ptIcon{font:32px Arial;text-anchor:middle;dominant-baseline:central}
-            .ptWant{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
-          </style>
-          <!-- Action Hero -->
-          <rect x="20" y="10" width="155" height="150" rx="12" fill="var(--card-bg,#fff)" stroke="#ef4444" stroke-width="2"/>
-          <text x="97" y="50" class="ptIcon">⚔️</text>
-          <text x="97" y="80" class="ptTitle">Action Hero</text>
-          <text x="97" y="98" class="ptDesc">Combat &amp; glory</text>
-          <rect x="47" y="110" width="100" height="20" rx="4" fill="#ef4444"/><text x="97" y="124" class="ptWant">Give epic fights</text>
-          <!-- Detective -->
-          <rect x="195" y="10" width="155" height="150" rx="12" fill="var(--card-bg,#fff)" stroke="#3b82f6" stroke-width="2"/>
-          <text x="272" y="50" class="ptIcon">🕵️</text>
-          <text x="272" y="80" class="ptTitle">Detective</text>
-          <text x="272" y="98" class="ptDesc">Puzzles &amp; secrets</text>
-          <rect x="222" y="110" width="100" height="20" rx="4" fill="#3b82f6"/><text x="272" y="124" class="ptWant">Hide clues</text>
-          <!-- Treasure Hunter -->
-          <rect x="370" y="10" width="155" height="150" rx="12" fill="var(--card-bg,#fff)" stroke="#f59e0b" stroke-width="2"/>
-          <text x="447" y="50" class="ptIcon">💰</text>
-          <text x="447" y="80" class="ptTitle">Treasure Hunter</text>
-          <text x="447" y="98" class="ptDesc">Loot &amp; rewards</text>
-          <rect x="397" y="110" width="100" height="20" rx="4" fill="#f59e0b"/><text x="447" y="124" class="ptWant">Reward often</text>
-          <!-- Role-Player -->
-          <rect x="545" y="10" width="155" height="150" rx="12" fill="var(--card-bg,#fff)" stroke="#a855f7" stroke-width="2"/>
-          <text x="622" y="50" class="ptIcon">🎭</text>
-          <text x="622" y="80" class="ptTitle">Role-Player</text>
-          <text x="622" y="98" class="ptDesc">Story &amp; character</text>
-          <rect x="572" y="110" width="100" height="20" rx="4" fill="#a855f7"/><text x="622" y="124" class="ptWant">Personal stakes</text>
-          <!-- Priority bars -->
-          <text x="20" y="190" style="font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155)">What they prioritize:</text>
-          <!-- Action Hero bars -->
-          <text x="97" y="210" class="ptDesc">Combat</text>
-          <rect x="42" y="216" width="110" height="8" rx="4" fill="#fecaca"/><rect x="42" y="216" width="105" height="8" rx="4" fill="#ef4444"/>
-          <text x="97" y="240" class="ptDesc">Puzzles</text>
-          <rect x="42" y="246" width="110" height="8" rx="4" fill="#fecaca"/><rect x="42" y="246" width="22" height="8" rx="4" fill="#ef4444"/>
-          <!-- Detective bars -->
-          <text x="272" y="210" class="ptDesc">Combat</text>
-          <rect x="217" y="216" width="110" height="8" rx="4" fill="#bfdbfe"/><rect x="217" y="216" width="44" height="8" rx="4" fill="#3b82f6"/>
-          <text x="272" y="240" class="ptDesc">Puzzles</text>
-          <rect x="217" y="246" width="110" height="8" rx="4" fill="#bfdbfe"/><rect x="217" y="246" width="99" height="8" rx="4" fill="#3b82f6"/>
-          <!-- Treasure Hunter bars -->
-          <text x="447" y="210" class="ptDesc">Combat</text>
-          <rect x="392" y="216" width="110" height="8" rx="4" fill="#fef3c7"/><rect x="392" y="216" width="66" height="8" rx="4" fill="#f59e0b"/>
-          <text x="447" y="240" class="ptDesc">Loot</text>
-          <rect x="392" y="246" width="110" height="8" rx="4" fill="#fef3c7"/><rect x="392" y="246" width="105" height="8" rx="4" fill="#f59e0b"/>
-          <!-- Role-Player bars -->
-          <text x="622" y="210" class="ptDesc">Combat</text>
-          <rect x="567" y="216" width="110" height="8" rx="4" fill="#ede9fe"/><rect x="567" y="216" width="33" height="8" rx="4" fill="#a855f7"/>
-          <text x="622" y="240" class="ptDesc">Story</text>
-          <rect x="567" y="246" width="110" height="8" rx="4" fill="#ede9fe"/><rect x="567" y="246" width="105" height="8" rx="4" fill="#a855f7"/>
-          <!-- footer -->
-          <text x="350" y="290" style="font:italic 11px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Great DMs mix encounters to satisfy all player types each session</text>
-        </svg>
-
-        <h2>🎯 Managing Tension: The Heart Rate of Adventure</h2>
-        
-        <p><strong>Adventure pacing is like a good thriller movie</strong> - you need peaks and valleys, tension and relief. Here's how to read and control the "tension meter" of your game:</p>
-        
-        <div class="tension-meter">
-            <div class="tension-indicator" id="tension_indicator" style="left: 25%;"></div>
-        </div>
-        <p style="text-align: center;"><em>Current Adventure Tension Level</em></p>
-        
-        <div class="canvas-container">
-            <h3>Tension Graph</h3>
-            <canvas id="tension_graph_canvas" width="600" height="300"></canvas>
-        </div>
-        
+</section>
+<section>
+<h2>📜 Before the Quest</h2>
         <div class="dm-tip">
-            <h3>🎚️ Tension Management Techniques</h3>
-            <p><strong>Building Tension (Like Jaws):</strong></p>
+            <h3>Read Ahead, Alone</h3>
             <ul>
-                <li>Use environmental descriptions: "You hear scratching in the walls..."</li>
-                <li>Limit resources: "You're down to your last healing potion..."</li>
-                <li>Add time pressure: "The water is rising slowly..."</li>
-                <li>Foreshadow danger: "You notice claw marks on the door..."</li>
+                <li><strong>Read the quest yourself first.</strong> Each quest opens with parchment text that you read aloud to everyone. The quest notes and map that follow are for Zargon's eyes only.</li>
+                <li><strong>Keep the map hidden.</strong> The heroes see only what their figures could see. You will add doors, furniture and monsters to the board as they explore.</li>
+                <li><strong>Check the notes for special items.</strong> Special treasure, Dread spells for named monsters, and any changed monster stats (for example, a monster that rolls an extra Attack die) are all listed there.</li>
+                <li><strong>Set up the Game Master's screen.</strong> The monster chart on the screen gives each monster's movement, Attack, Defend, Body and Mind.</li>
             </ul>
-            
-            <p><strong>Releasing Tension (Like Comic Relief):</strong></p>
+        </div>
+        <p>Turn order is fixed: the player to Zargon's left goes first, play runs clockwise through the heroes, and Zargon takes the last turn of each round. The rulebook suggests seating the Barbarian on Zargon's left, then the Dwarf, the Elf, and the Wizard on Zargon's right.</p>
+</section>
+<section>
+<h2>🗺️ Revealing the Dungeon</h2>
+        <p>The core of the Zargon job is honest information. The rulebook tells you to use the quest notes to react to heroes as they move:</p>
+        <div class="scenario-box">
             <ul>
-                <li>Victory moments: "The dragon falls with a thunderous crash!"</li>
-                <li>Treasure discovery: "Inside the chest, gold coins glimmer..."</li>
-                <li>Safe rest areas: "You find a peaceful shrine to rest..."</li>
-                <li>Humorous NPCs: "The goblin trips over his own feet..."</li>
+                <li><strong>When a hero looks down a corridor,</strong> place any doors, blocked-square tiles and monsters the map shows along it.</li>
+                <li><strong>When a hero opens a door,</strong> place the monsters, treasure chests and other furniture that belong in that room. Doors never close again once opened.</li>
+                <li><strong>Secret doors, traps and treasure stay hidden</strong> until a hero spends an action searching for them, unless the quest notes say otherwise.</li>
+                <li><strong>When a hero searches for traps,</strong> announce which squares hold traps (point to them) but don't place trap tiles until a trap is sprung.</li>
+                <li><strong>When a hero searches for treasure,</strong> read any special treasure from the quest notes (only the first hero to search that room finds it). Otherwise the hero draws from the treasure deck.</li>
+            </ul>
+        </div>
+        <div class="callout callout-edge">
+            <p><strong>Wandering monsters:</strong> if a treasure draw turns up a wandering monster, place the monster named in the quest notes next to the searching hero (or as close as you can) and immediately roll its Attack dice. It stays on the board and acts normally on your later turns.</p>
+        </div>
+        <p>Some quests ask for more of one monster than the box holds. The rulebook lets you substitute any other monster figure of the same colour.</p>
+</section>
+<section>
+<h2>⚔️ Zargon's Turn</h2>
+        <p>On your turn, each monster on the board can do what a hero does: <strong>move, then take an action, or take an action, then move.</strong> A monster can't move part of the way, act, and finish its move. You don't have to use a monster's full movement.</p>
+        <div class="pillars">
+            <div class="pillar">
+                <span class="pillar-line">Monster actions</span>
+                <h4>One per monster</h4>
+                <p>Attack an adjacent hero, or cast a Dread spell if the quest notes gave that monster one.</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar-line">Movement</span>
+                <h4>Fixed, not rolled</h4>
+                <p>Monsters don't roll movement dice. Each one moves up to the number on the monster chart.</p>
+            </div>
+            <div class="pillar">
+                <span class="pillar-line">Monsters never</span>
+                <h4>The forbidden list</h4>
+                <p>Search, move or attack diagonally, pass over heroes, move through walls, open or close doors, share a square, or search for, disarm or spring traps.</p>
+            </div>
+        </div>
+        <h3>Attacking a Hero</h3>
+        <ol>
+            <li>Name the hero you're attacking (it must be adjacent).</li>
+            <li>Roll the monster's Attack dice from the chart. Each skull is one hit; no skulls means a miss.</li>
+            <li>The hero rolls their Defend dice. Each <strong>white shield</strong> blocks one skull.</li>
+            <li>The hero marks off one Body Point per unblocked skull.</li>
+        </ol>
+        <p>When a hero attacks one of your monsters, you roll its Defend dice, and each <strong>black shield</strong> blocks one skull. Black shields are only one face in six, which is why monsters fall quickly. For exact odds on any matchup, use the <a href="/heroquest_dice_roller.html">Dice Roller</a>.</p>
+        <div class="callout callout-blue callout-box">
+            <p><strong>Tactics in numbers:</strong> using the classic monster chart (Goblin 2 Attack, Orc 3 Attack), a goblin attacking a hero with 2 Defend dice does at least 1 Body Point of damage 4 times in 9 (44.4%). An orc does it 5 times in 8 (62.5%), for an average of 23/24 of a Body Point per attack. Two monsters on the same hero in one round are far scarier than two monsters spread across the party.</p>
+        </div>
+        <h3>Dread Spells</h3>
+        <ul>
+            <li>You may cast a Dread spell <strong>instead of attacking</strong>.</li>
+            <li>Give Dread spells only to the monsters the quest notes name.</li>
+            <li>The caster must be able to see its target on your turn (line of sight).</li>
+            <li>Each Dread spell can be cast <strong>once per quest</strong>. Several of the twelve Dread spells aren't used in the core quests; they turn up in quest packs and are yours to use in quests you design.</li>
+        </ul>
+        <div class="callout callout-edge">
+            <p><strong>Optional rule from the rulebook:</strong> in the original game, furniture was only atmosphere. If your table wants a more strategic game, you can treat furniture as blocking line of sight and movement. Agree on it before the quest starts.</p>
+        </div>
+</section>
+<section>
+<h2>🎯 Pacing: Peaks and Valleys</h2>
+        <p>A quest takes roughly one to two hours, and it feels best when danger rises and falls. You can't change what the quest notes put in each room, but you control how you describe things and how hard each monster pushes.</p>
+        <div class="dm-tip">
+            <h3>🎚️ Building and Releasing Tension</h3>
+            <p><strong>Building tension:</strong></p>
+            <ul>
+                <li>Describe sounds before a door opens: "You hear scratching beyond the door..."</li>
+                <li>Remind the heroes of what they've spent: "That was your last healing potion."</li>
+                <li>Foreshadow what the quest notes tell you is ahead: "Claw marks score the stone here."</li>
+            </ul>
+            <p><strong>Releasing tension:</strong></p>
+            <ul>
+                <li>Make victories land: "The gargoyle crumbles to rubble!"</li>
+                <li>Read special treasure with relish when a search finds it.</li>
+                <li>Let a cleared room breathe while the heroes search it.</li>
             </ul>
         </div>
 
-        <h3>🌊 Ideal Adventure Pacing</h3>
-        <svg id="hq_dm_tension_curve" viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;margin:1.5rem auto;display:block;">
+        <h3>🌊 The Rhythm of a Good Quest</h3>
+        <svg id="hq_dm_tension_curve" viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="tcTitle" style="max-width:560px;margin:1.5rem auto;display:block;">
+          <title id="tcTitle">A tension curve over one quest: low while the parchment is read, rising in the first fight, falling during searches, peaking at the quest goal, and dropping on the walk back to the stairway.</title>
           <style>
-            .tcAxis{stroke:var(--border,#cbd5e1);stroke-width:1}
-            .tcLabel{font:11px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
-            .tcYLabel{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:end}
-            .tcNote{font:bold 10px 'Segoe UI',system-ui,sans-serif;text-anchor:middle}
-            .tcIcon{font:18px Arial;text-anchor:middle}
+            .tcAxis{stroke:#8a7a68;stroke-width:1.5}
+            .tcLabel{font:600 13px 'Source Sans 3','Segoe UI',sans-serif;fill:#3a2e24;text-anchor:middle}
+            .tcY{font:13px 'Source Sans 3','Segoe UI',sans-serif;fill:#4a3b30;text-anchor:end}
+            .tcNote{font:600 12px 'Source Sans 3','Segoe UI',sans-serif;text-anchor:start}
+            .tcBad{fill:#8f1d1d}
+            .tcGood{fill:#1f5f30}
+            .tcHead{font:700 15px 'Source Sans 3','Segoe UI',sans-serif;fill:#241c16;text-anchor:middle}
           </style>
-          <rect width="700" height="280" fill="var(--card-bg,#fff)" rx="8"/>
-          <!-- axes -->
-          <line x1="60" y1="30" x2="60" y2="230" class="tcAxis"/>
-          <line x1="60" y1="230" x2="670" y2="230" class="tcAxis"/>
-          <!-- Y labels -->
-          <text x="55" y="45" class="tcYLabel">High</text>
-          <text x="55" y="135" class="tcYLabel">Med</text>
-          <text x="55" y="228" class="tcYLabel">Low</text>
-          <!-- X axis label -->
-          <text x="365" y="260" class="tcLabel">Adventure Timeline →</text>
-          <!-- tension zones -->
-          <rect x="60" y="30" width="610" height="40" fill="#fecaca" opacity="0.25" rx="0"/>
-          <rect x="60" y="190" width="610" height="40" fill="#bbf7d0" opacity="0.25" rx="0"/>
-          <text x="690" y="52" style="font:9px 'Segoe UI',sans-serif;fill:#ef4444;text-anchor:end">⚠ Frustration</text>
-          <text x="690" y="218" style="font:9px 'Segoe UI',sans-serif;fill:#22c55e;text-anchor:end">⚠ Boredom</text>
-          <!-- ideal curve path -->
-          <path d="M80,190 C120,190 130,170 160,130 C190,90 200,80 210,80 C230,80 240,140 270,180 C290,200 310,200 330,180 C350,150 360,100 380,60 C400,40 410,40 420,50 C440,80 460,160 490,190 C510,200 520,195 540,160 C560,120 570,60 590,45 C600,40 610,45 620,55 C640,90 650,140 660,170" fill="none" stroke="#a855f7" stroke-width="3" stroke-linecap="round"/>
-          <!-- phase labels -->
-          <text x="130" y="215" class="tcIcon">🚶</text>
-          <text x="130" y="248" class="tcLabel">Explore</text>
-          <text x="210" y="62" class="tcIcon">⚔️</text>
-          <text x="210" y="248" class="tcLabel">Fight</text>
-          <text x="280" y="215" class="tcIcon">💤</text>
-          <text x="280" y="248" class="tcLabel">Rest</text>
-          <text x="380" y="42" class="tcIcon">🐉</text>
-          <text x="380" y="248" class="tcLabel">Boss</text>
-          <text x="490" y="215" class="tcIcon">🎉</text>
-          <text x="490" y="248" class="tcLabel">Reward</text>
-          <text x="590" y="38" class="tcIcon">💥</text>
-          <text x="590" y="248" class="tcLabel">Climax</text>
-          <!-- annotation -->
-          <text x="365" y="22" style="font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Peaks & Valleys: The Rhythm of a Great Session</text>
+          <rect width="480" height="300" fill="#ffffff" rx="8"/>
+          <text x="240" y="24" class="tcHead">Tension over one quest</text>
+          <rect x="60" y="44" width="405" height="34" fill="#fde2e0"/>
+          <rect x="60" y="196" width="405" height="34" fill="#dcf2e2"/>
+          <text x="66" y="66" class="tcNote tcBad">Too much for too long: frustration</text>
+          <text x="66" y="218" class="tcNote tcGood">Too little for too long: boredom</text>
+          <line x1="60" y1="40" x2="60" y2="232" class="tcAxis"/>
+          <line x1="60" y1="232" x2="468" y2="232" class="tcAxis"/>
+          <text x="54" y="56" class="tcY">High</text>
+          <text x="54" y="228" class="tcY">Low</text>
+          <path d="M75,205 C95,205 105,190 120,170 C140,130 150,100 165,98 C185,96 195,165 215,175 C235,182 245,175 255,160 C275,120 285,110 300,112 C320,116 325,150 340,150 C355,150 365,70 385,62 C400,58 410,70 420,110 C430,160 440,190 455,200" fill="none" stroke="#7b3fb0" stroke-width="3.5" stroke-linecap="round"/>
+          <text x="80" y="252" class="tcLabel">Parchment</text>
+          <text x="165" y="252" class="tcLabel">First fight</text>
+          <text x="220" y="272" class="tcLabel">Searching</text>
+          <text x="300" y="252" class="tcLabel">Big room</text>
+          <text x="385" y="272" class="tcLabel">Quest goal</text>
+          <text x="440" y="252" class="tcLabel">Exit</text>
         </svg>
+</section>
+<section>
+<h2>🗣️ Describing Rooms</h2>
 
-        <h2>🗣️ The Art of Atmospheric Description</h2>
-        
         <div class="scenario-box">
             <h3>🎨 Painting with Words</h3>
-            <p><strong>Don't just say "There's a room with monsters."</strong> Instead, be like a movie cinematographer:</p>
-            
-            <p><strong>❌ Boring:</strong> "There are 3 orcs in the room."</p>
-            
-            <p><strong>✅ Cinematic:</strong> "As you push open the heavy wooden door, it creaks ominously. The flickering torchlight reveals three hulking figures hunched over what appears to be a meal. Their yellow eyes snap up to meet yours, and they slowly rise, reaching for crude weapons. The largest one growls something in the orc tongue and pounds his chest."</p>
+            <p>When you place figures on the board, add a sentence of colour. The board already shows <em>what</em> is there; your words make it feel dangerous.</p>
+            <p><strong>❌ Flat:</strong> "There are three orcs in the room."</p>
+            <p><strong>✅ Vivid:</strong> "The door groans open. Torchlight shows three orcs hunched over a meal. Their eyes snap up, and they reach for their blades. The largest one growls and pounds his chest."</p>
+            <p>Describe, but never add information the quest notes don't give. If a description hints at a trap, it should be because the heroes found one.</p>
         </div>
+</section>
+<section>
+<h2>🎪 Giving Characters a Voice</h2>
+        <p>The rulebook doesn't require roleplaying, but invites everyone to lean into their characters. As Zargon you voice every monster and many of the people in the quest notes.</p>
 
-        <h2>🎪 Voice Acting: Bringing NPCs to Life</h2>
-        
-        <div class="canvas-container">
-            <h3>Voice Acting</h3>
-            <canvas id="voice_acting_canvas" width="600" height="400"></canvas>
-        </div>
-        
         <div class="voice-guide">
-            <h4>🏰 The Wise Mentor Voice</h4>
-            <p>Speak slowly, deliberately. Lower your voice slightly. "Young heroes... the path ahead... is treacherous indeed."</p>
+            <h4>🏰 Mentor</h4>
+            <p>Slow and deliberate, slightly lower. "Heroes... the path ahead... is treacherous indeed."</p>
         </div>
 
         <div class="voice-guide">
-            <h4>👹 The Monster Voice</h4>
-            <p>Growl, use simple words, speak in broken sentences. "Me smash! Heroes pay!"</p>
+            <h4>👹 Orcs and Goblins</h4>
+            <p>Growl, short words, broken sentences. "Heroes come! Smash them!"</p>
         </div>
 
         <div class="voice-guide">
-            <h4>🧚 The Mysterious NPC Voice</h4>
-            <p>Speak in riddles, use pauses for effect. "What you seek... lies where shadows dance... and light fears to tread..."</p>
+            <h4>🧙 Zargon Himself</h4>
+            <p>Cold, patient and amused. "Search all you like. Every room you open brings you closer to me."</p>
         </div>
 
         <div class="voice-guide">
-            <h4>😄 The Comic Relief Voice</h4>
-            <p>Higher pitch, faster speech, enthusiastic. "Oh my! Heroes! Real heroes! I can't believe it! Do you want to buy a turnip?"</p>
+            <h4>🛡️ Allies in the Quest Notes</h4>
+            <p>Rescued prisoners and quest-givers like Sir Ragnar or Prince Magnus: relieved, proud, or impatient to get home.</p>
         </div>
+</section>
+<section>
+<h2>🧠 Knowing Your Players</h2>
+        <p>Players enjoy different parts of a quest. You can't rewrite the quest, but you can lean your descriptions toward what each person enjoys.</p>
 
-        <h2>⚖️ The Balancing Act: Challenge vs. Fun</h2>
-        
-        <div class="psychology-box">
-            <h3>🎯 The Goldilocks Principle</h3>
-            <p><strong>Like Goldilocks' porridge, encounters should be "just right":</strong></p>
-            
-            <p><strong>🔥 Too Hot (Too Hard):</strong> Players feel frustrated, hopeless, like the game is unfair</p>
-            <p><strong>🧊 Too Cold (Too Easy):</strong> Players get bored, feel like there are no real stakes</p>
-            <p><strong>✨ Just Right:</strong> Players feel challenged but capable, victories feel earned</p>
-            
-            <h3>📊 Reading the Room</h3>
-            <p><strong>Watch for these player signals:</strong></p>
-            <ul>
-                <li><strong>Leaning forward:</strong> Engaged and excited</li>
-                <li><strong>Leaning back:</strong> Relaxed or possibly bored</li>
-                <li><strong>Quiet strategizing:</strong> Good challenge level</li>
-                <li><strong>Frustrated sighs:</strong> Too difficult</li>
-                <li><strong>Jokes and laughter:</strong> Having fun, maybe too easy</li>
-            </ul>
-        </div>
-
-        <h2>🎲 Dynamic Difficulty Adjustment</h2>
-        
-        <div class="dm-tip">
-            <h3>🔧 The DM's Secret Toolkit</h3>
-            <p><strong>You have invisible tools to adjust difficulty on the fly:</strong></p>
-            
-            <p><strong>🔽 Making Things Easier (When Players Struggle):</strong></p>
-            <ul>
-                <li>Monsters "miss" more often (roll fewer skull results)</li>
-                <li>Add environmental help: "A chandelier hangs above the monsters..."</li>
-                <li>Introduce reinforcements: "Suddenly, town guards burst in!"</li>
-                <li>Find healing items: "Behind the altar, you discover potions..."</li>
-            </ul>
-            
-            <p><strong>🔼 Making Things Harder (When Players Dominate):</strong></p>
-            <ul>
-                <li>Add complications: "More monsters hear the combat..."</li>
-                <li>Environmental hazards: "The floor begins to crack..."</li>
-                <li>Time pressure: "You hear heavy footsteps approaching..."</li>
-                <li>Limited resources: "Your torch begins to flicker..."</li>
-            </ul>
-        </div>
-
-        <h2>🎪 Creating Memorable Moments</h2>
-        
-        <div class="scenario-box">
-            <h3>⭐ The Spotlight Technique</h3>
-            <p><strong>Like a theater director, make sure every player gets their moment to shine:</strong></p>
-            
-            <p><strong>🛡️ Barbarian Moment:</strong> "The massive stone door is sealed shut, but you notice it might yield to great strength..."</p>
-            
-            <p><strong>🔮 Wizard Moment:</strong> "Ancient runes glow on the wall - they seem to be magical in nature..."</p>
-            
-            <p><strong>🏹 Elf Moment:</strong> "You notice a tripwire that others missed, and beyond it, multiple targets for arrows..."</p>
-            
-            <p><strong>🗡️ Dwarf Moment:</strong> "This trap mechanism looks complex, but you've seen similar designs before..."</p>
-        </div>
-
-        <h3>🔦 Spotlight Rotation</h3>
-        <svg id="hq_dm_spotlight_wheel" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" style="max-width:500px;margin:1.5rem auto;display:block;">
+        <svg id="hq_dm_player_types" viewBox="0 0 460 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="ptTitle" style="max-width:520px;margin:1.5rem auto;display:block;">
+          <title id="ptTitle">Four player types: the Fighter wants battles, the Explorer wants secrets, the Treasure Hunter wants loot, and the Storyteller wants character moments.</title>
           <style>
-            .swLabel{font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
-            .swRole{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
-            .swIcon{font:28px Arial;text-anchor:middle;dominant-baseline:central}
-            .swArrow{fill:none;stroke:var(--border,#cbd5e1);stroke-width:1.5;stroke-dasharray:6,3}
+            .ptCard{fill:#ffffff;stroke-width:2.5}
+            .ptTitle{font:700 16px 'Source Sans 3','Segoe UI',sans-serif;fill:#241c16;text-anchor:middle}
+            .ptDesc{font:14px 'Source Sans 3','Segoe UI',sans-serif;fill:#4a3b30;text-anchor:middle}
+            .ptIcon{font:30px sans-serif;text-anchor:middle;dominant-baseline:central}
+            .ptWant{font:700 13px 'Source Sans 3','Segoe UI',sans-serif;fill:#ffffff;text-anchor:middle}
           </style>
-          <rect width="500" height="400" fill="var(--card-bg,#fff)" rx="8"/>
-          <!-- title -->
-          <text x="250" y="24" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Every Hero Gets Their Moment</text>
-          <!-- center DM -->
-          <circle cx="250" cy="200" r="38" fill="#7c3aed" stroke="#a855f7" stroke-width="2"/>
-          <text x="250" y="192" class="swIcon">🧙</text>
-          <text x="250" y="218" class="swLabel">DM</text>
-          <!-- rotation arrow ring -->
-          <circle cx="250" cy="200" r="80" fill="none" stroke="var(--border,#cbd5e1)" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-          <!-- Barbarian (top) -->
-          <line x1="250" y1="162" x2="250" y2="90" class="swArrow"/>
-          <circle cx="250" cy="68" r="30" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
-          <text x="250" y="62" class="swIcon">🛡️</text>
-          <text x="250" y="82" class="swLabel">Barb</text>
-          <text x="250" y="112" class="swRole">Feats of strength</text>
-          <!-- Elf (right) -->
-          <line x1="288" y1="200" x2="360" y2="200" class="swArrow"/>
-          <circle cx="390" cy="200" r="30" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
-          <text x="390" y="194" class="swIcon">🏹</text>
-          <text x="390" y="214" class="swLabel">Elf</text>
-          <text x="390" y="244" class="swRole">Traps &amp; ranged</text>
-          <!-- Wizard (bottom) -->
-          <line x1="250" y1="238" x2="250" y2="310" class="swArrow"/>
-          <circle cx="250" cy="340" r="30" fill="#a855f7" stroke="#9333ea" stroke-width="2"/>
-          <text x="250" y="334" class="swIcon">🔮</text>
-          <text x="250" y="354" class="swLabel">Wiz</text>
-          <text x="250" y="384" class="swRole">Runes &amp; magic</text>
-          <!-- Dwarf (left) -->
-          <line x1="212" y1="200" x2="140" y2="200" class="swArrow"/>
-          <circle cx="110" cy="200" r="30" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="110" y="194" class="swIcon">🗡️</text>
-          <text x="110" y="214" class="swLabel">Dwf</text>
-          <text x="110" y="244" class="swRole">Traps &amp; locks</text>
-          <!-- curved rotation arrows -->
-          <path d="M280,165 A55,55 0 0,1 285,195" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#swArr)"/>
-          <path d="M280,235 A55,55 0 0,1 255,240" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#swArr)"/>
-          <path d="M220,235 A55,55 0 0,1 215,205" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#swArr)"/>
-          <path d="M220,165 A55,55 0 0,1 245,160" fill="none" stroke="#a855f7" stroke-width="1.5" marker-end="url(#swArr)"/>
-          <defs><marker id="swArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#a855f7"/></marker></defs>
+          <rect width="460" height="330" fill="#faf6ef" rx="10"/>
+          <rect x="12" y="12" width="210" height="146" rx="12" class="ptCard" stroke="#b91c1c"/>
+          <text x="117" y="44" class="ptIcon">⚔️</text>
+          <text x="117" y="82" class="ptTitle">The Fighter</text>
+          <text x="117" y="102" class="ptDesc">Wants battles and glory</text>
+          <rect x="47" y="118" width="140" height="26" rx="6" fill="#b91c1c"/><text x="117" y="136" class="ptWant">Make fights count</text>
+          <rect x="238" y="12" width="210" height="146" rx="12" class="ptCard" stroke="#1d4ed8"/>
+          <text x="343" y="44" class="ptIcon">🕵️</text>
+          <text x="343" y="82" class="ptTitle">The Explorer</text>
+          <text x="343" y="102" class="ptDesc">Wants secrets and maps</text>
+          <rect x="273" y="118" width="140" height="26" rx="6" fill="#1d4ed8"/><text x="343" y="136" class="ptWant">Reward searching</text>
+          <rect x="12" y="172" width="210" height="146" rx="12" class="ptCard" stroke="#92400e"/>
+          <text x="117" y="204" class="ptIcon">💰</text>
+          <text x="117" y="242" class="ptTitle">The Treasure Hunter</text>
+          <text x="117" y="262" class="ptDesc">Wants gold and gear</text>
+          <rect x="47" y="278" width="140" height="26" rx="6" fill="#92400e"/><text x="117" y="296" class="ptWant">Celebrate the loot</text>
+          <rect x="238" y="172" width="210" height="146" rx="12" class="ptCard" stroke="#7e22ce"/>
+          <text x="343" y="204" class="ptIcon">🎭</text>
+          <text x="343" y="242" class="ptTitle">The Storyteller</text>
+          <text x="343" y="262" class="ptDesc">Wants character moments</text>
+          <rect x="273" y="278" width="140" height="26" rx="6" fill="#7e22ce"/><text x="343" y="296" class="ptWant">Voice the world</text>
         </svg>
+</section>
+<section>
+<h2>⚖️ Fair Play and Difficulty</h2>
 
-        <h2>🎭 Advanced Storytelling Techniques</h2>
-        
-        <div class="canvas-container">
-            <h3>Storytelling Techniques</h3>
-            <canvas id="storytelling_techniques_canvas" width="600" height="350"></canvas>
-        </div>
-        
         <div class="psychology-box">
-            <h3>🎬 The Cliffhanger Technique</h3>
-            <p><strong>Like TV shows that make you want to watch the next episode:</strong></p>
+            <h3>🎯 Play It Straight</h3>
+            <p>HeroQuest is a game the heroes can lose, and that is what makes winning feel good. Roll in the open, follow the monster chart, and don't invent extra monsters or reinforcements mid-quest. The heroes trust that the dungeon is what the quest map says it is.</p>
+            <p>You still have honest choices that change how hard a quest feels:</p>
             <ul>
-                <li>End sessions with unresolved tension</li>
-                <li>Reveal partial information that raises questions</li>
-                <li>Introduce new mysteries just before breaks</li>
-                <li>Have important NPCs appear at dramatic moments</li>
-            </ul>
-            
-            <h3>🔄 The Callback Technique</h3>
-            <p><strong>Reference earlier events to create continuity:</strong></p>
-            <ul>
-                <li>"Remember that injured villager? His brother seeks revenge..."</li>
-                <li>"The goblin you spared has told others of your mercy..."</li>
-                <li>"That magic sword you found? It belonged to someone important..."</li>
+                <li><strong>Target choice:</strong> focusing attacks on the hero with the fewest Body Points is ruthless; spreading them out is gentler.</li>
+                <li><strong>Movement:</strong> monsters may rush the heroes or wait in a doorway. You never have to use their full movement.</li>
+                <li><strong>Spell timing:</strong> a Dread spell cast at the first chance hurts more than one held back.</li>
             </ul>
         </div>
-
-        <h2>🚨 Handling Common DM Challenges</h2>
-        
         <div class="dm-tip">
-            <h3>🎯 Problem-Solving Scenarios</h3>
-            
-            <p><strong>😴 The Bored Player:</strong> Give them a personal subplot or secret mission</p>
-            <p><strong>🎮 The Rules Lawyer:</strong> "That's a good point, let's use it this way for now and discuss after"</p>
-            <p><strong>💀 Character Death:</strong> Make it meaningful, offer resurrection quests or dramatic new character entrances</p>
-            <p><strong>🗺️ Players Go Off-Script:</strong> Embrace it! The best adventures happen when players surprise you</p>
-            <p><strong>⏰ Analysis Paralysis:</strong> "While you're deciding, you hear footsteps approaching..."</p>
+            <h3>🔧 When a Quest Goes Badly</h3>
+            <p>The rulebook covers this. If a quest ends in disaster (for example, all four heroes die) or goes unfinished, Zargon should <strong>modify the quest before it's replayed</strong>: fewer monsters, different monster types, or extra help such as Potions of Healing. Use the blank map and symbols at the back of the quest book.</p>
+            <p>If a hero dies carrying an artifact the next quest needs and your monsters steal it, include that artifact as a special treasure early in the next quest.</p>
         </div>
+        <h3>📊 Reading the Table</h3>
+        <ul>
+            <li><strong>Quiet planning:</strong> a good challenge.</li>
+            <li><strong>Frustrated sighs every turn:</strong> lean gentler on target choice, and suggest a tweak before the replay.</li>
+            <li><strong>Jokes while the Barbarian clears rooms alone:</strong> play your monsters smarter.</li>
+        </ul>
+</section>
+<section>
+<h2>🔦 Every Hero Gets a Moment</h2>
 
-        <h2>🎯 Practice Scenarios</h2>
-        
         <div class="scenario-box">
-            <h3>🎭 Practice Exercise: The Goblin King's Throne Room</h3>
-            <p><strong>Situation:</strong> Heroes enter the final chamber where the Goblin King awaits with his bodyguards.</p>
-            
-            <p><strong>Your Challenge:</strong> Create three different versions of this encounter:</p>
-            <ol>
-                <li><strong>Heroic Version:</strong> Players have been struggling - make them feel powerful</li>
-                <li><strong>Balanced Version:</strong> Players are doing well - create a fair challenge</li>
-                <li><strong>Epic Version:</strong> Players are dominating - make this legendary</li>
-            </ol>
-            
-            <p><strong>Consider:</strong> Room description, NPC dialogue, combat tactics, environmental elements</p>
+            <p>The four core heroes shine in different ways, and the quest notes give each of them chances. Point those moments out with your descriptions.</p>
+            <p><strong>🛡️ Barbarian:</strong> the strongest fighter (3 Attack dice, 8 Body Points). Describe the big monster stepping forward to meet them.</p>
+            <p><strong>⛏️ Dwarf:</strong> disarms traps without a tool kit and fails only on a black shield. Make a found trap feel like the Dwarf's problem to solve.</p>
+            <p><strong>🧝 Elf:</strong> fights well and casts one school of spells. Give the Elf's spell its own dramatic moment.</p>
+            <p><strong>🔮 Wizard:</strong> the weakest body (4 Body Points) but nine spells. When a spell turns a fight, say so.</p>
         </div>
 
-        <h2>📚 Building Your DM Library</h2>
-        
+        <svg id="hq_dm_spotlight_wheel" viewBox="0 0 480 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="swTitle" style="max-width:520px;margin:1.5rem auto;display:block;">
+          <title id="swTitle">Zargon in the centre passes the spotlight around the four heroes: Barbarian for big fights, Elf for well-timed spells, Wizard for magic that turns fights, Dwarf for traps.</title>
+          <style>
+            .swName{font:700 15px 'Source Sans 3','Segoe UI',sans-serif;fill:#241c16;text-anchor:middle}
+            .swRole{font:13px 'Source Sans 3','Segoe UI',sans-serif;fill:#4a3b30;text-anchor:middle}
+            .swIcon{font:26px sans-serif;text-anchor:middle;dominant-baseline:central}
+            .swArrow{fill:none;stroke:#8a7a68;stroke-width:1.5;stroke-dasharray:6,3}
+            .swLeft{text-anchor:start}
+            .swHead{font:700 15px 'Source Sans 3','Segoe UI',sans-serif;fill:#241c16;text-anchor:middle}
+            .swCenter{font:700 13px 'Source Sans 3','Segoe UI',sans-serif;fill:#ffffff;text-anchor:middle}
+          </style>
+          <rect width="480" height="420" fill="#ffffff" rx="8"/>
+          <text x="240" y="26" class="swHead">Pass the spotlight around</text>
+          <circle cx="240" cy="210" r="40" fill="#5e0d12"/>
+          <text x="240" y="198" class="swIcon">🧙</text>
+          <text x="240" y="228" class="swCenter">Zargon</text>
+          <line x1="240" y1="170" x2="240" y2="122" class="swArrow"/>
+          <circle cx="240" cy="78" r="30" fill="#fde2e0" stroke="#b91c1c" stroke-width="2.5"/>
+          <text x="240" y="78" class="swIcon">🛡️</text>
+          <text x="330" y="74" class="swName swLeft">Barbarian</text>
+          <text x="330" y="92" class="swRole swLeft">big fights</text>
+          <line x1="280" y1="210" x2="338" y2="210" class="swArrow"/>
+          <circle cx="370" cy="210" r="30" fill="#dcf2e2" stroke="#15803d" stroke-width="2.5"/>
+          <text x="370" y="210" class="swIcon">🧝</text>
+          <text x="370" y="262" class="swName">Elf</text>
+          <text x="370" y="280" class="swRole">a well-timed spell</text>
+          <line x1="240" y1="250" x2="240" y2="298" class="swArrow"/>
+          <circle cx="240" cy="330" r="30" fill="#efe3fa" stroke="#7e22ce" stroke-width="2.5"/>
+          <text x="240" y="330" class="swIcon">🔮</text>
+          <text x="240" y="382" class="swName">Wizard</text>
+          <text x="240" y="400" class="swRole">magic that turns a fight</text>
+          <line x1="200" y1="210" x2="142" y2="210" class="swArrow"/>
+          <circle cx="110" cy="210" r="30" fill="#fdecc8" stroke="#92400e" stroke-width="2.5"/>
+          <text x="110" y="210" class="swIcon">⛏️</text>
+          <text x="110" y="262" class="swName">Dwarf</text>
+          <text x="110" y="280" class="swRole">traps</text>
+        </svg>
+</section>
+<section>
+<h2>🎭 The Shape of a Quest</h2>
+
+        <div class="canvas-container">
+            <h3>A Quest's Story Arc</h3>
+            <canvas id="storytelling_techniques_canvas" width="560" height="320" role="img" aria-label="A story arc rising from the parchment text through exploration to the quest goal, then falling to the return to the stairway."></canvas>
+        </div>
+
         <div class="psychology-box">
-            <h3>🎨 Inspiration Sources</h3>
-            <p><strong>Great DMs steal from everywhere (like artists):</strong></p>
-            
-            <ul>
-                <li><strong>🎬 Movies:</strong> Lord of the Rings, Conan, Indiana Jones for atmosphere</li>
-                <li><strong>📚 Books:</strong> Fantasy novels for plot hooks and character ideas</li>
-                <li><strong>🎮 Video Games:</strong> RPGs for dungeon layouts and puzzle mechanics</li>
-                <li><strong>🎭 Theater:</strong> For dramatic timing and character portrayal</li>
-                <li><strong>📰 History:</strong> Medieval times for authentic details</li>
-            </ul>
+            <h3>🎬 Ending on a Hook</h3>
+            <p>The core quests form a campaign, and the parchment text of each one sets up the next. When a session ends between quests, read a line of the next parchment, or remind the heroes of a villain who got away or a reward still owed.</p>
+            <h3>🔄 Callbacks</h3>
+            <p>Bring earlier events back: the monster that took a fallen hero's gear, the reward Prince Magnus promised, the artifact the heroes still carry. Campaign continuity costs nothing and makes the heroes feel like one party with a history.</p>
         </div>
+</section>
+<section>
+<h2>🚨 Common Table Problems</h2>
 
-        <h2>🌟 The DM's Golden Rules</h2>
-        
         <div class="dm-tip">
-            <h3>⚖️ The Sacred Principles</h3>
+            <p><strong>😴 The bored player:</strong> keep turns quick. While others take their turns, ask them what their hero is watching for.</p>
+            <p><strong>📖 The rules question:</strong> make a quick call, keep playing, and check the rulebook after the quest. Rule the same way all quest.</p>
+            <p><strong>💀 A hero dies:</strong> the rules say that player is out for the rest of the quest. Their gear can be picked up by any hero in the same room or corridor; if no hero is there, a monster skulks in and takes it for good. The player can rename the hero and come back as a new character next quest. Give the death a moment of description.</p>
+            <p><strong>⏰ Slow decisions:</strong> remind the table that monsters act on Zargon's turn, so the heroes' plan has to hold up for a whole round.</p>
+        </div>
+</section>
+<section>
+<h2>📱 The App as Zargon</h2>
+        <p>Nobody wants to be Zargon tonight? The free official HeroQuest Companion App can take the role of a <strong>Digital Zargon</strong>, so up to four players can all play heroes, or one player can run all four heroes solo. The app tells you where to place pieces and how the monsters move; you still roll the dice and handle the cards. The printed rulebook itself always needs a human Zargon. See <a href="/heroquest_solo.html">Playing Without Zargon</a> for the details.</p>
+</section>
+<section>
+<h2>🎯 Try It at the Table</h2>
+
+        <div class="scenario-box">
+            <h3>The Orc Chieftain's Hall</h3>
+            <p><strong>Setup:</strong> you're designing your own quest on the blank map at the back of the quest book. The final room holds an orc chieftain (use an Orc figure with an extra Attack die, written in your quest notes) and his guards.</p>
+            <p><strong>Your challenge:</strong> write three versions of the room's quest notes:</p>
             <ol>
-                <li><strong>Fun First:</strong> If a rule gets in the way of fun, bend it</li>
-                <li><strong>Yes, And...</strong> Try to say "yes" to player ideas when possible</li>
-                <li><strong>Fair but Flexible:</strong> Be consistent but not rigid</li>
-                <li><strong>Everyone Matters:</strong> Make sure all players feel important</li>
-                <li><strong>Fail Forward:</strong> Even failures should advance the story</li>
-                <li><strong>Trust Your Instincts:</strong> You know your players better than any rulebook</li>
+                <li><strong>Gentle:</strong> for a party low on potions. Two orc guards, and a Potion of Healing as special treasure in the room before.</li>
+                <li><strong>Even:</strong> four orcs, and two goblins waiting in the corridor outside who close in once the fight starts.</li>
+                <li><strong>Brutal:</strong> four orcs plus a Dread Sorcerer with one Dread spell.</li>
+            </ol>
+            <p><strong>Then write:</strong> the parchment text, one line of description for the door opening, and one thing the chieftain shouts.</p>
+        </div>
+</section>
+<section>
+<h2>🌟 Zargon's Golden Rules</h2>
+
+        <div class="dm-tip">
+            <ol>
+                <li><strong>Fun first:</strong> if the table wants a house rule, agree on it openly before the quest.</li>
+                <li><strong>Follow the notes:</strong> reveal what the quest says, when the quest says.</li>
+                <li><strong>Consistent rulings:</strong> once you rule a certain way, keep ruling that way.</li>
+                <li><strong>Everyone matters:</strong> give every hero a moment.</li>
+                <li><strong>Play the monsters honestly:</strong> a real threat makes the victory mean something.</li>
+                <li><strong>Fix it next time:</strong> if a quest goes badly, adjust it before the replay, not in the middle.</li>
             </ol>
         </div>
-
-        <h2>🎯 Next Adventure Preview</h2>
-        
-        <p>In our next lecture, we'll explore <strong>"Advanced Combat Tactics and Strategy"</strong> - diving deep into positioning, teamwork, and making every battle feel like an epic movie fight scene. We'll cover advanced monster tactics, environmental combat, and how to make every character class shine in battle!</p>
-        
-        <div class="psychology-box">
-            <p><strong>Remember:</strong> Being a great DM is like being a great host at a party. Your job is to make sure everyone has an amazing time, feels included, and leaves excited about the next gathering. The rules are your tools, but your creativity and care for your players are what make the magic happen!</p>
-        </div>
-    </div>
+</section>
+<section>
+<h2>🧭 Where Next</h2>
+        <ul>
+            <li><a href="/heroquest_custom_heroes_monsters.html">Custom Heroes &amp; Monsters</a>: design your own monsters and quests, with house rules clearly marked.</li>
+            <li><a href="/heroquest_solo.html">Playing Without Zargon</a>: the Companion App's Digital Zargon and other ways to play without a game master.</li>
+            <li><a href="/heroquest_digital_toolkit.html">Zargon's Toolkit</a>: trackers for monsters, Body and Mind Points, and the treasure deck.</li>
+            <li><a href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>: how the heroes will try to beat your monsters.</li>
+        </ul>
+</section>
+    </main>
 
     <script>
-        // Tension Graph Animation
-        const tensionCanvas = document.getElementById('tension_graph_canvas');
-        const tensionCtx = tensionCanvas.getContext('2d');
-        
-        let time = 0;
-        const tensionData = [];
-        
-        function drawTensionGraph() {
-            tensionCtx.clearRect(0, 0, tensionCanvas.width, tensionCanvas.height);
-            
-            // Background
-            tensionCtx.fillStyle = '#1a0d26';
-            tensionCtx.fillRect(0, 0, tensionCanvas.width, tensionCanvas.height);
-            
-            // Grid lines
-            tensionCtx.strokeStyle = '#3c096c';
-            tensionCtx.lineWidth = 1;
-            for (let i = 0; i < 6; i++) {
-                const y = (i * tensionCanvas.height) / 5;
-                tensionCtx.beginPath();
-                tensionCtx.moveTo(0, y);
-                tensionCtx.lineTo(tensionCanvas.width, y);
-                tensionCtx.stroke();
-            }
-            
-            // Tension curve
-            tensionCtx.strokeStyle = '#c77dff';
-            tensionCtx.lineWidth = 3;
-            tensionCtx.beginPath();
-            
-            const points = 100;
-            for (let i = 0; i < points; i++) {
-                const x = (i / points) * tensionCanvas.width;
-                const t = (i / points) * 4 * Math.PI + time;
-                const tension = (Math.sin(t) + Math.sin(t * 2.3) * 0.5 + Math.sin(t * 0.7) * 0.3 + 1) / 2;
-                const y = tensionCanvas.height - (tension * tensionCanvas.height * 0.8) - 20;
-                
-                if (i === 0) tensionCtx.moveTo(x, y);
-                else tensionCtx.lineTo(x, y);
-            }
-            tensionCtx.stroke();
-            
-            // Labels
-            tensionCtx.fillStyle = '#e6d6f7';
-            tensionCtx.font = '14px Arial';
-            tensionCtx.fillText('Adventure Tension Over Time', 10, 20);
-            tensionCtx.fillText('Low Tension', 10, tensionCanvas.height - 10);
-            tensionCtx.fillText('High Tension', 10, 30);
-            tensionCtx.fillText('Exploration', 100, tensionCanvas.height - 30);
-            tensionCtx.fillText('Combat', 250, 50);
-            tensionCtx.fillText('Rest', 400, tensionCanvas.height - 30);
-            tensionCtx.fillText('Boss Fight', 500, 40);
-            
-            time += 0.02;
-            
-            // Update tension indicator
-            const currentTension = (Math.sin(time * 2) + 1) / 2;
-            const indicator = document.getElementById('tension_indicator');
-            indicator.style.left = (currentTension * 90 + 5) + '%';
-            
-            requestAnimationFrame(drawTensionGraph);
-        }
-        
-        drawTensionGraph();
-        
-        // Voice Acting Visualization
-        const voiceCanvas = document.getElementById('voice_acting_canvas');
-        const voiceCtx = voiceCanvas.getContext('2d');
-        
-        function drawVoiceActing() {
-            voiceCtx.clearRect(0, 0, voiceCanvas.width, voiceCanvas.height);
-            
-            // Background
-            voiceCtx.fillStyle = '#1a0d26';
-            voiceCtx.fillRect(0, 0, voiceCanvas.width, voiceCanvas.height);
-            
-            const npcs = [
-                {x: 100, y: 100, text: 'Mentor', color: '#4a90e2'},
-                {x: 500, y: 100, text: 'Monster', color: '#ff6b35'},
-                {x: 100, y: 300, text: 'Mystery', color: '#7209b7'},
-                {x: 500, y: 300, text: 'Comic', color: '#ffd700'}
-            ];
-            
-            // Draw connection lines FIRST (behind everything)
-            voiceCtx.strokeStyle = '#c77dff';
-            voiceCtx.lineWidth = 2;
-            npcs.forEach(npc => {
-                voiceCtx.beginPath();
-                voiceCtx.moveTo(npc.x, npc.y);
-                voiceCtx.lineTo(300, 200);
-                voiceCtx.stroke();
-            });
-            
-            // Draw DM in center (on top of lines)
-            voiceCtx.fillStyle = '#9d4edd';
-            voiceCtx.fillRect(275, 175, 50, 50);
-            voiceCtx.fillStyle = '#fff';
-            voiceCtx.font = '12px Arial';
-            voiceCtx.textAlign = 'center';
-            voiceCtx.fillText('DM', 300, 205);
-            
-            // Draw NPC boxes and text (on top of lines)
-            npcs.forEach(npc => {
-                voiceCtx.fillStyle = npc.color;
-                voiceCtx.fillRect(npc.x - 25, npc.y - 25, 50, 50);
-                voiceCtx.fillStyle = '#fff';
-                voiceCtx.font = '12px Arial';
-                voiceCtx.textAlign = 'center';
-                voiceCtx.fillText(npc.text, npc.x, npc.y + 5);
-            });
-            
-            // Title (on top of everything)
-            voiceCtx.fillStyle = '#e6d6f7';
-            voiceCtx.font = '16px Arial';
-            voiceCtx.textAlign = 'center';
-            voiceCtx.fillText('DM Voice Acting: One Person, Many Characters', 300, 30);
-            voiceCtx.textAlign = 'left';
-        }
-        
-        drawVoiceActing();
-        
-        // Storytelling Techniques Visualization
-        const storyCanvas = document.getElementById('storytelling_techniques_canvas');
-        const storyCtx = storyCanvas.getContext('2d');
-        
-        function drawStorytellingTechniques() {
-            storyCtx.clearRect(0, 0, storyCanvas.width, storyCanvas.height);
-            
-            // Background
-            storyCtx.fillStyle = '#1a0d26';
-            storyCtx.fillRect(0, 0, storyCanvas.width, storyCanvas.height);
-            
-            // Draw story arc
-            storyCtx.strokeStyle = '#c77dff';
-            storyCtx.lineWidth = 4;
-            storyCtx.beginPath();
-            
-            const points = [
-                {x: 50, y: 300, label: 'Setup'},
-                {x: 150, y: 250, label: 'Rising Action'},
-                {x: 300, y: 100, label: 'Climax'},
-                {x: 450, y: 200, label: 'Resolution'},
-                {x: 550, y: 280, label: 'New Hook'}
-            ];
-            
-            points.forEach((point, index) => {
-                if (index === 0) storyCtx.moveTo(point.x, point.y);
-                else storyCtx.lineTo(point.x, point.y);
-                
-                // Draw point
-                storyCtx.fillStyle = '#9d4edd';
-                storyCtx.beginPath();
-                storyCtx.arc(point.x, point.y, 8, 0, Math.PI * 2);
-                storyCtx.fill();
-                
-                // Draw label
-                storyCtx.fillStyle = '#e6d6f7';
-                storyCtx.font = '12px Arial';
-                storyCtx.fillText(point.label, point.x - 20, point.y - 15);
-            });
-            
-            storyCtx.stroke();
-            
-            storyCtx.fillStyle = '#e6d6f7';
-            storyCtx.font = '16px Arial';
-            storyCtx.fillText('Adventure Story Arc', 250, 30);
-        }
-        
-        drawStorytellingTechniques();
+    (function () {
+        // Story arc of a quest: static figure on a light panel.
+        var canvas = document.getElementById('storytelling_techniques_canvas');
+        if (!canvas || !canvas.getContext) return;
+        var ctx = canvas.getContext('2d');
+        var W = canvas.width, H = canvas.height;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, W, H);
+
+        ctx.fillStyle = '#241c16';
+        ctx.font = 'bold 17px "Source Sans 3", "Segoe UI", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('The arc of one quest', W / 2, 28);
+
+        var points = [
+            {x: 50,  y: 270, label: 'Parchment read', lx: 20,  ly: 300, al: 'left'},
+            {x: 160, y: 210, label: 'Exploring',      lx: 146, ly: 200, al: 'right'},
+            {x: 280, y: 90,  label: 'Quest goal',     lx: 280, ly: 68,  al: 'center'},
+            {x: 400, y: 170, label: 'Fighting out',   lx: 414, ly: 160, al: 'left'},
+            {x: 510, y: 260, label: 'Back to the exit', lx: 540, ly: 296, al: 'right'}
+        ];
+
+        ctx.strokeStyle = '#7b3fb0';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        points.forEach(function (p, i) { if (i === 0) ctx.moveTo(p.x, p.y); else ctx.lineTo(p.x, p.y); });
+        ctx.stroke();
+
+        ctx.font = '600 16px "Source Sans 3", "Segoe UI", sans-serif';
+        points.forEach(function (p) {
+            ctx.fillStyle = '#5e0d12';
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, 8, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillStyle = '#3a2e24';
+            ctx.textAlign = p.al;
+            ctx.fillText(p.label, p.lx, p.ly);
+        });
+        ctx.textAlign = 'left';
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_lore_jungles_delthrak.html">Jungles of Delthrak: Lore</a>
+    <a class="next" href="/heroquest_custom_heroes_monsters.html">Custom Heroes &amp; Monsters</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Basics - Your First Adventure</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Getting Started - The HeroQuest Guide</title>
+    <meta name="description" content="How the 2021 HeroQuest board game works: what is in the box, setup, turn order, the six hero actions, combat dice, Body and Mind Points, and Zargon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
     <style>
-        /* ── Interactive Combat Simulator ── */
+        /* ── Combat simulator ── */
         .combat-arena {
-            background: #2c1810;
+            background: var(--surface-2);
+            color: var(--text);
+            border: 1px solid var(--border);
             border-radius: 10px;
-            padding: 24px;
+            padding: 20px;
             margin: 1rem 0;
-            color: #f5f5dc;
         }
         .combat-fighters {
             display: flex;
@@ -28,894 +31,558 @@
         }
         .fighter-card {
             text-align: center;
-            padding: 16px;
+            padding: 14px;
             border-radius: 10px;
             flex: 1;
             min-width: 140px;
+            background: var(--surface);
         }
-        .fighter-card.hero-fighter { background: rgba(74, 144, 226, 0.2); border: 2px solid #4a90e2; }
-        .fighter-card.monster-fighter { background: rgba(139, 69, 19, 0.2); border: 2px solid #8b4513; }
-        .fighter-card.defeated { opacity: 0.4; }
-        .fighter-icon { font-size: 48px; margin-bottom: 8px; }
-        .fighter-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; }
-        .fighter-stats { font-size: 0.85rem; color: #ccc; }
-        .hp-bar {
-            height: 10px;
-            background: #333;
-            border-radius: 5px;
-            margin-top: 8px;
-            overflow: hidden;
-        }
-        .hp-fill {
-            height: 100%;
-            border-radius: 5px;
-            transition: width 0.5s ease;
-            background: #22c55e;
-        }
-        .hp-fill.low { background: #f59e0b; }
-        .hp-fill.critical { background: #ef4444; }
-        .combat-vs {
-            font-size: 2rem;
-            font-weight: 900;
-            color: #ff6b35;
-            flex-shrink: 0;
-        }
+        .fighter-card.hero-fighter { border: 2px solid #1f6fb8; }
+        .fighter-card.monster-fighter { border: 2px solid var(--accent); }
+        .fighter-card.defeated { border-style: dashed; }
+        .fighter-card.defeated .fighter-name::after { content: ' (slain)'; }
+        .fighter-icon { font-size: 40px; margin-bottom: 6px; }
+        .fighter-name { font-weight: 700; font-size: 1.1rem; margin-bottom: 4px; color: var(--heading); }
+        .fighter-stats { font-size: 0.9rem; color: var(--muted); }
+        .hp-bar { height: 10px; background: var(--border); border-radius: 5px; margin-top: 8px; overflow: hidden; }
+        .hp-fill { height: 100%; border-radius: 5px; transition: width 0.4s ease; background: #2e8b3e; width: 100%; }
+        .hp-fill.low { background: #c06a00; }
+        .hp-fill.critical { background: #c0392b; }
+        .combat-vs { font-size: 1.6rem; font-weight: 700; color: var(--accent); flex-shrink: 0; }
         .combat-log {
-            background: rgba(0,0,0,0.3);
+            background: var(--surface);
+            border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 16px;
+            padding: 14px;
             margin: 12px 0;
             min-height: 60px;
-            font-size: 0.95rem;
             line-height: 1.6;
         }
         .dice-tray {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
             margin: 12px 0;
-            min-height: 56px;
+            min-height: 50px;
             align-items: center;
         }
         .die {
-            width: 48px;
-            height: 48px;
+            width: 46px;
+            height: 46px;
             border-radius: 8px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 24px;
-            font-weight: 700;
-            border: 2px solid #555;
-            background: #1e293b;
-            transition: transform 0.3s, background 0.3s;
+            background: #f6f1e7;
+            color: #241c16;
+            border: 2px solid #5c4f43;
         }
-        .die.skull { background: #7f1d1d; border-color: #ef4444; }
-        .die.shield { background: #1e3a5f; border-color: #3b82f6; }
-        .die.blank { background: #333; border-color: #555; }
-        .die.rolling {
-            animation: dieRoll 0.12s ease-in-out infinite alternate;
-        }
+        .die.skull { border-color: #a3161f; }
+        .die svg { width: 30px; height: 34px; margin: 0; padding: 0; border: 0; background: none; }
+        .die.rolling { animation: dieRoll 0.12s ease-in-out infinite alternate; }
         @keyframes dieRoll {
-            from { transform: rotate(-8deg) scale(1.05); }
-            to   { transform: rotate(8deg) scale(0.95); }
+            from { transform: rotate(-8deg); }
+            to   { transform: rotate(8deg); }
         }
+        @media (prefers-reduced-motion: reduce) {
+            .die.rolling { animation: none; }
+            .hp-fill { transition: none; }
+        }
+        .tray-sep { font-weight: 700; color: var(--accent); padding: 0 4px; }
         .combat-btn {
             display: block;
             margin: 16px auto 0;
-            padding: 14px 36px;
-            font-size: 1.1rem;
+            padding: 12px 28px;
+            font-size: 1.05rem;
             font-weight: 700;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             color: #fff;
-            transition: transform 0.15s, box-shadow 0.15s;
         }
-        .combat-btn:hover { transform: scale(1.05); }
-        .combat-btn:active { transform: scale(0.97); }
-        .combat-btn.attack { background: #ef4444; box-shadow: 0 0 12px rgba(239,68,68,0.4); }
-        .combat-btn.defend { background: #3b82f6; box-shadow: 0 0 12px rgba(59,130,246,0.4); }
-        .combat-btn.reset  { background: #8b5cf6; box-shadow: 0 0 12px rgba(139,92,246,0.4); }
-        .combat-btn:disabled {
-            opacity: 0.4;
-            cursor: default;
-            transform: none;
-        }
-        .step-indicator {
-            text-align: center;
-            font-size: 0.85rem;
-            color: #fbbf24;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .dice-label {
-            text-align: center;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 4px;
-        }
-        .damage-flash {
-            text-align: center;
-            font-size: 1.4rem;
-            font-weight: 900;
-            margin: 8px 0;
-            min-height: 36px;
-        }
+        .combat-btn.attack { background: #a3161f; }
+        .combat-btn.defend { background: #1f4f8a; }
+        .combat-btn.reset  { background: #5b2b8a; }
+        .combat-btn:disabled { opacity: 0.6; cursor: default; }
+        .step-indicator { text-align: center; font-weight: 700; color: var(--gold); margin-bottom: 6px; }
+        .dice-label { text-align: center; font-size: 0.9rem; color: var(--muted); margin-bottom: 4px; }
+        .damage-flash { text-align: center; font-size: 1.3rem; font-weight: 700; margin: 8px 0; min-height: 32px; }
+        .damage-flash .hit { color: var(--danger); }
+        .damage-flash .block { color: var(--success); }
+        .damage-flash .miss { color: var(--muted); }
         @media (max-width: 480px) {
             .combat-fighters { flex-direction: column; }
-            .combat-vs { font-size: 1.5rem; }
+            .fighter-card { width: 100%; }
             .die { width: 40px; height: 40px; font-size: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏰 HeroQuest: Your First Adventure Begins Here! 🗡️</h1>
-        
-        <div class="analogy-box">
-            <h2>🎭 What is HeroQuest?</h2>
-            <p><strong>Think of HeroQuest like being the director of your own fantasy movie!</strong> One player becomes the "Evil Wizard" (like a movie director), while up to four others become heroes (the main characters). The Evil Wizard controls the story, the monsters, and the challenges, while the heroes make decisions and fight their way through dungeons.</p>
-            
-            <p>It's like <strong>Dungeons & Dragons meets Monopoly</strong> - you have a board with rooms and corridors, but instead of buying properties, you're fighting monsters and finding treasure!</p>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Getting Started</h1>
+        <p>An overview of the 2021 HeroQuest Game System: what is in the box, how to set up, how a turn works, and how the combat dice decide every fight.</p>
+    </header>
+
+    <main id="main">
+<section>
+<h2>What Is HeroQuest?</h2>
+<p>HeroQuest is a dungeon-crawl board game for 2 to 5 players. One player is <strong>Zargon</strong>, the evil sorcerer: they read the secret quest notes, place rooms and monsters as the heroes discover them, and run every monster. Everyone else plays one of up to four heroes, working together to complete a quest and get back out alive.</p>
+<p>The current edition is the <strong>HeroQuest Game System</strong> published by Avalon Hill (Hasbro) in 2021. Its Quest Book holds <strong>14 quests</strong> that form a campaign: heroes keep their gold and equipment from one quest to the next. Think of Zargon as the director of a film who also plays every villain. They know the script; the heroes find it out one room at a time.</p>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> the original game was designed by Stephen Baker and made by Milton Bradley with Games Workshop. The 1989 UK/European box calls the villain <strong>Morcar</strong>; the 1990 North American box renamed him <strong>Zargon</strong> and made the monsters tougher. The 2021 game follows the North American rules, with "Chaos" renamed "Dread": the Fimir became the <strong>Abomination</strong>, the Chaos Warrior the <strong>Dread Warrior</strong>, and Chaos spells became <strong>Dread spells</strong>.</p>
+</div>
+</section>
+
+<section>
+<h2>What's in the Box</h2>
+<p>The 2021 Game System contains:</p>
+<ul>
+    <li>A double-sided gameboard of rooms and corridors, the Quest Book and the rulebook.</li>
+    <li><strong>4 hero miniatures:</strong> Barbarian, Dwarf, Elf and Wizard.</li>
+    <li><strong>31 monster miniatures:</strong> 8 Orcs, 6 Goblins, 3 Abominations, 4 Dread Warriors, 1 Dread Sorcerer, 1 Gargoyle, 4 Skeletons, 2 Zombies and 2 Mummies.</li>
+    <li>15 furniture pieces and 21 doors, plus tiles for traps, secret doors and blocked squares.</li>
+    <li><strong>97 cards:</strong> 24 treasure, 23 equipment, 14 artifact, 12 Dread spells, 12 hero spells, 8 monster and 4 turn-order cards.</li>
+    <li><strong>6 white combat dice</strong> and <strong>2 red six-sided dice</strong> for movement.</li>
+    <li>Zargon's screen (with the monster chart on it) and character sheets for recording each hero's progress.</li>
+</ul>
+</section>
+
+<section>
+<h2>Meet the Heroes</h2>
+<p>Each hero card lists four numbers. <strong>Attack</strong> and <strong>Defend</strong> are how many combat dice the hero rolls. <strong>Body Points</strong> are physical health. <strong>Mind Points</strong> are "wisdom, intelligence, and resistance to magical influence". All four heroes roll two red dice for movement.</p>
+<div class="table-container">
+<table>
+<thead><tr><th>Hero</th><th>Attack</th><th>Defend</th><th>Body</th><th>Mind</th><th>Starts with</th><th>Spells</th></tr></thead>
+<tbody>
+<tr><td>Barbarian</td><td>3</td><td>2</td><td>8</td><td>2</td><td>Broadsword</td><td>None</td></tr>
+<tr><td>Dwarf</td><td>2</td><td>2</td><td>7</td><td>3</td><td>Shortsword</td><td>None; disarms traps without a tool kit</td></tr>
+<tr><td>Elf</td><td>2</td><td>2</td><td>6</td><td>4</td><td>Shortsword</td><td>3 (one school)</td></tr>
+<tr><td>Wizard</td><td>1</td><td>2</td><td>4</td><td>6</td><td>Dagger</td><td>9 (three schools); can't wear most armor</td></tr>
+</tbody>
+</table>
+</div>
+<p>The Barbarian is the strongest fighter and the hardest to kill. The Dwarf is the trap expert. The Elf fights as well as the Dwarf and casts a few spells. The Wizard is fragile but carries most of the party's magic. Quest packs and hero packs add more heroes, from the Knight to the Explorer; see <a href="/heroquest_legendary_heroes.html">The Heroes</a>.</p>
+</section>
+
+<section>
+<h2>Setting Up a Quest</h2>
+<ol>
+    <li><strong>Zargon reads the quest first,</strong> silently. The parchment text is read aloud to the heroes; the notes and the map stay behind Zargon's screen.</li>
+    <li><strong>Lay out the board</strong> and put Zargon's screen between Zargon and the board.</li>
+    <li><strong>Each player chooses a hero</strong> and takes the miniature, hero card and a character sheet.</li>
+    <li><strong>Sort the cards</strong> into piles: treasure, artifacts, monsters, Dread spells, equipment, and the four hero spell schools (Air, Earth, Fire, Water). Shuffle the treasure deck.</li>
+    <li><strong>Choose spells.</strong> The Wizard picks one school, the Elf picks one of the remaining three, and the Wizard takes the last two. For a first game the rulebook suggests Fire for the Wizard and Earth for the Elf. See <a href="/heroquest_magic_spells.html">Magic &amp; Spells</a>.</li>
+    <li><strong>Place only what the heroes can see</strong> from their starting point, usually the stairway. Traps, secret doors, treasure and anything behind a closed door stay hidden until found.</li>
+</ol>
+<p>The rulebook suggests seating the Barbarian on Zargon's left, then the Dwarf, the Elf and finally the Wizard on Zargon's right.</p>
+</section>
+
+<section>
+<h2>How a Round Works</h2>
+<p>The player on Zargon's left goes first, and play passes clockwise. When every hero has had a turn, Zargon takes one turn and may move and act with <em>every</em> monster on the board.</p>
+<div class="mermaid">
+flowchart TD
+    A["Barbarian (on Zargon's left)"] --> B[Dwarf]
+    B --> C[Elf]
+    C --> D["Wizard (on Zargon's right)"]
+    D --> E["Zargon: each monster may move and act"]
+    E --> F{"Quest goal done and heroes back at the stairway?"}
+    F -->|No| A
+    F -->|Yes| G[Quest complete]
+</div>
+<h3>Your Turn: Move and Act</h3>
+<p>On your turn you do one of two things:</p>
+<ul>
+    <li><strong>Move, then take one action,</strong> or</li>
+    <li><strong>Take one action, then move.</strong></li>
+</ul>
+<p>You can't split your move around the action: no walking three squares, attacking, then walking the rest. Monsters follow the same rule.</p>
+<p>To move, roll the two red dice and move up to that many squares (the average is 7). You don't have to use all of it. You can't move diagonally or through walls or monsters, but you can pass over other heroes. Monsters don't roll: each has a fixed Movement on the monster chart.</p>
+<p>Some things are free and don't use your action: opening a door you are next to, looking around, drinking a potion and picking things up.</p>
+</section>
+
+<section>
+<h2>The Six Hero Actions</h2>
+<div class="table-container">
+<table>
+<thead><tr><th>Action</th><th>What it does</th></tr></thead>
+<tbody>
+<tr><td><strong>Attack</strong></td><td>Attack one monster next to you (not diagonally, unless your weapon says so). Ranged weapons and spells need line of sight.</td></tr>
+<tr><td><strong>Cast a spell</strong></td><td>Elf and Wizard only (among the core heroes). Each spell can be cast once per quest.</td></tr>
+<tr><td><strong>Search for treasure</strong></td><td>Rooms only, with no monster in the room. Each hero may search a given room once. Zargon reveals special treasure from the quest notes; otherwise draw a treasure card.</td></tr>
+<tr><td><strong>Search for secret doors</strong></td><td>Searches the room or corridor you are in. Only allowed when no monster is in sight.</td></tr>
+<tr><td><strong>Search for traps</strong></td><td>Reveals traps in your room or corridor. Also needs no monster in sight.</td></tr>
+<tr><td><strong>Disarm a trap</strong></td><td>Needs a tool kit (any result but a skull on one combat die), unless you are the Dwarf, who needs no kit and fails only on a black shield.</td></tr>
+</tbody>
+</table>
+</div>
+<p>The treasure deck is not all good news: almost half of it is wandering monsters and hazards. Monsters, for their part, can only attack or (for certain monsters named in the quest notes) cast a Dread spell. They never search, open doors, move or attack diagonally, or spring hidden traps.</p>
+</section>
+
+<section>
+<h2>The Combat Dice</h2>
+<p>Every combat die has six faces with three symbols:</p>
+<svg id="hq_basics_dice_faces" viewBox="0 0 480 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hqDiceTitle">
+  <title id="hqDiceTitle">The three combat-die symbols: three skulls, two white shields and one black shield</title>
+  <g font-family="'Source Sans 3', system-ui, sans-serif" text-anchor="middle">
+    <rect x="10" y="10" width="140" height="170" rx="12" fill="#fffdf9" stroke="#b29f82" stroke-width="2"/>
+    <rect x="45" y="22" width="70" height="70" rx="10" fill="#f6f1e7" stroke="#a3161f" stroke-width="3"/>
+    <text x="80" y="68" font-size="34">💀</text>
+    <text x="80" y="118" font-size="17" font-weight="700" fill="#241c16">Skull</text>
+    <text x="80" y="140" font-size="14" fill="#3d332b">3 faces of 6</text>
+    <text x="80" y="160" font-size="14" fill="#3d332b">1 hit when attacking</text>
+
+    <rect x="170" y="10" width="140" height="170" rx="12" fill="#fffdf9" stroke="#b29f82" stroke-width="2"/>
+    <rect x="205" y="22" width="70" height="70" rx="10" fill="#f6f1e7" stroke="#5c4f43" stroke-width="3"/>
+    <path d="M240,32 L262,40 L260,62 Q256,76 240,84 Q224,76 220,62 L218,40 Z" fill="#ffffff" stroke="#241c16" stroke-width="3"/>
+    <text x="240" y="118" font-size="17" font-weight="700" fill="#241c16">White shield</text>
+    <text x="240" y="140" font-size="14" fill="#3d332b">2 faces of 6</text>
+    <text x="240" y="160" font-size="14" fill="#3d332b">a hero blocks 1 hit</text>
+
+    <rect x="330" y="10" width="140" height="170" rx="12" fill="#fffdf9" stroke="#b29f82" stroke-width="2"/>
+    <rect x="365" y="22" width="70" height="70" rx="10" fill="#f6f1e7" stroke="#5c4f43" stroke-width="3"/>
+    <path d="M400,32 L422,40 L420,62 Q416,76 400,84 Q384,76 380,62 L378,40 Z" fill="#1a1410" stroke="#1a1410" stroke-width="3"/>
+    <text x="400" y="118" font-size="17" font-weight="700" fill="#241c16">Black shield</text>
+    <text x="400" y="140" font-size="14" fill="#3d332b">1 face of 6</text>
+    <text x="400" y="160" font-size="14" fill="#3d332b">a monster blocks 1 hit</text>
+  </g>
+</svg>
+<ol>
+    <li>The attacker rolls their Attack dice. <strong>Each skull is one hit.</strong> No skulls means a miss.</li>
+    <li>The defender rolls their Defend dice. A <strong>hero</strong> blocks one hit per <strong>white shield</strong>; a <strong>monster</strong> blocks one hit per <strong>black shield</strong>. Every other face blocks nothing.</li>
+    <li>Each unblocked hit costs the defender one Body Point.</li>
+</ol>
+<p>That one difference matters a lot: a hero blocks with a third of their dice, a monster with only a sixth. Most heroes defend with 2 dice (more with armor, fewer while standing in a pit).</p>
+<div class="combat-example">
+<p><strong>Example:</strong> the Barbarian (3 Attack dice) attacks an Orc that rolls 2 Defend dice. The Barbarian rolls skull, skull, white shield: 2 hits. The Orc rolls black shield, skull: one hit blocked, so the Orc loses 1 Body Point. Over many attacks, 3 dice against 2 monster dice wound at least once <strong>75.0%</strong> of the time.</p>
+</div>
+<p>For exact odds on any attack, use the <a href="/heroquest_dice_roller.html">Dice Roller</a>.</p>
+</section>
+
+<section>
+<h2>Body Points, Mind Points and Death</h2>
+<ul>
+    <li><strong>Body Points</strong> drop when you take hits. At 0 your hero dies, unless you immediately drink a healing potion or cast a healing spell on yourself. Once you are dead, your friends can't bring you back during the quest.</li>
+    <li><strong>Mind Points</strong> measure wisdom and resistance to magic. Some Dread spells and quest effects test them.</li>
+    <li><strong>Between quests,</strong> heroes who completed the quest get back all their Body and Mind Points and every spell they cast, then may spend gold in the armory. A quest only counts as complete when the heroes reach the stairway (or the exit the quest names).</li>
+</ul>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> the classic spell cards let a hero shake off spells such as Sleep or Fear by rolling one red die per Mind Point and needing a 6. Check your 2021 cards for the current wording.</p>
+</div>
+</section>
+
+<section>
+<h2>Reading the Board</h2>
+<svg id="hq_basics_dungeon_layout" viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hqBoardTitle">
+  <title id="hqBoardTitle">A corridor with the stairway, a door into a room holding a monster and a hidden trap, and a secret door into a second room with a chest</title>
+  <rect x="0" y="0" width="480" height="300" fill="#fbf8f2"/>
+  <g font-family="'Source Sans 3', system-ui, sans-serif" text-anchor="middle" font-size="14" fill="#241c16">
+    <!-- corridor -->
+    <rect x="16" y="120" width="154" height="60" fill="#e3d6bc" stroke="#4a3728" stroke-width="3"/>
+    <rect x="20" y="124" width="40" height="52" fill="#b9a789"/>
+    <line x1="20" y1="137" x2="60" y2="137" stroke="#5c4f43" stroke-width="2"/>
+    <line x1="20" y1="150" x2="60" y2="150" stroke="#5c4f43" stroke-width="2"/>
+    <line x1="20" y1="163" x2="60" y2="163" stroke="#5c4f43" stroke-width="2"/>
+    <text x="40" y="112" font-weight="700">Stairway</text>
+    <text x="104" y="202">Corridor</text>
+    <circle cx="110" cy="150" r="15" fill="#1f4f8a"/>
+    <text x="110" y="155" font-weight="700" fill="#ffffff">H</text>
+    <!-- door -->
+    <rect x="167" y="132" width="12" height="36" fill="#8a5a00" stroke="#4a3728" stroke-width="2"/>
+    <text x="150" y="104">Door</text>
+    <line x1="158" y1="108" x2="170" y2="130" stroke="#5c4f43" stroke-width="1.5"/>
+    <!-- room 1 -->
+    <rect x="179" y="60" width="148" height="180" fill="#efe5d1" stroke="#4a3728" stroke-width="4"/>
+    <text x="253" y="50" font-weight="700">Room</text>
+    <circle cx="282" cy="110" r="15" fill="#a3161f"/>
+    <text x="282" y="115" font-weight="700" fill="#ffffff">M</text>
+    <rect x="200" y="170" width="38" height="38" fill="none" stroke="#a3161f" stroke-width="2.5" stroke-dasharray="5,4"/>
+    <text x="219" y="194" font-weight="700" fill="#a3161f">?</text>
+    <text x="282" y="194" font-size="13" fill="#7f0f17">hidden trap</text>
+    <!-- secret door -->
+    <rect x="323" y="128" width="12" height="44" fill="#4a3728" stroke="#8a5a00" stroke-width="2" stroke-dasharray="4,3"/>
+    <!-- room 2 -->
+    <rect x="335" y="90" width="130" height="120" fill="#efe5d1" stroke="#4a3728" stroke-width="4"/>
+    <text x="400" y="80" font-weight="700">Room</text>
+    <rect x="384" y="134" width="34" height="22" rx="3" fill="#8a5a00" stroke="#4a3728" stroke-width="2"/>
+    <text x="401" y="178">Chest</text>
+    <text x="405" y="234">Secret door</text>
+    <line x1="372" y1="224" x2="331" y2="174" stroke="#5c4f43" stroke-width="1.5"/>
+    <!-- caption -->
+    <text x="240" y="268" font-size="13" fill="#3d332b">H = hero, M = monster. Rooms, monsters and furniture</text>
+    <text x="240" y="286" font-size="13" fill="#3d332b">go on the board only when a hero can see them.</text>
+  </g>
+</svg>
+<ul>
+    <li><strong>Doors</strong> all start closed. Once opened, they stay open for the rest of the quest.</li>
+    <li><strong>Line of sight:</strong> you can see a square if a straight line from the centre of your square to the centre of that square doesn't cross a wall, a closed door, a hero or a monster. Brushing a corner is fine.</li>
+    <li><strong>Traps</strong> come in four kinds: pit, falling block, spear, and chest or furniture traps. Walking onto an unfound trap springs it. A falling block seals that square for good.</li>
+    <li><strong>Secret doors</strong> appear only when a hero searches for them in the right room or corridor.</li>
+</ul>
+</section>
+
+<section>
+<h2>Try a Fight: Combat Simulator</h2>
+<p>Step through a fight between the Barbarian and a Goblin, rolling each set of dice in turn. The dice here use the real face mix: three skulls, two white shields and one black shield.</p>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> the Goblin here uses the classic monster chart (Attack 2, Defend 1, Body 1, Mind 1, Movement 10). Your 2021 monster chart on Zargon's screen is the final word on current numbers.</p>
+</div>
+<div class="combat-arena" id="combat_arena">
+    <div class="combat-fighters">
+        <div class="fighter-card hero-fighter" id="hero_card">
+            <div class="fighter-icon" aria-hidden="true">⚔️</div>
+            <div class="fighter-name">Barbarian</div>
+            <div class="fighter-stats">Attack 3 • Defend 2 (white shields)</div>
+            <div class="fighter-stats">Body: <span id="hero_hp">8</span> / 8</div>
+            <div class="hp-bar"><div class="hp-fill" id="hero_hp_bar"></div></div>
         </div>
-
-        <h2>🎲 The Foundation: Understanding the Game Flow</h2>
-        
-        <div class="mermaid">
-            graph TD
-                A[Game Setup] --> B[Hero Turn: Move & Act]
-                B --> C[Combat Resolution]
-                C --> D[Search for Treasure]
-                D --> E[Evil Wizard Turn]
-                E --> F[Monster Actions]
-                F --> G{Quest Complete?}
-                G -->|No| B
-                G -->|Yes| H[Victory/Defeat]
-                
-                style A fill:#ffd700,stroke:#333,stroke-width:2px
-                style H fill:#ff6b35,stroke:#333,stroke-width:2px
-                style G fill:#90EE90,stroke:#333,stroke-width:2px
-        </div>
-
-        <h2>🦸 Meet Your Heroes</h2>
-        
-        <p>Each hero is like a specialist in a video game - they have different strengths and weaknesses:</p>
-        
-        <div class="hero-card">
-            <h3>🛡️ The Barbarian</h3>
-            <p><strong>The Tank:</strong> Like a linebacker in football - high strength, lots of health, but not very smart. Perfect for charging into battle!</p>
-            <p><strong>Stats:</strong> Move 2d6, Attack 3, Defend 2, Body 8, Mind 2</p>
-        </div>
-
-        <div class="hero-card">
-            <h3>🏹 The Elf</h3>
-            <p><strong>The Sniper:</strong> Like a skilled archer - balanced fighter who can also cast spells. The Swiss Army knife of heroes!</p>
-            <p><strong>Stats:</strong> Move 2d6, Attack 2, Defend 2, Body 4, Mind 4</p>
-        </div>
-
-        <div class="hero-card">
-            <h3>🔮 The Wizard</h3>
-            <p><strong>The Artillery:</strong> Like a field medic with a rocket launcher - weak physically but devastating spells!</p>
-            <p><strong>Stats:</strong> Move 2d6, Attack 1, Defend 2, Body 4, Mind 6</p>
-        </div>
-
-        <div class="hero-card">
-            <h3>🗡️ The Dwarf</h3>
-            <p><strong>The Specialist:</strong> Like a demolitions expert - great at disarming traps and solid in combat!</p>
-            <p><strong>Stats:</strong> Move 2d6, Attack 2, Defend 3, Body 6, Mind 3</p>
-        </div>
-
-        <h3>📊 Hero Comparison at a Glance</h3>
-        <svg id="hq_basics_hero_compare" viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;margin:1.5rem auto;display:block;">
-          <style>
-            .hcLabel{font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155)}
-            .hcVal{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
-            .hcCat{font:12px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:end}
-          </style>
-          <!-- headers -->
-          <text x="160" y="24" class="hcLabel" text-anchor="middle">🛡️ Barbarian</text>
-          <text x="310" y="24" class="hcLabel" text-anchor="middle">🏹 Elf</text>
-          <text x="460" y="24" class="hcLabel" text-anchor="middle">🔮 Wizard</text>
-          <text x="610" y="24" class="hcLabel" text-anchor="middle">🗡️ Dwarf</text>
-          <!-- row labels -->
-          <text x="90" y="62" class="hcCat">Attack</text>
-          <text x="90" y="122" class="hcCat">Defend</text>
-          <text x="90" y="182" class="hcCat">Body</text>
-          <text x="90" y="242" class="hcCat">Mind</text>
-          <!-- Attack row (max=3) -->
-          <rect x="110" y="44" width="100" height="26" rx="4" fill="#ef4444"/><text x="160" y="62" class="hcVal">3</text>
-          <rect x="260" y="44" width="67"  height="26" rx="4" fill="#ef4444"/><text x="293" y="62" class="hcVal">2</text>
-          <rect x="410" y="44" width="33"  height="26" rx="4" fill="#ef4444"/><text x="427" y="62" class="hcVal">1</text>
-          <rect x="560" y="44" width="67"  height="26" rx="4" fill="#ef4444"/><text x="593" y="62" class="hcVal">2</text>
-          <!-- Defend row (max=3) -->
-          <rect x="110" y="104" width="67"  height="26" rx="4" fill="#3b82f6"/><text x="143" y="122" class="hcVal">2</text>
-          <rect x="260" y="104" width="67"  height="26" rx="4" fill="#3b82f6"/><text x="293" y="122" class="hcVal">2</text>
-          <rect x="410" y="104" width="67"  height="26" rx="4" fill="#3b82f6"/><text x="443" y="122" class="hcVal">2</text>
-          <rect x="560" y="104" width="100" height="26" rx="4" fill="#3b82f6"/><text x="610" y="122" class="hcVal">3</text>
-          <!-- Body row (max=8) -->
-          <rect x="110" y="164" width="100" height="26" rx="4" fill="#22c55e"/><text x="160" y="182" class="hcVal">8</text>
-          <rect x="260" y="164" width="50"  height="26" rx="4" fill="#22c55e"/><text x="285" y="182" class="hcVal">4</text>
-          <rect x="410" y="164" width="50"  height="26" rx="4" fill="#22c55e"/><text x="435" y="182" class="hcVal">4</text>
-          <rect x="560" y="164" width="75"  height="26" rx="4" fill="#22c55e"/><text x="597" y="182" class="hcVal">6</text>
-          <!-- Mind row (max=6) -->
-          <rect x="110" y="224" width="33"  height="26" rx="4" fill="#a855f7"/><text x="127" y="242" class="hcVal">2</text>
-          <rect x="260" y="224" width="67"  height="26" rx="4" fill="#a855f7"/><text x="293" y="242" class="hcVal">4</text>
-          <rect x="410" y="224" width="100" height="26" rx="4" fill="#a855f7"/><text x="460" y="242" class="hcVal">6</text>
-          <rect x="560" y="224" width="50"  height="26" rx="4" fill="#a855f7"/><text x="585" y="242" class="hcVal">3</text>
-          <!-- legend -->
-          <rect x="110" y="278" width="14" height="14" rx="3" fill="#ef4444"/><text x="130" y="290" class="hcCat" text-anchor="start">Attack</text>
-          <rect x="210" y="278" width="14" height="14" rx="3" fill="#3b82f6"/><text x="230" y="290" class="hcCat" text-anchor="start">Defend</text>
-          <rect x="310" y="278" width="14" height="14" rx="3" fill="#22c55e"/><text x="330" y="290" class="hcCat" text-anchor="start">Body</text>
-          <rect x="400" y="278" width="14" height="14" rx="3" fill="#a855f7"/><text x="420" y="290" class="hcCat" text-anchor="start">Mind</text>
-        </svg>
-
-        <h2>🎯 The Dice System: Your Digital Destiny</h2>
-        
-        <div class="dice-container">
-            <div class="canvas-container">
-                <h3>Dice Animation</h3>
-                <canvas id="dice_animation_canvas" width="400" height="200"></canvas>
-            </div>
-        </div>
-
-        <h3>🎲 The Three Dice Faces</h3>
-        <svg id="hq_basics_dice_faces" viewBox="0 0 660 180" xmlns="http://www.w3.org/2000/svg" style="max-width:660px;margin:1.5rem auto;display:block;">
-          <style>
-            .dfLabel{font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle}
-            .dfDesc{font:11px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
-            .dfIcon{font:36px Arial;text-anchor:middle;dominant-baseline:central}
-          </style>
-          <!-- Skull -->
-          <rect x="30" y="10" width="160" height="160" rx="16" fill="var(--card-bg,#fff)" stroke="var(--border,#e2e8f0)" stroke-width="2"/>
-          <rect x="60" y="30" width="100" height="100" rx="12" fill="#1e293b" stroke="#ffd700" stroke-width="2"/>
-          <text x="110" y="82" class="dfIcon">💀</text>
-          <text x="110" y="148" class="dfLabel">Skull</text>
-          <text x="110" y="166" class="dfDesc">= 1 Hit (Attack)</text>
-          <!-- Shield -->
-          <rect x="250" y="10" width="160" height="160" rx="16" fill="var(--card-bg,#fff)" stroke="var(--border,#e2e8f0)" stroke-width="2"/>
-          <rect x="280" y="30" width="100" height="100" rx="12" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
-          <text x="330" y="82" class="dfIcon">🛡️</text>
-          <text x="330" y="148" class="dfLabel">Shield</text>
-          <text x="330" y="166" class="dfDesc">= 1 Block (Defense)</text>
-          <!-- Blank -->
-          <rect x="470" y="10" width="160" height="160" rx="16" fill="var(--card-bg,#fff)" stroke="var(--border,#e2e8f0)" stroke-width="2"/>
-          <rect x="500" y="30" width="100" height="100" rx="12" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
-          <text x="550" y="82" style="font:28px Arial;fill:#64748b;text-anchor:middle;dominant-baseline:central">—</text>
-          <text x="550" y="148" class="dfLabel">Blank</text>
-          <text x="550" y="166" class="dfDesc">= Miss / No Effect</text>
-        </svg>
-
-        <div class="analogy-box">
-            <p><strong>Combat is like a poker game with dice instead of cards!</strong> You roll dice to attack, your opponent rolls to defend. The difference between your skulls (hits) and their shields (blocks) determines damage.</p>
-            
-            <p><strong>Real-world example:</strong> You're the Barbarian attacking an Orc. You roll 3 dice (your Attack value) and get 2 skulls. The Orc rolls 1 die (its Defense) and gets 1 shield. You deal 1 damage (2 skulls - 1 shield = 1 damage)!</p>
-        </div>
-
-        <h2>🗺️ Reading the Game Board</h2>
-        
-        <div class="mermaid">
-            graph LR
-                A[Stone Passage] --> B[Wooden Door]
-                B --> C[Room with Monsters]
-                C --> D[Secret Door]
-                D --> E[Treasure Room]
-                
-                F[Trap] --> G[Stairs]
-                G --> H[Furniture to Search]
-                
-                style C fill:#ff6b35,stroke:#333,stroke-width:2px
-                style E fill:#ffd700,stroke:#333,stroke-width:2px
-                style F fill:#ff0000,stroke:#333,stroke-width:2px
-        </div>
-
-        <h3>🏰 Dungeon Layout: What You'll See</h3>
-        <svg id="hq_basics_dungeon_layout" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
-          <style>
-            .dlWall{fill:#4a3728;stroke:#2c1810;stroke-width:2}
-            .dlFloor{fill:#d4c4a8}
-            .dlDoor{fill:#8b6914;stroke:#5c4a0e;stroke-width:2}
-            .dlTrap{fill:#ff4444;opacity:0.3}
-            .dlLabel{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle}
-            .dlIcon{font:20px Arial;text-anchor:middle;dominant-baseline:central}
-            .dlLeg{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b)}
-          </style>
-          <!-- bg -->
-          <rect width="600" height="400" fill="var(--card-bg,#fff)" rx="8"/>
-          <!-- corridor -->
-          <rect x="30" y="160" width="180" height="80" class="dlFloor"/>
-          <rect x="30" y="150" width="180" height="12" class="dlWall"/>
-          <rect x="30" y="238" width="180" height="12" class="dlWall"/>
-          <!-- door -->
-          <rect x="200" y="172" width="16" height="56" class="dlDoor" rx="2"/>
-          <!-- room 1 -->
-          <rect x="216" y="100" width="180" height="200" class="dlFloor"/>
-          <rect x="216" y="88" width="180" height="14" class="dlWall"/>
-          <rect x="216" y="298" width="180" height="14" class="dlWall"/>
-          <rect x="216" y="100" width="14" height="200" class="dlWall"/>
-          <rect x="382" y="100" width="14" height="72" class="dlWall"/>
-          <rect x="382" y="228" width="14" height="72" class="dlWall"/>
-          <!-- trap in room 1 -->
-          <rect x="260" y="220" width="40" height="40" class="dlTrap" rx="4"/>
-          <line x1="260" y1="220" x2="300" y2="260" stroke="#ff4444" stroke-width="1" opacity="0.5"/>
-          <line x1="300" y1="220" x2="260" y2="260" stroke="#ff4444" stroke-width="1" opacity="0.5"/>
-          <!-- monster in room 1 -->
-          <text x="320" y="170" class="dlIcon">👹</text>
-          <!-- furniture in room 1 -->
-          <rect x="240" y="130" width="30" height="20" rx="3" fill="#8B6914" stroke="#5c4a0e" stroke-width="1"/>
-          <text x="255" y="144" style="font:8px Arial;fill:#fff;text-anchor:middle">📦</text>
-          <!-- secret door -->
-          <rect x="388" y="180" width="16" height="40" fill="#4a3728" stroke="#ffd700" stroke-width="1" stroke-dasharray="4,3" rx="2"/>
-          <!-- room 2 (treasure room) -->
-          <rect x="404" y="130" width="160" height="140" class="dlFloor"/>
-          <rect x="404" y="118" width="160" height="14" class="dlWall"/>
-          <rect x="404" y="268" width="160" height="14" class="dlWall"/>
-          <rect x="550" y="130" width="14" height="140" class="dlWall"/>
-          <!-- treasure -->
-          <text x="484" y="200" style="font:28px Arial;text-anchor:middle">💰</text>
-          <!-- hero -->
-          <text x="100" y="205" class="dlIcon">⚔️</text>
-          <!-- labels -->
-          <text x="100" y="145" class="dlLabel">Corridor</text>
-          <text x="208" y="210" class="dlLabel" style="font-size:9px" transform="rotate(-90,208,210)">Door</text>
-          <text x="306" y="96" class="dlLabel">Room</text>
-          <text x="484" y="116" class="dlLabel">Treasure Room</text>
-          <text x="280" y="278" class="dlLabel" style="fill:#ff4444">Trap!</text>
-          <text x="396" y="218" class="dlLabel" style="font-size:9px;fill:#ffd700" transform="rotate(-90,396,218)">Secret</text>
-          <!-- legend -->
-          <rect x="30" y="330" width="540" height="50" rx="6" fill="var(--card-bg,#fff)" stroke="var(--border,#e2e8f0)" stroke-width="1"/>
-          <rect x="45" y="347" width="16" height="16" fill="#d4c4a8" stroke="#999" stroke-width="1"/><text x="68" y="359" class="dlLeg">Floor</text>
-          <rect x="115" y="347" width="16" height="16" class="dlWall"/><text x="138" y="359" class="dlLeg">Wall</text>
-          <rect x="180" y="347" width="16" height="16" class="dlDoor" rx="2"/><text x="203" y="359" class="dlLeg">Door</text>
-          <rect x="248" y="347" width="16" height="16" class="dlTrap"/><text x="271" y="359" class="dlLeg">Trap</text>
-          <rect x="310" y="347" width="16" height="16" fill="#4a3728" stroke="#ffd700" stroke-width="1" stroke-dasharray="3,2"/><text x="333" y="359" class="dlLeg">Secret Door</text>
-          <text x="420" y="359" class="dlIcon" style="font-size:14px">👹</text><text x="440" y="359" class="dlLeg">Monster</text>
-          <text x="500" y="359" class="dlIcon" style="font-size:14px">⚔️</text><text x="520" y="359" class="dlLeg">Hero</text>
-        </svg>
-
-        <p>The board is like a blueprint of a medieval castle. Each square represents about 5 feet of space - imagine each hero as being roughly the size of a chess piece in a real castle!</p>
-
-        <h2>🎬 Turn Structure: The Action Movie Formula</h2>
-        
-        <p>Each turn follows the same pattern as an action movie scene:</p>
-
-        <svg id="hq_basics_turn_flow" viewBox="0 0 700 200" xmlns="http://www.w3.org/2000/svg" style="max-width:700px;margin:1.5rem auto;display:block;">
-          <style>
-            .tfBox{rx:10;stroke-width:2}
-            .tfHero{fill:#2563eb;stroke:#1d4ed8}
-            .tfEvil{fill:#dc2626;stroke:#991b1b}
-            .tfText{font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
-            .tfIcon{font:22px Arial;text-anchor:middle}
-            .tfArrow{fill:var(--text-muted,#64748b)}
-            .tfPhase{font:bold 14px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle}
-          </style>
-          <!-- Hero Phase label -->
-          <text x="245" y="20" class="tfPhase">⚔️ Hero Phase</text>
-          <!-- Move -->
-          <rect x="20" y="34" width="100" height="70" class="tfBox tfHero"/>
-          <text x="70" y="62" class="tfIcon">🦶</text>
-          <text x="70" y="90" class="tfText">Move</text>
-          <!-- arrow -->
-          <polygon points="128,69 140,69 140,64 150,72 140,80 140,75 128,75" class="tfArrow"/>
-          <!-- Attack -->
-          <rect x="155" y="34" width="100" height="70" class="tfBox tfHero"/>
-          <text x="205" y="62" class="tfIcon">⚔️</text>
-          <text x="205" y="90" class="tfText">Attack</text>
-          <!-- arrow -->
-          <polygon points="263,69 275,69 275,64 285,72 275,80 275,75 263,75" class="tfArrow"/>
-          <!-- Search -->
-          <rect x="290" y="34" width="100" height="70" class="tfBox tfHero"/>
-          <text x="340" y="62" class="tfIcon">🔍</text>
-          <text x="340" y="90" class="tfText">Search</text>
-          <!-- arrow -->
-          <polygon points="398,69 410,69 410,64 420,72 410,80 410,75 398,75" class="tfArrow"/>
-          <!-- Cast Spell -->
-          <rect x="425" y="34" width="100" height="70" class="tfBox tfHero"/>
-          <text x="475" y="62" class="tfIcon">✨</text>
-          <text x="475" y="90" class="tfText">Cast Spell</text>
-          <!-- divider arrow down -->
-          <polygon points="535,80 545,80 545,108 555,108 540,125 525,108 535,108" class="tfArrow"/>
-          <!-- Evil Wizard Phase label -->
-          <text x="440" y="148" class="tfPhase">🧙‍♂️ Evil Wizard Phase</text>
-          <!-- Move Monsters -->
-          <rect x="290" y="130" width="100" height="60" class="tfBox tfEvil"/>
-          <text x="340" y="154" class="tfIcon">👹</text>
-          <text x="340" y="178" class="tfText">Move</text>
-          <!-- arrow -->
-          <polygon points="278,159 266,159 266,154 256,162 266,170 266,165 278,165" class="tfArrow"/>
-          <!-- Monster Attack -->
-          <rect x="155" y="130" width="100" height="60" class="tfBox tfEvil"/>
-          <text x="205" y="154" class="tfIcon">💥</text>
-          <text x="205" y="178" class="tfText">Attack</text>
-          <!-- arrow -->
-          <polygon points="143,159 131,159 131,154 121,162 131,170 131,165 143,165" class="tfArrow"/>
-          <!-- Spawn -->
-          <rect x="20" y="130" width="100" height="60" class="tfBox tfEvil"/>
-          <text x="70" y="154" class="tfIcon">🌀</text>
-          <text x="70" y="178" class="tfText">Reveal</text>
-          <!-- loop arrow back to top -->
-          <path d="M 20,160 L 8,160 Q 2,160 2,150 L 2,72 Q 2,62 12,62 L 18,62" fill="none" stroke="var(--text-muted,#64748b)" stroke-width="2" stroke-dasharray="5,3"/>
-          <polygon points="16,56 22,62 16,68" class="tfArrow"/>
-        </svg>
-        
-        <div class="practice-box">
-            <h3>🎬 Hero Turn (The Action Scene)</h3>
-            <ol>
-                <li><strong>Move:</strong> Like choosing your position in a fight scene</li>
-                <li><strong>Attack:</strong> The dramatic sword clash or spell casting</li>
-                <li><strong>Search:</strong> The treasure hunt moment</li>
-                <li><strong>Cast Spell:</strong> The magical plot twist</li>
-            </ol>
-            
-            <h3>🎭 Evil Wizard Turn (The Plot Twist)</h3>
-            <ol>
-                <li><strong>Move Monsters:</strong> Like moving chess pieces</li>
-                <li><strong>Attack with Monsters:</strong> The villain's counterattack</li>
-                <li><strong>Reveal New Threats:</strong> The surprise monster spawn</li>
-            </ol>
-        </div>
-
-        <h2>🏴‍☠️ Common Beginner Mistakes (Learn from Others' Pain!)</h2>
-        
-        <div class="analogy-box">
-            <h3>🚫 The "Rambo" Mistake</h3>
-            <p><strong>Don't charge alone!</strong> It's like trying to storm a castle by yourself. HeroQuest rewards teamwork - stick together and support each other!</p>
-            
-            <h3>🚫 The "Scrooge" Mistake</h3>
-            <p><strong>Don't hoard spells!</strong> Your wizard's spells are like ammunition - they're useless if you never use them. Better to use a healing potion early than die with a full inventory!</p>
-            
-            <h3>🚫 The "Speed Demon" Mistake</h3>
-            <p><strong>Don't rush through rooms!</strong> It's like being a tourist who only takes photos and never actually looks around. Search everything - that's where the good treasure is!</p>
-        </div>
-
-        <h2>🎮 Interactive Combat Simulator</h2>
-        
-        <div class="combat-arena" id="combat_arena">
-            <div class="combat-fighters">
-                <div class="fighter-card hero-fighter" id="hero_card">
-                    <div class="fighter-icon">⚔️</div>
-                    <div class="fighter-name">Barbarian</div>
-                    <div class="fighter-stats">ATK: 3 • DEF: 2</div>
-                    <div class="fighter-stats">Body: <span id="hero_hp">8</span> / 8</div>
-                    <div class="hp-bar"><div class="hp-fill" id="hero_hp_bar" style="width:100%"></div></div>
-                </div>
-                <div class="combat-vs">VS</div>
-                <div class="fighter-card monster-fighter" id="monster_card">
-                    <div class="fighter-icon">👹</div>
-                    <div class="fighter-name">Goblin</div>
-                    <div class="fighter-stats">ATK: 1 • DEF: 1</div>
-                    <div class="fighter-stats">Body: <span id="monster_hp">1</span> / 1</div>
-                    <div class="hp-bar"><div class="hp-fill" id="monster_hp_bar" style="width:100%"></div></div>
-                </div>
-            </div>
-
-            <div class="step-indicator" id="step_indicator">Step 1: Roll your Attack dice!</div>
-
-            <div class="dice-label" id="dice_label">Your Attack Dice (3 dice)</div>
-            <div class="dice-tray" id="dice_tray"></div>
-
-            <div class="damage-flash" id="damage_flash"></div>
-
-            <div class="combat-log" id="combat_log">
-                🗡️ You're a <strong>Barbarian</strong> facing a <strong>Goblin</strong> in a narrow corridor!<br>
-                Click the button below to roll your attack dice. Each 💀 Skull = 1 hit!
-            </div>
-
-            <button class="combat-btn attack" id="combat_btn" onclick="combatStep()">🎲 Roll Attack! (3 dice)</button>
-        </div>
-        
-        <div class="practice-box">
-            <h3>🎯 Practice Activity: Your First Combat</h3>
-            <p><strong>Scenario:</strong> You're a Barbarian facing a Goblin in a narrow corridor.</p>
-            <p><strong>Your stats:</strong> Attack 3, Defend 2, Body 8</p>
-            <p><strong>Goblin stats:</strong> Attack 1, Defend 1, Body 1</p>
-            
-            <p><strong>Step-by-step:</strong></p>
-            <ol>
-                <li>Roll 3 dice for your attack</li>
-                <li>Count the skulls (hits)</li>
-                <li>Goblin rolls 1 die for defense</li>
-                <li>Count the shields (blocks)</li>
-                <li>Subtract shields from skulls = damage dealt</li>
-                <li>If damage ≥ Goblin's Body Points, it's defeated!</li>
-            </ol>
-        </div>
-
-        <h2>🌟 Why HeroQuest is Special</h2>
-        
-        <p>HeroQuest is like the perfect gateway drug to tabletop gaming. It has:</p>
-        
-        <div class="analogy-box">
-            <p><strong>🎲 Simple Rules:</strong> Like learning to ride a bike - once you get it, you never forget</p>
-            <p><strong>🎭 Great Storytelling:</strong> Like being in your own Lord of the Rings movie</p>
-            <p><strong>🤝 Social Gaming:</strong> Like having a weekly poker night, but with dragons</p>
-            <p><strong>🎨 Tangible Fun:</strong> Like LEGO for adults - you can see and touch your adventure</p>
-        </div>
-
-        <h2>🎯 Next Steps: Preparing for Your First Quest</h2>
-        
-        <div class="practice-box">
-            <h3>📋 Pre-Game Checklist</h3>
-            <p>Before you start your first adventure, make sure you have:</p>
-            <ul>
-                <li>✅ Chosen your hero (pick based on your play style!)</li>
-                <li>✅ Understood your character's stats</li>
-                <li>✅ Practiced rolling dice and counting symbols</li>
-                <li>✅ Read through the basic rules once</li>
-                <li>✅ Set up the game board according to the quest</li>
-            </ul>
-        </div>
-
-        <h2>🔮 What's Coming Next</h2>
-        
-        <p>In our next lecture, we'll dive deep into <strong>"The Art of Dungeon Mastering"</strong> - how to be an amazing Evil Wizard who creates memorable adventures. We'll cover storytelling techniques, how to balance challenge and fun, and the psychology of keeping your players engaged!</p>
-        
-        <div class="analogy-box">
-            <p><strong>Remember:</strong> HeroQuest isn't just a game - it's a storytelling engine that creates memories. Every quest is a chance to write your own epic fantasy tale with friends. The dice provide the randomness, but you and your friends provide the heroism!</p>
+        <div class="combat-vs" aria-hidden="true">VS</div>
+        <div class="fighter-card monster-fighter" id="monster_card">
+            <div class="fighter-icon" aria-hidden="true">👺</div>
+            <div class="fighter-name">Goblin</div>
+            <div class="fighter-stats">Attack 2 • Defend 1 (black shields)</div>
+            <div class="fighter-stats">Body: <span id="monster_hp">1</span> / 1</div>
+            <div class="hp-bar"><div class="hp-fill" id="monster_hp_bar"></div></div>
         </div>
     </div>
+    <div class="step-indicator" id="step_indicator">Your turn: roll your Attack dice.</div>
+    <div class="dice-label" id="dice_label">Your Attack dice (3)</div>
+    <div class="dice-tray" id="dice_tray"></div>
+    <div class="damage-flash" id="damage_flash" aria-live="polite"></div>
+    <div class="combat-log" id="combat_log" aria-live="polite">The Barbarian faces a Goblin in a narrow corridor. Each skull you roll is a hit; the Goblin blocks only with black shields.</div>
+    <button type="button" class="combat-btn attack" id="combat_btn">Roll Attack (3 dice)</button>
+</div>
+<p>The exact odds behind this fight: the Barbarian kills the Goblin with a single attack <strong>81.3%</strong> of the time, while the Goblin's 2 dice get a hit past the Barbarian's 2 white-shield dice <strong>44.4%</strong> of the time.</p>
+</section>
+
+<section>
+<h2>Zargon and the Companion App</h2>
+<p>The printed rules always need a Zargon player: with fewer than five people, one of you still runs the dungeon. Zargon isn't trying to "win" so much as to run the quest fairly and make it tense. See <a href="/heroquest_dungeon_mastering.html">Playing Zargon</a>.</p>
+<p>Hasbro's free <strong>HeroQuest Companion App</strong> (iOS and Android, launched November 2021) adds narration (Mentor introduces each quest, Zargon reacts), sound, and Body and Mind tracking. Its <strong>Digital Zargon</strong> mode takes over Zargon's job, so up to four players can all play heroes, or one player can run all four heroes alone. You still move the miniatures, roll the dice and handle the cards. See <a href="/heroquest_solo.html">Playing Without Zargon</a>.</p>
+</section>
+
+<section>
+<h2>Common Beginner Mistakes</h2>
+<ul>
+    <li><strong>Splitting the move.</strong> Move then act, or act then move. Walking up, attacking and stepping back isn't allowed.</li>
+    <li><strong>Searching with a monster in view.</strong> All three searches need the coast to be clear, and treasure searches need an empty room.</li>
+    <li><strong>Hoarding spells.</strong> Spells come back after every completed quest, so a spell saved "for later" that never gets cast is wasted.</li>
+    <li><strong>Leaving the Wizard in front.</strong> With 4 Body Points and 2 Defend dice, the Wizard can't trade blows. Let the Barbarian and Dwarf take the doorways.</li>
+    <li><strong>Forgetting the walk home.</strong> The quest isn't complete until the heroes get back to the stairway.</li>
+</ul>
+</section>
+
+<section>
+<h2>Where Next</h2>
+<ul>
+    <li><a href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>: exact odds, monster matchups and positioning.</li>
+    <li><a href="/heroquest_magic_spells.html">Magic &amp; Spells</a>: the four schools and the spell draft.</li>
+    <li><a href="/heroquest_original_quests.html">The Core Quest Book</a>: the 14 quests in order.</li>
+    <li><a href="/heroquest_dice_roller.html">Dice Roller</a>: roll combat and movement dice with exact odds.</li>
+</ul>
+</section>
+    </main>
 
     <script>
-        // Dice Animation
-        const diceCanvas = document.getElementById('dice_animation_canvas');
-        const diceCtx = diceCanvas.getContext('2d');
-        
-        let diceRotation = 0;
-        
-        function drawDice() {
-            diceCtx.clearRect(0, 0, diceCanvas.width, diceCanvas.height);
-            
-            // Draw animated dice
-            diceCtx.save();
-            diceCtx.translate(200, 100);
-            diceCtx.rotate(diceRotation);
-            
-            // Draw dice body
-            diceCtx.fillStyle = '#fff';
-            diceCtx.fillRect(-25, -25, 50, 50);
-            diceCtx.strokeStyle = '#000';
-            diceCtx.lineWidth = 2;
-            diceCtx.strokeRect(-25, -25, 50, 50);
-            
-            // Draw skull symbol
-            diceCtx.fillStyle = '#000';
-            diceCtx.font = '20px Arial';
-            diceCtx.textAlign = 'center';
-            diceCtx.fillText('💀', 0, 8);
-            
-            diceCtx.restore();
-            
-            // Draw text
-            diceCtx.fillStyle = '#ffd700';
-            diceCtx.font = '16px Arial';
-            diceCtx.textAlign = 'center';
-            diceCtx.fillText('HeroQuest Combat Dice', 200, 160);
-            diceCtx.fillText('Skulls = Hits, Shields = Blocks', 200, 180);
-            
-            diceRotation += 0.02;
-            requestAnimationFrame(drawDice);
+    (function () {
+        var FACES = ['skull', 'skull', 'skull', 'white', 'white', 'black'];
+        var SHIELD = '<svg viewBox="0 0 30 34" aria-hidden="true"><path d="M15,2 L27,7 L26,19 Q24,28 15,32 Q6,28 4,19 L3,7 Z" fill="FILL" stroke="#241c16" stroke-width="2.5"/></svg>';
+        var NAMES = { skull: 'skull', white: 'white shield', black: 'black shield' };
+        var HERO = { name: 'Barbarian', atk: 3, def: 2, max: 8 };
+        var MON = { name: 'Goblin', atk: 2, def: 1, max: 1 };
+        var state;
+
+        var btn = document.getElementById('combat_btn');
+        var log = document.getElementById('combat_log');
+        var tray = document.getElementById('dice_tray');
+        var label = document.getElementById('dice_label');
+        var step = document.getElementById('step_indicator');
+        var flash = document.getElementById('damage_flash');
+        if (!btn) return;
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var DELAY = reduce ? 0 : 600;
+
+        function roll(n) {
+            var out = [];
+            for (var i = 0; i < n; i++) out.push(FACES[Math.floor(Math.random() * 6)]);
+            return out;
         }
-        
-        drawDice();
-        
-        // Combat Simulator — Interactive step-by-step
-        const DICE_FACES = [
-            { symbol: '💀', type: 'skull',  label: 'Skull' },   // ~33% hit
-            { symbol: '💀', type: 'skull',  label: 'Skull' },
-            { symbol: '🛡️', type: 'shield', label: 'Shield' },  // ~33% block
-            { symbol: '🛡️', type: 'shield', label: 'Shield' },
-            { symbol: '—',  type: 'blank',  label: 'Blank' },   // ~33% miss
-            { symbol: '—',  type: 'blank',  label: 'Blank' }
-        ];
-
-        let combat = {
-            phase: 'hero_attack',     // hero_attack → hero_attack_result → monster_defend → resolve_hero
-                                      // → monster_attack → monster_attack_result → hero_defend → resolve_monster → check_end
-            heroHP: 8, heroMaxHP: 8,
-            monsterHP: 1, monsterMaxHP: 1,
-            heroAttack: 3, heroDefend: 2,
-            monsterAttack: 1, monsterDefend: 1,
-            round: 1,
-            attackRolls: [],
-            defendRolls: []
-        };
-
-        function rollDie() {
-            return DICE_FACES[Math.floor(Math.random() * 6)];
+        function count(rolls, face) { return rolls.filter(function (f) { return f === face; }).length; }
+        function dieEl(face) {
+            var d = document.createElement('span');
+            d.className = 'die ' + face;
+            d.setAttribute('role', 'img');
+            d.setAttribute('aria-label', NAMES[face]);
+            if (face === 'skull') d.textContent = '💀';
+            else d.innerHTML = SHIELD.replace('FILL', face === 'white' ? '#ffffff' : '#1a1410');
+            return d;
         }
-
-        function rollDice(count) {
-            const results = [];
-            for (let i = 0; i < count; i++) results.push(rollDie());
-            return results;
-        }
-
-        function countType(rolls, type) {
-            return rolls.filter(r => r.type === type).length;
-        }
-
-        function renderDice(rolls, tray) {
+        function show(groups) {
             tray.innerHTML = '';
-            rolls.forEach(r => {
-                const d = document.createElement('div');
-                d.className = 'die ' + r.type;
-                d.textContent = r.symbol;
-                tray.appendChild(d);
+            groups.forEach(function (g, i) {
+                if (i > 0) {
+                    var s = document.createElement('span');
+                    s.className = 'tray-sep';
+                    s.textContent = 'vs';
+                    tray.appendChild(s);
+                }
+                g.forEach(function (f) { tray.appendChild(dieEl(f)); });
             });
         }
-
-        function showRolling(count, tray) {
+        function rolling(n) {
             tray.innerHTML = '';
-            for (let i = 0; i < count; i++) {
-                const d = document.createElement('div');
+            for (var i = 0; i < n; i++) {
+                var d = document.createElement('span');
                 d.className = 'die rolling';
                 d.textContent = '🎲';
                 tray.appendChild(d);
             }
         }
-
+        function bar(id, cur, max) {
+            var pct = Math.max(0, cur) / max * 100;
+            var el = document.getElementById(id);
+            el.style.width = pct + '%';
+            el.className = 'hp-fill' + (pct <= 25 ? ' critical' : pct <= 50 ? ' low' : '');
+        }
         function updateHP() {
-            const heroEl = document.getElementById('hero_hp');
-            const heroBar = document.getElementById('hero_hp_bar');
-            const monsterEl = document.getElementById('monster_hp');
-            const monsterBar = document.getElementById('monster_hp_bar');
-            const heroCard = document.getElementById('hero_card');
-            const monsterCard = document.getElementById('monster_card');
+            document.getElementById('hero_hp').textContent = Math.max(0, state.hero);
+            document.getElementById('monster_hp').textContent = Math.max(0, state.mon);
+            bar('hero_hp_bar', state.hero, HERO.max);
+            bar('monster_hp_bar', state.mon, MON.max);
+            document.getElementById('hero_card').classList.toggle('defeated', state.hero <= 0);
+            document.getElementById('monster_card').classList.toggle('defeated', state.mon <= 0);
+        }
+        function setFlash(cls, text) {
+            flash.innerHTML = '';
+            if (!text) return;
+            var s = document.createElement('span');
+            s.className = cls;
+            s.textContent = text;
+            flash.appendChild(s);
+        }
+        function setButton(text, cls) {
+            btn.textContent = text;
+            btn.className = 'combat-btn ' + cls;
+            btn.disabled = false;
+        }
+        function plural(n, word) { return n + ' ' + word + (n === 1 ? '' : 's'); }
 
-            heroEl.textContent = Math.max(0, combat.heroHP);
-            const heroPct = (Math.max(0, combat.heroHP) / combat.heroMaxHP) * 100;
-            heroBar.style.width = heroPct + '%';
-            heroBar.className = 'hp-fill' + (heroPct <= 25 ? ' critical' : heroPct <= 50 ? ' low' : '');
-            heroCard.classList.toggle('defeated', combat.heroHP <= 0);
-
-            monsterEl.textContent = Math.max(0, combat.monsterHP);
-            const monPct = (Math.max(0, combat.monsterHP) / combat.monsterMaxHP) * 100;
-            monsterBar.style.width = monPct + '%';
-            monsterBar.className = 'hp-fill' + (monPct <= 25 ? ' critical' : monPct <= 50 ? ' low' : '');
-            monsterCard.classList.toggle('defeated', combat.monsterHP <= 0);
+        function reset() {
+            state = { phase: 'hero_attack', hero: HERO.max, mon: MON.max, round: 1, atk: [] };
+            updateHP();
+            tray.innerHTML = '';
+            setFlash('', '');
+            label.textContent = 'Your Attack dice (' + HERO.atk + ')';
+            step.textContent = 'Your turn: roll your Attack dice.';
+            log.textContent = 'The Barbarian faces a Goblin in a narrow corridor. Each skull you roll is a hit; the Goblin blocks only with black shields.';
+            setButton('Roll Attack (' + HERO.atk + ' dice)', 'attack');
         }
 
-        function combatStep() {
-            const btn = document.getElementById('combat_btn');
-            const log = document.getElementById('combat_log');
-            const tray = document.getElementById('dice_tray');
-            const label = document.getElementById('dice_label');
-            const step = document.getElementById('step_indicator');
-            const flash = document.getElementById('damage_flash');
-
-            btn.disabled = true;
-
-            switch (combat.phase) {
-
-                // ── HERO ATTACKS ──
-                case 'hero_attack': {
-                    flash.textContent = '';
-                    label.textContent = 'Your Attack Dice (' + combat.heroAttack + ' dice)';
-                    showRolling(combat.heroAttack, tray);
-                    step.textContent = 'Step 1: Rolling your Attack dice...';
-
-                    setTimeout(() => {
-                        combat.attackRolls = rollDice(combat.heroAttack);
-                        renderDice(combat.attackRolls, tray);
-                        const skulls = countType(combat.attackRolls, 'skull');
-
-                        if (skulls === 0) {
-                            // Complete miss — no defense roll needed
-                            flash.innerHTML = `<span style="color:#64748b">💨 MISS!</span>`;
-                            log.innerHTML = `🎲 <strong>You rolled ${combat.heroAttack} attack dice!</strong><br>
-                                Result: ${combat.attackRolls.map(r => r.symbol).join(' ')} — <strong>0 skulls!</strong> Complete miss.<br>
-                                No damage dealt. The Goblin doesn't even need to defend!<br>
-                                Now the Goblin counter-attacks...`;
-                            step.textContent = 'Step 2: Goblin attacks back!';
-                            btn.textContent = '👹 Goblin Attacks! (1 die)';
-                            btn.className = 'combat-btn attack';
-                            combat.phase = 'monster_attack';
-                        } else {
-                            log.innerHTML = `🎲 <strong>You rolled ${combat.heroAttack} attack dice!</strong><br>
-                                Result: ${combat.attackRolls.map(r => r.symbol).join(' ')} — <strong>${skulls} skull${skulls !== 1 ? 's' : ''}</strong> (hit${skulls !== 1 ? 's' : ''})<br>
-                                Now the Goblin rolls defense...`;
-                            step.textContent = 'Step 2: Goblin rolls Defense!';
-                            btn.textContent = '🛡️ Roll Goblin Defense! (' + combat.monsterDefend + ' die)';
-                            btn.className = 'combat-btn defend';
-                            combat.phase = 'monster_defend';
-                        }
-                        btn.disabled = false;
-                    }, 800);
-                    break;
+        // attacker: 'hero' or 'mon'
+        function attack(who) {
+            var a = who === 'hero' ? HERO : MON;
+            var d = who === 'hero' ? MON : HERO;
+            setFlash('', '');
+            label.textContent = (who === 'hero' ? 'Your' : 'The Goblin’s') + ' Attack dice (' + a.atk + ')';
+            rolling(a.atk);
+            setTimeout(function () {
+                state.atk = roll(a.atk);
+                show([state.atk]);
+                var skulls = count(state.atk, 'skull');
+                if (skulls === 0) {
+                    setFlash('miss', 'Miss!');
+                    log.textContent = a.name + ' rolled no skulls, so there is nothing to block.';
+                    afterExchange(who);
+                } else {
+                    log.textContent = a.name + ' rolled ' + plural(skulls, 'skull') + '. Now the ' + d.name + ' rolls ' + d.def + ' Defend ' + (d.def === 1 ? 'die' : 'dice') + ', blocking on ' + (who === 'hero' ? 'black' : 'white') + ' shields.';
+                    step.textContent = (who === 'hero' ? 'The Goblin defends.' : 'You defend.');
+                    state.phase = who === 'hero' ? 'mon_defend' : 'hero_defend';
+                    setButton('Roll Defend (' + d.def + (d.def === 1 ? ' die)' : ' dice)'), 'defend');
                 }
+            }, DELAY);
+        }
 
-                case 'monster_defend': {
-                    label.textContent = 'Goblin Defense Dice (' + combat.monsterDefend + ' die)';
-                    showRolling(combat.monsterDefend, tray);
-                    step.textContent = 'Step 2: Rolling Goblin defense...';
-
-                    setTimeout(() => {
-                        combat.defendRolls = rollDice(combat.monsterDefend);
-                        renderDice([...combat.attackRolls, { symbol: 'vs', type: 'blank' }, ...combat.defendRolls].filter(r => r.symbol !== 'vs'), tray);
-                        // Show attack dice + defense dice side by side
-                        tray.innerHTML = '';
-                        combat.attackRolls.forEach(r => {
-                            const d = document.createElement('div');
-                            d.className = 'die ' + r.type;
-                            d.textContent = r.symbol;
-                            tray.appendChild(d);
-                        });
-                        const sep = document.createElement('div');
-                        sep.style.cssText = 'font-size:24px;font-weight:900;color:#ff6b35;padding:0 4px';
-                        sep.textContent = 'vs';
-                        tray.appendChild(sep);
-                        combat.defendRolls.forEach(r => {
-                            const d = document.createElement('div');
-                            d.className = 'die ' + r.type;
-                            d.textContent = r.symbol;
-                            tray.appendChild(d);
-                        });
-
-                        const skulls = countType(combat.attackRolls, 'skull');
-                        const shields = countType(combat.defendRolls, 'shield');
-                        const damage = Math.max(0, skulls - shields);
-
-                        combat.monsterHP = Math.max(0, combat.monsterHP - damage);
-                        updateHP();
-
-                        let dmgText = '';
-                        if (damage > 0) {
-                            flash.innerHTML = `<span style="color:#ef4444">💥 ${damage} DAMAGE!</span>`;
-                            dmgText = `<span style="color:#ef4444">${skulls} skull${skulls!==1?'s':''} − ${shields} shield${shields!==1?'s':''} = <strong>${damage} damage!</strong></span>`;
-                        } else {
-                            flash.innerHTML = `<span style="color:#3b82f6">🛡️ BLOCKED!</span>`;
-                            dmgText = `${skulls} skull${skulls!==1?'s':''} − ${shields} shield${shields!==1?'s':''} = <strong>0 damage — blocked!</strong>`;
-                        }
-
-                        if (combat.monsterHP <= 0) {
-                            log.innerHTML = `⚔️ <strong>Attack result:</strong> ${dmgText}<br>
-                                🌟 <strong>VICTORY!</strong> The Goblin is defeated! You struck it down in round ${combat.round}!<br>
-                                Great job — that's how HeroQuest combat works!`;
-                            step.textContent = '🏆 Victory! Goblin defeated!';
-                            btn.textContent = '🔄 New Battle';
-                            btn.className = 'combat-btn reset';
-                            combat.phase = 'reset';
-                        } else {
-                            log.innerHTML = `⚔️ <strong>Attack result:</strong> ${dmgText}<br>
-                                Goblin survives with ${combat.monsterHP} Body Point${combat.monsterHP!==1?'s':''}!<br>
-                                Now the Goblin counter-attacks you...`;
-                            step.textContent = 'Step 3: Goblin attacks back!';
-                            btn.textContent = '👹 Goblin Attacks! (1 die)';
-                            btn.className = 'combat-btn attack';
-                            combat.phase = 'monster_attack';
-                        }
-                        btn.disabled = false;
-                    }, 800);
-                    break;
+        function defend(who) { // who is defending
+            var d = who === 'hero' ? HERO : MON;
+            var blockFace = who === 'hero' ? 'white' : 'black';
+            label.textContent = 'Attack dice vs ' + (who === 'hero' ? 'your' : 'the Goblin’s') + ' Defend dice';
+            rolling(d.def);
+            setTimeout(function () {
+                var defRoll = roll(d.def);
+                show([state.atk, defRoll]);
+                var skulls = count(state.atk, 'skull');
+                var blocks = count(defRoll, blockFace);
+                var dmg = Math.max(0, skulls - blocks);
+                if (who === 'hero') state.hero -= dmg; else state.mon -= dmg;
+                updateHP();
+                var line = plural(skulls, 'skull') + ' minus ' + plural(blocks, blockFace + ' shield') + ' = ' + dmg + ' Body Point' + (dmg === 1 ? '' : 's') + ' lost.';
+                if (blocks === 0 && count(defRoll, who === 'hero' ? 'black' : 'white') > 0) {
+                    line += ' (' + (who === 'hero' ? 'Black' : 'White') + ' shields don’t count for the ' + d.name + '.)';
                 }
+                log.textContent = line;
+                setFlash(dmg > 0 ? 'hit' : 'block', dmg > 0 ? dmg + ' damage!' : 'Blocked!');
+                afterExchange(who === 'hero' ? 'mon' : 'hero');
+            }, DELAY);
+        }
 
-                // ── GOBLIN COUNTER-ATTACK ──
-                case 'monster_attack': {
-                    flash.textContent = '';
-                    label.textContent = 'Goblin Attack Dice (' + combat.monsterAttack + ' die)';
-                    showRolling(combat.monsterAttack, tray);
-                    step.textContent = 'Step 3: Goblin rolls attack...';
-
-                    setTimeout(() => {
-                        combat.attackRolls = rollDice(combat.monsterAttack);
-                        renderDice(combat.attackRolls, tray);
-                        const skulls = countType(combat.attackRolls, 'skull');
-
-                        if (skulls === 0) {
-                            // Goblin missed — no defense roll needed
-                            combat.round++;
-                            flash.innerHTML = `<span style="color:#22c55e">💨 Goblin missed!</span>`;
-                            log.innerHTML = `👹 <strong>Goblin attacks!</strong> Rolled ${combat.monsterAttack} die.<br>
-                                Result: ${combat.attackRolls.map(r => r.symbol).join(' ')} — <strong>0 skulls!</strong> Complete miss.<br>
-                                The Goblin whiffs! You don't even need to defend.<br>
-                                Round ${combat.round} — your turn to attack again!`;
-                            step.textContent = 'Round ' + combat.round + ': Your turn to attack!';
-                            btn.textContent = '🎲 Roll Attack! (' + combat.heroAttack + ' dice)';
-                            btn.className = 'combat-btn attack';
-                            combat.phase = 'hero_attack';
-                        } else {
-                            log.innerHTML = `👹 <strong>Goblin attacks!</strong> Rolled ${combat.monsterAttack} die.<br>
-                                Result: ${combat.attackRolls.map(r => r.symbol).join(' ')} — <strong>${skulls} skull${skulls !== 1 ? 's' : ''}</strong><br>
-                                Now you roll defense!`;
-                            step.textContent = 'Step 4: Roll your Defense!';
-                            btn.textContent = '🛡️ Roll Your Defense! (' + combat.heroDefend + ' dice)';
-                            btn.className = 'combat-btn defend';
-                            combat.phase = 'hero_defend';
-                        }
-                        btn.disabled = false;
-                    }, 800);
-                    break;
-                }
-
-                case 'hero_defend': {
-                    label.textContent = 'Your Defense Dice (' + combat.heroDefend + ' dice)';
-                    showRolling(combat.heroDefend, tray);
-                    step.textContent = 'Step 4: Rolling your defense...';
-
-                    setTimeout(() => {
-                        combat.defendRolls = rollDice(combat.heroDefend);
-                        // Show attack + defense
-                        tray.innerHTML = '';
-                        combat.attackRolls.forEach(r => {
-                            const d = document.createElement('div');
-                            d.className = 'die ' + r.type;
-                            d.textContent = r.symbol;
-                            tray.appendChild(d);
-                        });
-                        const sep = document.createElement('div');
-                        sep.style.cssText = 'font-size:24px;font-weight:900;color:#ff6b35;padding:0 4px';
-                        sep.textContent = 'vs';
-                        tray.appendChild(sep);
-                        combat.defendRolls.forEach(r => {
-                            const d = document.createElement('div');
-                            d.className = 'die ' + r.type;
-                            d.textContent = r.symbol;
-                            tray.appendChild(d);
-                        });
-
-                        const skulls = countType(combat.attackRolls, 'skull');
-                        const shields = countType(combat.defendRolls, 'shield');
-                        const damage = Math.max(0, skulls - shields);
-
-                        combat.heroHP = Math.max(0, combat.heroHP - damage);
-                        updateHP();
-
-                        let dmgText = '';
-                        if (damage > 0) {
-                            flash.innerHTML = `<span style="color:#ef4444">💥 You take ${damage} DAMAGE!</span>`;
-                            dmgText = `<span style="color:#ef4444">${skulls} skull${skulls!==1?'s':''} − ${shields} shield${shields!==1?'s':''} = <strong>${damage} damage to you!</strong></span>`;
-                        } else {
-                            flash.innerHTML = `<span style="color:#22c55e">🛡️ You blocked it!</span>`;
-                            dmgText = `${skulls} skull${skulls!==1?'s':''} − ${shields} shield${shields!==1?'s':''} = <strong>0 damage — blocked!</strong>`;
-                        }
-
-                        if (combat.heroHP <= 0) {
-                            log.innerHTML = `🛡️ <strong>Defense result:</strong> ${dmgText}<br>
-                                💀 <strong>DEFEATED!</strong> The Goblin got lucky! You fell in round ${combat.round}.<br>
-                                Don't worry — try again!`;
-                            step.textContent = '💀 Defeated! Try again?';
-                            btn.textContent = '🔄 New Battle';
-                            btn.className = 'combat-btn reset';
-                            combat.phase = 'reset';
-                        } else {
-                            combat.round++;
-                            log.innerHTML = `🛡️ <strong>Defense result:</strong> ${dmgText}<br>
-                                You have <strong>${combat.heroHP}</strong> Body Point${combat.heroHP!==1?'s':''} remaining.<br>
-                                Round ${combat.round} — your turn to attack again!`;
-                            step.textContent = 'Round ' + combat.round + ': Your turn to attack!';
-                            btn.textContent = '🎲 Roll Attack! (' + combat.heroAttack + ' dice)';
-                            btn.className = 'combat-btn attack';
-                            combat.phase = 'hero_attack';
-                        }
-                        btn.disabled = false;
-                    }, 800);
-                    break;
-                }
-
-                // ── RESET ──
-                case 'reset': {
-                    combat.heroHP = combat.heroMaxHP;
-                    combat.monsterHP = combat.monsterMaxHP;
-                    combat.round = 1;
-                    combat.phase = 'hero_attack';
-                    combat.attackRolls = [];
-                    combat.defendRolls = [];
-                    updateHP();
-                    tray.innerHTML = '';
-                    flash.textContent = '';
-                    label.textContent = 'Your Attack Dice (' + combat.heroAttack + ' dice)';
-                    step.textContent = 'Step 1: Roll your Attack dice!';
-                    log.innerHTML = `🗡️ You're a <strong>Barbarian</strong> facing a <strong>Goblin</strong> in a narrow corridor!<br>
-                        Click the button below to roll your attack dice. Each 💀 Skull = 1 hit!`;
-                    btn.textContent = '🎲 Roll Attack! (' + combat.heroAttack + ' dice)';
-                    btn.className = 'combat-btn attack';
-                    btn.disabled = false;
-                    break;
-                }
+        function afterExchange(attacker) {
+            if (state.mon <= 0) {
+                log.textContent += ' The Goblin is slain in round ' + state.round + '.';
+                step.textContent = 'Victory!';
+                state.phase = 'reset';
+                setButton('New fight', 'reset');
+                return;
+            }
+            if (state.hero <= 0) {
+                log.textContent += ' The Barbarian falls. Without a healing potion, that is the end of the quest for him.';
+                step.textContent = 'Defeated.';
+                state.phase = 'reset';
+                setButton('New fight', 'reset');
+                return;
+            }
+            if (attacker === 'hero') {
+                log.textContent += ' The Goblin survives and attacks on Zargon’s turn.';
+                step.textContent = 'Zargon’s turn: the Goblin attacks.';
+                state.phase = 'mon_attack';
+                setButton('Goblin attacks (' + MON.atk + ' dice)', 'attack');
+            } else {
+                state.round++;
+                log.textContent += ' You have ' + plural(state.hero, 'Body Point') + ' left.';
+                step.textContent = 'Round ' + state.round + ': your turn again.';
+                state.phase = 'hero_attack';
+                setButton('Roll Attack (' + HERO.atk + ' dice)', 'attack');
             }
         }
+
+        btn.addEventListener('click', function () {
+            btn.disabled = true;
+            switch (state.phase) {
+                case 'hero_attack': attack('hero'); break;
+                case 'mon_defend': defend('mon'); break;
+                case 'mon_attack': attack('mon'); break;
+                case 'hero_defend': defend('hero'); break;
+                default: reset();
+            }
+        });
+        reset();
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/index.html">Guide Home</a>
+    <a class="next" href="/heroquest_advanced_combat.html">Combat &amp; Tactics</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

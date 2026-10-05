@@ -3,371 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Complete Learning Series</title>
+    <title>The HeroQuest Guide</title>
+    <meta name="description" content="An unofficial guide to the HeroQuest board game (2021 Avalon Hill edition): rules and combat odds, all twelve heroes, every quest pack, and playing with or without Zargon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
-    </script>
-<style>
-/* ── Variables ── */
-:root {
-  --bg: #f0f4f8; --surface: #ffffff; --text: #1e293b; --text-2: #475569;
-  --text-3: #64748b; --accent: #3b82f6; --accent-2: #1d4ed8;
-  --border: #e2e8f0; --card-hover: 0 8px 30px rgba(0,0,0,.08);
-  --green: #10b981; --amber: #f59e0b; --nav-bg: #1e293b; --nav-border: #3b82f6;
-  --hero-grad: linear-gradient(135deg,#eff6ff,#dbeafe);
-  --card-bg: #ffffff;
-}
-[data-theme="dark"] {
-  --bg: #0f172a; --surface: #1e293b; --text: #e2e8f0; --text-2: #cbd5e1;
-  --text-3: #94a3b8; --accent: #60a5fa; --accent-2: #93c5fd;
-  --border: #334155; --card-hover: 0 8px 30px rgba(0,0,0,.3);
-  --green: #34d399; --amber: #fbbf24; --nav-bg: #0f172a; --nav-border: #1d4ed8;
-  --hero-grad: linear-gradient(135deg,#1e293b,#0f172a);
-  --card-bg: #1e293b;
-}
+    <style>
+        .home { width: min(1120px, calc(100% - 32px)); margin: 0 auto; padding-bottom: 24px; }
+        .hero {
+            margin-top: 28px;
+            padding: clamp(36px, 7vw, 72px) clamp(20px, 5vw, 56px);
+            border-radius: 20px;
+            background:
+                radial-gradient(circle at 85% 20%, rgba(240, 195, 94, 0.18), transparent 45%),
+                linear-gradient(135deg, var(--hero-1), var(--hero-2));
+            color: #fff;
+            box-shadow: var(--shadow);
+        }
+        .hero h1 { color: #fff; font-size: clamp(2.1rem, 6vw, 3.4rem); margin: 0 0 14px; }
+        .hero p { color: rgba(255, 255, 255, 0.93); font-size: clamp(1.05rem, 2.2vw, 1.22rem); max-width: 64ch; margin: 0 0 24px; }
+        .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+        .btn-hero { display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 700; text-decoration: none; background: #fff; color: #121411; border: 2px solid #fff; }
+        .btn-hero:hover { background: #e7ebf2; color: #121411; }
+        .btn-hero.ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, 0.7); }
+        .btn-hero.ghost:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+        .turn-card {
+            display: inline-flex; align-items: center; gap: 14px; flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px; padding: 10px 16px; font-weight: 700; color: #fff;
+        }
+        .turn-card .pips { font-size: 1.3rem; letter-spacing: 2px; color: #ffd98a; }
+        .turn-card .lbl { font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255, 255, 255, 0.9); }
 
-/* ── Reset / Base ── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:'Segoe UI',system-ui,-apple-system,sans-serif;
-  line-height:1.6;background:var(--bg);color:var(--text);
-  font-size:16px;min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
-a{color:var(--accent);text-decoration:none;transition:color .2s}
-a:hover{color:var(--accent-2)}
-img{max-width:100%;height:auto}
-/* Visible keyboard focus */
-a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
-/* When a card's link is focused, ring the whole card (it's the click target) */
-.card:focus-within{outline:3px solid var(--accent);outline-offset:2px}
-.card:focus-within .card-title a{color:var(--accent)}
-.card-title a:focus-visible{outline:none}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{
-  animation-duration:.01ms!important;transition-duration:.01ms!important;
-}}
-
-/* ── Layout ── */
-.page{max-width:1100px;margin:0 auto;padding:24px 20px 48px}
-
-/* ── Hero ── */
-.hero{
-  text-align:center;padding:48px 24px;margin-bottom:40px;
-  background:var(--hero-grad);border-radius:16px;
-  border:1px solid var(--border);
-}
-.hero h1{font-size:clamp(1.75rem,4vw,2.75rem);font-weight:800;margin-bottom:12px;color:var(--text)}
-.hero p{font-size:1.1rem;color:var(--text-2);max-width:600px;margin:0 auto 24px}
-.hero em{display:block;color:var(--text-3);font-size:.95rem;font-style:italic}
-
-/* ── Stats ── */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:48px}
-.stat{
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  padding:20px 12px;text-align:center;transition:transform .2s,box-shadow .2s;
-}
-.stat:hover{transform:translateY(-3px);box-shadow:var(--card-hover)}
-.stat-num{font-size:2rem;font-weight:800;color:var(--accent);line-height:1}
-.stat-lbl{font-size:.8rem;color:var(--text-3);text-transform:uppercase;letter-spacing:.5px;margin-top:6px}
-
-/* ── Section ── */
-.section{margin-bottom:48px}
-.section-head{
-  display:flex;align-items:center;gap:12px;margin-bottom:24px;
-  padding-bottom:12px;border-bottom:2px solid var(--border);
-}
-.section-head h2{font-size:1.5rem;font-weight:700;color:var(--text)}
-.section-desc{color:var(--text-2);margin-bottom:20px;font-size:.95rem}
-
-/* ── Card Grid ── */
-.grid{display:grid;gap:20px}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
-
-.card{
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  padding:24px;transition:transform .2s,box-shadow .2s;
-  display:flex;flex-direction:column;position:relative;overflow:hidden;
-}
-.card::after{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--accent);transform:scaleX(0);transform-origin:left;
-  transition:transform .3s;
-}
-.card:hover{transform:translateY(-4px);box-shadow:var(--card-hover)}
-.card:hover::after{transform:scaleX(1)}
-
-.card-title{font-size:1.1rem;font-weight:700;margin-bottom:8px}
-.card-title a{color:var(--text)}
-.card-title a:hover{color:var(--accent)}
-/* Make the whole card clickable via the title link (stretched-link pattern) */
-.card:hover{cursor:pointer}
-.card:hover .card-title a{color:var(--accent)}
-.card-title a::after{content:'';position:absolute;inset:0;z-index:1}
-.card-tags,.card-desc{position:relative;z-index:0}
-.card-desc{color:var(--text-2);font-size:.9rem;line-height:1.5;flex:1}
-.card-tags{margin-top:12px;font-size:.8rem;color:var(--text-3)}
-
-/* Hero cards accent green */
-.card--hero::after{background:var(--green)}
-.card--expansion::after{background:var(--amber)}
-.card--lore::after{background:#8b5cf6}
-
-/* Featured card */
-.card--featured{
-  border:2px solid var(--accent);grid-column:1/-1;
-  max-width:600px;margin:0 auto;width:100%;
-}
-
-/* ── Master Quest Banner ── */
-.banner{
-  background:linear-gradient(135deg,#fef3c7,#fde68a);
-  border:2px solid #f59e0b;border-radius:16px;
-  padding:32px;text-align:center;margin-bottom:48px;
-}
-[data-theme="dark"] .banner{
-  background:linear-gradient(135deg,#78350f,#92400e);
-  border-color:#d97706;
-}
-.banner h3{font-size:1.3rem;font-weight:800;color:#92400e;margin-bottom:8px}
-[data-theme="dark"] .banner h3{color:#fde68a}
-.banner p{color:#b45309;font-size:1rem}
-[data-theme="dark"] .banner p{color:#fcd34d}
-
-/* ── Help Grid ── */
-.help{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:48px}
-.help-item{
-  background:var(--surface);border:1px solid var(--border);border-radius:12px;
-  padding:20px;text-align:center;transition:transform .2s,box-shadow .2s;
-}
-.help-item:hover{transform:translateY(-2px);box-shadow:var(--card-hover)}
-.help-icon{font-size:2rem;margin-bottom:8px}
-.help-title{font-weight:700;color:var(--text);margin-bottom:6px;font-size:.95rem}
-.help-text{color:var(--text-3);font-size:.85rem;line-height:1.4}
-
-/* ── Mermaid ── */
-.mermaid{
-  margin:32px auto;padding:20px;background:var(--surface);
-  border:1px solid var(--border);border-radius:12px;max-width:90%;text-align:center;
-}
-
-/* ── Footer ── */
-.footer{text-align:center;padding:24px 0;border-top:1px solid var(--border);color:var(--text-3);font-size:.85rem;margin-top:24px}
-.footer a{color:var(--accent)}
-
-/* ── Mobile ── */
-@media(max-width:640px){
-  .page{padding:16px 12px 32px}
-  .hero{padding:32px 16px}
-  .stats{grid-template-columns:repeat(2,1fr);gap:10px}
-  .grid-3,.grid-2{grid-template-columns:1fr}
-  .help{grid-template-columns:1fr 1fr}
-  .card--featured{max-width:100%}
-}
-@media(max-width:400px){
-  .help{grid-template-columns:1fr}
-}
-</style>
+        .section-head { margin: 52px 0 16px; }
+        .section-head h2 { margin: 0 0 8px; }
+        .section-head p { color: var(--muted); max-width: 70ch; margin: 0; }
+        .group-label { font-family: "Vollkorn SC", Georgia, serif; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; text-transform: uppercase; margin: 26px 0 10px; font-size: 0.95rem; }
+        .part-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 14px; }
+        .part-card {
+            display: flex; flex-direction: column; gap: 6px;
+            background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+            padding: 18px 20px; box-shadow: var(--shadow); text-decoration: none; color: var(--text);
+            border-left: 4px solid var(--accent); transition: transform 0.15s, border-color 0.15s;
+        }
+        .part-card:hover { transform: translateY(-2px); border-color: var(--accent); color: var(--text); }
+        .part-card .num { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+        .part-card h3 { margin: 0; font-size: 1.12rem; color: var(--heading); }
+        .part-card h3 .icon { margin-right: 6px; }
+        .part-card p { margin: 0; color: var(--muted); font-size: 0.97rem; line-height: 1.55; }
+        .part-card.tool { border-left-color: var(--gold); }
+        .quick { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr)); gap: 12px; }
+        .quick div { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+        .quick h3 { margin: 0 0 4px; font-size: 1.02rem; color: var(--heading); }
+        .quick p { margin: 0; color: var(--text); font-size: 0.95rem; line-height: 1.55; }
+        .home-footer { text-align: center; color: var(--muted); margin-top: 36px; }
+    </style>
 </head>
 <body>
-<div class="page">
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
 
-  <!-- Hero -->
-  <div class="hero">
-    <h1>⚔️ HeroQuest Complete Learning Series 🏰</h1>
-    <p>From novice adventurer to legendary dungeon master — your epic journey begins here!</p>
-    <em>Interactive tutorials, hands-on practice, and deep lore for every skill level.</em>
-  </div>
+<div class="home">
+    <header class="hero">
+        <h1>The HeroQuest Guide</h1>
+        <p>HeroQuest is the classic dungeon-crawl board game: up to four heroes explore a dungeon room by room while Zargon, the evil sorcerer, controls the monsters and springs the traps. This guide covers the 2021 Avalon Hill edition, from your first turn and the odds on the combat dice through every hero and quest pack to running Zargon, or playing without one.</p>
+        <div class="hero-actions">
+            <a class="btn-hero" href="/heroquest_basics.html">Start Reading →</a>
+            <a class="btn-hero ghost" href="/heroquest_dice_roller.html">Roll the Dice</a>
+        </div>
+        <div class="turn-card" aria-label="The combat die: three skulls, two white shields and one black shield. Skulls hit, heroes block on white shields, monsters block on black shields">
+            <span class="lbl">The combat die</span><span class="pips" aria-hidden="true">💀 × 3 · white 🛡 × 2 · black 🛡 × 1</span><span class="lbl">Skulls hit · heroes block on white · monsters on black</span>
+        </div>
+    </header>
 
-  <!-- Stats -->
-  <div class="stats">
-    <div class="stat"><div class="stat-num">16</div><div class="stat-lbl">Tutorials</div></div>
-    <div class="stat"><div class="stat-num">11</div><div class="stat-lbl">Hero Classes</div></div>
-    <div class="stat"><div class="stat-num">9</div><div class="stat-lbl">Expansions</div></div>
-    <div class="stat"><div class="stat-num">18</div><div class="stat-lbl">Lore Articles</div></div>
-  </div>
+    <main id="main">
+        <section>
+            <div class="section-head">
+                <h2>HeroQuest at a Glance</h2>
+                <p>Four ideas carry most of the game. Every part of the guide builds on them.</p>
+            </div>
+            <div class="quick">
+                <div><h3>Move, then act</h3><p>On your turn you roll two red dice to move and take one action: attack, cast a spell, search or disarm a trap. You can act first and move after, but you can't split your move.</p></div>
+                <div><h3>Combat dice</h3><p>Skulls hit. Heroes block on white shields, monsters only on black ones, so most monsters fall to a single unblocked skull.</p></div>
+                <div><h3>Body and Mind</h3><p>Body Points are your health; Mind Points are your wits and your resistance to magic. At zero Body Points a hero dies, unless they can drink a healing potion in time.</p></div>
+                <div><h3>Zargon</h3><p>One player runs the dungeon from the Quest Book: placing monsters, revealing traps and playing them to win. Or the Companion App does it for you.</p></div>
+            </div>
+        </section>
 
-  <!-- Foundation -->
-  <div class="section">
-    <div class="section-head"><h2>📖 Foundation Courses</h2></div>
-    <p class="section-desc">Start here — master the core rules, combat, magic, and dungeon design.</p>
-    <div class="grid grid-3">
-      <div class="card">
-        <div class="card-title"><a href="heroquest_basics.html">🎯 HeroQuest Basics</a></div>
-        <div class="card-desc">Rules, character creation, and fundamental gameplay mechanics. The perfect starting point.</div>
-        <div class="card-tags">✨ Character creator · 🎲 Dice simulator · 📊 Stats tracker</div>
-      </div>
-      <div class="card">
-        <div class="card-title"><a href="heroquest_dungeon_mastering.html">🎭 Dungeon Mastering</a></div>
-        <div class="card-desc">Storytelling, encounter design, and managing players for memorable adventures.</div>
-        <div class="card-tags">🎨 Story generator · 🗺️ Map designer · 🎪 Encounter builder</div>
-      </div>
-      <div class="card">
-        <div class="card-title"><a href="heroquest_advanced_combat.html">⚔️ Advanced Combat</a></div>
-        <div class="card-desc">Tactical positioning, advanced maneuvers, and strategies that separate heroes from legends.</div>
-        <div class="card-tags">🛡️ Combat simulator · 📈 Damage calculator · 🎯 Tactical analyzer</div>
-      </div>
-      <div class="card">
-        <div class="card-title"><a href="heroquest_magic_spells.html">🔮 Magic &amp; Spells</a></div>
-        <div class="card-desc">Spell combinations, magical items, and the full arcane system explained.</div>
-        <div class="card-tags">✨ Spell lab · 🧙 Magic simulator · 📜 Spellbook creator</div>
-      </div>
-      <div class="card">
-        <div class="card-title"><a href="heroquest_treasure_progression.html">💰 Treasure &amp; Progression</a></div>
-        <div class="card-desc">Loot distribution, character advancement, and long-term campaign pacing.</div>
-        <div class="card-tags">💎 Treasure generator · 📊 Progress tracker · ⚖️ Balance analyzer</div>
-      </div>
-      <div class="card">
-        <div class="card-title"><a href="heroquest_original_quests.html">🗡️ Original Quest Mastery</a></div>
-        <div class="card-desc">Deep dive into the classic adventures with strategies, secrets, and optimization.</div>
-        <div class="card-tags">🗺️ Quest navigator · 🔍 Secret finder · 📝 Strategy guide</div>
-      </div>
-    </div>
-  </div>
+        <section>
+            <div class="section-head">
+                <h2>The Guide</h2>
+                <p>The rules first, then the heroes and the quests, then running the game and the world behind it.</p>
+            </div>
 
-  <!-- Hero Classes -->
-  <div class="section">
-    <div class="section-head"><h2>🦸 Hero Class Tutorials</h2></div>
-    <p class="section-desc">Master every hero with dedicated guides covering abilities, strategies, and advanced techniques.</p>
-    <div class="grid grid-2">
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_barbarian_tutorial.html">🪓 Barbarian</a></div><div class="card-desc">Primal fury, berserker rage, damage maximization, and survival tactics.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_dwarf_tutorial.html">⚒️ Dwarf</a></div><div class="card-desc">Dwarven resilience, tactical defense, treasure-finding, and dungeon navigation.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_elf_tutorial.html">🏹 Elf</a></div><div class="card-desc">Ranged combat, magical aptitude, archery techniques, and spell-sword combos.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_wizard_tutorial.html">🧙 Wizard</a></div><div class="card-desc">Arcane mastery, spell combinations, mana management, and battlefield control.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_warlock_tutorial.html">🌙 Warlock</a></div><div class="card-desc">Dark magic, forbidden knowledge, curse mechanics, and shadow manipulation.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_bard_tutorial.html">🎵 Bard</a></div><div class="card-desc">Inspiration, team coordination, morale effects, and versatile support magic.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_knight_tutorial.html">🛡️ Knight</a></div><div class="card-desc">Honor, protection, defensive formations, leadership, and righteous combat.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_berserker_tutorial.html">⚡ Berserker</a></div><div class="card-desc">Unstoppable fury, reckless abandon, rage management, and intimidation.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_explorer_tutorial.html">🗺️ Explorer</a></div><div class="card-desc">Navigation, trap detection, secret-finding, and wilderness survival.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_monk_tutorial.html">🧘 Monk</a></div><div class="card-desc">Spiritual balance, chi energy, meditation, and unarmed martial arts.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_rogue_tutorial.html">🗡️ Rogue</a></div><div class="card-desc">Stealth, lockpicking, backstab techniques, and shadowy infiltration.</div></div>
-      <div class="card card--hero"><div class="card-title"><a href="heroquest_druid_tutorial.html">🌿 Druid</a></div><div class="card-desc">Nature magic, shapeshifting, elemental control, and healing arts.</div></div>
-    </div>
-  </div>
+            <p class="group-label">Getting Started</p>
+            <div class="part-grid">
+                <a class="part-card" href="/heroquest_basics.html"><h3><span class="icon" aria-hidden="true">🏰</span>Getting Started</h3><p>What HeroQuest is, what is in the box, and how a turn works: move, act, search and fight.</p></a>
+            </div>
 
-  <!-- Digital Toolkit -->
-  <div class="section">
-    <div class="section-head"><h2>🎲 Digital Tools</h2></div>
-    <div class="grid grid-3">
-      <div class="card card--featured">
-        <div class="card-title"><a href="heroquest_digital_toolkit.html">🛠️ HeroQuest Digital Toolkit</a></div>
-        <div class="card-desc">Your all-in-one digital companion — dice rolling, character sheets, combat calculator, quest management, treasure generation, and more.</div>
-        <div class="card-tags">🎲 Dice · 👤 Characters · ❤️ Health · 📜 Quests · 💰 Treasure · ⚔️ Combat · 📊 Stats</div>
-      </div>
-    </div>
-  </div>
+            <p class="group-label">The Rules</p>
+            <div class="part-grid">
+                <a class="part-card" href="/heroquest_advanced_combat.html"><h3><span class="icon" aria-hidden="true">⚔️</span>Combat &amp;amp; Tactics</h3><p>Skulls, white shields and black shields, with the exact odds and how to fight smart in corridors.</p></a>
+                <a class="part-card" href="/heroquest_magic_spells.html"><h3><span class="icon" aria-hidden="true">🔮</span>Magic &amp;amp; Spells</h3><p>The four elemental schools, how the Wizard and the Elf divide them, and Zargon's Dread spells.</p></a>
+                <a class="part-card" href="/heroquest_treasure_progression.html"><h3><span class="icon" aria-hidden="true">💰</span>Treasure &amp;amp; Equipment</h3><p>Treasure cards, gold and the Armory: what to buy between quests and why.</p></a>
+            </div>
 
-  <!-- Advanced -->
-  <div class="section">
-    <div class="section-head"><h2>🦸 Advanced &amp; Custom</h2></div>
-    <div class="grid grid-3">
-      <div class="card"><div class="card-title"><a href="heroquest_custom_heroes_monsters.html">🦸 Custom Heroes &amp; Monsters</a></div><div class="card-desc">Design your own heroes and monsters with balanced stats and abilities.</div></div>
-      <div class="card"><div class="card-title"><a href="heroquest_legendary_heroes.html">🏆 Legendary Heroes</a></div><div class="card-desc">Iconic characters, legendary equipment, and campaign-defining hero builds.</div></div>
-      <div class="card"><div class="card-title"><a href="heroquest_online_play.html">🌐 Online Play</a></div><div class="card-desc">Platforms, tools, and tips for playing HeroQuest remotely with friends.</div></div>
-    </div>
-  </div>
+            <p class="group-label">The Heroes</p>
+            <div class="part-grid">
+                <a class="part-card" href="/heroquest_legendary_heroes.html"><h3><span class="icon" aria-hidden="true">🛡️</span>The Heroes</h3><p>All twelve official heroes at a glance, and which box or pack each one comes from.</p></a>
+                <a class="part-card" href="/heroquest_barbarian_tutorial.html"><h3><span class="icon" aria-hidden="true">🪓</span>The Barbarian</h3><p>Three attack dice and eight Body Points: the party's front line.</p></a>
+                <a class="part-card" href="/heroquest_dwarf_tutorial.html"><h3><span class="icon" aria-hidden="true">⚒️</span>The Dwarf</h3><p>Tough, steady and the only hero who can disarm traps without a tool kit.</p></a>
+                <a class="part-card" href="/heroquest_elf_tutorial.html"><h3><span class="icon" aria-hidden="true">🏹</span>The Elf</h3><p>A fighter who casts spells from one elemental school.</p></a>
+                <a class="part-card" href="/heroquest_wizard_tutorial.html"><h3><span class="icon" aria-hidden="true">🧙</span>The Wizard</h3><p>Fragile in a fight, with nine spells that can turn a quest.</p></a>
+                <a class="part-card" href="/heroquest_knight_tutorial.html"><h3><span class="icon" aria-hidden="true">🛡️</span>The Knight</h3><p>The armoured hero from the Guardian Knights pack and Rise of the Dread Moon.</p></a>
+                <a class="part-card" href="/heroquest_rogue_tutorial.html"><h3><span class="icon" aria-hidden="true">🗡️</span>The Rogue</h3><p>The elf rogue from The Rogue Heir of Elethorn.</p></a>
+                <a class="part-card" href="/heroquest_monk_tutorial.html"><h3><span class="icon" aria-hidden="true">🥋</span>The Monk</h3><p>The unarmed fighter from The Path of the Wandering Monk.</p></a>
+                <a class="part-card" href="/heroquest_warlock_tutorial.html"><h3><span class="icon" aria-hidden="true">🌙</span>The Warlock</h3><p>The hero of The Prophecy of Telor, with the power of Demonform.</p></a>
+                <a class="part-card" href="/heroquest_bard_tutorial.html"><h3><span class="icon" aria-hidden="true">🎵</span>The Bard</h3><p>The orc bard from Spirit Queen's Torment, with a rapier and songs.</p></a>
+                <a class="part-card" href="/heroquest_druid_tutorial.html"><h3><span class="icon" aria-hidden="true">🌿</span>The Druid</h3><p>The druid from Against the Ogre Horde, who fights beside an animal ally.</p></a>
+                <a class="part-card" href="/heroquest_berserker_tutorial.html"><h3><span class="icon" aria-hidden="true">⚡</span>The Berserker</h3><p>A human warrior from Jungles of Delthrak.</p></a>
+                <a class="part-card" href="/heroquest_explorer_tutorial.html"><h3><span class="icon" aria-hidden="true">🗺️</span>The Explorer</h3><p>The dwarf explorer from Jungles of Delthrak.</p></a>
+            </div>
 
-  <!-- Mermaid -->
-  <div class="mermaid">
-    graph TD
-      A[HeroQuest Mastery] --> B[Foundation Skills]
-      A --> C[Hero Classes]
-      A --> D[Advanced Techniques]
-      A --> E[Expansion Mastery]
-      B --> B1[Basic Rules]
-      B --> B2[Combat Basics]
-      B --> B3[Simple Magic]
-      B --> B4[Dungeon Basics]
-      C --> C1[Warrior Classes]
-      C --> C2[Magic Users]
-      C --> C3[Specialists]
-      C --> C4[Hybrid Classes]
-      D --> D1[Advanced Combat]
-      D --> D2[Complex Magic]
-      D --> D3[Treasure Systems]
-      D --> D4[Quest Design]
-      E --> E1[Classic Expansions]
-      E --> E2[Modern Additions]
-      E --> E3[Specialty Mechanics]
-      E --> E4[Master Campaigns]
-      style A fill:#a663cc,stroke:#333,stroke-width:3px,color:#fff
-      style B fill:#7209b7,stroke:#333,stroke-width:2px,color:#fff
-      style C fill:#10b981,stroke:#333,stroke-width:2px,color:#fff
-      style D fill:#533483,stroke:#333,stroke-width:2px,color:#fff
-      style E fill:#9c88ff,stroke:#333,stroke-width:2px,color:#fff
-  </div>
+            <p class="group-label">The Quests</p>
+            <div class="part-grid">
+                <a class="part-card" href="/heroquest_original_quests.html"><h3><span class="icon" aria-hidden="true">📜</span>The Core Quest Book</h3><p>The fourteen quests in the box, from The Trial to Return to Barak Tor.</p></a>
+                <a class="part-card" href="/heroquest_kellars_keep.html"><h3><span class="icon" aria-hidden="true">🏰</span>Kellar's Keep</h3><p>The first quest pack: ten more quests that carry on from the core Quest Book.</p></a>
+                <a class="part-card" href="/heroquest_lore_kellars_keep.html"><h3><span class="icon" aria-hidden="true">📖</span>Kellar's Keep: Lore</h3><p>The story behind the pack.</p></a>
+                <a class="part-card" href="/heroquest_return_witch_lord.html"><h3><span class="icon" aria-hidden="true">👑</span>Return of the Witch Lord</h3><p>The undead rise again in ten quests against the Witch Lord.</p></a>
+                <a class="part-card" href="/heroquest_lore_return_witch_lord.html"><h3><span class="icon" aria-hidden="true">📖</span>Return of the Witch Lord: Lore</h3><p>The story behind the pack.</p></a>
+                <a class="part-card" href="/heroquest_frozen_horror.html"><h3><span class="icon" aria-hidden="true">❄️</span>The Frozen Horror</h3><p>The Barbarian's pack, with hired mercenaries, ice monsters, yetis and the Frozen Horror itself.</p></a>
+                <a class="part-card" href="/heroquest_lore_frozen_horror.html"><h3><span class="icon" aria-hidden="true">📖</span>The Frozen Horror: Lore</h3><p>The story behind the pack.</p></a>
+                <a class="part-card" href="/heroquest_mage_of_mirror.html"><h3><span class="icon" aria-hidden="true">🪞</span>The Mage of the Mirror</h3><p>The Elf against the Evil Archmage, opening the Elethorn saga.</p></a>
+                <a class="part-card" href="/heroquest_lore_mage_of_the_mirror.html"><h3><span class="icon" aria-hidden="true">📖</span>The Mage of the Mirror: Lore</h3><p>The story behind the pack.</p></a>
+                <a class="part-card" href="/heroquest_rise_dread_moon.html"><h3><span class="icon" aria-hidden="true">🌑</span>Rise of the Dread Moon</h3><p>Alchemy, mercenaries, the Underground Market and the end of the Elethorn saga.</p></a>
+                <a class="part-card" href="/heroquest_lore_rise_dread_moon.html"><h3><span class="icon" aria-hidden="true">📖</span>Rise of the Dread Moon: Lore</h3><p>The story behind the pack.</p></a>
+                <a class="part-card" href="/heroquest_prophecy_telor.html"><h3><span class="icon" aria-hidden="true">✨</span>The Prophecy of Telor</h3><p>Thirteen quests and the Warlock.</p></a>
+                <a class="part-card" href="/heroquest_lore_prophecy_telor.html"><h3><span class="icon" aria-hidden="true">📖</span>The Prophecy of Telor: Lore</h3><p>The story behind the pack.</p></a>
+                <a class="part-card" href="/heroquest_spirit_queens_torment.html"><h3><span class="icon" aria-hidden="true">👻</span>Spirit Queen's Torment</h3><p>Fourteen quests and the Bard.</p></a>
+                <a class="part-card" href="/heroquest_lore_spirit_queens_torment.html"><h3><span class="icon" aria-hidden="true">📖</span>Spirit Queen's Torment: Lore</h3><p>The story behind the pack.</p></a>
+                <a class="part-card" href="/heroquest_against_ogre_horde.html"><h3><span class="icon" aria-hidden="true">👹</span>Against the Ogre Horde</h3><p>Ogres, the Druid and the World's End Tournament arena quests.</p></a>
+                <a class="part-card" href="/heroquest_lore_against_ogre_horde.html"><h3><span class="icon" aria-hidden="true">📖</span>Against the Ogre Horde: Lore</h3><p>The story behind the pack.</p></a>
+                <a class="part-card" href="/heroquest_jungles_delthrak.html"><h3><span class="icon" aria-hidden="true">🐆</span>Jungles of Delthrak</h3><p>Sixteen branching quests with the Berserker and the Explorer.</p></a>
+                <a class="part-card" href="/heroquest_lore_jungles_delthrak.html"><h3><span class="icon" aria-hidden="true">📖</span>Jungles of Delthrak: Lore</h3><p>The story behind the pack.</p></a>
+            </div>
 
-  <!-- Expansions -->
-  <div class="section">
-    <div class="section-head"><h2>🏰 Expansion Adventures</h2></div>
-    <p class="section-desc">Unique mechanics, new monsters, and unforgettable stories in every expansion.</p>
-    <div class="grid grid-3">
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_kellars_keep.html">🏰 Kellar's Keep</a></div><div class="card-desc">Fortress sieges, new quests, and challenging monsters. Defensive strategies and siege warfare.</div></div>
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_return_witch_lord.html">👑 Return of the Witch Lord</a></div><div class="card-desc">Epic Witch Lord storyline. Advanced quest design and narrative techniques.</div></div>
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_prophecy_telor.html">🔮 Prophecy of Telor</a></div><div class="card-desc">Ancient secrets, the Amulet of Wisdom, puzzle-solving, and mystical challenges.</div></div>
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_spirit_queens_torment.html">⚔️ Spirit Queen's Torment</a></div><div class="card-desc">Fortune's Longsword, supernatural challenges, ghost combat, and ethereal mechanics.</div></div>
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_against_ogre_horde.html">🛡️ Against the Ogre Horde</a></div><div class="card-desc">Mass combat, arena-style gameplay, tactical warfare, and resource management.</div></div>
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_frozen_horror.html">❄️ The Frozen Horror</a></div><div class="card-desc">Arctic survival, ice-themed monsters, environmental hazards, and extreme weather.</div></div>
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_mage_of_mirror.html">🪞 Mage of the Mirror</a></div><div class="card-desc">Reality manipulation, mirror world mechanics, dimensional combat, and advanced magic.</div></div>
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_rise_dread_moon.html">🌙 Rise of the Dread Moon</a></div><div class="card-desc">Alchemy, reputation mechanics, deep roleplaying, and character development.</div></div>
-      <div class="card card--expansion"><div class="card-title"><a href="heroquest_jungles_delthrak.html">🌿 Jungles of Delthrak</a></div><div class="card-desc">Wilderness survival, environmental combat, nature's challenges, and predator encounters.</div></div>
-    </div>
-  </div>
+            <p class="group-label">Running the Game</p>
+            <div class="part-grid">
+                <a class="part-card" href="/heroquest_dungeon_mastering.html"><h3><span class="icon" aria-hidden="true">🎭</span>Playing Zargon</h3><p>The Zargon player's job: running monsters, reading the quest notes and keeping it fair and tense.</p></a>
+                <a class="part-card" href="/heroquest_custom_heroes_monsters.html"><h3><span class="icon" aria-hidden="true">⚗️</span>Custom Heroes &amp;amp; Monsters</h3><p>Designing your own heroes, monsters and quests without breaking the game.</p></a>
+                <a class="part-card" href="/heroquest_online_play.html"><h3><span class="icon" aria-hidden="true">💻</span>Playing Online</h3><p>The official Companion App and other ways to play away from the table.</p></a>
+                <a class="part-card" href="/heroquest_solo.html"><h3><span class="icon" aria-hidden="true">🕯️</span>Playing Without Zargon</h3><p>The app's Digital Zargon, plus paper rules for solo or fully co-op play.</p></a>
+            </div>
 
-  <!-- Lore -->
-  <div class="section">
-    <div class="section-head"><h2>📜 Lore &amp; World-Building</h2></div>
-    <p class="section-desc">Deep-dive lore articles that bring the HeroQuest universe to life.</p>
-    <div class="grid grid-3">
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_foundations.html">📜 Foundations</a></div><div class="card-desc">The origins and foundational mythology of the HeroQuest world.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_dark_forces.html">🖤 Dark Forces</a></div><div class="card-desc">The villains, chaos warlords, and dark powers threatening the realm.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_kingdoms_regions.html">🗺️ Kingdoms &amp; Regions</a></div><div class="card-desc">Geography, nations, and key locations across the land.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_great_events.html">⚡ Great Events</a></div><div class="card-desc">Pivotal battles, treaties, and turning points in history.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_cosmic_forces.html">✨ Cosmic Forces</a></div><div class="card-desc">The metaphysical powers shaping reality and magic.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_mentors_questgivers.html">🧙 Mentors &amp; Questgivers</a></div><div class="card-desc">The wise guides and patrons who send heroes on their quests.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_ancient_dungeons.html">🏚️ Ancient Dungeons</a></div><div class="card-desc">The most infamous dungeons, their histories, and hidden secrets.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_magic_artifacts.html">💎 Magic Artifacts</a></div><div class="card-desc">Legendary weapons, enchanted relics, and their origins.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_kellars_keep.html">🏰 Kellar's Keep Lore</a></div><div class="card-desc">The history and secrets behind the legendary fortress.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_return_witch_lord.html">👑 Witch Lord Lore</a></div><div class="card-desc">The Witch Lord's rise, fall, and terrifying return.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_prophecy_telor.html">🔮 Prophecy of Telor Lore</a></div><div class="card-desc">The ancient prophecy and the quest for the Amulet of Wisdom.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_spirit_queens_torment.html">⚔️ Spirit Queen Lore</a></div><div class="card-desc">The tragic tale of the Spirit Queen and her cursed domain.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_against_ogre_horde.html">🛡️ Ogre Horde Lore</a></div><div class="card-desc">The gathering storm of the Ogre hordes and their brutal culture.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_frozen_horror.html">❄️ Frozen Horror Lore</a></div><div class="card-desc">The icy wastes and the ancient evil sealed within.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_mage_of_the_mirror.html">🪞 Mage of the Mirror Lore</a></div><div class="card-desc">The mirror dimension and the mage who shattered reality.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_rise_dread_moon.html">🌙 Dread Moon Lore</a></div><div class="card-desc">The celestial horror of the Dread Moon and its influence.</div></div>
-      <div class="card card--lore"><div class="card-title"><a href="heroquest_lore_jungles_delthrak.html">🌿 Jungles of Delthrak Lore</a></div><div class="card-desc">The untamed jungle, lost civilizations, and ancient predators.</div></div>
-    </div>
-  </div>
+            <p class="group-label">World Lore</p>
+            <div class="part-grid">
+                <a class="part-card" href="/heroquest_lore_foundations.html"><h3><span class="icon" aria-hidden="true">🌍</span>The World of HeroQuest</h3><p>Mentor, the Loretome, Zargon and the Realm's long struggle against Dread.</p></a>
+                <a class="part-card" href="/heroquest_lore_kingdoms_regions.html"><h3><span class="icon" aria-hidden="true">🏞️</span>Kingdoms &amp;amp; Regions</h3><p>The lands the heroes travel through.</p></a>
+                <a class="part-card" href="/heroquest_lore_great_events.html"><h3><span class="icon" aria-hidden="true">⏳</span>Great Events</h3><p>The wars and legends behind the quests.</p></a>
+                <a class="part-card" href="/heroquest_lore_dark_forces.html"><h3><span class="icon" aria-hidden="true">💀</span>The Dark Forces</h3><p>Zargon's servants, from Goblins to the Witch Lord.</p></a>
+                <a class="part-card" href="/heroquest_lore_cosmic_forces.html"><h3><span class="icon" aria-hidden="true">⭐</span>Cosmic Forces</h3><p>Magic, the elements and the powers above the world.</p></a>
+                <a class="part-card" href="/heroquest_lore_mentors_questgivers.html"><h3><span class="icon" aria-hidden="true">📯</span>Mentors &amp;amp; Quest-Givers</h3><p>Mentor, Prince Magnus and the people who send the heroes out.</p></a>
+                <a class="part-card" href="/heroquest_lore_ancient_dungeons.html"><h3><span class="icon" aria-hidden="true">🏚️</span>Ancient Dungeons</h3><p>Barrows, keeps and tombs and the stories behind them.</p></a>
+                <a class="part-card" href="/heroquest_lore_magic_artifacts.html"><h3><span class="icon" aria-hidden="true">💎</span>Magic &amp;amp; Artifacts</h3><p>The Spirit Blade and the other famous artifacts the heroes hunt for.</p></a>
+            </div>
 
-  <!-- Navigation Help -->
-  <div class="section">
-    <div class="section-head"><h2>🧭 Where to Start</h2></div>
-    <div class="help">
-      <div class="help-item"><div class="help-icon">🎯</div><div class="help-title">Beginners</div><div class="help-text">Start with Basics, pick a hero class, then explore expansions.</div></div>
-      <div class="help-item"><div class="help-icon">⚔️</div><div class="help-title">Veterans</div><div class="help-text">Jump to Advanced Combat or specific expansion guides.</div></div>
-      <div class="help-item"><div class="help-icon">🎭</div><div class="help-title">Dungeon Masters</div><div class="help-text">Dungeon Mastering → Quest Design → expansion storytelling.</div></div>
-      <div class="help-item"><div class="help-icon">🦸</div><div class="help-title">Hero Specialists</div><div class="help-text">Deep-dive your favorite class with dedicated tutorials.</div></div>
-      <div class="help-item"><div class="help-icon">🔮</div><div class="help-title">Magic Users</div><div class="help-text">Magic & Spells → magical hero classes → Mage of the Mirror.</div></div>
-      <div class="help-item"><div class="help-icon">📜</div><div class="help-title">Lore Enthusiasts</div><div class="help-text">Explore world-building articles for deep narrative context.</div></div>
-    </div>
-  </div>
+        </section>
 
-  <!-- Master Quest -->
-  <div class="banner">
-    <h3>🏆 The Ultimate Challenge</h3>
-    <p>Complete all courses, master every hero class, and explore every expansion to unlock the legendary <strong>"Master of the Eternal Quest"</strong> achievement!</p>
-  </div>
+        <section>
+            <div class="section-head">
+                <h2>Tools</h2>
+                <p>Use these at the table.</p>
+            </div>
+            <div class="part-grid">
+                <a class="part-card tool" href="/heroquest_dice_roller.html"><h3><span class="icon" aria-hidden="true">🎲</span>Dice Roller</h3><p>Roll attack and defend dice, see exactly how often an attack wounds or kills, and roll movement.</p></a>
+                <a class="part-card tool" href="/heroquest_digital_toolkit.html"><h3><span class="icon" aria-hidden="true">🧰</span>Zargon&amp;#39;s Toolkit</h3><p>Trackers for Body and Mind, spells and quests, plus a treasure-card draw.</p></a>
+                <a class="part-card tool" href="/heroquest_character_sheet.html"><h3><span class="icon" aria-hidden="true">📋</span>Character Sheet</h3><p>A printable, saveable hero sheet.</p></a>
+            </div>
+        </section>
+    </main>
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>⚔️ HeroQuest Complete Learning Series · <a href="https://rays-home.netlify.app/" target="_blank" rel="noopener">Ray's House of Fun</a> · <a href="https://rays-home.netlify.app/contact" target="_blank" rel="noopener">Contact</a></p>
-  </div>
-
+    <footer class="home-footer">
+        <p>HeroQuest is a trademark of Hasbro. The current edition is published by Avalon Hill.</p>
+    </footer>
 </div>
-
-<script src="/nav.js"></script>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>

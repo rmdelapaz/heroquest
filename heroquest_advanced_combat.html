@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HeroQuest Advanced Combat Tactics and Strategy</title>
-    <link rel="stylesheet" href="/styles/main.css">
+    <title>Combat &amp; Tactics - The HeroQuest Guide</title>
+    <meta name="description" content="HeroQuest combat in detail: how attacks resolve, exact hit odds against each monster, the value of armor, diagonal safety and doorway tactics.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vollkorn+SC:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="/js/site.js?v=1"></script>
+    <script type="module" src="/js/diagrams.js?v=1"></script>
+    <link rel="stylesheet" href="/styles/main.css?v=1">
     <link rel="icon" href="/favicon.png" type="image/png">
-    <script type="module">
-      import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-      mermaid.initialize({ startOnLoad: true });
-    </script>
-
     <style>
-        /* ===== INTERACTIVE FORMATION TRAINER ===== */
-        .formation-demo {
-            margin: 1rem 0;
-        }
+        main svg#hq_combat_diagonals { max-width: min(340px, 100%) !important; }
+        main svg#hq_combat_dice_odds { max-width: min(560px, 100%) !important; }
+        /* ── Formation trainer ── */
         .battlefield-grid {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             gap: 2px;
             max-width: 440px;
             margin: 1rem auto;
-            background: var(--border, #e2e8f0);
-            border: 2px solid var(--border, #e2e8f0);
+            background: var(--border-strong);
+            border: 2px solid var(--border-strong);
             border-radius: 6px;
             overflow: hidden;
         }
@@ -35,872 +35,366 @@
             font-size: 1.2rem;
             cursor: pointer;
             user-select: none;
-            transition: background 0.15s;
-            background: var(--card-bg, #fff);
+            background: #fbf8f2;
+            color: #241c16;
+            border: 0;
+            padding: 0;
+            font: inherit;
         }
-        .grid-cell:hover {
-            filter: brightness(0.9);
+        .grid-cell:focus-visible { outline: 3px solid var(--accent); outline-offset: -3px; }
+        .grid-cell.wall { background: #3b3226; color: #f5ece0; cursor: default; }
+        .grid-cell.door { background: #8a5a00; color: #ffffff; cursor: default; font-size: 0.75rem; font-weight: 700; }
+        .grid-cell.hero { background: #d6e6f5; }
+        .grid-cell.monster { background: #f6d5d2; }
+        .grid-cell.reach-both { box-shadow: inset 0 0 0 3px #a3161f; }
+        .trainer-controls { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 0.5rem 0; }
+        .trainer-controls button {
+            padding: 8px 14px; border-radius: 8px; border: 1px solid var(--border-strong);
+            background: var(--surface); color: var(--text); font: inherit; cursor: pointer;
         }
-        .grid-cell.wall {
-            background: #3b3226;
-            cursor: default;
-        }
-        [data-theme="dark"] .grid-cell.wall {
-            background: #1a1410;
-        }
-        .grid-cell.door {
-            background: #a0522d;
-            cursor: default;
-        }
-        [data-theme="dark"] .grid-cell.door {
-            background: #6b3a1f;
-        }
-        .grid-cell.hero {
-            background: #d1e7dd;
-        }
-        [data-theme="dark"] .grid-cell.hero {
-            background: #1b4332;
-        }
-        .grid-cell.monster {
-            background: #f8d7da;
-        }
-        [data-theme="dark"] .grid-cell.monster {
-            background: #4a1c1c;
-        }
-        .grid-cell.empty {
-            background: var(--card-bg, #fff);
-        }
+        .trainer-controls button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
         @media (max-width: 480px) {
-            .battlefield-grid {
-                max-width: 100%;
-            }
-            .grid-cell {
-                font-size: 0.9rem;
-            }
+            .grid-cell { font-size: 0.95rem; }
         }
+
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>⚔️ Advanced Combat Tactics & Strategy 🛡️</h1>
-        
-        <div class="combat-principle">
-            <h2>🎯 The Art of War: HeroQuest Edition</h2>
-            <p><strong>Combat in HeroQuest is like chess meets action movies!</strong> Every move matters, positioning is everything, and teamwork transforms ordinary heroes into legendary warriors. Think of it as directing your own Lord of the Rings battle sequence - every character has a role, every position tells a story.</p>
-            
-            <p><strong>Real-world analogy:</strong> It's like being a football coach calling plays. You have different player types (quarterback, running back, linebacker), you need to read the opposing team's formation, and you adapt your strategy based on the field conditions and score.</p>
-        </div>
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav">
+    <a href="https://rays-home.netlify.app/">Ray's House of Fun</a>
+    <a href="/index.html">Home</a>
+    <a href="https://rays-home.netlify.app/contact">Contact</a>
+    <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+</nav>
+    <header>
+        <h1>Combat &amp; Tactics</h1>
+        <p>How a HeroQuest attack resolves, the exact odds against each monster, what armor is worth, and how to use doorways and diagonals.</p>
+    </header>
 
-        <h2>🏛️ The Four Pillars of Combat Mastery</h2>
-        
-        <div class="mermaid">
-            graph TD
-                A[Combat Mastery] --> B[Positioning]
-                A --> C[Timing]
-                A --> D[Resource Management]
-                A --> E[Teamwork]
-                
-                B --> B1[Control Space]
-                B --> B2[Use Terrain]
-                B --> B3[Flanking]
-                
-                C --> C1[Initiative Order]
-                C --> C2[Action Economy]
-                C --> C3[Spell Timing]
-                
-                D --> D1[Health Potions]
-                D --> D2[Spell Management]
-                D --> D3[Equipment Use]
-                
-                E --> E1[Formation Fighting]
-                E --> E2[Target Priority]
-                E --> E3[Mutual Support]
-                
-                style A fill:#ff4500,stroke:#333,stroke-width:3px
-                style B fill:#ffa500,stroke:#333,stroke-width:2px
-                style C fill:#ffa500,stroke:#333,stroke-width:2px
-                style D fill:#ffa500,stroke:#333,stroke-width:2px
-                style E fill:#ffa500,stroke:#333,stroke-width:2px
-        </div>
+    <main id="main">
+<section>
+<h2>How an Attack Resolves</h2>
+<p>Combat in HeroQuest has no initiative rolls and no counterattacks. Whoever's turn it is attacks; the target only defends.</p>
+<ol>
+    <li><strong>Pick a target.</strong> With a normal weapon you attack a monster in a square next to you: ahead, behind, left or right, never diagonally. Weapons that say so (the staff and the longsword) also reach diagonally. Ranged weapons such as the crossbow, and thrown daggers, need line of sight instead; the crossbow can't shoot an adjacent monster.</li>
+    <li><strong>Roll Attack dice.</strong> Each skull is a hit.</li>
+    <li><strong>The target rolls Defend dice.</strong> Heroes block a hit with each <strong>white shield</strong>; monsters block with each <strong>black shield</strong>.</li>
+    <li><strong>Unblocked hits</strong> each cost 1 Body Point. A monster at 0 is removed. A monster that survives doesn't strike back until Zargon's turn.</li>
+</ol>
+<p>Monsters attack the same way on Zargon's turn, and they can never attack (or move) diagonally. That single rule is behind most of the tactics on this page.</p>
+<p>Every turn is <strong>move then act, or act then move</strong>. You can't step in, attack and step back out, and neither can monsters.</p>
+</section>
 
-        <h2>🎪 Hero Roles: Your Combat Orchestra</h2>
-        
-        <div class="combat-principle">
-            <p><strong>Like a symphony orchestra, each hero plays a different instrument, but they must harmonize to create beautiful music (or in this case, epic victories)!</strong></p>
-        </div>
+<section>
+<h2>The Numbers</h2>
+<p>A combat die shows a skull on 3 faces of 6, so each attack die hits half the time. Blocks are where heroes and monsters differ: a hero's die blocks on 2 faces (white shields), a monster's only on 1 (the black shield).</p>
+<svg id="hq_combat_dice_odds" viewBox="0 0 460 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hqOddsTitle">
+  <title id="hqOddsTitle">Chance of rolling at least one skull: 1 die 50.0%, 2 dice 75.0%, 3 dice 87.5%, 4 dice 93.8%, 5 dice 96.9%</title>
+  <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" fill="#241c16">
+    <text x="230" y="22" text-anchor="middle" font-size="15" font-weight="700">Chance of at least one skull</text>
+    <text x="80" y="57" text-anchor="end">1 die</text>
+    <rect x="90" y="40" width="150" height="24" rx="4" fill="#a3161f"/><text x="248" y="57">50.0%</text>
+    <text x="80" y="93" text-anchor="end">2 dice</text>
+    <rect x="90" y="76" width="225" height="24" rx="4" fill="#a3161f"/><text x="323" y="93">75.0%</text>
+    <text x="80" y="129" text-anchor="end">3 dice</text>
+    <rect x="90" y="112" width="262.5" height="24" rx="4" fill="#a3161f"/><text x="360" y="129">87.5%</text>
+    <text x="80" y="165" text-anchor="end">4 dice</text>
+    <rect x="90" y="148" width="281" height="24" rx="4" fill="#a3161f"/><text x="379" y="165">93.8%</text>
+    <text x="80" y="201" text-anchor="end">5 dice</text>
+    <rect x="90" y="184" width="291" height="24" rx="4" fill="#a3161f"/><text x="389" y="201">96.9%</text>
+    <text x="230" y="232" text-anchor="middle" font-size="13" fill="#3d332b">Before the defender rolls. Defend dice then cancel some of these hits.</text>
+  </g>
+</svg>
+<h3>Chance That One Attack Wounds (at least 1 Body Point)</h3>
+<p>Rows are attack dice, columns are the defender's dice.</p>
+<h4>Against a Monster (blocks on black shields)</h4>
+<div class="table-container">
+<table>
+<thead><tr><th>Attack</th><th>1 Defend</th><th>2 Defend</th><th>3 Defend</th><th>4 Defend</th><th>5 Defend</th></tr></thead>
+<tbody>
+<tr><td>1 die</td><td>41.7%</td><td>34.7%</td><td>28.9%</td><td>24.1%</td><td>20.1%</td></tr>
+<tr><td>2 dice</td><td>66.7%</td><td>59.0%</td><td>52.1%</td><td>45.8%</td><td>40.2%</td></tr>
+<tr><td>3 dice</td><td>81.3%</td><td>75.0%</td><td>68.9%</td><td>62.9%</td><td>57.3%</td></tr>
+<tr><td>4 dice</td><td>89.6%</td><td>85.1%</td><td>80.3%</td><td>75.4%</td><td>70.5%</td></tr>
+<tr><td>5 dice</td><td>94.3%</td><td>91.2%</td><td>87.8%</td><td>84.1%</td><td>80.2%</td></tr>
+</tbody>
+</table>
+</div>
+<h4>Against a Hero (blocks on white shields)</h4>
+<div class="table-container">
+<table>
+<thead><tr><th>Attack</th><th>1 Defend</th><th>2 Defend</th><th>3 Defend</th><th>4 Defend</th><th>5 Defend</th></tr></thead>
+<tbody>
+<tr><td>1 die</td><td>33.3%</td><td>22.2%</td><td>14.8%</td><td>9.9%</td><td>6.6%</td></tr>
+<tr><td>2 dice</td><td>58.3%</td><td>44.4%</td><td>33.3%</td><td>24.7%</td><td>18.1%</td></tr>
+<tr><td>3 dice</td><td>75.0%</td><td>62.5%</td><td>50.9%</td><td>40.7%</td><td>32.1%</td></tr>
+<tr><td>4 dice</td><td>85.4%</td><td>75.7%</td><td>65.5%</td><td>55.6%</td><td>46.3%</td></tr>
+<tr><td>5 dice</td><td>91.7%</td><td>84.7%</td><td>76.6%</td><td>67.9%</td><td>59.2%</td></tr>
+</tbody>
+</table>
+</div>
+<p>Read across any row and you'll see the same thing: a monster's defense dice are worth about half a hero's. For any attack and defense not shown here, the <a href="/heroquest_dice_roller.html">Dice Roller</a> prints the full table.</p>
+</section>
 
-        <div class="hero-role">
-            <h3>🛡️ The Barbarian: The Tank</h3>
-            <p><strong>Football Position:</strong> Linebacker</p>
-            <p><strong>Movie Role:</strong> The action hero who charges first</p>
-            <p><strong>Combat Role:</strong> Absorb damage, control frontlines</p>
-            <p><strong>Key Tactics:</strong></p>
-            <ul>
-                <li>Block doorways to protect teammates</li>
-                <li>Engage multiple weak enemies</li>
-                <li>Draw enemy attacks away from fragile allies</li>
-                <li>Use high Body Points to scout dangerous areas</li>
-            </ul>
-        </div>
+<section>
+<h2>Matchups Against Each Monster</h2>
+<div class="callout callout-edge">
+<p><strong>Classic edition (1989–1990):</strong> the monster numbers below are the classic North American chart, which the 2021 game is based on. Fimir and Chaos Warrior are listed by their 2021 names. Use the chart on your own Zargon's screen as the final word, and note that quest notes often change a named monster's stats.</p>
+</div>
+<div class="table-container">
+<table>
+<thead><tr><th>Monster</th><th>Move</th><th>Attack</th><th>Defend</th><th>Body</th><th>Mind</th><th>Barbarian kills it in 1 attack</th><th>…within 3 attacks</th><th>It wounds a 2-dice hero</th></tr></thead>
+<tbody>
+<tr><td>Goblin</td><td>10</td><td>2</td><td>1</td><td>1</td><td>1</td><td>81.3%</td><td>99.3%</td><td>44.4%</td></tr>
+<tr><td>Orc</td><td>8</td><td>3</td><td>2</td><td>1</td><td>2</td><td>75.0%</td><td>98.4%</td><td>62.5%</td></tr>
+<tr><td>Skeleton</td><td>6</td><td>2</td><td>2</td><td>1</td><td>0</td><td>75.0%</td><td>98.4%</td><td>44.4%</td></tr>
+<tr><td>Zombie</td><td>5</td><td>2</td><td>3</td><td>1</td><td>0</td><td>68.9%</td><td>97.0%</td><td>44.4%</td></tr>
+<tr><td>Abomination</td><td>6</td><td>3</td><td>3</td><td>2</td><td>3</td><td>33.3%</td><td>86.6%</td><td>62.5%</td></tr>
+<tr><td>Mummy</td><td>4</td><td>3</td><td>4</td><td>2</td><td>0</td><td>28.9%</td><td>80.9%</td><td>62.5%</td></tr>
+<tr><td>Dread Warrior</td><td>7</td><td>4</td><td>4</td><td>3</td><td>3</td><td>6.0%</td><td>58.6%</td><td>75.7%</td></tr>
+<tr><td>Gargoyle</td><td>6</td><td>4</td><td>5</td><td>3</td><td>4</td><td>5.0%</td><td>50.3%</td><td>75.7%</td></tr>
+</tbody>
+</table>
+</div>
+<p>What the table tells you:</p>
+<ul>
+    <li><strong>One-Body-Point monsters are fragile.</strong> Any unblocked skull kills them. Even the Wizard's single dagger die kills a Goblin 41.7% of the time.</li>
+    <li><strong>Big monsters take teamwork.</strong> The Barbarian alone needs about three attacks to have even odds against a Dread Warrior (58.6%). A Dread Warrior also wounds a 2-dice hero 75.7% of the time, averaging 1.40 Body Points per attack.</li>
+    <li><strong>Kill order is about attacks removed.</strong> Every monster you kill is one fewer attack on Zargon's turn. When the Barbarian has an 81.3% shot at removing a Goblin or a 6.0% shot at finishing a fresh Dread Warrior, killing the Goblin often saves more Body Points, unless the Dread Warrior is already hurt or standing next to the Wizard.</li>
+    <li><strong>Undead are slow.</strong> Zombies (5) and Mummies (4) move far less than an average hero roll of 7, so you can often choose when to fight them.</li>
+</ul>
+</section>
 
-        <div class="hero-role">
-            <h3>🏹 The Elf: The Versatile Fighter</h3>
-            <p><strong>Football Position:</strong> Safety (can do everything)</p>
-            <p><strong>Movie Role:</strong> The skilled warrior-mage</p>
-            <p><strong>Combat Role:</strong> Flexible damage dealer and support</p>
-            <p><strong>Key Tactics:</strong></p>
-            <ul>
-                <li>Support wherever needed most</li>
-                <li>Use spells for crowd control</li>
-                <li>Flank enemies for surprise attacks</li>
-                <li>Bridge the gap between front and back lines</li>
-            </ul>
-        </div>
+<section>
+<h2>What Armor Is Worth</h2>
+<p>Here is an Orc's 3 Attack dice against a hero with more and more Defend dice. Helmets, shields and armor each add dice (see <a href="/heroquest_treasure_progression.html">Treasure &amp; Equipment</a>).</p>
+<div class="table-container">
+<table>
+<thead><tr><th>Hero's Defend dice</th><th>Takes no damage</th><th>Loses 1</th><th>Loses 2</th><th>Loses 3</th><th>Average loss</th></tr></thead>
+<tbody>
+<tr><td>2 (no armor)</td><td>37.5%</td><td>34.7%</td><td>22.2%</td><td>5.6%</td><td>0.96</td></tr>
+<tr><td>3</td><td>49.1%</td><td>30.6%</td><td>16.7%</td><td>3.7%</td><td>0.75</td></tr>
+<tr><td>4</td><td>59.3%</td><td>25.9%</td><td>12.3%</td><td>2.5%</td><td>0.58</td></tr>
+<tr><td>5</td><td>67.9%</td><td>21.4%</td><td>9.1%</td><td>1.6%</td><td>0.44</td></tr>
+<tr><td>6</td><td>75.0%</td><td>17.3%</td><td>6.6%</td><td>1.1%</td><td>0.34</td></tr>
+</tbody>
+</table>
+</div>
+<p>The first extra die is the biggest single gain, and the gains keep coming. For the Wizard, who has only 4 Body Points and can't wear normal armor, the answer is simpler: stay out of reach. Two Orcs attacking him every round kill him within two rounds 55.4% of the time, and within three rounds 84.4%.</p>
+</section>
 
-        <div class="hero-role">
-            <h3>🔮 The Wizard: The Artillery</h3>
-            <p><strong>Football Position:</strong> Quarterback</p>
-            <p><strong>Movie Role:</strong> The master strategist with big moments</p>
-            <p><strong>Combat Role:</strong> High-impact spells and healing</p>
-            <p><strong>Key Tactics:</strong></p>
-            <ul>
-                <li>Stay behind frontline fighters</li>
-                <li>Save powerful spells for crucial moments</li>
-                <li>Focus on area-effect damage</li>
-                <li>Keep healing spells ready for emergencies</li>
-            </ul>
-        </div>
+<section>
+<h2>Diagonals: The Safe Squares</h2>
+<p>Because monsters can never attack diagonally, a hero standing diagonally next to a monster can't be hit by it. Heroes with a staff or longsword can still attack from there.</p>
+<svg id="hq_combat_diagonals" viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hqDiagTitle">
+  <title id="hqDiagTitle">A monster in the centre of a 5 by 5 grid: the four squares beside it can be attacked, the four diagonal squares are safe from it</title>
+  <g font-family="'Source Sans 3', system-ui, sans-serif" font-size="14" text-anchor="middle" fill="#241c16">
+    <rect x="25" y="20" width="250" height="250" fill="#fbf8f2" stroke="#5c4f43" stroke-width="2"/>
+    <g stroke="#b29f82" stroke-width="1">
+      <line x1="75" y1="20" x2="75" y2="270"/><line x1="125" y1="20" x2="125" y2="270"/><line x1="175" y1="20" x2="175" y2="270"/><line x1="225" y1="20" x2="225" y2="270"/>
+      <line x1="25" y1="70" x2="275" y2="70"/><line x1="25" y1="120" x2="275" y2="120"/><line x1="25" y1="170" x2="275" y2="170"/><line x1="25" y1="220" x2="275" y2="220"/>
+    </g>
+    <rect x="126" y="71" width="48" height="48" fill="#f6d5d2"/><text x="150" y="100">open</text>
+    <rect x="76" y="121" width="48" height="48" fill="#f6d5d2"/><text x="100" y="150">open</text>
+    <rect x="176" y="121" width="48" height="48" fill="#f6d5d2"/><text x="200" y="150">open</text>
+    <rect x="126" y="171" width="48" height="48" fill="#f6d5d2"/><text x="150" y="200">open</text>
+    <rect x="76" y="71" width="48" height="48" fill="#d6ecd9"/><text x="100" y="100">safe</text>
+    <rect x="176" y="71" width="48" height="48" fill="#d6ecd9"/><text x="200" y="100">safe</text>
+    <rect x="76" y="171" width="48" height="48" fill="#d6ecd9"/><text x="100" y="200">safe</text>
+    <rect x="176" y="171" width="48" height="48" fill="#d6ecd9"/><text x="200" y="200">safe</text>
+    <circle cx="150" cy="145" r="18" fill="#a3161f"/><text x="150" y="150" font-weight="700" fill="#ffffff">M</text>
+    <text x="150" y="296" font-size="13" fill="#3d332b">open: the monster can attack you,</text>
+    <text x="150" y="313" font-size="13" fill="#3d332b">and any hero there can attack it.</text>
+    <text x="150" y="335" font-size="13" fill="#3d332b">safe: it can't attack you; only a staff</text>
+    <text x="150" y="352" font-size="13" fill="#3d332b">or longsword can attack it from here.</text>
+  </g>
+</svg>
+<p>The First Light rulebook, which uses the same rules as the 2021 game, shows exactly this: a Wizard with a staff tucked diagonally behind the Barbarian, both attacking the same monster in a doorway, while the monster can reach only the Barbarian.</p>
+</section>
 
-        <div class="hero-role">
-            <h3>🗡️ The Dwarf: The Specialist</h3>
-            <p><strong>Football Position:</strong> Special Teams</p>
-            <p><strong>Movie Role:</strong> The expert who solves unique problems</p>
-            <p><strong>Combat Role:</strong> Utility fighter and problem solver</p>
-            <p><strong>Key Tactics:</strong></p>
-            <ul>
-                <li>Handle traps and special mechanics</li>
-                <li>Solid mid-range combat support</li>
-                <li>Use defensive abilities to protect others</li>
-                <li>Scout and handle technical challenges</li>
-            </ul>
-        </div>
+<section>
+<h2>Positioning Rules That Matter</h2>
+<ul>
+    <li><strong>Hold the doorway.</strong> A hero standing in a doorway or a one-square corridor can be reached by at most one or two monsters, because monsters can't attack diagonally or pass over heroes. The Barbarian (8 Body Points) is the natural choice.</li>
+    <li><strong>Mind your line of sight.</strong> Heroes block line of sight just like monsters do. A Barbarian filling the corridor also blocks the Wizard's spells and the crossbow. Leave a lane, or cast before your fighter steps forward.</li>
+    <li><strong>Don't stand in a pit.</strong> A hero in a pit rolls one fewer die to attack and to defend (never fewer than one). The Barbarian's chance to wound an Orc drops from 75.0% to 59.0%, and an Orc's chance to wound him rises from 62.5% to 75.0%.</li>
+    <li><strong>Monsters don't spring traps.</strong> Only heroes set off hidden traps, so a trapped corridor is no barrier to the monsters chasing you.</li>
+    <li><strong>Doors never close.</strong> Once opened, a door stays open for the quest, so you can't shut a door in a pursuer's face. Think before you open a second door while still fighting behind the first.</li>
+    <li><strong>Plan the reach.</strong> Monster movement is fixed, so count squares: a Goblin moves 10 and an Orc 8, more than most hero rolls, while a Mummy covers only 4.</li>
+</ul>
+</section>
 
-        <h3>🎼 Formation Overview: Who Goes Where</h3>
-        <svg id="hq_combat_hero_roles" viewBox="0 0 600 260" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
-          <style>
-            .hrLabel{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
-            .hrZone{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
-            .hrIcon{font:22px Arial;text-anchor:middle;dominant-baseline:central}
-          </style>
-          <rect width="600" height="260" fill="var(--card-bg,#fff)" rx="8"/>
-          <text x="300" y="22" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Classic 4-Hero Formation</text>
-          <!-- zones -->
-          <rect x="20" y="35" width="180" height="190" rx="8" fill="#ef4444" opacity="0.08" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3"/>
-          <text x="110" y="55" class="hrZone">FRONT LINE</text>
-          <rect x="210" y="35" width="180" height="190" rx="8" fill="#f59e0b" opacity="0.08" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3"/>
-          <text x="300" y="55" class="hrZone">MID LINE</text>
-          <rect x="400" y="35" width="180" height="190" rx="8" fill="#3b82f6" opacity="0.08" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,3"/>
-          <text x="490" y="55" class="hrZone">BACK LINE</text>
-          <!-- enemies (left) -->
-          <rect x="5" y="110" width="10" height="60" rx="2" fill="#64748b" opacity="0.3"/>
-          <text x="10" y="95" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">👹👹👹</text>
-          <!-- Barbarian -->
-          <circle cx="110" cy="130" r="28" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
-          <text x="110" y="124" class="hrIcon">🛡️</text>
-          <text x="110" y="146" class="hrLabel">Barbarian</text>
-          <text x="110" y="175" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Absorb damage</text>
-          <text x="110" y="188" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Block doorways</text>
-          <!-- Dwarf -->
-          <circle cx="260" cy="100" r="24" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="260" y="94" class="hrIcon">🗡️</text>
-          <text x="260" y="112" class="hrLabel">Dwarf</text>
-          <text x="260" y="140" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Disarm traps</text>
-          <!-- Elf -->
-          <circle cx="340" cy="170" r="24" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
-          <text x="340" y="164" class="hrIcon">🏹</text>
-          <text x="340" y="182" class="hrLabel">Elf</text>
-          <text x="340" y="208" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Flex support</text>
-          <!-- Wizard -->
-          <circle cx="490" cy="130" r="24" fill="#a855f7" stroke="#9333ea" stroke-width="2"/>
-          <text x="490" y="124" class="hrIcon">🔮</text>
-          <text x="490" y="142" class="hrLabel">Wizard</text>
-          <text x="490" y="168" style="font:9px sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Spells &amp; heals</text>
-          <!-- arrows showing enemy flow -->
-          <path d="M30,130 L78,130" fill="none" stroke="#ef4444" stroke-width="1.5" marker-end="url(#combArr)" opacity="0.5"/>
-          <defs><marker id="combArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ef4444"/></marker></defs>
-          <text x="300" y="248" style="font:italic 11px 'Segoe UI',sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Tank absorbs hits • Mid handles utility • Back deals damage safely</text>
-        </svg>
+<section>
+<h2>Formation Trainer</h2>
+<p>Pick a piece, then click squares to place it. The trainer checks who can attack whom using the real rule: only squares directly beside a monster (not diagonal) are in reach, unless a hero has a diagonal weapon.</p>
+<div class="trainer-controls" id="brush_controls">
+    <button type="button" data-brush="B" aria-pressed="true">Barbarian</button>
+    <button type="button" data-brush="D" aria-pressed="false">Dwarf</button>
+    <button type="button" data-brush="E" aria-pressed="false">Elf</button>
+    <button type="button" data-brush="W" aria-pressed="false">Wizard</button>
+    <button type="button" data-brush="M" aria-pressed="false">Monster</button>
+    <button type="button" data-brush="" aria-pressed="false">Erase</button>
+    <button type="button" id="clear_grid">Clear all</button>
+</div>
+<div class="battlefield-grid" id="formation_grid" role="group" aria-label="Room grid, 8 by 6 squares"></div>
+<p>Squares outlined in red are in reach of an enemy. The doorway is at the top of the room. Hero letters: B Barbarian, D Dwarf, E Elf, W Wizard; M is a monster.</p>
+<div class="callout callout-edge" id="formation_analysis" aria-live="polite">
+<p><strong>Formation check:</strong> place some heroes and monsters.</p>
+</div>
+</section>
 
-        <h2>🗺️ Battlefield Positioning: The Chess Game</h2>
-        
-        <div class="canvas-container">
-            <div class="canvas-container">
-                <h3>Positioning Tactics</h3>
-                <canvas id="positioning_tactics_canvas" width="600" height="400"></canvas>
-            </div>
-        </div>
-        
-        <div class="tactics-box">
-            <h3>🎯 The Golden Rules of Positioning</h3>
-            
-            <p><strong>🏰 Control the Doorways</strong></p>
-            <p>Doorways are like medieval castle gates - whoever controls them controls the flow of battle. Use your toughest hero to block doorways, forcing enemies to fight you one at a time instead of swarming.</p>
-            
-            <p><strong>🎭 The Theater Rule: "Don't Turn Your Back"</strong></p>
-            <p>Like actors on stage, always face your audience (the enemies). Getting surrounded is like being mobbed by fans - overwhelming and dangerous!</p>
-            
-            <p><strong>⚡ The Lightning Strike Principle</strong></p>
-            <p>Hit hard, hit fast, hit together. Like a lightning bolt, focus all your power on one target rather than spreading damage around.</p>
-        </div>
+<section>
+<h2>Spells in a Fight</h2>
+<p>Each spell can be cast only once per quest, but every spell comes back for the next quest. So the question is never "should I save it for the final quest?", only "is this the fight in this quest that needs it?". A few combat points:</p>
+<ul>
+    <li>Casting a spell is your action for the turn and needs line of sight to the target.</li>
+    <li>Damage spells that ignore Defend dice are best spent on high-defense targets like a Dread Warrior or Gargoyle, where a normal attack wounds only about 6 times in 10 attacks.</li>
+    <li>A hero reduced to 0 Body Points survives only by drinking a healing potion or casting a healing spell at once. Keep a healing spell or potion for whoever is in front.</li>
+</ul>
+<p>See <a href="/heroquest_magic_spells.html">Magic &amp; Spells</a> for every spell.</p>
+</section>
 
-        <h2>🎮 Interactive Formation Trainer</h2>
-        
-        <div class="formation-demo">
-            <p><strong>Click the grid below to practice formations!</strong> Try different setups and see how positioning affects your tactical options.</p>
-            
-            <div class="battlefield-grid" id="formation_grid">
-                <!-- Grid will be populated by JavaScript -->
-            </div>
-            
-            <p><strong>Legend:</strong> 🛡️ Barbarian | 🏹 Elf | 🔮 Wizard | 🗡️ Dwarf | 👹 Monster | ⬛ Wall | 🚪 Door</p>
-            
-            <div id="formation_analysis" style="margin-top: 20px; padding: 15px; background: rgba(255, 165, 0, 0.1); border-radius: 10px;">
-                <strong>Formation Analysis:</strong> Position your heroes and monsters to see tactical analysis!
-            </div>
-        </div>
+<section>
+<h2>Try It at the Table</h2>
+<ul>
+    <li><strong>The narrow corridor.</strong> Your party meets three Orcs in a one-square corridor. Put the Barbarian in front. Only one Orc can reach him per turn, and only he can reach that Orc. Where can the Wizard stand to see past him? (Nowhere in a straight corridor: heroes block line of sight.)</li>
+    <li><strong>The doorway with a staff.</strong> Set up the trainer with a monster in the doorway square, the Barbarian beside it inside the room and the Wizard diagonal to it. Which heroes can attack, and which can it hit back?</li>
+    <li><strong>Count the attacks.</strong> Before ending a round, count how many monsters can reach each hero on Zargon's turn. Two Orcs on one 2-dice hero average almost 2 Body Points lost.</li>
+</ul>
+</section>
 
-        <h2>⚔️ Advanced Combat Techniques</h2>
-        
-        <div class="tactics-box">
-            <h3>🎪 The Pincer Movement (Like Jaws Closing)</h3>
-            <p><strong>Concept:</strong> Attack enemies from multiple directions simultaneously</p>
-            <p><strong>Execution:</strong> Send fast heroes (Elf/Dwarf) around to flank while tank heroes engage frontally</p>
-            <p><strong>Why it works:</strong> Enemies can't defend all directions at once - like trying to watch multiple tennis balls</p>
-            
-            <h3>🔄 The Rotation Defense (Like Basketball Switching)</h3>
-            <p><strong>Concept:</strong> Continuously move heroes to support whoever is under pressure</p>
-            <p><strong>Execution:</strong> When one hero takes damage, others shift to provide support and relief</p>
-            <p><strong>Why it works:</strong> Prevents any single hero from being overwhelmed - like rotating fresh players in sports</p>
-            
-            <h3>⚡ The Alpha Strike (Like Military Shock and Awe)</h3>
-            <p><strong>Concept:</strong> Concentrate all firepower on the biggest threat first</p>
-            <p><strong>Execution:</strong> All heroes focus attacks on the most dangerous enemy</p>
-            <p><strong>Why it works:</strong> Dead enemies can't fight back - eliminate threats completely rather than weakening many</p>
-        </div>
-
-        <h3>🗡️ The Pincer in Action</h3>
-        <svg id="hq_combat_pincer" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
-          <style>
-            .pcLabel{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
-            .pcNote{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
-            .pcIcon{font:20px Arial;text-anchor:middle;dominant-baseline:central}
-          </style>
-          <rect width="600" height="300" fill="var(--card-bg,#fff)" rx="8"/>
-          <text x="300" y="22" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Pincer Movement: Attack From Multiple Angles</text>
-          <!-- room walls -->
-          <rect x="140" y="50" width="320" height="200" rx="4" fill="none" stroke="var(--border,#cbd5e1)" stroke-width="2"/>
-          <!-- door -->
-          <rect x="136" y="130" width="8" height="40" rx="2" fill="#b45309"/>
-          <!-- enemy cluster center -->
-          <circle cx="340" cy="150" r="22" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
-          <text x="340" y="145" class="pcIcon">👹</text>
-          <text x="340" y="162" class="pcLabel" style="font-size:9px">Boss</text>
-          <circle cx="380" cy="120" r="16" fill="#f97316" stroke="#ea580c" stroke-width="1.5"/>
-          <text x="380" y="118" style="font:14px Arial;text-anchor:middle;dominant-baseline:central">👹</text>
-          <circle cx="380" cy="180" r="16" fill="#f97316" stroke="#ea580c" stroke-width="1.5"/>
-          <text x="380" y="178" style="font:14px Arial;text-anchor:middle;dominant-baseline:central">👹</text>
-          <!-- frontal assault: Barbarian -->
-          <circle cx="180" cy="150" r="20" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
-          <text x="180" y="145" class="pcIcon">🛡️</text>
-          <text x="180" y="162" class="pcLabel" style="font-size:9px">Barb</text>
-          <path d="M202,150 L310,150" fill="none" stroke="#ef4444" stroke-width="2" marker-end="url(#pcArr)" stroke-dasharray="6,3"/>
-          <text x="256" y="142" class="pcNote">Frontal</text>
-          <!-- top flank: Elf -->
-          <circle cx="220" cy="70" r="20" fill="#22c55e" stroke="#16a34a" stroke-width="2"/>
-          <text x="220" y="65" class="pcIcon">🏹</text>
-          <text x="220" y="82" class="pcLabel" style="font-size:9px">Elf</text>
-          <path d="M242,75 Q320,60 335,125" fill="none" stroke="#22c55e" stroke-width="2" marker-end="url(#pcArrG)" stroke-dasharray="6,3"/>
-          <text x="300" y="75" class="pcNote">Top flank</text>
-          <!-- bottom flank: Dwarf -->
-          <circle cx="220" cy="230" r="20" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-          <text x="220" y="225" class="pcIcon">🗡️</text>
-          <text x="220" y="242" class="pcLabel" style="font-size:9px">Dwarf</text>
-          <path d="M242,225 Q320,240 335,175" fill="none" stroke="#f59e0b" stroke-width="2" marker-end="url(#pcArrY)" stroke-dasharray="6,3"/>
-          <text x="300" y="240" class="pcNote">Bottom flank</text>
-          <!-- Wizard back -->
-          <circle cx="110" cy="150" r="20" fill="#a855f7" stroke="#9333ea" stroke-width="2"/>
-          <text x="110" y="145" class="pcIcon">🔮</text>
-          <text x="110" y="162" class="pcLabel" style="font-size:9px">Wiz</text>
-          <text x="110" y="182" class="pcNote">Spells from safety</text>
-          <defs>
-            <marker id="pcArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#ef4444"/></marker>
-            <marker id="pcArrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#22c55e"/></marker>
-            <marker id="pcArrY" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#f59e0b"/></marker>
-          </defs>
-          <text x="300" y="280" style="font:italic 11px 'Segoe UI',sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Enemies can't defend every direction — divide and conquer</text>
-        </svg>
-
-        <h2>🧠 Combat Psychology: Reading the Battlefield</h2>
-        
-        <div class="canvas-container">
-            <div class="canvas-container">
-                <h3>Battlefield Analysis</h3>
-                <canvas id="battlefield_analysis_canvas" width="600" height="350"></canvas>
-            </div>
-        </div>
-        
-        <div class="combat-principle">
-            <h3>🔍 The Sherlock Holmes Approach</h3>
-            <p><strong>Every battlefield tells a story - learn to read it like a detective:</strong></p>
-            
-            <p><strong>🏃 Enemy Movement Patterns:</strong> Where are they trying to go? What are they protecting?</p>
-            <p><strong>💀 Threat Assessment:</strong> Which enemy can hurt you most? Which is easiest to eliminate?</p>
-            <p><strong>🏰 Environmental Clues:</strong> Can you use furniture, walls, or traps to your advantage?</p>
-            <p><strong>⏰ Time Pressure:</strong> Are reinforcements coming? Do you have time for a long fight?</p>
-        </div>
-
-        <h2>🎯 Target Priority: The Triage System</h2>
-        
-        <div class="formation-demo">
-            <h3>🚨 Emergency Room Principle</h3>
-            <p><strong>Like doctors in an ER, you must quickly decide who needs attention first:</strong></p>
-            
-            <p><strong>🔴 Priority 1 - Immediate Threat:</strong> High damage enemies that can kill heroes quickly</p>
-            <p><strong>🟡 Priority 2 - Force Multipliers:</strong> Enemies that make other monsters stronger or summon reinforcements</p>
-            <p><strong>🟢 Priority 3 - Nuisance Enemies:</strong> Low threat monsters that are mostly distractions</p>
-            
-            <p><strong>Real Example:</strong> In a room with 1 Chaos Warrior and 3 Goblins, always kill the Chaos Warrior first - it can kill a hero in one hit, while Goblins are just annoying!</p>
-        </div>
-
-        <h3>🚨 Threat Triage at a Glance</h3>
-        <svg id="hq_combat_target_priority" viewBox="0 0 600 240" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
-          <style>
-            .tpLabel{font:bold 12px 'Segoe UI',system-ui,sans-serif;text-anchor:middle}
-            .tpDesc{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle}
-            .tpIcon{font:22px Arial;text-anchor:middle;dominant-baseline:central}
-            .tpNum{font:bold 18px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
-          </style>
-          <rect width="600" height="240" fill="var(--card-bg,#fff)" rx="8"/>
-          <text x="300" y="22" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Kill Order: Triage Your Targets</text>
-          <!-- Priority 1 -->
-          <circle cx="120" cy="110" r="55" fill="#fecaca" stroke="#ef4444" stroke-width="2"/>
-          <circle cx="120" cy="110" r="35" fill="#ef4444"/>
-          <text x="120" y="100" class="tpNum">1</text>
-          <text x="120" y="118" style="font:bold 9px sans-serif;fill:#fff;text-anchor:middle">KILL FIRST</text>
-          <text x="120" y="182" class="tpLabel" fill="#ef4444">Chaos Warrior</text>
-          <text x="120" y="198" class="tpDesc">High damage, can 1-shot heroes</text>
-          <text x="120" y="78" class="tpIcon">👹</text>
-          <!-- Priority 2 -->
-          <circle cx="300" cy="110" r="45" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
-          <circle cx="300" cy="110" r="28" fill="#f59e0b"/>
-          <text x="300" y="100" class="tpNum">2</text>
-          <text x="300" y="116" style="font:bold 8px sans-serif;fill:#fff;text-anchor:middle">NEXT</text>
-          <text x="300" y="172" class="tpLabel" fill="#f59e0b">Fimir / Mummy</text>
-          <text x="300" y="188" class="tpDesc">Force multipliers, summons</text>
-          <text x="300" y="82" class="tpIcon">👾</text>
-          <!-- Priority 3 -->
-          <circle cx="480" cy="110" r="35" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
-          <circle cx="480" cy="110" r="22" fill="#22c55e"/>
-          <text x="480" y="102" class="tpNum" style="font-size:14px">3</text>
-          <text x="480" y="116" style="font:bold 7px sans-serif;fill:#fff;text-anchor:middle">LAST</text>
-          <text x="480" y="162" class="tpLabel" fill="#22c55e">Goblins</text>
-          <text x="480" y="178" class="tpDesc">Low threat, distractions</text>
-          <text x="480" y="86" class="tpIcon">👺</text>
-          <!-- arrow flow -->
-          <path d="M180,110 L240,110" fill="none" stroke="var(--border,#cbd5e1)" stroke-width="1.5" marker-end="url(#tpArr)"/>
-          <path d="M350,110 L430,110" fill="none" stroke="var(--border,#cbd5e1)" stroke-width="1.5" marker-end="url(#tpArr)"/>
-          <defs><marker id="tpArr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="var(--border,#cbd5e1)"/></marker></defs>
-          <text x="300" y="228" style="font:italic 11px 'Segoe UI',sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Dead enemies deal zero damage — eliminate biggest threats first</text>
-        </svg>
-
-        <h2>🌟 Environmental Combat: Use Everything!</h2>
-        
-        <div class="tactics-box">
-            <h3>🎬 Action Movie Physics</h3>
-            <p><strong>Think like Jackie Chan - everything in the room is a potential weapon or tool!</strong></p>
-            
-            <p><strong>🪑 Furniture as Barriers:</strong> Tables and chairs block movement and create cover</p>
-            <p><strong>🕳️ Pits and Traps:</strong> Lure enemies into dangerous terrain</p>
-            <p><strong>🔥 Fire and Hazards:</strong> Environmental damage affects everyone - use wisely!</p>
-            <p><strong>🚪 Doors as Weapons:</strong> Open/close doors to control enemy movement</p>
-            <p><strong>💡 Light Sources:</strong> Darkness affects vision - control the lighting!</p>
-        </div>
-
-        <h2>⚗️ Advanced Spell Tactics</h2>
-        
-        <div class="canvas-container">
-            <div class="canvas-container">
-                <h3>Spell Tactics Overview</h3>
-                <canvas id="spell_tactics_canvas" width="600" height="300"></canvas>
-            </div>
-        </div>
-        
-        <div class="combat-principle">
-            <h3>🧙‍♂️ The Spell Weaver's Art</h3>
-            <p><strong>Spells are like special moves in fighting games - timing and positioning are everything!</strong></p>
-            
-            <p><strong>⚡ Offensive Spells:</strong> Use when enemies are grouped together for maximum effect</p>
-            <p><strong>🛡️ Defensive Spells:</strong> Cast BEFORE you need them, not after damage is done</p>
-            <p><strong>🔄 Utility Spells:</strong> Think creatively - healing can be used mid-combat, not just after</p>
-            <p><strong>🎯 Spell Combinations:</strong> Some spells work better together - coordinate with your team!</p>
-        </div>
-
-        <h2>🎮 Combat Scenarios for Practice</h2>
-        
-        <div class="formation-demo">
-            <h3>🎭 Training Scenarios</h3>
-            
-            <p><strong>📚 Scenario 1: The Narrow Corridor</strong></p>
-            <p><em>4 heroes vs 3 Orcs in a 1-square-wide hallway</em></p>
-            <p><strong>Challenge:</strong> How do you use your ranged heroes when melee fighters block the corridor?</p>
-            
-            <p><strong>🏰 Scenario 2: The Throne Room</strong></p>
-            <p><em>Open room with a powerful boss and weak minions</em></p>
-            <p><strong>Challenge:</strong> Do you clear minions first or focus fire on the boss?</p>
-            
-            <p><strong>🕳️ Scenario 3: The Trap Room</strong></p>
-            <p><em>Combat while avoiding environmental hazards</em></p>
-            <p><strong>Challenge:</strong> How do you fight when movement is restricted?</p>
-        </div>
-
-        <h2>📊 Combat Mathematics: The Numbers Game</h2>
-        
-        <div class="tactics-box">
-            <h3>🧮 The Probability Detective</h3>
-            <p><strong>Understanding dice odds makes you a better tactician:</strong></p>
-            
-            <p><strong>⚔️ Attack Success Rates:</strong></p>
-            <ul>
-                <li>1 die: ~33% chance of success (1 skull out of 3 faces)</li>
-                <li>2 dice: ~56% chance of at least 1 skull</li>
-                <li>3 dice: ~70% chance of at least 1 skull</li>
-            </ul>
-            
-            <p><strong>🛡️ Defense Success Rates:</strong></p>
-            <ul>
-                <li>Fighting defensively often better than going all-out attack</li>
-                <li>Blocking 1 damage is like gaining 1 Body Point</li>
-                <li>Sometimes retreat and heal is better than fighting to the death</li>
-            </ul>
-        </div>
-
-        <h3>🎲 Skull Probability by Dice Count</h3>
-        <svg id="hq_combat_dice_odds" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg" style="max-width:600px;margin:1.5rem auto;display:block;">
-          <style>
-            .doLabel{font:bold 12px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:end}
-            .doVal{font:bold 11px 'Segoe UI',system-ui,sans-serif;fill:#fff;text-anchor:middle}
-            .doDesc{font:10px 'Segoe UI',system-ui,sans-serif;fill:var(--text-muted,#64748b)}
-          </style>
-          <rect width="600" height="220" fill="var(--card-bg,#fff)" rx="8"/>
-          <text x="300" y="22" style="font:bold 13px 'Segoe UI',system-ui,sans-serif;fill:var(--text,#334155);text-anchor:middle">Chance of Rolling At Least 1 Skull 💀</text>
-          <!-- 1 die -->
-          <text x="95" y="62" class="doLabel">1 die</text>
-          <rect x="110" y="46" width="400" height="22" rx="4" fill="var(--border,#e2e8f0)"/>
-          <rect x="110" y="46" width="132" height="22" rx="4" fill="#ef4444"/>
-          <text x="176" y="62" class="doVal">33%</text>
-          <text x="520" y="62" class="doDesc">← Risky! Miss 2 out of 3</text>
-          <!-- 2 dice -->
-          <text x="95" y="102" class="doLabel">2 dice</text>
-          <rect x="110" y="86" width="400" height="22" rx="4" fill="var(--border,#e2e8f0)"/>
-          <rect x="110" y="86" width="224" height="22" rx="4" fill="#f59e0b"/>
-          <text x="222" y="102" class="doVal">56%</text>
-          <text x="520" y="102" class="doDesc">← Coin flip territory</text>
-          <!-- 3 dice -->
-          <text x="95" y="142" class="doLabel">3 dice</text>
-          <rect x="110" y="126" width="400" height="22" rx="4" fill="var(--border,#e2e8f0)"/>
-          <rect x="110" y="126" width="280" height="22" rx="4" fill="#22c55e"/>
-          <text x="250" y="142" class="doVal">70%</text>
-          <text x="520" y="142" class="doDesc">← Reliable but not guaranteed</text>
-          <!-- 4 dice -->
-          <text x="95" y="182" class="doLabel">4 dice</text>
-          <rect x="110" y="166" width="400" height="22" rx="4" fill="var(--border,#e2e8f0)"/>
-          <rect x="110" y="166" width="320" height="22" rx="4" fill="#3b82f6"/>
-          <text x="270" y="182" class="doVal">80%</text>
-          <text x="520" y="182" class="doDesc">← Strong odds (w/ weapon bonus)</text>
-          <text x="300" y="210" style="font:italic 11px 'Segoe UI',sans-serif;fill:var(--text-muted,#64748b);text-anchor:middle">Each HeroQuest die has 3 skulls, 2 shields, 1 blank — P(skull) ≈ ½ per die</text>
-        </svg>
-
-        <h2>🚀 Advanced Team Coordination</h2>
-        
-        <div class="combat-principle">
-            <h3>🎵 The Orchestra Conductor Approach</h3>
-            <p><strong>Great teams communicate like musicians in an orchestra - everyone knows their part and when to play it!</strong></p>
-            
-            <p><strong>🗣️ Combat Communication:</strong></p>
-            <ul>
-                <li>"Focus fire on the Chaos Warrior!"</li>
-                <li>"I'm low on health, need healing!"</li>
-                <li>"Moving to flank, cover me!"</li>
-                <li>"Save your spells, bigger fight coming!"</li>
-            </ul>
-            
-            <p><strong>🎯 Synchronized Actions:</strong></p>
-            <ul>
-                <li>Coordinate spell timing for maximum impact</li>
-                <li>Plan movement so everyone gets optimal positioning</li>
-                <li>Share resources (potions, equipment) strategically</li>
-                <li>Take turns absorbing damage so no one dies</li>
-            </ul>
-        </div>
-
-        <h2>🏆 Mastery Challenges</h2>
-        
-        <div class="formation-demo">
-            <h3>🎯 Test Your Skills</h3>
-            <p><strong>Can you solve these tactical puzzles?</strong></p>
-            
-            <p><strong>🧩 Puzzle 1:</strong> You have 4 heroes at 1 Body Point each facing 1 enemy at 4 Body Points. How do you win without losing anyone?</p>
-            
-            <p><strong>🧩 Puzzle 2:</strong> Your Wizard is surrounded by 3 Goblins. What's the best spell to cast and why?</p>
-            
-            <p><strong>🧩 Puzzle 3:</strong> You find a room with treasure but it's obviously trapped. How do you get the treasure safely?</p>
-            
-            <p><em>Answers require creative thinking and rule knowledge - discuss with your group!</em></p>
-        </div>
-
-        <h2>🌟 Next Adventure Preview</h2>
-        
-        <p>In our next lecture, we'll explore <strong>"Spells, Magic, and Mystical Arts"</strong> - diving deep into the magical system, spell combinations, and how to weave magic into your adventures like a true wizard. We'll cover spell timing, magical item management, and creating dramatic magical moments!</p>
-        
-        <div class="combat-principle">
-            <p><strong>Remember:</strong> Great combat isn't about rolling perfect dice - it's about making smart decisions, working as a team, and creating epic moments that become legendary stories. Every battle is a chance to prove your heroes' worth and create memories that last forever!</p>
-        </div>
-    </div>
+<section>
+<h2>Where Next</h2>
+<ul>
+    <li><a href="/heroquest_magic_spells.html">Magic &amp; Spells</a>: the four schools and how to use them.</li>
+    <li><a href="/heroquest_treasure_progression.html">Treasure &amp; Equipment</a>: the armory and what each item adds.</li>
+    <li><a href="/heroquest_dice_roller.html">Dice Roller</a>: exact odds for any attack.</li>
+</ul>
+</section>
+    </main>
 
     <script>
-        // Positioning Tactics Canvas
-        const posCanvas = document.getElementById('positioning_tactics_canvas');
-        const posCtx = posCanvas.getContext('2d');
-        
-        function drawPositioningTactics() {
-            posCtx.clearRect(0, 0, posCanvas.width, posCanvas.height);
-            
-            // Background
-            posCtx.fillStyle = '#2f1b14';
-            posCtx.fillRect(0, 0, posCanvas.width, posCanvas.height);
-            
-            // Draw room layout
-            posCtx.strokeStyle = '#8b4513';
-            posCtx.lineWidth = 4;
-            posCtx.strokeRect(50, 50, 500, 300);
-            
-            // Draw doorway
-            posCtx.fillStyle = '#654321';
-            posCtx.fillRect(270, 50, 60, 20);
-            
-            // Draw heroes in formation
-            const heroes = [
-                {x: 150, y: 150, color: '#4a90e2', label: '🛡️'},
-                {x: 200, y: 200, color: '#32cd32', label: '🏹'},
-                {x: 100, y: 200, color: '#9370db', label: '🔮'},
-                {x: 150, y: 250, color: '#cd853f', label: '🗡️'}
-            ];
-            
-            heroes.forEach(hero => {
-                posCtx.fillStyle = hero.color;
-                posCtx.fillRect(hero.x - 15, hero.y - 15, 30, 30);
-                posCtx.fillStyle = '#fff';
-                posCtx.font = '16px Arial';
-                posCtx.textAlign = 'center';
-                posCtx.fillText(hero.label, hero.x, hero.y + 5);
-            });
-            
-            // Draw enemies
-            const enemies = [
-                {x: 450, y: 150, label: '👹'},
-                {x: 400, y: 200, label: '👹'},
-                {x: 500, y: 200, label: '👹'}
-            ];
-            
-            enemies.forEach(enemy => {
-                posCtx.fillStyle = '#ff4500';
-                posCtx.fillRect(enemy.x - 15, enemy.y - 15, 30, 30);
-                posCtx.fillStyle = '#fff';
-                posCtx.fillText(enemy.label, enemy.x, enemy.y + 5);
-            });
-            
-            // Draw tactical lines
-            posCtx.strokeStyle = '#ffd700';
-            posCtx.lineWidth = 2;
-            posCtx.setLineDash([5, 5]);
-            
-            // Frontline
-            posCtx.beginPath();
-            posCtx.moveTo(170, 130);
-            posCtx.lineTo(170, 270);
-            posCtx.stroke();
-            
-            // Attack vectors
-            posCtx.strokeStyle = '#ff6347';
-            posCtx.setLineDash([]);
-            heroes.forEach(hero => {
-                enemies.forEach(enemy => {
-                    posCtx.beginPath();
-                    posCtx.moveTo(hero.x, hero.y);
-                    posCtx.lineTo(enemy.x, enemy.y);
-                    posCtx.stroke();
-                });
-            });
-            
-            posCtx.fillStyle = '#ffebcd';
-            posCtx.font = '16px Arial';
-            posCtx.textAlign = 'center';
-            posCtx.fillText('Classic Formation: Tank Front, Support Back', 300, 30);
-            posCtx.textAlign = 'left';
+    (function () {
+        var COLS = 8, ROWS = 6;
+        var grid = document.getElementById('formation_grid');
+        var out = document.getElementById('formation_analysis');
+        var controls = document.getElementById('brush_controls');
+        if (!grid || !out || !controls) return;
+        var NAMES = { B: 'Barbarian', D: 'Dwarf', E: 'Elf', W: 'Wizard' };
+        var brush = 'B';
+        var cells = [];
+        var state = [];
+
+        function isWall(i) {
+            var r = Math.floor(i / COLS), c = i % COLS;
+            return r === 0 || r === ROWS - 1 || c === 0 || c === COLS - 1;
         }
-        
-        drawPositioningTactics();
-        
-        // Interactive Formation Grid
-        const gridContainer = document.getElementById('formation_grid');
-        const analysisDiv = document.getElementById('formation_analysis');
-        let gridState = [];
-        
-        // Initialize grid
-        for (let i = 0; i < 48; i++) {
-            const cell = document.createElement('div');
-            cell.className = 'grid-cell empty';
-            cell.textContent = '';
-            cell.addEventListener('click', () => toggleCell(i));
-            gridContainer.appendChild(cell);
-            gridState.push('empty');
+        function isDoor(i) { return i === 3 || i === 4; }
+
+        for (var i = 0; i < COLS * ROWS; i++) {
+            var cell = document.createElement('button');
+            cell.type = 'button';
+            cell.className = 'grid-cell';
+            cell.dataset.i = i;
+            if (isDoor(i)) { cell.className += ' door'; cell.textContent = 'door'; state.push(''); }
+            else if (isWall(i)) { cell.className += ' wall'; cell.disabled = true; cell.setAttribute('aria-label', 'wall'); state.push('#'); }
+            else { state.push(''); cell.setAttribute('aria-label', 'empty square'); }
+            grid.appendChild(cell);
+            cells.push(cell);
         }
-        
-        // Add some walls and doors
-        const walls = [0, 1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 23, 24, 31, 32, 39, 40, 41, 42, 43, 44, 45, 46, 47];
-        walls.forEach(index => {
-            if (index !== 3 && index !== 4) { // Leave door spaces
-                gridContainer.children[index].className = 'grid-cell wall';
-                gridContainer.children[index].textContent = '⬛';
-                gridState[index] = 'wall';
+
+        controls.addEventListener('click', function (e) {
+            var b = e.target.closest('button');
+            if (!b) return;
+            if (b.id === 'clear_grid') {
+                state = state.map(function (s) { return s === '#' ? '#' : ''; });
+                render();
+                return;
             }
+            brush = b.dataset.brush;
+            controls.querySelectorAll('[data-brush]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
         });
-        
-        // Add doors
-        gridContainer.children[3].className = 'grid-cell door';
-        gridContainer.children[3].textContent = '🚪';
-        gridState[3] = 'door';
-        gridContainer.children[4].className = 'grid-cell door';
-        gridContainer.children[4].textContent = '🚪';
-        gridState[4] = 'door';
-        
-        const cellTypes = ['empty', 'hero-barbarian', 'hero-elf', 'hero-wizard', 'hero-dwarf', 'monster'];
-        const cellSymbols = ['', '🛡️', '🏹', '🔮', '🗡️', '👹'];
-        
-        function toggleCell(index) {
-            if (gridState[index] === 'wall' || gridState[index] === 'door') return;
-            
-            const currentIdx = cellTypes.indexOf(gridState[index]);
-            const nextIdx = (currentIdx + 1) % cellTypes.length;
-            const cell = gridContainer.children[index];
-            
-            gridState[index] = cellTypes[nextIdx];
-            cell.textContent = cellSymbols[nextIdx];
-            
-            if (cellTypes[nextIdx].includes('hero')) {
-                cell.className = 'grid-cell hero';
-            } else if (cellTypes[nextIdx] === 'monster') {
-                cell.className = 'grid-cell monster';
-            } else {
-                cell.className = 'grid-cell empty';
+
+        grid.addEventListener('click', function (e) {
+            var c = e.target.closest('.grid-cell');
+            if (!c || c.disabled) return;
+            var i = +c.dataset.i;
+            if (brush && brush !== 'M') {
+                state = state.map(function (s) { return s === brush ? '' : s; }); // each hero once
             }
-            
-            analyzeFormation();
+            state[i] = state[i] === brush ? '' : brush;
+            render();
+        });
+
+        function orth(a, b) {
+            var ra = Math.floor(a / COLS), ca = a % COLS, rb = Math.floor(b / COLS), cb = b % COLS;
+            return Math.abs(ra - rb) + Math.abs(ca - cb) === 1;
         }
-        
-        function analyzeFormation() {
-            const heroPositions = [];
-            const monsterPositions = [];
-            
-            gridState.forEach((cell, index) => {
-                if (cell.includes('hero')) heroPositions.push(index);
-                if (cell === 'monster') monsterPositions.push(index);
+        function diag(a, b) {
+            var ra = Math.floor(a / COLS), ca = a % COLS, rb = Math.floor(b / COLS), cb = b % COLS;
+            return Math.abs(ra - rb) === 1 && Math.abs(ca - cb) === 1;
+        }
+
+        function list(a) { return a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' and ' + a[a.length - 1]; }
+        function render() {
+            var heroes = [], monsters = [];
+            state.forEach(function (s, i) {
+                if (s === 'M') monsters.push(i);
+                else if (NAMES[s]) heroes.push(i);
             });
-            
-            const heroes = heroPositions.length;
-            const monsters = monsterPositions.length;
-            const tips = [];
-            
-            if (heroes === 0 && monsters === 0) {
-                analysisDiv.innerHTML = '<strong>Formation Analysis:</strong> Click cells to place heroes and monsters!';
-                return;
-            }
-            if (heroes === 0) {
-                analysisDiv.innerHTML = '<strong>Formation Analysis:</strong> Add some heroes to see tactical analysis!';
-                return;
-            }
-            if (monsters === 0) {
-                analysisDiv.innerHTML = '<strong>Formation Analysis:</strong> ' + heroes + ' hero(es) placed. Add monsters to create a combat scenario!';
-                return;
-            }
-            
-            // Adjacency helper (8-col grid)
-            function isAdjacent(a, b) {
-                if (a === b) return false;
-                var rowA = Math.floor(a / 8), colA = a % 8;
-                var rowB = Math.floor(b / 8), colB = b % 8;
-                return Math.abs(rowA - rowB) <= 1 && Math.abs(colA - colB) <= 1;
-            }
-            
-            // Hero mutual support
-            if (heroes === 1) {
-                tips.push('\u26a0\ufe0f Solo hero — no mutual support. Consider adding allies.');
+            cells.forEach(function (c, i) {
+                if (state[i] === '#') return;
+                var s = state[i];
+                c.classList.remove('hero', 'monster', 'reach-both');
+                if (isDoor(i) && !s) { c.textContent = 'door'; c.setAttribute('aria-label', 'doorway'); return; }
+                c.textContent = s;
+                if (s === 'M') { c.classList.add('monster'); c.setAttribute('aria-label', 'monster'); }
+                else if (NAMES[s]) { c.classList.add('hero'); c.setAttribute('aria-label', NAMES[s]); }
+                else c.setAttribute('aria-label', isDoor(i) ? 'doorway' : 'empty square');
+                var foes = s === 'M' ? heroes : (NAMES[s] ? monsters : []);
+                if (foes.some(function (f) { return orth(i, f); })) c.classList.add('reach-both');
+            });
+
+            var lines = [];
+            if (!heroes.length || !monsters.length) {
+                lines.push('Place at least one hero and one monster.');
             } else {
-                var supportedHeroes = 0;
-                heroPositions.forEach(function(h) {
-                    if (heroPositions.some(function(h2) { return isAdjacent(h, h2); })) supportedHeroes++;
+                monsters.forEach(function (m, n) {
+                    var can = heroes.filter(function (h) { return orth(h, m); }).map(function (h) { return NAMES[state[h]]; });
+                    var dg = heroes.filter(function (h) { return diag(h, m); }).map(function (h) { return NAMES[state[h]]; });
+                    var t = 'Monster ' + (n + 1) + ': ';
+                    t += can.length ? 'can be attacked by ' + list(can) + ' and can hit back at them.' : 'no hero is beside it, so it must move to attack.';
+                    if (dg.length) t += ' ' + list(dg) + (dg.length === 1 ? ' is' : ' are') + ' diagonal: safe from it, and can attack it only with a staff or longsword.';
+                    lines.push(t);
                 });
-                if (supportedHeroes === heroes) {
-                    tips.push('\u2705 All heroes are supporting each other!');
-                } else if (supportedHeroes > 0) {
-                    tips.push('\u26a0\ufe0f ' + (heroes - supportedHeroes) + ' hero(es) isolated — move closer for mutual support.');
-                } else {
-                    tips.push('\u274c Heroes are scattered — group up for mutual defense!');
-                }
+                heroes.forEach(function (h) {
+                    var n = monsters.filter(function (m) { return orth(h, m); }).length;
+                    var name = NAMES[state[h]];
+                    if (n >= 2) lines.push(name + ' can be attacked by ' + n + ' monsters on Zargon’s turn. Consider stepping back so fewer can reach.');
+                    if (name === 'Wizard' && n >= 1) lines.push('The Wizard is within a monster’s reach. With 4 Body Points and 2 Defend dice, he should not be.');
+                });
             }
-            
-            // Outnumbered check
-            if (monsters > heroes * 2) {
-                tips.push('\u274c Heavily outnumbered (' + heroes + ' vs ' + monsters + ')! Use chokepoints and doorways.');
-            } else if (monsters > heroes) {
-                tips.push('\u26a0\ufe0f Outnumbered ' + heroes + ' vs ' + monsters + ' — positioning is critical.');
-            } else {
-                tips.push('\u2705 Favorable numbers (' + heroes + ' vs ' + monsters + ').');
-            }
-            
-            // Door/chokepoint control (cells near doors at index 3,4)
-            var doorControl = heroPositions.some(function(pos) {
-                return isAdjacent(pos, 3) || isAdjacent(pos, 4) || pos === 11 || pos === 12;
-            });
-            if (doorControl) {
-                tips.push('\u2705 Good door control — funneling enemies through chokepoints.');
-            }
-            
-            // Flanking detection — any monster adjacent to 2+ heroes?
-            var flankedMonsters = monsterPositions.filter(function(m) {
-                return heroPositions.filter(function(h) { return isAdjacent(m, h); }).length >= 2;
-            }).length;
-            if (flankedMonsters > 0) {
-                tips.push('\u2705 ' + flankedMonsters + ' monster(s) flanked by multiple heroes!');
-            }
-            
-            // Exposed heroes — adjacent to 2+ monsters
-            var exposedHeroes = heroPositions.filter(function(h) {
-                return monsterPositions.filter(function(m) { return isAdjacent(h, m); }).length >= 2;
-            }).length;
-            if (exposedHeroes > 0) {
-                tips.push('\u274c ' + exposedHeroes + ' hero(es) exposed to multiple enemies — reposition!');
-            }
-            
-            analysisDiv.innerHTML = '<strong>Formation Analysis:</strong><br>' + tips.join('<br>');
+            out.innerHTML = '';
+            var p = document.createElement('p');
+            var strong = document.createElement('strong');
+            strong.textContent = 'Formation check:';
+            p.appendChild(strong);
+            out.appendChild(p);
+            var ul = document.createElement('ul');
+            lines.forEach(function (t) { var li = document.createElement('li'); li.textContent = t; ul.appendChild(li); });
+            out.appendChild(ul);
         }
-        
-        // Battlefield Analysis Canvas
-        const battleCanvas = document.getElementById('battlefield_analysis_canvas');
-        const battleCtx = battleCanvas.getContext('2d');
-        
-        function drawBattlefieldAnalysis() {
-            battleCtx.clearRect(0, 0, battleCanvas.width, battleCanvas.height);
-            
-            // Background
-            battleCtx.fillStyle = '#2f1b14';
-            battleCtx.fillRect(0, 0, battleCanvas.width, battleCanvas.height);
-            
-            // Draw threat assessment visualization
-            const threats = [
-                {x: 100, y: 100, level: 3, name: 'Chaos Warrior'},
-                {x: 300, y: 150, level: 1, name: 'Goblin'},
-                {x: 500, y: 120, level: 2, name: 'Orc'},
-                {x: 200, y: 250, level: 1, name: 'Goblin'}
-            ];
-            
-            threats.forEach(threat => {
-                // Draw threat level circle
-                const colors = ['#32cd32', '#ffa500', '#ff4500'];
-                battleCtx.fillStyle = colors[threat.level - 1];
-                battleCtx.beginPath();
-                battleCtx.arc(threat.x, threat.y, 20 + threat.level * 10, 0, Math.PI * 2);
-                battleCtx.fill();
-                
-                // Draw enemy
-                battleCtx.fillStyle = '#000';
-                battleCtx.font = '20px Arial';
-                battleCtx.textAlign = 'center';
-                battleCtx.fillText('👹', threat.x, threat.y + 7);
-                
-                // Draw threat level
-                battleCtx.fillStyle = '#fff';
-                battleCtx.font = '12px Arial';
-                battleCtx.fillText(threat.level.toString(), threat.x + 25, threat.y - 25);
-                
-                // Draw name
-                battleCtx.fillStyle = '#ffebcd';
-                battleCtx.font = '10px Arial';
-                battleCtx.fillText(threat.name, threat.x, threat.y + 50);
-            });
-            
-            battleCtx.fillStyle = '#ffebcd';
-            battleCtx.font = '16px Arial';
-            battleCtx.textAlign = 'center';
-            battleCtx.fillText('Threat Assessment: Size = Danger Level', 300, 30);
-            battleCtx.fillText('Green = Low, Orange = Medium, Red = High', 300, 320);
-            battleCtx.textAlign = 'left';
-        }
-        
-        drawBattlefieldAnalysis();
-        
-        // Spell Tactics Canvas
-        const spellCanvas = document.getElementById('spell_tactics_canvas');
-        const spellCtx = spellCanvas.getContext('2d');
-        
-        function drawSpellTactics() {
-            spellCtx.clearRect(0, 0, spellCanvas.width, spellCanvas.height);
-            
-            // Background
-            spellCtx.fillStyle = '#2f1b14';
-            spellCtx.fillRect(0, 0, spellCanvas.width, spellCanvas.height);
-            
-            // Draw spell areas of effect
-            const spells = [
-                {x: 150, y: 150, radius: 40, color: '#ff4500', name: 'Fireball'},
-                {x: 350, y: 150, radius: 60, color: '#4169e1', name: 'Lightning'},
-                {x: 500, y: 150, radius: 30, color: '#32cd32', name: 'Heal'}
-            ];
-            
-            spells.forEach(spell => {
-                // Draw spell effect
-                spellCtx.fillStyle = spell.color + '40';
-                spellCtx.beginPath();
-                spellCtx.arc(spell.x, spell.y, spell.radius, 0, Math.PI * 2);
-                spellCtx.fill();
-                
-                spellCtx.strokeStyle = spell.color;
-                spellCtx.lineWidth = 3;
-                spellCtx.stroke();
-                
-                // Draw caster
-                spellCtx.fillStyle = '#9370db';
-                spellCtx.fillRect(spell.x - 15, spell.y - 15, 30, 30);
-                spellCtx.fillStyle = '#fff';
-                spellCtx.font = '16px Arial';
-                spellCtx.textAlign = 'center';
-                spellCtx.fillText('🔮', spell.x, spell.y + 5);
-                
-                // Draw spell name
-                spellCtx.fillStyle = '#ffebcd';
-                spellCtx.font = '12px Arial';
-                spellCtx.fillText(spell.name, spell.x, spell.y + 80);
-            });
-            
-            spellCtx.fillStyle = '#ffebcd';
-            spellCtx.font = '16px Arial';
-            spellCtx.textAlign = 'center';
-            spellCtx.fillText('Spell Area Effects and Positioning', 300, 30);
-            spellCtx.textAlign = 'left';
-        }
-        
-        drawSpellTactics();
+        render();
+    })();
     </script>
-<script src="/nav.js"></script>
+
+    <footer>
+<div class="page-nav">
+    <a class="prev" href="/heroquest_basics.html">Getting Started</a>
+    <a class="next" href="/heroquest_magic_spells.html">Magic &amp; Spells</a>
+</div>
+    </footer>
+<div class="site-footer">&copy; 2026 Ray de la Paz. The HeroQuest Guide. All rights reserved. &middot; <a href="https://rays-home.netlify.app/">Ray's House of Fun</a><br>HeroQuest is a trademark of Hasbro; the current edition is published by Avalon Hill. This guide is an unofficial fan resource, not endorsed by Hasbro or Avalon Hill.</div>
 </body>
 </html>
